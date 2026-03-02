@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. B's Current Events — Alderwood Middle School Social Studies</title>
+<meta name="description" content="Free, student-friendly explainers on current events for middle schoolers. Made by an 8th grade Social Studies teacher.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@400;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:#f5f0e8;color:#1a1a1a;line-height:1.6;overflow-x:hidden}
+
+/* ─── VARIABLES ─── */
+:root{
+  --ink:#1a1a1a;
+  --paper:#f5f0e8;
+  --paper-dark:#ede7d9;
+  --rule:#c8b89a;
+  --gold:#b8760a;
+  --gold-l:#e8a020;
+  --red:#8b1a1a;
+  --red-m:#c0392b;
+  --navy:#1a2a4a;
+  --navy-l:#2a3f6f;
+  --green:#1a5c38;
+  --slate:#4a5568;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.1);
+  --shadow-md:0 6px 24px rgba(0,0,0,.12);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.18);
+}
+
+/* ─── MASTHEAD ─── */
+.masthead{
+  background:var(--ink);
+  padding:0;
+  position:relative;
+  overflow:hidden;
+}
+/* subtle dot-grid texture */
+.masthead::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:24px 24px;
+  pointer-events:none;
+}
+.masthead-top{
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding:10px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.45);font-weight:700;
+}
+.masthead-top a{color:rgba(255,255,255,.45);text-decoration:none}
+.masthead-top a:hover{color:var(--gold-l)}
+.masthead-date{font-style:italic;letter-spacing:0;text-transform:none;font-weight:400}
+
+.masthead-main{
+  padding:40px 40px 30px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.masthead-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:white;
+  font-size:.68rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 16px;border-radius:2px;margin-bottom:18px;
+}
+.masthead-eyebrow::before,.masthead-eyebrow::after{content:'★';font-size:.6rem;opacity:.7}
+
+.masthead h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:900;color:white;
+  line-height:1;letter-spacing:-1px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+  margin-bottom:6px;
+}
+.masthead h1 em{
+  color:var(--gold-l);font-style:italic;
+}
+.masthead-rule{
+  display:flex;align-items:center;gap:14px;
+  justify-content:center;margin:16px 0;
+}
+.masthead-rule span{height:1px;flex:1;max-width:200px;background:rgba(255,255,255,.2)}
+.masthead-rule i{color:var(--gold-l);font-size:.9rem;font-style:normal}
+.masthead-sub{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(.9rem,2vw,1.1rem);
+  color:rgba(255,255,255,.7);
+  font-style:italic;
+  max-width:560px;margin:0 auto 24px;
+  line-height:1.6;
+}
+.masthead-meta{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  flex-wrap:wrap;
+}
+.meta-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:30px;padding:6px 16px;
+  font-size:.78rem;font-weight:700;color:rgba(255,255,255,.75);
+  text-decoration:none;transition:all .2s;
+}
+.meta-pill:hover{background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.3)}
+.meta-pill span{opacity:.7;font-size:.85em}
+
+/* ─── TICKER ─── */
+.ticker{
+  background:var(--red);color:white;
+  display:flex;align-items:stretch;overflow:hidden;
+}
+.ticker-label{
+  background:var(--red-m);padding:10px 18px;
+  font-size:.72rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+  flex-shrink:0;display:flex;align-items:center;gap:6px;white-space:nowrap;
+  border-right:1px solid rgba(255,255,255,.2);
+}
+.ticker-track{
+  overflow:hidden;flex:1;display:flex;align-items:center;
+}
+.ticker-inner{
+  display:flex;gap:0;white-space:nowrap;
+  animation:ticker 32s linear infinite;
+}
+.ticker-inner:hover{animation-play-state:paused}
+@keyframes ticker{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.ticker-item{
+  font-size:.8rem;font-weight:700;padding:10px 28px;
+  border-right:1px solid rgba(255,255,255,.2);
+}
+.ticker-item a{color:white;text-decoration:none}
+.ticker-item a:hover{text-decoration:underline}
+.ticker-dot{color:rgba(255,255,255,.5);margin-right:8px}
+
+/* ─── NAV ─── */
+.site-nav{
+  background:var(--paper-dark);
+  border-bottom:2px solid var(--ink);
+  padding:0 40px;
+  display:flex;align-items:center;gap:0;
+  overflow-x:auto;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.site-nav a{
+  display:block;padding:13px 20px;
+  font-size:.8rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  text-decoration:none;color:var(--slate);
+  border-bottom:3px solid transparent;
+  transition:all .15s;white-space:nowrap;
+}
+.site-nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+.site-nav a.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-divider{width:1px;background:var(--rule);margin:8px 0;flex-shrink:0}
+.nav-github{
+  margin-left:auto;display:flex;align-items:center;gap:6px;
+  background:var(--ink);color:white!important;border-radius:6px;
+  padding:7px 14px!important;border-bottom:none!important;font-size:.75rem!important;
+}
+.nav-github:hover{background:var(--navy)!important;border-bottom:none!important}
+
+/* ─── MAIN ─── */
+main{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+
+/* ─── SECTION HEADERS (newspaper style) ─── */
+.section-flag{
+  display:flex;align-items:center;gap:16px;
+  margin:44px 0 24px;
+  padding-bottom:10px;
+  border-bottom:3px solid var(--ink);
+}
+.section-flag h2{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:900;letter-spacing:-.3px;
+}
+.flag-rule{flex:1;height:1px;background:var(--rule)}
+.flag-label{
+  font-size:.65rem;font-weight:900;letter-spacing:2px;
+  text-transform:uppercase;color:var(--slate);
+  border:1px solid var(--rule);border-radius:2px;
+  padding:3px 8px;white-space:nowrap;
+}
+
+/* ─── FEATURED ARTICLE (IRAN) ─── */
+.featured-grid{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:0;
+  background:white;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.featured-image-wrap{
+  position:relative;overflow:hidden;
+  min-height:320px;
+}
+.featured-image-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .4s ease;
+}
+.featured-image-wrap:hover img{transform:scale(1.03)}
+.featured-badge{
+  position:absolute;top:16px;left:16px;
+  background:var(--red);color:white;
+  font-size:.65rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 12px;border-radius:2px;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+.featured-badge.live{animation:pulse-badge 2s infinite}
+@keyframes pulse-badge{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(192,57,43,.4)}
+  50%{opacity:.85;box-shadow:0 0 0 6px rgba(192,57,43,0)}
+}
+.featured-content{
+  padding:30px 28px 28px;
+  display:flex;flex-direction:column;
+  border-left:1px solid var(--rule);
+}
+.featured-kicker{
+  font-size:.7rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--red);margin-bottom:10px;
+}
+.featured-content h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.7rem;font-weight:900;line-height:1.2;
+  margin-bottom:12px;letter-spacing:-.3px;
+}
+.featured-content p{
+  font-family:'Libre Baskerville',serif;
+  font-size:.9rem;line-height:1.75;color:#444;
+  margin-bottom:14px;flex:1;
+}
+.featured-meta{
+  font-size:.72rem;color:var(--slate);font-weight:700;
+  margin-bottom:18px;display:flex;gap:12px;flex-wrap:wrap;
+}
+.featured-meta span{display:flex;align-items:center;gap:4px}
+.featured-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tag{
+  font-size:.65rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 9px;border-radius:2px;
+}
+.tag-region{background:#e8f0fa;color:#1a4a7a}
+.tag-topic{background:#fef3db;color:#7a5000}
+.tag-level{background:#e8f5ee;color:#1a5c38}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:white;
+  padding:12px 22px;border-radius:3px;
+  font-weight:900;font-size:.88rem;letter-spacing:.3px;
+  text-decoration:none;transition:all .2s;
+  border:2px solid var(--ink);
+}
+.btn-primary:hover{background:var(--red);border-color:var(--red);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:6px;
+  background:transparent;color:var(--ink);
+  padding:11px 20px;border-radius:3px;
+  font-weight:800;font-size:.84rem;
+  text-decoration:none;transition:all .2s;
+  border:2px solid var(--rule);margin-left:10px;
+}
+.btn-secondary:hover{border-color:var(--ink);background:var(--paper-dark)}
+
+/* ─── COMING SOON CARDS ─── */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.topic-card{
+  background:white;border:1px solid var(--rule);border-radius:4px;
+  overflow:hidden;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;
+  transition:all .25s;position:relative;
+}
+.topic-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.topic-card.coming-soon{opacity:.7}
+.topic-card.coming-soon:hover{transform:none;box-shadow:var(--shadow-sm)}
+
+.card-image{
+  height:160px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#2a2a2a,#444);
+  display:flex;align-items:center;justify-content:center;
+}
+.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.topic-card:hover .card-image img{transform:scale(1.05)}
+.card-image-placeholder{
+  font-size:3.5rem;opacity:.4;
+  text-align:center;
+}
+.card-flag-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.5));
+}
+.card-badge{
+  position:absolute;top:10px;left:10px;
+  font-size:.62rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;color:white;
+}
+.badge-live{background:var(--red)}
+.badge-soon{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3)}
+.badge-planned{background:var(--navy-l)}
+
+.card-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column}
+.card-kicker{
+  font-size:.65rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.card-body h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;line-height:1.3;
+  margin-bottom:8px;
+}
+.card-body p{font-size:.84rem;color:#555;line-height:1.6;flex:1;margin-bottom:12px}
+.card-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.7rem;color:var(--slate);font-weight:700;
+}
+.card-foot a{
+  color:var(--navy-l);font-weight:800;text-decoration:none;font-size:.78rem;
+  display:flex;align-items:center;gap:4px;
+}
+.card-foot a:hover{color:var(--red)}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+
+.soon-overlay{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 8px,
+    rgba(200,185,160,.07) 8px,rgba(200,185,160,.07) 16px
+  );
+  pointer-events:none;border-radius:4px;
+}
+
+/* ─── SUGGEST A TOPIC ─── */
+.suggest-box{
+  background:white;border:1px solid var(--rule);border-radius:4px;
+  padding:28px 30px;margin-top:20px;
+  display:flex;align-items:center;gap:24px;
+  box-shadow:var(--shadow-sm);
+}
+.suggest-icon{
+  font-size:2.5rem;flex-shrink:0;
+  background:var(--paper);border-radius:50%;
+  width:64px;height:64px;display:flex;align-items:center;justify-content:center;
+}
+.suggest-body h4{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:4px}
+.suggest-body p{font-size:.85rem;color:#555;line-height:1.6;margin-bottom:10px}
+.suggest-body a{
+  color:var(--navy-l);font-weight:800;font-size:.84rem;text-decoration:none;
+  border-bottom:2px solid var(--navy-l);
+}
+.suggest-body a:hover{color:var(--red);border-color:var(--red)}
+
+/* ─── TEACHER CORNER ─── */
+.teacher-section{
+  background:var(--ink);color:white;
+  border-radius:6px;margin-top:44px;
+  overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.teacher-header{
+  background:var(--navy);
+  padding:20px 30px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.teacher-header h3{
+  font-family:'Playfair Display',serif;font-size:1.25rem;
+  color:var(--gold-l);
+}
+.teacher-header p{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:2px}
+.teacher-body{padding:28px 30px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.teacher-col h4{
+  font-size:.7rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold-l);margin-bottom:12px;
+  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.teacher-col ul{list-style:none;padding:0}
+.teacher-col li{
+  font-size:.88rem;color:rgba(255,255,255,.8);
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:flex-start;gap:8px;line-height:1.5;
+}
+.teacher-col li::before{content:'→';color:var(--gold-l);flex-shrink:0;font-weight:900}
+.teacher-col p{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:12px}
+.teacher-col a{color:var(--gold-l);font-weight:700;text-decoration:none}
+.teacher-col a:hover{text-decoration:underline}
+.teacher-col code{
+  background:rgba(255,255,255,.1);border-radius:4px;
+  padding:2px 7px;font-size:.82rem;color:#adf;
+}
+.btn-github{
+  display:inline-flex;align-items:center;gap:8px;
+  background:white;color:var(--ink);
+  padding:11px 20px;border-radius:4px;
+  font-weight:900;font-size:.85rem;text-decoration:none;
+  transition:all .2s;margin-top:12px;
+}
+.btn-github:hover{background:var(--gold-l);transform:translateY(-1px)}
+
+/* ─── ABOUT STRIP ─── */
+.about-strip{
+  display:flex;align-items:center;gap:20px;
+  background:var(--paper-dark);border:1px solid var(--rule);
+  border-radius:4px;padding:20px 24px;margin-top:28px;
+}
+.about-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--navy-l));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+  border:2px solid var(--rule);
+}
+.about-text h4{font-size:.92rem;font-weight:900;margin-bottom:2px}
+.about-text p{font-size:.8rem;color:var(--slate);line-height:1.55}
+.about-text a{color:var(--navy-l);font-weight:700;text-decoration:none}
+.about-text a:hover{color:var(--red)}
+.about-links{margin-left:auto;display:flex;gap:10px;flex-shrink:0}
+.about-link{
+  font-size:.75rem;font-weight:800;padding:7px 14px;border-radius:3px;
+  text-decoration:none;transition:all .2s;border:1px solid var(--rule);color:var(--slate);
+}
+.about-link:hover{background:var(--ink);color:white;border-color:var(--ink)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.5);
+  padding:28px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  font-size:.75rem;
+}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+footer a:hover{color:var(--gold-l)}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  color:white;font-weight:900;font-size:1rem;font-style:italic;
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .55s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.delay-1{animation-delay:.08s}
+.delay-2{animation-delay:.16s}
+.delay-3{animation-delay:.24s}
+.delay-4{animation-delay:.32s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:800px){
+  .masthead-top{padding:8px 20px}
+  .masthead-main{padding:30px 20px 24px}
+  .featured-grid{grid-template-columns:1fr}
+  .featured-image-wrap{min-height:220px}
+  .featured-content{border-left:none;border-top:1px solid var(--rule)}
+  .teacher-body{grid-template-columns:1fr}
+  .site-nav{padding:0 12px}
+  .about-strip{flex-wrap:wrap}
+  .about-links{margin-left:0}
+  footer{flex-direction:column;text-align:center}
+  main{padding:0 16px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── MASTHEAD ─── -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
+    <span class="masthead-date" id="todayDate"></span>
+    <a href="https://ss8.mrbsocialstudies.org" target="_blank">← Back to main site</a>
+  </div>
+  <div class="masthead-main">
+    <div class="masthead-eyebrow">Current Events</div>
+    <h1>Mr. B's <em>World</em></h1>
+    <div class="masthead-rule">
+      <span></span><i>✦</i><span></span>
+    </div>
+    <p class="masthead-sub">Student-friendly explainers on what's happening in the world — with maps, timelines, videos, and quizzes built for 8th graders.</p>
+    <div class="masthead-meta">
+      <a class="meta-pill" href="#topics"><span>📰</span> Browse Topics</a>
+      <a class="meta-pill" href="https://github.com/shiebenaderet/current-events" target="_blank"><span>⭐</span> GitHub</a>
+      <a class="meta-pill" href="https://ss8.mrbsocialstudies.org" target="_blank"><span>🏫</span> Main Class Site</a>
+      <a class="meta-pill" href="#teachers"><span>👩‍🏫</span> For Teachers</a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── BREAKING TICKER ─── -->
+<div class="ticker">
+  <div class="ticker-label">🔴 Latest</div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="tickerInner">
+      <!-- duplicated for seamless loop -->
+    </div>
+  </div>
+</div>
+
+<!-- ─── STICKY NAV ─── -->
+<nav class="site-nav">
+  <a href="#topics" class="active">📰 All Topics</a>
+  <a href="iran/">🇮🇷 Iran</a>
+  <div class="nav-divider"></div>
+  <a href="#coming-soon">Coming Soon</a>
+  <a href="#teachers">For Teachers</a>
+  <a href="https://github.com/shiebenaderet/current-events" target="_blank" class="nav-github">
+    ⭐ View on GitHub
+  </a>
+</nav>
+
+<main>
+
+  <!-- ─── FEATURED: IRAN ─── -->
+  <div class="section-flag fade-up">
+    <h2>Featured Story</h2>
+    <div class="flag-rule"></div>
+    <span class="flag-label">Most Recent · Updated March 2026</span>
+  </div>
+
+  <div class="featured-grid fade-up delay-1" id="topics">
+    <div class="featured-image-wrap">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Persepolis_palace.jpg/1280px-Persepolis_palace.jpg"
+        alt="Persepolis ruins, Iran — ancient Persian capital"
+        onerror="this.parentElement.style.background='linear-gradient(135deg,#8b1a1a,#c0392b)'"
+      >
+      <div class="featured-badge live">🔴 Active Story</div>
+    </div>
+    <div class="featured-content">
+      <div class="featured-kicker">Middle East · Conflict · History</div>
+      <h3>Understanding Iran: What's Happening and Why It Matters</h3>
+      <div class="featured-meta">
+        <span>📅 Updated March 2026</span>
+        <span>⏱ 20–40 min</span>
+        <span>🎯 Grade 8</span>
+      </div>
+      <div class="featured-tags">
+        <span class="tag tag-region">Middle East</span>
+        <span class="tag tag-topic">Conflict</span>
+        <span class="tag tag-topic">Human Rights</span>
+        <span class="tag tag-level">⭐ All levels</span>
+      </div>
+      <p>
+        From ancient Persia to the CIA coup of 1953, the Islamic Revolution, and today's U.S.-Israel military strikes — this page covers Iran's full story with an interactive map, quizzes, videos, and citations on every fact.
+      </p>
+      <div>
+        <a class="btn-primary" href="iran/">Read the Full Story →</a>
+        <a class="btn-secondary" href="iran/#videos">📺 Videos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── COMING SOON ─── -->
+  <div class="section-flag fade-up delay-2" id="coming-soon">
+    <h2>More Topics Coming</h2>
+    <div class="flag-rule"></div>
+    <span class="flag-label">Suggestions welcome</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Card: Ukraine -->
+    <div class="topic-card coming-soon fade-up delay-2">
+      <div class="soon-overlay"></div>
+      <div class="card-image">
+        <div class="card-image-placeholder">🇺🇦</div>
+        <div class="card-flag-overlay"></div>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-kicker">Eastern Europe · War</div>
+        <h3>The War in Ukraine</h3>
+        <div class="card-tags">
+          <span class="tag tag-region">Europe</span>
+          <span class="tag tag-topic">Conflict</span>
+        </div>
+        <p>Why did Russia invade Ukraine? What is NATO? How has this changed the world? Timeline from the Soviet Union to today.</p>
+        <div class="card-foot">
+          <span>🕐 Not yet published</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card: AI & Society -->
+    <div class="topic-card coming-soon fade-up delay-2">
+      <div class="soon-overlay"></div>
+      <div class="card-image">
+        <div class="card-image-placeholder">🤖</div>
+        <div class="card-flag-overlay"></div>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-kicker">Technology · Society</div>
+        <h3>Artificial Intelligence: What Is It Changing?</h3>
+        <div class="card-tags">
+          <span class="tag tag-region">Global</span>
+          <span class="tag tag-topic">Technology</span>
+        </div>
+        <p>Jobs, creativity, bias, and democracy — how AI is reshaping everyday life and what questions we should all be asking about it.</p>
+        <div class="card-foot">
+          <span>🕐 Not yet published</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card: Climate -->
+    <div class="topic-card coming-soon fade-up delay-3">
+      <div class="soon-overlay"></div>
+      <div class="card-image">
+        <div class="card-image-placeholder">🌍</div>
+        <div class="card-flag-overlay"></div>
+        <span class="card-badge badge-soon">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-kicker">Environment · Policy</div>
+        <h3>Climate Change: Where Are We Now?</h3>
+        <div class="card-tags">
+          <span class="tag tag-region">Global</span>
+          <span class="tag tag-topic">Environment</span>
+        </div>
+        <p>The science, the politics, the solutions — and why some countries are acting faster than others. What role do young people play?</p>
+        <div class="card-foot">
+          <span>🕐 Not yet published</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card: Immigration -->
+    <div class="topic-card coming-soon fade-up delay-3">
+      <div class="soon-overlay"></div>
+      <div class="card-image">
+        <div class="card-image-placeholder">🗽</div>
+        <div class="card-flag-overlay"></div>
+        <span class="card-badge badge-planned">Planned</span>
+      </div>
+      <div class="card-body">
+        <div class="card-kicker">U.S. Policy · Identity</div>
+        <h3>Immigration: History, Policy, and People</h3>
+        <div class="card-tags">
+          <span class="tag tag-region">United States</span>
+          <span class="tag tag-topic">Policy</span>
+        </div>
+        <p>Who gets to come to America, and who decides? From the origins of U.S. immigration law to what's happening at the border today.</p>
+        <div class="card-foot">
+          <span>🕐 Not yet published</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggest card -->
+    <div class="topic-card fade-up delay-4" style="border:2px dashed var(--rule);background:var(--paper);box-shadow:none">
+      <div class="card-image" style="background:var(--paper-dark);min-height:160px">
+        <div class="card-image-placeholder" style="opacity:.25;font-size:2.5rem">➕</div>
+      </div>
+      <div class="card-body" style="text-align:center;justify-content:center">
+        <div style="font-size:2rem;margin-bottom:10px">💬</div>
+        <h3 style="font-size:1rem">Suggest a Topic</h3>
+        <p style="font-size:.82rem;margin-bottom:14px">What current event do you want to understand better? Tell Mr. B — or if you're a teacher, contribute on GitHub.</p>
+        <a href="mailto:shie@example.com" style="font-weight:800;font-size:.82rem;color:var(--navy-l);text-decoration:none;border-bottom:2px solid var(--navy-l)">
+          → Leave a suggestion
+        </a>
+      </div>
+    </div>
+
+  </div><!-- end cards-grid -->
+
+  <!-- ─── TEACHER CORNER ─── -->
+  <div class="teacher-section fade-up" id="teachers">
+    <div class="teacher-header">
+      <div style="font-size:1.6rem">👩‍🏫</div>
+      <div>
+        <h3>For Teachers — Open Source &amp; Free to Use</h3>
+        <p>All resources on this site are freely available on GitHub under a Creative Commons license</p>
+      </div>
+    </div>
+    <div class="teacher-body">
+      <div class="teacher-col">
+        <h4>How to Use This in Your Classroom</h4>
+        <ul>
+          <li>Link directly to any topic page from your LMS (Canvas, Schoology, Google Classroom)</li>
+          <li>Embed as an iframe if your district allows external sites</li>
+          <li>Download the HTML file and host it yourself — no login required</li>
+          <li>Quizzes and easter eggs work on any modern browser, including Chromebooks</li>
+          <li>All images are CC-licensed or public domain — safe for school use</li>
+          <li>Works on phones, tablets, and desktops without any app install</li>
+        </ul>
+      </div>
+      <div class="teacher-col">
+        <h4>Contribute or Adapt</h4>
+        <p>This project lives on GitHub. If you want to contribute a new topic page, fix a broken link, suggest a source, or adapt this for your own students — pull requests are welcome.</p>
+        <p>Each topic page is a single self-contained <code>.html</code> file — no build tools, no frameworks, no server needed. If you can edit a Google Doc, you can edit these.</p>
+        <a class="btn-github" href="https://github.com/shiebenaderet/current-events" target="_blank">
+          ⭐ View the repo on GitHub
+        </a>
+        <br>
+        <a class="btn-github" href="https://github.com/shiebenaderet/current-events/issues/new" target="_blank" style="margin-top:8px;background:var(--paper-dark);color:var(--ink)">
+          💬 Open an issue or suggestion
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <div class="about-strip fade-up">
+    <div class="about-avatar">👨‍🏫</div>
+    <div class="about-text">
+      <h4>Made by Shie Benaderet — 8th Grade Social Studies, Alderwood Middle School</h4>
+      <p>
+        This is a companion to the <a href="https://ss8.mrbsocialstudies.org" target="_blank">main class site</a> and the
+        <a href="https://github.com/shiebenaderet/socialstudies8" target="_blank">American Yawp Jr. project</a>.
+        All resources are free, open source, and built for real classrooms — especially for students who read below grade level, have IEPs, or are multilingual learners.
+      </p>
+    </div>
+    <div class="about-links">
+      <a class="about-link" href="https://ss8.mrbsocialstudies.org" target="_blank">Class Site</a>
+      <a class="about-link" href="https://github.com/shiebenaderet" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── */-->
+<footer>
+  <span class="footer-logo">Mr. B's World</span>
+  <span>Alderwood Middle School · Room 1610 · Shie Benaderet</span>
+  <span>
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a> ·
+    <a href="https://github.com/shiebenaderet/current-events" target="_blank">GitHub</a> ·
+    <a href="https://ss8.mrbsocialstudies.org" target="_blank">Main Site</a>
+  </span>
+</footer>
+
+<script>
+// ─── DATE ───
+const d = new Date();
+document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+// ─── TICKER ───
+const headlines = [
+  {text:'🇮🇷 U.S. and Israel launch major military strikes on Iran', href:'iran/'},
+  {text:"Iran's Supreme Leader Khamenei killed in 2026 strikes", href:'iran/#now'},
+  {text:'Iranian protests: 6,000+ killed in government crackdown (Jan 2026)', href:'iran/#now'},
+  {text:'New topic coming soon: The War in Ukraine', href:'#coming-soon'},
+  {text:'All resources are free and open source — contribute on GitHub', href:'https://github.com/shiebenaderet/current-events'},
+  {text:'🇮🇷 Full Iran timeline: From the Persian Empire to today', href:'iran/#hist'},
+];
+
+// duplicate for seamless loop
+const all = [...headlines,...headlines];
+const inner = document.getElementById('tickerInner');
+all.forEach(h => {
+  const s = document.createElement('span');
+  s.className = 'ticker-item';
+  s.innerHTML = `<span class="ticker-dot">◆</span><a href="${h.href}">${h.text}</a>`;
+  inner.appendChild(s);
+});
+</script>
+
+</body>
+</html>
