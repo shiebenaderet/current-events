@@ -340,7 +340,7 @@ cite-link a:hover{background:var(--blue-l);color:white}
   width:90px;height:90px;border-radius:50%;overflow:hidden;
   position:relative;
 }
-.portrait-inner img{width:100%;height:100%;object-fit:cover;object-position:top}
+.portrait-inner img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .portrait-inner::after{
   content:'';position:absolute;inset:0;border-radius:50%;
   background:radial-gradient(circle at 50% 40%,transparent 45%,rgba(10,10,30,.4) 100%);
@@ -1157,7 +1157,12 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
       </div>
 
       <div class="person-card">
-        <div class="person-emoji-fallback">🕌</div>
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <img src="images/khomeini.jpg"
+                 alt="Ayatollah Khomeini" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>🕌</div>'">
+          </div>
+        </div>
         <h4>Ayatollah Khomeini</h4>
         <div class="person-role">Revolutionary Leader, 1979</div>
         <p>The religious leader who led the 1979 Revolution and turned Iran into an Islamic Republic. He shaped the entire system of government that Iran has today.</p>
@@ -1165,7 +1170,12 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
       </div>
 
       <div class="person-card">
-        <div class="person-emoji-fallback">👤</div>
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <img src="images/khamenei.jpg"
+                 alt="Ayatollah Khamenei" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>👤</div>'">
+          </div>
+        </div>
         <h4>Ayatollah Khamenei</h4>
         <div class="person-role">Supreme Leader, 1989 – March 2026</div>
         <p>Iran's most powerful leader for over 30 years. He had the final say over the military, courts, and major decisions. His death in the 2026 U.S.-Israel strikes leaves Iran's future deeply uncertain.</p>
@@ -1173,7 +1183,12 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
       </div>
 
       <div class="person-card">
-        <div class="person-emoji-fallback">✊</div>
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <img src="images/mahsa-amini.jpg" style="object-position:center 15%"
+                 alt="Mahsa Amini protest sign" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>✊</div>'">
+          </div>
+        </div>
         <h4>Mahsa Amini</h4>
         <div class="person-role">Protester whose death sparked a movement, 2022</div>
         <p>A 22-year-old woman whose death in police custody in 2022 sparked the biggest protests in Iran in decades. Her name became a symbol of the fight for freedom.</p>
@@ -1181,7 +1196,12 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
       </div>
 
       <div class="person-card">
-        <div class="person-emoji-fallback">🎯</div>
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <img src="images/soleimani.jpg"
+                 alt="Gen. Qasem Soleimani" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>🎯</div>'">
+          </div>
+        </div>
         <h4>Gen. Qasem Soleimani</h4>
         <div class="person-role">Iran's Top Military Commander, killed 2020</div>
         <p>Iran's most powerful general, responsible for Iran's military activities across the Middle East. His killing by a U.S. drone strike in 2020 nearly started a war.</p>
@@ -1189,7 +1209,12 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
       </div>
 
       <div class="person-card">
-        <div class="person-emoji-fallback">📜</div>
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <img src="images/rumi.jpg" style="object-position:center 10%"
+                 alt="Rumi, Persian poet" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>📜</div>'">
+          </div>
+        </div>
         <h4>Rumi</h4>
         <div class="person-role">Persian Poet, 1207–1273</div>
         <p>One of the most famous poets in history, born in what is now Afghanistan, writing in Persian. His poetry about love, God, and humanity is still read around the world — even translated into English today.</p>
