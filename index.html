@@ -6,6 +6,7 @@
 <title>Mr. B's Current Events — Alderwood Middle School Social Studies</title>
 <meta name="description" content="Free, student-friendly explainers on current events for middle schoolers. Made by an 8th grade Social Studies teacher.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@400;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 /* ─── RESET ─── */
 *{box-sizing:border-box;margin:0;padding:0}
@@ -473,6 +474,22 @@ footer a:hover{color:var(--gold-l)}
   footer{flex-direction:column;text-align:center}
   main{padding:0 16px 60px}
 }
+
+/* ─── DYSLEXIC FONT TOGGLE ─── */
+.dyslexic-toggle{
+  position:fixed;bottom:20px;right:20px;z-index:9999;
+  background:var(--navy);color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:'Nunito',sans-serif;
+}
+.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.dyslexic-toggle.active{background:#2d8f58}
+body.dyslexic .dyslexic-toggle{font-family:'OpenDyslexic',sans-serif}
+body.dyslexic,
+body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:'OpenDyslexic',sans-serif!important}
 </style>
 </head>
 <body>
@@ -768,6 +785,22 @@ all.forEach(h => {
   s.innerHTML = `<span class="ticker-dot">◆</span><a href="${h.href}">${h.text}</a>`;
   inner.appendChild(s);
 });
+</script>
+
+<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+  Aa Dyslexic Font
+</button>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
 </script>
 
 </body>

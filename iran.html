@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Understanding Iran – Student Resource</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
@@ -479,6 +480,22 @@ a.text-link:hover{color:var(--red);border-color:var(--red)}
   .breaking-inner{flex-direction:column;gap:8px}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
 }
+
+/* ─── DYSLEXIC FONT TOGGLE ─── */
+.dyslexic-toggle{
+  position:fixed;bottom:20px;right:20px;z-index:9999;
+  background:#1a2a4a;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:'Nunito',sans-serif;
+}
+.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.dyslexic-toggle.active{background:#2d8f58}
+body.dyslexic .dyslexic-toggle{font-family:'OpenDyslexic',sans-serif}
+body.dyslexic,
+body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:'OpenDyslexic',sans-serif!important}
 </style>
 </head>
 <body>
@@ -1680,6 +1697,22 @@ sites.forEach(s => {
 // rough Iran outline
 const iranPoly = [[38.4,44.0],[39.7,44.8],[39.8,48.3],[41.2,48.6],[38.5,56.2],[37.1,58.5],[37.6,61.1],[35.0,61.2],[31.4,61.6],[29.9,60.9],[25.1,61.0],[25.3,57.3],[26.6,56.3],[27.1,56.7],[27.1,52.6],[25.1,50.9],[29.2,48.2],[30.1,47.8],[33.1,46.2],[37.2,44.3],[38.4,44.0]];
 L.polygon(iranPoly,{color:'#c0392b',weight:2.5,fillColor:'#c0392b',fillOpacity:.1,dashArray:'5 4'}).addTo(map);
+</script>
+
+<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+  Aa Dyslexic Font
+</button>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
 </script>
 
 </body>
