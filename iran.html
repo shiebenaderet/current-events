@@ -407,10 +407,11 @@ cite-link a:hover{background:var(--blue-l);color:white}
   color:white;border-radius:14px;padding:14px 20px;
   box-shadow:0 8px 28px rgba(0,0,0,.25);
   max-width:300px;transform:translateX(120%);
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s ease;
   font-weight:700;font-size:.9rem;
+  opacity:0;pointer-events:none;
 }
-.toast.show{transform:translateX(0)}
+.toast.show{transform:translateX(0);opacity:1;pointer-events:auto}
 .toast-icon{font-size:1.3rem;display:block;margin-bottom:3px}
 .toast-title{font-size:1rem;font-weight:900}
 .toast-msg{font-size:.82rem;font-weight:600;opacity:.9;margin-top:2px}
