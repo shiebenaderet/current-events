@@ -513,7 +513,7 @@ footer a:hover{color:var(--gold-l)}
 <!-- ─── STICKY NAV ─── -->
 <nav class="site-nav">
   <a href="#topics" class="active">📰 All Topics</a>
-  <a href="iran/">🇮🇷 Iran</a>
+  <a href="iran.html">🇮🇷 Iran</a>
   <div class="nav-divider"></div>
   <a href="#coming-soon">Coming Soon</a>
   <a href="#teachers">For Teachers</a>
@@ -534,7 +534,7 @@ footer a:hover{color:var(--gold-l)}
   <div class="featured-grid fade-up delay-1" id="topics">
     <div class="featured-image-wrap">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Persepolis_palace.jpg/1280px-Persepolis_palace.jpg"
+        src="images/persepolis.jpg"
         alt="Persepolis ruins, Iran — ancient Persian capital"
         onerror="this.parentElement.style.background='linear-gradient(135deg,#8b1a1a,#c0392b)'"
       >
@@ -558,8 +558,8 @@ footer a:hover{color:var(--gold-l)}
         From ancient Persia to the CIA coup of 1953, the Islamic Revolution, and today's U.S.-Israel military strikes — this page covers Iran's full story with an interactive map, quizzes, videos, and citations on every fact.
       </p>
       <div>
-        <a class="btn-primary" href="iran/">Read the Full Story →</a>
-        <a class="btn-secondary" href="iran/#videos">📺 Videos</a>
+        <a class="btn-primary" href="iran.html">Read the Full Story →</a>
+        <a class="btn-secondary" href="iran.html#videos">📺 Videos</a>
       </div>
     </div>
   </div>
@@ -751,12 +751,12 @@ document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',
 
 // ─── TICKER ───
 const headlines = [
-  {text:'🇮🇷 U.S. and Israel launch major military strikes on Iran', href:'iran/'},
-  {text:"Iran's Supreme Leader Khamenei killed in 2026 strikes", href:'iran/#now'},
-  {text:'Iranian protests: 6,000+ killed in government crackdown (Jan 2026)', href:'iran/#now'},
+  {text:'🇮🇷 U.S. and Israel launch major military strikes on Iran', href:'iran.html'},
+  {text:"Iran's Supreme Leader Khamenei killed in 2026 strikes", href:'iran.html#now'},
+  {text:'Iranian protests: 6,000+ killed in government crackdown (Jan 2026)', href:'iran.html#now'},
   {text:'New topic coming soon: The War in Ukraine', href:'#coming-soon'},
   {text:'All resources are free and open source — contribute on GitHub', href:'https://github.com/shiebenaderet/current-events'},
-  {text:'🇮🇷 Full Iran timeline: From the Persian Empire to today', href:'iran/#hist'},
+  {text:'🇮🇷 Full Iran timeline: From the Persian Empire to today', href:'iran.html#hist'},
 ];
 
 // duplicate for seamless loop
