@@ -39,6 +39,19 @@ Download images to `images/` folder for local use.
 
 Search for exact YouTube IDs during implementation and verify they work before embedding.
 
+## Teacher-Provided Sources (use throughout)
+
+These sources were specifically requested by the teacher. Integrate them as footnotes, stat sources, and resource links wherever relevant:
+
+| Source | URL | Best used for |
+|---|---|---|
+| AP News — War by the numbers | `https://apnews.com/article/russia-ukraine-war-numbers-f023cd82917ccb29ad2dda54ea589249` | Stat grids, casualty/cost figures, Section 6 & 7 |
+| UK Parliament — Conflict overview (CBP-9723) | `https://researchbriefings.files.parliament.uk/documents/CBP-9723/CBP-9723.pdf` | Background verification, Section 7, Resources (Harder) |
+| BBC — Ukraine conflict article | `https://www.bbc.com/news/articles/c0l0k4389g2o` | Footnotes, Resources |
+| Harvard HURI — War background | `https://war.huri.harvard.edu/background/` | Sections 2, 6 — addresses "one people" myth, 2014 origins, NATO question. Excellent for footnotes. |
+| ISW ArcGIS StoryMap — Live front lines | `https://storymaps.arcgis.com/stories/36a7f6a6f5a9448496de641cf64bd375` | Link in Section 7 "Where We Are Now" — students can see actual front lines (updated daily). Resources (Harder). |
+| CSIS — Russia-Ukraine War in 10 Charts | `https://www.csis.org/analysis/russia-ukraine-war-10-charts` | Hard data: ~1.2M Russian casualties, 20% territory occupied (~120,000 km²), $588B reconstruction cost, drone stats. Stat grids in Sections 6 & 7. Resources (Harder). |
+
 ---
 
 ## Task 1: Download Images & Create File Skeleton
