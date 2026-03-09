@@ -200,12 +200,14 @@ Replace the pulsing red "BREAKING" banner with a **"Why This Matters Now"** stri
 
 ## Sourcing Standards
 
-- **Every factual claim** gets an inline `[src]` citation linked to the original article
+- **Wikipedia-style footnotes:** Numbered superscript references in the text (e.g., `^[1]^`), with a numbered footnotes list at the bottom of each section card. Per-section, not page-bottom, so sources stay close to the content they support.
+- **Every factual claim** gets a footnote reference
 - **Preferred sources:** peer-reviewed research, PBS, NPR, BBC, Economist, Crash Course, university sources, Wikimedia Commons
 - **No unsourced statistics or claims**
 - **All images** from Wikimedia Commons (CC-licensed or public domain)
 - **Podcast content** verified against transcripts and show notes
-- **Collapsible source lists** at the end of each Focus Box
+- **Focus Boxes** also use per-section footnotes
+- **This footnote style should also be retrofitted to the Iran page** for consistency
 
 ---
 
