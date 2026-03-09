@@ -712,7 +712,120 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 
 <main>
 
-<!-- Content sections will be added here in Tasks 2-15 -->
+<!-- ═══════════ SECTION 1: WHERE IS UKRAINE? ═══════════ -->
+<section class="s-card" id="where">
+  <div class="s-header">
+    <div class="s-icon si-blue">📍</div>
+    <h2><span class="q-label">The Basics</span>Where is Ukraine?</h2>
+  </div>
+
+  <!-- MAP -->
+  <div id="ukraineMap" style="height:360px;width:100%;z-index:1"></div>
+
+  <div class="s-body">
+    <p>Ukraine is the <strong>largest country entirely in Europe</strong> — about 603,000 square kilometers, roughly the size of Texas. Before the war, around 44 million people lived there. It shares borders with Russia to the east, Belarus to the north, Poland, Slovakia, and Hungary to the west, and Romania and Moldova to the southwest.<sup class="fn"><a href="#s1-fn1" id="s1-ref1">[1]</a></sup></p>
+
+    <p>Ukraine sits between two powerful forces: <strong>Russia</strong> to the east and the <strong>European Union</strong> to the west. For centuries, Ukraine has been pulled in both directions. Understanding this tug-of-war is the key to understanding everything that's happened — from the ancient past to the war today.</p>
+
+    <p>The map above shows the most important places you'll hear about in this story. Click on any marker to learn why it matters.</p>
+
+    <div class="stat-grid">
+      <div class="stat-box s-blue">
+        <span class="stat-num">603K km²</span>
+        <span class="stat-label">Area (largest fully in Europe)</span>
+        <span class="stat-source">CIA World Factbook</span>
+      </div>
+      <div class="stat-box s-gold">
+        <span class="stat-num">~44M</span>
+        <span class="stat-label">Population (pre-war)</span>
+        <span class="stat-source">World Bank, 2021</span>
+      </div>
+      <div class="stat-box s-green">
+        <span class="stat-num">7</span>
+        <span class="stat-label">Countries it borders</span>
+        <span class="stat-source">Britannica</span>
+      </div>
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Sovereignty</strong> — The right of a country to govern itself without outside interference. Ukraine's sovereignty is at the heart of this conflict.
+    </div>
+    <div class="vocab">
+      <strong>📖 Annexed</strong> — When one country takes over part of another country and claims it as its own. Russia annexed Crimea from Ukraine in 2014.
+    </div>
+    <div class="vocab">
+      <strong>📖 Occupied territory</strong> — Land that is controlled by a foreign military force. Parts of eastern and southern Ukraine are currently occupied by Russia.
+    </div>
+
+    <button class="quiz-btn" onclick="openQuiz('q1')">🧠 Test Yourself — Quick Quiz</button>
+
+    <div class="footnotes">
+      <ol>
+        <li id="s1-fn1"><a href="#s1-ref1">^</a> "Ukraine," CIA World Factbook. <a href="https://www.cia.gov/the-world-factbook/countries/ukraine/" target="_blank">Link</a>; "Ukraine," Britannica. <a href="https://www.britannica.com/place/Ukraine" target="_blank">Link</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+// ─── LEAFLET MAP ───
+(function(){
+  const map = L.map('ukraineMap',{scrollWheelZoom:false,zoomControl:true}).setView([48.5,33.0],5);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom:12
+  }).addTo(map);
+
+  // Ukraine border polygon (approximate)
+  const ukraineBorder = [
+    [52.38,22.14],[51.51,23.61],[51.93,24.02],[52.10,24.20],[52.29,23.85],
+    [52.12,24.70],[51.79,24.67],[51.60,25.07],[51.52,28.60],[52.08,29.45],
+    [52.11,30.53],[51.62,31.57],[51.40,32.50],[51.32,33.30],[51.27,34.39],
+    [50.39,36.62],[49.58,38.22],[49.08,38.26],[48.69,39.78],[48.08,39.67],
+    [47.68,38.26],[47.10,38.30],[46.65,36.80],[46.22,35.30],[45.50,36.62],
+    [44.39,33.55],[44.99,33.72],[45.08,35.77],[45.38,36.53],[45.95,36.00],
+    [46.12,34.28],[45.20,33.40],[45.10,33.60],[44.39,33.55],[45.05,32.50],
+    [46.18,30.90],[45.46,29.58],[45.34,28.80],[46.44,28.20],[47.02,28.83],
+    [48.16,26.63],[47.72,24.90],[48.63,22.86],[48.40,22.15],[49.09,22.56],
+    [49.44,22.72],[49.63,22.08],[50.43,22.68],[51.10,23.98],[52.38,22.14]
+  ];
+  L.polygon(ukraineBorder,{
+    color:'#005BBB',weight:2,fillColor:'#FFD500',fillOpacity:0.08,
+    dashArray:'6,4'
+  }).addTo(map);
+
+  // Capital marker (special)
+  const kyivIcon = L.divIcon({
+    html:'<div style="background:#005BBB;color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.3)">🏛️</div>',
+    className:'',iconSize:[34,34],iconAnchor:[17,17]
+  });
+  L.marker([50.4547,30.5238],{icon:kyivIcon}).addTo(map)
+    .bindPopup('<b>Kyiv</b><br>Capital of Ukraine. Defended against Russian assault in Feb-March 2022. Home of Maidan square, where revolutions were born.').openPopup();
+
+  // Other markers
+  const sites = [
+    {pos:[44.9578,34.1095],name:'Crimea',desc:'Annexed by Russia in March 2014 via illegal referendum. Home to Russia\'s Black Sea naval base.',emoji:'⚠️'},
+    {pos:[48.0028,37.8053],name:'Donetsk',desc:'Center of Donbas conflict since 2014. Russia-backed separatists declared an independent republic here.',emoji:'💥'},
+    {pos:[48.5695,39.3286],name:'Luhansk',desc:'Eastern Donbas city. Separatist-held since 2014. Part of Russia\'s claimed territory.',emoji:'💥'},
+    {pos:[47.0951,37.5413],name:'Mariupol',desc:'Besieged for 80+ days in 2022. The Azovstal steel plant became a symbol of Ukrainian resistance.',emoji:'🏭'},
+    {pos:[46.6558,32.6178],name:'Kherson',desc:'Occupied in early 2022. Liberated by Ukraine in November 2022 — the only regional capital recaptured.',emoji:'🇺🇦'},
+    {pos:[47.8229,35.1903],name:'Zaporizhzhia',desc:'Home to Europe\'s largest nuclear power plant. Occupied by Russia since 2022, raising global safety fears.',emoji:'☢️'},
+    {pos:[50.5435,30.2120],name:'Bucha',desc:'Suburb of Kyiv where evidence of Russian atrocities against civilians was discovered in April 2022.',emoji:'🕯️'},
+    {pos:[45.2786,36.5393],name:'Kerch Bridge',desc:'Bridge connecting Crimea to Russia. Damaged by Ukrainian strikes. A symbol of Russia\'s claim on Crimea.',emoji:'🌉'},
+    {pos:[46.4857,30.7438],name:'Odesa',desc:'Major Black Sea port. Critical for Ukraine\'s grain exports that help feed the world.',emoji:'⚓'},
+    {pos:[49.9808,36.2527],name:'Kharkiv',desc:'Ukraine\'s second-largest city. Near the Russian border. Under constant bombardment since 2022.',emoji:'🏙️'}
+  ];
+
+  sites.forEach(s => {
+    const icon = L.divIcon({
+      html:'<div style="background:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid #005BBB;box-shadow:0 2px 6px rgba(0,0,0,.25)">'+s.emoji+'</div>',
+      className:'',iconSize:[28,28],iconAnchor:[14,14]
+    });
+    L.marker(s.pos,{icon:icon}).addTo(map)
+      .bindPopup('<b>'+s.name+'</b><br>'+s.desc);
+  });
+})();
+</script>
 
 </main>
 
