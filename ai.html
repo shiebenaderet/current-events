@@ -1638,6 +1638,237 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
 </div>
 
+<script>
+// ─── STATE ───
+let pts = 0;
+let answeredQuizzes = new Set();
+let emojiClicks = 0;
+let timelineClicks = 0;
+let statClicks = { s4: new Set() };
+let konamiIndex = 0;
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+const MAX_PTS = 10;
+
+// ─── QUIZZES ───
+const quizzes = {
+  q1: {
+    q: "What is an artificial neural network inspired by?",
+    choices: ["The internet", "The human brain", "A calculator", "A search engine"],
+    correct: 1,
+    feedback: "✅ Correct! Neural networks are inspired by how neurons in the human brain connect and communicate with each other.",
+    wrong: "Not quite! Neural networks are modeled after the human brain — specifically how neurons connect and send signals to each other."
+  },
+  q2: {
+    q: "In Hinton's example, what do you get when you take the pattern for 'Paris,' subtract 'France,' and add 'Italy'?",
+    choices: ["Milan", "Rome", "Venice", "London"],
+    correct: 1,
+    feedback: "✅ Yes! Paris - France + Italy = Rome. The AI learned that Paris is to France as Rome is to Italy — without anyone telling it.",
+    wrong: "Think about it: Paris is the capital of France. So Paris - France + Italy = the capital of Italy, which is Rome!"
+  },
+  q3: {
+    q: "What 2012 system proved neural networks could recognize images better than traditional AI?",
+    choices: ["Watson", "Deep Blue", "AlexNet", "ChatGPT"],
+    correct: 2,
+    feedback: "✅ AlexNet! Built by Hinton's student Alex Krizhevsky, it crushed the ImageNet competition in 2012 and launched the deep learning revolution.",
+    wrong: "It was AlexNet! Built by Geoffrey Hinton's student in 2012, it won the ImageNet image recognition competition by a huge margin."
+  },
+  q4: {
+    q: "How quickly did ChatGPT reach 100 million users after launch?",
+    choices: ["About 1 year", "About 6 months", "About 2 months", "About 2 weeks"],
+    correct: 2,
+    feedback: "✅ Right! ChatGPT reached 100 million users in roughly 2 months — the fastest-growing consumer technology in history.",
+    wrong: "ChatGPT reached 100 million users in about 2 months (by January 2023, after launching in November 2022). That's incredibly fast!"
+  },
+  q5: {
+    q: "What year did Geoffrey Hinton win the Nobel Prize in Physics?",
+    choices: ["2020", "2022", "2023", "2024"],
+    correct: 3,
+    feedback: "✅ Correct! Hinton won the 2024 Nobel Prize in Physics for his foundational work on neural networks.",
+    wrong: "Hinton won the Nobel Prize in Physics in 2024, along with John Hopfield, for their work on neural networks."
+  }
+};
+
+// ─── QUIZ FUNCTIONS ───
+function openQuiz(id) {
+  if (answeredQuizzes.has(id)) {
+    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
+    return;
+  }
+  const q = quizzes[id];
+  document.getElementById('quizQ').textContent = q.q;
+  const cc = document.getElementById('quizChoices');
+  cc.innerHTML = '';
+  q.choices.forEach((c,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => handleAnswer(id, i, btn);
+    cc.appendChild(btn);
+  });
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function handleAnswer(id, chosen, btn) {
+  const q = quizzes[id];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  const fb = document.getElementById('quizFeedback');
+  if (chosen === q.correct) {
+    btn.classList.add('correct');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show correct-fb';
+    if (!answeredQuizzes.has(id)) {
+      answeredQuizzes.add(id);
+      addPoints(1);
+    }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    fb.textContent = q.wrong;
+    fb.className = 'quiz-feedback show wrong-fb';
+    answeredQuizzes.add(id);
+  }
+}
+function closeQuiz() {
+  document.getElementById('quizModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// ─── POINTS SYSTEM ───
+function addPoints(n) {
+  pts = Math.min(pts + n, MAX_PTS);
+  document.getElementById('pointsDisplay').textContent = pts + ' pts';
+  document.getElementById('progressFill').style.width = (pts / MAX_PTS * 100) + '%';
+
+  if (pts >= 5) {
+    showToast('🌟','5 Points!','You\'re halfway to AI Expert! Keep exploring and answering quizzes.');
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going — 10 pts for the final bonus!';
+  }
+  if (pts >= 10) {
+    document.getElementById('unlockHint').textContent = '🏆 Maximum points — AI Expert unlocked!';
+    showToast('🏆','AI Expert!','You hit 10 points! You\'ve mastered the basics of AI.');
+  }
+}
+
+// ─── TOAST ───
+let toastTimer;
+function showToast(icon, title, msg) {
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── EASTER EGG: ROBOT EMOJI CLICKS ───
+function handleEmojiClick() {
+  emojiClicks++;
+  const el = document.getElementById('heroEmoji');
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+
+  if (emojiClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
+  if (emojiClicks >= 5) {
+    emojiClicks = 0;
+    showEgg('🤖','You found the binary easter egg!',
+      'In binary (the language computers speak), "Hi" is:\n\n<strong style="font-size:1.3rem;letter-spacing:2px">01001000 01101001</strong>\n\nEvery letter, number, image, and video on a computer is stored as a pattern of 0s and 1s. Even this entire webpage is just a very long sequence of binary digits!\n\nFun fact: the word "bit" (the smallest unit of data) comes from <strong>b</strong>inary dig<strong>it</strong>.',
+      '01001000 01101001');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: STAT BOXES (Section 4) ───
+function handleStatClick(el, category) {
+  el.classList.add('clicked');
+  if (!statClicks[category]) statClicks[category] = new Set();
+  statClicks[category].add(el);
+
+  const grid = el.closest('.stat-grid');
+  const totalInGrid = grid ? grid.querySelectorAll('.stat-box').length : 3;
+  if (statClicks[category].size >= totalInGrid) {
+    showEgg('📊','Data Explorer!',
+      'You clicked all the stat boxes! Here\'s a bonus:\n\n<strong>AI by the numbers:</strong>\n• Google uses AI in over <strong>80%</strong> of its search results\n• AI can now diagnose some diseases more accurately than doctors\n• The global AI market is expected to reach <strong>$1.8 trillion</strong> by 2030\n• There are over <strong>70,000</strong> AI research papers published every year',
+      '📈');
+    addPoints(1);
+    statClicks[category] = new Set();
+  }
+}
+
+// ─── EASTER EGG: TIMELINE DOUBLE-CLICK ───
+document.addEventListener('DOMContentLoaded', () => {
+  const tl = document.getElementById('aiTimeline');
+  if (tl) {
+    tl.addEventListener('dblclick', (e) => {
+      const rect = tl.getBoundingClientRect();
+      if (e.clientX - rect.left < 50) {
+        timelineClicks++;
+        if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click the timeline line again...');
+        if (timelineClicks >= 2) {
+          timelineClicks = 0;
+          showEgg('🎬','AI in Pop Culture!',
+            'AI has been in movies and TV for decades! Here are some famous fictional AIs:\n\n🤖 <strong>HAL 9000</strong> (<em>2001: A Space Odyssey</em>, 1968) — "I\'m sorry, Dave. I\'m afraid I can\'t do that."\n\n🦾 <strong>The Terminator</strong> (<em>Terminator</em>, 1984) — Skynet, the AI that decided humans were the problem\n\n💚 <strong>WALL-E</strong> (<em>WALL-E</em>, 2008) — A little robot who learns to love\n\n🔴 <strong>Samantha</strong> (<em>Her</em>, 2013) — An AI assistant who develops feelings\n\n⬜ <strong>Ava</strong> (<em>Ex Machina</em>, 2014) — An AI that passes the ultimate Turing Test\n\n🟦 <strong>JARVIS → Vision</strong> (<em>Marvel/Avengers</em>) — Tony Stark\'s AI that becomes a superhero',
+            '🎬');
+          addPoints(1);
+        }
+      }
+    });
+  }
+});
+
+// ─── EASTER EGG: KONAMI CODE ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === KONAMI.length) {
+      konamiIndex = 0;
+      showEgg('🎮','You found the Konami Code easter egg!',
+        'Congratulations — you\'re officially the most curious student in the class! 🏆\n\n<strong>The Turing Test Challenge:</strong>\n\nOne of these paragraphs was written by a human. The other was written by AI. Can you tell which is which?\n\n<em>"Artificial intelligence is not just a technology — it\'s a mirror. It reflects our values, our biases, and our hopes. What we build into AI is what we believe about ourselves."</em>\n\n<em>"AI systems work by finding patterns in large amounts of data. They don\'t understand meaning the way humans do, but they can predict what word comes next in a sentence with remarkable accuracy."</em>\n\n<span style="font-size:.8rem;opacity:.5">(Both were actually written by a human for this page — but could you tell? That\'s the Turing Test!)</span>',
+        '↑↑↓↓←→←→');
+      addPoints(1);
+    }
+  } else {
+    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
+  }
+});
+
+// ─── EGG MODAL HELPERS ───
+function showEgg(emoji, title, text, extra) {
+  document.getElementById('eggEmoji').textContent = emoji;
+  document.getElementById('eggTitle').textContent = title;
+  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
+  document.getElementById('eggFarsi').textContent = extra || '';
+  document.getElementById('eggModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeEgg() {
+  document.getElementById('eggModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('eggModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('eggModal')) closeEgg();
+});
+</script>
+
 <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
   Aa Dyslexic Font
 </button>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
+</script>
+
+</body>
+</html>
