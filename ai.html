@@ -849,6 +849,98 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
 </section>
 
+<!-- ═══════════ SECTION 3: WHAT MADE IT TAKE OFF? ═══════════ -->
+<section class="s-card" id="breakthrough">
+  <div class="s-header">
+    <div class="s-icon" style="background:#fef3db">🚀</div>
+    <h2><span class="q-label">Question 3</span>What suddenly made AI <em>so powerful</em>?</h2>
+  </div>
+
+  <div class="s-body">
+    <p>For decades, most computer scientists thought neural networks were a dead end. Geoffrey Hinton remembers: "People in computer science thought neural nets were nonsense. I'm very confident about that."<sup class="fn"><a href="#s3-fn1" id="s3-ref1">[1]</a></sup> So what changed?</p>
+
+    <p>Three things came together at once — and they transformed AI from a niche research topic into the most talked-about technology in the world.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--gold)">1. Massive datasets</h3>
+
+    <p>In 2009, Stanford professor <strong>Fei-Fei Li</strong> and her team released <strong>ImageNet</strong> — a database of more than 14 million images, each labeled by hand. For the first time, neural networks had enough examples to learn from. Before ImageNet, AI researchers had been trying to teach computers to see with just a few thousand images. It was like trying to learn a language from a single page of a book.<sup class="fn"><a href="#s3-fn2" id="s3-ref2">[2]</a></sup></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--gold)">2. Powerful computer chips (GPUs)</h3>
+
+    <p>Training a neural network requires doing billions of math calculations. Regular computer processors (CPUs) weren't fast enough. But a different kind of chip — the <strong>GPU</strong> (graphics processing unit) — originally designed for video games, turned out to be perfect for neural networks. One of Hinton's students, Alex Krizevsky, "managed to make Nvidia GPUs talk to each other" and built a system that was dramatically faster than anything before.<sup class="fn"><a href="#s3-fn1" id="s3-ref1b">[1]</a></sup></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--gold)">3. AlexNet — the big bang moment (2012)</h3>
+
+    <p>In 2012, Hinton's two students — Alex Krizevsky and Ilya Sutskever (who later co-founded OpenAI) — entered the annual ImageNet competition. Their system, called <strong>AlexNet</strong>, used deep neural networks trained on GPUs. It cut the error rate roughly in half compared to every other system.<sup class="fn"><a href="#s3-fn1" id="s3-ref1c">[1]</a></sup></p>
+
+    <div class="callout c-blue">
+      <span class="callout-icon">💥</span>
+      <div class="callout-body">
+        <h4>The result that changed everything</h4>
+        <p>AlexNet "finally convinced all the people doing computer vision that what they were doing was wrong and they should do neural nets." — Geoffrey Hinton<sup class="fn"><a href="#s3-fn1" id="s3-ref1d">[1]</a></sup></p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-box s-blue" onclick="handleStatClick(this,'breakthrough')">
+        <span class="stat-num">14M+</span>
+        <span class="stat-label">Images in ImageNet</span>
+        <span class="stat-source"><a href="https://www.image-net.org/about.php" target="_blank" style="color:inherit">ImageNet.org</a></span>
+      </div>
+      <div class="stat-box s-gold" onclick="handleStatClick(this,'breakthrough')">
+        <span class="stat-num">~50%</span>
+        <span class="stat-label">Error rate cut by AlexNet</span>
+        <span class="stat-source"><a href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank" style="color:inherit">Hinton, 2025</a></span>
+      </div>
+      <div class="stat-box s-purple" onclick="handleStatClick(this,'breakthrough')">
+        <span class="stat-num">$44M</span>
+        <span class="stat-label">Google paid for Hinton's company</span>
+        <span class="stat-source"><a href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank" style="color:inherit">Hinton, 2025</a></span>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--gold)">The auction in the casino</h3>
+
+    <p>After AlexNet's success, Hinton and his two students set up a company — and every major tech company wanted to buy it. Since they had "absolutely no idea" what they were worth, a friend suggested they run an auction.</p>
+
+    <div class="callout c-gold">
+      <span class="callout-icon">🎰</span>
+      <div class="callout-body">
+        <h4>A $44 million poker game</h4>
+        <p>"Our standard neural net conference was happening in a casino in Lake Tahoe... on the ground floor they had this casino with people pulling one-armed bandits and smoking. And upstairs in our hotel room, we were running this auction where you had to raise by $1 million... we were raking in $1 million every half hour, which is quite fun in a casino." Google won the auction for $44 million. Years later, a senior VP told Hinton "they were amazed that they got it so cheaply."<sup class="fn"><a href="#s3-fn1" id="s3-ref1e">[1]</a></sup></p>
+      </div>
+    </div>
+
+    <p>Hinton compared the resistance to neural networks to another famous example in science: <strong>Continental Drift</strong>. In the early 1900s, a scientist noticed that South America and Africa fit together like puzzle pieces. He had strong evidence — matching rock formations, similar fossils on both sides of the Atlantic. But geologists dismissed him because they believed the Earth was rigid. "It was like that," Hinton says. The evidence was right there, but the established experts couldn't see it.<sup class="fn"><a href="#s3-fn1" id="s3-ref1f">[1]</a></sup></p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: GPU (Graphics Processing Unit)</strong> — A computer chip originally designed for video games that turned out to be perfect for training AI. GPUs can do billions of math calculations at the same time, which is exactly what neural networks need.
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Dataset</strong> — A large collection of information (images, text, sounds, etc.) used to train an AI system. The quality and size of the dataset directly affects how well the AI learns.
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Computer Vision</strong> — The field of AI focused on teaching computers to "see" — to understand and interpret images and videos.
+    </div>
+
+    <div class="podcast-embed">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4adN2gVRkQctA55Q0xswiO?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div style="font-size:.78rem;color:var(--mid);margin-top:-8px;margin-bottom:12px">🎧 <em>The Economist Babbage</em> — "The Science That Built the AI Revolution," Part 3: The breakthrough</div>
+
+    <button class="quiz-btn" onclick="openQuiz('q3')">🧠 Quick Quiz — The big bang of AI!</button>
+
+    <div class="footnotes">
+      <ol>
+        <li id="s3-fn1"><a href="#s3-ref1">^</a> Geoffrey Hinton, interview on <em>Babbage</em>, The Economist, March 12, 2025. <a href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Link</a></li>
+        <li id="s3-fn2"><a href="#s3-ref2">^</a> "The Science That Built the AI Revolution — Part 3," <em>Babbage</em>, The Economist, March 20, 2024. <a href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-three" target="_blank">Link</a>. See also: ImageNet, <a href="https://www.image-net.org/about.php" target="_blank">image-net.org</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
   Aa Dyslexic Font
 </button>
