@@ -474,11 +474,111 @@ footer{
 a.text-link{color:var(--blue-l);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--blue-l)}
 a.text-link:hover{color:var(--red);border-color:var(--red)}
 
+/* ─── UPDATE PANE ─── */
+.update-pane{
+  background:linear-gradient(135deg,#1a1a2e 0%,#2d1b3e 100%);
+  border-radius:18px;margin:28px 0;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.2);border:1px solid rgba(240,180,40,.25);
+  animation:fadeUp .5s ease both;
+}
+.update-pane-header{
+  padding:22px 28px 16px;border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;gap:14px;
+}
+.update-pane-header h2{
+  font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.65rem);
+  font-weight:700;line-height:1.25;color:#f0b429;
+}
+.update-pane-header .q-label{color:rgba(255,255,255,.5)}
+.update-badge{
+  display:inline-block;background:var(--red);color:white;
+  font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;margin-left:8px;
+  animation:pulse-badge 2s infinite;vertical-align:middle;
+}
+.update-pane-date{
+  color:rgba(255,255,255,.5);font-size:.8rem;font-weight:700;
+  margin:0 28px 4px;padding-top:4px;
+}
+.update-grid{
+  display:grid;grid-template-columns:1fr;gap:0;
+  padding:0 28px 28px;
+}
+.update-box{
+  background:rgba(255,255,255,.06);border-radius:14px;padding:22px 22px 18px;
+  margin-top:16px;border:1px solid rgba(255,255,255,.08);
+  transition:all .2s;
+}
+.update-box:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15)}
+.update-box-icon{font-size:1.5rem;margin-bottom:6px;display:block}
+.update-box h3{
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
+  color:white;margin-bottom:10px;line-height:1.3;
+}
+.update-box p{font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:10px}
+.update-box p:last-child{margin-bottom:0}
+.update-box strong{color:rgba(255,255,255,.95)}
+.update-box .callout{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.update-box .callout-body h4{color:rgba(255,255,255,.9)}
+.update-box .callout-body p{color:rgba(255,255,255,.7)}
+.update-box cite-link a{
+  color:#82b1ff;background:rgba(130,177,255,.12);
+  border-color:rgba(130,177,255,.25);
+}
+.update-box cite-link a:hover{background:#82b1ff;color:#1a1a2e}
+.update-box .stat-grid{margin:12px 0}
+.update-box .stat-box{background:rgba(255,255,255,.08);cursor:default}
+.update-box .stat-box:hover{transform:none;box-shadow:none}
+.update-box .stat-num{color:#f0b429}
+.update-box .stat-label{color:rgba(255,255,255,.6)}
+.update-box .vocab{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .vocab strong{color:var(--gold-l)}
+.update-box .vocab{color:rgba(255,255,255,.7)}
+.update-sources{
+  margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
+}
+.update-sources summary{
+  font-size:.78rem;font-weight:800;color:rgba(255,255,255,.5);
+  cursor:pointer;letter-spacing:.5px;text-transform:uppercase;
+}
+.update-sources ul{
+  margin:8px 0 0 16px;list-style:none;
+}
+.update-sources li{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:4px}
+.update-sources li::before{content:'→ ';color:var(--gold-l)}
+.update-sources a{color:#82b1ff;text-decoration:none;font-weight:600}
+.update-sources a:hover{text-decoration:underline}
+/* mini-timeline inside update pane */
+.mini-tl{padding:8px 28px 0;position:relative}
+.mini-tl::before{
+  content:'';position:absolute;left:44px;top:16px;bottom:16px;width:2px;
+  background:linear-gradient(to bottom,var(--gold-l),var(--red));border-radius:2px;
+}
+.mini-tl-item{display:flex;gap:14px;margin-bottom:14px;position:relative;padding-left:30px}
+.mini-tl-dot{
+  width:12px;height:12px;border-radius:50%;flex-shrink:0;
+  position:absolute;left:-1px;top:5px;border:2px solid rgba(255,255,255,.3);
+}
+.mini-tl-dot.d-gold{background:var(--gold-l)}.mini-tl-dot.d-red{background:var(--red)}
+.mini-tl-dot.d-blue{background:#82b1ff}.mini-tl-dot.d-green{background:#4caf50}
+.mini-tl-date{
+  font-size:.72rem;font-weight:800;color:var(--gold-l);letter-spacing:.5px;
+  text-transform:uppercase;min-width:52px;flex-shrink:0;padding-top:2px;
+}
+.mini-tl-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5}
+.mini-tl-text strong{color:rgba(255,255,255,.9)}
+.mini-tl-text cite-link a{color:#82b1ff;background:rgba(130,177,255,.12);border-color:rgba(130,177,255,.25)}
+
 @media(max-width:600px){
   .s-body,.s-header{padding:18px 16px}
   .img-float,.img-float-left,.tl-img-right{float:none;width:100%;margin:10px 0}
   .breaking-inner{flex-direction:column;gap:8px}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .update-grid{padding:0 16px 16px}
+  .update-pane-header{padding:18px 16px 14px}
+  .update-pane-date{margin:0 16px 4px}
+  .mini-tl{padding:8px 16px 0}
+  .mini-tl::before{left:32px}
 }
 
 /* ─── DYSLEXIC FONT TOGGLE ─── */
@@ -557,14 +657,14 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="breaking-inner">
     <span class="breaking-badge">⚡ Latest</span>
     <div class="breaking-text">
-      <h3>March 2026 — The U.S. and Israel launch major attacks on Iran</h3>
+      <h3>March 8, 2026 — Day 9 of the U.S.-Israel war on Iran</h3>
       <p>
-        The United States and Israel launched large military strikes on Iran in late February and early March 2026. 
-        Iran's Supreme Leader Ayatollah Ali Khamenei — the country's top leader — was killed. 
-        At least 3 U.S. service members have been killed and 5 seriously wounded.
-        Iran launched retaliatory strikes across the Middle East. 
-        At least 153 Iranians were reported killed at a girls' elementary school in southern Iran, though the Israeli military denied striking that area.
-        &nbsp;<a href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">→ PBS Classroom lesson on the attacks</a>
+        The United States and Israel launched large military strikes on Iran starting February 28, 2026.
+        Iran's Supreme Leader Ayatollah Ali Khamenei was killed; his son Mojtaba Khamenei has been named successor.
+        At least 7 U.S. service members have been killed. Over 1,332 Iranians killed, 6,000+ wounded.
+        The conflict has spread to Lebanon, Gulf states, and Iraq. The Strait of Hormuz is effectively closed, oil has surged past $90/barrel.
+        &nbsp;<a href="#update-week1">↓ Read the 1-week update below</a>
+        &nbsp;<a href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">→ PBS Classroom lesson</a>
       </p>
     </div>
   </div>
@@ -669,6 +769,246 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     </div>
   </div>
 </section>
+
+<!-- ═══════════ 1-WEEK UPDATE PANE ═══════════ -->
+<div class="update-pane" id="update-week1">
+  <div class="update-pane-header">
+    <div class="s-icon si-red" style="background:rgba(192,57,43,.25)">📡</div>
+    <h2>
+      <span class="q-label">Situation Update</span>
+      One Week In: What's Changed?
+      <span class="update-badge">Day 9</span>
+    </h2>
+  </div>
+  <p class="update-pane-date">Updated March 8, 2026 — Nine days after the first U.S.-Israel strikes on Iran (Feb 28)</p>
+
+  <!-- ── DAY-BY-DAY TIMELINE ── -->
+  <div class="mini-tl">
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-red"></div>
+      <span class="mini-tl-date">Feb 28</span>
+      <span class="mini-tl-text"><strong>Day 1 —</strong> U.S. and Israel launch ~900 strikes in 12 hours. Supreme Leader Khamenei killed. Iran begins retaliatory missile and drone launches. <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-red"></div>
+      <span class="mini-tl-date">Mar 1</span>
+      <span class="mini-tl-text"><strong>Day 2 —</strong> Iranian state media confirms Khamenei's death. Iranian missiles hit Dubai, Abu Dhabi, Doha, and Beersheba. Dubai airport damaged by drone strikes. <cite-link><a href="https://www.cnn.com/2026/03/02/middleeast/us-israel-iran-conflict-what-we-know-intl" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-gold"></div>
+      <span class="mini-tl-date">Mar 2</span>
+      <span class="mini-tl-text"><strong>Day 3 —</strong> U.S. Embassy in Kuwait struck and closed indefinitely. Iran fires missiles at Saudi Arabia, Kuwait, and other Gulf states hosting U.S. bases. <cite-link><a href="https://www.cnn.com/2026/03/02/middleeast/us-israel-iran-conflict-what-we-know-intl" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-gold"></div>
+      <span class="mini-tl-date">Mar 3</span>
+      <span class="mini-tl-text"><strong>Day 4 —</strong> Israel launches strikes on Lebanon in response to Hezbollah provocation, killing 50+. New front opens. Oil prices surge past $90/barrel. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-blue"></div>
+      <span class="mini-tl-date">Mar 4</span>
+      <span class="mini-tl-text"><strong>Day 5 —</strong> Iranian ballistic missile rate declines — analysts point to depletion of missile stores. U.S. submarine sinks Iranian frigate <em>Iris Dena</em> off Sri Lanka. <cite-link><a href="https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-president-must-respond-attacks-strikes-hit-rcna262269" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-blue"></div>
+      <span class="mini-tl-date">Mar 5</span>
+      <span class="mini-tl-text"><strong>Day 6 —</strong> Iran reports firing 500+ ballistic missiles and ~2,000 drones since Feb 28. Death toll passes 1,045 in Iran. NATO intercepts Iranian missile entering Turkish airspace. Drone strikes near Erbil airport, Iraq. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-blue"></div>
+      <span class="mini-tl-date">Mar 6</span>
+      <span class="mini-tl-text"><strong>Day 7 —</strong> UN declares war a "major humanitarian emergency." 65 schools, 32 medical facilities damaged. Qatar declares force majeure on gas exports. 7th U.S. service member killed. <cite-link><a href="https://www.aljazeera.com/news/2026/3/6/iran-war-what-is-happening-on-day-seven-of-us-israel-attacks" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-green"></div>
+      <span class="mini-tl-date">Mar 7</span>
+      <span class="mini-tl-text"><strong>Day 8 —</strong> U.S. gas prices jump 14% in one week to $3.41/gal. European natural gas prices spike even higher. Iran's foreign minister rejects ceasefire calls. <cite-link><a href="https://time.com/7383060/gas-prices-iran-war-oil/" target="_blank">src</a></cite-link></span>
+    </div>
+    <div class="mini-tl-item">
+      <div class="mini-tl-dot d-green"></div>
+      <span class="mini-tl-date">Mar 8</span>
+      <span class="mini-tl-text"><strong>Day 9 —</strong> Mojtaba Khamenei named new Supreme Leader. U.S. and Israel strike oil depots and refining facilities for the first time. Death toll passes 1,332. Two more killed in Saudi Arabia strike. <cite-link><a href="https://www.aljazeera.com/news/liveblog/2026/3/8/iran-live-israel-bombs-tehran-oil-depots-attacks-on-gulf-states-continue" target="_blank">src</a></cite-link></span>
+    </div>
+  </div>
+
+  <div class="update-grid">
+
+    <!-- ── BOX 1: HOW IS THE CONFLICT SPREADING? ── -->
+    <div class="update-box">
+      <span class="update-box-icon">🌍</span>
+      <h3>How is the conflict spreading beyond Iran?</h3>
+
+      <p>
+        What started as U.S.-Israeli strikes on Iranian military targets has expanded into a <strong>multi-country conflict</strong> affecting much of the Middle East. By day nine, fighting or strikes had been reported in at least <strong>eight countries</strong> beyond Iran itself. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Gulf States hit by Iranian retaliation:</strong> Iran fired missiles and drones at U.S. military bases and allies across the region. Strikes were reported in <strong>Dubai, Abu Dhabi (UAE), Doha (Qatar), Riyadh (Saudi Arabia),</strong> and <strong>Kuwait</strong> — where the U.S. Embassy was struck and closed indefinitely. <cite-link><a href="https://www.cnn.com/2026/03/02/middleeast/us-israel-iran-conflict-what-we-know-intl" target="_blank">src</a></cite-link>
+        Dubai International Airport, one of the world's busiest, was damaged by drone strikes and temporarily halted all flights. <cite-link><a href="https://www.cnn.com/2026/03/02/middleeast/us-israel-iran-conflict-what-we-know-intl" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Lebanon:</strong> Israel launched a wave of strikes against targets in Beirut and Khiam in response to Hezbollah firing on Israeli positions, killing more than 50 people and opening yet another front. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Iraq &amp; Turkey:</strong> A drone hit a building near Erbil airport in Iraqi Kurdistan. NATO intercepted an Iranian ballistic missile entering Turkish airspace. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>At sea:</strong> A U.S. submarine sank the Iranian frigate <em>Iris Dena</em> off the coast of Sri Lanka — 87 bodies were recovered and 32 sailors rescued. Iran announced closure of the <strong>Strait of Hormuz</strong>, through which roughly 20% of the world's oil supply normally passes. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link>
+      </p>
+
+      <div class="callout c-gold" style="background:rgba(255,255,255,.06);border-color:rgba(240,180,40,.3)">
+        <span class="callout-icon">🤔</span>
+        <div class="callout-body">
+          <h4 style="color:var(--gold-l)">Think about it</h4>
+          <p style="color:rgba(255,255,255,.7)">When a conflict spreads to countries that weren't originally involved, it makes it much harder to stop. Why do you think Iran struck U.S. allies in the Gulf rather than just striking the U.S. and Israel directly?</p>
+        </div>
+      </div>
+
+      <details class="update-sources">
+        <summary>Sources for this section</summary>
+        <ul>
+          <li><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">Al Jazeera — Day six: What is happening</a></li>
+          <li><a href="https://www.cnn.com/2026/03/02/middleeast/us-israel-iran-conflict-what-we-know-intl" target="_blank">CNN — What we know about the widening US war with Iran</a></li>
+          <li><a href="https://www.aljazeera.com/news/2026/3/8/iran-war-what-is-happening-on-day-nine-of-us-israel-attacks" target="_blank">Al Jazeera — Day nine update</a></li>
+          <li><a href="https://www.crisisgroup.org/cmt/middle-east-north-africa/iran-israelpalestine-united-states/sprawling-middle-east-war-explodes" target="_blank">International Crisis Group — A Sprawling Middle East War Explodes</a></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- ── BOX 2: WHAT IS IT COSTING? ── -->
+    <div class="update-box">
+      <span class="update-box-icon">💰</span>
+      <h3>How much is this conflict costing — and who pays the price?</h3>
+
+      <p>
+        The economic impact has been immediate and global. <strong>Oil prices surged past $90 per barrel</strong>, up from $67 the day before the war started — a jump of more than 25%. <cite-link><a href="https://time.com/7383060/gas-prices-iran-war-oil/" target="_blank">src</a></cite-link>
+      </p>
+
+      <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+        <div class="stat-box" style="background:rgba(255,255,255,.08)">
+          <span class="stat-num" style="color:#f0b429">$3.41</span>
+          <span class="stat-label" style="color:rgba(255,255,255,.6)">U.S. gas per gallon</span>
+          <span class="stat-source" style="color:rgba(255,255,255,.35)">AAA, Mar 8</span>
+        </div>
+        <div class="stat-box" style="background:rgba(255,255,255,.08)">
+          <span class="stat-num" style="color:#f0b429">+14%</span>
+          <span class="stat-label" style="color:rgba(255,255,255,.6)">Gas price jump in 1 week</span>
+          <span class="stat-source" style="color:rgba(255,255,255,.35)">AAA, Mar 8</span>
+        </div>
+        <div class="stat-box" style="background:rgba(255,255,255,.08)">
+          <span class="stat-num" style="color:#f0b429">20%</span>
+          <span class="stat-label" style="color:rgba(255,255,255,.6)">World oil through Strait of Hormuz</span>
+          <span class="stat-source" style="color:rgba(255,255,255,.35)">TIME / Reuters</span>
+        </div>
+      </div>
+
+      <p>
+        <strong>The Strait of Hormuz — effectively closed.</strong> About 20% of the world's crude oil and natural gas normally passes through this narrow waterway. Tanker traffic dropped to zero as of Wednesday, according to Reuters. <cite-link><a href="https://time.com/7383060/gas-prices-iran-war-oil/" target="_blank">src</a></cite-link>
+        Qatar declared force majeure on its gas exports after Iranian drone attacks — Qatar supplies about 20% of the world's liquefied natural gas (LNG). <cite-link><a href="https://www.aljazeera.com/news/2026/3/8/iran-war-threatens-prolonged-impact-on-energy-markets-as-oil-prices-rise" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>The human cost inside Iran:</strong> The UN declared the war a "major humanitarian emergency" on March 6. According to Iran's Red Crescent, at least <strong>65 schools and 32 medical facilities</strong> have been damaged since strikes began. Over <strong>1,332 people have been killed</strong> and 6,000+ wounded by day six. <cite-link><a href="https://www.aljazeera.com/news/2026/3/5/iran-war-what-is-happening-on-day-six-of-us-israel-attacks" target="_blank">src</a></cite-link>
+        Seven U.S. service members have been killed in combat. <cite-link><a href="https://www.cbsnews.com/live-updates/us-iran-war-israel-strikes-regime-targets/" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        The economic pain reaches far beyond the Middle East. Analysts estimate oil could hit $100 per barrel if disruptions continue, potentially adding <strong>0.8% to global inflation</strong> and slowing economic growth. <cite-link><a href="https://www.chathamhouse.org/2026/03/how-will-iran-war-affect-global-economy" target="_blank">src</a></cite-link>
+        Egypt's president warned his country's economy was in "a state of near-emergency," and Djibouti's finance minister warned of "severe economic consequences for developing countries." <cite-link><a href="https://www.aljazeera.com/economy/2026/3/7/iran-war-is-latest-threat-to-a-global-economy-rattled-by-trump" target="_blank">src</a></cite-link>
+      </p>
+
+      <div class="vocab" style="background:rgba(255,255,255,.06);border-left-color:var(--gold-l);color:rgba(255,255,255,.7)">
+        <strong style="color:var(--gold-l)">📖 Key Word: Strait of Hormuz</strong> — A narrow sea passage between Iran and Oman. It is one of the most important shipping routes in the world because so much oil and gas passes through it. When it is blocked, energy prices rise everywhere.
+      </div>
+
+      <div class="callout c-gold" style="background:rgba(255,255,255,.06);border-color:rgba(240,180,40,.3)">
+        <span class="callout-icon">🤔</span>
+        <div class="callout-body">
+          <h4 style="color:var(--gold-l)">Think about it</h4>
+          <p style="color:rgba(255,255,255,.7)">Gas prices in the U.S. jumped 14% in one week. How does a conflict thousands of miles away end up affecting the price you pay to fill up a car at home?</p>
+        </div>
+      </div>
+
+      <details class="update-sources">
+        <summary>Sources for this section</summary>
+        <ul>
+          <li><a href="https://time.com/7383060/gas-prices-iran-war-oil/" target="_blank">TIME — Gas Prices Surge as Iran War Chokes Global Oil Supply</a></li>
+          <li><a href="https://www.aljazeera.com/news/2026/3/8/iran-war-threatens-prolonged-impact-on-energy-markets-as-oil-prices-rise" target="_blank">Al Jazeera — Iran war threatens prolonged impact on energy markets</a></li>
+          <li><a href="https://www.chathamhouse.org/2026/03/how-will-iran-war-affect-global-economy" target="_blank">Chatham House — How will the Iran war affect the global economy?</a></li>
+          <li><a href="https://www.cbsnews.com/live-updates/us-iran-war-israel-strikes-regime-targets/" target="_blank">CBS News — Live updates: Iran war</a></li>
+          <li><a href="https://www.aljazeera.com/economy/2026/3/7/iran-war-is-latest-threat-to-a-global-economy-rattled-by-trump" target="_blank">Al Jazeera — Iran war latest threat to global economy</a></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- ── BOX 3: HOW ARE PEOPLE REACTING? ── -->
+    <div class="update-box">
+      <span class="update-box-icon">🗣️</span>
+      <h3>How are people reacting — in the U.S. and around the world?</h3>
+
+      <p>
+        The conflict has drawn sharp reactions from governments and people around the globe — and they don't all agree.
+      </p>
+
+      <p>
+        <strong>Inside Iran:</strong> Reactions were deeply split. Many Iranians who had been protesting <em>against</em> their government initially celebrated the strikes, pouring into the streets — but the government responded by renewing internet blackouts and deploying special forces. <cite-link><a href="https://www.npr.org/2026/03/01/g-s1-112094/iran-war-trump-israel-attack-photos-bahrain" target="_blank">src</a></cite-link>
+        Iran's new Supreme Leader, Mojtaba Khamenei (the slain leader's son), was selected by the Assembly of Experts. The foreign minister rejected calls for a ceasefire. <cite-link><a href="https://www.cbsnews.com/live-updates/us-iran-war-israel-strikes-regime-targets/" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>In the United States:</strong> Americans are divided. Pro-war demonstrations took place in cities like Los Angeles, while anti-war protests occurred in Houston and other cities. <cite-link><a href="https://www.npr.org/2026/03/01/g-s1-112094/iran-war-trump-israel-attack-photos-bahrain" target="_blank">src</a></cite-link>
+        President Trump called it a "major combat operation" aimed at "eliminating threats from the Iranian regime." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Allies who supported the strikes:</strong>
+        Canada's Prime Minister Mark Carney backed the U.S. action, saying "Canada supports the United States acting to prevent Iran from obtaining a nuclear weapon." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+        The UK's Prime Minister Keir Starmer confirmed that "British planes are in the sky today as part of coordinated regional defensive operations." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Countries that criticized the strikes:</strong>
+        France's President Macron called for an urgent UN Security Council meeting, stating "The current escalation is dangerous for everyone. It must stop." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+        Norway's Foreign Minister said the initial Israeli strike was "not in line with international law." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+        China urged "an immediate halt to military actions" and called for dialogue. <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+        UN Secretary-General Guterres condemned the "military escalation" and called for an "immediate cessation of hostilities." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>Gulf Arab states:</strong> Qatar, the UAE, Bahrain, Kuwait, and Saudi Arabia all condemned Iran's retaliatory strikes on their territory as violations of sovereignty — Saudi Arabia warned of "dire consequences." <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+        Oman, which had been mediating between the U.S. and Iran, urged Washington "not to get sucked in" further. <cite-link><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">src</a></cite-link>
+      </p>
+
+      <p>
+        <strong>In Yemen:</strong> Thousands of demonstrators holding Iranian flags and portraits of Khamenei gathered in Houthi-controlled Sana'a to protest the killing. <cite-link><a href="https://www.npr.org/2026/03/01/g-s1-112094/iran-war-trump-israel-attack-photos-bahrain" target="_blank">src</a></cite-link>
+        Meanwhile, members of the Iranian diaspora community in Glasgow, Scotland, celebrated the strikes. <cite-link><a href="https://www.npr.org/2026/03/01/g-s1-112094/iran-war-trump-israel-attack-photos-bahrain" target="_blank">src</a></cite-link>
+      </p>
+
+      <div class="callout c-gold" style="background:rgba(255,255,255,.06);border-color:rgba(240,180,40,.3)">
+        <span class="callout-icon">🤔</span>
+        <div class="callout-body">
+          <h4 style="color:var(--gold-l)">Think about it</h4>
+          <p style="color:rgba(255,255,255,.7)">Some Iranians celebrated the strikes on their own government, while others were horrified. Why might people in the same country have such different reactions to being attacked by a foreign power?</p>
+        </div>
+      </div>
+
+      <details class="update-sources">
+        <summary>Sources for this section</summary>
+        <ul>
+          <li><a href="https://www.npr.org/2026/03/01/g-s1-112094/iran-war-trump-israel-attack-photos-bahrain" target="_blank">NPR — Photos: U.S.-Israeli strikes and reactions from around the world</a></li>
+          <li><a href="https://www.aljazeera.com/news/2026/2/28/world-reacts-to-us-israel-attack-on-iran-tehran-retaliation" target="_blank">Al Jazeera — World reacts to US, Israel attack on Iran</a></li>
+          <li><a href="https://www.cbsnews.com/live-updates/us-iran-war-israel-strikes-regime-targets/" target="_blank">CBS News — Live updates: New supreme leader named</a></li>
+          <li><a href="https://www.cnbc.com/2026/03/02/iran-israel-us-conflict-oil-jumps-trump-netanyahu-what-is-next.html" target="_blank">CNBC — Where things stand, global responses, and what comes next</a></li>
+          <li><a href="https://www.stimson.org/2026/experts-react-what-the-epic-fury-iran-strikes-signal-to-the-world/" target="_blank">Stimson Center — Experts React: What the strikes signal to the world</a></li>
+        </ul>
+      </details>
+    </div>
+
+  </div><!-- /update-grid -->
+</div>
 
 <!-- ═══════════ SECTION 2: WHERE IS IRAN ═══════════ -->
 <section class="s-card" id="where">
