@@ -779,6 +779,76 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
 </section>
 
+<!-- ═══════════ SECTION 2: HOW DOES IT LEARN? ═══════════ -->
+<section class="s-card" id="learn">
+  <div class="s-header">
+    <div class="s-icon" style="background:var(--purple-l)">⚡</div>
+    <h2><span class="q-label">Question 2</span>How does a machine actually <em>learn</em> things?</h2>
+  </div>
+
+  <div class="s-body">
+    <p>When you learn something new, your brain strengthens certain connections between neurons. When a machine learns, it does something surprisingly similar — it adjusts the <strong>weights</strong> (connection strengths) between artificial neurons until it gets better at its task.<sup class="fn"><a href="#s2-fn1" id="s2-ref1">[1]</a></sup></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--purple)">Learning by example</h3>
+
+    <p>Imagine you want to teach a computer to tell the difference between a cat and a dog in photos. You don't write rules like "cats have pointy ears." Instead, you show it <strong>thousands of photos</strong> of cats and dogs, each labeled. Every time it guesses wrong, it adjusts its internal connections so it's less likely to make the same mistake again. After seeing enough examples, it learns the patterns on its own.<sup class="fn"><a href="#s2-fn1" id="s2-ref1b">[1]</a></sup></p>
+
+    <p>This process is called <strong>training</strong>, and the method that makes it work is called <strong>backpropagation</strong>. Geoffrey Hinton, one of its inventors, describes it simply: you send signals <em>backwards</em> through the network to tell each connection how to change so the network gets better at predicting the right answer.<sup class="fn"><a href="#s2-fn2" id="s2-ref2">[2]</a></sup></p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Backpropagation</strong> — The main method AI uses to learn. When the AI makes a mistake, it sends a signal backwards through the network to adjust the connections — making it a little more accurate each time.
+    </div>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--purple)">The magic of patterns</h3>
+
+    <p>Here's where it gets wild. When a neural network learns words, it turns each word into a big list of numbers — called a <strong>vector</strong>. Words with similar meanings end up with similar numbers. And you can actually do <em>math</em> with them.</p>
+
+    <div class="callout c-purple">
+      <span class="callout-icon">🤯</span>
+      <div class="callout-body">
+        <h4>Paris − France + Italy = Rome</h4>
+        <p>If you take the number pattern for "Paris," subtract the pattern for "France," and add the pattern for "Italy" — you get a pattern that's closest to "Rome." The AI learned the relationship between countries and capitals entirely on its own, just from reading text.<sup class="fn"><a href="#s2-fn2" id="s2-ref2b">[2]</a></sup></p>
+      </div>
+    </div>
+
+    <p>Hinton demonstrated another example of this pattern-matching. He asked people: which seems more likely — that all dogs are male and all cats are female, or the other way around? Almost everyone says dogs are male and cats are female — even though it's complete nonsense. Why? Because in our language and culture, the <em>patterns</em> associated with "dog" are more similar to the patterns associated with "male." Neural networks pick up on exactly the same patterns.<sup class="fn"><a href="#s2-fn2" id="s2-ref2c">[2]</a></sup></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--purple)">Understanding from context — in one example</h3>
+
+    <p>Hinton likes to test this with a fun sentence: <em>"She screamed him with the frying pan."</em> You've never seen "screamed" used as a verb meaning "to hit" — but you instantly know what it means from context. That's exactly how modern AI understands language: not by memorizing definitions, but by figuring out meaning from how words are used together.<sup class="fn"><a href="#s2-fn2" id="s2-ref2d">[2]</a></sup></p>
+
+    <div class="callout c-gold">
+      <span class="callout-icon">🤔</span>
+      <div class="callout-body">
+        <h4>Think about it</h4>
+        <p>If AI learns language the same way you do — by picking up patterns from context — does that mean it "understands" language? Or is it just really good at faking it?</p>
+      </div>
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Training Data</strong> — The examples (images, text, audio, etc.) that an AI system learns from. The more diverse and high-quality the data, the better the AI tends to perform.
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Pattern Recognition</strong> — The ability to find meaningful patterns in data. This is the core skill that makes AI useful — from recognizing faces to translating languages.
+    </div>
+
+    <div class="podcast-embed">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/03qqzrEdPlq8M9lBYnED1u?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div style="font-size:.78rem;color:var(--mid);margin-top:-8px;margin-bottom:12px">🎧 <em>The Economist Babbage</em> — "The Science That Built the AI Revolution," Part 2: How machines learn</div>
+
+    <button class="quiz-btn" onclick="openQuiz('q2')">🧠 Quick Quiz — Pattern matching!</button>
+
+    <div class="footnotes">
+      <ol>
+        <li id="s2-fn1"><a href="#s2-ref1">^</a> "The Science That Built the AI Revolution — Part 2," <em>Babbage</em>, The Economist, March 13, 2024. <a href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-two" target="_blank">Link</a></li>
+        <li id="s2-fn2"><a href="#s2-ref2">^</a> Geoffrey Hinton, interview on <em>Babbage</em>, The Economist, March 12, 2025. <a href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Link</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
   Aa Dyslexic Font
 </button>
