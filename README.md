@@ -5,7 +5,7 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v1.1.1](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v1.1.2](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
 ---
 
@@ -56,7 +56,7 @@ current-events/
 ├── VERSION                      ← Current site version (semver)
 ├── CHANGELOG.md                 ← Version history
 ├── CNAME                        ← Custom domain: current.mrbsocialstudies.org
-├── current-events-README.md     ← This file
+├── README.md                    ← This file
 └── LICENSE                      ← CC BY 4.0
 ```
 

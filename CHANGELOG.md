@@ -1,6 +1,12 @@
 # Changelog
 
-All notable changes to this site are documented here. Versioning follows the scheme in `current-events-README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
+All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
+
+## [1.1.2] — 2026-07-20
+
+**Patch — docs/tooling, no page content changed.**
+
+- Renamed `current-events-README.md` to `README.md`. GitHub only auto-renders a repo's front page from a file literally named `README.md`, so the repo appeared to have no README even though the file existed with correct, up-to-date content. Renamed via `git mv` to preserve file history, and updated the two live self-references (this file's own File Structure diagram, and `CHANGELOG.md`'s pointers to the Versioning section) — the v1.1.1 entry below still refers to the file by its name at that time, since it's a historical record of what that patch actually did.
 
 ## [1.1.1] — 2026-07-20
 
@@ -30,4 +36,4 @@ All notable changes to this site are documented here. Versioning follows the sch
 
 ---
 
-_Format: each entry lists the version, date, and bump level (Major/Minor/Patch — see `current-events-README.md`), followed by what changed and, where it isn't obvious, why. Entries are written when a version bumps, not per-commit._
+_Format: each entry lists the version, date, and bump level (Major/Minor/Patch — see `README.md`), followed by what changed and, where it isn't obvious, why. Entries are written when a version bumps, not per-commit._
