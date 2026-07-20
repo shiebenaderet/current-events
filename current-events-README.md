@@ -5,6 +5,8 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
+Current version: **[v1.1.1](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+
 ---
 
 ## What is this?
@@ -26,13 +28,16 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 
 ## Topics
 
-| Topic | Status | Folder |
-|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran/` |
-| 🇺🇦 The War in Ukraine | 🚧 Planned | — |
-| 🤖 AI & Society | 🚧 Planned | — |
-| 🌍 Climate Change | 🚧 Planned | — |
-| 🗽 Immigration & U.S. Policy | 🚧 Planned | — |
+| Topic | Status | Page | Last content refresh |
+|---|---|---|---|
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | July 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | July 2026 |
+| 🤖 AI & Society | ✅ Live | `ai.html` | March 2026 |
+| 🗳️ US Elections & How Government Works | 🚧 Planned | — | — |
+| 🌍 Climate Change | 🚧 Planned | — | — |
+| 🗽 Immigration & U.S. Policy | 🚧 Planned | — | — |
+| 🔫 Gun Violence & School Safety | 🚧 Planned | — | — |
+| 🚀 Space Race 2.0 | 🚧 Planned | — | — |
 
 ---
 
@@ -41,16 +46,21 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 ```
 current-events/
 │
-├── index.html          ← Landing page / topic hub
-├── CNAME               ← custom domain: current.mrbsocialstudies.org
-├── README.md           ← this file
-├── LICENSE             ← CC BY 4.0
-│
-└── iran/
-    └── index.html      ← Iran topic page (self-contained)
+├── index.html                   ← Landing page / topic hub
+├── iran.html                    ← Iran topic page (self-contained)
+├── ukraine.html                 ← Ukraine topic page (self-contained)
+├── ai.html                      ← AI & Society topic page (self-contained)
+├── images/                      ← Shared image assets (portraits, hero photos)
+├── docs/plans/                  ← Design docs + implementation plans for each
+│                                   topic build or content refresh
+├── VERSION                      ← Current site version (semver)
+├── CHANGELOG.md                 ← Version history
+├── CNAME                        ← Custom domain: current.mrbsocialstudies.org
+├── current-events-README.md     ← This file
+└── LICENSE                      ← CC BY 4.0
 ```
 
-Each future topic gets its own folder with its own `index.html`.
+Each topic is a single flat `.html` file at the repo root — not a per-topic folder. This changed from the project's original folder-per-topic plan once it became clear a flat structure was simpler to maintain for a small number of pages.
 
 ---
 
@@ -82,11 +92,27 @@ Pull requests are very welcome — especially from other Social Studies teachers
 **To suggest a topic or report an issue:** [Open a GitHub Issue](https://github.com/shiebenaderet/current-events/issues/new)
 
 ### Contribution guidelines
-- Each topic should be a single self-contained `.html` file in its own folder
+- Each topic should be a single self-contained `.html` file at the repo root
 - Write for a reading level of approximately **5th–6th grade** (but content depth of 8th grade)
 - Every factual claim should have an inline source citation linked to the original article
+- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of July 2026") rather than relative phrasing like "now" or "currently" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
 - Prefer sources that are free to access (no paywalls)
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
+- Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below
+
+---
+
+## Versioning
+
+This project tracks one site-wide version in [`VERSION`](VERSION), following [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), adapted for a content site rather than a library:
+
+| Bump | When |
+|---|---|
+| **Major** | A new topic page ships, or a structural/design overhaul changes how the site works |
+| **Minor** | A full content refresh of an existing page (e.g. bringing "what's happening now" up to date), or a new section added to an existing page |
+| **Patch** | Small corrections — fixing a broken link, a typo, a mislabeled image, a stale date stamp |
+
+The version bumps once per finished effort (e.g. once for an entire multi-task content refresh), not once per commit. Every bump gets a matching entry in [`CHANGELOG.md`](CHANGELOG.md) describing what changed and why. See `CHANGELOG.md`'s own header for the full format.
 
 ---
 
