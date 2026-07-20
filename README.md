@@ -5,7 +5,7 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v1.1.2](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v1.1.3](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
 ---
 
@@ -126,8 +126,7 @@ You are free to share and adapt this material for any purpose, including commerc
 
 ## Related Projects
 
-- [socialstudies8](https://github.com/shiebenaderet/socialstudies8) — Main 8th grade American history curriculum site
-- [American Yawp Jr.](https://github.com/shiebenaderet/socialstudies8) — Free middle school adaptation of college-level U.S. history content
+- [Mr. B's Social Studies](https://mrbsocialstudies.org) — Main 8th grade American history curriculum site
 
 ---
 
