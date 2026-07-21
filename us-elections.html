@@ -206,6 +206,10 @@ cite-link a:hover{background:var(--navy-l);color:white}
 .s-gold{background:#fef3db;color:#7a5000}
 .s-dark{background:#e8e8e8;color:#333}
 
+/* ─── DIAGRAMS (custom inline SVG, no external assets) ─── */
+.diagram-wrap{margin:18px 0;padding:18px 14px;background:#faf8f4;border-radius:14px;border:1px solid var(--border)}
+.diagram-caption{text-align:center;font-size:.78rem;color:var(--mid);font-style:italic;margin-top:10px}
+
 /* ─── VOCAB ─── */
 .vocab{background:#fef9f0;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:13px 17px;margin:14px 0;font-size:.9rem}
 .vocab strong{color:#7a5000}
@@ -655,6 +659,32 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="s-body">
     <p><strong>The U.S. government has three parts, called branches.</strong> Each branch has its own job. This way, no single branch can run the whole government by itself. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
+    <div class="diagram-wrap" role="img" aria-label="Diagram of the three branches of the U.S. government. Executive branch: the President, carries out the laws. Legislative branch: Congress, made up of the House and Senate, makes the laws. Judicial branch: the federal courts, including the Supreme Court, explains what the laws mean.">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
+        <rect x="10" y="20" width="200" height="150" rx="14" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
+        <text x="110" y="55" text-anchor="middle" font-size="15" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
+        <text x="110" y="90" text-anchor="middle" font-size="34">🏛️</text>
+        <text x="110" y="120" text-anchor="middle" font-size="12.5" fill="var(--mid)">The President</text>
+        <text x="110" y="140" text-anchor="middle" font-size="12.5" fill="var(--mid)">Carries out</text>
+        <text x="110" y="155" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws</text>
+
+        <rect x="250" y="20" width="200" height="150" rx="14" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="350" y="55" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
+        <text x="350" y="90" text-anchor="middle" font-size="34">🏢</text>
+        <text x="350" y="120" text-anchor="middle" font-size="12.5" fill="var(--mid)">Congress</text>
+        <text x="350" y="140" text-anchor="middle" font-size="12.5" fill="var(--mid)">Makes</text>
+        <text x="350" y="155" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws</text>
+
+        <rect x="490" y="20" width="200" height="150" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
+        <text x="590" y="55" text-anchor="middle" font-size="15" font-weight="800" fill="var(--green)">JUDICIAL</text>
+        <text x="590" y="90" text-anchor="middle" font-size="34">⚖️</text>
+        <text x="590" y="120" text-anchor="middle" font-size="12.5" fill="var(--mid)">The federal courts</text>
+        <text x="590" y="140" text-anchor="middle" font-size="12.5" fill="var(--mid)">Explains what</text>
+        <text x="590" y="155" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws mean</text>
+      </svg>
+      <p class="diagram-caption">The three branches of the U.S. government, and each one's main job.</p>
+    </div>
+
     <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Executive Branch — carries out the laws</h3>
     <p>
       The <strong>executive branch</strong> is led by the President. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
@@ -700,7 +730,45 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <h2><span class="q-label">Question 2</span>How do elections actually work — and which of these branches gets elected?</h2>
   </div>
   <div class="s-body">
-    <p>[Content added in Task 3 — ties back to Section 1: which branches are elected, how often, and why the judiciary is different]</p>
+    <p><strong>You just read about the three branches. Here's a fact that surprises a lot of people: only some of them are filled by election.</strong> Two of the three branches are filled by people voters choose, directly or indirectly. One of them isn't elected at all. Here's how each branch actually gets its members.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Legislative branch — fully elected, most often</h3>
+    <p>
+      Congress gets elected the most often of the three branches. But the House and the Senate don't run on the same schedule.
+      Every House member serves a <strong>2-year term</strong>. And the <strong>whole House — all 435 seats</strong> — is up for election every single time, including every midterm. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link>
+      Senators serve much longer terms: <strong>6 years each.</strong> <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
+      But the Senate doesn't elect everyone at once. Senators are split into three equal-ish groups, called <strong>"classes."</strong> Each class's 6-year term ends two years apart from the other two. So <strong>only about a third of the Senate is up for election at any one time</strong> — never the whole chamber at once. <cite-link><a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></cite-link>
+      That's different from the House, where every seat turns over together, every two years. <cite-link><a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></cite-link>
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Executive branch — elected, but not by direct national popular vote</h3>
+    <p>
+      The President is elected too. But not the way most people think. There's no single, direct nationwide vote that picks the winner. Instead, the President is chosen through a system called the <strong>Electoral College</strong>. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
+      Here's how it works. Each state gets a number of "electors." That number is based on how many people the state sends to Congress: one elector for each U.S. House member from that state, plus two more for its two senators. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
+      Add up every state's electors, and there are <strong>538 electors in all</strong>. A candidate needs more than half of them — <strong>270 out of 538</strong> — to win the presidency. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
+      A presidential election happens every <strong>4 years</strong>, at the same time as a regular House and Senate election. <cite-link><a href="https://www.usa.gov/presidential-general-election" target="_blank">src</a></cite-link>
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Judicial branch — not elected at all</h3>
+    <p>
+      This branch works differently. <strong>Federal judges — including Supreme Court justices — are never elected by voters.</strong> Instead, the President picks, or "nominates," someone for the job. Then the Senate has to vote yes before that person can actually start. <cite-link><a href="https://www.uscourts.gov/about-federal-courts/types-federal-judges" target="_blank">src</a></cite-link>
+      That Senate vote is the tool that stands in for an election here. Keep it in mind — it's also one of the tools Congress uses to check the other two branches, coming up next.
+      Once a judge is confirmed, they generally keep the job for life. They never have to run for reelection. <cite-link><a href="https://www.uscourts.gov/about-federal-courts/types-federal-judges" target="_blank">src</a></cite-link>
+      Why set it up this way? The goal is to let judges rule based on what the law actually says, without worrying about winning votes to keep their job. No election ties a judge's seat to whoever is popular right now. That's exactly why judges get checked by the confirmation vote and by impeachment, instead of by voters at the ballot box.
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Primary elections vs. general elections</h3>
+    <p>
+      Most of these elections actually happen in two rounds. Round one is the <strong>primary election</strong>. Here, each political party's own voters pick which candidate will represent that party. <cite-link><a href="https://www.usa.gov/primaries-caucuses" target="_blank">src</a></cite-link>
+      Round two is the <strong>general election</strong> — the real, final vote. Any registered voter can take part, whether or not they voted in a primary, and no matter their party. <cite-link><a href="https://www.usa.gov/presidential-general-election" target="_blank">src</a></cite-link>
+      So: the primary picks who represents each party. The general election picks who actually gets the job.
+    </p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Midterm Election</strong> — A midterm election is a Congressional election held <strong>halfway between two presidential elections</strong> — 2 years into a President's 4-year term, and 2 years before the next one. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link> Every House seat, plus about a third of the Senate, is up for grabs at every midterm. There's just no presidential race on the ballot that year.
+    </div>
+
+    <button class="quiz-btn" onclick="openQuiz('q3')">🧠 Quick Quiz — Test yourself!</button>
   </div>
 </section>
 
@@ -712,6 +780,42 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
   <div class="s-body">
     <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
+
+    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto and confirms the Executive's appointments. The Judicial branch can rule laws from the Legislative branch unconstitutional. The Legislative branch can impeach officials from both the Executive and Judicial branches.">
+      <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:440px;display:block;margin:0 auto" aria-hidden="true">
+        <circle cx="250" cy="70" r="55" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
+        <text x="250" y="85" text-anchor="middle" font-size="24">🏛️</text>
+
+        <circle cx="90" cy="290" r="55" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="90" y="285" text-anchor="middle" font-size="13" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
+        <text x="90" y="305" text-anchor="middle" font-size="24">🏢</text>
+
+        <circle cx="410" cy="290" r="55" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
+        <text x="410" y="285" text-anchor="middle" font-size="13" font-weight="800" fill="var(--green)">JUDICIAL</text>
+        <text x="410" y="305" text-anchor="middle" font-size="24">⚖️</text>
+
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--mid)"/>
+          </marker>
+        </defs>
+
+        <line x1="210" y1="105" x2="130" y2="255" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="140" y="175" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(-58 140 175)">can veto</text>
+
+        <line x1="150" y1="260" x2="220" y2="115" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="230" y="200" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(58 230 200)">can override veto,</text>
+        <text x="235" y="215" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(58 235 215)">confirms appointments</text>
+
+        <line x1="145" y1="290" x2="355" y2="290" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="250" y="280" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach</text>
+
+        <line x1="365" y1="270" x2="145" y2="270" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+        <text x="250" y="330" text-anchor="middle" font-size="11" fill="var(--mid)">can rule laws unconstitutional</text>
+      </svg>
+      <p class="diagram-caption">A few of the ways each branch checks the others — read below for all five checks.</p>
+    </div>
 
     <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Check 1: The President can veto a bill</h3>
     <p>
@@ -862,6 +966,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! It takes a two-thirds vote in BOTH the House and the Senate to override a veto and make the bill a law without the President's signature.",
     wrong: "Not quite. Overriding a veto takes a high bar on purpose: two-thirds of the House AND two-thirds of the Senate, not just a simple majority in one chamber."
+  },
+  q3: {
+    q: "Which of the three branches of government is NOT filled by election at all?",
+    choices: ["Legislative branch (Congress)","Executive branch (the President)","Judicial branch (federal courts)","All three are elected the same way"],
+    correct: 2,
+    feedback: "✅ Correct! Federal judges are never elected. The President nominates them and the Senate confirms them, and then they generally serve for life — no reelection required.",
+    wrong: "Not quite. Congress is fully elected, and the President is elected too (through the Electoral College). It's the judicial branch — federal judges — that's never elected: they're nominated by the President and confirmed by the Senate instead."
   }
 };
 
