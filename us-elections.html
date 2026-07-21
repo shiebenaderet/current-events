@@ -655,7 +655,43 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <h2><span class="q-label">Question 1</span>What are the three branches of government?</h2>
   </div>
   <div class="s-body">
-    <p>[Content added in Task 2]</p>
+    <p><strong>The U.S. government has three parts, called branches.</strong> Each branch has its own job. This way, no single branch can run the whole government by itself. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Executive Branch — carries out the laws</h3>
+    <p>
+      The <strong>executive branch</strong> is led by the President. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      The President is <strong>one person</strong>, and that person's job is to carry out and enforce the laws that Congress makes. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      The President is also the head of state and the commander in chief of the U.S. armed forces. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      Whoever holds the job, a presidential term lasts <strong>4 years</strong>, and the same person can only be elected President <strong>two times</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/president/" target="_blank">src</a></cite-link>
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Legislative Branch — makes the laws</h3>
+    <p>
+      The <strong>legislative branch</strong> is Congress, and its job is to write and pass the country's laws. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      Congress is split into two chambers, or groups: the <strong>House of Representatives</strong> and the <strong>Senate</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      The House has <strong>435 members</strong>. <cite-link><a href="https://www.usa.gov/agencies/u-s-house-of-representatives" target="_blank">src</a></cite-link>
+      Each state gets a different number of House members depending on its population — states with more people get more House members. <cite-link><a href="https://www.usa.gov/agencies/u-s-house-of-representatives" target="_blank">src</a></cite-link>
+      House members serve <strong>2-year terms</strong>. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link>
+      The Senate has <strong>100 members</strong> — exactly <strong>two from every state</strong>, no matter how big or small the state is. <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
+      Senators serve longer terms than House members: <strong>6 years</strong> each. <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
+    </p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Speaker of the House</strong> — The leader of the House of Representatives. The full House votes to choose the Speaker. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/speaker-of-the-house/" target="_blank">src</a></cite-link> One of the Speaker's biggest powers is deciding which bills actually get a vote on the House floor — a bill can't become a law if it never gets a vote. <cite-link><a href="https://civics.asu.edu/Civic-Literacy-Curriculum-Question-30" target="_blank">src</a></cite-link>
+    </div>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Senate Majority Leader</strong> — The leader of whichever party has more seats in the Senate. That party's members elect this leader. <cite-link><a href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a></cite-link> The Majority Leader controls the Senate's schedule — deciding what the Senate spends its time debating and voting on. <cite-link><a href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a></cite-link>
+    </div>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Judicial Branch — explains what the laws mean</h3>
+    <p>
+      The <strong>judicial branch</strong> is made up of federal courts, including the highest court in the country: the <strong>Supreme Court</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      This branch's job is to explain what laws actually mean and apply them to real cases. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      Courts can also decide whether a law breaks the rules set by the <strong>Constitution</strong> — the country's highest set of rules. If a court rules that a law is unconstitutional, that law can no longer be enforced. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+    </p>
+
+    <button class="quiz-btn" onclick="openQuiz('q1')">🧠 Quick Quiz — Test yourself!</button>
   </div>
 </section>
 
@@ -784,8 +820,16 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const MAX_PTS = 0; // TODO: update once all quizzes are added (Task 9 verification pass)
 
 // ─── QUIZ DATA ───
-// Empty for now — Tasks 2-7 each add one entry as they build that section's quiz.
-const quizzes = {};
+// Tasks 2-7 each add one entry as they build that section's quiz.
+const quizzes = {
+  q1: {
+    q: "Which branch of government is responsible for MAKING the laws?",
+    choices: ["Executive branch","Legislative branch","Judicial branch","All three together"],
+    correct: 1,
+    feedback: "✅ Correct! The legislative branch — Congress, made up of the House and Senate — writes and passes the country's laws.",
+    wrong: "Not quite. Congress (the legislative branch — House + Senate) is the branch that writes and passes laws. The executive branch carries laws out, and the judicial branch interprets them."
+  }
+};
 
 // ─── QUIZ FUNCTIONS ───
 function openQuiz(id) {
