@@ -911,18 +911,18 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
     <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto and confirms the Executive's appointments. The Judicial branch can rule laws from the Legislative branch unconstitutional. The Legislative branch can impeach officials from both the Executive and Judicial branches.">
-      <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:440px;display:block;margin:0 auto" aria-hidden="true">
-        <circle cx="250" cy="70" r="55" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
-        <text x="250" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
-        <text x="250" y="85" text-anchor="middle" font-size="24">🏛️</text>
+      <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:460px;display:block;margin:0 auto" aria-hidden="true">
+        <circle cx="280" cy="70" r="55" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
+        <text x="280" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
+        <text x="280" y="85" text-anchor="middle" font-size="24">🏛️</text>
 
-        <circle cx="90" cy="290" r="55" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
-        <text x="90" y="285" text-anchor="middle" font-size="13" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
-        <text x="90" y="305" text-anchor="middle" font-size="24">🏢</text>
+        <circle cx="100" cy="310" r="55" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="100" y="305" text-anchor="middle" font-size="13" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
+        <text x="100" y="325" text-anchor="middle" font-size="24">🏢</text>
 
-        <circle cx="410" cy="290" r="55" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
-        <text x="410" y="285" text-anchor="middle" font-size="13" font-weight="800" fill="var(--green)">JUDICIAL</text>
-        <text x="410" y="305" text-anchor="middle" font-size="24">⚖️</text>
+        <circle cx="460" cy="310" r="55" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
+        <text x="460" y="305" text-anchor="middle" font-size="13" font-weight="800" fill="var(--green)">JUDICIAL</text>
+        <text x="460" y="325" text-anchor="middle" font-size="24">⚖️</text>
 
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -930,18 +930,20 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
           </marker>
         </defs>
 
-        <line x1="210" y1="105" x2="130" y2="255" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="140" y="175" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(-58 140 175)">can veto</text>
+        <!-- Executive -> Legislative: veto (curves left of the straight line) -->
+        <path d="M 245 105 Q 130 195 130 255" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="150" y="185" text-anchor="middle" font-size="11" fill="var(--mid)">can veto</text>
 
-        <line x1="150" y1="260" x2="220" y2="115" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="230" y="200" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(58 230 200)">can override veto,</text>
-        <text x="235" y="215" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(58 235 215)">confirms appointments</text>
+        <!-- Legislative -> Executive: override + confirms (curves right of the straight line, mirrored) -->
+        <path d="M 145 260 Q 245 200 310 115" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="272" y="195" text-anchor="middle" font-size="11" fill="var(--mid)">can override veto,</text>
+        <text x="272" y="209" text-anchor="middle" font-size="11" fill="var(--mid)">confirms appointments</text>
 
-        <line x1="145" y1="290" x2="355" y2="290" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="250" y="280" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach</text>
+        <line x1="155" y1="310" x2="405" y2="310" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="280" y="300" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach</text>
 
-        <line x1="365" y1="270" x2="145" y2="270" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-        <text x="250" y="330" text-anchor="middle" font-size="11" fill="var(--mid)">can rule laws unconstitutional</text>
+        <line x1="415" y1="290" x2="165" y2="290" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+        <text x="280" y="278" text-anchor="middle" font-size="11" fill="var(--mid)">can rule laws unconstitutional</text>
       </svg>
       <p class="diagram-caption">A few of the ways each branch checks the others — read below for all five checks.</p>
     </div>
