@@ -910,7 +910,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="s-body">
     <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
-    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto and confirms the Executive's appointments. The Judicial branch can rule laws from the Legislative branch unconstitutional. The Legislative branch can impeach officials from both the Executive and Judicial branches.">
+    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto and confirms the Executive's appointments. The Judicial branch can rule laws from the Legislative branch unconstitutional. The Legislative branch can impeach officials in the Judicial branch, and separately can impeach officials in the Executive branch too.">
       <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:460px;display:block;margin:0 auto" aria-hidden="true">
         <circle cx="280" cy="70" r="55" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
         <text x="280" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
@@ -939,13 +939,18 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
         <text x="272" y="195" text-anchor="middle" font-size="11" fill="var(--mid)">can override veto,</text>
         <text x="272" y="209" text-anchor="middle" font-size="11" fill="var(--mid)">confirms appointments</text>
 
+        <!-- Legislative -> Executive: impeach (routed wide right, clear of the override curve and its label) -->
+        <path d="M 150 355 Q 430 280 345 105" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="352" y="238" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach</text>
+        <text x="352" y="252" text-anchor="middle" font-size="11" fill="var(--mid)">the President</text>
+
         <line x1="155" y1="295" x2="405" y2="295" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="280" y="285" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach</text>
+        <text x="280" y="285" text-anchor="middle" font-size="11" fill="var(--mid)">can impeach judges</text>
 
         <line x1="415" y1="330" x2="165" y2="330" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
         <text x="280" y="350" text-anchor="middle" font-size="11" fill="var(--mid)">can rule laws unconstitutional</text>
       </svg>
-      <p class="diagram-caption">A few of the ways each branch checks the others — read below for all five checks.</p>
+      <p class="diagram-caption">All five checks and balances between the three branches — read below for the full explanation of each.</p>
     </div>
 
     <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Check 1: The President can veto a bill</h3>
