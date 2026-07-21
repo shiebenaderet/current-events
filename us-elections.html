@@ -702,7 +702,47 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <h2><span class="q-label">Question 2</span>Why doesn't any one branch have all the power?</h2>
   </div>
   <div class="s-body">
-    <p>[Content added in Task 3]</p>
+    <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Check 1: The President can veto a bill</h3>
+    <p>
+      After Congress passes a bill, it goes to the President. <strong>The President can veto it.</strong> That means refusing to sign it, so it does not become a law. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      This lets the executive branch push back on a law Congress wants to pass.
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 2: Congress can override a veto</h3>
+    <p>
+      Congress isn't stuck once a bill is vetoed. <strong>The House and the Senate can each vote to pass the bill again.</strong> If two-thirds of the House agrees, and two-thirds of the Senate agrees too, the bill becomes a law anyway. It doesn't need the President's signature this time. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/veto/" target="_blank">src</a></cite-link>
+      This is called <strong>overriding a veto</strong>. Two-thirds is a high bar on purpose. It means a veto can only be overridden when most of Congress agrees — not just a slim majority.
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 3: Courts can rule a law unconstitutional</h3>
+    <p>
+      Even after a law is passed, <strong>federal courts can decide whether that law follows the rules in the Constitution.</strong> If a court rules a law is unconstitutional, that law can no longer be enforced. This power is called <strong>judicial review</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></cite-link>
+    </p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Judicial Review — Marbury v. Madison (1803)</strong> — The Constitution never actually says, in plain words, that courts get to strike down laws. That power comes from a Supreme Court case called <em>Marbury v. Madison</em>, decided in <strong>1803</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></cite-link> In that case, the Supreme Court struck down part of a federal law as unconstitutional for the first time ever. That set the rule that courts get the final say on what the Constitution means. <cite-link><a href="https://www.uscourts.gov/educational-resources/educational-activities/marbury-v-madison" target="_blank">src</a></cite-link> Every use of judicial review since then — over 200 years of it — traces back to this one case.
+    </div>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 4: The Senate confirms presidential appointments</h3>
+    <p>
+      The President picks people for certain big jobs. This includes federal judges, Supreme Court justices, and cabinet secretaries. But the President can't just install them alone. <strong>The Senate must vote to confirm each pick before that person can actually take the job.</strong> <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
+      This means Congress gets a say over who runs parts of the executive branch — and over who becomes a judge.
+    </p>
+
+    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 5: Congress can impeach and remove an official</h3>
+    <p>
+      Say a President, judge, or other federal official is accused of serious wrongdoing. Congress has a two-step process to remove that person from office. <strong>Step one: the House of Representatives can impeach</strong> — meaning formally accuse — that official. It only takes a simple majority vote in the House to do it. <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
+      Impeachment by the House is not the same as removal. It's more like being formally charged. <strong>Step two: the Senate holds a trial.</strong> To actually convict and remove the official, <strong>two-thirds of the senators present must vote guilty.</strong> <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
+      The President, the Vice President, and other federal officials — including judges — can all be impeached this way. <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
+    </p>
+
+    <div class="vocab">
+      <strong>📖 Key Word: Checks and Balances</strong> — A system where each branch has some power to limit the other two, so no single branch can act without any oversight at all. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link> Veto, veto override, judicial review, Senate confirmation, and impeachment are five specific tools that make this system work.
+    </div>
+
+    <button class="quiz-btn" onclick="openQuiz('q2')">🧠 Quick Quiz — Test yourself!</button>
   </div>
 </section>
 
@@ -828,6 +868,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! The legislative branch — Congress, made up of the House and Senate — writes and passes the country's laws.",
     wrong: "Not quite. Congress (the legislative branch — House + Senate) is the branch that writes and passes laws. The executive branch carries laws out, and the judicial branch interprets them."
+  },
+  q2: {
+    q: "What vote does Congress need to override a presidential veto?",
+    choices: ["A simple majority in the House only","Two-thirds in the House AND two-thirds in the Senate","A unanimous vote in both chambers","The Supreme Court has to approve it first"],
+    correct: 1,
+    feedback: "✅ Correct! It takes a two-thirds vote in BOTH the House and the Senate to override a veto and make the bill a law without the President's signature.",
+    wrong: "Not quite. Overriding a veto takes a high bar on purpose: two-thirds of the House AND two-thirds of the Senate, not just a simple majority in one chamber."
   }
 };
 
