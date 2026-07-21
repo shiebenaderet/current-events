@@ -665,7 +665,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="hero-flag" id="heroEmoji" onclick="handleEmojiClick()" title="Click me...">🤖</div>
   <h1>Understanding AI</h1>
   <p class="hero-sub">What it is, how it works, and why everyone's talking about it</p>
-  <span class="hero-note">📚 8th Grade Social Studies · Updated March 2026 · Earn points by answering quizzes!</span>
+  <span class="hero-note">📚 8th Grade Social Studies · Updated July 2026 · Earn points by answering quizzes!</span>
 </header>
 
 <!-- ─── POINTS BAR ─── -->
@@ -703,9 +703,10 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <a href="#school"       class="n-dark">🏫 School</a>
   <a href="#animals"      class="n-teal">🐋 Animals</a>
   <a href="#hinton"       class="n-red">⚠️ Hinton</a>
+  <a href="#agentic"      class="n-teal">🤖 AI Agents</a>
   <a href="#timeline"     class="n-gold">📅 Timeline</a>
   <a href="#people"       class="n-blue">👥 People</a>
-  <a href="#media"        class="n-dkred">📺 Media</a>
+  <a href="#videos"       class="n-dkred">📺 Videos</a>
   <a href="#resources"    class="n-dark">🔗 Resources</a>
 </nav>
 
@@ -794,6 +795,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 
   <div class="s-body">
     <img class="img-float" src="images/early-computer.jpg" alt="ENIAC — one of the first electronic computers, built in the 1940s" style="max-height:200px" onerror="this.style.display='none'">
+    <div class="img-caption" style="border-radius:8px;margin-bottom:10px">We could not confirm exactly where this photo came from.</div>
 
     <p>When you learn something new, your brain strengthens certain connections between neurons. When a machine learns, it does something surprisingly similar — it adjusts the <strong>weights</strong> (connection strengths) between artificial neurons until it gets better at its task.<sup class="fn"><a href="#s2-fn1" id="s2-ref1">[1]</a></sup></p>
 
@@ -961,26 +963,26 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 
   <div class="s-body">
     <img class="img-float" src="images/ai-chatbot.jpg" alt="Screenshot of ChatGPT generating text" style="max-height:200px" onerror="this.style.display='none'">
+    <div class="img-caption" style="border-radius:8px;margin-bottom:10px">We could not confirm exactly where this screenshot came from.</div>
 
     <p>For decades, AI was something only scientists and engineers thought about. Then, on November 30, 2022, a company called <strong>OpenAI</strong> released a chatbot called <strong>ChatGPT</strong> (short for "Chat Generative Pre-trained Transformer") — and everything changed. Within two months, 100 million people were using it, making it the fastest-growing consumer application in history.<sup class="fn"><a href="#s4-fn1" id="s4-ref1">[1]</a></sup></p>
+
+    <p>Since January 2025, the pace of AI progress hasn't slowed down. By mid-2026, OpenAI, Anthropic, Google, and other companies had each released several new, more capable model generations — versions that could reason through harder problems, hold much longer conversations, and make fewer factual mistakes than the AI most people first tried back in 2022 and 2023.<sup class="fn"><a href="#s4-fn4" id="s4-ref4">[4]</a></sup></p>
+
+    <p>The bigger change during this period wasn't just "smarter chatbots," though — it was AI learning to act on its own. By 2026, AI systems could handle multi-step jobs without a person doing each step: browsing websites, filling out forms, and even writing and running their own computer code. Some travel companies, for example, rolled out AI agents that could compare flight options and handle guest messages for hotel partners automatically, cutting out a lot of the back-and-forth a human used to have to do.<sup class="fn"><a href="#s4-fn5" id="s4-ref5">[5]</a></sup> This shift — from AI you chat with to AI that acts for you — is called <strong>agentic AI</strong>.</p>
 
     <p>ChatGPT is an example of a <strong>Large Language Model (LLM)</strong> — an AI trained on enormous amounts of text from the internet. It doesn't "know" facts the way you do. Instead, it predicts what word should come next, based on patterns it learned during training. Hinton built a tiny version of this back in the 1980s, but today's LLMs have billions of parameters (adjustable settings that control how the AI responds) and are trained on trillions of words.<sup class="fn"><a href="#s4-fn2" id="s4-ref2">[2]</a></sup></p>
 
     <div class="stat-grid" id="statGridAI">
       <div class="stat-box s-blue" onclick="handleStatClick(this,'aitoday')">
-        <span class="stat-num">100M</span>
-        <span class="stat-label">ChatGPT users in 2 months</span>
-        <span class="stat-source"><a href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" target="_blank" style="color:inherit">Reuters/UBS, 2023</a></span>
+        <span class="stat-num">900M</span>
+        <span class="stat-label">ChatGPT weekly users, Feb 2026</span>
+        <span class="stat-source"><a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/" target="_blank" style="color:inherit">TechCrunch, 2026</a></span>
       </div>
       <div class="stat-box s-purple" onclick="handleStatClick(this,'aitoday')">
-        <span class="stat-num">1.76T</span>
-        <span class="stat-label">Parameters in GPT-4</span>
-        <span class="stat-source"><a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" style="color:inherit">The Decoder, 2023</a></span>
-      </div>
-      <div class="stat-box s-gold" onclick="handleStatClick(this,'aitoday')">
-        <span class="stat-num">$100M+</span>
-        <span class="stat-label">Estimated cost to train GPT-4</span>
-        <span class="stat-source"><a href="https://www.wired.com/story/openai-ceo-sam-altman-the-age-of-giant-ai-models-is-already-over/" target="_blank" style="color:inherit">Wired, 2023</a></span>
+        <span class="stat-num">1M</span>
+        <span class="stat-label">Tokens an AI can read at once (~4-5 books)</span>
+        <span class="stat-source"><a href="https://www.anthropic.com/news/claude-sonnet-4-6" target="_blank" style="color:inherit">Anthropic, 2026</a></span>
       </div>
     </div>
 
@@ -1046,6 +1048,8 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
         <li id="s4-fn1"><a href="#s4-ref1">^</a> "ChatGPT sets record for fastest-growing user base," Reuters/UBS, February 1, 2023. <a href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" target="_blank">Link</a></li>
         <li id="s4-fn2"><a href="#s4-ref2">^</a> Geoffrey Hinton, interview on <em>Babbage</em>, The Economist, March 12, 2025. <a href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Link</a></li>
         <li id="s4-fn3"><a href="#s4-ref3">^</a> "The Science That Built the AI Revolution — Part 4," <em>Babbage</em>, The Economist, March 27, 2024. <a href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-four" target="_blank">Link</a></li>
+        <li id="s4-fn4"><a href="#s4-ref4">^</a> "OpenAI's GPT-5 is here," TechCrunch, August 7, 2025. <a href="https://techcrunch.com/2025/08/07/openais-gpt-5-is-here/" target="_blank">Link</a></li>
+        <li id="s4-fn5"><a href="#s4-ref5">^</a> "Booking.com Debuts Agentic AI Innovations," Booking.com, October 9, 2025. <a href="https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/" target="_blank">Link</a></li>
       </ol>
     </div>
   </div>
@@ -1171,6 +1175,8 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 
   <p><strong>The best case and the worst case are both real possibilities.</strong> Hinton described two plausible futures. In the best case, AI dramatically improves healthcare, education, and scientific research — helping us solve problems we couldn't solve before. In the worst case, AI could become smarter than humans and start working toward goals we didn't choose — or powerful leaders could use it to spy on people and build weapons that operate on their own. His honest assessment: <em>"I sort of believe both those things are quite plausible."</em><sup class="fn"><a href="#hf-fn1" id="hf-ref1e">[1]</a></sup></p>
 
+  <p style="margin-top:14px">Hinton's call for governments to step in didn't go unanswered: starting August 2, 2026, new transparency rules under the European Union's AI Act require AI systems to tell people when they're talking to a machine, not a human.<sup class="fn"><a href="#hf-fn3" id="hf-ref3">[3]</a></sup></p>
+
   <div class="stat-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0">
     <div class="stat-box" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;text-align:center">
       <div style="font-size:1.6rem;font-weight:900;color:#f59e0b">2024</div>
@@ -1198,6 +1204,41 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <ol>
       <li id="hf-fn1" style="color:rgba(255,255,255,.45)"><a href="#hf-ref1" style="color:#82b1ff">^</a> "AI Is More Human Than You Think: An Interview With Geoffrey Hinton," <em>Babbage</em>, The Economist, March 12, 2025. <a href="https://www.economist.com/podcasts/2025/03/12/ai-is-more-human-than-you-think-an-interview-with-geoffrey-hinton" target="_blank" style="color:#82b1ff">Link</a></li>
       <li id="hf-fn2" style="color:rgba(255,255,255,.45)"><a href="#hf-ref2" style="color:#82b1ff">^</a> "Geoffrey Hinton," Nobel Prize in Physics 2024, The Nobel Foundation. <a href="https://www.nobelprize.org/prizes/physics/2024/hinton/facts/" target="_blank" style="color:#82b1ff">nobelprize.org</a></li>
+      <li id="hf-fn3" style="color:rgba(255,255,255,.45)"><a href="#hf-ref3" style="color:#82b1ff">^</a> "EU AI Act Omnibus Agreement — Postponed High-Risk Deadlines and Other Key Changes," Gibson Dunn, 2026: Article 50 transparency obligations "remain on the original schedule" of August 2, 2026, even as other AI Act deadlines were delayed. <a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/" target="_blank" style="color:#82b1ff">Link</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ── Focus: AI That Takes Action ── -->
+<div id="agentic" class="focus-pane" style="background:linear-gradient(135deg,#0f172a 0%,#1a1040 100%);color:#e2e8f0;border-radius:18px;padding:32px 28px;margin:32px auto;max-width:900px;box-shadow:0 8px 40px rgba(0,0,0,.35)">
+  <div class="focus-header" style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+    <span style="font-size:2rem">🤖</span>
+    <div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin:0;color:#fff">Focus: AI That Takes Action</h2>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.5);margin:0">From chatting to doing — the rise of "agentic" AI</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom:14px">For years, using AI meant typing a question and reading an answer — you did the actual work yourself. That started to change by the mid-2020s. Companies began building AI that could carry out a whole task on its own, not just describe how to do it.<sup class="fn"><a href="#aa-fn1" id="aa-ref1">[1]</a></sup></p>
+
+  <div class="vocab" style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin:14px 0">
+    <strong>📖 Key Word: Agentic AI</strong> — AI that can take multiple steps on its own to complete a task, like browsing a website, filling out a form, or writing and running code, instead of just answering one question at a time.
+  </div>
+
+  <p style="margin-bottom:14px">One real example: starting in April 2025, Amazon rolled out a feature called "Buy for Me." If Amazon doesn't sell something a shopper wants, the shopper can pick that item from another store's website without leaving the Amazon app. A person still reviews the order first — the address, taxes, shipping cost, and payment method — on an Amazon checkout screen. But after that, the AI takes over: it visits the other store's website itself, fills in the shopper's name, address, and payment details, and completes the purchase there. A task that used to take a person several steps on a different website happens automatically once they've said yes.<sup class="fn"><a href="#aa-fn2" id="aa-ref2">[2]</a></sup></p>
+
+  <div class="callout c-gold" style="background:rgba(255,255,255,.06);border-color:rgba(245,158,11,.3)">
+    <span class="callout-icon">🤔</span>
+    <div class="callout-body">
+      <h4 style="color:#f59e0b">Think about it</h4>
+      <p style="color:rgba(255,255,255,.7)">If an AI can complete tasks for you without you watching each step, how do you know it did what you actually wanted? What could go wrong — and how much of the process would you want to check yourself before you'd trust it?</p>
+    </div>
+  </div>
+
+  <div class="footnotes" style="border-top-color:rgba(255,255,255,.1)">
+    <ol>
+      <li id="aa-fn1" style="color:rgba(255,255,255,.45)"><a href="#aa-ref1" style="color:#82b1ff">^</a> "Buy for Me button on Amazon Shopping app: Purchase items Amazon doesn't sell," Amazon, April 3, 2025: "Agentic AI is capable of performing specific tasks with minimal human intervention at the direction of and on behalf of a customer." <a href="https://www.aboutamazon.com/news/retail/amazon-shopping-app-buy-for-me-brands" target="_blank" style="color:#82b1ff">Link</a></li>
+      <li id="aa-fn2" style="color:rgba(255,255,255,.45)"><a href="#aa-ref2" style="color:#82b1ff">^</a> "Buy for Me button on Amazon Shopping app," Amazon, April 3, 2025; "Amazon's new AI agent will shop third-party stores for you," TechCrunch, April 3, 2025. <a href="https://www.aboutamazon.com/news/retail/amazon-shopping-app-buy-for-me-brands" target="_blank" style="color:#82b1ff">Amazon</a> · <a href="https://techcrunch.com/2025/04/03/amazons-new-ai-agent-will-shop-third-party-stores-for-you/" target="_blank" style="color:#82b1ff">TechCrunch</a></li>
     </ol>
   </div>
 </div>
@@ -1347,8 +1388,16 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
     <div class="tl-item">
       <div class="tl-dot" style="background:#f59e0b"></div>
       <div class="tl-content">
-        <h4>2026 — The Conversation Continues</h4>
-        <p>AI is in your school, your phone, your doctor's office. The question is no longer "will AI change the world?" — it's "how do we make sure it changes it for the better?"</p>
+        <h4>October 2025 — "Agents" Become a Product, Not Just an Idea</h4>
+        <p>OpenAI, the company behind ChatGPT, releases AgentKit — a toolkit that lets companies build their own AI agents instead of having to invent the technology from scratch. It's a sign that "agentic AI" has moved from a research idea to something major companies are building on as a core, named feature.<sup class="fn"><a href="#tl-fn16" id="tl-ref16">[16]</a></sup></p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#f59e0b"></div>
+      <div class="tl-content">
+        <h4>August 2, 2026 — Europe's AI Transparency Rules Take Effect</h4>
+        <p>New parts of the European Union's AI Act — one of the world's first major AI laws — take effect. Starting on this date, AI systems must tell people when they're talking to a machine instead of a human, and AI-generated content like deepfakes must be clearly labeled.<sup class="fn"><a href="#tl-fn17" id="tl-ref17">[17]</a></sup></p>
       </div>
     </div>
   </div>
@@ -1372,6 +1421,8 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <li id="tl-fn13"><a href="#tl-ref13">^</a> Hu, K., "ChatGPT sets record for fastest-growing user base," Reuters, Feb 2, 2023. <a href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" target="_blank">Reuters</a></li>
       <li id="tl-fn14"><a href="#tl-ref14">^</a> "Geoffrey Hinton quits Google to warn of AI dangers," BBC News, May 2, 2023. <a href="https://www.bbc.com/news/world-us-canada-65452940" target="_blank">BBC</a></li>
       <li id="tl-fn15"><a href="#tl-ref15">^</a> "The Nobel Prize in Physics 2024," The Nobel Foundation. <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">nobelprize.org</a>; "The Nobel Prize in Chemistry 2024." <a href="https://www.nobelprize.org/prizes/chemistry/2024/summary/" target="_blank">nobelprize.org</a></li>
+      <li id="tl-fn16"><a href="#tl-ref16">^</a> "OpenAI launches AgentKit to help developers build and ship AI agents," TechCrunch, October 6, 2025. <a href="https://techcrunch.com/2025/10/06/openai-launches-agentkit-to-help-developers-build-and-ship-ai-agents/" target="_blank">Link</a></li>
+      <li id="tl-fn17"><a href="#tl-ref17">^</a> "EU AI Act Omnibus Agreement — Postponed High-Risk Deadlines and Other Key Changes," Gibson Dunn, 2026: Article 50 transparency obligations "remain on the original schedule" of August 2, 2026, even as other AI Act deadlines were delayed. <a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/" target="_blank">Link</a></li>
     </ol>
   </div>
 </div>
@@ -1392,6 +1443,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Alan Turing</h4>
       <p style="font-size:.78rem;color:var(--blue);font-weight:700;margin-bottom:4px">Father of Computer Science</p>
       <p>Created the concept of a "universal machine" and proposed the Turing Test in 1950 — the idea that a machine is intelligent if it can fool a human in conversation. His work laid the theoretical foundation for all of computing.<sup class="fn"><a href="#pp-fn1" id="pp-ref1">[1]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
     <div class="person-card">
@@ -1403,6 +1455,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Geoffrey Hinton</h4>
       <p style="font-size:.78rem;color:var(--purple);font-weight:700;margin-bottom:4px">"Godfather of AI"</p>
       <p>Pioneered backpropagation and deep learning over 40+ years when most researchers dismissed neural networks. Won the 2024 Nobel Prize in Physics. Quit Google in 2023 to warn about AI risks.<sup class="fn"><a href="#pp-fn2" id="pp-ref2">[2]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
     <div class="person-card">
@@ -1414,6 +1467,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Fei-Fei Li</h4>
       <p style="font-size:.78rem;color:var(--blue);font-weight:700;margin-bottom:4px">Computer Vision Pioneer</p>
       <p>Created ImageNet, the massive dataset of 14 million labeled images that proved neural networks could "see." Without ImageNet, the 2012 AlexNet breakthrough might never have happened. Now a professor at Stanford and advocate for human-centered AI.<sup class="fn"><a href="#pp-fn3" id="pp-ref3">[3]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
     <div class="person-card">
@@ -1425,6 +1479,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Yoshua Bengio</h4>
       <p style="font-size:.78rem;color:var(--purple);font-weight:700;margin-bottom:4px">Deep Learning Pioneer</p>
       <p>Helped develop foundational ideas behind modern language models and neural networks. Won the 2018 Turing Award (the "Nobel Prize of computing") alongside Hinton and Yann LeCun. Now a leading voice for AI safety research.<sup class="fn"><a href="#pp-fn4" id="pp-ref4">[4]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
     <div class="person-card">
@@ -1445,6 +1500,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Timnit Gebru</h4>
       <p style="font-size:.78rem;color:#ef4444;font-weight:700;margin-bottom:4px">AI Ethics Researcher</p>
       <p>Studies bias and fairness in AI systems. Co-authored landmark research showing facial recognition works worse on darker-skinned faces. Founded the DAIR Institute after a high-profile departure from Google, becoming a leading voice for responsible AI.<sup class="fn"><a href="#pp-fn6" id="pp-ref6">[6]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
     <div class="person-card">
@@ -1456,6 +1512,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <h4>Demis Hassabis</h4>
       <p style="font-size:.78rem;color:var(--blue);font-weight:700;margin-bottom:4px">DeepMind Founder</p>
       <p>Founded DeepMind, the lab behind AlphaGo and AlphaFold. AlphaFold predicted the 3D shape of nearly every known protein — a problem scientists had struggled with for 50 years. Won the 2024 Nobel Prize in Chemistry.<sup class="fn"><a href="#pp-fn7" id="pp-ref7">[7]</a></sup></p>
+      <div class="person-citation">We could not confirm exactly where this photo came from.</div>
     </div>
 
   </div>
@@ -1598,10 +1655,10 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
       <div class="rc-level">⭐ Easier — Interactive</div>
     </a>
 
-    <a class="rc" href="https://www.npr.org/sections/artificial-intelligence/" target="_blank">
+    <a class="rc" href="https://www.npr.org/series/g-s1-133533/ai-explained" target="_blank">
       <span class="rc-tag t-npr">🎙️ NPR</span>
-      <h4>NPR: Artificial Intelligence Coverage</h4>
-      <p>Balanced, accessible reporting on how AI is changing work, school, healthcare, and society.</p>
+      <h4>NPR: Understanding AI</h4>
+      <p>Balanced, accessible reporting on how AI is changing schools, work, and society.</p>
       <div class="rc-level">⭐⭐ Medium — Some reading required</div>
     </a>
 
@@ -1660,7 +1717,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 </main>
 
 <footer>
-  <p>Made for 8th grade Social Studies students · All links go to trusted news and educational sources · Updated March 2026</p>
+  <p>Made for 8th grade Social Studies students · All links go to trusted news and educational sources · Updated July 2026</p>
   <p style="margin-top:6px;font-size:.75rem">Images from Wikimedia Commons (public domain / CC-licensed) unless otherwise noted. Podcast content from The Economist and the Center for Humane Technology. This page is for educational purposes.</p>
   <p style="margin-top:10px;font-size:.78rem;background:#f0f0f0;display:inline-block;padding:8px 18px;border-radius:20px">
     🌐 <strong>Want to share this page?</strong> Host it free on
