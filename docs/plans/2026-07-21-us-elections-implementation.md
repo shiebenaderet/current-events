@@ -4,7 +4,7 @@
 
 **Goal:** Build a new topic page, `us-elections.html`, from scratch, matching the established structure and conventions of `iran.html`/`ukraine.html`/`ai.html` — durable 3-branch civics content plus a live update-pane tied to the 2026 midterm elections — and link it into the site's index/nav. The defining constraint of this build, more than any prior page: strict nonpartisanship, verified by a dedicated test at write time, not just cited sources.
 
-**Architecture:** Task 1 scaffolds the entire page shell (CSS palette, shared JS engine — quiz system, points, easter eggs — nav, hero, points bar, footer) by adapting the proven, working engine already used by the three existing topic pages, with content-section placeholders. Tasks 2–7 fill in content section by section, each adding to the shared quiz-data object as they go. Task 8 wires the new page into `index.html`'s nav/topic-grid. Task 9 is the nonpartisanship + full verification pass. This mirrors how a developer would extend a working template, not how a from-scratch greenfield build would normally be planned — reuse, not reinvention, is the goal for every piece of shared machinery.
+**Architecture:** Task 1 scaffolds the entire page shell (CSS palette, shared JS engine — quiz system, points, easter eggs — nav, hero, points bar, footer) by adapting the proven, working engine already used by the three existing topic pages, with content-section placeholders. Tasks 2–8 fill in content section by section, each adding to the shared quiz-data object as they go — this includes Task 7, a locally-relevant section on Washington's 32nd Legislative District and 2nd Congressional District (added mid-session, after Alderwood Middle School's specific district representation was confirmed), positioned right after the national update-pane since both are "right now" content. Task 9 wires the new page into `index.html`'s nav/topic-grid. Task 10 is the nonpartisanship + full verification pass. This mirrors how a developer would extend a working template, not how a from-scratch greenfield build would normally be planned — reuse, not reinvention, is the goal for every piece of shared machinery.
 
 **Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and — unique to this page — a dedicated nonpartisanship read-through.
 
@@ -97,14 +97,14 @@ Confirm this choice reads as civics/patriotic rather than partisan by checking i
 
 Adapt `iran.html`'s hero/nav/points-bar markup (search the file for `<header class="hero">`, `<nav class="sticky-nav">`, and `<div class="points-bar">`) to this page — same structural pattern, new content:
 - Hero: title "US Elections & How Government Works" (or similar — confirm against the design doc's framing), subtitle, hero-note with "Updated [DATE] · 8th Grade Social Studies · Earn points by answering quizzes!" (use the actual write date).
-- Sticky-nav: anchor links for each of this page's sections (branches, checks-and-balances, how-a-bill-becomes-law, elections-mechanics, the update-pane, timeline, key-people, videos, resources) — plus, per this project's now-established convention (see the cross-page-navigation fix already applied to the other 3 pages), include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `ai.html` from the START, not as a later retrofit.
+- Sticky-nav: anchor links for each of this page's sections (`#branches`, `#checks-balances`, `#bill-to-law`, `#elections-mechanics`, the update-pane, `#timeline`, `#key-people`, `#videos`, `#resources` — these are the exact operational IDs used by Task 3/4's "Files: Modify" lines below; use these short forms consistently everywhere, not the descriptive long forms) — plus, per this project's now-established convention (see the cross-page-navigation fix already applied to the other 3 pages), include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `ai.html` from the START, not as a later retrofit.
 - Points-bar: identical structural pattern to the reference page, no changes needed beyond the container existing.
 
 - [ ] **Step 5: Port the full shared JS engine**
 
 Copy `iran.html`'s two `<script>` blocks (search for `<script>` — should be two blocks near the end of the file, before `</body>`) into this new file. Adapt:
 - The `quizzes` object: replace with an **empty object** for now (`const quizzes = {};`) — subsequent tasks will add entries as they build each section's quiz.
-- `MAX_PTS`: set to match however many quizzes this page will ultimately have (this will need a final adjustment in the last content task or Task 9's verification pass — flag this with a comment for now, e.g. `const MAX_PTS = 0; // TODO: update once all quizzes are added` — this is an intentional, tracked placeholder, not a violation of the "no placeholders" rule, since it's explicitly flagged for a specific later step, not left silently wrong).
+- `MAX_PTS`: set to match however many quizzes this page will ultimately have (this will need a final adjustment in the last content task or Task 10's verification pass — flag this with a comment for now, e.g. `const MAX_PTS = 0; // TODO: update once all quizzes are added` — this is an intentional, tracked placeholder, not a violation of the "no placeholders" rule, since it's explicitly flagged for a specific later step, not left silently wrong).
 - Any Iran-specific easter-egg logic (e.g., Konami-code Easter eggs, flag-click animations tied to Iran-specific content) — keep the generic mechanism (the `KONAMI` array, `flagClicks` counter, `showToast` function) but do NOT port Iran-specific *content* inside those mechanisms (e.g., don't copy an Iran-flag-themed easter egg message) — leave the trigger mechanism in place with placeholder or genuinely page-appropriate content, to be decided/refined in a later task if this page gets its own easter egg.
 - Confirm `openQuiz`, `showToast`, and the points-tracking logic are copied verbatim (they're topic-agnostic) — do not modify their internal logic.
 
@@ -316,12 +316,75 @@ git commit -m "feat: add US Elections update-pane — 2026 midterms status"
 
 ---
 
-## Task 7: History Timeline, Key People, Videos, Resources
+## Task 7: Local Section — "Who Represents Alderwood?" (Washington's 32nd Legislative District & 2nd Congressional District)
+
+**Files:**
+- Modify: `us-elections.html` (new section, positioned after the national update-pane from Task 6, before the History Timeline)
+
+**Context:** Approved mid-session as an addition to the original 9-task plan — a locally-relevant section naming the specific officials and 2026 races that directly affect this site's own students (Alderwood Middle School, in the Edmonds School District, WA). This is the highest-nonpartisanship-risk task in the plan alongside Task 6, for a different reason: every one of the confirmed local officeholders happens to currently belong to the same party, which is a plain fact of who represents this specific district, not an editorial choice — the framing discipline below exists specifically to keep it presented that way.
+
+**Pre-verified facts from scoping research (starting point only — independently re-verify at write time, per this project's established discipline; three separate research passes already corroborated each other on the items below, but re-confirm before publishing, especially anything sourced only to secondary news coverage rather than an official government record):**
+
+| Fact | Confirmed via | Confidence |
+|---|---|---|
+| Alderwood Middle School (1132 172nd St SW, Lynnwood, WA) sits in WA's 32nd Legislative District | Snohomish County Elections district map, leg.wa.gov district description | High |
+| WA-32 current legislators: Sen. Jesse Salomon, Rep. Cindy Ryu (Pos. 1), Rep. Lauren Davis (Pos. 2) | leg.wa.gov official member roster (primary source, not a secondary aggregator) | High |
+| Alderwood MS sits in WA's 2nd Congressional District | Boundary descriptions (Census Bureau CD118 map, district office content) | Moderate-high — the official live address-lookup tool (app.leg.wa.gov/DistrictFinder) did not render during research; spot-check this directly with the exact school address before publishing |
+| WA-02 current representative: Rick Larsen | congress.gov | High |
+| WA's two US Senate seats: Maria Cantwell (term to Jan 2031, next election 2030), Patty Murray (term to Jan 2029, next election 2028) — **neither seat is up in 2026** | senate.gov official roster; independently corroborated by FEC.gov's 2026 WA Senate page showing zero registered candidates | High |
+| WA-32 State Senate seat (Salomon's) IS up in 2026; filed candidates: Jesse Salomon (incumbent), Cindy Ryu, Ira McBee | leg.wa.gov term-expiration roster (confirms the seat is up) + two independent, dated local news sources (HeraldNet, July 3 & July 8, 2026) for the candidate list | High |
+| WA-32 House Position 1 (Ryu's former seat, now open since she's running for Senate) — 6 filed candidates: Chris Bloomquist, Will Chen, Jenna Nand, Danica Noble, Keith Scully, Lisa Rezac | HeraldNet ("Six candidates vie for open House seat") + individual campaign-announcement coverage | High |
+| WA-32 House Position 2 (Davis's seat) — filed candidates: Lauren Davis (incumbent), Imraan Siddiqi | My Edmonds News + Ballotpedia cross-check | High |
+| WA-02 US House (Larsen's seat) IS up in 2026 (all US House seats are); filed candidates: Rick Larsen (incumbent), Devin Hermanson, Tomas Scheel, Edwin Feller | Two independent, dated news sources (HeraldNet and goskagit.com, both July 2026) naming identical candidates | High |
+| A rumored additional candidate ("Raymond Pelletti") for WA-02 — **explicitly excluded, uncorroborated by any dated primary source** | N/A — do not use | Excluded |
+| WA's governor is NOT up for election in 2026 (WA governors serve on the presidential cycle: 2024, 2028) | sos.wa.gov, Ballotpedia | High |
+| 5 of 9 Washington Supreme Court seats (nonpartisan judicial elections, Positions 1, 3, 4, 5, 7) ARE up in 2026 | Ballotpedia "Washington Supreme Court elections, 2026"; TVW's "2026 Video Voters' Guide" (produced with the WA Secretary of State) | High — but candidate-level detail for these 5 races was not researched in depth; verify at write time if this level of detail is included |
+| Filing deadline for these races was May 8, 2026; the primary is August 4, 2026 | Local news coverage corroborating the filing-week reporting above | High |
+| Confirmed nonpartisan/appropriate sources: TVW.org (Washington's public-affairs network, C-SPAN-style state coverage, live with a "2026 Video Voters' Guide") and Axios Seattle (axios.com/local/seattle, live, actively publishing 2026 political coverage) | Direct site verification | High — note Axios requires a free email registration for full article access (not a payment paywall, but worth being aware of as a minor access consideration for students) |
+
+- [ ] **Step 1: Re-verify every fact in the table above against a live, current, official-record source where possible**
+
+Per this project's established citation discipline: a live/200 URL is necessary but not sufficient — read what it actually says. Prioritize official government sources (leg.wa.gov, senate.gov, congress.gov, sos.wa.gov, FEC.gov) over secondary news coverage wherever a direct fetch is possible; where an official source can't be rendered (the research above hit this with sos.wa.gov's certification PDF and pdc.wa.gov's JS-loaded candidate database — both blocked automated fetching, not necessarily unavailable to a real browser), corroborate via at least two independent, dated news sources before using a fact, exactly as the scoping research did. Specifically re-attempt the WA-02 district-boundary confirmation via `app.leg.wa.gov/DistrictFinder` with the school's exact address, since this is the one item flagged as only moderate-high confidence.
+
+- [ ] **Step 2: Build the section — "Who Represents Alderwood?"**
+
+Following the same structural pattern as this page's other sections (`s-card`, `s-header`, `cite-link` citations), build a section covering, in order:
+
+1. A brief framing paragraph: every student lives in specific state and federal districts, and this section shows which ones cover this school specifically, and what's on their 2026 ballot.
+2. **WA's 32nd Legislative District** — name the current State Senator and two State Representatives by role, no party shown (per the confirmed framing decision). For each of the three seats, state plainly whether it's up for election in 2026, and if so, list every filed candidate by name and party (party IS shown here, since a multi-candidate list makes it informational rather than emphasizing one party's dominance — this differs from the officeholder-naming convention above, which deliberately omits party; both conventions were separately confirmed with the project owner, apply each in its correct place). For the Position 1 entry specifically, include the one piece of connective context confirmed appropriate: state plainly that Representative Ryu is not seeking reelection to this seat because she's running for the Senate seat instead — do not repeat or reference this fact in the Senate entry itself, it belongs only here.
+3. **WA's 2nd Congressional District** — same treatment: name the current US Representative by role (no party), state the seat is up (all US House seats are, every 2 years), list every filed candidate with party shown.
+4. **WA's US Senate seats** — name both current Senators by role (no party), then state plainly and clearly that **neither seat is up for election in 2026** (Senate terms are staggered 6-year terms; briefly note when each seat's next election actually is, tying back to Task 5's generic explanation of staggered Senate terms). This is itself a useful, concrete civics lesson (not every office is on every ballot) — present it that way, not as a gap in coverage.
+5. Optionally, if Step 1's re-verification confirms sufficient detail is available: a brief mention that 5 of Washington's 9 Supreme Court seats are also up in 2026 (nonpartisan judicial elections — note explicitly that WA Supreme Court races are nonpartisan by design, which makes this a genuinely lower-risk addition than the partisan races above). Do not force this in if the research doesn't support it cleanly — the 4 partisan-race entries above are the required core of this section.
+
+Cite TVW.org and/or Axios Seattle for at least one claim each (per the project owner's specific request to feature these sources), alongside official-record sources for the harder facts (who's up, exact term dates).
+
+- [ ] **Step 3: Apply the nonpartisanship test to every single sentence in this section — do not skip this, and give it the same rigor as Task 6's update-pane**
+
+Read the entire section sentence by sentence. Specifically check: does any sentence characterize the fact that most of these local races currently have no Republican filer (Senate race, House Position 1) as good, bad, notable-in-a-charged-way, or a sign of anything? The correct, confirmed framing is to state candidate lists plainly and let the reader observe the composition themselves, exactly the same way a race with candidates from multiple parties would be stated — do not add commentary like "notably" or "interestingly" or "despite" anywhere near a candidate list. Also re-confirm the Ryu/Salomon incumbent-vs-incumbent framing followed the confirmed decision: stated as plain fact in the Senate entry ("filed candidates: Jesse Salomon, Cindy Ryu, and Ira McBee"), with the connective "why is there an open House seat" context living only in the House Position 1 entry, not repeated or editorialized in the Senate entry.
+
+- [ ] **Step 4: Add a quiz for this section**
+
+Add one entry to `quizzes` (e.g., testing "which of Washington's two US Senate seats is up for election in 2026?" with the correct answer being "neither" — a good test of whether the staggered-term concept from Task 5 actually landed) and the corresponding button.
+
+- [ ] **Step 5: Verify**
+
+Run: `open us-elections.html`, scroll to this section, confirm it renders correctly, click every citation link (including at least one TVW.org and one Axios Seattle link) to confirm each resolves and genuinely supports its claim, click the quiz button to confirm it functions. Re-read the section one more time specifically for nonpartisanship (a second pass, separate from Step 3's first pass).
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add us-elections.html
+git commit -m "feat: add local WA-32/WA-02 representation section to US Elections page"
+```
+
+---
+
+## Task 8: History Timeline, Key People, Videos, Resources
 
 **Files:**
 - Modify: `us-elections.html` (the `#timeline`, `#key-people`, `#videos`, `#resources` placeholder sections)
 
-**Context:** Four smaller, lower-risk sections bundled into one task since each is a straightforward instantiation of an existing, well-understood component pattern (`.tl-item` timeline, `.person-card` grid, video embeds, resource links) — none requires the deep research or nonpartisanship scrutiny of Tasks 5–6.
+**Context:** Four smaller, lower-risk sections bundled into one task since each is a straightforward instantiation of an existing, well-understood component pattern (`.tl-item` timeline, `.person-card` grid, video embeds, resource links) — none requires the deep research or nonpartisanship scrutiny of Tasks 5–7.
 
 - [ ] **Step 1: Verify History Timeline facts**
 
@@ -360,7 +423,7 @@ git commit -m "feat: add US Elections history timeline, key people, videos, reso
 
 ---
 
-## Task 8: Wire the New Page into the Site
+## Task 9: Wire the New Page into the Site
 
 **Files:**
 - Modify: `index.html`
@@ -392,13 +455,13 @@ git commit -m "feat: add US Elections page to site nav and topic grid"
 
 ---
 
-## Task 9: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
+## Task 10: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
 
 **Files:** None modified unless this step surfaces a real problem — verification only, except for the `MAX_PTS` fix flagged in Task 1.
 
 - [ ] **Step 1: Fix the `MAX_PTS` placeholder from Task 1**
 
-Count the actual number of quiz entries added across Tasks 2–7. Update `const MAX_PTS = 0;` (the intentionally-flagged Task 1 placeholder) to the real count. Confirm the points-bar UI correctly reflects this new max.
+Count the actual number of quiz entries added across Tasks 2–8. Update `const MAX_PTS = 0;` (the intentionally-flagged Task 1 placeholder) to the real count. Confirm the points-bar UI correctly reflects this new max.
 
 - [ ] **Step 2: Confirm no leftover placeholder content remains**
 
@@ -407,11 +470,11 @@ Expected: no matches (aside from the `MAX_PTS` comment already resolved in Step 
 
 - [ ] **Step 3: Dedicated nonpartisanship read-through — the most important step in this task**
 
-Read the ENTIRE page start to finish, specifically hunting for any sentence touching current politics. For each one, apply the test explicitly: would this read the same if the parties currently holding each role were swapped? Pay special attention to: the update-pane's "who controls what" fact block, any mention of specific incumbents who won/lost primaries, the redistricting discussion, and the historical midterm-pattern vocab box (confirm it's framed as historical knowledge, not a 2026 prediction). This should be a genuinely separate pass from any fact-checking already done — checking "is this true" and checking "is this neutral" are different questions and both need their own pass.
+Read the ENTIRE page start to finish, specifically hunting for any sentence touching current politics. For each one, apply the test explicitly: would this read the same if the parties currently holding each role were swapped? Pay special attention to: the update-pane's "who controls what" fact block, any mention of specific incumbents who won/lost primaries, the redistricting discussion, and the historical midterm-pattern vocab box (confirm it's framed as historical knowledge, not a 2026 prediction). Give Task 7's local WA-32/WA-02 section this same scrutiny at least as carefully as the national update-pane — specifically re-confirm no candidate list anywhere in that section carries commentary about its partisan composition (several of the confirmed local races currently have all-Democratic or single-Republican fields; the section must present these plainly, the same way it would present a genuinely mixed-field race), and re-confirm the Ryu/Salomon incumbent-vs-incumbent context appears only once, in the House Position 1 entry, not repeated or editorialized in the Senate entry. This should be a genuinely separate pass from any fact-checking already done — checking "is this true" and checking "is this neutral" are different questions and both need their own pass.
 
 - [ ] **Step 4: Confirm Key People stays scoped correctly**
 
-Run: `grep -n "person-card" us-elections.html` and manually confirm every entry is a historical/framer figure, not a current sitting official — re-confirm this explicitly even though Task 7 already scoped it this way, since this is a hard constraint worth double-checking at the final gate.
+Run: `grep -n "person-card" us-elections.html` and manually confirm every entry is a historical/framer figure, not a current sitting official — re-confirm this explicitly even though Task 8 already scoped it this way, since this is a hard constraint worth double-checking at the final gate. Note this check does NOT apply to Task 7's local section, which correctly names current officials by design (in a fact-block/list format, not a `person-card`) — confirm the two sections aren't confused with each other during this check.
 
 - [ ] **Step 5: Re-verify all citation links resolve**
 
@@ -428,7 +491,7 @@ done < /tmp/us-elections-links.txt | sort -n
 
 - [ ] **Step 6: Confirm every quiz functions and covers a fact still present on the page**
 
-In the browser, click every quiz button added across Tasks 2–7. Confirm each question/answer displays correctly and references a fact that's still accurately stated on the page.
+In the browser, click every quiz button added across Tasks 2–8. Confirm each question/answer displays correctly and references a fact that's still accurately stated on the page.
 
 - [ ] **Step 7: Confirm reading level**
 
@@ -451,6 +514,6 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ## Self-Review Notes
 
-- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–9. The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 9's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section.
-- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 9 Step 1 and Tasks 2–7's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in the plan.
-- **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names (`s-card`, `update-pane`, `mini-tl`, `cite-link`, `vocab`, `callout`, `person-card`, `portrait-ring`, `tl-item`, `quiz-btn`, `site-nav`, `topic-card`) are specified as "reuse `iran.html`'s exact pattern" throughout rather than reconstructed from memory, since this plan's core discipline is adaptation of proven, working markup — Task 8's `index.html` integration similarly instructs reading the existing pattern directly before writing, rather than guessing at the topic-card structure.
+- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–10. Task 7 (local WA-32/WA-02 representation section) is an out-of-plan addition, approved mid-session after the project owner identified their own school's specific legislative and congressional districts — not present in the original design doc, but scoped using the same rigor (three separate research passes, each corroborating the others via official government rosters and multiple independent dated news sources) and the same nonpartisanship discipline as every other content task. The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 10's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section.
+- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 10 Step 1 and Tasks 2–8's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in the plan.
+- **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names (`s-card`, `update-pane`, `mini-tl`, `cite-link`, `vocab`, `callout`, `person-card`, `portrait-ring`, `tl-item`, `quiz-btn`, `site-nav`, `topic-card`) are specified as "reuse `iran.html`'s exact pattern" throughout rather than reconstructed from memory, since this plan's core discipline is adaptation of proven, working markup — Task 9's `index.html` integration similarly instructs reading the existing pattern directly before writing, rather than guessing at the topic-card structure.
