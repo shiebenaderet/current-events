@@ -2,6 +2,12 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [1.1.5] — 2026-07-21
+
+**Patch — real citation added for a previously-unverified image, no other content changed.**
+
+- `ai.html`'s ENIAC photo (`images/early-computer.jpg`) had an honest "we could not confirm exactly where this photo came from" disclosure, added during the AI page's July 2026 refresh audit after no verifiable source could be found at the time. The site owner supplied the real source directly (a specific Wikimedia Commons file page); independently confirmed via two separate fetches (the first, via a Wikipedia article's `#/media/` fragment link, actually returned a DIFFERENT image's caption from the same article page — a real mismatch, caught by re-fetching the Commons file page directly rather than trusting the first result). Confirmed match: Glen Beck and Betty Snyder programming the ENIAC in Building 328 at the Ballistic Research Laboratory, c. 1947–1955, U.S. Army photo, public domain. Updated the `alt` text and caption to name the actual people and location, replacing the honest-but-now-outdated disclosure.
+
 ## [1.1.4] — 2026-07-20
 
 **Patch — navigation fix, no CSS beyond two small reused-pattern additions.**
