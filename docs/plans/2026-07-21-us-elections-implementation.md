@@ -15,7 +15,7 @@
 - **Nonpartisanship test, unique to this page and non-negotiable**: for every sentence touching current politics — which party controls what, any officeholder named, any characterization of an election outcome — ask explicitly: *would this sentence read the same if the parties currently holding each role were swapped?* If the answer is no, rewrite it as a genuinely structural statement. This applies to every task that writes prose, not just the update-pane task.
 - Key People is scoped to historical/framer figures only — never current sitting officials, regardless of how carefully a bio might be worded (see the design doc's "Key People" section for the full reasoning — this is a deliberate, confirmed decision, not something to revisit mid-implementation).
 - No predicting 2026 midterm outcomes. Historical patterns (e.g., the midterm-seat-loss pattern) are cited as general political-science knowledge, never as a forecast for this specific cycle.
-- No detailed state-by-state results, polling data, or campaign-finance specifics — this page teaches structure and mechanics.
+- No detailed state-by-state results, polling data, or campaign-finance specifics — this page teaches structure and mechanics. (This does NOT prohibit Task 7's candidate platform links, added mid-session — a link to a candidate's own campaign website/statement is a pointer to a primary source, not this page stating polling numbers or fundraising totals. If a genuine conflict between this constraint and Task 7's requirements ever seems to arise, this constraint's original intent — "don't turn this page into an election tracker" — governs; a single link per candidate to their own words is not a tracker.)
 - Reuse the existing site's shared component patterns (`update-pane`, `mini-tl`, `stat-grid`, `vocab`, `callout`, `person-card`, `tl-item`, quiz/points/easter-egg engine) exactly as implemented on the existing pages — no new CSS component types, no new JS mechanics beyond what's needed to instantiate this page (a new quiz-data object, a new color palette).
 - Re-verify every date/figure/name against a live, nonpartisan source at write time — the design doc's scoping research (including one already-caught, excluded fabricated fact) is a starting point, not copy-paste-ready content.
 
@@ -97,7 +97,7 @@ Confirm this choice reads as civics/patriotic rather than partisan by checking i
 
 Adapt `iran.html`'s hero/nav/points-bar markup (search the file for `<header class="hero">`, `<nav class="sticky-nav">`, and `<div class="points-bar">`) to this page — same structural pattern, new content:
 - Hero: title "US Elections & How Government Works" (or similar — confirm against the design doc's framing), subtitle, hero-note with "Updated [DATE] · 8th Grade Social Studies · Earn points by answering quizzes!" (use the actual write date).
-- Sticky-nav: anchor links for each of this page's sections (`#branches`, `#checks-balances`, `#bill-to-law`, `#elections-mechanics`, the update-pane, `#timeline`, `#key-people`, `#videos`, `#resources` — these are the exact operational IDs used by Task 3/4's "Files: Modify" lines below; use these short forms consistently everywhere, not the descriptive long forms) — plus, per this project's now-established convention (see the cross-page-navigation fix already applied to the other 3 pages), include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `ai.html` from the START, not as a later retrofit.
+- Sticky-nav: anchor links for each of this page's sections. **Note, updated after a mid-session reorder:** at the time Task 1 was actually implemented, section order was `#branches`, `#checks-balances`, `#bill-to-law`, `#elections-mechanics`, the update-pane, `#timeline`, `#key-people`, `#videos`, `#resources` (matching this plan's original task order). After that shell shipped and both "three branches" and "checks and balances" content were written, the page was reordered per the project owner's request (see the current Task 3's context note, a few pages below in this document, for the full reasoning): `#elections-mechanics` moved to sit directly after `#branches`, `#checks-balances` moved to third position, and `#bill-to-law`'s empty placeholder (along with its now-unused `.n-bill` nav class) was deleted outright. The live file's actual current order is `#branches`, `#elections-mechanics`, `#checks-balances`, the update-pane, `#timeline`, `#key-people`, `#videos`, `#resources` — trust the live file over this historical description if the two ever disagree. Use short-form operational IDs consistently everywhere (not descriptive long forms) — plus, per this project's now-established convention (see the cross-page-navigation fix already applied to the other 3 pages), include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `ai.html` from the START, not as a later retrofit.
 - Points-bar: identical structural pattern to the reference page, no changes needed beyond the container existing.
 
 - [ ] **Step 5: Port the full shared JS engine**
@@ -164,112 +164,70 @@ git commit -m "feat: add US Elections Section 1 — three branches of government
 
 ---
 
-## Task 3: Section 2 — Checks and Balances
+## Task 3: Section 2 — How Elections Actually Work (moved earlier, now ties directly back to Section 1)
 
 **Files:**
-- Modify: `us-elections.html` (the `#checks-balances` placeholder section)
+- Modify: `us-elections.html` (the `#elections-mechanics` section — already relocated to sit directly after `#branches` and before `#checks-balances`; the HTML move itself is DONE, this task only needs to fill in the content)
 
-**Context:** Concrete mechanism examples, framed entirely around structure, not tied to any current controversy.
+**Context:** Reordered mid-session, after the project owner pointed out that "Elections" — half the page's own title — didn't appear until deep into the durable civics content. This section now sits second (right after the three branches), and its opening explicitly bridges back to Section 1: of the three branches just described, which ones are filled by election, how often, and why the judiciary is different. This section also sets up the structural grounding the update-pane (Task 6) depends on — specifically, the House-vs-Senate term-length/staggering explanation that makes "35 Senate seats, not 100" comprehensible. The old "How a Bill Becomes a Law" section (previously planned as Task 4) was cut from this plan entirely, per the project owner's explicit request — it was the most purely mechanical, least election-relevant section, and cutting it (before any content was written for it) tightens the page around its actual branches → elections → midterms-stakes thesis. Its empty placeholder container has already been removed from the HTML.
 
 - [ ] **Step 1: Verify facts before writing**
 
-Confirm the specific mechanism facts (veto override threshold is 2/3 in both chambers; Senate confirms judicial/executive appointments; impeachment process — House impeaches with simple majority, Senate tries and convicts with 2/3) against a reputable civics reference.
+Confirm: primary vs. general election mechanics; the Electoral College (used only for President — brief, accurate, nonpartisan explanation of how it works, not a debate about whether it should exist); direct election for Congress and most other offices; House terms (2 years, entire chamber up every cycle) vs. Senate terms (6 years, staggered into three "classes" so roughly a third is up each cycle — confirm the "Class" terminology and mechanism precisely); why a midterm is called a "midterm" (falls at the two-year midpoint of a four-year presidential term); which federal offices are filled by direct election of the people vs. indirect processes (the President is chosen via the Electoral College, not a direct national popular vote; federal judges — including Supreme Court justices — are NOT elected at all, they are nominated by the President and confirmed by the Senate, serving until retirement/death/impeachment rather than standing for reelection).
 
-- [ ] **Step 2: Write the section content**
+- [ ] **Step 2: Write the section content — the opening must explicitly bridge back to Section 1**
 
-Replace the `#checks-balances` placeholder, following the same structural pattern as Task 2. Cover, with a concrete example for each:
-- President can veto a bill Congress passed.
-- Congress can override a veto with a 2/3 vote in both chambers.
-- Courts can rule a law unconstitutional (mention judicial review generically — Marbury v. Madison, 1803, is the classic, settled, nonpartisan historical example to cite here, not a current case).
-- The Senate confirms presidential appointments, including federal judges.
-- Congress can impeach and remove a President, judge, or other federal official.
+Replace the `#elections-mechanics` placeholder. Open with a direct callback to the three branches: something like "You just read about the three branches. Two of them are filled by people voters choose directly or indirectly. One of them isn't elected at all." Then cover, tying each back to a specific branch:
+- **Legislative branch — fully elected, most often:** every U.S. House member serves a 2-year term and the entire chamber is up every election, including every midterm. Senators serve 6-year terms, staggered into three roughly-equal "classes," so only about a third of the Senate is up in any given cycle (this is the fact that makes "35 seats up in 2026, not 100" make sense later in the update-pane).
+- **Executive branch — elected, but not by direct national popular vote:** the President is chosen via the Electoral College (each state gets electors based on its Congressional representation; a candidate needs 270 of 538 electoral votes to win) every 4 years — explain the mechanism plainly, take no position on whether this system is good or bad.
+- **Judicial branch — not elected at all:** federal judges, including Supreme Court justices, are nominated by the President and confirmed by the Senate (tying back to Section 1's/Section 2's confirmation-power content), then generally serve for life (or until retirement/impeachment) rather than standing for reelection. This is a good, concrete answer to "why is the judiciary different from the other two" — no election ties it to current political control the way the other two branches are, which is exactly why courts are designed to be checked by confirmation power rather than direct voter turnover.
+- Primary vs. general elections (a primary picks each party's nominee; the general election is between the parties' nominees and any independents, decided by voters).
+- Why a "midterm" is called that (falls at the two-year midpoint of a 4-year presidential term) — include a `.vocab` box on this term specifically.
 
-Every example must be framed as mechanism ("this is how the check works"), never illustrated with a current, politically-live example — use the historical Marbury v. Madison example for judicial review specifically to keep this section entirely settled/historical rather than reaching for a recent, potentially divisive case.
+This section should still NOT mention the 2026 midterms' specific facts (seat counts, specific races, who's currently in charge) — that's the update-pane's job (Task 6, now positioned after Task 4/Checks and Balances). This section explains the durable MECHANISM, in general, in any year, that the update-pane will later apply to 2026 specifically.
 
-Apply the nonpartisanship test to every sentence.
+Apply the nonpartisanship test to every sentence — this section should pass easily since it's structural, but check the Electoral College explanation specifically (the one piece of election mechanics that sometimes attracts strong opinions) and confirm the "judiciary isn't elected" framing doesn't imply any judgment about whether that's good or bad, just states it as a structural fact with its own reasoning (insulating judges from needing to win reelection).
 
 - [ ] **Step 3: Add a quiz for this section**
 
-Add one entry to `quizzes` (e.g., `q2`) and the corresponding button.
+Check the current `quizzes` object in the file FIRST before picking an ID — as of this reorder, `q1` (branches) and `q2` (checks and balances, built under the original numbering before this section moved) already exist. Use `q3` for this section's quiz (testing something like "which of the three branches is NOT filled by election?"), not `q2` — using `q2` would collide with the already-shipped checks-and-balances quiz.
 
 - [ ] **Step 4: Verify**
 
-Same as Task 2 Step 4, scoped to this section.
+Run: `open us-elections.html`, scroll to this section (now positioned second, right after Branches), confirm the opening sentence genuinely reads as a callback to Section 1 rather than a disconnected restart, confirm it renders correctly, click every citation link, click the quiz button to confirm it functions.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 git add us-elections.html
-git commit -m "feat: add US Elections Section 2 — checks and balances"
+git commit -m "feat: add US Elections Section 2 — how elections work, tied to branches"
 ```
 
 ---
 
-## Task 4: Section 3 — How a Bill Becomes a Law
+## Task 4: Section 3 — Checks and Balances (renumbered, content unchanged from original build)
 
 **Files:**
-- Modify: `us-elections.html` (the `#bill-to-law` placeholder section)
+- Modify: `us-elections.html` (the `#checks-balances` section — already relocated to sit after `#elections-mechanics`)
 
-**Context:** The most purely mechanical, lowest-risk section in the plan — a fixed, well-documented process with no current-events dimension at all.
+**Context:** This task's actual civics content was already written and reviewed clean under the plan's original numbering (as "Task 3"). Nothing about the content changes — only its position (now third instead of second) and its `<h2>`'s "Question N" label (now "Question 3" instead of "Question 2", already updated directly in the HTML during the reorder). If you are an implementer picking up this task fresh: **check the file first** — this section's content likely already exists and is already correct; this task entry exists in the plan for completeness/traceability, not because new work is expected. Only take action if you find the section is genuinely still a placeholder (it should not be, as of this reorder).
 
-- [ ] **Step 1: Verify facts before writing**
+- [ ] **Step 1: Confirm the section is already complete, not a placeholder**
 
-Confirm the exact process steps (introduced → assigned to committee → committee markup/vote → floor debate and vote in originating chamber → sent to the other chamber, repeats → conference committee reconciles differing versions → both chambers vote on the reconciled bill → sent to President → President signs, vetoes, or takes no action for 10 days while Congress is in session (becomes law) or pocket-vetoes if Congress adjourns in that window) against Congress.gov or a similarly authoritative source.
+Run: `grep -n "Content added in Task" us-elections.html` scoped to the `#checks-balances` region — if no match exists there and the section already has real content (veto, veto override, judicial review via Marbury v. Madison, Senate confirmation, impeachment — all cited), this task is already done. Confirm the `<h2>`'s `q-label` correctly reads "Question 3" (not "Question 2") given its new position. If everything checks out, skip to Step 2 (a lightweight re-verification), not a full rewrite.
 
-- [ ] **Step 2: Write the section content**
+- [ ] **Step 2: Re-verify (do not rewrite working, already-reviewed content)**
 
-Replace the `#bill-to-law` placeholder with the process, step by step, following the same structural pattern as prior sections. Consider a numbered or visually sequential presentation (e.g., reusing the `.tl-item`/timeline visual pattern for a *process* rather than a chronological history, if that renders well — check how it looks before committing to this vs. plain numbered `<p>` steps).
+Run: `open us-elections.html`, scroll to this section (now third), confirm it still renders correctly in its new position, confirm its citation links still resolve, confirm its quiz (`q2`, from the original build) still functions and that `q2` remains uniquely assigned to this section (Task 3's elections-mechanics quiz was directed to use `q3` specifically to avoid colliding with this one — confirm that held).
 
-- [ ] **Step 3: Add a quiz for this section**
-
-Add one entry to `quizzes` and the corresponding button.
-
-- [ ] **Step 4: Verify**
-
-Same pattern as prior tasks.
-
-- [ ] **Step 5: Commit**
+- [ ] **Step 3: Commit only if you actually changed something**
 
 ```bash
 git add us-elections.html
-git commit -m "feat: add US Elections Section 3 — how a bill becomes a law"
+git commit -m "chore: renumber US Elections checks-and-balances section (Question 2 -> 3)"
 ```
 
----
-
-## Task 5: Section 4 — How Elections Actually Work
-
-**Files:**
-- Modify: `us-elections.html` (the `#elections-mechanics` placeholder section)
-
-**Context:** This section sets up the structural grounding the update-pane (Task 6) depends on — specifically, the House-vs-Senate term-length/staggering explanation that makes "35 Senate seats, not 100" comprehensible.
-
-- [ ] **Step 1: Verify facts before writing**
-
-Confirm: primary vs. general election mechanics; the Electoral College (used only for President — brief, accurate, nonpartisan explanation of how it works, not a debate about whether it should exist); direct election for Congress and most other offices; House terms (2 years, entire chamber up every cycle) vs. Senate terms (6 years, staggered into three "classes" so roughly a third is up each cycle — confirm the "Class" terminology and mechanism precisely); why a midterm is called a "midterm" (falls at the two-year midpoint of a four-year presidential term).
-
-- [ ] **Step 2: Write the section content**
-
-Replace the `#elections-mechanics` placeholder, following the same structural pattern. This section should NOT mention the 2026 midterms' specific facts (seat counts, specific races) — that's the update-pane's job (Task 6). This section explains the durable MECHANISM (how staggered Senate terms work, in general, in any year) that the update-pane will later apply to 2026 specifically.
-
-Include a `.vocab` box on "midterm election" itself.
-
-Apply the nonpartisanship test — this section should be pure mechanism and should pass trivially, but check the Electoral College explanation specifically, since that's the one piece of election mechanics that sometimes attracts strong opinions; keep it to "here's how it works" (each state gets electors based on Congressional representation, a candidate needs 270 of 538 to win) without characterizing whether it's a good or bad system.
-
-- [ ] **Step 3: Add a quiz for this section**
-
-Add one entry to `quizzes` and the corresponding button.
-
-- [ ] **Step 4: Verify**
-
-Same pattern as prior tasks.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add us-elections.html
-git commit -m "feat: add US Elections Section 4 — how elections work"
-```
+If Step 1 and Step 2 found nothing to fix (content already correct, no quiz-ID collision), no commit is needed for this task — note that explicitly rather than creating an empty commit.
 
 ---
 
@@ -290,6 +248,7 @@ For each of the following, fetch a primary source directly and confirm the speci
 - Retirement counts and the 1-2 most notable names by tenure (design doc flags Pelosi, Hoyer, McConnell, Durbin as candidates) — verify current counts (trackers update; note the specific date you're citing "as of").
 - The historical midterm-seat-loss pattern (design doc flags 18 of 20 since 1946, sourced to UCSB's American Presidency Project) — fetch this source directly and confirm the actual data table shows this.
 - Who currently holds the presidency, House majority, Senate majority, Speaker of the House, and Senate Majority Leader roles, as of the actual write date.
+- Current exact House/Senate seat totals by party (needed to compute "how many seats to flip control") and, separately, which specific 2026 House/Senate races a nonpartisan election forecaster (Cook Political Report, Sabato's Crystal Ball, Inside Elections, or similar — verify which has current, live, citable 2026 ratings at write time) rates as most competitive. This is new, added mid-session per an explicit project-owner request — treat it with the same verification rigor as everything else in this step, not as a lower-priority add-on.
 
 - [ ] **Step 2: Build the update-pane structure**
 
@@ -298,6 +257,7 @@ Following `iran.html`'s exact `update-pane`/`mini-tl` markup pattern, build:
 - A `mini-tl` timeline with entries for: primaries/incumbent defeats, redistricting (the TX/CA contrast pair), retirements, and the Nov 3 Election Day entry itself with its seat counts.
 - The "Who controls what, right now" fact block: clearly dated, stating party control of the presidency/House/Senate and naming the current Speaker/Majority Leader, followed by one paragraph connecting this to the midterms' stakes (tied back to Section 1's generic role explanations from Task 2).
 - A `.vocab` box on the historical midterm pattern, framed explicitly as general political-science knowledge, not a 2026 prediction.
+- **A "balance of power" fact block, added mid-session per explicit project-owner request:** state the mechanical stakes of a chamber flipping control — how many net seats the out-of-power party would need to gain to take the House majority, and separately for the Senate (verify the exact current seat totals for each chamber at write time, and confirm the math for "seats needed to flip"). Then name the specific House and/or Senate races that nonpartisan election forecasters (e.g., the Cook Political Report, Sabato's Crystal Ball, Inside Elections — verify which of these, if any, has current, citable 2026 race ratings at write time) currently rate as most competitive ("toss-up" or equivalent rating) this cycle. **Critical framing requirement:** cite each race's competitiveness rating directly to the forecaster's own published rating — never characterize a race as competitive, safe, or likely-to-flip based on this page's own judgment. If no forecaster's current 2026 ratings can be found and verified live at write time, do not force this block in with stale or fabricated ratings — note the gap and flag it for the controller rather than guessing at which races are "close."
 
 - [ ] **Step 3: Apply the nonpartisanship test to every single sentence in this section — do not skip this**
 
@@ -356,22 +316,24 @@ Following the same structural pattern as this page's other sections (`s-card`, `
 1. A brief framing paragraph: every student lives in specific state and federal districts, and this section shows which ones cover this school specifically, and what's on their 2026 ballot.
 2. **WA's 32nd Legislative District** — name the current State Senator and two State Representatives by role, no party shown (per the confirmed framing decision). For each of the three seats, state plainly whether it's up for election in 2026, and if so, list every filed candidate by name and party (party IS shown here, since a multi-candidate list makes it informational rather than emphasizing one party's dominance — this differs from the officeholder-naming convention above, which deliberately omits party; both conventions were separately confirmed with the project owner, apply each in its correct place). For the Position 1 entry specifically, include the one piece of connective context confirmed appropriate: state plainly that Representative Ryu is not seeking reelection to this seat because she's running for the Senate seat instead — do not repeat or reference this fact in the Senate entry itself, it belongs only here.
 3. **WA's 2nd Congressional District** — same treatment: name the current US Representative by role (no party), state the seat is up (all US House seats are, every 2 years), list every filed candidate with party shown.
-4. **WA's US Senate seats** — name both current Senators by role (no party), then state plainly and clearly that **neither seat is up for election in 2026** (Senate terms are staggered 6-year terms; briefly note when each seat's next election actually is, tying back to Task 5's generic explanation of staggered Senate terms). This is itself a useful, concrete civics lesson (not every office is on every ballot) — present it that way, not as a gap in coverage.
+4. **WA's US Senate seats** — name both current Senators by role (no party), then state plainly and clearly that **neither seat is up for election in 2026** (Senate terms are staggered 6-year terms; briefly note when each seat's next election actually is, tying back to Task 3's generic explanation of staggered Senate terms — Task 3, not Task 5, since the elections-mechanics section moved earlier in the mid-session reorder). This is itself a useful, concrete civics lesson (not every office is on every ballot) — present it that way, not as a gap in coverage.
+
+**Candidate platform links, added mid-session per explicit project-owner request:** for every filed candidate named in items 2 and 3 above (every race that IS up in 2026 — not the Senate seats, which have no candidates since no race exists), add one link to that candidate's own stated platform in their own words: their official campaign website if one exists, or an official candidate statement (e.g., from the WA Secretary of State's Voters' Guide, which lets every candidate state their own views) if no campaign site can be found. **This project explicitly does NOT characterize, summarize, or describe what any candidate has supported or would support** — that determination was made deliberately after discussing the risk directly with the project owner: describing a candidate's record/positions in this page's own words would require editorial choices about which votes/positions to mention and how to frame them, which is a fundamentally different (and higher) risk than the plain candidate-list facts elsewhere in this section, especially given one local race (LD-32 Senate) pits two sitting officials against each other. Only link to the candidate's OWN words — never a third-party article characterizing them. Every filed candidate gets the same treatment, format, and prominence regardless of incumbent/challenger status — if a specific candidate has no findable official website or candidate statement, say so plainly ("no campaign website found") rather than silently omitting that candidate's link or substituting a news article about them.
 5. Optionally, if Step 1's re-verification confirms sufficient detail is available: a brief mention that 5 of Washington's 9 Supreme Court seats are also up in 2026 (nonpartisan judicial elections — note explicitly that WA Supreme Court races are nonpartisan by design, which makes this a genuinely lower-risk addition than the partisan races above). Do not force this in if the research doesn't support it cleanly — the 4 partisan-race entries above are the required core of this section.
 
 Cite TVW.org, Axios Seattle, My Edmonds News, KUOW, and Cascade PBS for at least one claim each where a genuine fit exists (per the project owner's specific request to feature all five sources — do not force a citation to any of these five if it doesn't actually best support the specific claim; official-record sources still take priority for the harder facts like exact term-expiration dates). This is the final, complete named-source list for this task — do not add further sources without a new explicit request.
 
 - [ ] **Step 3: Apply the nonpartisanship test to every single sentence in this section — do not skip this, and give it the same rigor as Task 6's update-pane**
 
-Read the entire section sentence by sentence. Specifically check: does any sentence characterize the fact that most of these local races currently have no Republican filer (Senate race, House Position 1) as good, bad, notable-in-a-charged-way, or a sign of anything? The correct, confirmed framing is to state candidate lists plainly and let the reader observe the composition themselves, exactly the same way a race with candidates from multiple parties would be stated — do not add commentary like "notably" or "interestingly" or "despite" anywhere near a candidate list. Also re-confirm the Ryu/Salomon incumbent-vs-incumbent framing followed the confirmed decision: stated as plain fact in the Senate entry ("filed candidates: Jesse Salomon, Cindy Ryu, and Ira McBee"), with the connective "why is there an open House seat" context living only in the House Position 1 entry, not repeated or editorialized in the Senate entry.
+Read the entire section sentence by sentence. Specifically check: does any sentence characterize the fact that most of these local races currently have no Republican filer (Senate race, House Position 1) as good, bad, notable-in-a-charged-way, or a sign of anything? The correct, confirmed framing is to state candidate lists plainly and let the reader observe the composition themselves, exactly the same way a race with candidates from multiple parties would be stated — do not add commentary like "notably" or "interestingly" or "despite" anywhere near a candidate list. Also re-confirm the Ryu/Salomon incumbent-vs-incumbent framing followed the confirmed decision: stated as plain fact in the Senate entry ("filed candidates: Jesse Salomon, Cindy Ryu, and Ira McBee"), with the connective "why is there an open House seat" context living only in the House Position 1 entry, not repeated or editorialized in the Senate entry. **Separately, re-confirm the candidate platform links** contain zero characterization anywhere near them — the link label itself should be purely mechanical ("[Name] — campaign website" or "[Name] — no campaign website found"), with no adjective or framing suggesting this page has assessed the quality, credibility, or substance of what any candidate's platform actually says.
 
 - [ ] **Step 4: Add a quiz for this section**
 
-Add one entry to `quizzes` (e.g., testing "which of Washington's two US Senate seats is up for election in 2026?" with the correct answer being "neither" — a good test of whether the staggered-term concept from Task 5 actually landed) and the corresponding button.
+Add one entry to `quizzes` (e.g., testing "which of Washington's two US Senate seats is up for election in 2026?" with the correct answer being "neither" — a good test of whether the staggered-term concept from Task 3 actually landed) and the corresponding button.
 
 - [ ] **Step 5: Verify**
 
-Run: `open us-elections.html`, scroll to this section, confirm it renders correctly, click every citation link (including every TVW.org, Axios Seattle, My Edmonds News, KUOW, and Cascade PBS link actually used) to confirm each resolves and genuinely supports its claim, click the quiz button to confirm it functions. Re-read the section one more time specifically for nonpartisanship (a second pass, separate from Step 3's first pass).
+Run: `open us-elections.html`, scroll to this section, confirm it renders correctly, click every citation link (including every TVW.org, Axios Seattle, My Edmonds News, KUOW, and Cascade PBS link actually used) to confirm each resolves and genuinely supports its claim, click every candidate platform link to confirm each one actually goes to that specific candidate's own campaign site/statement (not a mismatched link, not a third-party article about them), click the quiz button to confirm it functions. Re-read the section one more time specifically for nonpartisanship (a second pass, separate from Step 3's first pass).
 
 - [ ] **Step 6: Commit**
 
@@ -387,7 +349,7 @@ git commit -m "feat: add local WA-32/WA-02 representation section to US Election
 **Files:**
 - Modify: `us-elections.html` (the `#timeline`, `#key-people`, `#videos`, `#resources` placeholder sections)
 
-**Context:** Four smaller, lower-risk sections bundled into one task since each is a straightforward instantiation of an existing, well-understood component pattern (`.tl-item` timeline, `.person-card` grid, video embeds, resource links) — none requires the deep research or nonpartisanship scrutiny of Tasks 5–7.
+**Context:** Four smaller, lower-risk sections bundled into one task since each is a straightforward instantiation of an existing, well-understood component pattern (`.tl-item` timeline, `.person-card` grid, video embeds, resource links) — none requires the deep research or nonpartisanship scrutiny of Tasks 3, 6, and 7 (elections mechanics, the national update-pane, and the local WA-32/WA-02 section).
 
 - [ ] **Step 1: Verify History Timeline facts**
 
@@ -517,6 +479,6 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ## Self-Review Notes
 
-- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–10. Task 7 (local WA-32/WA-02 representation section) is an out-of-plan addition, approved mid-session after the project owner identified their own school's specific legislative and congressional districts — not present in the original design doc, but scoped using the same rigor (three separate research passes, each corroborating the others via official government rosters and multiple independent dated news sources) and the same nonpartisanship discipline as every other content task. The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 10's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section.
+- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–10. Two significant mid-session revisions to the original design doc's page structure, both approved directly by the project owner after Task 3 (checks and balances, in the ORIGINAL numbering) had already shipped: (1) "How Elections Actually Work" was moved from Section 4 to Section 2 (now Task 3 in the plan) and rewritten to explicitly bridge back to Section 1's three-branches content — since "Elections" is half the page's own title but originally didn't appear until deep into durable civics content; (2) "How a Bill Becomes a Law" (originally Task 4) was cut from the plan entirely, before any content was written for it, since it was the most purely mechanical, least election-relevant section and cutting it tightens the page around its branches → elections → midterms-stakes thesis. Task 7 (local WA-32/WA-02 representation section, including candidate platform links added in a second mid-session revision) is an out-of-plan addition, approved after the project owner identified their own school's specific legislative and congressional districts — not present in the original design doc, but scoped using the same rigor (three separate research passes, each corroborating the others via official government rosters and multiple independent dated news sources) and the same nonpartisanship discipline as every other content task. Task 6 also gained a "balance of power" fact block (seats-needed-to-flip-control, cited to nonpartisan election forecasters' own ratings) per the same round of mid-session requests. The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 10's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section — this discipline is exactly why the candidate-platform-links addition was scoped as "link to their own words only," not "describe what they'd support," after discussing the risk directly with the project owner.
 - **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 10 Step 1 and Tasks 2–8's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in the plan.
 - **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names (`s-card`, `update-pane`, `mini-tl`, `cite-link`, `vocab`, `callout`, `person-card`, `portrait-ring`, `tl-item`, `quiz-btn`, `site-nav`, `topic-card`) are specified as "reuse `iran.html`'s exact pattern" throughout rather than reconstructed from memory, since this plan's core discipline is adaptation of proven, working markup — Task 9's `index.html` integration similarly instructs reading the existing pattern directly before writing, rather than guessing at the topic-card structure.
