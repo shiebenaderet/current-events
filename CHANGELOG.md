@@ -2,6 +2,13 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [1.1.4] — 2026-07-20
+
+**Patch — navigation fix, no CSS beyond two small reused-pattern additions.**
+
+- `iran.html`, `ukraine.html`, and `ai.html` each have a `sticky-nav`, but it was entirely in-page (anchor links to sections like `#now`, `#timeline`) — none of the three linked back to `index.html` or to each other. A student landing directly on one topic page (via a shared link, bookmark, or search result) had no way to discover the site's other topics or return to the hub without editing the URL by hand. Added a "🏠 All Topics" link plus two sibling-topic links to the front of each page's existing `sticky-nav`, matching `index.html`'s own `site-nav` pattern (which already linked out to all three topics correctly). Reused existing CSS custom properties and pill classes already defined on each page (`.n-dark`/`.n-teal` on Ukraine and AI; two new small classes on Iran, `.n-hub`/`.n-sib`, using colors already defined via existing CSS variables) — no new colors introduced.
+- Found and deliberately left unfixed: a pre-existing mobile-width horizontal-overflow bug (clips the hero headline and some nav pills on narrow screens) present on at least `ukraine.html` before this change — confirmed via a before/after screenshot comparison that it predates this fix and isn't something this patch worsened in kind, only added one more wrapped nav row on top of. Worth its own investigation across all three pages in a future pass.
+
 ## [1.1.3] — 2026-07-20
 
 **Patch — link correction, no page content changed otherwise.**
