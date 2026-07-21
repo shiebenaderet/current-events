@@ -4,7 +4,7 @@
 
 **Goal:** Build a new topic page, `us-elections.html`, from scratch, matching the established structure and conventions of `iran.html`/`ukraine.html`/`ai.html` — durable 3-branch civics content plus a live update-pane tied to the 2026 midterm elections — and link it into the site's index/nav. The defining constraint of this build, more than any prior page: strict nonpartisanship, verified by a dedicated test at write time, not just cited sources.
 
-**Architecture:** Task 1 scaffolds the entire page shell (CSS palette, shared JS engine — quiz system, points, easter eggs — nav, hero, points bar, footer) by adapting the proven, working engine already used by the three existing topic pages, with content-section placeholders. Tasks 2–8 fill in content section by section, each adding to the shared quiz-data object as they go — this includes Task 7, a locally-relevant section on Washington's 32nd Legislative District and 2nd Congressional District (added mid-session, after Alderwood Middle School's specific district representation was confirmed), positioned right after the national update-pane since both are "right now" content. Task 9 wires the new page into `index.html`'s nav/topic-grid. Task 10 is the nonpartisanship + full verification pass. This mirrors how a developer would extend a working template, not how a from-scratch greenfield build would normally be planned — reuse, not reinvention, is the goal for every piece of shared machinery.
+**Architecture:** Task 1 scaffolds the entire page shell (CSS palette, shared JS engine — quiz system, points, easter eggs — nav, hero, points bar, footer) by adapting the proven, working engine already used by the three existing topic pages, with content-section placeholders. Tasks 2–8 fill in content section by section, each adding to the shared quiz-data object as they go — this includes Task 7, a locally-relevant section on Washington's 32nd Legislative District and 2nd Congressional District (added mid-session, after Alderwood Middle School's specific district representation was confirmed). **Task numbers reflect implementation ORDER, not final HTML position** — this matters because of a mid-session change: the update-pane's HTML position was moved (after Tasks 1-3 shipped) to sit first in `<main>`, immediately after the hero, matching Iran/Ukraine/AI's proven pattern where live "right now" content leads and durable background follows — the original order (three full civics sections before any current-events content) read like a textbook, not a current-events page, per direct project-owner feedback. Task 6 (the update-pane's actual CONTENT) still gets implemented after Tasks 2-4 (branches, elections, checks-and-balances) in this plan's sequence, since its content depends on facts those sections establish (e.g., referencing "the Speaker of the House" assumes Task 2 already explained the role) — only the update-pane's finished HTML PLACEMENT moved earlier, not the task execution order. Task 9 (new, added mid-session) is a dedicated image-sourcing sweep, added after the project owner flagged the page as too text-heavy — two custom SVG diagrams (three-branches, checks-and-balances triangle) were already added directly to Tasks 2/4's sections; Task 9 covers the rest with real Wikimedia Commons photos. Task 10 wires the new page into `index.html`'s nav/topic-grid. Task 11 is the nonpartisanship + full verification pass. This mirrors how a developer would extend a working template, not how a from-scratch greenfield build would normally be planned — reuse, not reinvention, is the goal for every piece of shared machinery.
 
 **Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and — unique to this page — a dedicated nonpartisanship read-through.
 
@@ -104,7 +104,7 @@ Adapt `iran.html`'s hero/nav/points-bar markup (search the file for `<header cla
 
 Copy `iran.html`'s two `<script>` blocks (search for `<script>` — should be two blocks near the end of the file, before `</body>`) into this new file. Adapt:
 - The `quizzes` object: replace with an **empty object** for now (`const quizzes = {};`) — subsequent tasks will add entries as they build each section's quiz.
-- `MAX_PTS`: set to match however many quizzes this page will ultimately have (this will need a final adjustment in the last content task or Task 10's verification pass — flag this with a comment for now, e.g. `const MAX_PTS = 0; // TODO: update once all quizzes are added` — this is an intentional, tracked placeholder, not a violation of the "no placeholders" rule, since it's explicitly flagged for a specific later step, not left silently wrong).
+- `MAX_PTS`: set to match however many quizzes this page will ultimately have (this will need a final adjustment in the last content task or Task 11's verification pass — flag this with a comment for now, e.g. `const MAX_PTS = 0; // TODO: update once all quizzes are added` — this is an intentional, tracked placeholder, not a violation of the "no placeholders" rule, since it's explicitly flagged for a specific later step, not left silently wrong).
 - Any Iran-specific easter-egg logic (e.g., Konami-code Easter eggs, flag-click animations tied to Iran-specific content) — keep the generic mechanism (the `KONAMI` array, `flagClicks` counter, `showToast` function) but do NOT port Iran-specific *content* inside those mechanisms (e.g., don't copy an Iran-flag-themed easter egg message) — leave the trigger mechanism in place with placeholder or genuinely page-appropriate content, to be decided/refined in a later task if this page gets its own easter egg.
 - Confirm `openQuiz`, `showToast`, and the points-tracking logic are copied verbatim (they're topic-agnostic) — do not modify their internal logic.
 
@@ -233,8 +233,10 @@ If Step 1 and Step 2 found nothing to fix (content already correct, no quiz-ID c
 
 ## Task 6: The Update Pane — "Where Things Stand: The 2026 Midterms"
 
+*(Note: there is no "Task 5" in this plan — an artifact of the mid-session renumbering when "How Elections Actually Work" moved from an original Task 5 slot to become the current Task 3. Nothing was skipped; every task 1 through 11 that appears in this document is complete and accounted for.)*
+
 **Files:**
-- Modify: `us-elections.html` (the `#update-pane` placeholder section)
+- Modify: `us-elections.html` (the `#update-pane` section — **note:** its HTML position moved mid-session, after Task 3 shipped, from originally sitting after Checks and Balances to now sitting first in `<main>`, immediately after the hero, before `#branches`. Find it by its `id="update-pane"`, not by its position relative to other sections — the placeholder content inside is unchanged, only its location in the file moved.)
 
 **Context:** This is the highest-research-risk, highest-nonpartisanship-risk task in the plan. Read the design doc's "The Update Pane" section in full before starting — it has the complete content plan. This task also requires reading `iran.html`'s actual `update-pane`/`mini-tl` markup directly (search for `<div class="update-pane"` in that file) to copy the exact structural pattern, not just the design doc's prose description of it.
 
@@ -279,7 +281,7 @@ git commit -m "feat: add US Elections update-pane — 2026 midterms status"
 ## Task 7: Local Section — "Who Represents Alderwood?" (Washington's 32nd Legislative District & 2nd Congressional District)
 
 **Files:**
-- Modify: `us-elections.html` (new section, positioned after the national update-pane from Task 6, before the History Timeline)
+- Modify: `us-elections.html` (new section, positioned after Checks and Balances (`#checks-balances`) and before the History Timeline (`#timeline`) — **not** after the national update-pane, which moved to the top of the page mid-session; this local section's position is unaffected by that move)
 
 **Context:** Approved mid-session as an addition to the original 9-task plan — a locally-relevant section naming the specific officials and 2026 races that directly affect this site's own students (Alderwood Middle School, in the Edmonds School District, WA). This is the highest-nonpartisanship-risk task in the plan alongside Task 6, for a different reason: every one of the confirmed local officeholders happens to currently belong to the same party, which is a plain fact of who represents this specific district, not an editorial choice — the framing discipline below exists specifically to keep it presented that way.
 
@@ -371,13 +373,15 @@ Following `iran.html`'s `.person-card`/`.portrait-ring` pattern, add each figure
 
 Following `iran.html`'s existing patterns for embedded video/podcast content and ranked-resource lists. Source genuinely nonpartisan, reputable civics-education videos/resources (e.g., established civics-education nonprofits, C-SPAN's educational content, Annenberg Classroom, iCivics) — verify each source directly before including it, and specifically check that any video/resource itself is nonpartisan in its own framing, not just that its host organization has a neutral-sounding name.
 
+**Add a curated "Keep up with the 2026 midterms" subsection to Resources, per an explicit mid-session project-owner request.** This is a genuinely new pattern for this site (no existing page has a dated, periodically-refreshed current-events links list) — scope it carefully: a short (3-5 item), explicitly dated list of recent, nonpartisan articles/videos covering the 2026 midterms and general civics topics, each cited with its actual publication date. Follow the exact same sourcing discipline as every other citation on this page — fetch each candidate item directly, confirm it's genuinely nonpartisan in its own framing (not just from a neutral-sounding outlet), and confirm it's still live and non-paywalled at write time. Label this subsection with a visible "as of [DATE]" marker so a future reader can tell at a glance whether the list has gone stale — this list will need periodic refreshing the same way the update-pane does, and should be flagged as a refresh candidate the next time this page gets revisited, the same way Iran/Ukraine/AI's date stamps get checked on their own refresh cycles. Do not force exactly 3-5 items if fewer genuinely-good, verified candidates exist — a shorter, all-verified list is better than a padded one.
+
 - [ ] **Step 6: Add quiz(es) for the timeline/people sections if appropriate**
 
 Following the pattern of prior tasks — 1-2 more `quizzes` entries covering timeline/Key People facts, with corresponding buttons.
 
 - [ ] **Step 7: Verify all four sections**
 
-Run: `open us-elections.html`, scroll through all four sections, click every citation/resource link, confirm images load correctly and match their captions, confirm any new quiz buttons function.
+Run: `open us-elections.html`, scroll through all four sections, click every citation/resource link (including every item in the new "Keep up with the 2026 midterms" subsection), confirm images load correctly and match their captions, confirm any new quiz buttons function, confirm the curated-links subsection shows a visible "as of [DATE]" marker.
 
 - [ ] **Step 8: Commit**
 
@@ -388,7 +392,51 @@ git commit -m "feat: add US Elections history timeline, key people, videos, reso
 
 ---
 
-## Task 9: Wire the New Page into the Site
+## Task 9: Add Section Images — Photo Sourcing Sweep
+
+**Files:**
+- Modify: `us-elections.html` (add one real photo to each section that doesn't already have one)
+
+**Context:** Added mid-session per explicit project-owner request: the page was flagged as too text-heavy partway through the build. Two custom SVG diagrams (three branches, checks-and-balances) were already added directly to the `#branches` and `#checks-balances` sections by the controller, not by a subagent task — those are done and don't need touching here. This task covers the rest: real, verified Wikimedia Commons photos for sections that still have zero visual content. This is NOT a diagram task — no more custom graphics; this task sources genuine photographs of real places/things.
+
+- [ ] **Step 1: Inventory which sections still lack an image**
+
+Read the full current file. As of this task's writing, the sections most likely to still be text-only: `#elections-mechanics` (Section 2), the update-pane (2026 midterms), the local WA-32/WA-02 section (Task 7), and possibly `#timeline`/`#key-people` depending on what Task 8 already added (Key People should already have portraits per Task 8's own requirement — confirm rather than assume, and skip any section that already has a real, verified photo). Do not add a second image to a section that already has one just to hit some quota — only fill genuine gaps.
+
+- [ ] **Step 2: Source one real, verified photo per gap section**
+
+For each section lacking an image, find a genuine, accurately-depicting photo from Wikimedia Commons (CC-licensed or public domain) — following this project's established, hard-won discipline (this exact site has caught two real bugs from skipping this: a protest photo mislabeled as being from the wrong location, and a citation that didn't actually support its claim). Concretely:
+- `#elections-mechanics`: a photo of a real polling place, ballot box, or "I Voted" sticker — something depicting the general concept of voting, not tied to any specific candidate or party.
+- Update-pane: consider whether a genuinely neutral image fits here at all (e.g., the U.S. Capitol building, exterior) — if nothing neutral and verifiable fits well, it's acceptable to leave this section image-free rather than force one; the update-pane's content itself (once Task 6 writes it) may carry enough visual weight via its stat-grid/mini-tl formatting.
+- Local WA section: consider a Washington State Capitol building photo (Olympia) — verify this is genuinely the WA State Capitol, not a different building, before using it.
+- Any other identified gap: use your own judgment on what's a genuinely fitting, real, verifiable photo — do not force an image into a section where nothing neutral and accurate is findable.
+
+For every candidate image: download it, visually confirm it actually matches what its caption will claim (this project's established discipline — do not trust a filename or search-result description alone), and confirm its license before using it.
+
+- [ ] **Step 3: Add each image following this page's established float/hero image pattern**
+
+Match `iran.html`'s `.img-float`/`.img-hero-section`/`.img-caption` conventions exactly (read that file directly for the real markup) — same caption format, same Commons attribution link pattern already used elsewhere on this site.
+
+- [ ] **Step 4: Apply the nonpartisanship test to every new caption**
+
+A caption describing a polling place or a government building should be purely factual/descriptive — confirm none accidentally editorializes (e.g., describing a building as "impressive" or "controversial" rather than just naming what it is and where it's located).
+
+- [ ] **Step 5: Verify**
+
+Run: `open us-elections.html`, scroll through the whole page, confirm every new image loads correctly, matches its caption, and has a working Commons attribution link. Confirm no section was given a forced, weak, or mismatched image just to fill a visual gap.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add us-elections.html [new image files]
+git commit -m "feat: add section images to US Elections page"
+```
+
+If no additional images could be confidently sourced beyond what already exists (the two diagrams plus whatever Task 8 already added for Key People), note that explicitly and skip the commit rather than force weak additions.
+
+---
+
+## Task 10: Wire the New Page into the Site
 
 **Files:**
 - Modify: `index.html`
@@ -420,13 +468,13 @@ git commit -m "feat: add US Elections page to site nav and topic grid"
 
 ---
 
-## Task 10: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
+## Task 11: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
 
 **Files:** None modified unless this step surfaces a real problem — verification only, except for the `MAX_PTS` fix flagged in Task 1.
 
 - [ ] **Step 1: Fix the `MAX_PTS` placeholder from Task 1**
 
-Count the actual number of quiz entries added across Tasks 2–8. Update `const MAX_PTS = 0;` (the intentionally-flagged Task 1 placeholder) to the real count. Confirm the points-bar UI correctly reflects this new max.
+Count the actual number of quiz entries added across Tasks 2–8 (Task 9's image-sourcing sweep adds no new quizzes). Update `const MAX_PTS = 0;` (the intentionally-flagged Task 1 placeholder) to the real count. Confirm the points-bar UI correctly reflects this new max.
 
 - [ ] **Step 2: Confirm no leftover placeholder content remains**
 
@@ -479,6 +527,6 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ## Self-Review Notes
 
-- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–10. Two significant mid-session revisions to the original design doc's page structure, both approved directly by the project owner after Task 3 (checks and balances, in the ORIGINAL numbering) had already shipped: (1) "How Elections Actually Work" was moved from Section 4 to Section 2 (now Task 3 in the plan) and rewritten to explicitly bridge back to Section 1's three-branches content — since "Elections" is half the page's own title but originally didn't appear until deep into durable civics content; (2) "How a Bill Becomes a Law" (originally Task 4) was cut from the plan entirely, before any content was written for it, since it was the most purely mechanical, least election-relevant section and cutting it tightens the page around its branches → elections → midterms-stakes thesis. Task 7 (local WA-32/WA-02 representation section, including candidate platform links added in a second mid-session revision) is an out-of-plan addition, approved after the project owner identified their own school's specific legislative and congressional districts — not present in the original design doc, but scoped using the same rigor (three separate research passes, each corroborating the others via official government rosters and multiple independent dated news sources) and the same nonpartisanship discipline as every other content task. Task 6 also gained a "balance of power" fact block (seats-needed-to-flip-control, cited to nonpartisan election forecasters' own ratings) per the same round of mid-session requests. The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 10's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section — this discipline is exactly why the candidate-platform-links addition was scoped as "link to their own words only," not "describe what they'd support," after discussing the risk directly with the project owner.
-- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 10 Step 1 and Tasks 2–8's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in the plan.
-- **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names (`s-card`, `update-pane`, `mini-tl`, `cite-link`, `vocab`, `callout`, `person-card`, `portrait-ring`, `tl-item`, `quiz-btn`, `site-nav`, `topic-card`) are specified as "reuse `iran.html`'s exact pattern" throughout rather than reconstructed from memory, since this plan's core discipline is adaptation of proven, working markup — Task 9's `index.html` integration similarly instructs reading the existing pattern directly before writing, rather than guessing at the topic-card structure.
+- **Spec coverage:** All design doc sections (page structure, update-pane content plan, history timeline, Key People scoping, sourcing/verification standard, out-of-scope list) map to Tasks 1–11. Two significant mid-session revisions to the original design doc's page structure, both approved directly by the project owner after Task 3 (checks and balances, in the ORIGINAL numbering) had already shipped: (1) "How Elections Actually Work" was moved from Section 4 to Section 2 (now Task 3 in the plan) and rewritten to explicitly bridge back to Section 1's three-branches content — since "Elections" is half the page's own title but originally didn't appear until deep into durable civics content; (2) "How a Bill Becomes a Law" (originally Task 4) was cut from the plan entirely, before any content was written for it, since it was the most purely mechanical, least election-relevant section and cutting it tightens the page around its branches → elections → midterms-stakes thesis. Task 7 (local WA-32/WA-02 representation section, including candidate platform links added in a second mid-session revision) is an out-of-plan addition, approved after the project owner identified their own school's specific legislative and congressional districts — not present in the original design doc, but scoped using the same rigor (three separate research passes, each corroborating the others via official government rosters and multiple independent dated news sources) and the same nonpartisanship discipline as every other content task. Task 6 also gained a "balance of power" fact block (seats-needed-to-flip-control, cited to nonpartisan election forecasters' own ratings) per the same round of mid-session requests. A THIRD round of mid-session revisions, after Task 3 (new numbering, elections mechanics) shipped: the project owner flagged the page as too text-heavy, leading to two controller-added custom SVG diagrams (three branches, checks-and-balances) directly in Tasks 2/4's sections, a new Task 9 (dedicated photo-sourcing sweep for the rest of the page), and a curated "Keep up with the 2026 midterms" links subsection added to Task 8's Resources step. Separately, the update-pane's HTML position moved to the top of the page (immediately after the hero) to match Iran/Ukraine/AI's proven current-events-first pattern — this changed the update-pane's PLACEMENT in the finished page, not the ORDER tasks are implemented in (Task 6 still gets built after Tasks 2-4, since its content depends on facts those sections establish). The design doc's most distinctive requirement — nonpartisanship as a first-class, dedicated verification concern — is threaded through every content task's steps (not just Task 11's final pass), since waiting until the very end to check this would be far more expensive to fix than catching it section-by-section — this discipline is exactly why the candidate-platform-links addition was scoped as "link to their own words only," not "describe what they'd support," after discussing the risk directly with the project owner.
+- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 11 Step 1 and Tasks 2–8's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in the plan.
+- **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names (`s-card`, `update-pane`, `mini-tl`, `cite-link`, `vocab`, `callout`, `person-card`, `portrait-ring`, `tl-item`, `quiz-btn`, `site-nav`, `topic-card`, `diagram-wrap`, `diagram-caption`) are specified as "reuse `iran.html`'s exact pattern" throughout rather than reconstructed from memory, since this plan's core discipline is adaptation of proven, working markup — Task 10's `index.html` integration similarly instructs reading the existing pattern directly before writing, rather than guessing at the topic-card structure.
