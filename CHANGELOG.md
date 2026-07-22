@@ -2,6 +2,15 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [1.2.0] — 2026-07-21
+
+**Minor — new topic page added: US Elections & Government.**
+
+- New page `us-elections.html`, built from scratch (fourth topic on the site, first not adapted from a prior draft) matching `iran.html`/`ukraine.html`/`ai.html`'s established structure: durable civics content (the three branches, how elections actually work, checks and balances) plus a live update-pane tied to the 2026 midterms, a local section naming the specific state legislative and congressional district that covers this school (Washington's 21st Legislative District / 1st Congressional District — corrected mid-build from an initially-misidentified 32nd/2nd via a direct U.S. Census Bureau geocoder cross-check), a history timeline (1787 Constitutional Convention through the 26th Amendment), two historical Key People profiles (James Madison, John Lewis — deliberately no current officials), two videos, and a resources section including a dated "Keep up with the 2026 midterms" curated-links subsection.
+- This page's defining constraint, more than any prior page on this site: strict nonpartisanship, verified via a dedicated party-swap test applied per content section, not just as a final pass. Current officeholders are named by role only, never by party; filed-candidate lists show party for every candidate equally; candidate platform links go only to each candidate's own campaign site/statement, never a third-party characterization.
+- Two custom inline-SVG/CSS diagrams: a three-branches relationship diagram (rectangular boxes with two arrows: "sends bills to," "appoints judges to") and a checks-and-balances comparison — the latter went through several rounds of visual iteration (circles → rectangles with arrows → a plain data table) before landing on the table format, which turned out to be the clearest way to present 5 distinct branch-to-branch checks without illegible crossing-line labels.
+- `index.html`: US Elections takes over the site's Featured Story slot (previously Iran); Iran is demoted into the regular topic-card grid, matching Ukraine's/AI's card format exactly. Site-nav updated with a new "🗳️ US Elections" link.
+
 ## [1.1.5] — 2026-07-21
 
 **Patch — real citation added for a previously-unverified image, no other content changed.**
