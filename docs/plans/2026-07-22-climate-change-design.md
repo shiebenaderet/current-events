@@ -1,0 +1,56 @@
+# Climate Change Page — Design Doc
+
+**Page:** `climate-change.html` (new, fifth topic page on the site, alongside `iran.html`/`ukraine.html`/`ai.html`/`us-elections.html`)
+
+**Title:** "Climate Change: What the Rocks and Ice Tell Us" — leads with the geological-evidence hook rather than a generic "climate change explained" framing.
+
+**Goal:** Teach climate change through a geological/earth-science lens (how we know Earth's climate has changed before, and what's different about today's change), then ground it locally in Washington State/PNW-specific content, with a live update-pane as the actual current-events hook. Same site pattern as prior pages: durable background content + a dated, refreshable "what's happening right now" section + quizzes + Key People + timeline + videos + resources.
+
+## Why this framing
+
+The project owner's explicit direction: a geological perspective (deep-time climate history, not just policy/politics), a strong PNW/Washington focus for local relevance to 8th graders at Alderwood Middle School, and a highly visual, engaging page — informed directly by feedback from the US Elections build, which was flagged as too text-heavy partway through and needed inline diagrams added afterward.
+
+**Visual-approach lesson carried forward from the US Elections build:** that page's most complex diagram (6 relationships between 3 nodes, checks-and-balances) went through 3 full redesigns — circles → rectangles with arrows → eventually a plain data table — because crossing connector lines made labels illegible at every diagram iteration tried, even after multiple rounds of coordinate-math fixes. This page's content is mostly genuinely numeric (temperature over time, energy-source shares, tax revenue), so the plan leans on **data-driven charts (line/bar/pie)** instead of relationship diagrams wherever possible — charts don't have a crossing-lines failure mode the way node-and-arrow diagrams do. Any diagram that must show a process (e.g., the greenhouse effect) should stay to a simple 2-3 step linear flow, matching the redesigned three-branches diagram's successful pattern, not a multi-node web.
+
+## Page structure
+
+1. **Hero + points bar** — standard scaffold adapted from the proven `iran.html`/`us-elections.html` shell (CSS palette, shared JS quiz/points engine, nav, footer). Palette to be finalized at implementation time — likely earth-tones (browns/blues/greens) fitting geology, ice, and PNW forest. This topic carries far less palette risk than US Elections (no need to dodge a red/blue two-party visual cue), but the Washington policy sub-section still means the palette shouldn't accidentally lean on colors strongly associated with either party.
+
+2. **Update-pane — "Where Things Stand"** (the page's live/dated current-events hook, refreshed at future site updates the same way Iran/Ukraine/AI/US-Elections' panes are): a dated snapshot mixing (a) recent notable climate-linked events, both global (e.g., this year's notable heat waves, floods, wildfire seasons) and PNW-specific, and (b) a plain-fact status check on Washington's own climate policy — Climate Commitment Act/gas tax revenue raised to date, what it's funded, current state emissions targets and progress against them. Mirrors how the US Elections update-pane blended a national fact block with WA-specific content in one pane.
+
+3. **Section 1 — Deep-Time Climate History**: How Earth's climate has changed before — ice ages, past warm periods — and how scientists actually know this (ice cores, sediment layers, tree rings as the evidence trail). Likely visual: a line chart of estimated global temperature over a long timescale (e.g., the last 800,000 years from ice-core proxy data, a well-established, heavily-cited dataset), giving the deep-time framing a concrete visual anchor early on.
+
+4. **Section 2 — The Greenhouse Effect**: The basic mechanism, in plain 5th–6th-grade terms — sunlight in, heat trapped by certain gases, why that's normally a good thing (habitable Earth) before covering why more of those gases changes the balance. Diagram here should stay a simple, short linear flow (sun → atmosphere → trapped heat), not a multi-arrow relationship web.
+
+5. **Section 3 — What's Different This Time**: The rate-of-change argument — natural climate shifts happened over thousands of years; the current shift is happening over decades. Likely visual: a comparison chart (rate of change, past vs. present) or an annotated version of Section 1's timeline chart zoomed into the recent past. Covers the basic human-causation case (fossil fuel combustion, CO2 concentration data — e.g. the Keeling Curve is a strong, famous, easy-to-source dataset for this).
+
+6. **Section 4 — Effects Being Observed**: Global effects (sea level rise, extreme weather shifts, ecosystem impacts), illustrated using PNW-specific examples as the concrete, local evidence — Cascade glacier retreat (Mt. Rainier, Mt. Baker), PNW wildfire smoke seasons, Puget Sound sea level — folded in here as illustrating evidence for global patterns, not a separate local section (a scope decision made explicitly during brainstorming, to keep the dedicated Washington section from sprawling).
+
+7. **Washington's Climate Story** (dedicated local section, playing the same role as US Elections' "Who Represents Alderwood?" section — the page's single, clearly-scoped local deep-dive rather than local content scattered across every section). Three sub-topics, all requiring the same nonpartisan, plain-fact discipline this site already applies to current officeholders/policy status:
+   - **Gas tax / Climate Commitment Act**: what it is, when it took effect, revenue raised to date, what the revenue funds, and — stated plainly and neutrally — how it's been received (e.g., any repeal attempts, public votes, notable public reaction), without characterizing the policy as good or bad. Every claim about "impact" must be attributed to a specific dated source's own findings, not asserted by the page.
+   - **Where Washington's electricity comes from**: WA's actual energy mix (hydropower is a large, genuinely distinctive PNW story — Grand Coulee Dam and the Columbia River system — alongside wind, solar, natural gas shares). Likely visual: a pie or bar chart of the state's generation mix from a dated, authoritative source (e.g. EIA or WA Department of Commerce data).
+   - **Carbon footprint**: what a carbon footprint is, and how Washington's per-capita footprint compares to other states/the national average — framed factually and comparatively, not as individual-behavior-shaming.
+
+8. **History Timeline**: Key moments in climate science discovery and policy — likely candidates (all to be verified at implementation time, not locked here): 19th-century greenhouse-effect discovery (Eunice Foote and/or Svante Arrhenius), the start of the Keeling Curve (1958, continuous atmospheric CO2 measurement), IPCC founding (1988), the Paris Agreement (2015). Follows the same `.tl-item` pattern as every prior page's timeline.
+
+9. **Key People**: Exactly 2 profiles, historical figures only — this site's established hard rule (no current sitting officials, ever, in a `person-card`). Category, per brainstorming: one climate-science pioneer tied to greenhouse-effect discovery, one paleoclimatologist/ice-core-record figure. Specific names to be researched and verified (real, licensable Wikimedia Commons portrait; well-documented, settled historical role) during implementation, following the same "confirm before committing to a name" discipline the US Elections build used for its own Key People and local-representation sections.
+
+10. **Videos, Resources**: Standard pattern — 2 videos (one longer, one shorter, matching the established "watch this first if new to the topic" / "deeper dive" framing), a resources grid of nonpartisan/reputable science-education sources (e.g. NASA Climate, NOAA, USGS — all genuinely nonpartisan federal science agencies, good fit for this topic's citation discipline), plus a dated "Keep up with climate news" curated-links subsection mirroring the US Elections page's "Keep up with the 2026 midterms" pattern — a short, explicitly-dated list of recent, verified, nonpartisan articles, flagged as a future refresh candidate the same way.
+
+## Nonpartisanship discipline
+
+Carries forward this site's now-established practice, applied with the same rigor as the US Elections build: every sentence touching Washington's climate policy (gas tax reception, Climate Commitment Act) must pass "would this read the same regardless of which party or officials are associated with it?" State facts, dates, and dollar figures plainly; attribute any characterization of "impact" or "reception" to a named, dated source rather than asserting it directly; avoid editorializing adjectives near policy descriptions, the same discipline applied to candidate lists and officeholder mentions on the elections page. This is a genuinely non-trivial risk area on this page (unlike, say, the greenhouse-effect science, which carries essentially no partisanship risk) — the WA policy sub-section deserves its own dedicated nonpartisanship pass at implementation time, the same way the elections page's update-pane and local section each got dedicated passes beyond the final whole-page review.
+
+## Sourcing standards
+
+Same discipline as every prior page on this site: fetch and read every source directly to confirm it supports the specific claim it's cited for — a live/200 URL is not sufficient on its own. Prioritize primary/authoritative sources for data claims (NOAA, NASA, USGS, EIA, Washington Department of Ecology/Department of Commerce for state-specific data) over secondary news coverage wherever a direct fetch is possible. Images: Wikimedia Commons only, verified license (public domain/CC) and subject-match confirmed directly on the file's own Commons page (not just an embedding article), with this site's established honest "no verifiable image found" fallback used rather than a forced or unverified citation.
+
+## Reading level
+
+Target 5th–6th grade for durable core-content sections, matching every prior page on this site. Some sections (the Washington policy sub-section in particular, given its factual density — dollar figures, dates, comparative data) may land slightly higher, which prior pages on this site have treated as an acceptable, expected trade-off rather than a defect, provided the content stays genuinely as simple as the subject allows.
+
+## Out of scope (for this build)
+
+- International/global climate policy mechanics (COP summits, international agreements' internal workings) beyond a brief timeline mention — this page's local angle is Washington State, not international climate diplomacy.
+- Detailed climate-model methodology or future-projection scenarios — the deep-time section is about *past* evidence (ice cores, sediment), not forward-looking model output, keeping the geological framing consistent.
+- Personal-action/behavior-change prescriptions ("5 things you can do") — the footprint sub-section explains the concept and WA's comparative standing, but doesn't prescribe individual behavior, consistent with this site's general avoidance of telling students what to do rather than what's happening and why.
