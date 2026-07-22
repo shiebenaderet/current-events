@@ -140,6 +140,9 @@ main{max-width:920px;margin:0 auto;padding:0 20px 60px}
 .s-body{padding:24px 28px}
 .s-body p{margin-bottom:13px}
 .s-body p:last-child{margin-bottom:0}
+.s-body ul{margin:0 0 13px 22px}
+.s-body ul li{margin-bottom:6px}
+.s-body ul li:last-child{margin-bottom:0}
 
 /* ─── IMAGES ─── */
 .img-hero-section{
@@ -931,50 +934,61 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="s-body">
     <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
-    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other with six straight arrows. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto. The Executive branch appoints federal judges to the Judicial branch. The Judicial branch can rule the Executive branch's actions unconstitutional. The Legislative branch confirms judges and can impeach officials in the Judicial branch. The Judicial branch can rule laws from the Legislative branch unconstitutional.">
-      <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:460px;display:block;margin:0 auto" aria-hidden="true">
-        <circle cx="280" cy="70" r="55" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
-        <text x="280" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
-        <text x="280" y="85" text-anchor="middle" font-size="24">🏛️</text>
-
-        <circle cx="100" cy="310" r="55" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
-        <text x="100" y="305" text-anchor="middle" font-size="13" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
-        <text x="100" y="325" text-anchor="middle" font-size="24">🏢</text>
-
-        <circle cx="460" cy="310" r="55" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
-        <text x="460" y="305" text-anchor="middle" font-size="13" font-weight="800" fill="var(--green)">JUDICIAL</text>
-        <text x="460" y="325" text-anchor="middle" font-size="24">⚖️</text>
-
+    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other with six straight arrows, using the same box style as the earlier three-branches diagram. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto. The Executive branch appoints federal judges to the Judicial branch. The Judicial branch can rule the Executive branch's actions unconstitutional. The Legislative branch confirms judges and can impeach officials in the Judicial branch. The Judicial branch can rule laws from the Legislative branch unconstitutional.">
+      <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:480px;display:block;margin:0 auto" aria-hidden="true">
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--mid)"/>
           </marker>
         </defs>
 
-        <!-- Executive -> Legislative: veto (endpoints computed via chord geometry so they land exactly on both circle edges, not just close) -->
-        <line x1="226.9" y1="84.2" x2="98.7" y2="255.0" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="174" y="178" text-anchor="middle" font-size="11" fill="var(--mid)">can veto</text>
-
+        <!-- lines drawn first, so box fills sit on top of any line endpoints for a clean edge -->
+        <!-- Executive -> Legislative: veto (endpoints computed via rectangle-edge geometry, offset 12px so paired lines don't overlap) -->
+        <line x1="234.8" y1="100.3" x2="145.2" y2="259.7" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
         <!-- Legislative -> Executive: override -->
-        <line x1="153.1" y1="295.8" x2="281.3" y2="125.0" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="228.4" y="218.8" text-anchor="middle" font-size="11" fill="var(--mid)">can override veto</text>
-
+        <line x1="126.0" y1="245.3" x2="254.0" y2="114.7" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
         <!-- Executive -> Judicial: appoints judges -->
-        <line x1="278.7" y1="125.0" x2="406.9" y2="295.8" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="354" y="202" text-anchor="middle" font-size="11" fill="var(--mid)">appoints judges</text>
-
+        <line x1="306.0" y1="114.7" x2="434.0" y2="245.3" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
         <!-- Judicial -> Executive: rules acts unconstitutional -->
-        <line x1="461.3" y1="255.0" x2="333.1" y2="84.2" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="408.4" y="155" text-anchor="middle" font-size="11" fill="var(--mid)">can rule acts</text>
-        <text x="408.4" y="168" text-anchor="middle" font-size="11" fill="var(--mid)">unconstitutional</text>
-
+        <line x1="414.8" y1="259.7" x2="325.2" y2="100.3" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
         <!-- Legislative -> Judicial: confirms judges, can impeach -->
-        <line x1="143.2" y1="344" x2="416.8" y2="344" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <text x="280" y="358" text-anchor="middle" font-size="11" fill="var(--mid)">confirms judges, can impeach</text>
-
+        <line x1="175.0" y1="312.0" x2="385.0" y2="288.0" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
         <!-- Judicial -> Legislative: rules laws unconstitutional -->
-        <line x1="416.8" y1="276" x2="143.2" y2="276" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-        <text x="280" y="290" text-anchor="middle" font-size="11" fill="var(--mid)">can rule laws unconstitutional</text>
+        <line x1="385.0" y1="312.0" x2="175.0" y2="288.0" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+
+        <rect x="205" y="12.5" width="150" height="95" rx="14" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
+        <text x="280" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
+        <text x="280" y="78" text-anchor="middle" font-size="26">🏛️</text>
+
+        <rect x="25" y="252.5" width="150" height="95" rx="14" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="100" y="290" text-anchor="middle" font-size="14" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
+        <text x="100" y="318" text-anchor="middle" font-size="26">🏢</text>
+
+        <rect x="385" y="252.5" width="150" height="95" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
+        <text x="460" y="290" text-anchor="middle" font-size="14" font-weight="800" fill="var(--green)">JUDICIAL</text>
+        <text x="460" y="318" text-anchor="middle" font-size="26">⚖️</text>
+
+        <!-- label chips: solid background behind each label so text never sits directly on a line -->
+        <g font-size="11" fill="var(--mid)">
+          <rect x="153" y="150" width="60" height="16" rx="4" fill="#faf8f4"/>
+          <text x="183" y="161" text-anchor="middle">can veto</text>
+
+          <rect x="140" y="197" width="88" height="16" rx="4" fill="#faf8f4"/>
+          <text x="184" y="208" text-anchor="middle">can override veto</text>
+
+          <rect x="330" y="150" width="82" height="16" rx="4" fill="#faf8f4"/>
+          <text x="371" y="161" text-anchor="middle">appoints judges</text>
+
+          <rect x="335" y="197" width="60" height="30" rx="4" fill="#faf8f4"/>
+          <text x="365" y="209" text-anchor="middle">can rule acts</text>
+          <text x="365" y="222" text-anchor="middle">unconstitutional</text>
+
+          <rect x="195" y="337" width="112" height="16" rx="4" fill="#faf8f4"/>
+          <text x="251" y="348" text-anchor="middle">confirms judges, can impeach</text>
+
+          <rect x="207" y="258" width="124" height="16" rx="4" fill="#faf8f4"/>
+          <text x="269" y="269" text-anchor="middle">can rule laws unconstitutional</text>
+        </g>
       </svg>
       <p class="diagram-caption">Six ways the three branches check each other — read below for the full explanation of each.</p>
     </div>
