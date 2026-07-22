@@ -216,6 +216,23 @@ cite-link a:hover{background:var(--navy-l);color:white}
 .diagram-wrap{margin:18px 0;padding:18px 14px;background:#faf8f4;border-radius:14px;border:1px solid var(--border)}
 .diagram-caption{text-align:center;font-size:.78rem;color:var(--mid);font-style:italic;margin-top:10px}
 
+/* ─── CHECKS-AND-BALANCES TABLE (replaces an earlier 6-arrow diagram whose
+   crossing lines made the labels hard to read at any size) ─── */
+.checks-table-wrap{margin:18px 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#faf8f4}
+.checks-row{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+.checks-row:last-child{border-bottom:none}
+.checks-row-head{background:#f0ebe0;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--mid)}
+.checks-row:not(.checks-row-head){font-size:.88rem}
+.checks-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-weight:700;font-size:.82rem;white-space:nowrap}
+.checks-navy{background:var(--navy-ll);color:var(--navy)}
+.checks-gold{background:var(--gold-ll);color:#8a6608}
+.checks-green{background:var(--green-l);color:var(--green)}
+.checks-num{display:block;font-size:.72rem;font-weight:700;color:var(--mid);opacity:.75;margin-top:2px}
+@media(max-width:600px){
+  .checks-row{grid-template-columns:1fr;gap:6px;text-align:left}
+  .checks-row-head{display:none}
+}
+
 /* ─── VOCAB ─── */
 .vocab{background:#fef9f0;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:13px 17px;margin:14px 0;font-size:.9rem}
 .vocab strong{color:#7a5000}
@@ -934,64 +951,39 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   <div class="s-body">
     <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
-    <div class="diagram-wrap" role="img" aria-label="Diagram showing how the three branches check each other with six straight arrows, using the same box style as the earlier three-branches diagram. The Executive branch can veto bills from the Legislative branch. The Legislative branch can override a veto. The Executive branch appoints federal judges to the Judicial branch. The Judicial branch can rule the Executive branch's actions unconstitutional. The Legislative branch confirms judges and can impeach officials in the Judicial branch. The Judicial branch can rule laws from the Legislative branch unconstitutional.">
-      <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:480px;display:block;margin:0 auto" aria-hidden="true">
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--mid)"/>
-          </marker>
-        </defs>
-
-        <!-- lines drawn first, so box fills sit on top of any line endpoints for a clean edge -->
-        <!-- Executive -> Legislative: veto (endpoints computed via rectangle-edge geometry, offset 12px so paired lines don't overlap) -->
-        <line x1="234.8" y1="100.3" x2="145.2" y2="259.7" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <!-- Legislative -> Executive: override -->
-        <line x1="126.0" y1="245.3" x2="254.0" y2="114.7" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <!-- Executive -> Judicial: appoints judges -->
-        <line x1="306.0" y1="114.7" x2="434.0" y2="245.3" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <!-- Judicial -> Executive: rules acts unconstitutional -->
-        <line x1="414.8" y1="259.7" x2="325.2" y2="100.3" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <!-- Legislative -> Judicial: confirms judges, can impeach -->
-        <line x1="175.0" y1="312.0" x2="385.0" y2="288.0" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <!-- Judicial -> Legislative: rules laws unconstitutional -->
-        <line x1="385.0" y1="312.0" x2="175.0" y2="288.0" stroke="var(--mid)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-
-        <rect x="205" y="12.5" width="150" height="95" rx="14" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
-        <text x="280" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
-        <text x="280" y="78" text-anchor="middle" font-size="26">🏛️</text>
-
-        <rect x="25" y="252.5" width="150" height="95" rx="14" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
-        <text x="100" y="290" text-anchor="middle" font-size="14" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
-        <text x="100" y="318" text-anchor="middle" font-size="26">🏢</text>
-
-        <rect x="385" y="252.5" width="150" height="95" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
-        <text x="460" y="290" text-anchor="middle" font-size="14" font-weight="800" fill="var(--green)">JUDICIAL</text>
-        <text x="460" y="318" text-anchor="middle" font-size="26">⚖️</text>
-
-        <!-- label chips: solid background behind each label so text never sits directly on a line -->
-        <g font-size="11" fill="var(--mid)">
-          <rect x="153" y="150" width="60" height="16" rx="4" fill="#faf8f4"/>
-          <text x="183" y="161" text-anchor="middle">can veto</text>
-
-          <rect x="140" y="197" width="88" height="16" rx="4" fill="#faf8f4"/>
-          <text x="184" y="208" text-anchor="middle">can override veto</text>
-
-          <rect x="330" y="150" width="82" height="16" rx="4" fill="#faf8f4"/>
-          <text x="371" y="161" text-anchor="middle">appoints judges</text>
-
-          <rect x="335" y="197" width="60" height="30" rx="4" fill="#faf8f4"/>
-          <text x="365" y="209" text-anchor="middle">can rule acts</text>
-          <text x="365" y="222" text-anchor="middle">unconstitutional</text>
-
-          <rect x="195" y="337" width="112" height="16" rx="4" fill="#faf8f4"/>
-          <text x="251" y="348" text-anchor="middle">confirms judges, can impeach</text>
-
-          <rect x="207" y="258" width="124" height="16" rx="4" fill="#faf8f4"/>
-          <text x="269" y="269" text-anchor="middle">can rule laws unconstitutional</text>
-        </g>
-      </svg>
-      <p class="diagram-caption">Six ways the three branches check each other — read below for the full explanation of each.</p>
+    <div class="checks-table-wrap" role="table" aria-label="Table of five ways the three branches check each other.">
+      <div class="checks-row checks-row-head" role="row">
+        <div role="columnheader">This branch</div>
+        <div role="columnheader">can do this</div>
+        <div role="columnheader">to this branch</div>
+      </div>
+      <div class="checks-row" role="row">
+        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+        <div role="cell">veto a bill <span class="checks-num">Check 1</span></div>
+        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+      </div>
+      <div class="checks-row" role="row">
+        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+        <div role="cell">override that veto <span class="checks-num">Check 2</span></div>
+        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+      </div>
+      <div class="checks-row" role="row">
+        <div role="cell"><span class="checks-pill checks-green">⚖️ Judicial</span></div>
+        <div role="cell">rule a law unconstitutional <span class="checks-num">Check 3</span></div>
+        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+      </div>
+      <div class="checks-row" role="row">
+        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+        <div role="cell">confirm — or reject — a presidential appointment <span class="checks-num">Check 4</span></div>
+        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+      </div>
+      <div class="checks-row" role="row">
+        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+        <div role="cell">impeach and remove an official <span class="checks-num">Check 5</span></div>
+        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span> <span class="checks-pill checks-green">⚖️ Judicial</span></div>
+      </div>
     </div>
+    <p class="diagram-caption">Five ways the three branches check each other — read below for the full explanation of each.</p>
 
     <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Check 1: The President can veto a bill</h3>
     <p>
