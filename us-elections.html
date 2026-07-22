@@ -1168,7 +1168,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
           <div class="tl-year">August 6, 1965</div>
           <div class="tl-title">✍️ The Voting Rights Act</div>
           <img class="tl-img" src="images/john-lewis.jpg"
-               alt="Rep. John Lewis, official congressional portrait" onerror="this.style.display='none'" style="max-height:180px">
+               alt="Rep. John Lewis, official congressional portrait" onerror="this.style.display='none'" style="max-width:220px;max-height:280px;width:auto;object-fit:contain;margin-left:auto;margin-right:auto">
           <div class="img-caption" style="border-radius:6px;margin-bottom:8px;font-size:.7rem">
             Rep. John Lewis, official portrait, 2003. He was beaten while marching for voting rights in Selma in 1965, the same year this law passed.
             <a href="https://commons.wikimedia.org/wiki/File:John_Lewis_official_portrait_2003.jpg" target="_blank">Wikimedia Commons (public domain)</a>
@@ -1424,10 +1424,10 @@ let timelineClicks = 0;
 let statClicks = { geography: new Set() };
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 0; // TODO: update once all quizzes are added (Task 10 verification pass)
+const MAX_PTS = 6; // 6 quiz entries (q1-q6), 1 pt each -- confirmed via Task 10 verification pass
 
 // ─── QUIZ DATA ───
-// Tasks 2-7 each add one entry as they build that section's quiz.
+// Six quiz entries (q1-q6) were added incrementally across Tasks 2-8 as each section was built.
 const quizzes = {
   q1: {
     q: "Which branch of government is responsible for MAKING the laws?",
