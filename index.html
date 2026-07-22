@@ -530,6 +530,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 <!-- ─── STICKY NAV ─── -->
 <nav class="site-nav">
   <a href="#topics" class="active">📰 All Topics</a>
+  <a href="us-elections.html">🗳️ US Elections</a>
   <a href="iran.html">🇮🇷 Iran</a>
   <a href="ai.html">🤖 AI & Society</a>
   <div class="nav-divider"></div>
@@ -543,7 +544,7 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
 
 <main>
 
-  <!-- ─── FEATURED: IRAN ─── -->
+  <!-- ─── FEATURED: US ELECTIONS ─── -->
   <div class="section-flag fade-up">
     <h2>Featured Story</h2>
     <div class="flag-rule"></div>
@@ -551,37 +552,35 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
 
   <div class="featured-grid fade-up delay-1" id="topics">
-    <div class="featured-image-wrap">
-      <img
-        src="images/persepolis.jpg"
-        alt="Persepolis ruins, Iran — ancient Persian capital"
-        onerror="this.parentElement.style.background='linear-gradient(135deg,#8b1a1a,#c0392b)'"
-      >
+    <div class="featured-image-wrap" style="background:linear-gradient(135deg,#1a2a4a,#2d4a2d);display:flex;align-items:center;justify-content:center">
+      <span style="font-size:5rem;opacity:.55">🗳️</span>
       <div class="featured-badge live">🔴 Active Story</div>
     </div>
     <div class="featured-content">
-      <div class="featured-kicker">Middle East · Conflict · History</div>
-      <h3>Understanding Iran: What's Happening and Why It Matters</h3>
+      <div class="featured-kicker">US Government · Elections · Civics</div>
+      <h3>US Elections & How Government Works</h3>
       <div class="featured-meta">
         <span>📅 Updated July 2026</span>
-        <span>⏱ 20–40 min</span>
+        <span>⏱ 25–45 min</span>
         <span>🎯 Grade 8</span>
       </div>
       <div class="featured-tags">
-        <span class="tag tag-region">Middle East</span>
-        <span class="tag tag-topic">Conflict</span>
-        <span class="tag tag-topic">Human Rights</span>
+        <span class="tag tag-region">United States</span>
+        <span class="tag tag-topic">Government</span>
+        <span class="tag tag-topic">Elections</span>
         <span class="tag tag-level">⭐ All levels</span>
       </div>
       <p>
-        From ancient Persia to the CIA coup of 1953, the Islamic Revolution, and today's U.S.-Israel military strikes — this page covers Iran's full story with an interactive map, quizzes, videos, and citations on every fact.
+        How the three branches of government actually work, why no single branch holds all the power, and how elections decide who fills each one — plus a live, dated look at the 2026 midterms and who represents this school's own district.
       </p>
       <div>
-        <a class="btn-primary" href="iran.html">Read the Full Story →</a>
-        <a class="btn-secondary" href="iran.html#videos">📺 Videos</a>
+        <a class="btn-primary" href="us-elections.html">Read the Full Story →</a>
+        <a class="btn-secondary" href="us-elections.html#update-pane">🗳️ 2026 Midterms</a>
       </div>
     </div>
   </div>
+
+  <!-- ─── FEATURED: IRAN (previously here — now demoted to the topic-card grid below) ─── -->
 
   <!-- ─── COMING SOON ─── -->
   <div class="section-flag fade-up delay-2" id="coming-soon">
@@ -591,6 +590,29 @@ body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:
   </div>
 
   <div class="cards-grid">
+
+    <!-- Card: Iran (demoted from Featured Story to make room for US Elections) -->
+    <a href="iran.html" class="topic-card fade-up delay-2" style="text-decoration:none;color:inherit">
+      <div class="card-image">
+        <img src="images/persepolis.jpg" alt="Persepolis ruins, Iran — ancient Persian capital" onerror="this.outerHTML='<div class=\'card-image-placeholder\' style=\'background:linear-gradient(135deg,#8b1a1a,#c0392b)\'>🇮🇷</div>'">
+        <div class="card-flag-overlay"></div>
+        <span class="card-badge badge-live">🔴 Live</span>
+      </div>
+      <div class="card-body">
+        <div class="card-kicker">Middle East · Conflict · History</div>
+        <h3>Understanding Iran: What's Happening and Why It Matters</h3>
+        <div class="card-tags">
+          <span class="tag tag-region">Middle East</span>
+          <span class="tag tag-topic">Conflict</span>
+          <span class="tag tag-topic">Human Rights</span>
+        </div>
+        <p>From ancient Persia to the CIA coup of 1953, the Islamic Revolution, and today's U.S.-Israel military strikes — Iran's full story, with an interactive map, quizzes, and videos.</p>
+        <div class="card-foot">
+          <span>📅 Updated July 2026</span>
+          <span>⏱ 20–40 min</span>
+        </div>
+      </div>
+    </a>
 
     <!-- Card: Ukraine -->
     <a href="ukraine.html" class="topic-card fade-up delay-2" style="text-decoration:none;color:inherit">
