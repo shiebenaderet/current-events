@@ -121,13 +121,12 @@ main{max-width:1160px;margin:0 auto;padding:0 6vw 80px}
   display:flex;gap:16px;flex-wrap:wrap;
 }
 
-/* ══════════════ SECOND TIER — medium blocks, 3-up ══════════════ */
-.tier-two{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
+/* ══════════════ SECOND TIER — medium blocks, flexible wrap ══════════════ */
+.tier-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
 .tier-card{
   display:block;text-decoration:none;color:inherit;padding:26px 24px;
   border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
 }
-.tier-card:nth-child(3n){border-right:none}
 .tier-photo{height:170px;overflow:hidden;margin-bottom:16px}
 .tier-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%);transition:filter .2s}
 .tier-card:hover .tier-photo img{filter:grayscale(0)}
@@ -142,7 +141,7 @@ main{max-width:1160px;margin:0 auto;padding:0 6vw 80px}
 .tier-card p{font-size:.92rem;line-height:1.6;color:var(--ink-light);margin-bottom:12px}
 .tier-meta{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);display:flex;gap:12px}
 @media (max-width:860px){
-  .tier-two{grid-template-columns:1fr}
+  .tier-two{grid-template-columns:1fr;border-left:none}
   .tier-card{border-right:none}
 }
 
@@ -243,6 +242,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <a href="iran.html">Iran</a>
   <a href="ai.html">AI &amp; Society</a>
   <a href="ukraine.html">Ukraine</a>
+  <a href="climate-change.html">Climate</a>
   <a href="#coming-soon">Coming Soon</a>
   <a href="#teachers">For Teachers</a>
   <a href="https://github.com/shiebenaderet/current-events" target="_blank" class="gh">★ GitHub</a>
@@ -302,6 +302,20 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <p>From neural networks to ChatGPT — the science, the people, and the big questions behind AI.</p>
       <div class="tier-meta"><span>25–45 min</span><span>Updated July 2026</span></div>
     </a>
+    <a href="us-elections.html" class="tier-card">
+      <div class="tier-photo"><img src="images/capitol-featured.jpg" alt="The U.S. Capitol building" onerror="this.parentElement.style.background='linear-gradient(135deg,#2e3d49,#1a2a4a)'"></div>
+      <div class="tier-kicker">US Government · Elections · Civics</div>
+      <h3>US Elections &amp; How Government Works</h3>
+      <p>How the three branches of government work, and a live, dated look at the 2026 midterms.</p>
+      <div class="tier-meta"><span>25–45 min</span><span>Updated July 2026</span></div>
+    </a>
+    <a href="climate-change.html" class="tier-card">
+      <div class="tier-photo"><img src="images/ice-core-card.jpg" alt="A freshly cut ice core sample" onerror="this.parentElement.style.background='linear-gradient(135deg,#2e3d49,#0d2430)'"></div>
+      <div class="tier-kicker">Climate &amp; Environment</div>
+      <h3>Frozen Time Capsules</h3>
+      <p>What 800,000 years of ice tells us about climate change — and Washington's own climate story.</p>
+      <div class="tier-meta"><span>25–40 min</span><span>Updated July 2026</span></div>
+    </a>
   </div>
 
   <!-- ═══════════ THIRD TIER: coming soon / planned ═══════════ -->
@@ -311,13 +325,6 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   </div>
 
   <div class="tier-three">
-    <div class="small-item">
-      <span class="badge badge-soon">Coming Soon</span>
-      <div class="body">
-        <h4>Climate Change: Where Are We Now?</h4>
-        <p>The science, the politics, the solutions — and why some countries are acting faster than others.</p>
-      </div>
-    </div>
     <div class="small-item">
       <span class="badge badge-planned">Planned</span>
       <div class="body">
