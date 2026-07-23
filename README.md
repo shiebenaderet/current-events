@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v2.1.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v2.2.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html`, `iran.html`, and `climate-change.html` are on the new design; `ukraine.html`, `ai.html`, and `us-elections.html` are still on the prior design pending their own rebuild passes.
+The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html`, `iran.html`, `climate-change.html`, and `ukraine.html` are on the new design; `ai.html` and `us-elections.html` are still on the prior design pending their own rebuild passes.
 
 ---
 
@@ -33,7 +33,7 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
 | 🇮🇷 Understanding Iran | ✅ Live (new design) | `iran.html` | July 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live (prior design) | `ukraine.html` | July 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live (new design) | `ukraine.html` | July 2026 |
 | 🤖 AI & Society | ✅ Live (prior design) | `ai.html` | March 2026 |
 | 🗳️ US Elections & How Government Works | ✅ Live (prior design) | `us-elections.html` | July 2026 |
 | 🌍 Climate Change | ✅ Live (new design) | `climate-change.html` | July 2026 |

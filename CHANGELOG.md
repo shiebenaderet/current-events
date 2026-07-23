@@ -2,6 +2,15 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.2.0] — 2026-07-23
+
+**Minor — Ukraine page rebuilt in the editorial design system.**
+
+- `ukraine.html` fully rebuilt in the same warm-newsprint editorial system as `index.html`, `iran.html`, and `climate-change.html` — same content, sources, and citations as before (verified during the rebuild), restyled: the interactive Leaflet map (Kyiv + 10 site markers + Ukraine border), the full history arc (Kievan Rus' → the Russian Empire → the Holodomor deep-dive → independence → the Orange Revolution/Euromaidan → the 2022 invasion → where things stand now), a 15-entry history timeline, 4 Key People, 4 videos, 15 resources, all 8 quizzes, and the full points/easter-egg engine (flag-click, a "type UKRAINE" hidden-poem egg, a timeline triple-click egg, a hover-all-portraits egg). Nonpartisanship discipline preserved exactly as it was in the prior version — attribution/denial phrasing (e.g. Russia's denial of responsibility for Bucha, described alongside the evidence against it) was not softened or hardened during the rewrite, only restyled around.
+- Fixed a real content bug found during the rebuild: the timeline's hidden-history easter egg contained leftover content from `iran.html` (1960s Shah-era material, unrelated to Ukraine — an old copy-paste error). Replaced with a real, sourced Ukraine fact: the 1954 transfer of Crimea from the Russian SFSR to the Ukrainian SSR under Khrushchev.
+- Added Subresource Integrity (`integrity`/`crossorigin`) attributes to the Leaflet.js CDN tags, matching the hashes already verified and applied on `iran.html`.
+- The Holodomor deep-dive section's full-bleed photo needed its own layout treatment: it's the first page to nest a breakout photo inside a dark inset panel (`.focus-pane`) rather than the plain article column, so the panel is now split around the image (heading → full-bleed photo → body text) with the dark background continuing unbroken behind it, instead of the photo either being squeezed into the panel's narrower text column or breaking out past the panel's own edges onto the page background.
+
 ## [2.1.0] — 2026-07-23
 
 **Minor — Climate Change page ships; homepage topic grid fixed to show it and US Elections.**
