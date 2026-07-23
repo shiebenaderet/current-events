@@ -2,6 +2,13 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.3.0] — 2026-07-23
+
+**Minor — AI & Society page rebuilt in the editorial design system.**
+
+- `ai.html` fully rebuilt in the same warm-newsprint editorial system as `index.html`, `iran.html`, `climate-change.html`, and `ukraine.html` — same content, sources, and citations as before, restyled: all 4 deep-dive focus-panes (AI in Schools, AI and Animals, Geoffrey Hinton's Warning, Agentic AI), an 18-entry history timeline, 7 Key People, all quizzes, and all four easter eggs (a hidden binary-code message, a timeline pop-culture fact, a hover-all-portraits reward, and a Konami-code egg).
+- Fixed a minor content redundancy found during the rebuild: the timeline's hidden-history easter egg referenced Geoffrey Hinton's Nobel Prize, which the page already covers in its own focus-pane — swapped for a different, still-sourced fact (the 1956 Dartmouth workshop where the term "artificial intelligence" was coined) so the egg stays a genuine surprise rather than a repeat of content already on the page.
+
 ## [2.2.0] — 2026-07-23
 
 **Minor — Ukraine page rebuilt in the editorial design system.**
