@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v2.0.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v2.1.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html` and `iran.html` are on the new design; `ukraine.html`, `ai.html`, and `us-elections.html` are still on the prior design pending their own rebuild passes.
+The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html`, `iran.html`, and `climate-change.html` are on the new design; `ukraine.html`, `ai.html`, and `us-elections.html` are still on the prior design pending their own rebuild passes.
 
 ---
 
@@ -36,7 +36,7 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 | 🇺🇦 The War in Ukraine | ✅ Live (prior design) | `ukraine.html` | July 2026 |
 | 🤖 AI & Society | ✅ Live (prior design) | `ai.html` | March 2026 |
 | 🗳️ US Elections & How Government Works | ✅ Live (prior design) | `us-elections.html` | July 2026 |
-| 🌍 Climate Change | 🚧 In progress (worktree, unmerged) | — | — |
+| 🌍 Climate Change | ✅ Live (new design) | `climate-change.html` | July 2026 |
 | 🗽 Immigration & U.S. Policy | 🚧 Planned | — | — |
 | 🔫 Gun Violence & School Safety | 🚧 Planned | — | — |
 | 🚀 Space Race 2.0 | 🚧 Planned | — | — |
@@ -53,6 +53,7 @@ current-events/
 ├── ukraine.html                 ← Ukraine topic page (self-contained)
 ├── ai.html                      ← AI & Society topic page (self-contained)
 ├── us-elections.html            ← US Elections & Government topic page (self-contained)
+├── climate-change.html          ← Climate Change topic page (self-contained)
 ├── images/                      ← Shared image assets (portraits, hero photos)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh

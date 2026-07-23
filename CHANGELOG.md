@@ -2,6 +2,14 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.1.0] — 2026-07-23
+
+**Minor — Climate Change page ships; homepage topic grid fixed to show it and US Elections.**
+
+- New page `climate-change.html`, built in the v2.0.0 editorial design system from the start (the first new topic to launch under it, rather than a retrofit of an older page). Deep-time framing led by ice-core evidence (EPICA Dome C's 800,000-year record, the Keeling Curve), the greenhouse effect, observed global/Pacific-Northwest effects, and a dedicated Washington's Climate Story section (the Climate Commitment Act, the state's electricity mix, its carbon footprint) — the section held to the same strict nonpartisanship discipline established on `us-elections.html`, including reporting two named experts' differing reads of the same emissions data rather than picking one. All content and citations verified against primary sources; several editorial-critique passes fixed redundant stat/paragraph pairs, tightened pull-quote usage to genuine excerpts rather than spoilers, and widened image variety.
+- `index.html`: Climate Change moved out of "Coming Soon" (it had gone stale — the page was already live) and added to the topic grid alongside a new **US Elections & Government** card, which had been missing from the homepage entirely since that page shipped in v1.2.0 (linked only from the nav bar, with no card). Switched the topic grid from a hardcoded 3-column layout to a responsive `auto-fit` grid so it wraps cleanly regardless of how many live topics exist.
+- Trimmed ~31 sourced-but-unused images from the climate build, left over from two earlier layout experiments (a snap-scroll card prototype and a margin-notes prototype) that were tried, critiqued, and superseded before landing on the final editorial design — only the 9 images actually referenced in the shipped page were kept.
+
 ## [2.0.0] — 2026-07-23
 
 **Major — site-wide editorial visual redesign begins (homepage + Iran rebuilt).**
