@@ -1,11 +1,13 @@
-# 🌍 Mr. B's Current Events
+# 📰 Current Events Explained
 
-**Free, student-friendly explainers on world events — built for middle schoolers.**
+**Free, student-friendly explainers on the background behind current events — built for middle schoolers.**
 
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v1.1.5](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v2.0.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+
+The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html` and `iran.html` are on the new design; `ukraine.html`, `ai.html`, and `us-elections.html` are still on the prior design pending their own rebuild passes.
 
 ---
 
@@ -30,11 +32,11 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | July 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | July 2026 |
-| 🤖 AI & Society | ✅ Live | `ai.html` | March 2026 |
-| 🗳️ US Elections & How Government Works | 🚧 Planned | — | — |
-| 🌍 Climate Change | 🚧 Planned | — | — |
+| 🇮🇷 Understanding Iran | ✅ Live (new design) | `iran.html` | July 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live (prior design) | `ukraine.html` | July 2026 |
+| 🤖 AI & Society | ✅ Live (prior design) | `ai.html` | March 2026 |
+| 🗳️ US Elections & How Government Works | ✅ Live (prior design) | `us-elections.html` | July 2026 |
+| 🌍 Climate Change | 🚧 In progress (worktree, unmerged) | — | — |
 | 🗽 Immigration & U.S. Policy | 🚧 Planned | — | — |
 | 🔫 Gun Violence & School Safety | 🚧 Planned | — | — |
 | 🚀 Space Race 2.0 | 🚧 Planned | — | — |
@@ -50,6 +52,7 @@ current-events/
 ├── iran.html                    ← Iran topic page (self-contained)
 ├── ukraine.html                 ← Ukraine topic page (self-contained)
 ├── ai.html                      ← AI & Society topic page (self-contained)
+├── us-elections.html            ← US Elections & Government topic page (self-contained)
 ├── images/                      ← Shared image assets (portraits, hero photos)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh

@@ -2,6 +2,16 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.0.0] — 2026-07-23
+
+**Major — site-wide editorial visual redesign begins (homepage + Iran rebuilt).**
+
+- New site-wide design system replacing the original card/pill/drop-shadow look: a warm-newsprint editorial identity fused from three real publications' documented conventions — NYT's headline-size hierarchy for front-page/homepage layout, The Atlantic's full-bleed hero-photo-behind-headline article treatment, The New Yorker's spare single-column reading body with drop caps opening each major section. Palette: off-white paper, near-black ink, a single restrained newsprint red used only for labels/rules/accents (never as a fill). Typography: Playfair Display (headlines) + Source Serif 4 (body) + system-sans (nav/labels/captions). Signature element carried through every page: a large drop cap opens the first paragraph of every major section, not just the page's very first paragraph.
+- `index.html` rebuilt: replaced the equal-weight topic-card grid with an NYT-style hierarchy — one large Featured Story lead (full-bleed photo, biggest headline on the page), a 3-up medium tier for the other live topics, and a dense small-headline rail for Coming Soon/Planned topics. Site title changed from "Mr. B's World" to **"Current Events Explained"**, with a new subhead stating the site's actual purpose plainly (explaining the background behind the news, not just reporting it). All "back to main site"-style links (previously split between `ss8.mrbsocialstudies.org` and `mrbsocialstudies.org`) consolidated to point at `mrbsocialstudies.org` throughout.
+- `iran.html` fully rebuilt in the new system — same content, sources, and citations as before (verified against the prior version during the rebuild), restyled: the 3-box "Where Things Stand Now" update-pane, the full history timeline, all 6 Key People, the Leaflet.js interactive map (Tehran/Persepolis/Isfahan/Shiraz markers + Iran outline), all 8 quizzes, and the full points/easter-egg engine (flag-click Farsi phrases, geography stat-click bonus, hidden 1960s timeline entry, Konami code) all preserved functionally. One deliberate change: the timeline's hidden-history easter egg, previously triggered by double-clicking an invisible spot near a vertical timeline line, is now an explicitly labeled (if unobtrusively styled) button — the new layout has no timeline spine element to hide a click target against, so it trades a bit of "secretness" for real discoverability.
+- Added Subresource Integrity (`integrity`/`crossorigin`) attributes to the Leaflet.js CDN `<link>`/`<script>` tags on `iran.html` — a pre-existing gap (present before this redesign too), fixed opportunistically while the file was already being rebuilt.
+- Ukraine, AI & Society, and US Elections pages are still on the pre-redesign visual system as of this release; each will get its own dedicated rebuild pass (not a blind CSS swap, given how differently each page's content is shaped) in follow-up releases.
+
 ## [1.2.0] — 2026-07-21
 
 **Minor — new topic page added: US Elections & Government.**
