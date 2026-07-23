@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v2.3.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v2.4.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site is mid-way through a site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail). `index.html`, `iran.html`, `climate-change.html`, `ukraine.html`, and `ai.html` are on the new design; `us-elections.html` is still on the prior design pending its own rebuild pass.
+The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design.
 
 ---
 
@@ -35,7 +35,7 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 | 🇮🇷 Understanding Iran | ✅ Live (new design) | `iran.html` | July 2026 |
 | 🇺🇦 The War in Ukraine | ✅ Live (new design) | `ukraine.html` | July 2026 |
 | 🤖 AI & Society | ✅ Live (new design) | `ai.html` | March 2026 |
-| 🗳️ US Elections & How Government Works | ✅ Live (prior design) | `us-elections.html` | July 2026 |
+| 🗳️ US Elections & How Government Works | ✅ Live (new design) | `us-elections.html` | July 2026 |
 | 🌍 Climate Change | ✅ Live (new design) | `climate-change.html` | July 2026 |
 | 🗽 Immigration & U.S. Policy | 🚧 Planned | — | — |
 | 🔫 Gun Violence & School Safety | 🚧 Planned | — | — |

@@ -3,1442 +3,882 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>US Elections & Government – Student Resource</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<title>US Elections &amp; How Government Works – Student Resource</title>
+<meta name="description" content="Free, student-friendly explainer on the three branches of government, how elections actually work, and a dated look at the 2026 midterms. Made by an 8th grade Social Studies teacher.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
-/* ─── RESET & BASE ─── */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:#fdf6ec;color:#2c2c2c;line-height:1.7;font-size:17px;overflow-x:hidden;overflow-wrap:break-word}
-
-/* ─── CSS VARIABLES ─── */
-/* Civics-appropriate palette: navy/gold/cream — deliberately NOT a red/blue
-   primary pairing, since red+blue as the dominant scheme would read as a
-   red-state/blue-state or two-party visual cue on a page whose entire
-   purpose is nonpartisan civics education. Navy+gold reads as
-   civic/patriotic (flag, seal, parchment) without a two-party binary. */
 :root{
-  --cream:#fdf6ec;--warm-white:#fffdf9;
-  --navy:#1a2a52;--navy-l:#2d4270;--navy-ll:#e8ecf5;
-  --gold:#b8860a;--gold-l:#d4a017;--gold-ll:#fef3db;
-  --green:#1a6640;--green-l:#e8f5ee;
-  --border:#e0d5c0;--mid:#666;
-  --shadow:0 4px 20px rgba(0,0,0,.1);
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  /* This page keeps its own navy/gold accent instead of the shared newsprint
+     red used elsewhere on the site. That's deliberate, not an oversight: a
+     dominant red on a page whose entire purpose is nonpartisan civics
+     education could read as a red-state/red-party visual cue. Navy+gold
+     reads as civic/patriotic (flag, seal, parchment) without a two-party
+     binary — the same reasoning the original pre-redesign page documented. */
+  --accent:#1a2a52; --accent-ink:#0f1938; --accent-tint:#e8ecf5;
+  --gold:#b8860a; --gold-l:#d4a017; --gold-tint:#fef3db;
 }
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
 
-/* ─── HERO ─── */
-.hero{
-  position:relative;min-height:420px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:70px 24px 60px;text-align:center;overflow:hidden;
-  background:#1a2a4a;
-}
-.hero-bg{
-  position:absolute!important;inset:0;z-index:0;
-  background:linear-gradient(160deg,var(--navy) 0%,#0f1938 60%,#1a1230 100%);
-}
-.hero-overlay{
-  position:absolute!important;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(26,42,82,.25) 0%,rgba(0,0,0,.2) 50%,rgba(26,42,82,.35) 100%);
-}
-.hero>*{position:relative;z-index:2}
-.hero-flag{
-  font-size:64px;cursor:pointer;
-  filter:drop-shadow(0 3px 12px rgba(0,0,0,.5));
-  transition:transform .2s;user-select:none;
-  display:inline-block;
-}
-.hero-flag:hover{transform:scale(1.1) rotate(-3deg)}
-.hero-flag.shake{animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;
-  color:white;text-shadow:0 2px 12px rgba(0,0,0,.5);
-  margin:10px 0 8px;letter-spacing:-.5px;
-}
-.hero-sub{color:rgba(255,255,255,.9);font-size:clamp(1rem,2.5vw,1.2rem);font-weight:600;margin-bottom:16px;max-width:560px}
-.hero-note{
-  display:inline-block;background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3);border-radius:30px;
-  padding:8px 22px;font-size:.85rem;color:rgba(255,255,255,.9);
-  backdrop-filter:blur(6px);
-}
-.hero-credit{
-  position:absolute;bottom:8px;right:10px;z-index:2;
-  font-size:.65rem;color:rgba(255,255,255,.5);
-}
-.hero-credit a{color:rgba(255,255,255,.55);text-decoration:none}
+/* ══ MASTHEAD (site-wide system) ══ */
+.masthead-top{display:flex;justify-content:space-between;align-items:center;padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule)}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.section-nav{display:flex;justify-content:center;gap:0;flex-wrap:wrap;padding:0 6vw;border-bottom:1px solid var(--rule);font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;background:var(--paper);position:sticky;top:0;z-index:150}
+.section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav .hub{color:var(--accent-ink);font-weight:800}
 
-/* ─── POINTS BAR ─── */
-.points-bar{
-  background:#1a1a1a;color:white;
-  padding:10px 24px;display:flex;align-items:center;justify-content:center;
-  gap:20px;font-size:.88rem;font-weight:700;flex-wrap:wrap;
-}
-.points-display{
-  background:linear-gradient(135deg,var(--gold),var(--gold-l));
-  color:#3a2000;border-radius:20px;padding:4px 16px;
-  font-weight:900;font-size:.95rem;
-}
-.unlock-hint{color:#aaa;font-size:.78rem;font-weight:600}
+/* ══ ARTICLE HERO ══ */
+.article-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(160deg,var(--accent) 0%,#0f1938 60%,#1a1230 100%)}
+.article-hero-overlay{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(26,42,82,.15) 0%,rgba(0,0,0,.1) 50%,rgba(15,25,56,.5) 100%)}
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
+.article-hero .kicker{display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#3a2000;background:var(--gold-l);padding:5px 14px;margin-bottom:22px;cursor:pointer;border:none}
+.article-hero h1{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px}
+.article-hero .dek{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;color:#f0ece4;max-width:660px;margin:0 auto 22px}
+.article-hero .byline{font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);letter-spacing:.03em}
+.hero-credit{position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;max-width:340px}
 
-/* ─── NAV ─── */
-.sticky-nav{
-  background:var(--warm-white);border-bottom:2px solid var(--border);
-  padding:12px 20px;display:flex;gap:8px;flex-wrap:wrap;
-  justify-content:center;position:sticky;top:0;z-index:200;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-.sticky-nav a{
-  display:inline-block;padding:7px 16px;border-radius:30px;
-  font-weight:700;font-size:.82rem;text-decoration:none;
-  transition:all .2s;border:2px solid transparent;
-}
-.sticky-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.n-branches{background:var(--navy);color:white}
-.n-checks{background:var(--navy-l);color:white}
-.n-local{background:var(--green);color:white}
-.n-mech{background:#5a4a1a;color:white}
-.n-update{background:#8a1a1a;color:white}
-.n-hist{background:var(--gold);color:white}
-.n-people{background:#3a3a5c;color:white}
-.n-vid{background:#5a3a1a;color:white}
-.n-links{background:#2c2c2c;color:white}
-.n-hub{background:#2c2c2c;color:white}
-.n-sib{background:var(--navy-l);color:white}
+/* ══ POINTS BAR ══ */
+.points-bar{display:flex;align-items:center;gap:14px;padding:10px 6vw;background:var(--ink);color:#f0ece4;font-family:-apple-system,sans-serif;font-size:.8rem;flex-wrap:wrap}
+.points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
+.progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden}
+.progress-fill{height:100%;background:var(--gold-l);width:0%;transition:width .3s}
+.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
 
-/* ─── MAIN ─── */
-main{max-width:920px;margin:0 auto;padding:0 20px 60px}
+/* ══ SECTION HEADS ══ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.sec-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.18;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px}
 
-/* ─── SECTION CARDS ─── */
-.s-card{
-  background:white;border-radius:18px;margin:28px 0;overflow:hidden;
-  box-shadow:var(--shadow);border:1px solid var(--border);
-  animation:fadeUp .5s ease both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.s-card:nth-child(2){animation-delay:.05s}.s-card:nth-child(3){animation-delay:.1s}
-.s-card:nth-child(4){animation-delay:.15s}.s-card:nth-child(5){animation-delay:.2s}
+/* ══ ARTICLE BODY ══ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.14rem;line-height:1.75;margin:0 0 22px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.28rem;margin:34px 0 14px;color:var(--ink)}
+.article p.lede::first-letter{font-family:'Playfair Display',serif;font-weight:900;font-size:5rem;line-height:.78;float:left;padding:6px 10px 0 0;color:var(--accent)}
+.article ul{margin:0 0 22px 22px}
+.article ul li{margin-bottom:8px;font-size:1.05rem;line-height:1.6;color:var(--ink)}
 
-.s-header{
-  padding:22px 28px 16px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:14px;
-  min-width:0;
-}
-.s-header h2{min-width:0}
-.s-icon{
-  width:52px;height:52px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;
-}
-.si-navy{background:var(--navy-ll)}.si-green{background:#e8f5ee}
-.si-gold{background:#fef3db}.si-dark{background:#e8e8e8}
+.cite-inline{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;letter-spacing:.01em}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
 
-.s-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.65rem);font-weight:700;line-height:1.25}
-.q-label{font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.5;display:block;margin-bottom:2px}
-.s-body{padding:24px 28px}
-.s-body p{margin-bottom:13px}
-.s-body p:last-child{margin-bottom:0}
-.s-body ul{margin:0 0 13px 22px}
-.s-body ul li{margin-bottom:6px}
-.s-body ul li:last-child{margin-bottom:0}
+.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
 
-/* ─── IMAGES ─── */
-.img-hero-section{
-  width:100%;height:260px;object-fit:cover;
-  border-bottom:1px solid var(--border);display:block;
-}
-.img-caption{
-  background:#f7f3ed;padding:10px 18px;
-  font-size:.78rem;color:var(--mid);font-style:italic;
-  border-bottom:1px solid var(--border);
-}
-.img-caption a{color:var(--navy-l);font-size:.75rem}
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .num,.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
+.stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+.stat-pair .stat.clickable,.stat-trio .stat.clickable{cursor:pointer}
+.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--gold)}
+@media (max-width:560px){.stat-pair,.stat-trio{grid-template-columns:1fr}}
 
-.img-inline{
-  width:100%;border-radius:12px;margin:14px 0;
-  object-fit:cover;display:block;box-shadow:0 2px 12px rgba(0,0,0,.1);
-}
-.img-float{
-  float:right;width:42%;margin:0 0 14px 20px;
-  border-radius:12px;object-fit:cover;
-  box-shadow:0 3px 14px rgba(0,0,0,.15);
-}
-.img-float-left{
-  float:left;width:42%;margin:0 20px 14px 0;
-  border-radius:12px;object-fit:cover;
-  box-shadow:0 3px 14px rgba(0,0,0,.15);
-}
-.clearfix::after{content:'';display:table;clear:both}
+.vocab{margin:28px 0;padding-left:20px;border-left:3px solid var(--gold)}
+.vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8a6608;margin-bottom:6px;font-weight:800}
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
 
-/* Portrait spotlight effect (CSS alternative to bg removal) */
-.portrait-wrap{
-  position:relative;display:inline-block;border-radius:50%;overflow:hidden;
-  box-shadow:0 4px 20px rgba(0,0,0,.3);
-}
-.portrait-wrap::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at center,transparent 50%,rgba(20,20,40,.55) 100%);
-  pointer-events:none;
-}
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+.callout.think{border-left-color:var(--accent);background:var(--accent-tint)}
 
-/* ─── CITATIONS ─── */
-cite-link{
-  display:inline;font-size:.7rem;font-weight:700;
-  vertical-align:super;line-height:0;
-}
-cite-link a{
-  color:var(--navy-l);text-decoration:none;
-  background:var(--navy-ll);border-radius:3px;padding:1px 4px;
-  border:1px solid rgba(45,66,112,.2);transition:all .15s;
-}
-cite-link a:hover{background:var(--navy-l);color:white}
+/* ══ DIAGRAM (three branches SVG) ══ */
+.diagram-wrap{margin:32px 0;padding:24px 16px;background:var(--paper-warm);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.diagram-caption{text-align:center;font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-faint);margin-top:12px;line-height:1.5}
 
-/* ─── STATS ─── */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:16px 0}
-.stat-box{
-  border-radius:12px;padding:16px 12px;text-align:center;cursor:pointer;
-  transition:transform .2s,box-shadow .2s;user-select:none;position:relative;
-}
-.stat-box:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.stat-box.clicked{animation:pop .3s ease}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;line-height:1.1;display:block;margin-bottom:3px}
-.stat-label{font-size:.75rem;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.4px}
-.stat-source{font-size:.65rem;opacity:.6;margin-top:4px;display:block}
-.s-navy{background:var(--navy-ll);color:var(--navy)}
-.s-green{background:#e8f5ee;color:var(--green)}
-.s-gold{background:#fef3db;color:#7a5000}
-.s-dark{background:#e8e8e8;color:#333}
-
-/* ─── DIAGRAMS (custom inline SVG, no external assets) ─── */
-.diagram-wrap{margin:18px 0;padding:18px 14px;background:#faf8f4;border-radius:14px;border:1px solid var(--border)}
-.diagram-caption{text-align:center;font-size:.78rem;color:var(--mid);font-style:italic;margin-top:10px}
-
-/* ─── CHECKS-AND-BALANCES TABLE (replaces an earlier 6-arrow diagram whose
-   crossing lines made the labels hard to read at any size) ─── */
-.checks-table-wrap{margin:18px 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#faf8f4}
-.checks-row{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+/* ══ CHECKS-AND-BALANCES TABLE ══ */
+.checks-table-wrap{margin:32px 0;border:1px solid var(--rule);overflow:hidden}
+.checks-row{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:10px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--rule);font-family:-apple-system,sans-serif}
 .checks-row:last-child{border-bottom:none}
-.checks-row-head{background:#f0ebe0;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--mid)}
-.checks-row:not(.checks-row-head){font-size:.88rem}
-.checks-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-weight:700;font-size:.82rem;white-space:nowrap}
-.checks-navy{background:var(--navy-ll);color:var(--navy)}
-.checks-gold{background:var(--gold-ll);color:#8a6608}
-.checks-green{background:var(--green-l);color:var(--green)}
-.checks-num{display:block;font-size:.72rem;font-weight:700;color:var(--mid);opacity:.75;margin-top:2px}
-@media(max-width:600px){
-  .checks-row{grid-template-columns:1fr;gap:6px;text-align:left}
-  .checks-row-head{display:none}
-}
+.checks-row-head{background:var(--paper-warm);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint)}
+.checks-row:not(.checks-row-head){font-size:.86rem;color:var(--ink)}
+.checks-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;font-weight:700;font-size:.8rem;white-space:nowrap}
+.checks-navy{background:var(--accent-tint);color:var(--accent)}
+.checks-gold{background:var(--gold-tint);color:#8a6608}
+.checks-green{background:#e8f5ee;color:#1a6640}
+.checks-num{display:block;font-size:.7rem;font-weight:700;color:var(--ink-faint);margin-top:2px}
+@media(max-width:600px){.checks-row{grid-template-columns:1fr;gap:6px;text-align:left}.checks-row-head{display:none}}
 
-/* ─── VOCAB ─── */
-.vocab{background:#fef9f0;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:13px 17px;margin:14px 0;font-size:.9rem}
-.vocab strong{color:#7a5000}
+/* ══ QUIZ ══ */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{display:inline-flex;align-items:center;gap:9px;font-family:-apple-system,sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;cursor:pointer;padding:13px 24px;box-shadow:0 2px 10px rgba(26,42,82,.25)}
+.quiz-toggle::after{content:'→';font-weight:700}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle.answered{background:var(--ink-faint)}
 
-/* ─── CALLOUT ─── */
-.callout{border-radius:12px;padding:16px 18px;margin:15px 0;display:flex;gap:13px;align-items:flex-start}
-.callout-icon{font-size:1.4rem;flex-shrink:0;margin-top:1px}
-.callout-body{min-width:0}
-.callout-body h4{font-size:.97rem;font-weight:800;margin-bottom:4px}
-.callout-body p{font-size:.88rem;margin:0;line-height:1.6}
-.c-navy{background:var(--navy-ll);border:1px solid #aec6ee}
-.c-green{background:#e8f5ee;border:1px solid #a8d8b9}
-.c-gold{background:#fef3db;border:1px solid #f0c958}
-.c-dark{background:#e8e8e8;border:1px solid #ccc}
-
-/* ─── TIMELINE ─── */
-.timeline{position:relative;padding:8px 0}
-.timeline::before{
-  content:'';position:absolute;left:24px;top:0;bottom:0;width:3px;
-  background:linear-gradient(to bottom,var(--gold-l),var(--navy),var(--navy-l));
-  border-radius:3px;cursor:pointer;
-}
-.tl-item{display:flex;gap:18px;margin-bottom:26px;position:relative;padding-left:62px}
-.tl-dot{
-  width:22px;height:22px;border-radius:50%;flex-shrink:0;
-  position:absolute;left:14px;top:4px;border:3px solid white;
-  box-shadow:0 0 0 2px currentColor;
-}
-.tl-gold{color:var(--gold);background:var(--gold)}
-.tl-navy{color:var(--navy);background:var(--navy)}
-.tl-green{color:var(--green);background:var(--green)}
-.tl-dark{color:#444;background:#444}
-
-.tl-content{flex:1;min-width:0}
-.tl-year{font-weight:800;font-size:.76rem;letter-spacing:1px;text-transform:uppercase;opacity:.6;margin-bottom:2px}
-.tl-title{font-family:'Source Serif 4',serif;font-size:1.05rem;font-weight:600;margin-bottom:5px;line-height:1.35}
-.tl-desc{font-size:.9rem;color:#555;line-height:1.65}
-.tl-link{display:inline-block;margin-top:6px;font-size:.81rem;font-weight:700;color:var(--navy-l);text-decoration:none;border-bottom:1px dashed var(--navy-l)}
-.tl-link:hover{color:var(--gold);border-color:var(--gold)}
-
-/* Images inside timeline items */
-.tl-img{width:100%;border-radius:10px;margin:10px 0 6px;object-fit:cover;max-height:200px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.tl-img-right{float:right;width:45%;margin:0 0 10px 14px;border-radius:10px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-
-/* ─── QUIZ SYSTEM ─── */
-.quiz-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,var(--navy),var(--navy-l));
-  color:white;border:none;border-radius:30px;
-  padding:9px 20px;font-size:.87rem;font-weight:800;
-  cursor:pointer;margin-top:10px;transition:all .2s;
-  font-family:'Nunito',sans-serif;
-}
-.quiz-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(26,42,82,.35)}
-.quiz-btn:active{transform:scale(.97)}
-
-.quiz-modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.65);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1000;padding:20px;backdrop-filter:blur(4px);
-  animation:fadeIn .2s ease;
-}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.quiz-box{
-  background:white;border-radius:20px;padding:30px;max-width:500px;width:100%;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;
-}
-.quiz-box h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;color:var(--navy)}
-.quiz-q{font-size:1.1rem;font-weight:700;margin:14px 0 18px;line-height:1.4}
-.quiz-choices{display:flex;flex-direction:column;gap:10px}
-.choice-btn{
-  background:var(--navy-ll);border:2px solid #ddd;border-radius:12px;
-  padding:12px 18px;font-size:.95rem;font-weight:700;cursor:pointer;
-  text-align:left;transition:all .2s;font-family:'Nunito',sans-serif;
-  color:#2c2c2c;
-}
-.choice-btn:hover{background:#dbe2f2;border-color:var(--navy)}
-.choice-btn.correct{background:#e8f5ee;border-color:var(--green);color:var(--green)}
-.choice-btn.wrong{background:#fbe9e9;border-color:#b0453b;color:#8a2f26}
+.quiz-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.75);align-items:center;justify-content:center;padding:24px}
+.quiz-modal.open{display:flex}
+.quiz-box{background:var(--paper);max-width:520px;width:100%;padding:32px;position:relative;border-top:4px solid var(--accent)}
+.quiz-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink-faint);line-height:1}
+.quiz-box h3{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.quiz-q{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:18px;line-height:1.35}
+.quiz-choices{display:flex;flex-direction:column;gap:8px}
+.choice-btn{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);padding:11px 14px;font-family:-apple-system,sans-serif;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.choice-btn:hover:not(:disabled){border-color:var(--ink)}
+.choice-btn.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.choice-btn.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
 .choice-btn:disabled{cursor:default}
-.quiz-feedback{
-  margin-top:16px;padding:14px;border-radius:10px;font-weight:700;
-  font-size:.95rem;line-height:1.5;display:none;
-}
+.quiz-feedback{margin-top:16px;font-family:-apple-system,sans-serif;font-size:.88rem;line-height:1.55;display:none}
 .quiz-feedback.show{display:block}
-.quiz-feedback.correct-fb{background:#e8f5ee;color:var(--green);border:1px solid #a8d8b9}
-.quiz-feedback.wrong-fb{background:#fbe9e9;color:#8a2f26;border:1px solid #e0b8b3}
-.quiz-close{
-  position:absolute;top:14px;right:16px;background:none;border:none;
-  font-size:1.5rem;cursor:pointer;color:var(--mid);line-height:1;
-}
-.quiz-close:hover{color:var(--navy)}
+.correct-fb{color:#2f5934}
+.wrong-fb{color:var(--accent-ink)}
 
-/* ─── PEOPLE CARDS ─── */
-.people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px}
-.person-card{
-  border-radius:14px;padding:20px 16px;border:1px solid var(--border);
-  background:#fafafa;text-align:center;transition:all .2s;
-}
-.person-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.person-portrait{
-  width:90px;height:90px;border-radius:50%;object-fit:cover;
-  display:block;margin:0 auto 12px;
-  box-shadow:0 3px 14px rgba(0,0,0,.2);
-  /* spotlight/focus CSS effect */
-  filter:contrast(1.05) saturate(1.1);
-  position:relative;
-}
-.portrait-ring{
-  width:96px;height:96px;border-radius:50%;margin:0 auto 12px;
-  background:linear-gradient(135deg,var(--gold),var(--navy));padding:3px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.2);
-}
-.portrait-inner{
-  width:90px;height:90px;border-radius:50%;overflow:hidden;
-  position:relative;
-}
-.portrait-inner img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
-.portrait-inner::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 50% 40%,transparent 45%,rgba(20,20,40,.4) 100%);
-}
-.person-emoji-fallback{
-  width:90px;height:90px;border-radius:50%;
-  background:linear-gradient(135deg,#e8e8e8,#ccc);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.2rem;margin:0 auto 12px;
-}
-.person-card h4{font-size:.97rem;font-weight:800;margin-bottom:3px}
-.person-role{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--mid);margin-bottom:8px}
-.person-card p{font-size:.83rem;color:#555;line-height:1.55;text-align:left}
-.person-citation{font-size:.7rem;color:var(--mid);margin-top:6px;font-style:italic}
-.person-citation a{color:var(--navy-l)}
+/* ══ TIMELINE ══ */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:var(--accent);flex-shrink:0;width:150px}
+.tl-body{flex:1;min-width:0}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;margin-bottom:8px}
+.tl-body p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.tl-body img{width:100%;max-width:220px;display:block;margin:0 auto 10px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.tl-body .cap{font-family:-apple-system,sans-serif;font-size:.68rem;color:var(--ink-faint);margin-bottom:10px;line-height:1.4;text-align:center}
+.tl-body .cap a{color:inherit}
+.tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--gold)}
+.hidden-egg.revealed{display:block}
+.hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a6608;margin-bottom:8px}
+.hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
 
-/* ─── RESOURCES ─── */
-.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:13px}
-.rc{
-  border:2px solid var(--border);border-radius:12px;padding:16px 17px;
-  text-decoration:none;color:inherit;display:block;transition:all .2s;background:#fafafa;
-}
-.rc:hover{border-color:var(--navy-l);background:#eef1f9;transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,.1)}
-.rc-tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:8px}
-.t-civ{background:var(--navy-ll);color:var(--navy)}.t-gov{background:#e8f5ee;color:#155a2e}
-.t-edu{background:#fef3db;color:#7a5000}.t-news{background:#f5f5f5;color:#333}
-.rc h4{font-size:.93rem;font-weight:700;line-height:1.4;margin-bottom:4px}
-.rc p{font-size:.8rem;color:var(--mid);line-height:1.5}
-.rc-level{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:.6;margin-top:5px}
+/* ══ PERSON ══ */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%)}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
+.person .src a{color:inherit}
+@media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
 
-/* ─── EASTER EGG MODAL ─── */
-.egg-modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.75);
-  display:none;align-items:center;justify-content:center;
-  z-index:2000;padding:20px;
-}
-.egg-modal.show{display:flex;animation:fadeIn .3s ease}
-.egg-box{
-  background:linear-gradient(135deg,#1a1a2e,#16213e);
-  border-radius:24px;padding:36px;max-width:480px;width:100%;
-  text-align:center;color:white;
-  box-shadow:0 25px 70px rgba(0,0,0,.5);
-  border:2px solid rgba(212,160,23,.3);
-}
-.egg-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold-l);margin-bottom:10px}
-.egg-box p{font-size:1rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:14px}
-.egg-farsi{font-size:2.2rem;color:var(--gold-l);margin:10px 0;letter-spacing:2px}
-.egg-close{
-  background:var(--gold);color:#3a2000;border:none;border-radius:30px;
-  padding:10px 28px;font-weight:900;font-size:1rem;cursor:pointer;
-  font-family:'Nunito',sans-serif;margin-top:8px;transition:all .2s;
-}
-.egg-close:hover{background:var(--gold-l);transform:scale(1.05)}
+/* ══ UPDATE PANE ══ */
+.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane-inner{max-width:900px;margin:0 auto}
+.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
 
-/* ─── ACHIEVEMENT TOAST ─── */
-.toast{
-  position:fixed;top:20px;right:20px;z-index:3000;
-  background:linear-gradient(135deg,#1a6640,#2d8f58);
-  color:white;border-radius:14px;padding:14px 20px;
-  box-shadow:0 8px 28px rgba(0,0,0,.25);
-  max-width:300px;transform:translateX(120%);
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s ease;
-  font-weight:700;font-size:.9rem;
-  opacity:0;pointer-events:none;
-}
-.toast.show{transform:translateX(0);opacity:1;pointer-events:auto}
-.toast-icon{font-size:1.3rem;display:block;margin-bottom:3px}
-.toast-title{font-size:1rem;font-weight:900}
-.toast-msg{font-size:.82rem;font-weight:600;opacity:.9;margin-top:2px}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl-item{display:flex;gap:14px;align-items:baseline}
+.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
+.mini-tl-dot.blue{background:#82b1ff}
+.mini-tl-dot.green{background:#5a8a5a}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
+.mini-tl-text strong{color:#fff}
+.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
+.mini-tl-text .cite-inline:hover{color:var(--gold-l)}
 
-/* ─── HIDDEN SECTION ─── */
-.hidden-section{
-  display:none;border:2px dashed var(--gold);
-  background:var(--gold-ll);border-radius:16px;padding:22px;margin:16px 0;
-}
-.hidden-section.revealed{display:block;animation:fadeUp .5s ease}
-.hidden-section h4{color:var(--gold);font-size:1rem;font-weight:900;margin-bottom:8px}
+.update-grid{display:grid;grid-template-columns:1fr;gap:0}
+.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box:last-child{border-bottom:none}
+.update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
+.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p:last-of-type{margin-bottom:14px}
+.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline:hover{color:var(--gold-l)}
+.update-box .vocab{border-left-color:var(--gold-l)}
+.update-box .vocab b{color:var(--gold-l)}
+.update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
+.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .callout .tag{color:var(--gold-l)}
+.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources li{margin-bottom:5px;line-height:1.5}
+.update-sources a{color:var(--gold-l)}
+.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
 
-/* Secret tiny text */
-.secret-text{color:#fdf6ec;font-size:.5px;user-select:none;position:absolute}
+/* ══ VIDEO / RESOURCES ══ */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:10px 0 30px}
+.video-label h4{font-family:'Source Serif 4',serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
 
-/* ─── SCORE UNLOCK BOX ─── */
-.unlock-box{
-  background:linear-gradient(135deg,#1a1a2e,#16213e);
-  border-radius:14px;padding:20px 24px;margin:20px 0;
-  color:white;text-align:center;display:none;
-}
-.unlock-box.show{display:block;animation:fadeUp .5s ease}
-.unlock-box h4{color:var(--gold-l);font-size:1.1rem;font-weight:900;margin-bottom:6px}
-.unlock-box p{font-size:.9rem;color:rgba(255,255,255,.8)}
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.06rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
+.rc .level{font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-faint);margin-top:4px}
 
-/* ─── PROGRESS BAR ─── */
-.progress-wrap{
-  background:rgba(255,255,255,.15);border-radius:30px;height:8px;margin:10px 0;overflow:hidden;
-}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-l),var(--gold));border-radius:30px;transition:width .5s ease;width:0%}
+footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint)}
+footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 
-/* ─── VIDEO SECTION ─── */
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:18px 0}
-.video-wrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.15);background:#000}
-.video-wrap iframe{display:block;width:100%;aspect-ratio:16/9;border:none}
-.video-label{
-  background:#111;color:white;padding:12px 16px;
-}
-.video-label .v-tag{
-  display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1px;
-  text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:5px;
-}
-.v-tag-long{background:var(--navy-l);color:white}
-.v-tag-short{background:#1a6640;color:white}
-.video-label h4{font-size:.95rem;font-weight:800;margin-bottom:2px;line-height:1.35}
-.video-label p{font-size:.78rem;color:#aaa;margin:0;line-height:1.5}
-.video-credit{font-size:.68rem;color:#777;margin-top:4px}
+/* ══ EASTER EGG MODAL + TOAST ══ */
+.egg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.8);align-items:center;justify-content:center;padding:24px}
+.egg-modal.show{display:flex}
+.egg-box{background:var(--paper);max-width:480px;width:100%;padding:32px;text-align:center;border-top:4px solid var(--accent)}
+.egg-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.egg-box p{font-family:'Source Serif 4',serif;font-size:.98rem;line-height:1.7;color:var(--ink-light);margin-bottom:14px;text-align:left}
+.egg-extra{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:16px}
+.egg-close{background:var(--ink);color:#fff;border:none;padding:10px 22px;font-family:-apple-system,sans-serif;font-weight:700;cursor:pointer}
 
-/* ─── FOOTER ─── */
-footer{
-  text-align:center;padding:30px 20px;font-size:.8rem;color:var(--mid);
-  border-top:1px solid var(--border);background:var(--warm-white);
-  position:relative;
-}
-.secret-text{color:var(--warm-white);font-size:.5px;position:absolute;bottom:4px;left:50%;transform:translateX(-50%);letter-spacing:.5px}
+.toast{position:fixed;top:20px;right:20px;z-index:600;background:var(--ink);color:#fff;padding:16px 20px;max-width:300px;transform:translateX(340px);transition:transform .3s;border-left:4px solid var(--gold-l)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
 
-/* ─── MISC ─── */
-.divider{height:1px;background:var(--border);margin:6px 0 18px}
-a.text-link{color:var(--navy-l);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--navy-l)}
-a.text-link:hover{color:var(--gold);border-color:var(--gold)}
+.hero-flag-click{cursor:pointer}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.shake{animation:shake .4s}
 
-/* ─── UPDATE PANE ─── */
-.update-pane{
-  background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);
-  border-radius:18px;margin:28px 0;overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,.2);border:1px solid rgba(212,160,23,.25);
-  animation:fadeUp .5s ease both;
-}
-.update-pane-header{
-  padding:22px 28px 16px;border-bottom:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;gap:14px;
-  min-width:0;
-}
-.update-pane-header h2{
-  font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.65rem);
-  font-weight:700;line-height:1.25;color:var(--gold-l);
-  min-width:0;
-}
-.update-pane-header .q-label{color:rgba(255,255,255,.5)}
-.update-badge{
-  display:inline-block;background:var(--navy-l);color:white;
-  font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 12px;border-radius:20px;margin-left:8px;
-  vertical-align:middle;
-}
-.update-pane-date{
-  color:rgba(255,255,255,.5);font-size:.8rem;font-weight:700;
-  margin:0 28px 4px;padding-top:4px;
-}
-.update-grid{
-  display:grid;grid-template-columns:1fr;gap:0;
-  padding:0 28px 28px;
-}
-.update-box{
-  background:rgba(255,255,255,.06);border-radius:14px;padding:22px 22px 18px;
-  margin-top:16px;border:1px solid rgba(255,255,255,.08);
-  transition:all .2s;
-}
-.update-box:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15)}
-.update-box-icon{font-size:1.5rem;margin-bottom:6px;display:block}
-.update-box h3{
-  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
-  color:white;margin-bottom:10px;line-height:1.3;
-}
-.update-box p{font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:10px}
-.update-box p:last-child{margin-bottom:0}
-.update-box strong{color:rgba(255,255,255,.95)}
-.update-box .callout{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-.update-box .callout-body h4{color:rgba(255,255,255,.9)}
-.update-box .callout-body p{color:rgba(255,255,255,.7)}
-.update-box cite-link a{
-  color:#82b1ff;background:rgba(130,177,255,.12);
-  border-color:rgba(130,177,255,.25);
-}
-.update-box cite-link a:hover{background:#82b1ff;color:#1a1a2e}
-.update-box .stat-grid{margin:12px 0}
-.update-box .stat-box{background:rgba(255,255,255,.08);cursor:default}
-.update-box .stat-box:hover{transform:none;box-shadow:none}
-.update-box .stat-num{color:var(--gold-l)}
-.update-box .stat-label{color:rgba(255,255,255,.6)}
-.update-box .vocab{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
-.update-box .vocab strong{color:var(--gold-l)}
-.update-box .vocab{color:rgba(255,255,255,.7)}
-.update-sources{
-  margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
-}
-.update-sources summary{
-  font-size:.78rem;font-weight:800;color:rgba(255,255,255,.5);
-  cursor:pointer;letter-spacing:.5px;text-transform:uppercase;
-}
-.update-sources ul{
-  margin:8px 0 0 16px;list-style:none;
-}
-.update-sources li{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:4px}
-.update-sources li::before{content:'→ ';color:var(--gold-l)}
-.update-sources a{color:#82b1ff;text-decoration:none;font-weight:600}
-.update-sources a:hover{text-decoration:underline}
-/* mini-timeline inside update pane */
-.mini-tl{padding:8px 28px 0;position:relative}
-.mini-tl::before{
-  content:'';position:absolute;left:44px;top:16px;bottom:16px;width:2px;
-  background:linear-gradient(to bottom,var(--gold-l),var(--navy-l));border-radius:2px;
-}
-.mini-tl-item{display:flex;gap:14px;margin-bottom:14px;position:relative;padding-left:30px;min-width:0}
-.mini-tl-dot{
-  width:12px;height:12px;border-radius:50%;flex-shrink:0;
-  position:absolute;left:-1px;top:5px;border:2px solid rgba(255,255,255,.3);
-}
-.mini-tl-dot.d-gold{background:var(--gold-l)}.mini-tl-dot.d-navy{background:#82b1ff}
-.mini-tl-dot.d-green{background:#4caf50}
-.mini-tl-date{
-  font-size:.72rem;font-weight:800;color:var(--gold-l);letter-spacing:.5px;
-  text-transform:uppercase;min-width:52px;flex-shrink:0;padding-top:2px;
-}
-.mini-tl-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5}
-.mini-tl-text strong{color:rgba(255,255,255,.9)}
-.mini-tl-text cite-link a{color:#82b1ff;background:rgba(130,177,255,.12);border-color:rgba(130,177,255,.25)}
-
-@media(max-width:600px){
-  .s-body,.s-header{padding:18px 16px}
-  .img-float,.img-float-left,.tl-img-right{float:none;width:100%;margin:10px 0}
-  .stat-grid{grid-template-columns:repeat(2,1fr)}
-  .update-grid{padding:0 16px 16px}
-  .update-pane-header{padding:18px 16px 14px}
-  .update-pane-date{margin:0 16px 4px}
-  .mini-tl{padding:8px 16px 0}
-  .mini-tl::before{left:32px}
-}
-
-/* ─── DYSLEXIC FONT TOGGLE ─── */
-.dyslexic-toggle{
-  position:fixed;bottom:20px;right:20px;z-index:9999;
-  background:#1a2a4a;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:'Nunito',sans-serif;
-}
+.dyslexic-toggle{position:fixed;bottom:20px;right:20px;z-index:9999;background:#111;color:white;border:none;border-radius:50px;padding:10px 16px;font-size:.8rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .2s;display:flex;align-items:center;gap:6px;font-family:-apple-system,sans-serif}
 .dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:#2d8f58}
-body.dyslexic .dyslexic-toggle{font-family:'OpenDyslexic',sans-serif}
-body.dyslexic,
-body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:'OpenDyslexic',sans-serif!important}
+.dyslexic-toggle.active{background:var(--accent)}
+body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 </style>
 </head>
 <body>
 
-<!-- ─── EASTER EGG MODAL ─── -->
+<!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
   <div class="egg-box">
     <div style="font-size:2rem;margin-bottom:8px" id="eggEmoji">🎉</div>
     <h2 id="eggTitle">You found a secret!</h2>
     <p id="eggText"></p>
-    <div class="egg-farsi" id="eggFarsi"></div>
-    <button class="egg-close" onclick="closeEgg()">Got it! ✓</button>
+    <div class="egg-extra" id="eggExtra"></div>
+    <button class="egg-close" onclick="closeEgg()">Got it</button>
   </div>
 </div>
 
-<!-- ─── QUIZ MODAL ─── -->
-<div class="quiz-modal" id="quizModal" style="display:none">
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quizModal">
   <div class="quiz-box">
     <button class="quiz-close" onclick="closeQuiz()">×</button>
-    <h3>🧠 Quick Quiz</h3>
+    <h3>Quick Quiz</h3>
     <p id="quizQ" class="quiz-q"></p>
     <div class="quiz-choices" id="quizChoices"></div>
     <div class="quiz-feedback" id="quizFeedback"></div>
   </div>
 </div>
 
-<!-- ─── ACHIEVEMENT TOAST ─── -->
+<!-- TOAST -->
 <div class="toast" id="toast">
   <span class="toast-icon" id="toastIcon">⭐</span>
   <div class="toast-title" id="toastTitle"></div>
   <div class="toast-msg" id="toastMsg"></div>
 </div>
 
-<!-- ─── HERO ─── -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-flag" id="heroFlag" onclick="handleFlagClick()" title="Click me...">🗳️</div>
-  <h1>US Elections & How Government Works</h1>
-  <p class="hero-sub">The three branches, how a bill becomes a law, how elections work, and what's happening in the 2026 midterms</p>
-  <span class="hero-note">📚 8th Grade Social Studies · Updated July 2026 · Earn points by answering quizzes!</span>
+<div class="masthead-top">
+  <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
+  <a href="https://mrbsocialstudies.org" target="_blank">← Back to main site</a>
+</div>
+
+<nav class="section-nav">
+  <a href="index.html" class="hub">All Topics</a>
+  <a href="iran.html">Iran</a>
+  <a href="ukraine.html">Ukraine</a>
+  <a href="ai.html">AI &amp; Society</a>
+  <a href="climate-change.html">Climate Change</a>
+  <a href="#update-pane">2026 Midterms</a>
+  <a href="#branches">Branches</a>
+  <a href="#elections-mechanics">Elections</a>
+  <a href="#checks-balances">Checks &amp; Balances</a>
+  <a href="#local-representation">Who Represents You</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#key-people">People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-inner">
+    <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">🗳️ US Government &amp; Elections</button>
+    <h1>US Elections &amp; How Government Works</h1>
+    <p class="dek">The three branches, how a bill becomes a law, how elections work, and what's happening in the 2026 midterms.</p>
+    <div class="byline">Student Edition · Updated July 2026</div>
+  </div>
   <div class="hero-credit">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
 </header>
 
-<!-- ─── POINTS BAR ─── -->
 <div class="points-bar">
-  <span>🌟 Discovery Points:</span>
+  <span>Discovery Points:</span>
   <span class="points-display" id="pointsDisplay">0 pts</span>
-  <div>
-    <div class="progress-wrap" style="width:200px">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-  </div>
-  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content!</span>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content</span>
 </div>
-
-<!-- ─── NAV ─── -->
-<nav class="sticky-nav">
-  <a href="index.html" class="n-hub">🏠 All Topics</a>
-  <a href="iran.html" class="n-sib">🇮🇷 Iran</a>
-  <a href="ukraine.html" class="n-sib">🇺🇦 Ukraine</a>
-  <a href="ai.html" class="n-sib">🤖 AI &amp; Society</a>
-  <a href="#update-pane" class="n-update">📡 2026 Midterms</a>
-  <a href="#branches" class="n-branches">🏛️ Branches</a>
-  <a href="#elections-mechanics" class="n-mech">🗳️ Elections</a>
-  <a href="#checks-balances" class="n-checks">⚖️ Checks &amp; Balances</a>
-  <a href="#local-representation" class="n-local">📍 Who Represents You</a>
-  <a href="#timeline" class="n-hist">📅 Timeline</a>
-  <a href="#key-people" class="n-people">👥 Key People</a>
-  <a href="#videos" class="n-vid">📺 Videos</a>
-  <a href="#resources" class="n-links">🔗 Resources</a>
-</nav>
-
-<main>
 
 <!-- ═══════════ UPDATE PANE: 2026 MIDTERMS ═══════════ -->
 <div class="update-pane" id="update-pane">
-  <div class="update-pane-header">
-    <div class="s-icon si-navy" style="background:rgba(212,160,23,.2)">📡</div>
-    <h2>
-      <span class="q-label">Situation Update</span>
-      Where Things Stand: The 2026 Midterms
-      <span class="update-badge">Counting Down to Nov 3</span>
-    </h2>
-  </div>
-  <p class="update-pane-date">Updated July 21, 2026 — 105 days until Election Day</p>
-
-  <!-- ── TURNING POINTS TIMELINE ── -->
-  <div class="mini-tl">
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-gold"></div>
-      <span class="mini-tl-date">Spring</span>
-      <span class="mini-tl-text"><strong>Primaries reshuffle Congress —</strong> A primary election can end a member's time in Congress just like a general election can. Three sitting members lost their primary this year: U.S. Senators Bill Cassidy of Louisiana and John Cornyn of Texas, and U.S. Representative Thomas Massie of Kentucky. <cite-link><a href="https://news.ballotpedia.org/2026/05/19/incumbent-bill-cassidy-loses-u-s-senate-re-election-in-louisiana-as-republican-primary-heads-to-runoff/" target="_blank">src</a></cite-link></span>
+  <div class="update-pane-inner">
+    <div class="update-head">
+      <span class="num">Situation Update</span>
+      <h2>Where Things Stand: The 2026 Midterms <span class="update-badge">Counting Down to Nov 3</span></h2>
     </div>
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-navy"></div>
-      <span class="mini-tl-date">2025</span>
-      <span class="mini-tl-text"><strong>New maps in several states —</strong> States usually only redraw their House districts once every 10 years, right after the census. In 2025, several states redrew them anyway. Texas and California show two different ways this can happen. Texas's legislature passed a new map. A federal court blocked it. Then the Supreme Court said Texas could use the map after all, on April 27, 2026. <cite-link><a href="https://www.texastribune.org/2026/04/27/texas-redistricting-map-ruling-us-supreme-court-upheld-2026-midterms/" target="_blank">src</a></cite-link> California did it differently. Its voters approved a new map themselves, by voting yes on a ballot measure called Proposition 50, on November 4, 2025. <cite-link><a href="https://en.wikipedia.org/wiki/2025_California_Proposition_50" target="_blank">src</a></cite-link></span>
+    <div class="update-date">Updated July 21, 2026 — 105 days until Election Day</div>
+
+    <div class="mini-tl">
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot"></div>
+        <span class="mini-tl-date">Spring</span>
+        <span class="mini-tl-text"><strong>Primaries reshuffle Congress —</strong> A primary election can end a member's time in Congress just like a general election can. Three sitting members lost their primary this year: U.S. Senators Bill Cassidy of Louisiana and John Cornyn of Texas, and U.S. Representative Thomas Massie of Kentucky. <a class="cite-inline" href="https://news.ballotpedia.org/2026/05/19/incumbent-bill-cassidy-loses-u-s-senate-re-election-in-louisiana-as-republican-primary-heads-to-runoff/" target="_blank">src</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot blue"></div>
+        <span class="mini-tl-date">2025</span>
+        <span class="mini-tl-text"><strong>New maps in several states —</strong> States usually only redraw their House districts once every 10 years, right after the census. In 2025, several states redrew them anyway. Texas and California show two different ways this can happen. Texas's legislature passed a new map. A federal court blocked it. Then the Supreme Court said Texas could use the map after all, on April 27, 2026. <a class="cite-inline" href="https://www.texastribune.org/2026/04/27/texas-redistricting-map-ruling-us-supreme-court-upheld-2026-midterms/" target="_blank">src</a> California did it differently. Its voters approved a new map themselves, by voting yes on a ballot measure called Proposition 50, on November 4, 2025. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2025_California_Proposition_50" target="_blank">src</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot green"></div>
+        <span class="mini-tl-date">Jul 2026</span>
+        <span class="mini-tl-text"><strong>A high retirement count —</strong> As of July 2026, 59 U.S. Representatives and 11 U.S. Senators have said they won't run for reelection this year. That's one of the biggest retirement waves in decades. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> Two of the most senior members of Congress are in that group. Nancy Pelosi, a former Speaker of the House, was first elected in 1987. Mitch McConnell, a Senate Republican leader, was first elected in 1984. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Nancy_Pelosi" target="_blank">src</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot"></div>
+        <span class="mini-tl-date">Nov 3</span>
+        <span class="mini-tl-text"><strong>Election Day —</strong> Voters decide all 435 House seats and about three dozen governor's races. They also decide 35 Senate seats: 33 regular seats, plus 2 special elections to finish out terms in Florida and Ohio. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></span>
+      </div>
     </div>
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-green"></div>
-      <span class="mini-tl-date">Jul 2026</span>
-      <span class="mini-tl-text"><strong>A high retirement count —</strong> As of July 2026, 59 U.S. Representatives and 11 U.S. Senators have said they won't run for reelection this year. That's one of the biggest retirement waves in decades. <cite-link><a href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a></cite-link> Two of the most senior members of Congress are in that group. Nancy Pelosi, a former Speaker of the House, was first elected in 1987. Mitch McConnell, a Senate Republican leader, was first elected in 1984. <cite-link><a href="https://en.wikipedia.org/wiki/Nancy_Pelosi" target="_blank">src</a></cite-link></span>
-    </div>
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-gold"></div>
-      <span class="mini-tl-date">Nov 3</span>
-      <span class="mini-tl-text"><strong>Election Day —</strong> Voters decide all 435 House seats and about three dozen governor's races. They also decide 35 Senate seats: 33 regular seats, plus 2 special elections to finish out terms in Florida and Ohio. <cite-link><a href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></cite-link></span>
-    </div>
-  </div>
 
-  <div class="update-grid">
+    <div class="update-grid">
 
-    <!-- ── BOX 1: WHO CONTROLS WHAT, RIGHT NOW ── -->
-    <div class="update-box">
-      <span class="update-box-icon">🏛️</span>
-      <h3>Who controls what, right now?</h3>
-
-      <p>
-        Here's a plain, dated snapshot of Washington, as of <strong>July 21, 2026</strong> — before any 2026 votes are counted. <strong>Republicans</strong> currently hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <cite-link><a href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        The current <strong>Speaker of the House is Mike Johnson</strong>. He's held the role since October 2023. <cite-link><a href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a></cite-link> The current <strong>Senate Majority Leader is John Thune</strong>. He's held the role since January 2025. <cite-link><a href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        Section 1 explained what these two roles do. The Speaker decides which bills get a vote on the House floor. The Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.
-      </p>
-
-      <div class="callout c-gold" style="background:rgba(255,255,255,.06);border-color:rgba(240,180,40,.3)">
-        <span class="callout-icon">🤔</span>
-        <div class="callout-body">
-          <h4 style="color:var(--gold-l)">Think about it</h4>
+      <div class="update-box">
+        <span class="update-box-icon">🏛️</span>
+        <h3>Who controls what, right now?</h3>
+        <p>Here's a plain, dated snapshot of Washington, as of <strong>July 21, 2026</strong> — before any 2026 votes are counted. <strong>Republicans</strong> currently hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <a class="cite-inline" href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></p>
+        <p>The current <strong>Speaker of the House is Mike Johnson</strong>. He's held the role since October 2023. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> The current <strong>Senate Majority Leader is John Thune</strong>. He's held the role since January 2025. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></p>
+        <p>Section 1 explained what these two roles do. The Speaker decides which bills get a vote on the House floor. The Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.</p>
+        <div class="callout" style="background:rgba(255,255,255,.06);border-left-color:var(--gold-l)">
+          <span class="tag" style="color:var(--gold-l)">Think about it</span>
           <p style="color:rgba(255,255,255,.7)">This same fact block would read exactly the same no matter which party held these roles. Why do you think it matters that a civics page describe "who's in charge" as a plain fact, instead of as good news or bad news?</p>
         </div>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">Wikipedia — President of the United States</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">Wikipedia — 2026 United States House of Representatives elections</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">Wikipedia — 2026 United States Senate elections</a></li>
+          </ul>
+        </details>
       </div>
 
-      <details class="update-sources">
-        <summary>Sources for this section</summary>
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">Wikipedia — President of the United States</a></li>
-          <li><a href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">Wikipedia — 2026 United States House of Representatives elections</a></li>
-          <li><a href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">Wikipedia — 2026 United States Senate elections</a></li>
-        </ul>
-      </details>
-    </div>
-
-    <!-- ── BOX 2: THE BALANCE OF POWER ── -->
-    <div class="update-box">
-      <span class="update-box-icon">⚖️</span>
-      <h3>What would it take to flip control this year?</h3>
-
-      <p>
-        A chamber's exact balance decides how many seats it would take to flip control. Right now in the House, Democrats need to gain a <strong>net of 3 seats</strong> to win the majority. Republicans can lose no more than 2 seats and still keep it. <cite-link><a href="https://ballotpedia.org/United_States_House_of_Representatives_elections,_2026" target="_blank">src</a></cite-link> In the Senate, Democrats need a <strong>net gain of 4 seats</strong> to win the majority. Republicans can lose up to 2 seats and still keep control. <cite-link><a href="https://ballotpedia.org/United_States_Senate_elections,_2026" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        Not every seat is equally likely to change hands, though. Nonpartisan election forecasters study each race and rate how competitive it is. One of the most widely used raters is the <strong>Cook Political Report</strong>. It publishes an updated rating for every House and Senate race. <cite-link><a href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        Cook's most competitive rating is called "Toss Up." It means either party has a good chance of winning. As of <strong>July 1, 2026</strong>, Cook rates four Senate races as Toss Up: <strong>Alaska, Maine, Michigan,</strong> and <strong>Ohio</strong>. <cite-link><a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank">src</a></cite-link> As of <strong>July 16, 2026</strong>, Cook rates 18 House races as Toss Up. Those races are spread across 14 states, including <strong>Arizona, California, Iowa, Michigan, New York, Ohio, Pennsylvania,</strong> and <strong>Texas</strong>. <cite-link><a href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">src</a></cite-link>
-      </p>
-
-      <p style="font-size:.78rem;color:rgba(255,255,255,.55)">
-        These ratings come straight from Cook Political Report's own published lists, current as of the dates above. They are not this page's own guess about which races are close.
-      </p>
-
-      <details class="update-sources">
-        <summary>Sources for this section</summary>
-        <ul>
-          <li><a href="https://ballotpedia.org/United_States_House_of_Representatives_elections,_2026" target="_blank">Ballotpedia — United States House of Representatives elections, 2026</a></li>
-          <li><a href="https://ballotpedia.org/United_States_Senate_elections,_2026" target="_blank">Ballotpedia — United States Senate elections, 2026</a></li>
-          <li><a href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">Cook Political Report — 2026 House Race Ratings</a></li>
-          <li><a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank">Cook Political Report — 2026 Senate Race Ratings</a></li>
-        </ul>
-      </details>
-    </div>
-
-    <!-- ── BOX 3: THE HISTORICAL PATTERN ── -->
-    <div class="update-box">
-      <span class="update-box-icon">📊</span>
-      <h3>A historical pattern political scientists have observed</h3>
-
-      <div class="vocab">
-        <strong>📖 Key Word: Midterm Penalty</strong> — Political scientists have studied how the president's party usually does in midterm elections. Going back to 1946, the president's party has lost House seats in 18 of the last 20 midterms. <cite-link><a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">src</a></cite-link> This comes from UCSB's American Presidency Project, a nonpartisan academic research group.
+      <div class="update-box">
+        <span class="update-box-icon">⚖️</span>
+        <h3>What would it take to flip control this year?</h3>
+        <p>A chamber's exact balance decides how many seats it would take to flip control. Right now in the House, Democrats need to gain a <strong>net of 3 seats</strong> to win the majority. Republicans can lose no more than 2 seats and still keep it. <a class="cite-inline" href="https://ballotpedia.org/United_States_House_of_Representatives_elections,_2026" target="_blank">src</a> In the Senate, Democrats need a <strong>net gain of 4 seats</strong> to win the majority. Republicans can lose up to 2 seats and still keep control. <a class="cite-inline" href="https://ballotpedia.org/United_States_Senate_elections,_2026" target="_blank">src</a></p>
+        <p>Not every seat is equally likely to change hands, though. Nonpartisan election forecasters study each race and rate how competitive it is. One of the most widely used raters is the <strong>Cook Political Report</strong>. It publishes an updated rating for every House and Senate race. <a class="cite-inline" href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">src</a></p>
+        <p>Cook's most competitive rating is called "Toss Up." It means either party has a good chance of winning. As of <strong>July 1, 2026</strong>, Cook rates four Senate races as Toss Up: <strong>Alaska, Maine, Michigan,</strong> and <strong>Ohio</strong>. <a class="cite-inline" href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank">src</a> As of <strong>July 16, 2026</strong>, Cook rates 18 House races as Toss Up. Those races are spread across 14 states, including <strong>Arizona, California, Iowa, Michigan, New York, Ohio, Pennsylvania,</strong> and <strong>Texas</strong>. <a class="cite-inline" href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">src</a></p>
+        <p class="small-note">These ratings come straight from Cook Political Report's own published lists, current as of the dates above. They are not this page's own guess about which races are close.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://ballotpedia.org/United_States_House_of_Representatives_elections,_2026" target="_blank">Ballotpedia — United States House of Representatives elections, 2026</a></li>
+            <li><a href="https://ballotpedia.org/United_States_Senate_elections,_2026" target="_blank">Ballotpedia — United States Senate elections, 2026</a></li>
+            <li><a href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank">Cook Political Report — 2026 House Race Ratings</a></li>
+            <li><a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank">Cook Political Report — 2026 Senate Race Ratings</a></li>
+          </ul>
+        </details>
       </div>
 
-      <p>
-        <strong>This is a historical pattern, not a prediction about 2026.</strong> It describes how midterms have gone for the last 80 years. Every single election still has its own candidates and its own issues. A historical pattern can't capture those.
-      </p>
+      <div class="update-box">
+        <span class="update-box-icon">📊</span>
+        <h3>A historical pattern political scientists have observed</h3>
+        <div class="vocab" style="border-left-color:var(--gold-l)">
+          <b style="color:var(--gold-l)">Key Word: Midterm Penalty</b>
+          <p style="color:rgba(255,255,255,.75)">Political scientists have studied how the president's party usually does in midterm elections. Going back to 1946, the president's party has lost House seats in 18 of the last 20 midterms. <a class="cite-inline" href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">src</a> This comes from UCSB's American Presidency Project, a nonpartisan academic research group.</p>
+        </div>
+        <p><strong>This is a historical pattern, not a prediction about 2026.</strong> It describes how midterms have gone for the last 80 years. Every single election still has its own candidates and its own issues. A historical pattern can't capture those.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">UCSB American Presidency Project — Seats in Congress Gained/Lost by the President's Party in Mid-Term Elections</a></li>
+          </ul>
+        </details>
+      </div>
 
-      <details class="update-sources">
-        <summary>Sources for this section</summary>
-        <ul>
-          <li><a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">UCSB American Presidency Project — Seats in Congress Gained/Lost by the President's Party in Mid-Term Elections</a></li>
-        </ul>
-      </details>
     </div>
-
   </div>
 </div>
 
 <!-- ═══════════ SECTION 1: THE THREE BRANCHES ═══════════ -->
-<section class="s-card" id="branches">
-  <div class="s-header">
-    <div class="s-icon si-navy">🏛️</div>
-    <h2><span class="q-label">Question 1</span>What are the three branches of government?</h2>
+<div class="sec-head" id="branches">
+  <span class="num">Question 1</span>
+  <h2>What are the three branches of government?</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>The U.S. government has three parts, called branches.</strong> Each branch has its own job. This way, no single branch can run the whole government by itself. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
+
+  <div class="diagram-wrap" role="img" aria-label="Diagram of the three branches of the U.S. government, arranged left to right as Legislative, Executive, Judicial, with two arrows showing how a law and a judge move through the system. Legislative branch: Congress, made up of the House and Senate, makes the laws, and sends bills to the President. Executive branch: the President, carries out the laws, and appoints federal judges. Judicial branch: the federal courts, including the Supreme Court, explains what the laws mean.">
+    <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
+      <defs>
+        <marker id="branch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#767066"/>
+        </marker>
+      </defs>
+      <path d="M 150 70 Q 230 25 310 70" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#branch-arrow)"/>
+      <text x="230" y="42" text-anchor="middle" font-size="11" fill="#767066">sends bills to</text>
+      <path d="M 390 70 Q 470 25 550 70" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#branch-arrow)"/>
+      <text x="470" y="42" text-anchor="middle" font-size="11" fill="#767066">appoints judges to</text>
+      <rect x="10" y="70" width="200" height="150" fill="#fef3db" stroke="#b8860a" stroke-width="2"/>
+      <text x="110" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
+      <text x="110" y="140" text-anchor="middle" font-size="34">🏢</text>
+      <text x="110" y="170" text-anchor="middle" font-size="12.5" fill="#4a4a4a">Congress</text>
+      <text x="110" y="190" text-anchor="middle" font-size="12.5" fill="#4a4a4a">Makes</text>
+      <text x="110" y="205" text-anchor="middle" font-size="12.5" fill="#4a4a4a">the laws</text>
+      <rect x="250" y="70" width="200" height="150" fill="#e8ecf5" stroke="#1a2a52" stroke-width="2"/>
+      <text x="350" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="#1a2a52">EXECUTIVE</text>
+      <text x="350" y="140" text-anchor="middle" font-size="34">🏛️</text>
+      <text x="350" y="170" text-anchor="middle" font-size="12.5" fill="#4a4a4a">The President</text>
+      <text x="350" y="190" text-anchor="middle" font-size="12.5" fill="#4a4a4a">Carries out</text>
+      <text x="350" y="205" text-anchor="middle" font-size="12.5" fill="#4a4a4a">the laws</text>
+      <rect x="490" y="70" width="200" height="150" fill="#e8f5ee" stroke="#1a6640" stroke-width="2"/>
+      <text x="590" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="#1a6640">JUDICIAL</text>
+      <text x="590" y="140" text-anchor="middle" font-size="34">⚖️</text>
+      <text x="590" y="170" text-anchor="middle" font-size="12.5" fill="#4a4a4a">The federal courts</text>
+      <text x="590" y="190" text-anchor="middle" font-size="12.5" fill="#4a4a4a">Explains what</text>
+      <text x="590" y="205" text-anchor="middle" font-size="12.5" fill="#4a4a4a">the laws mean</text>
+    </svg>
+    <p class="diagram-caption">The three branches, left to right, and two ways a law or a judge moves between them. (Read "Check 1" below for what happens if the President disagrees.)</p>
   </div>
-  <div class="s-body">
-    <p><strong>The U.S. government has three parts, called branches.</strong> Each branch has its own job. This way, no single branch can run the whole government by itself. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
-    <div class="diagram-wrap" role="img" aria-label="Diagram of the three branches of the U.S. government, arranged left to right as Legislative, Executive, Judicial, with two arrows showing how a law and a judge move through the system. Legislative branch: Congress, made up of the House and Senate, makes the laws, and sends bills to the President. Executive branch: the President, carries out the laws, and appoints federal judges. Judicial branch: the federal courts, including the Supreme Court, explains what the laws mean.">
-      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
-        <defs>
-          <marker id="branch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--mid)"/>
-          </marker>
-        </defs>
+  <h3>Executive Branch — carries out the laws</h3>
+  <p>The <strong>executive branch</strong> is led by the President. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> The President is <strong>one person</strong>, and that person's job is to carry out and enforce the laws that Congress makes. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> The President is also the head of state and the commander in chief of the U.S. armed forces. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> Whoever holds the job, a presidential term lasts <strong>4 years</strong>, and the same person can only be elected President <strong>two times</strong>. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/president/" target="_blank">src</a></p>
 
-        <!-- Legislative -> Executive: sends bills to -->
-        <path d="M 150 70 Q 230 25 310 70" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#branch-arrow)"/>
-        <text x="230" y="42" text-anchor="middle" font-size="11" fill="var(--mid)">sends bills to</text>
+  <h3>Legislative Branch — makes the laws</h3>
+  <p>The <strong>legislative branch</strong> is Congress, and its job is to write and pass the country's laws. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> Congress is split into two chambers, or groups: the <strong>House of Representatives</strong> and the <strong>Senate</strong>. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
 
-        <!-- Executive -> Judicial: appoints -->
-        <path d="M 390 70 Q 470 25 550 70" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#branch-arrow)"/>
-        <text x="470" y="42" text-anchor="middle" font-size="11" fill="var(--mid)">appoints judges to</text>
-
-        <rect x="10" y="70" width="200" height="150" rx="14" fill="var(--gold-ll)" stroke="var(--gold)" stroke-width="2"/>
-        <text x="110" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="#8a6608">LEGISLATIVE</text>
-        <text x="110" y="140" text-anchor="middle" font-size="34">🏢</text>
-        <text x="110" y="170" text-anchor="middle" font-size="12.5" fill="var(--mid)">Congress</text>
-        <text x="110" y="190" text-anchor="middle" font-size="12.5" fill="var(--mid)">Makes</text>
-        <text x="110" y="205" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws</text>
-
-        <rect x="250" y="70" width="200" height="150" rx="14" fill="var(--navy-ll)" stroke="var(--navy)" stroke-width="2"/>
-        <text x="350" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="var(--navy)">EXECUTIVE</text>
-        <text x="350" y="140" text-anchor="middle" font-size="34">🏛️</text>
-        <text x="350" y="170" text-anchor="middle" font-size="12.5" fill="var(--mid)">The President</text>
-        <text x="350" y="190" text-anchor="middle" font-size="12.5" fill="var(--mid)">Carries out</text>
-        <text x="350" y="205" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws</text>
-
-        <rect x="490" y="70" width="200" height="150" rx="14" fill="var(--green-l)" stroke="var(--green)" stroke-width="2"/>
-        <text x="590" y="105" text-anchor="middle" font-size="15" font-weight="800" fill="var(--green)">JUDICIAL</text>
-        <text x="590" y="140" text-anchor="middle" font-size="34">⚖️</text>
-        <text x="590" y="170" text-anchor="middle" font-size="12.5" fill="var(--mid)">The federal courts</text>
-        <text x="590" y="190" text-anchor="middle" font-size="12.5" fill="var(--mid)">Explains what</text>
-        <text x="590" y="205" text-anchor="middle" font-size="12.5" fill="var(--mid)">the laws mean</text>
-      </svg>
-      <p class="diagram-caption">The three branches, left to right, and two ways a law or a judge moves between them. (Read "Check 1" below for what happens if the President disagrees.)</p>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Executive Branch — carries out the laws</h3>
-    <p>
-      The <strong>executive branch</strong> is led by the President. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      The President is <strong>one person</strong>, and that person's job is to carry out and enforce the laws that Congress makes. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      The President is also the head of state and the commander in chief of the U.S. armed forces. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      Whoever holds the job, a presidential term lasts <strong>4 years</strong>, and the same person can only be elected President <strong>two times</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/president/" target="_blank">src</a></cite-link>
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Legislative Branch — makes the laws</h3>
-    <p>
-      The <strong>legislative branch</strong> is Congress, and its job is to write and pass the country's laws. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      Congress is split into two chambers, or groups: the <strong>House of Representatives</strong> and the <strong>Senate</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      The House has <strong>435 members</strong>. <cite-link><a href="https://www.usa.gov/agencies/u-s-house-of-representatives" target="_blank">src</a></cite-link>
-      Each state gets a different number of House members depending on its population — states with more people get more House members. <cite-link><a href="https://www.usa.gov/agencies/u-s-house-of-representatives" target="_blank">src</a></cite-link>
-      House members serve <strong>2-year terms</strong>. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link>
-      The Senate has <strong>100 members</strong> — exactly <strong>two from every state</strong>, no matter how big or small the state is. <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
-      Senators serve longer terms than House members: <strong>6 years</strong> each. <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Speaker of the House</strong> — The leader of the House of Representatives. The full House votes to choose the Speaker. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/speaker-of-the-house/" target="_blank">src</a></cite-link> One of the Speaker's biggest powers is deciding which bills actually get a vote on the House floor — a bill can't become a law if it never gets a vote. <cite-link><a href="https://civics.asu.edu/Civic-Literacy-Curriculum-Question-30" target="_blank">src</a></cite-link>
-    </div>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Senate Majority Leader</strong> — The leader of whichever party has more seats in the Senate. That party's members elect this leader. <cite-link><a href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a></cite-link> The Majority Leader controls the Senate's schedule — deciding what the Senate spends its time debating and voting on. <cite-link><a href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a></cite-link>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Judicial Branch — explains what the laws mean</h3>
-    <p>
-      The <strong>judicial branch</strong> is made up of federal courts, including the highest court in the country: the <strong>Supreme Court</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      This branch's job is to explain what laws actually mean and apply them to real cases. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      Courts can also decide whether a law breaks the rules set by the <strong>Constitution</strong> — the country's highest set of rules. If a court rules that a law is unconstitutional, that law can no longer be enforced. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q1')">🧠 Quick Quiz — Test yourself!</button>
+  <div class="stat-pair">
+    <div class="stat clickable" onclick="handleStatClick(this)"><div class="num">435</div><div class="desc"><b>House members</b>2-year terms</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><div class="num">100</div><div class="desc"><b>Senators — 2 per state</b>6-year terms</div></div>
   </div>
-</section>
+
+  <p>Each state gets a different number of House members depending on its population — states with more people get more House members. <a class="cite-inline" href="https://www.usa.gov/agencies/u-s-house-of-representatives" target="_blank">src</a> The Senate is different: exactly <strong>two from every state</strong>, no matter how big or small the state is. <a class="cite-inline" href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></p>
+
+  <div class="vocab">
+    <b>Key Word: Speaker of the House</b>
+    <p>The leader of the House of Representatives. The full House votes to choose the Speaker. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/speaker-of-the-house/" target="_blank">src</a> One of the Speaker's biggest powers is deciding which bills actually get a vote on the House floor — a bill can't become a law if it never gets a vote. <a class="cite-inline" href="https://civics.asu.edu/Civic-Literacy-Curriculum-Question-30" target="_blank">src</a></p>
+  </div>
+  <div class="vocab">
+    <b>Key Word: Senate Majority Leader</b>
+    <p>The leader of whichever party has more seats in the Senate. That party's members elect this leader. <a class="cite-inline" href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a> The Majority Leader controls the Senate's schedule — deciding what the Senate spends its time debating and voting on. <a class="cite-inline" href="https://courses.lumenlearning.com/odessa-usgovernment-1/chapter/reading-senate-leadership/" target="_blank">src</a></p>
+  </div>
+
+  <h3>Judicial Branch — explains what the laws mean</h3>
+  <p>The <strong>judicial branch</strong> is made up of federal courts, including the highest court in the country: the <strong>Supreme Court</strong>. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> This branch's job is to explain what laws actually mean and apply them to real cases. Courts can also decide whether a law breaks the rules set by the <strong>Constitution</strong> — the country's highest set of rules. If a court rules that a law is unconstitutional, that law can no longer be enforced. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
+</div>
 
 <!-- ═══════════ SECTION 2: HOW ELECTIONS ACTUALLY WORK ═══════════ -->
-<section class="s-card" id="elections-mechanics">
-  <div class="s-header">
-    <div class="s-icon si-gold">🗳️</div>
-    <h2><span class="q-label">Question 2</span>How do elections actually work — and which of these branches gets elected?</h2>
+<div class="sec-head" id="elections-mechanics">
+  <span class="num">Question 2</span>
+  <h2>How do elections actually work — and which branches get elected?</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>You just read about the three branches. Here's a fact that surprises a lot of people: only some of them are filled by election.</strong> Two of the three branches are filled by people voters choose, directly or indirectly. One of them isn't elected at all. Here's how each branch actually gets its members.</p>
+
+  <h3>Legislative branch — fully elected, most often</h3>
+  <p>Congress gets elected the most often of the three branches. But the House and the Senate don't run on the same schedule. Every House member serves a <strong>2-year term</strong>. And the <strong>whole House — all 435 seats</strong> — is up for election every single time, including every midterm. <a class="cite-inline" href="https://www.usa.gov/midterm-elections" target="_blank">src</a> Senators serve much longer terms: <strong>6 years each.</strong> <a class="cite-inline" href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a> But the Senate doesn't elect everyone at once. Senators are split into three equal-ish groups, called <strong>"classes."</strong> Each class's 6-year term ends two years apart from the other two. So <strong>only about a third of the Senate is up for election at any one time</strong> — never the whole chamber at once. <a class="cite-inline" href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></p>
+
+  <h3>Executive branch — elected, but not by direct national popular vote</h3>
+  <p>The President is elected too. But not the way most people think. There's no single, direct nationwide vote that picks the winner. Instead, the President is chosen through a system called the <strong>Electoral College</strong>. <a class="cite-inline" href="https://www.archives.gov/electoral-college/about" target="_blank">src</a> Each state gets a number of "electors," based on how many people it sends to Congress. Add them all up, and there are <strong>538 electors in all</strong>. A candidate needs more than half — <strong>270 out of 538</strong> — to win the presidency. <a class="cite-inline" href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></p>
+
+  <h3>Judicial branch — not elected at all</h3>
+  <p>This branch works differently. <strong>Federal judges — including Supreme Court justices — are never elected by voters.</strong> Instead, the President picks, or "nominates," someone for the job. Then the Senate has to vote yes before that person can actually start. <a class="cite-inline" href="https://www.uscourts.gov/about-federal-courts/types-federal-judges" target="_blank">src</a> Once confirmed, a judge generally keeps the job for life. Why set it up this way? The goal is to let judges rule based on what the law actually says, without worrying about winning votes to keep their job.</p>
+
+  <h3>Primary elections vs. general elections</h3>
+  <p>Most of these elections actually happen in two rounds. Round one is the <strong>primary election</strong>, where each political party's own voters pick which candidate will represent that party. <a class="cite-inline" href="https://www.usa.gov/primaries-caucuses" target="_blank">src</a> Round two is the <strong>general election</strong> — the real, final vote, open to any registered voter regardless of party. <a class="cite-inline" href="https://www.usa.gov/presidential-general-election" target="_blank">src</a></p>
+
+  <div class="vocab">
+    <b>Key Word: Midterm Election</b>
+    <p>A midterm election is a Congressional election held <strong>halfway between two presidential elections</strong> — 2 years into a President's 4-year term, and 2 years before the next one. <a class="cite-inline" href="https://www.usa.gov/midterm-elections" target="_blank">src</a> Every House seat, plus about a third of the Senate, is up for grabs at every midterm. There's just no presidential race on the ballot that year.</p>
   </div>
-  <div class="s-body">
-    <p><strong>You just read about the three branches. Here's a fact that surprises a lot of people: only some of them are filled by election.</strong> Two of the three branches are filled by people voters choose, directly or indirectly. One of them isn't elected at all. Here's how each branch actually gets its members.</p>
 
-    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Legislative branch — fully elected, most often</h3>
-    <p>
-      Congress gets elected the most often of the three branches. But the House and the Senate don't run on the same schedule.
-      Every House member serves a <strong>2-year term</strong>. And the <strong>whole House — all 435 seats</strong> — is up for election every single time, including every midterm. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link>
-      Senators serve much longer terms: <strong>6 years each.</strong> <cite-link><a href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a></cite-link>
-      But the Senate doesn't elect everyone at once. Senators are split into three equal-ish groups, called <strong>"classes."</strong> Each class's 6-year term ends two years apart from the other two. So <strong>only about a third of the Senate is up for election at any one time</strong> — never the whole chamber at once. <cite-link><a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></cite-link>
-      That's different from the House, where every seat turns over together, every two years. <cite-link><a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></cite-link>
-    </p>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
+</div>
 
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Executive branch — elected, but not by direct national popular vote</h3>
-    <p>
-      The President is elected too. But not the way most people think. There's no single, direct nationwide vote that picks the winner. Instead, the President is chosen through a system called the <strong>Electoral College</strong>. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
-      Here's how it works. Each state gets a number of "electors." That number is based on how many people the state sends to Congress: one elector for each U.S. House member from that state, plus two more for its two senators. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
-      Add up every state's electors, and there are <strong>538 electors in all</strong>. A candidate needs more than half of them — <strong>270 out of 538</strong> — to win the presidency. <cite-link><a href="https://www.archives.gov/electoral-college/about" target="_blank">src</a></cite-link>
-      A presidential election happens every <strong>4 years</strong>, at the same time as a regular House and Senate election. <cite-link><a href="https://www.usa.gov/presidential-general-election" target="_blank">src</a></cite-link>
-    </p>
+<!-- ═══════════ SECTION 3: CHECKS AND BALANCES ═══════════ -->
+<div class="sec-head" id="checks-balances">
+  <span class="num">Question 3</span>
+  <h2>Why doesn't any one branch have all the power?</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
 
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Judicial branch — not elected at all</h3>
-    <p>
-      This branch works differently. <strong>Federal judges — including Supreme Court justices — are never elected by voters.</strong> Instead, the President picks, or "nominates," someone for the job. Then the Senate has to vote yes before that person can actually start. <cite-link><a href="https://www.uscourts.gov/about-federal-courts/types-federal-judges" target="_blank">src</a></cite-link>
-      That Senate vote is the tool that stands in for an election here. Keep it in mind — it's also one of the tools Congress uses to check the other two branches, coming up next.
-      Once a judge is confirmed, they generally keep the job for life. They never have to run for reelection. <cite-link><a href="https://www.uscourts.gov/about-federal-courts/types-federal-judges" target="_blank">src</a></cite-link>
-      Why set it up this way? The goal is to let judges rule based on what the law actually says, without worrying about winning votes to keep their job. No election ties a judge's seat to whoever is popular right now. That's exactly why judges get checked by the confirmation vote and by impeachment, instead of by voters at the ballot box.
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Primary elections vs. general elections</h3>
-    <p>
-      Most of these elections actually happen in two rounds. Round one is the <strong>primary election</strong>. Here, each political party's own voters pick which candidate will represent that party. <cite-link><a href="https://www.usa.gov/primaries-caucuses" target="_blank">src</a></cite-link>
-      Round two is the <strong>general election</strong> — the real, final vote. Any registered voter can take part, whether or not they voted in a primary, and no matter their party. <cite-link><a href="https://www.usa.gov/presidential-general-election" target="_blank">src</a></cite-link>
-      So: the primary picks who represents each party. The general election picks who actually gets the job.
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Midterm Election</strong> — A midterm election is a Congressional election held <strong>halfway between two presidential elections</strong> — 2 years into a President's 4-year term, and 2 years before the next one. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link> Every House seat, plus about a third of the Senate, is up for grabs at every midterm. There's just no presidential race on the ballot that year.
+  <div class="checks-table-wrap" role="table" aria-label="Table of five ways the three branches check each other.">
+    <div class="checks-row checks-row-head" role="row">
+      <div role="columnheader">This branch</div>
+      <div role="columnheader">can do this</div>
+      <div role="columnheader">to this branch</div>
     </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q3')">🧠 Quick Quiz — Test yourself!</button>
+    <div class="checks-row" role="row">
+      <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+      <div role="cell">veto a bill <span class="checks-num">Check 1</span></div>
+      <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+    </div>
+    <div class="checks-row" role="row">
+      <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+      <div role="cell">override that veto <span class="checks-num">Check 2</span></div>
+      <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+    </div>
+    <div class="checks-row" role="row">
+      <div role="cell"><span class="checks-pill checks-green">⚖️ Judicial</span></div>
+      <div role="cell">rule a law unconstitutional <span class="checks-num">Check 3</span></div>
+      <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+    </div>
+    <div class="checks-row" role="row">
+      <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+      <div role="cell">confirm — or reject — a presidential appointment <span class="checks-num">Check 4</span></div>
+      <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
+    </div>
+    <div class="checks-row" role="row">
+      <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
+      <div role="cell">impeach and remove an official <span class="checks-num">Check 5</span></div>
+      <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span> <span class="checks-pill checks-green">⚖️ Judicial</span></div>
+    </div>
   </div>
-</section>
+  <p class="diagram-caption" style="text-align:center;margin-bottom:32px">Five ways the three branches check each other — read below for the full explanation of each.</p>
 
-<!-- ═══════════ SECTION 3: CHECKS AND BALANCES (moved here, was Section 2) ═══════════ -->
-<section class="s-card" id="checks-balances">
-  <div class="s-header">
-    <div class="s-icon si-navy">⚖️</div>
-    <h2><span class="q-label">Question 3</span>Why doesn't any one branch have all the power?</h2>
+  <h3>Check 1: The President can veto a bill</h3>
+  <p>After Congress passes a bill, it goes to the President. <strong>The President can veto it.</strong> That means refusing to sign it, so it does not become a law. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
+
+  <h3>Check 2: Congress can override a veto</h3>
+  <p>Congress isn't stuck once a bill is vetoed. <strong>The House and the Senate can each vote to pass the bill again.</strong> If two-thirds of the House agrees, and two-thirds of the Senate agrees too, the bill becomes a law anyway — no signature needed. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/veto/" target="_blank">src</a> Two-thirds is a high bar on purpose.</p>
+
+  <h3>Check 3: Courts can rule a law unconstitutional</h3>
+  <p>Even after a law is passed, <strong>federal courts can decide whether that law follows the rules in the Constitution.</strong> If a court rules a law is unconstitutional, that law can no longer be enforced. This power is called <strong>judicial review</strong>. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></p>
+
+  <div class="vocab">
+    <b>Key Word: Judicial Review — Marbury v. Madison (1803)</b>
+    <p>The Constitution never actually says, in plain words, that courts get to strike down laws. That power comes from a Supreme Court case called <em>Marbury v. Madison</em>, decided in <strong>1803</strong>. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a> In that case, the Supreme Court struck down part of a federal law as unconstitutional for the first time ever, setting the rule that courts get the final say on what the Constitution means. <a class="cite-inline" href="https://www.uscourts.gov/educational-resources/educational-activities/marbury-v-madison" target="_blank">src</a></p>
   </div>
-  <div class="s-body">
-    <p><strong>The people who designed the U.S. government did not want one branch to get too much power.</strong> So they gave each branch tools to limit, or "check," the other two. This system is called <strong>checks and balances</strong>. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link></p>
 
-    <div class="checks-table-wrap" role="table" aria-label="Table of five ways the three branches check each other.">
-      <div class="checks-row checks-row-head" role="row">
-        <div role="columnheader">This branch</div>
-        <div role="columnheader">can do this</div>
-        <div role="columnheader">to this branch</div>
-      </div>
-      <div class="checks-row" role="row">
-        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
-        <div role="cell">veto a bill <span class="checks-num">Check 1</span></div>
-        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
-      </div>
-      <div class="checks-row" role="row">
-        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
-        <div role="cell">override that veto <span class="checks-num">Check 2</span></div>
-        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
-      </div>
-      <div class="checks-row" role="row">
-        <div role="cell"><span class="checks-pill checks-green">⚖️ Judicial</span></div>
-        <div role="cell">rule a law unconstitutional <span class="checks-num">Check 3</span></div>
-        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
-      </div>
-      <div class="checks-row" role="row">
-        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
-        <div role="cell">confirm — or reject — a presidential appointment <span class="checks-num">Check 4</span></div>
-        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span></div>
-      </div>
-      <div class="checks-row" role="row">
-        <div role="cell"><span class="checks-pill checks-gold">🏢 Legislative</span></div>
-        <div role="cell">impeach and remove an official <span class="checks-num">Check 5</span></div>
-        <div role="cell"><span class="checks-pill checks-navy">🏛️ Executive</span> <span class="checks-pill checks-green">⚖️ Judicial</span></div>
-      </div>
-    </div>
-    <p class="diagram-caption">Five ways the three branches check each other — read below for the full explanation of each.</p>
+  <h3>Check 4: The Senate confirms presidential appointments</h3>
+  <p>The President picks people for certain big jobs, including federal judges, Supreme Court justices, and cabinet secretaries. But the President can't just install them alone. <strong>The Senate must vote to confirm each pick before that person can actually take the job.</strong> <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
 
-    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">Check 1: The President can veto a bill</h3>
-    <p>
-      After Congress passes a bill, it goes to the President. <strong>The President can veto it.</strong> That means refusing to sign it, so it does not become a law. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      This lets the executive branch push back on a law Congress wants to pass.
-    </p>
+  <h3>Check 5: Congress can impeach and remove an official</h3>
+  <p>Say a President, judge, or other federal official is accused of serious wrongdoing. Congress has a two-step process to remove that person from office. <strong>Step one: the House of Representatives can impeach</strong> — meaning formally accuse — that official, with a simple majority vote. <a class="cite-inline" href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a> <strong>Step two: the Senate holds a trial.</strong> To actually convict and remove the official, <strong>two-thirds of the senators present must vote guilty.</strong> <a class="cite-inline" href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></p>
 
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 2: Congress can override a veto</h3>
-    <p>
-      Congress isn't stuck once a bill is vetoed. <strong>The House and the Senate can each vote to pass the bill again.</strong> If two-thirds of the House agrees, and two-thirds of the Senate agrees too, the bill becomes a law anyway. It doesn't need the President's signature this time. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/veto/" target="_blank">src</a></cite-link>
-      This is called <strong>overriding a veto</strong>. Two-thirds is a high bar on purpose. It means a veto can only be overridden when most of Congress agrees — not just a slim majority.
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 3: Courts can rule a law unconstitutional</h3>
-    <p>
-      Even after a law is passed, <strong>federal courts can decide whether that law follows the rules in the Constitution.</strong> If a court rules a law is unconstitutional, that law can no longer be enforced. This power is called <strong>judicial review</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Judicial Review — Marbury v. Madison (1803)</strong> — The Constitution never actually says, in plain words, that courts get to strike down laws. That power comes from a Supreme Court case called <em>Marbury v. Madison</em>, decided in <strong>1803</strong>. <cite-link><a href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></cite-link> In that case, the Supreme Court struck down part of a federal law as unconstitutional for the first time ever. That set the rule that courts get the final say on what the Constitution means. <cite-link><a href="https://www.uscourts.gov/educational-resources/educational-activities/marbury-v-madison" target="_blank">src</a></cite-link> Every use of judicial review since then — over 200 years of it — traces back to this one case.
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 4: The Senate confirms presidential appointments</h3>
-    <p>
-      The President picks people for certain big jobs. This includes federal judges, Supreme Court justices, and cabinet secretaries. But the President can't just install them alone. <strong>The Senate must vote to confirm each pick before that person can actually take the job.</strong> <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link>
-      This means Congress gets a say over who runs parts of the executive branch — and over who becomes a judge.
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Check 5: Congress can impeach and remove an official</h3>
-    <p>
-      Say a President, judge, or other federal official is accused of serious wrongdoing. Congress has a two-step process to remove that person from office. <strong>Step one: the House of Representatives can impeach</strong> — meaning formally accuse — that official. It only takes a simple majority vote in the House to do it. <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
-      Impeachment by the House is not the same as removal. It's more like being formally charged. <strong>Step two: the Senate holds a trial.</strong> To actually convict and remove the official, <strong>two-thirds of the senators present must vote guilty.</strong> <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
-      The President, the Vice President, and other federal officials — including judges — can all be impeached this way. <cite-link><a href="https://www.senate.gov/about/powers-procedures/impeachment.htm" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Checks and Balances</strong> — A system where each branch has some power to limit the other two, so no single branch can act without any oversight at all. <cite-link><a href="https://www.usa.gov/branches-of-government" target="_blank">src</a></cite-link> Veto, veto override, judicial review, Senate confirmation, and impeachment are five specific tools that make this system work.
-    </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q2')">🧠 Quick Quiz — Test yourself!</button>
+  <div class="vocab">
+    <b>Key Word: Checks and Balances</b>
+    <p>A system where each branch has some power to limit the other two, so no single branch can act without any oversight at all. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a> Veto, veto override, judicial review, Senate confirmation, and impeachment are five specific tools that make this system work.</p>
   </div>
-</section>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
+</div>
 
 <!-- ═══════════ LOCAL SECTION: WHO REPRESENTS ALDERWOOD? ═══════════ -->
-<section class="s-card" id="local-representation">
-  <div class="s-header">
-    <div class="s-icon si-green">📍</div>
-    <h2><span class="q-label">Close to Home</span>Who represents Alderwood?</h2>
-  </div>
-  <div class="s-body">
-    <p><strong>Every student at this school lives inside a specific set of voting districts — one state legislative district and one U.S. congressional district.</strong> Those districts decide which elected officials represent this exact school, and which of their seats are actually on the ballot this year. This section names them, plainly, and shows what's up for election near here in 2026.</p>
+<div class="sec-head" id="local-representation">
+  <span class="num">Close to Home</span>
+  <h2>Who represents Alderwood?</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Every student at this school lives inside a specific set of voting districts — one state legislative district and one U.S. congressional district.</strong> Those districts decide which elected officials represent this exact school, and which of their seats are actually on the ballot this year. This section names them, plainly, and shows what's up for election near here in 2026.</p>
 
-    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:var(--navy)">This school's districts</h3>
-    <p>
-      Alderwood Middle School sits in Washington's <strong>21st Legislative District</strong> and the state's <strong>1st Congressional District</strong>. <cite-link><a href="https://geocoding.geo.census.gov/geocoder/geographies/address?street=1132+172nd+St+SW&city=Lynnwood&state=WA&zip=98037&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=json" target="_blank">src</a></cite-link> The 21st Legislative District covers parts of Edmonds, Lynnwood, and Mukilteo. <cite-link><a href="https://en.wikipedia.org/wiki/Washington%27s_21st_legislative_district" target="_blank">src</a></cite-link> It also includes Everett. <cite-link><a href="https://myedmondsnews.com/2026/03/jason-moon-to-again-challenge-strom-peterson-in-21st-district-pos-1-race/" target="_blank">src</a></cite-link> The 1st Congressional District covers a stretch of King and Snohomish counties, including the Alderwood Manor area this school is named for. <cite-link><a href="https://en.wikipedia.org/wiki/Washington%27s_1st_congressional_district" target="_blank">src</a></cite-link>
-    </p>
+  <h3>This school's districts</h3>
+  <p>Alderwood Middle School sits in Washington's <strong>21st Legislative District</strong> and the state's <strong>1st Congressional District</strong>. <a class="cite-inline" href="https://geocoding.geo.census.gov/geocoder/geographies/address?street=1132+172nd+St+SW&city=Lynnwood&state=WA&zip=98037&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=json" target="_blank">src</a> The 21st Legislative District covers parts of Edmonds, Lynnwood, and Mukilteo. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington%27s_21st_legislative_district" target="_blank">src</a> It also includes Everett. <a class="cite-inline" href="https://myedmondsnews.com/2026/03/jason-moon-to-again-challenge-strom-peterson-in-21st-district-pos-1-race/" target="_blank">src</a> The 1st Congressional District covers a stretch of King and Snohomish counties, including the Alderwood Manor area this school is named for. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington%27s_1st_congressional_district" target="_blank">src</a></p>
 
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Washington's 21st Legislative District</h3>
-    <p>
-      Every Washington legislative district elects three people: one State Senator and two State Representatives (Position 1 and Position 2). <cite-link><a href="https://leg.wa.gov/about-the-legislature/house-of-representatives/" target="_blank">src</a></cite-link> The 21st District's current State Senator is <strong>Marko Liias</strong>. <cite-link><a href="https://senatedemocrats.wa.gov/liias/" target="_blank">src</a></cite-link> Its two current State Representatives are <strong>Strom Peterson</strong> (Position 1) and <strong>Lillian Ortiz-Self</strong> (Position 2). <cite-link><a href="https://housedemocrats.wa.gov/peterson/" target="_blank">src</a></cite-link> <cite-link><a href="https://housedemocrats.wa.gov/ortiz-self/" target="_blank">src</a></cite-link>
-    </p>
-    <p>
-      All three of these seats are up for election in 2026. State Representatives serve 2-year terms. That means both House seats are on the ballot every election. <cite-link><a href="https://leg.wa.gov/about-the-legislature/house-of-representatives/" target="_blank">src</a></cite-link> State Senators serve longer, 4-year terms. Those terms are staggered, so only about half the Senate is up every two years. <cite-link><a href="https://leg.wa.gov/about-the-legislature/senate/" target="_blank">src</a></cite-link> The 21st District's Senate seat is up this year. <cite-link><a href="https://senatedemocrats.wa.gov/liias/" target="_blank">src</a></cite-link> Washington's candidate filing week for 2026 ran through May 8. The statewide primary is August 4, 2026. <cite-link><a href="https://lynnwoodtimes.com/2026/05/08/liias-khan/" target="_blank">src</a></cite-link>
-    </p>
-    <p>Here's who filed for each of the three seats:</p>
-    <ul>
-      <li><strong>State Senate:</strong> Marko Liias (Democratic), Riaz Khan (Republican). <cite-link><a href="https://lynnwoodtimes.com/2026/05/08/liias-khan/" target="_blank">src</a></cite-link></li>
-      <li><strong>State Representative, Position 1:</strong> Strom Peterson (Democratic), Jason Moon (Democratic). <cite-link><a href="https://myedmondsnews.com/2026/03/jason-moon-to-again-challenge-strom-peterson-in-21st-district-pos-1-race/" target="_blank">src</a></cite-link></li>
-      <li><strong>State Representative, Position 2:</strong> Lillian Ortiz-Self (Democratic), Bruce Guthrie (Libertarian). <cite-link><a href="https://lynnwoodtimes.com/2026/05/08/guthrie-ortiz-self/" target="_blank">src</a></cite-link></li>
+  <h3>Washington's 21st Legislative District</h3>
+  <p>Every Washington legislative district elects three people: one State Senator and two State Representatives (Position 1 and Position 2). <a class="cite-inline" href="https://leg.wa.gov/about-the-legislature/house-of-representatives/" target="_blank">src</a> The 21st District's current State Senator is <strong>Marko Liias</strong>. <a class="cite-inline" href="https://senatedemocrats.wa.gov/liias/" target="_blank">src</a> Its two current State Representatives are <strong>Strom Peterson</strong> (Position 1) and <strong>Lillian Ortiz-Self</strong> (Position 2). <a class="cite-inline" href="https://housedemocrats.wa.gov/peterson/" target="_blank">src</a> <a class="cite-inline" href="https://housedemocrats.wa.gov/ortiz-self/" target="_blank">src</a></p>
+  <p>All three of these seats are up for election in 2026. State Representatives serve 2-year terms, so both House seats are on the ballot every election. <a class="cite-inline" href="https://leg.wa.gov/about-the-legislature/house-of-representatives/" target="_blank">src</a> State Senators serve longer, 4-year terms, staggered so only about half the Senate is up every two years. <a class="cite-inline" href="https://leg.wa.gov/about-the-legislature/senate/" target="_blank">src</a> The 21st District's Senate seat is up this year. <a class="cite-inline" href="https://senatedemocrats.wa.gov/liias/" target="_blank">src</a> Washington's candidate filing week for 2026 ran through May 8. The statewide primary is August 4, 2026. <a class="cite-inline" href="https://lynnwoodtimes.com/2026/05/08/liias-khan/" target="_blank">src</a></p>
+  <p>Here's who filed for each of the three seats:</p>
+  <ul>
+    <li><strong>State Senate:</strong> Marko Liias (Democratic), Riaz Khan (Republican). <a class="cite-inline" href="https://lynnwoodtimes.com/2026/05/08/liias-khan/" target="_blank">src</a></li>
+    <li><strong>State Representative, Position 1:</strong> Strom Peterson (Democratic), Jason Moon (Democratic). <a class="cite-inline" href="https://myedmondsnews.com/2026/03/jason-moon-to-again-challenge-strom-peterson-in-21st-district-pos-1-race/" target="_blank">src</a></li>
+    <li><strong>State Representative, Position 2:</strong> Lillian Ortiz-Self (Democratic), Bruce Guthrie (Libertarian). <a class="cite-inline" href="https://lynnwoodtimes.com/2026/05/08/guthrie-ortiz-self/" target="_blank">src</a></li>
+  </ul>
+
+  <div class="vocab">
+    <b>Their own words — candidate platform links</b>
+    <p>Every filed candidate above gets a link straight to that candidate's own campaign website, in their own words. This page does not summarize or describe what any candidate supports — only the candidate can speak for their own platform.</p>
+    <ul style="margin-top:8px;margin-left:20px">
+      <li>Marko Liias — <a href="https://markoliias.com/" target="_blank">campaign website</a></li>
+      <li>Riaz Khan — no campaign website found</li>
+      <li>Strom Peterson — <a href="https://votestrom.com/" target="_blank">campaign website</a></li>
+      <li>Jason Moon — <a href="https://hellojasonmoon.com/" target="_blank">campaign website</a></li>
+      <li>Lillian Ortiz-Self — <a href="https://www.electlillian.com/" target="_blank">campaign website</a></li>
+      <li>Bruce Guthrie — no campaign website found</li>
     </ul>
-
-    <div class="vocab">
-      <strong>📖 Their own words — candidate platform links</strong> — Every filed candidate above gets a link straight to that candidate's own campaign website, in their own words. This page does not summarize or describe what any candidate supports — only the candidate can speak for their own platform.
-      <ul style="margin-top:8px">
-        <li>Marko Liias — <a href="https://markoliias.com/" target="_blank">campaign website</a></li>
-        <li>Riaz Khan — no campaign website found</li>
-        <li>Strom Peterson — <a href="https://votestrom.com/" target="_blank">campaign website</a></li>
-        <li>Jason Moon — <a href="https://hellojasonmoon.com/" target="_blank">campaign website</a></li>
-        <li>Lillian Ortiz-Self — <a href="https://www.electlillian.com/" target="_blank">campaign website</a></li>
-        <li>Bruce Guthrie — no campaign website found</li>
-      </ul>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Washington's 1st Congressional District</h3>
-    <p>
-      The 1st Congressional District's current U.S. Representative is <strong>Suzan DelBene</strong>. She has represented this district since a 2012 special election. <cite-link><a href="https://en.wikipedia.org/wiki/Washington%27s_1st_congressional_district" target="_blank">src</a></cite-link> Every U.S. House seat is up for election every 2 years, with no exceptions. <cite-link><a href="https://www.usa.gov/midterm-elections" target="_blank">src</a></cite-link> This seat is one of all 435 House seats nationwide that are on the 2026 ballot.
-    </p>
-    <p>Seven candidates filed for this seat: <strong>Suzan DelBene</strong> (Democratic), <strong>Benjamin Kincaid</strong> (Democratic), <strong>Bryce Nickel</strong> (Democratic), <strong>James Etzkorn</strong> (Independent), <strong>Hunter Gordon</strong> (Democratic), <strong>Mary Silva</strong> (Republican), and <strong>Catherine Hildebrand</strong> (Democratic). <cite-link><a href="https://www.heraldnet.com/2026/07/15/seven-candidates-seek-district-1-congressional-seat/" target="_blank">src</a></cite-link></p>
-
-    <div class="vocab">
-      <strong>📖 Their own words — candidate platform links</strong> — Same rule as above: a link to each candidate's own campaign website, nothing more.
-      <ul style="margin-top:8px">
-        <li>Suzan DelBene — <a href="https://delbeneforcongress.com/" target="_blank">campaign website</a></li>
-        <li>Benjamin Kincaid — <a href="https://www.kincaidforcongress.com/" target="_blank">campaign website</a></li>
-        <li>Bryce Nickel — no campaign website found</li>
-        <li>James Etzkorn — <a href="https://jamesforwashington.com/" target="_blank">campaign website</a></li>
-        <li>Hunter Gordon — <a href="https://www.electhunter.com/" target="_blank">campaign website</a></li>
-        <li>Mary Silva — <a href="https://www.marysilvaforcongress.com/" target="_blank">campaign website</a></li>
-        <li>Catherine Hildebrand — <a href="https://www.hildebrandforcongress.com/" target="_blank">campaign website</a></li>
-      </ul>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Washington's two U.S. Senate seats</h3>
-    <p>
-      Washington's two current U.S. Senators are <strong>Maria Cantwell</strong> and <strong>Patty Murray</strong>. <cite-link><a href="https://www.senate.gov/states/WA/intro.htm" target="_blank">src</a></cite-link> <strong>Neither seat is up for election in 2026.</strong> Section 2 explained that U.S. Senate terms are staggered 6-year terms, so only about a third of the Senate is up in any one election. <cite-link><a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></cite-link> Cantwell's current term runs to January 3, 2031, so her seat is next up in 2030. <cite-link><a href="https://www.senate.gov/senators/Class_I.htm" target="_blank">src</a></cite-link> Murray's current term runs to January 3, 2029, so her seat is next up in 2028. <cite-link><a href="https://www.senate.gov/senators/Class_III.htm" target="_blank">src</a></cite-link> This is a real, concrete example of a fact from Section 2: not every office is on every ballot, even in a big election year.
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--navy)">Also on the 2026 ballot statewide: judicial races</h3>
-    <p>
-      Five of the nine seats on the Washington Supreme Court are up for election in 2026: Positions 1, 3, 4, 5, and 7. <cite-link><a href="https://en.wikipedia.org/wiki/Washington_Supreme_Court" target="_blank">src</a></cite-link> These races work differently from the ones above. Washington Supreme Court elections are <strong>nonpartisan by design</strong>. That means candidates don't run with a party label on the ballot at all. <cite-link><a href="https://en.wikipedia.org/wiki/Washington_Supreme_Court" target="_blank">src</a></cite-link> TVW, Washington's public affairs network, produces a Video Voters' Guide for these races. In it, candidates explain their own qualifications directly on camera. <cite-link><a href="https://tvw.org/video-voters-guide/" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="callout c-green">
-      <span class="callout-icon">🤔</span>
-      <div class="callout-body">
-        <h4>Think about it</h4>
-        <p>Every candidate list above is presented the same way, no matter how many candidates from which party filed. Why might a page like this choose to state a candidate list plainly and let you look at it yourself, instead of pointing out which party has "more" or "fewer" candidates in a particular race?</p>
-      </div>
-    </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q4')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
+
+  <h3>Washington's 1st Congressional District</h3>
+  <p>The 1st Congressional District's current U.S. Representative is <strong>Suzan DelBene</strong>. She has represented this district since a 2012 special election. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington%27s_1st_congressional_district" target="_blank">src</a> Every U.S. House seat is up for election every 2 years, with no exceptions. <a class="cite-inline" href="https://www.usa.gov/midterm-elections" target="_blank">src</a> This seat is one of all 435 House seats nationwide that are on the 2026 ballot.</p>
+  <p>Seven candidates filed for this seat: <strong>Suzan DelBene</strong> (Democratic), <strong>Benjamin Kincaid</strong> (Democratic), <strong>Bryce Nickel</strong> (Democratic), <strong>James Etzkorn</strong> (Independent), <strong>Hunter Gordon</strong> (Democratic), <strong>Mary Silva</strong> (Republican), and <strong>Catherine Hildebrand</strong> (Democratic). <a class="cite-inline" href="https://www.heraldnet.com/2026/07/15/seven-candidates-seek-district-1-congressional-seat/" target="_blank">src</a></p>
+
+  <div class="vocab">
+    <b>Their own words — candidate platform links</b>
+    <p>Same rule as above: a link to each candidate's own campaign website, nothing more.</p>
+    <ul style="margin-top:8px;margin-left:20px">
+      <li>Suzan DelBene — <a href="https://delbeneforcongress.com/" target="_blank">campaign website</a></li>
+      <li>Benjamin Kincaid — <a href="https://www.kincaidforcongress.com/" target="_blank">campaign website</a></li>
+      <li>Bryce Nickel — no campaign website found</li>
+      <li>James Etzkorn — <a href="https://jamesforwashington.com/" target="_blank">campaign website</a></li>
+      <li>Hunter Gordon — <a href="https://www.electhunter.com/" target="_blank">campaign website</a></li>
+      <li>Mary Silva — <a href="https://www.marysilvaforcongress.com/" target="_blank">campaign website</a></li>
+      <li>Catherine Hildebrand — <a href="https://www.hildebrandforcongress.com/" target="_blank">campaign website</a></li>
+    </ul>
+  </div>
+
+  <h3>Washington's two U.S. Senate seats</h3>
+  <p>Washington's two current U.S. Senators are <strong>Maria Cantwell</strong> and <strong>Patty Murray</strong>. <a class="cite-inline" href="https://www.senate.gov/states/WA/intro.htm" target="_blank">src</a> <strong>Neither seat is up for election in 2026.</strong> Section 2 explained that U.S. Senate terms are staggered 6-year terms, so only about a third of the Senate is up in any one election. <a class="cite-inline" href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a> Cantwell's current term runs to January 3, 2031, so her seat is next up in 2030. <a class="cite-inline" href="https://www.senate.gov/senators/Class_I.htm" target="_blank">src</a> Murray's current term runs to January 3, 2029, so her seat is next up in 2028. <a class="cite-inline" href="https://www.senate.gov/senators/Class_III.htm" target="_blank">src</a> This is a real, concrete example of a fact from Section 2: not every office is on every ballot, even in a big election year.</p>
+
+  <h3>Also on the 2026 ballot statewide: judicial races</h3>
+  <p>Five of the nine seats on the Washington Supreme Court are up for election in 2026: Positions 1, 3, 4, 5, and 7. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington_Supreme_Court" target="_blank">src</a> These races work differently from the ones above. Washington Supreme Court elections are <strong>nonpartisan by design</strong> — candidates don't run with a party label on the ballot at all. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington_Supreme_Court" target="_blank">src</a> TVW, Washington's public affairs network, produces a Video Voters' Guide for these races, where candidates explain their own qualifications directly on camera. <a class="cite-inline" href="https://tvw.org/video-voters-guide/" target="_blank">src</a></p>
+
+  <div class="callout think">
+    <span class="tag">Think about it</span>
+    <p>Every candidate list above is presented the same way, no matter how many candidates from which party filed. Why might a page like this choose to state a candidate list plainly and let you look at it yourself, instead of pointing out which party has "more" or "fewer" candidates in a particular race?</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
+</div>
 
 <!-- ═══════════ HISTORY TIMELINE ═══════════ -->
-<section class="s-card" id="timeline">
-  <div class="s-header">
-    <div class="s-icon si-gold">📅</div>
-    <h2><span class="q-label">History</span>How did voting rights expand over time?</h2>
+<div class="sec-head" id="timeline">
+  <span class="num">History</span>
+  <h2>How did voting rights expand over time?</h2>
+</div>
+<div class="article">
+  <div class="callout">
+    <span class="tag">Why does history matter here?</span>
+    <p>The Constitution didn't start out letting every adult citizen vote. Who could vote has expanded slowly, over nearly 200 years, through amendments and laws. <strong>Test yourself along the way to earn points!</strong></p>
   </div>
-  <div class="s-body">
 
-    <div class="callout c-gold">
-      <span class="callout-icon">💡</span>
-      <div class="callout-body">
-        <h4>Why does history matter here?</h4>
-        <p>The Constitution didn't start out letting every adult citizen vote. Who could vote has expanded slowly, over nearly 200 years, through amendments and laws. <strong>Click the purple quiz button to test yourself and earn points!</strong></p>
+  <div id="mainTimeline">
+
+    <div class="tl-item">
+      <div class="tl-year">May–Sept 1787</div>
+      <div class="tl-body">
+        <h4>The Constitutional Convention</h4>
+        <p>Delegates from almost every state gathered in Philadelphia, originally just to revise the country's first governing document, the Articles of Confederation. <a class="cite-inline" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">src</a> By mid-June they had decided to design an entirely new system of government instead. After months of debate and compromise, 38 delegates signed the finished Constitution on September 17, 1787. <a class="cite-inline" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">src</a> As written, the Constitution left the question of who could vote mostly up to each individual state — and at the time, most states only allowed white men who owned property to vote.</p>
+        <a class="tl-link" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">→ National Archives: The Constitution — How Did It Happen?</a>
       </div>
     </div>
 
-    <div class="timeline" id="mainTimeline">
-
-      <!-- 1787 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-gold"></div>
-        <div class="tl-content">
-          <div class="tl-year">May–September 1787</div>
-          <div class="tl-title">🏛️ The Constitutional Convention</div>
-          <div class="tl-desc">
-            Delegates from almost every state gathered in Philadelphia, originally just to revise the country's first governing document, the Articles of Confederation. <cite-link><a href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">src</a></cite-link>
-            By mid-June they had decided to design an entirely new system of government instead. After months of debate and compromise, 38 delegates signed the finished Constitution on September 17, 1787. <cite-link><a href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">src</a></cite-link>
-            As written, the Constitution left the question of who could vote mostly up to each individual state — and at the time, most states only allowed white men who owned property to vote.
-          </div>
-          <a class="tl-link" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">→ National Archives: The Constitution — How Did It Happen?</a>
+    <div class="tl-item">
+      <div class="tl-year">1870</div>
+      <div class="tl-body">
+        <h4>The 15th Amendment</h4>
+        <p>The 15th Amendment said the right to vote could not be denied "on account of race, color, or previous condition of servitude" — meaning states could no longer legally bar formerly enslaved men and other Black men from voting because of their race. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/15th-amendment" target="_blank">src</a> In practice, enforcement was uneven for decades. Starting in the 1890s, many Southern states used tools like literacy tests and grandfather clauses to keep Black citizens from actually voting, despite the amendment's promise. Literacy tests were finally outlawed by the Voting Rights Act of 1965 — nearly a century later. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></p>
+        <div class="vocab">
+          <b>Key Word: Poll tax</b>
+          <p>A fee some states charged people before they were allowed to vote. Because it fell hardest on poor citizens, it was used for decades to keep many Black voters and poor white voters away from the polls. Poll taxes in federal elections were banned by the 24th Amendment in 1964, and the Supreme Court struck them down in state elections too in 1966.</p>
         </div>
       </div>
-
-      <!-- 1870 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-navy"></div>
-        <div class="tl-content">
-          <div class="tl-year">1870</div>
-          <div class="tl-title">🗳️ The 15th Amendment</div>
-          <div class="tl-desc">
-            The 15th Amendment said the right to vote could not be denied "on account of race, color, or previous condition of servitude" — meaning states could no longer legally bar formerly enslaved men and other Black men from voting because of their race. <cite-link><a href="https://www.archives.gov/milestone-documents/15th-amendment" target="_blank">src</a></cite-link>
-            In practice, enforcement was uneven for decades. Starting in the 1890s, many Southern states used tools like literacy tests and grandfather clauses to keep Black citizens from actually voting, despite the amendment's promise. <cite-link><a href="https://www.archives.gov/milestone-documents/15th-amendment" target="_blank">src</a></cite-link>
-            Literacy tests were finally outlawed by the Voting Rights Act of 1965 — nearly a century later. <cite-link><a href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></cite-link>
-          </div>
-          <div class="vocab">
-            <strong>📖 Key Word: Poll tax</strong> — A fee some states charged people before they were allowed to vote. Because it fell hardest on poor citizens, it was used for decades to keep many Black voters and poor white voters away from the polls. Poll taxes in federal elections were banned by the 24th Amendment in 1964, and the Supreme Court struck them down in state elections too in 1966.
-          </div>
-        </div>
-      </div>
-
-      <!-- 1920 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-dark"></div>
-        <div class="tl-content">
-          <div class="tl-year">1920</div>
-          <div class="tl-title">✊ The 19th Amendment</div>
-          <div class="tl-desc">
-            The 19th Amendment said the right to vote could not be denied "on account of sex" — giving women across the country a constitutional right to vote for the first time. <cite-link><a href="https://www.archives.gov/milestone-documents/19th-amendment" target="_blank">src</a></cite-link>
-            It was ratified on August 18, 1920, after decades of organizing by suffrage activists. <cite-link><a href="https://www.archives.gov/milestone-documents/19th-amendment" target="_blank">src</a></cite-link>
-            Like the 15th Amendment, its promise wasn't immediate for everyone: discriminatory state voting laws still kept many Black women and other women of color from actually voting for decades afterward. <cite-link><a href="https://www.archives.gov/milestone-documents/19th-amendment" target="_blank">src</a></cite-link>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1965 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-green"></div>
-        <div class="tl-content">
-          <div class="tl-year">August 6, 1965</div>
-          <div class="tl-title">✍️ The Voting Rights Act</div>
-          <img class="tl-img" src="images/john-lewis.jpg"
-               alt="Rep. John Lewis, official congressional portrait" onerror="this.style.display='none'" style="max-width:220px;max-height:280px;width:auto;object-fit:contain;margin-left:auto;margin-right:auto">
-          <div class="img-caption" style="border-radius:6px;margin-bottom:8px;font-size:.7rem">
-            Rep. John Lewis, official portrait, 2003. He was beaten while marching for voting rights in Selma in 1965, the same year this law passed.
-            <a href="https://commons.wikimedia.org/wiki/File:John_Lewis_official_portrait_2003.jpg" target="_blank">Wikimedia Commons (public domain)</a>
-          </div>
-          <div class="tl-desc">
-            President Lyndon B. Johnson signed the Voting Rights Act to directly enforce the 15th Amendment. <cite-link><a href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></cite-link>
-            It banned literacy tests, sent federal officials to register voters in places with a history of discrimination, and required certain places to get federal approval before changing their voting rules. <cite-link><a href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></cite-link>
-            By the end of 1965, a quarter of a million new Black voters had registered. <cite-link><a href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></cite-link>
-          </div>
-          <a class="tl-link" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">→ National Archives: The Voting Rights Act of 1965</a>
-          <br>
-          <button class="quiz-btn" style="margin-top:10px" onclick="openQuiz('q5')">🧠 Quiz: Expanding the Vote</button>
-        </div>
-      </div>
-
-      <!-- 1971 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-gold"></div>
-        <div class="tl-content">
-          <div class="tl-year">July 1, 1971</div>
-          <div class="tl-title">🎂 The 26th Amendment</div>
-          <div class="tl-desc">
-            The 26th Amendment lowered the voting age nationwide from 21 to 18. <cite-link><a href="https://constitutioncenter.org/the-constitution/amendments/amendment-xxvi" target="_blank">src</a></cite-link>
-            It moved through Congress and the states in under four months — the fastest any amendment has ever been ratified — partly driven by the argument that 18-year-olds who could be drafted to fight in the Vietnam War should also be able to vote. <cite-link><a href="https://constitutioncenter.org/the-constitution/amendments/amendment-xxvi" target="_blank">src</a></cite-link>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="tl-item">
+      <div class="tl-year">1920</div>
+      <div class="tl-body">
+        <h4>The 19th Amendment</h4>
+        <p>The 19th Amendment said the right to vote could not be denied "on account of sex" — giving women across the country a constitutional right to vote for the first time. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/19th-amendment" target="_blank">src</a> It was ratified on August 18, 1920, after decades of organizing by suffrage activists. Like the 15th Amendment, its promise wasn't immediate for everyone: discriminatory state voting laws still kept many Black women and other women of color from actually voting for decades afterward. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/19th-amendment" target="_blank">src</a></p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Aug 6, 1965</div>
+      <div class="tl-body">
+        <h4>The Voting Rights Act</h4>
+        <img src="images/john-lewis.jpg" alt="Rep. John Lewis, official congressional portrait" onerror="this.style.display='none'">
+        <div class="cap">Rep. John Lewis, official portrait, 2003. He was beaten while marching for voting rights in Selma in 1965, the same year this law passed. <a href="https://commons.wikimedia.org/wiki/File:John_Lewis_official_portrait_2003.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+        <p>President Lyndon B. Johnson signed the Voting Rights Act to directly enforce the 15th Amendment. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a> It banned literacy tests, sent federal officials to register voters in places with a history of discrimination, and required certain places to get federal approval before changing their voting rules. By the end of 1965, a quarter of a million new Black voters had registered. <a class="cite-inline" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">src</a></p>
+        <a class="tl-link" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">→ National Archives: The Voting Rights Act of 1965</a>
+        <div class="quiz-inline" style="margin:16px 0 0"><button class="quiz-toggle" onclick="openQuiz('q5')">Quiz: Expanding the Vote</button></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">Jul 1, 1971</div>
+      <div class="tl-body">
+        <h4>The 26th Amendment</h4>
+        <p>The 26th Amendment lowered the voting age nationwide from 21 to 18. <a class="cite-inline" href="https://constitutioncenter.org/the-constitution/amendments/amendment-xxvi" target="_blank">src</a> It moved through Congress and the states in under four months — the fastest any amendment has ever been ratified — partly driven by the argument that 18-year-olds who could be drafted to fight in the Vietnam War should also be able to vote. <a class="cite-inline" href="https://constitutioncenter.org/the-constitution/amendments/amendment-xxvi" target="_blank">src</a></p>
+        <button class="quiz-toggle" style="margin-top:6px;background:none;border:1px dashed var(--rule);color:var(--ink-faint);font-size:.7rem;padding:8px 14px;box-shadow:none" id="mainTimelineTrigger" ondblclick="handleTimelineDblClick(event)">Double-click near this line...</button>
+        <div class="hidden-egg" id="timeline-egg">
+          <h4>Hidden History Unlocked</h4>
+          <p><strong>1913 — The 17th Amendment:</strong> Before 1913, U.S. Senators weren't elected by voters at all — state legislatures picked them. The 17th Amendment changed that, giving regular voters the direct power to elect their own Senators for the first time. It passed partly because some state legislatures had become gridlocked or corrupt over Senate picks, leaving seats empty for months. <a href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/17th-amendment.htm" target="_blank" style="color:inherit">src</a></p>
+        </div>
+      </div>
+    </div>
+
   </div>
-</section>
+</div>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
-<section class="s-card" id="key-people">
-  <div class="s-header">
-    <div class="s-icon si-gold">🧑‍🤝‍🧑</div>
-    <h2><span class="q-label">Bonus</span>Key people to know</h2>
-  </div>
-  <div class="s-body">
-    <p>This section sticks to historical figures — people whose part in the story is already settled — rather than anyone currently holding office today.</p>
-    <div class="people-grid">
+<div class="sec-head" id="key-people">
+  <span class="num">Bonus</span>
+  <h2>Key people to know</h2>
+</div>
+<div class="article">
+  <p>This section sticks to historical figures — people whose part in the story is already settled — rather than anyone currently holding office today.</p>
 
-      <div class="person-card">
-        <div class="portrait-ring">
-          <div class="portrait-inner">
-            <img src="images/james-madison.jpg"
-                 alt="James Madison" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>📜</div>'">
-          </div>
-        </div>
+  <div id="peopleGrid">
+    <div class="person">
+      <img src="images/james-madison.jpg" alt="James Madison" onerror="this.outerHTML='<div class=\'emoji-fallback\'>📜</div>'">
+      <div>
         <h4>James Madison</h4>
-        <div class="person-role">Delegate, Constitutional Convention, 1787</div>
+        <div class="role">Delegate, Constitutional Convention, 1787</div>
         <p>Often called the "Father of the Constitution." His Virginia Plan gave the 1787 Convention its basic framework, and he later sponsored the Bill of Rights — the Constitution's first 10 amendments — as a member of the first House of Representatives.</p>
-        <div class="person-citation"><a href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">Source: National Archives</a> · <a href="https://commons.wikimedia.org/wiki/File:James_Madison.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
+        <div class="src"><a href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">Source: National Archives</a> · <a href="https://commons.wikimedia.org/wiki/File:James_Madison.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
       </div>
-
-      <div class="person-card">
-        <div class="portrait-ring">
-          <div class="portrait-inner">
-            <img src="images/john-lewis.jpg"
-                 alt="Rep. John Lewis" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>✊</div>'">
-          </div>
-        </div>
-        <h4>John Lewis</h4>
-        <div class="person-role">Civil rights leader, 1940–2020</div>
-        <p>As a 25-year-old activist, he led marchers across the Edmund Pettus Bridge in Selma, Alabama on "Bloody Sunday," March 7, 1965, where he was beaten by state troopers. The nationwide reaction helped push Congress to pass the Voting Rights Act just months later. He went on to serve 34 years in the U.S. House of Representatives.</p>
-        <div class="person-citation"><a href="https://www.history.com/articles/selma-bloody-sunday-attack-civil-rights-movement" target="_blank">Source: HISTORY</a> · <a href="https://commons.wikimedia.org/wiki/File:John_Lewis_official_portrait_2003.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
-      </div>
-
     </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q6')">🧠 Quiz: Key People</button>
+    <div class="person">
+      <img src="images/john-lewis.jpg" alt="Rep. John Lewis" onerror="this.outerHTML='<div class=\'emoji-fallback\'>✊</div>'">
+      <div>
+        <h4>John Lewis</h4>
+        <div class="role">Civil rights leader, 1940–2020</div>
+        <p>As a 25-year-old activist, he led marchers across the Edmund Pettus Bridge in Selma, Alabama on "Bloody Sunday," March 7, 1965, where he was beaten by state troopers. The nationwide reaction helped push Congress to pass the Voting Rights Act just months later. He went on to serve 34 years in the U.S. House of Representatives.</p>
+        <div class="src"><a href="https://www.history.com/articles/selma-bloody-sunday-attack-civil-rights-movement" target="_blank">Source: HISTORY</a> · <a href="https://commons.wikimedia.org/wiki/File:John_Lewis_official_portrait_2003.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
+      </div>
+    </div>
   </div>
-</section>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Quiz: Key People</button></div>
+</div>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
-<section class="s-card" id="videos">
-  <div class="s-header">
-    <div class="s-icon si-navy">📺</div>
-    <h2><span class="q-label">Watch</span>Videos — see it for yourself</h2>
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>Videos — see it for yourself</h2>
+</div>
+<div class="article">
+  <p>Sometimes a video explains things better than words. Here are two good ones — one longer deep-dive and one short overview. You can pause, rewind, or watch with captions on.</p>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/0bf3CwYCxXw?rel=0&modestbranding=1" title="Separation of Powers and Checks and Balances: Crash Course Government and Politics #3 (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
   </div>
-  <div class="s-body">
-    <p>Sometimes a video explains things better than words. Here are two good ones — one longer deep-dive and one short overview. You can pause, rewind, or watch with captions on.</p>
-
-    <div class="video-grid">
-
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/0bf3CwYCxXw?rel=0&modestbranding=1"
-          title="Separation of Powers and Checks and Balances: Crash Course Government and Politics #3 (YouTube)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
-        <div class="video-label">
-          <span class="v-tag v-tag-long">🎬 Longer watch (~8 min)</span>
-          <h4>Separation of powers, explained</h4>
-          <p>Crash Course Government and Politics walks through why the three branches were designed to check each other, with concrete examples of each branch's power over the others.</p>
-          <div class="video-credit">💡 Tip: Try watching with captions (CC button) if it's easier to follow along</div>
-        </div>
-      </div>
-
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/oyj6ItfVzF0?rel=0&modestbranding=1"
-          title="Electoral College Explained in 3 Minutes! (YouTube)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
-        <div class="video-label">
-          <span class="v-tag v-tag-short">⚡ Shorter watch (~3 min)</span>
-          <h4>What is the Electoral College?</h4>
-          <p>A Utah Valley University political science professor gives a quick rundown of why the Electoral College was created and how it works in presidential elections.</p>
-          <div class="video-credit">💡 Tip: Watch this one first if you're new to this topic</div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="callout c-blue" style="margin-top:4px">
-      <span class="callout-icon">🧠</span>
-      <div class="callout-body">
-        <h4>While you watch, think about:</h4>
-        <p>What surprised you? What questions do you still have? What do the videos say that matches — or doesn't match — what you read on this page?</p>
-      </div>
-    </div>
+  <div class="video-label">
+    <h4>Separation of powers, explained (~8 min)</h4>
+    <p>Crash Course Government and Politics walks through why the three branches were designed to check each other, with concrete examples of each branch's power over the others.</p>
   </div>
-</section>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/oyj6ItfVzF0?rel=0&modestbranding=1" title="Electoral College Explained in 3 Minutes! (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-label">
+    <h4>What is the Electoral College? (~3 min)</h4>
+    <p>A Utah Valley University political science professor gives a quick rundown of why the Electoral College was created and how it works in presidential elections. Watch this one first if you're new to the topic.</p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">While you watch, think about</span>
+    <p>What surprised you? What questions do you still have? What do the videos say that matches — or doesn't match — what you read on this page?</p>
+  </div>
+</div>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
-<section class="s-card" id="resources">
-  <div class="s-header">
-    <div class="s-icon si-dark">🔗</div>
-    <h2><span class="q-label">Resources</span>All sources — dig deeper into what you're curious about</h2>
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>All sources — dig deeper into what you're curious about</h2>
+</div>
+<div class="article">
+  <div class="callout">
+    <span class="tag">Reading levels</span>
+    <p><strong>⭐ Easier</strong> = great starting point · <strong>⭐⭐ Medium</strong> = some reading required · <strong>⭐⭐⭐ Harder</strong> = for students who want a deeper challenge</p>
   </div>
-  <div class="s-body">
-    <p style="margin-bottom:6px">Each card below links to a real article or resource. Look for the colored tag to see where it comes from!</p>
-    <div class="callout c-blue" style="margin-bottom:18px">
-      <span class="callout-icon">🎓</span>
-      <div class="callout-body">
-        <h4>Reading levels</h4>
-        <p>Labels: <strong>⭐ Easier</strong> = great starting point · <strong>⭐⭐ Medium</strong> = some reading required · <strong>⭐⭐⭐ Harder</strong> = for students who want a deeper challenge</p>
-      </div>
-    </div>
 
-    <div class="resource-grid">
-      <a class="rc" href="https://www.usa.gov/voting-and-elections" target="_blank">
-        <span class="rc-tag t-gov">🏛️ USA.gov</span>
-        <h4>Voting and Elections</h4>
-        <p>The official U.S. government hub for how to register, how to vote, and how elections work.</p>
-        <div class="rc-level">⭐ Easier — Clear, official info</div>
-      </a>
+  <a class="rc" href="https://www.usa.gov/voting-and-elections" target="_blank">
+    <span class="tag">USA.gov</span>
+    <div class="rc-title">Voting and Elections</div>
+    <p>The official U.S. government hub for how to register, how to vote, and how elections work.</p>
+    <div class="level">⭐ Easier — Clear, official info</div>
+  </a>
+  <a class="rc" href="https://www.annenbergclassroom.org/" target="_blank">
+    <span class="tag">Annenberg Classroom</span>
+    <div class="rc-title">Constitution Curriculum for Students</div>
+    <p>A nonpartisan project of the University of Pennsylvania with videos, games, and a full Constitution guide.</p>
+    <div class="level">⭐⭐ Medium — Lots to explore</div>
+  </a>
+  <a class="rc" href="https://ed.icivics.org/curriculum/elections-and-voting" target="_blank">
+    <span class="tag">iCivics</span>
+    <div class="rc-title">Elections and Voting</div>
+    <p>Nonpartisan games and lessons about how elections work, founded with help from a former Supreme Court Justice.</p>
+    <div class="level">⭐⭐ Medium — Includes interactive games</div>
+  </a>
+  <a class="rc" href="https://sites.google.com/view/c-spanclassroom-featured/u-s-government-and-civics/middle-school-civics" target="_blank">
+    <span class="tag">C-SPAN Classroom</span>
+    <div class="rc-title">Middle School Civics Resources</div>
+    <p>Video tours of the Capitol, the White House, and the Supreme Court, organized by branch of government.</p>
+    <div class="level">⭐⭐ Medium — Video-based</div>
+  </a>
+  <a class="rc" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">
+    <span class="tag">National Archives</span>
+    <div class="rc-title">The Constitution — How Did It Happen?</div>
+    <p>The official story of the 1787 Constitutional Convention, straight from the agency that holds the original document.</p>
+    <div class="level">⭐⭐ Medium — Primary-source focused</div>
+  </a>
+  <a class="rc" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">
+    <span class="tag">National Archives</span>
+    <div class="rc-title">The Voting Rights Act of 1965</div>
+    <p>The full history and text of the law that outlawed literacy tests and other voting barriers.</p>
+    <div class="level">⭐⭐⭐ Harder — More detailed history</div>
+  </a>
 
-      <a class="rc" href="https://www.annenbergclassroom.org/" target="_blank">
-        <span class="rc-tag t-edu">🎓 Annenberg Classroom</span>
-        <h4>Constitution Curriculum for Students</h4>
-        <p>A nonpartisan project of the University of Pennsylvania with videos, games, and a full Constitution guide.</p>
-        <div class="rc-level">⭐⭐ Medium — Lots to explore</div>
-      </a>
-
-      <a class="rc" href="https://ed.icivics.org/curriculum/elections-and-voting" target="_blank">
-        <span class="rc-tag t-edu">🗳️ iCivics</span>
-        <h4>Elections and Voting</h4>
-        <p>Nonpartisan games and lessons about how elections work, founded with help from a former Supreme Court Justice.</p>
-        <div class="rc-level">⭐⭐ Medium — Includes interactive games</div>
-      </a>
-
-      <a class="rc" href="https://sites.google.com/view/c-spanclassroom-featured/u-s-government-and-civics/middle-school-civics" target="_blank">
-        <span class="rc-tag t-news">📺 C-SPAN Classroom</span>
-        <h4>Middle School Civics Resources</h4>
-        <p>Video tours of the Capitol, the White House, and the Supreme Court, organized by branch of government.</p>
-        <div class="rc-level">⭐⭐ Medium — Video-based</div>
-      </a>
-
-      <a class="rc" href="https://www.archives.gov/founding-docs/constitution/how-did-it-happen" target="_blank">
-        <span class="rc-tag t-gov">🏛️ National Archives</span>
-        <h4>The Constitution — How Did It Happen?</h4>
-        <p>The official story of the 1787 Constitutional Convention, straight from the agency that holds the original document.</p>
-        <div class="rc-level">⭐⭐ Medium — Primary-source focused</div>
-      </a>
-
-      <a class="rc" href="https://www.archives.gov/milestone-documents/voting-rights-act" target="_blank">
-        <span class="rc-tag t-gov">🏛️ National Archives</span>
-        <h4>The Voting Rights Act of 1965</h4>
-        <p>The full history and text of the law that outlawed literacy tests and other voting barriers.</p>
-        <div class="rc-level">⭐⭐⭐ Harder — More detailed history</div>
-      </a>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:26px 0 8px;color:var(--navy)">🗓️ Keep up with the 2026 midterms <span style="font-weight:400;font-size:.8rem;color:#666">(as of July 21, 2026)</span></h3>
-    <div class="callout c-gold" style="margin-bottom:14px">
-      <span class="callout-icon">⏳</span>
-      <div class="callout-body">
-        <p>This list is a short, dated snapshot — not a permanent resource. It will get stale as the 2026 midterms move toward Election Day on November 3, 2026. If you're reading this well after July 2026, treat these links as historical background and look for newer coverage instead.</p>
-      </div>
-    </div>
-    <div class="resource-grid">
-      <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/06/survey-reveals-political-and-cultural-factions-shaping-the-midterms" target="_blank">
-        <span class="rc-tag t-news">📺 PBS NewsHour Classroom</span>
-        <h4>Survey Reveals Political and Cultural Factions Shaping the Midterms</h4>
-        <p>Published June 17, 2026. Covers a Pew Research Center survey finding American voters split into nine distinct groups — not just two simple sides.</p>
-        <div class="rc-level">⭐⭐ Medium — Data-driven</div>
-      </a>
-
-      <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/primaries-begin-for-the-2026-midterm-elections" target="_blank">
-        <span class="rc-tag t-news">📺 PBS NewsHour Classroom</span>
-        <h4>Monitoring the Midterms: Primaries Begin for the 2026 Midterm Elections</h4>
-        <p>Published March 5, 2026. Explains how the first 2026 primaries played out in Texas, North Carolina, and Arkansas.</p>
-        <div class="rc-level">⭐⭐ Medium — Includes discussion questions</div>
-      </a>
-
-      <a class="rc" href="https://bipartisanpolicy.org/article/the-2026-midterms-key-dates-and-events/" target="_blank">
-        <span class="rc-tag t-news">🏛️ Bipartisan Policy Center</span>
-        <h4>The 2026 Midterms: Key Dates and Events</h4>
-        <p>Last updated June 29, 2026. A plain timeline of the whole election cycle, from primaries through the new Congress convening in January 2027.</p>
-        <div class="rc-level">⭐⭐⭐ Harder — Detailed timeline</div>
-      </a>
-
-      <a class="rc" href="https://circle.tufts.edu/latest-research/49-million-young-people-will-be-eligible-vote-2026-midterms" target="_blank">
-        <span class="rc-tag t-edu">🎓 CIRCLE at Tufts University</span>
-        <h4>49 Million Young People Will Be Eligible to Vote in 2026</h4>
-        <p>Published May 20, 2026. A nonpartisan academic research center's look at how many young Americans — including newly-eligible 18-year-olds — can vote this cycle.</p>
-        <div class="rc-level">⭐⭐ Medium — Research-based</div>
-      </a>
-    </div>
+  <h3 style="margin-top:44px">🗓️ Keep up with the 2026 midterms <span style="font-weight:400;font-size:.75em;color:var(--ink-faint)">(as of July 21, 2026)</span></h3>
+  <div class="callout">
+    <span class="tag">⏳ A dated snapshot, not a permanent resource</span>
+    <p>This list will get stale as the 2026 midterms move toward Election Day on November 3, 2026. If you're reading this well after July 2026, treat these links as historical background and look for newer coverage instead.</p>
   </div>
-</section>
 
-</main>
+  <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/06/survey-reveals-political-and-cultural-factions-shaping-the-midterms" target="_blank">
+    <span class="tag">PBS NewsHour Classroom</span>
+    <div class="rc-title">Survey Reveals Political and Cultural Factions Shaping the Midterms</div>
+    <p>Published June 17, 2026. Covers a Pew Research Center survey finding American voters split into nine distinct groups — not just two simple sides.</p>
+    <div class="level">⭐⭐ Medium — Data-driven</div>
+  </a>
+  <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/primaries-begin-for-the-2026-midterm-elections" target="_blank">
+    <span class="tag">PBS NewsHour Classroom</span>
+    <div class="rc-title">Monitoring the Midterms: Primaries Begin for the 2026 Midterm Elections</div>
+    <p>Published March 5, 2026. Explains how the first 2026 primaries played out in Texas, North Carolina, and Arkansas.</p>
+    <div class="level">⭐⭐ Medium — Includes discussion questions</div>
+  </a>
+  <a class="rc" href="https://bipartisanpolicy.org/article/the-2026-midterms-key-dates-and-events/" target="_blank">
+    <span class="tag">Bipartisan Policy Center</span>
+    <div class="rc-title">The 2026 Midterms: Key Dates and Events</div>
+    <p>Last updated June 29, 2026. A plain timeline of the whole election cycle, from primaries through the new Congress convening in January 2027.</p>
+    <div class="level">⭐⭐⭐ Harder — Detailed timeline</div>
+  </a>
+  <a class="rc" href="https://circle.tufts.edu/latest-research/49-million-young-people-will-be-eligible-vote-2026-midterms" target="_blank">
+    <span class="tag">CIRCLE at Tufts University</span>
+    <div class="rc-title">49 Million Young People Will Be Eligible to Vote in 2026</div>
+    <p>Published May 20, 2026. A nonpartisan academic research center's look at how many young Americans — including newly-eligible 18-year-olds — can vote this cycle.</p>
+    <div class="level">⭐⭐ Medium — Research-based</div>
+  </a>
+</div>
 
 <footer>
   <p>Made for 8th grade Social Studies students · All links go to trusted, nonpartisan news and educational sources · Updated July 2026</p>
-  <p style="margin-top:6px;font-size:.75rem">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
-  <p style="margin-top:10px;font-size:.78rem;background:#f0f0f0;display:inline-block;padding:8px 18px;border-radius:20px">
-    🌐 <strong>Want to share this page?</strong> Host it free on
-    <a href="https://pages.github.com" target="_blank" style="color:var(--navy-l)">GitHub Pages</a> ·
-    <a href="https://app.netlify.com/drop" target="_blank" style="color:var(--navy-l)">Netlify Drop</a> · or
-    <a href="https://sites.google.com" target="_blank" style="color:var(--navy-l)">Google Sites</a>
-  </p>
-  <p style="margin-top:6px;font-size:.75rem">💡 <strong>Teacher tip:</strong> Try the Konami code on this page ↑↑↓↓←→←→BA</p>
+  <p style="margin-top:6px">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
+  <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
   <div class="secret-text" aria-hidden="true">We the People — E Pluribus Unum</div>
 </footer>
 
-<!-- ════════════════════════════════════════════════════
-     JAVASCRIPT: QUIZ SYSTEM + EASTER EGGS
-════════════════════════════════════════════════════ -->
+<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">Aa Dyslexic Font</button>
+
 <script>
-// ─── STATE ───
 let pts = 0;
 let answeredQuizzes = new Set();
 let flagClicks = 0;
 let timelineClicks = 0;
-let statClicks = { geography: new Set() };
+let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 6; // 6 quiz entries (q1-q6), 1 pt each -- confirmed via Task 10 verification pass
+const MAX_PTS = 8;
 
-// ─── QUIZ DATA ───
-// Six quiz entries (q1-q6) were added incrementally across Tasks 2-8 as each section was built.
 const quizzes = {
   q1: {
     q: "Which branch of government is responsible for MAKING the laws?",
@@ -1484,7 +924,6 @@ const quizzes = {
   }
 };
 
-// ─── QUIZ FUNCTIONS ───
 function openQuiz(id) {
   if (answeredQuizzes.has(id)) {
     showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
@@ -1503,7 +942,7 @@ function openQuiz(id) {
   });
   document.getElementById('quizFeedback').className = 'quiz-feedback';
   document.getElementById('quizFeedback').textContent = '';
-  document.getElementById('quizModal').style.display = 'flex';
+  document.getElementById('quizModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function handleAnswer(id, chosen, btn) {
@@ -1515,48 +954,34 @@ function handleAnswer(id, chosen, btn) {
     btn.classList.add('correct');
     fb.textContent = q.feedback;
     fb.className = 'quiz-feedback show correct-fb';
-    if (!answeredQuizzes.has(id)) {
-      answeredQuizzes.add(id);
-      addPoints(1);
-    }
+    if (!answeredQuizzes.has(id)) { answeredQuizzes.add(id); addPoints(1); }
   } else {
     btn.classList.add('wrong');
     allBtns[q.correct].classList.add('correct');
     fb.textContent = q.wrong;
     fb.className = 'quiz-feedback show wrong-fb';
-    answeredQuizzes.add(id); // still count as answered so they can't retry for points
+    answeredQuizzes.add(id);
   }
 }
 function closeQuiz() {
-  document.getElementById('quizModal').style.display = 'none';
+  document.getElementById('quizModal').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-// ─── POINTS SYSTEM ───
 function addPoints(n) {
   pts = Math.min(pts + n, MAX_PTS);
   document.getElementById('pointsDisplay').textContent = pts + ' pts';
-  document.getElementById('progressFill').style.width = (MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0) + '%';
-
-  if (pts >= 3) {
-    const el = document.getElementById('unlock-section-1');
-    if (el) { el.style.display = 'block'; el.classList.add('revealed'); }
-  }
+  document.getElementById('progressFill').style.width = (pts / MAX_PTS * 100) + '%';
   if (pts >= 5) {
-    const el = document.getElementById('unlock-5pts');
-    if (el) el.classList.add('show');
-    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus!';
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus.';
     showToast('🌟','5 Points!','You unlocked a bonus deep dive!');
   }
-  if (pts >= 10) {
-    const el = document.getElementById('unlock-10pts');
-    if (el) el.classList.add('show');
+  if (pts >= MAX_PTS) {
     document.getElementById('unlockHint').textContent = '🏆 Maximum points — Civics Expert unlocked!';
-    showToast('🏆','Civics Expert!','You hit 10 points! Check the final bonus.');
+    showToast('🏆','Civics Expert!',"You hit " + MAX_PTS + " points! Check the final bonus.");
   }
 }
 
-// ─── TOAST ───
 let toastTimer;
 function showToast(icon, title, msg) {
   document.getElementById('toastIcon').textContent = icon;
@@ -1573,9 +998,8 @@ function handleFlagClick() {
   flagClicks++;
   const flag = document.getElementById('heroFlag');
   flag.classList.remove('shake');
-  void flag.offsetWidth; // reset animation
+  void flag.offsetWidth;
   flag.classList.add('shake');
-
   if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
   if (flagClicks >= 5) {
     flagClicks = 0;
@@ -1586,42 +1010,31 @@ function handleFlagClick() {
   }
 }
 
-// ─── EASTER EGG: STAT BOXES ───
-function handleStatClick(el, category) {
+// ─── EASTER EGG: STAT BOX CLICK-ALL (real target: the Legislative branch stat-pair) ───
+function handleStatClick(el) {
   el.classList.add('clicked');
-  if (!statClicks[category]) statClicks[category] = new Set();
-  statClicks[category].add(el);
-
-  const totalInGrid = document.querySelectorAll('#statGrid .stat-box').length;
-  if (totalInGrid > 0 && statClicks[category].size >= totalInGrid) {
-    const el2 = document.getElementById('stat-unlock');
-    if (el2) { el2.style.display = 'block'; el2.classList.add('revealed'); }
-    showToast('🗺️','Explorer!','You clicked all the stat boxes — bonus fact unlocked!');
+  statClicks.add(el);
+  const totalInPair = el.closest('.stat-pair').querySelectorAll('.stat').length;
+  if (statClicks.size >= totalInPair) {
+    showEgg('🔢','You clicked every number!',
+      'A few more Congress numbers worth knowing:\n\nThe Constitution set the House at whatever size Congress wants — it has actually changed size several times in U.S. history. It has been fixed at <strong>435 members</strong> since a 1929 law called the Permanent Apportionment Act.\n\nThe Senate\'s size, on the other hand, is locked into the Constitution itself: <strong>exactly two per state</strong>, forever, unless a state itself agrees to give up equal representation — a rule the Constitution singles out as (almost) unamendable.',
+      '435 + 100 = 535');
     addPoints(1);
-    statClicks[category] = new Set(); // reset
+    statClicks.clear();
   }
 }
 
-// ─── EASTER EGG: TIMELINE LINE CLICKS ───
-document.addEventListener('DOMContentLoaded', () => {
-  const tl = document.getElementById('mainTimeline');
-  if (tl) {
-    tl.addEventListener('dblclick', (e) => {
-      const rect = tl.getBoundingClientRect();
-      if (e.clientX - rect.left < 40) { // clicked on the line area
-        timelineClicks++;
-        if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click the timeline line again...');
-        if (timelineClicks >= 2) {
-          timelineClicks = 0;
-          const el = document.getElementById('timeline-egg');
-          if (el) { el.style.display = 'block'; el.classList.add('revealed'); }
-          showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
-          addPoints(1);
-        }
-      }
-    });
+// ─── EASTER EGG: TIMELINE DOUBLE-CLICK ───
+function handleTimelineDblClick(e) {
+  timelineClicks++;
+  if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click again...');
+  if (timelineClicks >= 2) {
+    timelineClicks = 0;
+    document.getElementById('timeline-egg').classList.add('revealed');
+    showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
+    addPoints(1);
   }
-});
+}
 
 // ─── EASTER EGG: KONAMI CODE ───
 document.addEventListener('keydown', (e) => {
@@ -1630,7 +1043,7 @@ document.addEventListener('keydown', (e) => {
     if (konamiIndex === KONAMI.length) {
       konamiIndex = 0;
       showEgg('🎮','You found the Konami Code easter egg!',
-        'Congratulations — you\'re officially the most curious student in the class! 🏆\n\nHere\'s a teacher secret: the study of how government, elections, and power work is called <strong>political science</strong>.\n\nIf you want to learn more, check out <em><a href="https://www.icivics.org" target="_blank" style="color:var(--gold-l)">iCivics</a></em> — a free, nonpartisan civics education site.',
+        'Congratulations — you\'re officially the most curious student in the class! 🏆\n\nHere\'s a teacher secret: the study of how government, elections, and power work is called <strong>political science</strong>.\n\nIf you want to learn more, check out <em><a href="https://www.icivics.org" target="_blank" style="color:var(--accent)">iCivics</a></em> — a free, nonpartisan civics education site.',
         '↑↑↓↓←→←→BA');
       addPoints(1);
     }
@@ -1639,12 +1052,11 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ─── EGG MODAL HELPERS ───
-function showEgg(emoji, title, text, farsi) {
+function showEgg(emoji, title, text, extra) {
   document.getElementById('eggEmoji').textContent = emoji;
   document.getElementById('eggTitle').textContent = title;
   document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
-  document.getElementById('eggFarsi').textContent = farsi || '';
+  document.getElementById('eggExtra').textContent = extra || '';
   document.getElementById('eggModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -1655,12 +1067,7 @@ function closeEgg() {
 document.getElementById('eggModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('eggModal')) closeEgg();
 });
-</script>
 
-<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
-  Aa Dyslexic Font
-</button>
-<script>
 function toggleDyslexic(){
   document.body.classList.toggle('dyslexic');
   const on = document.body.classList.contains('dyslexic');

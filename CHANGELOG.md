@@ -2,6 +2,16 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.4.0] — 2026-07-23
+
+**Minor — US Elections & Government page rebuilt; site-wide editorial redesign complete.**
+
+- `us-elections.html` fully rebuilt in the same warm-newsprint editorial system as every other page — same civics content, sources, and citations as before, restyled: the three-branches diagram, the checks-and-balances data table (kept as a table, not reverted to an earlier circles/arrows draft), the 2026 midterms update-pane, the Alderwood-area district lookup (WA's 21st Legislative District / 1st Congressional District) with full candidate lists, a 5-entry voting-rights history timeline, Key People (James Madison, John Lewis), both videos, resources including the dated midterms-links subsection, and all 6 quizzes.
+- Deliberately kept this page's own navy/gold accent color instead of the shared newsprint red used on every other page — the original build chose navy/gold specifically to avoid an accidental red/blue two-party visual cue, and that reasoning still holds under the new design system.
+- Fixed three dead easter-egg code paths found during the rebuild: a stat-click handler, a timeline double-click reveal, and the 5pt/10pt point-unlock tiers all referenced DOM element IDs that didn't exist anywhere in the live page, so triggering them silently did nothing. Given real targets: the House/Senate stat-pair now reveals a sourced bonus fact about the House's fixed 435-seat cap versus the Senate's constitutionally-set size, and the timeline double-click reveals a sourced fact about the 17th Amendment (direct election of Senators). Adjusted the max achievable point total to match.
+- Nonpartisanship discipline preserved exactly: officeholders named by role only, every candidate list shows party equally, all platform links go only to each candidate's own campaign site — no wording, dates, or numbers were refreshed as part of this restyle.
+- **This completes the site-wide editorial redesign begun in v2.0.0.** Every page — `index.html`, `iran.html`, `climate-change.html`, `ukraine.html`, `ai.html`, and `us-elections.html` — is now on the unified warm-newsprint design system. Future new topics (Immigration, Gun Violence, Space Race) will be built directly in this system from the start.
+
 ## [2.3.0] — 2026-07-23
 
 **Minor — AI & Society page rebuilt in the editorial design system.**
