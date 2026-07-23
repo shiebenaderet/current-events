@@ -4,1600 +4,822 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Frozen Time Capsules: What Ice Can Tell Us About Climate Change – Student Resource</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<meta name="description" content="Free, student-friendly explainer on climate change — deep-time ice-core evidence, the greenhouse effect, and Washington State's own climate story. Made by an 8th grade Social Studies teacher.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <style>
-/* ─── RESET & BASE ─── */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:#f7f4ee;color:#2c2c2c;line-height:1.7;font-size:17px;overflow-x:hidden;overflow-wrap:break-word}
-
-/* ─── CSS VARIABLES ─── */
-/* Earth-science-appropriate palette: slate/ice/forest — distinct from Iran's
-   red/gold, Ukraine's blue/yellow, AI's blue/purple, and US Elections'
-   navy/gold/green. Slate reads as rock/stone (geological framing), ice as
-   glacier/ice-core evidence, forest as PNW forest — three distinct accent
-   colors, none of them a red/blue political binary, for a page whose
-   Washington-policy sub-section still calls for nonpartisan color choices. */
 :root{
-  --cream:#f7f4ee;--warm-white:#fffdf8;
-  --slate:#2e3d49;--slate-l:#44586a;--slate-ll:#e7edf1;
-  --ice:#5fa8c9;--ice-l:#8fc4dc;--ice-ll:#e3f2f8;
-  --forest:#2f6b4f;--forest-l:#e5f0e8;
-  --border:#ddd6c5;--mid:#666;
-  --shadow:0 4px 20px rgba(0,0,0,.1);
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  --accent:#a02c2c; --accent-ink:#6b1414; --accent-tint:#f6e9e6;
+}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+/* ══════════════ MASTHEAD (NYT-inspired: centered wordmark, hairline rules, dense utility nav) ══════════════ */
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;
+  letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule);
+}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
 }
 
-/* ─── HERO ─── */
-.hero{
-  position:relative;min-height:420px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:70px 24px 60px;text-align:center;overflow:hidden;
-  background:#1c2a33;
+.section-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  padding:0 6vw;border-bottom:1px solid var(--rule);
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;
+  background:var(--paper);position:sticky;top:0;z-index:150;
 }
-.hero-bg{
-  position:absolute!important;inset:0;z-index:0;
-  background:linear-gradient(160deg,var(--slate) 0%,#111d24 60%,#0d2430 100%);
+.section-nav a{
+  color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;
+  white-space:nowrap;
 }
-.hero-overlay{
-  position:absolute!important;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(46,61,73,.25) 0%,rgba(0,0,0,.2) 50%,rgba(46,61,73,.35) 100%);
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav a.hub{color:var(--accent);font-weight:800}
+
+/* ══════════════ ARTICLE HERO (Atlantic-inspired: full-bleed image behind headline) ══════════════ */
+.article-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
+.article-hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,10,.05) 0%,rgba(10,10,10,.15) 45%,rgba(8,8,8,.88) 100%),
+             url('images/ice-core-hero.jpg') center 38%/cover no-repeat;
 }
-.hero>*{position:relative;z-index:2}
-.hero-flag{
-  font-size:64px;cursor:pointer;
-  filter:drop-shadow(0 3px 12px rgba(0,0,0,.5));
-  transition:transform .2s;user-select:none;
-  display:inline-block;
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 6vw 64px;text-align:center}
+.article-hero .kicker{
+  display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#f0dede;background:var(--accent);
+  padding:5px 14px;margin-bottom:22px;
 }
-.hero-flag:hover{transform:scale(1.1) rotate(-3deg)}
-.hero-flag.shake{animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;
-  color:white;text-shadow:0 2px 12px rgba(0,0,0,.5);
-  margin:10px 0 8px;letter-spacing:-.5px;
+.article-hero h1{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:1.04;color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:22px;
 }
-.hero-sub{color:rgba(255,255,255,.9);font-size:clamp(1rem,2.5vw,1.2rem);font-weight:600;margin-bottom:16px;max-width:560px}
-.hero-note{
-  display:inline-block;background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3);border-radius:30px;
-  padding:8px 22px;font-size:.85rem;color:rgba(255,255,255,.9);
-  backdrop-filter:blur(6px);
+.article-hero .dek{
+  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;
+  color:#f0ece4;max-width:640px;margin:0 auto 24px;
 }
+.article-hero .byline{
+  font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);
+  letter-spacing:.03em;
+}
+.article-hero .byline a{color:inherit}
 .hero-credit{
-  position:absolute;bottom:8px;right:10px;z-index:2;
-  font-size:.65rem;color:rgba(255,255,255,.5);
+  position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;
 }
-.hero-credit a{color:rgba(255,255,255,.55);text-decoration:none}
+.hero-credit a{color:inherit}
 
-/* ─── POINTS BAR ─── */
-.points-bar{
-  background:#1a1a1a;color:white;
-  padding:10px 24px;display:flex;align-items:center;justify-content:center;
-  gap:20px;font-size:.88rem;font-weight:700;flex-wrap:wrap;
+/* ══════════════ SECTION HEADS (New Yorker-inspired: spare, rule-driven) ══════════════ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{
+  font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:800;
 }
-.points-display{
-  background:linear-gradient(135deg,var(--ice),var(--ice-l));
-  color:#0a2a38;border-radius:20px;padding:4px 16px;
-  font-weight:900;font-size:.95rem;
+.sec-head h2{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem);
+  line-height:1.15;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px;
 }
-.unlock-hint{color:#aaa;font-size:.78rem;font-weight:600}
 
-/* ─── NAV ─── */
-.sticky-nav{
-  background:var(--warm-white);border-bottom:2px solid var(--border);
-  padding:12px 20px;display:flex;gap:8px;flex-wrap:wrap;
-  justify-content:center;position:sticky;top:0;z-index:200;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+/* ══════════════ ARTICLE BODY — single reading column, no margin rail ══════════════ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.18rem;line-height:1.75;margin:0 0 24px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.4rem;
+  margin:38px 0 16px;color:var(--ink);
 }
-.sticky-nav a{
-  display:inline-block;padding:7px 16px;border-radius:30px;
-  font-weight:700;font-size:.82rem;text-decoration:none;
-  transition:all .2s;border:2px solid transparent;
-}
-.sticky-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.n-update{background:var(--ice);color:white}
-.n-deep{background:var(--slate);color:white}
-.n-green{background:var(--slate-l);color:white}
-.n-diff{background:var(--forest);color:white}
-.n-effects{background:var(--ice);color:white}
-.n-wa{background:var(--forest);color:white}
-.n-hist{background:var(--slate);color:white}
-.n-people{background:var(--slate-l);color:white}
-.n-vid{background:var(--ice);color:white}
-.n-links{background:#2c2c2c;color:white}
-.n-hub{background:#2c2c2c;color:white}
-.n-sib{background:var(--slate-l);color:white}
 
-/* ─── MAIN ─── */
-main{max-width:920px;margin:0 auto;padding:0 20px 60px}
+/* Signature: drop cap opens the FIRST paragraph of every section */
+.article p.lede::first-letter{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:5.4rem;line-height:.78;
+  float:left;padding:6px 10px 0 0;color:var(--accent);
+}
 
-/* ─── SECTION CARDS ─── */
-.s-card{
-  background:white;border-radius:18px;margin:28px 0;overflow:hidden;
-  box-shadow:var(--shadow);border:1px solid var(--border);
-  animation:fadeUp .5s ease both;
+/* inline citations: visible source name, quiet but legible — never hover-only */
+.cite-inline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);
+  text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;
+  letter-spacing:.01em;
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.s-card:nth-child(2){animation-delay:.05s}.s-card:nth-child(3){animation-delay:.1s}
-.s-card:nth-child(4){animation-delay:.15s}.s-card:nth-child(5){animation-delay:.2s}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
+.cite-inline:hover::before,.cite-inline:hover::after{color:var(--accent)}
 
-.s-header{
-  padding:22px 28px 16px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:14px;
-  min-width:0;
+/* pull quotes (Atlantic-style: large, set into the column, hairline rules top/bottom) */
+.pull-quote{
+  margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy);
 }
-.s-header h2{min-width:0}
-.s-icon{
-  width:52px;height:52px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;
+.pull-quote p{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+  font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0;
 }
-.si-slate{background:var(--slate-ll)}.si-forest{background:var(--forest-l)}
-.si-ice{background:var(--ice-ll)}.si-dark{background:#e8e8e8}
+.pull-quote .attrib{
+  display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;
+  font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase;
+}
 
-.s-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.65rem);font-weight:700;line-height:1.25}
-.q-label{font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.5;display:block;margin-bottom:2px}
-.s-body{padding:24px 28px}
-.s-body p{margin-bottom:13px}
-.s-body p:last-child{margin-bottom:0}
-.s-body ul{margin:0 0 13px 22px}
-.s-body ul li{margin-bottom:6px}
-.s-body ul li:last-child{margin-bottom:0}
+/* stat callout: big number set inline in the flow, not boxed */
+.stat-line{
+  display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3.2rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
 
-/* ─── IMAGES ─── */
-.img-hero-section{
-  width:100%;height:260px;object-fit:cover;
-  border-bottom:1px solid var(--border);display:block;
-}
-.img-caption{
-  background:#f7f3ed;padding:10px 18px;
-  font-size:.78rem;color:var(--mid);font-style:italic;
-  border-bottom:1px solid var(--border);
-}
-.img-caption a{color:var(--slate-l);font-size:.75rem}
+/* two-up stat pair */
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .stat{text-align:left}
+.stat-pair .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.6rem;color:var(--accent);line-height:1}
+.stat-pair .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+@media (max-width:560px){.stat-pair{grid-template-columns:1fr}}
 
-.img-inline{
-  width:100%;border-radius:12px;margin:14px 0;
-  object-fit:cover;display:block;box-shadow:0 2px 12px rgba(0,0,0,.1);
+/* vocab / key word: inline, treated as a definition aside not a colored box */
+.vocab{
+  margin:28px 0;padding-left:20px;border-left:3px solid var(--accent);
 }
-.img-float{
-  float:right;width:42%;margin:0 0 14px 20px;
-  border-radius:12px;object-fit:cover;
-  box-shadow:0 3px 14px rgba(0,0,0,.15);
+.vocab b{
+  display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:800;
 }
-.img-float-left{
-  float:left;width:42%;margin:0 20px 14px 0;
-  border-radius:12px;object-fit:cover;
-  box-shadow:0 3px 14px rgba(0,0,0,.15);
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* callout / think-about-it: set as an editor's note */
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{
+  display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;
 }
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+
+/* full-bleed inline photo (Atlantic points-of-entry style) */
+.photo-break{margin:40px calc(50% - 50vw) 40px;width:100vw}
+.photo-break img{width:100%;max-height:520px;object-fit:cover;display:block}
+.photo-break .cap{
+  max-width:700px;margin:10px auto 0;padding:0 6vw;font-family:-apple-system,sans-serif;
+  font-size:.76rem;color:var(--ink-faint);line-height:1.5;
+}
+.photo-break .cap a{color:inherit}
+
+/* smaller inline photo, right-aligned like a magazine spot image */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
 .clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
 
-/* Portrait spotlight effect (CSS alternative to bg removal) */
-.portrait-wrap{
-  position:relative;display:inline-block;border-radius:50%;overflow:hidden;
-  box-shadow:0 4px 20px rgba(0,0,0,.3);
-}
-.portrait-wrap::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at center,transparent 50%,rgba(20,20,40,.55) 100%);
-  pointer-events:none;
-}
+/* chart: quiet frame, no card chrome */
+.chart-wrap{margin:36px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
 
-/* ─── CITATIONS ─── */
-cite-link{
-  display:inline;font-size:.7rem;font-weight:700;
-  vertical-align:super;line-height:0;
+/* quiz toggle: a real button-like affordance, not a quiet text link — this is the
+   one place on the page the reader is asked to DO something rather than read */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:-apple-system,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.03em;
+  text-transform:uppercase;color:#fff;background:var(--accent);border:none;
+  cursor:pointer;padding:11px 20px;
 }
-cite-link a{
-  color:var(--slate-l);text-decoration:none;
-  background:var(--slate-ll);border-radius:3px;padding:1px 4px;
-  border:1px solid rgba(68,88,106,.2);transition:all .15s;
+.quiz-toggle::after{content:'→';font-weight:700;transition:transform .15s}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle:hover::after{transform:translateX(3px)}
+.quiz-toggle.open::after{content:'✕';font-size:.85em}
+.quiz-body{display:none;margin-top:16px;padding:20px 24px;background:var(--paper-warm)}
+.quiz-body.open{display:block}
+.quiz-q{font-family:-apple-system,sans-serif;font-weight:700;font-size:.96rem;margin-bottom:14px;color:var(--ink)}
+.quiz-choice{
+  display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);
+  padding:11px 14px;margin-bottom:8px;font-family:-apple-system,sans-serif;font-size:.88rem;
+  cursor:pointer;color:var(--ink);
 }
-cite-link a:hover{background:var(--slate-l);color:white}
+.quiz-choice:hover{border-color:var(--ink)}
+.quiz-choice.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.quiz-choice.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.quiz-fb{font-family:-apple-system,sans-serif;font-size:.86rem;margin-top:10px;display:none;color:var(--ink-light)}
+.quiz-fb.show{display:block}
 
-/* ─── STATS ─── */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:16px 0}
-.stat-box{
-  border-radius:12px;padding:16px 12px;text-align:center;cursor:pointer;
-  transition:transform .2s,box-shadow .2s;user-select:none;position:relative;
+/* timeline: rule-based, not card-based */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--accent);
+  flex-shrink:0;width:120px;
 }
-.stat-box:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.stat-box.clicked{animation:pop .3s ease}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;line-height:1.1;display:block;margin-bottom:3px}
-.stat-label{font-size:.75rem;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.4px}
-.stat-source{font-size:.65rem;opacity:.6;margin-top:4px;display:block}
-.s-slate{background:var(--slate-ll);color:var(--slate)}
-.s-forest{background:var(--forest-l);color:var(--forest)}
-.s-ice{background:var(--ice-ll);color:#0a5a78}
-.s-dark{background:#e8e8e8;color:#333}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.1rem;margin-bottom:8px}
+.tl-body p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
 
-/* ─── DIAGRAMS (custom inline SVG, no external assets) ─── */
-.diagram-wrap{margin:18px 0;padding:18px 14px;background:#faf8f4;border-radius:14px;border:1px solid var(--border)}
-.diagram-caption{text-align:center;font-size:.78rem;color:var(--mid);font-style:italic;margin-top:10px}
+/* person: editorial bio treatment */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{
+  width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%);
+}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0;color:var(--ink-light)}
 
-/* ─── VOCAB ─── */
-.vocab{background:#eef6fa;border-left:4px solid var(--ice);border-radius:0 10px 10px 0;padding:13px 17px;margin:14px 0;font-size:.9rem}
-.vocab strong{color:#0a5a78}
+/* video */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:-20px 0 30px}
 
-/* ─── CALLOUT ─── */
-.callout{border-radius:12px;padding:16px 18px;margin:15px 0;display:flex;gap:13px;align-items:flex-start}
-.callout-icon{font-size:1.4rem;flex-shrink:0;margin-top:1px}
-.callout-body{min-width:0}
-.callout-body h4{font-size:.97rem;font-weight:800;margin-bottom:4px}
-.callout-body p{font-size:.88rem;margin:0;line-height:1.6}
-.c-slate{background:var(--slate-ll);border:1px solid #b7c6d3}
-.c-forest{background:var(--forest-l);border:1px solid #a8d0b6}
-.c-ice{background:var(--ice-ll);border:1px solid #b6dded}
-.c-dark{background:#e8e8e8;border:1px solid #ccc}
+/* resources: list, not cards */
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
 
-/* ─── TIMELINE ─── */
-.timeline{position:relative;padding:8px 0}
-.timeline::before{
-  content:'';position:absolute;left:24px;top:0;bottom:0;width:3px;
-  background:linear-gradient(to bottom,var(--ice-l),var(--slate),var(--slate-l));
-  border-radius:3px;cursor:pointer;
-}
-.tl-item{display:flex;gap:18px;margin-bottom:26px;position:relative;padding-left:62px}
-.tl-dot{
-  width:22px;height:22px;border-radius:50%;flex-shrink:0;
-  position:absolute;left:14px;top:4px;border:3px solid white;
-  box-shadow:0 0 0 2px currentColor;
-}
-.tl-ice{color:var(--ice);background:var(--ice)}
-.tl-slate{color:var(--slate);background:var(--slate)}
-.tl-forest{color:var(--forest);background:var(--forest)}
-.tl-dark{color:#444;background:#444}
-
-.tl-content{flex:1;min-width:0}
-.tl-year{font-weight:800;font-size:.76rem;letter-spacing:1px;text-transform:uppercase;opacity:.6;margin-bottom:2px}
-.tl-title{font-family:'Source Serif 4',serif;font-size:1.05rem;font-weight:600;margin-bottom:5px;line-height:1.35}
-.tl-desc{font-size:.9rem;color:#555;line-height:1.65}
-.tl-link{display:inline-block;margin-top:6px;font-size:.81rem;font-weight:700;color:var(--slate-l);text-decoration:none;border-bottom:1px dashed var(--slate-l)}
-.tl-link:hover{color:var(--ice);border-color:var(--ice)}
-
-/* Images inside timeline items */
-.tl-img{width:100%;border-radius:10px;margin:10px 0 6px;object-fit:cover;max-height:200px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.tl-img-right{float:right;width:45%;margin:0 0 10px 14px;border-radius:10px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-
-/* ─── QUIZ SYSTEM ─── */
-.quiz-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,var(--slate),var(--slate-l));
-  color:white;border:none;border-radius:30px;
-  padding:9px 20px;font-size:.87rem;font-weight:800;
-  cursor:pointer;margin-top:10px;transition:all .2s;
-  font-family:'Nunito',sans-serif;
-}
-.quiz-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(46,61,73,.35)}
-.quiz-btn:active{transform:scale(.97)}
-
-.quiz-modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.65);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1000;padding:20px;backdrop-filter:blur(4px);
-  animation:fadeIn .2s ease;
-}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.quiz-box{
-  background:white;border-radius:20px;padding:30px;max-width:500px;width:100%;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;
-}
-.quiz-box h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;color:var(--slate)}
-.quiz-q{font-size:1.1rem;font-weight:700;margin:14px 0 18px;line-height:1.4}
-.quiz-choices{display:flex;flex-direction:column;gap:10px}
-.choice-btn{
-  background:var(--slate-ll);border:2px solid #ddd;border-radius:12px;
-  padding:12px 18px;font-size:.95rem;font-weight:700;cursor:pointer;
-  text-align:left;transition:all .2s;font-family:'Nunito',sans-serif;
-  color:#2c2c2c;
-}
-.choice-btn:hover{background:#d8e3ea;border-color:var(--slate)}
-.choice-btn.correct{background:var(--forest-l);border-color:var(--forest);color:var(--forest)}
-.choice-btn.wrong{background:#fbe9e9;border-color:#b0453b;color:#8a2f26}
-.choice-btn:disabled{cursor:default}
-.quiz-feedback{
-  margin-top:16px;padding:14px;border-radius:10px;font-weight:700;
-  font-size:.95rem;line-height:1.5;display:none;
-}
-.quiz-feedback.show{display:block}
-.quiz-feedback.correct-fb{background:var(--forest-l);color:var(--forest);border:1px solid #a8d8b9}
-.quiz-feedback.wrong-fb{background:#fbe9e9;color:#8a2f26;border:1px solid #e0b8b3}
-.quiz-close{
-  position:absolute;top:14px;right:16px;background:none;border:none;
-  font-size:1.5rem;cursor:pointer;color:var(--mid);line-height:1;
-}
-.quiz-close:hover{color:var(--slate)}
-
-/* ─── PEOPLE CARDS ─── */
-.people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px}
-.person-card{
-  border-radius:14px;padding:20px 16px;border:1px solid var(--border);
-  background:#fafafa;text-align:center;transition:all .2s;
-}
-.person-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.person-portrait{
-  width:90px;height:90px;border-radius:50%;object-fit:cover;
-  display:block;margin:0 auto 12px;
-  box-shadow:0 3px 14px rgba(0,0,0,.2);
-  /* spotlight/focus CSS effect */
-  filter:contrast(1.05) saturate(1.1);
-  position:relative;
-}
-.portrait-ring{
-  width:96px;height:96px;border-radius:50%;margin:0 auto 12px;
-  background:linear-gradient(135deg,var(--ice),var(--slate));padding:3px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.2);
-}
-.portrait-inner{
-  width:90px;height:90px;border-radius:50%;overflow:hidden;
-  position:relative;
-}
-.portrait-inner img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
-.portrait-inner::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 50% 40%,transparent 45%,rgba(20,20,40,.4) 100%);
-}
-.person-emoji-fallback{
-  width:90px;height:90px;border-radius:50%;
-  background:linear-gradient(135deg,#e8e8e8,#ccc);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.2rem;margin:0 auto 12px;
-}
-.person-card h4{font-size:.97rem;font-weight:800;margin-bottom:3px}
-.person-role{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--mid);margin-bottom:8px}
-.person-card p{font-size:.83rem;color:#555;line-height:1.55;text-align:left}
-.person-citation{font-size:.7rem;color:var(--mid);margin-top:6px;font-style:italic}
-.person-citation a{color:var(--slate-l)}
-
-/* ─── RESOURCES ─── */
-.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:13px}
-.rc{
-  border:2px solid var(--border);border-radius:12px;padding:16px 17px;
-  text-decoration:none;color:inherit;display:block;transition:all .2s;background:#fafafa;
-}
-.rc:hover{border-color:var(--slate-l);background:#eef1f4;transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,.1)}
-.rc-tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:8px}
-.t-civ{background:var(--slate-ll);color:var(--slate)}.t-gov{background:var(--forest-l);color:#155a2e}
-.t-edu{background:var(--ice-ll);color:#0a5a78}.t-news{background:#f5f5f5;color:#333}
-.rc h4{font-size:.93rem;font-weight:700;line-height:1.4;margin-bottom:4px}
-.rc p{font-size:.8rem;color:var(--mid);line-height:1.5}
-.rc-level{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:.6;margin-top:5px}
-
-/* ─── EASTER EGG MODAL ─── */
-.egg-modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.75);
-  display:none;align-items:center;justify-content:center;
-  z-index:2000;padding:20px;
-}
-.egg-modal.show{display:flex;animation:fadeIn .3s ease}
-.egg-box{
-  background:linear-gradient(135deg,#1a1a2e,#16213e);
-  border-radius:24px;padding:36px;max-width:480px;width:100%;
-  text-align:center;color:white;
-  box-shadow:0 25px 70px rgba(0,0,0,.5);
-  border:2px solid rgba(143,196,220,.3);
-}
-.egg-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--ice-l);margin-bottom:10px}
-.egg-box p{font-size:1rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:14px}
-.egg-farsi{font-size:2.2rem;color:var(--ice-l);margin:10px 0;letter-spacing:2px}
-.egg-close{
-  background:var(--ice);color:#0a2a38;border:none;border-radius:30px;
-  padding:10px 28px;font-weight:900;font-size:1rem;cursor:pointer;
-  font-family:'Nunito',sans-serif;margin-top:8px;transition:all .2s;
-}
-.egg-close:hover{background:var(--ice-l);transform:scale(1.05)}
-
-/* ─── ACHIEVEMENT TOAST ─── */
-.toast{
-  position:fixed;top:20px;right:20px;z-index:3000;
-  background:linear-gradient(135deg,#1a6640,#2d8f58);
-  color:white;border-radius:14px;padding:14px 20px;
-  box-shadow:0 8px 28px rgba(0,0,0,.25);
-  max-width:300px;transform:translateX(120%);
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s ease;
-  font-weight:700;font-size:.9rem;
-  opacity:0;pointer-events:none;
-}
-.toast.show{transform:translateX(0);opacity:1;pointer-events:auto}
-.toast-icon{font-size:1.3rem;display:block;margin-bottom:3px}
-.toast-title{font-size:1rem;font-weight:900}
-.toast-msg{font-size:.82rem;font-weight:600;opacity:.9;margin-top:2px}
-
-/* ─── HIDDEN SECTION ─── */
-.hidden-section{
-  display:none;border:2px dashed var(--ice);
-  background:var(--ice-ll);border-radius:16px;padding:22px;margin:16px 0;
-}
-.hidden-section.revealed{display:block;animation:fadeUp .5s ease}
-.hidden-section h4{color:#0a5a78;font-size:1rem;font-weight:900;margin-bottom:8px}
-
-/* Secret tiny text */
-.secret-text{color:#f7f4ee;font-size:.5px;user-select:none;position:absolute}
-
-/* ─── SCORE UNLOCK BOX ─── */
-.unlock-box{
-  background:linear-gradient(135deg,#1a1a2e,#16213e);
-  border-radius:14px;padding:20px 24px;margin:20px 0;
-  color:white;text-align:center;display:none;
-}
-.unlock-box.show{display:block;animation:fadeUp .5s ease}
-.unlock-box h4{color:var(--ice-l);font-size:1.1rem;font-weight:900;margin-bottom:6px}
-.unlock-box p{font-size:.9rem;color:rgba(255,255,255,.8)}
-
-/* ─── PROGRESS BAR ─── */
-.progress-wrap{
-  background:rgba(255,255,255,.15);border-radius:30px;height:8px;margin:10px 0;overflow:hidden;
-}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--ice-l),var(--ice));border-radius:30px;transition:width .5s ease;width:0%}
-
-/* ─── VIDEO SECTION ─── */
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:18px 0}
-.video-wrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.15);background:#000}
-.video-wrap iframe{display:block;width:100%;aspect-ratio:16/9;border:none}
-.video-label{
-  background:#111;color:white;padding:12px 16px;
-}
-.video-label .v-tag{
-  display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1px;
-  text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:5px;
-}
-.v-tag-long{background:var(--slate-l);color:white}
-.v-tag-short{background:#1a6640;color:white}
-.video-label h4{font-size:.95rem;font-weight:800;margin-bottom:2px;line-height:1.35}
-.video-label p{font-size:.78rem;color:#aaa;margin:0;line-height:1.5}
-.video-credit{font-size:.68rem;color:#777;margin-top:4px}
-
-/* ─── FOOTER ─── */
 footer{
-  text-align:center;padding:30px 20px;font-size:.8rem;color:var(--mid);
-  border-top:1px solid var(--border);background:var(--warm-white);
-  position:relative;
-}
-.secret-text{color:var(--warm-white);font-size:.5px;position:absolute;bottom:4px;left:50%;transform:translateX(-50%);letter-spacing:.5px}
-
-/* ─── MISC ─── */
-.divider{height:1px;background:var(--border);margin:6px 0 18px}
-a.text-link{color:var(--slate-l);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--slate-l)}
-a.text-link:hover{color:var(--ice);border-color:var(--ice)}
-
-/* ─── UPDATE PANE ─── */
-.update-pane{
-  background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);
-  border-radius:18px;margin:28px 0;overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,.2);border:1px solid rgba(143,196,220,.25);
-  animation:fadeUp .5s ease both;
-}
-.update-pane-header{
-  padding:22px 28px 16px;border-bottom:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;gap:14px;
-  min-width:0;
-}
-.update-pane-header h2{
-  font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.65rem);
-  font-weight:700;line-height:1.25;color:var(--ice-l);
-  min-width:0;
-}
-.update-pane-header .q-label{color:rgba(255,255,255,.5)}
-.update-badge{
-  display:inline-block;background:var(--slate-l);color:white;
-  font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 12px;border-radius:20px;margin-left:8px;
-  vertical-align:middle;
-}
-.update-pane-date{
-  color:rgba(255,255,255,.5);font-size:.8rem;font-weight:700;
-  margin:0 28px 4px;padding-top:4px;
-}
-.update-grid{
-  display:grid;grid-template-columns:1fr;gap:0;
-  padding:0 28px 28px;
-}
-.update-box{
-  background:rgba(255,255,255,.06);border-radius:14px;padding:22px 22px 18px;
-  margin-top:16px;border:1px solid rgba(255,255,255,.08);
-  transition:all .2s;
-}
-.update-box:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15)}
-.update-box-icon{font-size:1.5rem;margin-bottom:6px;display:block}
-.update-box h3{
-  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
-  color:white;margin-bottom:10px;line-height:1.3;
-}
-.update-box p{font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:10px}
-.update-box p:last-child{margin-bottom:0}
-.update-box strong{color:rgba(255,255,255,.95)}
-.update-box .callout{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-.update-box .callout-body h4{color:rgba(255,255,255,.9)}
-.update-box .callout-body p{color:rgba(255,255,255,.7)}
-.update-box cite-link a{
-  color:#82c8ff;background:rgba(130,200,255,.12);
-  border-color:rgba(130,200,255,.25);
-}
-.update-box cite-link a:hover{background:#82c8ff;color:#1a1a2e}
-.update-box .stat-grid{margin:12px 0}
-.update-box .stat-box{background:rgba(255,255,255,.08);cursor:default}
-.update-box .stat-box:hover{transform:none;box-shadow:none}
-.update-box .stat-num{color:var(--ice-l)}
-.update-box .stat-label{color:rgba(255,255,255,.6)}
-.update-box .vocab{background:rgba(255,255,255,.06);border-left-color:var(--ice-l)}
-.update-box .vocab strong{color:var(--ice-l)}
-.update-box .vocab{color:rgba(255,255,255,.7)}
-.update-sources{
-  margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
-}
-.update-sources summary{
-  font-size:.78rem;font-weight:800;color:rgba(255,255,255,.5);
-  cursor:pointer;letter-spacing:.5px;text-transform:uppercase;
-}
-.update-sources ul{
-  margin:8px 0 0 16px;list-style:none;
-}
-.update-sources li{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:4px}
-.update-sources li::before{content:'→ ';color:var(--ice-l)}
-.update-sources a{color:#82c8ff;text-decoration:none;font-weight:600}
-.update-sources a:hover{text-decoration:underline}
-/* mini-timeline inside update pane */
-.mini-tl{padding:8px 28px 0;position:relative}
-.mini-tl::before{
-  content:'';position:absolute;left:44px;top:16px;bottom:16px;width:2px;
-  background:linear-gradient(to bottom,var(--ice-l),var(--slate-l));border-radius:2px;
-}
-.mini-tl-item{display:flex;gap:14px;margin-bottom:14px;position:relative;padding-left:30px;min-width:0}
-.mini-tl-dot{
-  width:12px;height:12px;border-radius:50%;flex-shrink:0;
-  position:absolute;left:-1px;top:5px;border:2px solid rgba(255,255,255,.3);
-}
-.mini-tl-dot.d-ice{background:var(--ice-l)}.mini-tl-dot.d-slate{background:#82c8ff}
-.mini-tl-dot.d-forest{background:#4caf50}
-.mini-tl-date{
-  font-size:.72rem;font-weight:800;color:var(--ice-l);letter-spacing:.5px;
-  text-transform:uppercase;min-width:52px;flex-shrink:0;padding-top:2px;
-}
-.mini-tl-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5;min-width:0}
-.mini-tl-text strong{color:rgba(255,255,255,.9)}
-.mini-tl-text cite-link a{color:#82c8ff;background:rgba(130,200,255,.12);border-color:rgba(130,200,255,.25)}
-
-@media(max-width:600px){
-  .s-body,.s-header{padding:18px 16px}
-  .img-float,.img-float-left,.tl-img-right{float:none;width:100%;margin:10px 0}
-  .stat-grid{grid-template-columns:repeat(2,1fr)}
-  .update-grid{padding:0 16px 16px}
-  .update-pane-header{padding:18px 16px 14px}
-  .update-pane-date{margin:0 16px 4px}
-  .mini-tl{padding:8px 16px 0}
-  .mini-tl::before{left:32px}
+  max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);
+  text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);
 }
 
-/* ─── DYSLEXIC FONT TOGGLE ─── */
+/* dyslexic toggle */
 .dyslexic-toggle{
   position:fixed;bottom:20px;right:20px;z-index:9999;
-  background:#1c2a33;color:white;border:none;border-radius:50px;
+  background:#111;color:white;border:none;border-radius:50px;
   padding:10px 16px;font-size:.8rem;font-weight:800;
   cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
   transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:'Nunito',sans-serif;
+  font-family:-apple-system,sans-serif;
 }
 .dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:#2d8f58}
+.dyslexic-toggle.active{background:var(--accent)}
 body.dyslexic .dyslexic-toggle{font-family:'OpenDyslexic',sans-serif}
 body.dyslexic,
 body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 body.dyslexic h1,body.dyslexic h2,body.dyslexic h3,body.dyslexic h4{font-family:'OpenDyslexic',sans-serif!important}
+body.dyslexic .article p.lede::first-letter{font-family:'OpenDyslexic',sans-serif!important;font-size:3.2rem}
 </style>
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 </head>
 <body>
 
-<!-- ─── EASTER EGG MODAL ─── -->
-<div class="egg-modal" id="eggModal">
-  <div class="egg-box">
-    <div style="font-size:2rem;margin-bottom:8px" id="eggEmoji">🎉</div>
-    <h2 id="eggTitle">You found a secret!</h2>
-    <p id="eggText"></p>
-    <div class="egg-farsi" id="eggFarsi"></div>
-    <button class="egg-close" onclick="closeEgg()">Got it! ✓</button>
-  </div>
+<div class="masthead-top">
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a></span>
+  <span class="date">Updated July 22, 2026</span>
 </div>
 
-<!-- ─── QUIZ MODAL ─── -->
-<div class="quiz-modal" id="quizModal" style="display:none">
-  <div class="quiz-box">
-    <button class="quiz-close" onclick="closeQuiz()">×</button>
-    <h3>🧠 Quick Quiz</h3>
-    <p id="quizQ" class="quiz-q"></p>
-    <div class="quiz-choices" id="quizChoices"></div>
-    <div class="quiz-feedback" id="quizFeedback"></div>
-  </div>
+<div class="masthead">
+  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
-<!-- ─── ACHIEVEMENT TOAST ─── -->
-<div class="toast" id="toast">
-  <span class="toast-icon" id="toastIcon">⭐</span>
-  <div class="toast-title" id="toastTitle"></div>
-  <div class="toast-msg" id="toastMsg"></div>
-</div>
-
-<!-- ─── HERO ─── -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-flag" id="heroFlag" onclick="handleFlagClick()" title="Click me...">🧊</div>
-  <h1>Frozen Time Capsules: What Ice Can Tell Us About Climate Change</h1>
-  <p class="hero-sub">Scientists drill deep into ancient ice to find real air bubbles from 800,000 years ago. Here's what that ice reveals — and why what's happening today looks so different.</p>
-  <span class="hero-note">📚 8th Grade Social Studies · Updated July 22, 2026 · Earn points by answering quizzes!</span>
-  <div class="hero-credit">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
-</header>
-
-<!-- ─── POINTS BAR ─── -->
-<div class="points-bar">
-  <span>🌟 Discovery Points:</span>
-  <span class="points-display" id="pointsDisplay">0 pts</span>
-  <div>
-    <div class="progress-wrap" style="width:200px">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-  </div>
-  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content!</span>
-</div>
-
-<!-- ─── NAV ─── -->
-<nav class="sticky-nav">
-  <a href="index.html" class="n-hub">🏠 All Topics</a>
-  <a href="iran.html" class="n-sib">🇮🇷 Iran</a>
-  <a href="ukraine.html" class="n-sib">🇺🇦 Ukraine</a>
-  <a href="ai.html" class="n-sib">🤖 AI &amp; Society</a>
-  <a href="us-elections.html" class="n-sib">🗳️ US Elections</a>
-  <a href="#update-pane" class="n-update">📡 Situation Update</a>
-  <a href="#deep-time" class="n-deep">🪨 Deep Time</a>
-  <a href="#greenhouse-effect" class="n-green">🌡️ Greenhouse Effect</a>
-  <a href="#whats-different" class="n-diff">📈 What's Different</a>
-  <a href="#effects" class="n-effects">🌊 Effects</a>
-  <a href="#washington-climate" class="n-wa">📍 Washington's Story</a>
-  <a href="#timeline" class="n-hist">📅 Timeline</a>
-  <a href="#key-people" class="n-people">👥 Key People</a>
-  <a href="#videos" class="n-vid">📺 Videos</a>
-  <a href="#resources" class="n-links">🔗 Resources</a>
+<nav class="section-nav">
+  <a href="#update">Situation Update</a>
+  <a href="#deep-time">Deep Time</a>
+  <a href="#greenhouse">Greenhouse Effect</a>
+  <a href="#different">What's Different</a>
+  <a href="#effects">Effects</a>
+  <a href="#wa-story">Washington's Story</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#people">Key People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
 </nav>
 
-<main>
+<header class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-inner">
+    <span class="kicker">Climate &amp; Environment</span>
+    <h1>Frozen Time Capsules</h1>
+    <p class="dek">Scientists drill deep into ancient ice to find real air bubbles from 800,000 years ago. Here's what that ice reveals — and why what's happening now looks so different.</p>
+    <div class="byline">By the Climate Desk · Updated July 22, 2026</div>
+  </div>
+  <div class="hero-credit">Photo: a freshly cut ice core, EastGRIP project, Greenland. <a href="https://commons.wikimedia.org/wiki/File:The_EastGRIP_ice_core_freshly_cut_2.jpg" target="_blank">Wikimedia Commons (CC BY 4.0)</a></div>
+</header>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
-<div class="update-pane" id="update-pane">
-  <div class="update-pane-header">
-    <div class="s-icon si-slate" style="background:rgba(143,196,220,.2)">📡</div>
-    <h2>
-      <span class="q-label">Situation Update</span>
-      Where Things Stand
-      <span class="update-badge">A Dated Snapshot</span>
-    </h2>
+<div class="sec-head" id="update">
+  <span class="num">Situation Update</span>
+  <h2>Where Things Stand</h2>
+</div>
+<div class="article">
+  <p class="lede">Updated <strong>July 22, 2026</strong> — a snapshot of this moment, not an ongoing forecast.</p>
+
+  <p><strong>A major heat wave hit North America</strong> starting in late June 2026. Record or near-record temperatures hit across the U.S. and Canada, including 113°F in Phoenix (Jul 6–8) and a new all-time record of 109°F in Salt Lake City (Jul 12). Nearly half the U.S. population was under an extreme heat warning at its peak.<a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_North_American_heat_wave" target="_blank">Wikipedia</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/card-wildfire.jpg" alt="Pateros, WA wildfire aftermath">
+    <div class="cap">Pateros, WA, after the 2014 Carlton Complex Fire · <a href="https://commons.wikimedia.org/wiki/File:Pateros_Washington_2014_Fire.jpg" target="_blank">Commons (CC BY-SA 4.0)</a></div>
   </div>
-  <p class="update-pane-date">Updated July 22, 2026 — a snapshot of this moment, not an ongoing forecast</p>
+  <p><strong>Washington declared its 4th straight drought year</strong> on April 8, 2026. The WA Dept. of Ecology cited snowpack at roughly half its usual level, even after a near-normal winter — it just fell as rain instead of snow. With that drought as the backdrop, fire officials expect an active, above-average wildfire season across the state this summer.<a class="cite-inline" href="https://ecology.wa.gov/about-us/who-we-are/news/2026/april-8-statewide-drought-declared-due-to-dismal-snowpack" target="_blank">WA Ecology</a></p>
 
-  <!-- ── RECENT CLIMATE-LINKED EVENTS TIMELINE ── -->
-  <div class="mini-tl">
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-slate"></div>
-      <span class="mini-tl-date">Jun-Jul 2026</span>
-      <span class="mini-tl-text"><strong>A major North American heat wave —</strong> Starting in late June 2026, a severe heat wave brought record or near-record temperatures across much of the U.S. and Canada, including a high of 113°F (45°C) in Phoenix on July 6-8 and a new all-time record of 109°F (43°C) in Salt Lake City on July 12. Nearly half the U.S. population was under a "major" or "extreme" heat risk warning at the event's peak. <cite-link><a href="https://en.wikipedia.org/wiki/2026_North_American_heat_wave" target="_blank">src</a></cite-link></span>
+  <h3>Washington's climate policy, right now</h3>
+  <p>The Climate Commitment Act remains in place statewide — Washington voters rejected a 2024 ballot measure to cancel it (more on that below).<a class="cite-inline" href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">Wikipedia</a></p>
+
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">51M</div>
+      <div class="desc"><b>metric tons — WA's 2030 target</b>State law requires cutting total emissions to 45% below 1990 levels by 2030.</div>
     </div>
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-forest"></div>
-      <span class="mini-tl-date">Apr 8, 2026</span>
-      <span class="mini-tl-text"><strong>Washington declares its fourth straight drought year —</strong> The Washington State Department of Ecology declared a statewide drought emergency, citing snowpack at roughly half its usual level despite near-normal winter precipitation (most of it fell as rain instead of snow). It's the fourth consecutive year part or all of Washington has been under a drought declaration. <cite-link><a href="https://ecology.wa.gov/about-us/who-we-are/news/2026/april-8-statewide-drought-declared-due-to-dismal-snowpack" target="_blank">src</a></cite-link></span>
-    </div>
-    <div class="mini-tl-item">
-      <div class="mini-tl-dot d-ice"></div>
-      <span class="mini-tl-date">Jul 2026</span>
-      <span class="mini-tl-text"><strong>An active Washington wildfire season —</strong> With the state's fourth-straight drought year setting the stage, fire officials described 2026 as shaping up to be an active, above-average wildfire season for Washington, with elevated risk forecast across the state through summer. <cite-link><a href="https://www.axios.com/local/seattle/2026/07/10/washington-wildfire-season-chelan-hills-fire-drought-el-nino-2026" target="_blank">src</a></cite-link></span>
+    <div class="stat">
+      <div class="num">96.1M</div>
+      <div class="desc"><b>metric tons — WA's 2022 total</b>Down 0.5% from 2021's 96.6 million — the most recent official inventory.</div>
     </div>
   </div>
 
-  <div class="update-grid">
+  <p>Todd Myers of the Washington Policy Center says the state would need 5-7% annual cuts, far above the 0.5% just recorded.<a class="cite-inline" href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">KUOW</a></p>
 
-    <!-- ── BOX 1: WASHINGTON'S CLIMATE POLICY, RIGHT NOW ── -->
-    <div class="update-box">
-      <span class="update-box-icon">📋</span>
-      <h3>Washington's climate policy, right now</h3>
-
-      <p>
-        Here's a plain, dated snapshot as of <strong>July 22, 2026</strong>. The Climate Commitment Act remains in place statewide — Washington voters rejected a 2024 ballot measure to repeal it (see the Washington's Climate Story section above for the full background). <cite-link><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        State law requires Washington to cut total greenhouse gas emissions to 45% below 1990 levels by 2030 — roughly 51 million metric tons per year. <cite-link><a href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">src</a></cite-link> The state's most recent official inventory, released by the Department of Ecology, shows total emissions at 96.1 million metric tons in 2022 — a 0.5% decline from 2021's 96.6 million metric tons. <cite-link><a href="https://ecology.wa.gov/air-climate/reducing-greenhouse-gas-emissions/tracking-greenhouse-gases/ghg-inventories" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        People who track this closely read that gap differently. Todd Myers of the Washington Policy Center has said the state would need annual emissions cuts of 5-7% to hit the 2030 target — far above the 0.5% most recently recorded — and called the state "nowhere near on track." <cite-link><a href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">src</a></cite-link> Environmental advocate Leah Missik has pointed to "significant steps" already taken, while agreeing more progress is still needed to meet the target. <cite-link><a href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">src</a></cite-link> This page reports both readings rather than picking one — the numbers above are the same regardless of which characterization you find more persuasive.
-      </p>
-
-      <div class="callout c-ice" style="background:rgba(255,255,255,.06);border-color:rgba(95,168,201,.3)">
-        <span class="callout-icon">🤔</span>
-        <div class="callout-body">
-          <h4 style="color:var(--ice-l)">Think about it</h4>
-          <p style="color:rgba(255,255,255,.7)">Two named experts looked at the same 96.1-million-metric-ton number and described the state's progress very differently. What's the difference between disagreeing about a fact and disagreeing about how to characterize a fact?</p>
-        </div>
-      </div>
-
-      <details class="update-sources">
-        <summary>Sources for this section</summary>
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">Wikipedia — Climate Commitment Act</a></li>
-          <li><a href="https://ecology.wa.gov/air-climate/reducing-greenhouse-gas-emissions/tracking-greenhouse-gases/ghg-inventories" target="_blank">Washington State Department of Ecology — Greenhouse gas inventories</a></li>
-          <li><a href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">KUOW — WA's latest emissions report shows small decline</a></li>
-        </ul>
-      </details>
-    </div>
-
-    <!-- ── BOX 2: RECENT CLIMATE EVENTS IN CONTEXT ── -->
-    <div class="update-box">
-      <span class="update-box-icon">🌡️</span>
-      <h3>Recent events, in context</h3>
-
-      <p>
-        This page's earlier sections explained how scientists study climate over long timescales — hundreds of thousands of years of ice-core data, and nearly 70 years of direct CO<sub>2</sub> measurement. A single heat wave or a single drought year, on its own, isn't proof of a long-term trend any more than one warm day in March proves winter is over.
-      </p>
-
-      <p>
-        What scientists actually track is whether events like these are becoming more frequent or more intense over time, using the same kind of long-running, direct measurement discussed in Section 3. The events in the timeline above are simply this page's honest, dated snapshot of "what's happening right now" — not a claim that any single event, by itself, proves anything about long-term climate trends.
-      </p>
-
-      <details class="update-sources">
-        <summary>Sources for this section</summary>
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/2026_North_American_heat_wave" target="_blank">Wikipedia — 2026 North American heat wave</a></li>
-          <li><a href="https://www.axios.com/local/seattle/2026/07/10/washington-wildfire-season-chelan-hills-fire-drought-el-nino-2026" target="_blank">Axios Seattle — Washington's wildfire season is already deadly</a></li>
-        </ul>
-      </details>
-    </div>
-
+  <div class="pull-quote">
+    <p>"Nowhere near on track."</p>
+    <span class="attrib">Todd Myers, Washington Policy Center</span>
   </div>
-  <button class="quiz-btn" onclick="openQuiz('q6')" style="margin:16px 16px 0">🧠 Quick Quiz — Test yourself!</button>
+
+  <p>Environmental advocate Leah Missik reads the same number differently, pointing to "significant steps" already taken while agreeing more progress is needed. This page reports both readings rather than picking one — the numbers above are the same regardless of which characterization you find more persuasive.<a class="cite-inline" href="https://www.kuow.org/stories/wa-s-latest-emissions-report-shows-small-decline" target="_blank">KUOW</a></p>
+
+  <div class="callout">
+    <span class="tag">Think About It</span>
+    <p>Two named experts looked at the same 96.1-million-metric-ton number and described the state's progress very differently. What's the difference between disagreeing about a <strong>fact</strong> and disagreeing about how to <strong>characterize</strong> a fact?</p>
+  </div>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q6', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q6">
+      <div class="quiz-q">What was Washington's total 2022 emissions, and how did that compare to 2021?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. 96.1 million metric tons in 2022, a 0.5% decline from 2021&apos;s 96.6 million.')">96.1 million metric tons, down 0.5% from 2021</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was 96.1 million metric tons, down 0.5% from 2021.')">10 million metric tons, up 20% from 2021</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was 96.1 million metric tons, down 0.5% from 2021.')">96.1 million metric tons, up 15% from 2021</button>
+      <div class="quiz-fb" id="fb-q6"></div>
+    </div>
+  </div>
 </div>
 
-<!-- ═══════════ DEEP-TIME CLIMATE HISTORY ═══════════ -->
-<section class="s-card" id="deep-time">
-  <div class="s-header">
-    <div class="s-icon si-slate">🪨</div>
-    <h2><span class="q-label">Question 1</span>Deep-Time Climate History</h2>
+<!-- ═══════════ DEEP TIME ═══════════ -->
+<div class="sec-head" id="deep-time">
+  <span class="num">Section 1</span>
+  <h2>Deep-Time Climate History</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Picture a drink with a really long, skinny straw — one that's 800,000 years long.</strong> That's basically what scientists drink from when they study old ice. Antarctica's ice sheet has been building up, layer by layer, for hundreds of thousands of years. Drill down and you're pulling up a frozen timeline.</p>
+
+  <p>Nobody had weather instruments 800,000 years ago. Nobody was writing anything down. So how do scientists know what the climate was like that far back? They read clues left behind in nature — clues called <strong>climate proxies</strong>.</p>
+
+  <div class="vocab">
+    <b>Key Word — Climate Proxy</b>
+    <p>Natural evidence that stands in for a direct measurement nobody was around to take — ice cores, sediment layers, tree rings, coral.<a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a></p>
   </div>
-  <div class="s-body">
-    <p>
-      <strong>Picture a drink with a really long, skinny straw — one that's 800,000 years long.</strong> That's basically what scientists drink from when they study old ice. Antarctica's ice sheet has been building up, layer by layer, for hundreds of thousands of years. Drill straight down through it and you're pulling up a frozen timeline, with the oldest ice at the bottom.
-    </p>
 
-    <p>
-      Nobody had weather instruments 800,000 years ago. Nobody was writing anything down. So how do scientists know what the climate was like that far back? They read clues left behind in nature — clues called <strong>climate proxies</strong>.
-    </p>
+  <div class="photo-inline clearfix">
+    <img src="images/card-tree-rings.jpg" alt="Tree growth rings">
+    <div class="cap">Tree growth rings · <a href="https://commons.wikimedia.org/wiki/File:Growth_rings.jpg" target="_blank">Commons (CC BY 2.0)</a></div>
+  </div>
+  <p><strong>Ice cores</strong> are one of the best climate proxies we have. Every year, a fresh layer of snow falls on the ice sheet. Summer and winter snow pack down differently, leaving a distinct stripe — like a tree ring. Count the stripes down from the top, and you know exactly how old the ice at any depth is.<a class="cite-inline" href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">NOAA</a></p>
 
-    <div class="vocab">
-      <strong>📖 Key Word: Climate Proxy</strong> — Natural evidence that records information about past climate, standing in for a direct measurement nobody was around to take. Ice cores, ocean and lake sediment layers, tree rings, and coral growth bands are all climate proxies. <cite-link><a href="https://science.nasa.gov/climate-change/evidence/" target="_blank">src</a></cite-link>
+  <p>As snow gets buried, tiny air bubbles seal inside the ice — a direct sample of the atmosphere from the year it formed. The ice itself even holds a "chemical fingerprint" that reveals how cold it was when that snow fell.<a class="cite-inline" href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">NOAA</a></p>
+
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">800K</div>
+      <div class="desc"><b>years — longest ice-core record</b>Drilled at EPICA Dome C, Antarctica.</div>
     </div>
-
-    <p>
-      <strong>Ice cores</strong> — the long cylinders of ice scientists drill out of a glacier or ice sheet — are one of the best climate proxies we have. Here's why: every year, a fresh layer of snow falls on top of the ice in places like Antarctica and Greenland. Summer snow and winter snow pack down differently, so each year leaves its own stripe, like a tree ring. <cite-link><a href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">src</a></cite-link> Count the stripes down from the top, and you know exactly how old the ice at any depth is.
-    </p>
-
-    <p>
-      It gets better. As each year's snow gets buried under the next year's snow, tiny bubbles of air get trapped and sealed inside the ice. <cite-link><a href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">src</a></cite-link> Those bubbles are real, actual samples of ancient air — a direct sample of exactly what gases, including carbon dioxide (CO<sub>2</sub>), were floating around the year that ice formed. The ice itself holds another clue too: colder years leave a slightly different chemical fingerprint than warmer years, so scientists can also use the ice to estimate how cold or warm it was when that snow fell. <cite-link><a href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      The longest unbroken ice-core record on Earth comes from a site in Antarctica called <strong>EPICA Dome C</strong>. It reaches back roughly <strong>800,000 years</strong>. <cite-link><a href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">src</a></cite-link> NASA reports that within just that stretch of time, Earth's climate has cycled through <strong>eight full ice ages, each followed by a warmer period</strong> — over and over again, like clockwork. <cite-link><a href="https://science.nasa.gov/climate-change/evidence/" target="_blank">src</a></cite-link> A second, shorter record called the Vostok ice core, drilled at a different Antarctic site, backs up the same story going back about 420,000 years. <cite-link><a href="https://en.wikipedia.org/wiki/Ice_core" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      So what do these long ice-core records show? Earth's climate has always run in cycles: cold ice age, warm "interglacial" period, cold again, on repeat. <strong>None of this was caused by people</strong> — humans weren't around yet, or were too few and too low-tech to change a whole planet's atmosphere. So what was driving it? Scientists point to natural causes: slow wobbles and tilts in Earth's orbit (called <strong>Milankovitch cycles</strong>) that change how much sunlight different parts of the planet get, plus volcanic eruptions and small shifts in the sun's own energy output. <cite-link><a href="https://science.nasa.gov/climate-change/evidence/" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="diagram-wrap" role="img" aria-label="Line chart titled Earth's CO2 Levels Over 800,000 Years, plotting atmospheric carbon dioxide in parts per million on the vertical axis from 150 to 450, against time on the horizontal axis from 800,000 years ago to today. A wavy line shows CO2 rising and falling across repeated natural ice-age cycles for almost the entire span, staying under 300 parts per million the whole time — until a sharp vertical spike at the very right edge of the chart, today, where CO2 has shot up to 431 parts per million, far above every point in the natural 800,000-year record.">
-      <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
-        <!-- axes -->
-        <line x1="60" y1="20" x2="60" y2="250" stroke="var(--slate-l)" stroke-width="1.5"/>
-        <line x1="60" y1="250" x2="670" y2="250" stroke="var(--slate-l)" stroke-width="1.5"/>
-
-        <!-- horizontal gridlines + y labels: ppm 150 to 450 -->
-        <line x1="60" y1="250" x2="670" y2="250" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="200" x2="670" y2="200" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="150" x2="670" y2="150" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="100" x2="670" y2="100" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="50"  x2="670" y2="50"  stroke="#e5e0d3" stroke-width="1"/>
-        <text x="50" y="254" text-anchor="end" font-size="11" fill="var(--mid)">150</text>
-        <text x="50" y="204" text-anchor="end" font-size="11" fill="var(--mid)">225</text>
-        <text x="50" y="154" text-anchor="end" font-size="11" fill="var(--mid)">300</text>
-        <text x="50" y="104" text-anchor="end" font-size="11" fill="var(--mid)">375</text>
-        <text x="50" y="54"  text-anchor="end" font-size="11" fill="var(--mid)">450</text>
-        <text x="20" y="140" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(-90 20 140)">CO₂ (ppm)</text>
-
-        <!-- natural cycle line, ice-core era, oscillating ~180-300ppm, never exceeding 300 -->
-        <path d="M 60,180 C 100,120 140,110 170,160 C 200,205 230,215 260,175
-                 C 290,130 320,115 350,155 C 380,200 410,210 440,170
-                 C 470,125 500,115 530,150 C 560,195 590,208 615,178
-                 C 630,160 640,155 648,150"
-              fill="none" stroke="var(--slate)" stroke-width="2.5"/>
-
-        <!-- modern spike -->
-        <path d="M 648,150 C 655,145 660,90 666,55" fill="none" stroke="var(--ice)" stroke-width="3"/>
-        <circle cx="666" cy="55" r="5" fill="var(--ice)"/>
-
-        <!-- 300ppm reference line -->
-        <line x1="60" y1="150" x2="666" y2="150" stroke="var(--forest)" stroke-width="1" stroke-dasharray="4,3"/>
-        <text x="380" y="143" text-anchor="middle" font-size="10.5" fill="var(--forest)" font-weight="700">Natural record never passed 300 ppm</text>
-
-        <!-- callouts -->
-        <text x="666" y="42" text-anchor="end" font-size="12" font-weight="800" fill="var(--ice)">431 ppm today</text>
-        <text x="666" y="70" text-anchor="end" font-size="10" fill="var(--mid)">(2026)</text>
-
-        <!-- x axis labels -->
-        <text x="60" y="270" text-anchor="start" font-size="11" fill="var(--mid)">800,000 yrs ago</text>
-        <text x="360" y="270" text-anchor="middle" font-size="11" fill="var(--mid)">400,000 yrs ago</text>
-        <text x="666" y="270" text-anchor="end" font-size="11" fill="var(--mid)">today</text>
-      </svg>
-      <p class="diagram-caption">Atmospheric CO₂ over the past 800,000 years, based on the EPICA Dome C ice core (Antarctica): CO₂ rose and fell through repeated natural ice ages but never topped 300 ppm in all that time <cite-link><a href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">src</a></cite-link> — until today's measured level of 431 ppm. <cite-link><a href="https://science.nasa.gov/earth/explore/earth-indicators/carbon-dioxide/" target="_blank">src</a></cite-link></p>
+    <div class="stat">
+      <div class="num">8</div>
+      <div class="desc"><b>full ice ages, in that span</b>Each followed by a warm period, over and over.</div>
     </div>
-
-    <p>
-      Keep this chart in mind — it's the page's first big clue. This section is only about the natural, ice-age part of that story. Section 3 comes back to explain exactly what's different about the spike at the very end.
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q1')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
 
-<!-- ═══════════ THE GREENHOUSE EFFECT ═══════════ -->
-<section class="s-card" id="greenhouse-effect">
-  <div class="s-header">
-    <div class="s-icon si-ice">🌡️</div>
-    <h2><span class="q-label">Question 2</span>The Greenhouse Effect</h2>
+  <p>That record comes from a single site: <strong>EPICA Dome C</strong>, Antarctica. A second record, the Vostok ice core from a different Antarctic site, independently confirms the same pattern going back about 420,000 years — two separate drill sites telling the same story.<a class="cite-inline" href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">NOAA</a><a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a><a class="cite-inline" href="https://en.wikipedia.org/wiki/Ice_core" target="_blank">Wikipedia</a></p>
+
+  <p><strong>None of this was caused by people.</strong> Humans weren't around yet, or were too few and too low-tech to change a whole planet's atmosphere. Scientists point to natural causes instead: slow wobbles in Earth's orbit (<strong>Milankovitch cycles</strong>), volcanic eruptions, and small shifts in the sun's energy.<a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a></p>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+      <line x1="50" y1="20" x2="50" y2="210" stroke="#d4cfc4" stroke-width="1.5"/>
+      <line x1="50" y1="210" x2="660" y2="210" stroke="#d4cfc4" stroke-width="1.5"/>
+      <path d="M 50,150 C 90,100 130,92 160,130 C 190,168 220,178 250,145
+               C 280,108 310,95 340,128 C 370,165 400,175 430,140
+               C 460,102 490,93 520,122 C 550,158 580,170 605,145
+               C 618,130 626,125 638,122" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+      <path d="M 638,122 C 645,118 650,70 656,45" fill="none" stroke="#a02c2c" stroke-width="3"/>
+      <circle cx="656" cy="45" r="5" fill="#a02c2c"/>
+      <line x1="50" y1="150" x2="656" y2="150" stroke="#767066" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="380" y="143" text-anchor="middle" font-size="11" fill="#767066" font-weight="700">Natural record never passed 300 ppm</text>
+      <text x="656" y="35" text-anchor="end" font-size="13" font-weight="800" fill="#a02c2c">431 ppm today</text>
+      <text x="50" y="230" font-size="11" fill="#767066">800,000 yrs ago</text>
+      <text x="656" y="230" text-anchor="end" font-size="11" fill="#767066">today</text>
+    </svg>
+    <div class="chart-cap">Atmospheric CO₂ over 800,000 years, EPICA Dome C — never above 300 ppm until today's 431 ppm. Keep this chart in mind: the next section explains that spike.</div>
   </div>
-  <div class="s-body">
-    <p>
-      <strong>Ever gotten into a car that's been sitting in the sun with the windows rolled up?</strong> It's way hotter inside than the air outside. Sunlight comes in through the glass, warms up the seats and dashboard, and then that heat has a hard time getting back out. Earth's atmosphere does something surprisingly similar — and without it, Earth would be a frozen, lifeless rock.
-    </p>
 
-    <p>
-      Here's how it actually works. Sunlight travels through the atmosphere and warms Earth's surface — the ground, the oceans, everything. That warmed surface then tries to release the heat back out toward space. But certain gases in the atmosphere catch some of that outgoing heat and send it back down instead of letting it escape. <cite-link><a href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">src</a></cite-link> Scientists call these <strong>greenhouse gases</strong>, because they trap heat the same way the glass walls of a greenhouse do.
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Greenhouse Gas</strong> — A gas in the atmosphere that traps heat instead of letting it escape to space. Carbon dioxide (CO<sub>2</sub>), methane, and water vapor are the main ones. <cite-link><a href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">src</a></cite-link>
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q1', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q1">
+      <div class="quiz-q">How do scientists know what Earth's climate was like 100,000s of years ago?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. Climate proxies — ice cores, tree rings, sediment — record clues about past climate.')">They study climate proxies, like ice cores and tree rings</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — scientists rely on climate proxies like ice cores and tree rings.')">They guess based on today's weather patterns</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — scientists rely on climate proxies like ice cores and tree rings.')">They rely on ancient written records</button>
+      <div class="quiz-fb" id="fb-q1"></div>
     </div>
+  </div>
+</div>
 
-    <p>
-      This is normally a <strong>good thing</strong> — a really good thing. Without any greenhouse gases at all, Earth's average surface temperature would plunge by about 33°C (59°F). <cite-link><a href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">src</a></cite-link> Instead of the mild planet we live on, with an average temperature around 15°C (59°F), Earth would be locked in a deep freeze — too cold for the life we know to exist. <cite-link><a href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">src</a></cite-link> The greenhouse effect is exactly what makes Earth livable in the first place.
-    </p>
+<!-- ═══════════ GREENHOUSE ═══════════ -->
+<div class="sec-head" id="greenhouse">
+  <span class="num">Section 2</span>
+  <h2>The Greenhouse Effect</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Ever gotten into a hot parked car?</strong> Sunlight comes in through the glass, warms up the seats, and has a hard time getting back out. Earth's atmosphere does something surprisingly similar — and without it, Earth would be a frozen rock.</p>
 
-    <div class="diagram-wrap" role="img" aria-label="Simple three-step diagram of the greenhouse effect. Step 1: Sunlight arrives, sunlight travels through the atmosphere to Earth. Step 2: Surface warms, the ground and oceans absorb the sunlight and release heat. Step 3: Gases trap heat, greenhouse gases catch some of that heat and send it back down instead of letting it escape to space.">
-      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
-        <defs>
-          <marker id="ghg-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--mid)"/>
-          </marker>
-        </defs>
+  <p>Here's the actual mechanism: sunlight warms Earth's surface. The surface tries to release that heat back to space. Certain gases catch some of it and send it back down instead of letting it escape.<a class="cite-inline" href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">NASA</a></p>
 
-        <path d="M 150 70 Q 230 25 310 70" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#ghg-arrow)"/>
-        <text x="230" y="42" text-anchor="middle" font-size="11" fill="var(--mid)">warms the surface</text>
+  <div class="vocab">
+    <b>Key Word — Greenhouse Gas</b>
+    <p>A gas that traps heat instead of letting it escape to space. CO₂, methane, and water vapor are the main ones.<a class="cite-inline" href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">NASA</a></p>
+  </div>
 
-        <path d="M 390 70 Q 470 25 550 70" fill="none" stroke="var(--mid)" stroke-width="1.5" marker-end="url(#ghg-arrow)"/>
-        <text x="470" y="42" text-anchor="middle" font-size="11" fill="var(--mid)">heat rises, some gets trapped</text>
+  <div class="stat-line">
+    <div class="num">33°C</div>
+    <div class="desc"><b>colder, with no greenhouse gases at all</b>(that's 59°F) — Earth's average temperature, if the effect vanished tomorrow.</div>
+  </div>
+  <p>This is normally a <strong>good thing</strong>. The greenhouse effect is what makes Earth livable in the first place — without it, the ice age charted above wouldn't be the coldest Earth has ever been. It'd be the mildest.<a class="cite-inline" href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">NASA</a></p>
 
-        <rect x="10" y="70" width="200" height="140" rx="14" fill="var(--ice-ll)" stroke="var(--ice)" stroke-width="2"/>
-        <text x="110" y="102" text-anchor="middle" font-size="14" font-weight="800" fill="var(--slate)">1. SUNLIGHT ARRIVES</text>
-        <text x="110" y="140" text-anchor="middle" font-size="32">☀️</text>
-        <text x="110" y="172" text-anchor="middle" font-size="12" fill="var(--mid)">Sunlight travels</text>
-        <text x="110" y="188" text-anchor="middle" font-size="12" fill="var(--mid)">through the atmosphere</text>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#767066"/></marker></defs>
+      <path d="M 140 65 Q 220 25 300 65" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#pa)"/>
+      <path d="M 380 65 Q 460 25 540 65" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#pa)"/>
+      <rect x="10" y="65" width="180" height="120" fill="#f5f1e8" stroke="#1a1a1a" stroke-width="1"/>
+      <text x="100" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a1a">SUNLIGHT</text>
+      <text x="100" y="135" text-anchor="middle" font-size="28">☀️</text>
+      <rect x="260" y="65" width="180" height="120" fill="#f5f1e8" stroke="#1a1a1a" stroke-width="1"/>
+      <text x="350" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a1a">SURFACE WARMS</text>
+      <text x="350" y="135" text-anchor="middle" font-size="28">🌍</text>
+      <rect x="510" y="65" width="180" height="120" fill="#f5f1e8" stroke="#1a1a1a" stroke-width="1"/>
+      <text x="600" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a1a">GASES TRAP HEAT</text>
+      <text x="600" y="135" text-anchor="middle" font-size="28">🌫️</text>
+    </svg>
+  </div>
 
-        <rect x="250" y="70" width="200" height="140" rx="14" fill="var(--forest-l)" stroke="var(--forest)" stroke-width="2"/>
-        <text x="350" y="102" text-anchor="middle" font-size="14" font-weight="800" fill="var(--forest)">2. SURFACE WARMS</text>
-        <text x="350" y="140" text-anchor="middle" font-size="32">🌍</text>
-        <text x="350" y="172" text-anchor="middle" font-size="12" fill="var(--mid)">Ground &amp; oceans absorb</text>
-        <text x="350" y="188" text-anchor="middle" font-size="12" fill="var(--mid)">sunlight, release heat</text>
+  <p>So greenhouse gases aren't the villain of this story — not by themselves. Earth needs some of them. The real question: what happens when there's a lot <strong>more</strong> of them than there used to be?</p>
 
-        <rect x="490" y="70" width="200" height="140" rx="14" fill="var(--slate-ll)" stroke="var(--slate)" stroke-width="2"/>
-        <text x="590" y="102" text-anchor="middle" font-size="14" font-weight="800" fill="var(--slate)">3. GASES TRAP HEAT</text>
-        <text x="590" y="140" text-anchor="middle" font-size="32">🌫️</text>
-        <text x="590" y="172" text-anchor="middle" font-size="12" fill="var(--mid)">Greenhouse gases catch</text>
-        <text x="590" y="188" text-anchor="middle" font-size="12" fill="var(--mid)">heat, send some back down</text>
-      </svg>
-      <p class="diagram-caption">The greenhouse effect in three steps: sunlight arrives, the surface warms and releases heat, and greenhouse gases trap some of that heat instead of letting it all escape to space. <cite-link><a href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">src</a></cite-link></p>
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q2', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q2">
+      <div class="quiz-q">What happens to heat that greenhouse gases catch?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. Some gets sent back toward the surface instead of escaping to space.')">Some gets sent back down toward Earth's surface</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — some heat gets sent back down toward the surface.')">It escapes to space immediately</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — some heat gets sent back down toward the surface.')">It turns into oxygen</button>
+      <div class="quiz-fb" id="fb-q2"></div>
     </div>
-
-    <p>
-      So greenhouse gases aren't the villain of this story — not by themselves. Earth needs some of them. The question that actually matters is: what happens when there's a lot more of them than there used to be? That's exactly what the next section digs into.
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q2')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
+</div>
 
-<!-- ═══════════ WHAT'S DIFFERENT THIS TIME ═══════════ -->
-<section class="s-card" id="whats-different">
-  <div class="s-header">
-    <div class="s-icon si-slate">📈</div>
-    <h2><span class="q-label">Question 3</span>What's Different This Time</h2>
-  </div>
-  <div class="s-body">
-    <p>
-      <strong>You just read about huge climate swings that happened over thousands of years.</strong> Ice ages came and went, CO<sub>2</sub> rose and fell, all driven by slow natural causes like Earth's orbit. So here's the question this section actually answers: if climate has always changed, what's different about the change happening right now?
-    </p>
+<!-- ═══════════ RATE OF CHANGE ═══════════ -->
+<div class="sec-head" id="different">
+  <span class="num">Section 3</span>
+  <h2>What's Different This Time</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>You just read about huge climate swings over thousands of years.</strong> Ice ages came and went, all driven by slow natural causes. So what's different about the change happening right now? The short answer: <strong>speed</strong>.</p>
 
-    <p>
-      The short answer: <strong>speed</strong>. Past natural warming after an ice age happened gradually, over thousands of years. NASA reports that the warming happening today is occurring <strong>roughly 10 times faster</strong> than that average natural post-ice-age warming rate — and that today's pace hasn't been matched at any point in at least the past 10,000 years. <cite-link><a href="https://science.nasa.gov/climate-change/evidence/" target="_blank">src</a></cite-link> The CO<sub>2</sub> rise is even more lopsided: NASA reports that CO<sub>2</sub> from human activity is increasing about <strong>250 times faster</strong> than it did from natural sources coming out of the last ice age. <cite-link><a href="https://science.nasa.gov/climate-change/evidence/" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      How do scientists know this so precisely? Because unlike the deep past, this part of the story wasn't reconstructed from ice cores after the fact — it was <strong>measured directly, as it happened</strong>. In March 1958, a scientist named Charles David Keeling set up an instrument at the Mauna Loa Observatory in Hawaii and started taking continuous, direct measurements of CO<sub>2</sub> in the air. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link> Nobody has stopped since. It's the longest unbroken record of direct atmospheric CO<sub>2</sub> measurement on Earth, and scientists call the result the <strong>Keeling Curve</strong>. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Keeling Curve</strong> — The continuous, direct record of atmospheric CO<sub>2</sub> measured at Mauna Loa Observatory since 1958, named for the scientist who started it. It's a real-time measurement, not a reconstruction from proxies like ice cores. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link>
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">10×</div>
+      <div class="desc"><b>faster than natural post-ice-age warming</b>Not matched at any point in at least the past 10,000 years.</div>
     </div>
-
-    <p>
-      When Keeling's measurements began in 1958, CO<sub>2</sub> in the atmosphere stood at <strong>315 parts per million</strong>. <cite-link><a href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">src</a></cite-link> By June 2026, that number had climbed to <strong>431 parts per million</strong> — a steady, uninterrupted climb the entire time, with no leveling off. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link>
-    </p>
-
-    <div class="diagram-wrap" role="img" aria-label="Line chart titled The Keeling Curve, plotting atmospheric CO2 in parts per million on the vertical axis from 300 to 440, against year on the horizontal axis from 1958 to 2026. A line rises steadily and continuously from 315 parts per million in 1958 to 431 parts per million in 2026, with no dips or plateaus, only a slight upward curve showing the rate itself speeding up in recent decades.">
-      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
-        <line x1="60" y1="20" x2="60" y2="230" stroke="var(--slate-l)" stroke-width="1.5"/>
-        <line x1="60" y1="230" x2="670" y2="230" stroke="var(--slate-l)" stroke-width="1.5"/>
-
-        <line x1="60" y1="230" x2="670" y2="230" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="180" x2="670" y2="180" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="130" x2="670" y2="130" stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="80"  x2="670" y2="80"  stroke="#e5e0d3" stroke-width="1"/>
-        <line x1="60" y1="30"  x2="670" y2="30"  stroke="#e5e0d3" stroke-width="1"/>
-        <text x="50" y="234" text-anchor="end" font-size="11" fill="var(--mid)">300</text>
-        <text x="50" y="184" text-anchor="end" font-size="11" fill="var(--mid)">335</text>
-        <text x="50" y="134" text-anchor="end" font-size="11" fill="var(--mid)">370</text>
-        <text x="50" y="84"  text-anchor="end" font-size="11" fill="var(--mid)">405</text>
-        <text x="50" y="34"  text-anchor="end" font-size="11" fill="var(--mid)">440</text>
-        <text x="20" y="125" text-anchor="middle" font-size="11" fill="var(--mid)" transform="rotate(-90 20 125)">CO₂ (ppm)</text>
-
-        <path d="M 60,204 C 150,196 200,185 260,168 C 320,150 360,140 400,122
-                 C 440,105 470,95 500,80 C 540,63 570,52 610,38 C 630,32 650,28 664,24"
-              fill="none" stroke="var(--ice)" stroke-width="3"/>
-        <circle cx="60" cy="204" r="5" fill="var(--slate)"/>
-        <circle cx="664" cy="24" r="5" fill="var(--ice)"/>
-
-        <text x="60" y="252" text-anchor="start" font-size="11" fill="var(--mid)">1958</text>
-        <text x="360" y="252" text-anchor="middle" font-size="11" fill="var(--mid)">1992</text>
-        <text x="664" y="252" text-anchor="end" font-size="11" fill="var(--mid)">2026</text>
-
-        <text x="65" y="200" text-anchor="start" font-size="11.5" font-weight="700" fill="var(--slate)">315 ppm</text>
-        <text x="664" y="16" text-anchor="end" font-size="11.5" font-weight="800" fill="var(--ice)">431 ppm</text>
-      </svg>
-      <p class="diagram-caption">The Keeling Curve: continuous, directly measured atmospheric CO₂ at Mauna Loa Observatory, Hawaii, from 315 ppm in 1958 to 431 ppm in June 2026 — a steady climb with no plateau. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link> <cite-link><a href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">src</a></cite-link></p>
+    <div class="stat">
+      <div class="num">250×</div>
+      <div class="desc"><b>faster CO₂ rise than after the last ice age</b>Human-driven CO₂ increase, compared to the natural rise.</div>
     </div>
-
-    <p>
-      Put the two charts side by side — Section 1's 800,000-year ice-core record and this section's Keeling Curve — and the difference jumps out. Over 800,000 years, natural CO<sub>2</sub> cycled up and down but never crossed 300 ppm. In less than 70 years of direct measurement, it's shot up to 431 ppm and is still climbing. That's the pattern scientists point to when they talk about what's different this time.
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q3')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
 
-<!-- ═══════════ EFFECTS BEING OBSERVED ═══════════ -->
-<section class="s-card" id="effects">
-  <div class="s-header">
-    <div class="s-icon si-forest">🌊</div>
-    <h2><span class="q-label">Question 4</span>Effects Being Observed</h2>
+  <p>NASA calculated both numbers by comparing the same evidence you just read about — the ice-core record — against direct modern measurements. The gap between them is the whole story of this section: nature moves in millennia, and this moves in decades.<a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/card-mauna-loa.jpg" alt="Mauna Loa Observatory">
+    <div class="cap">Mauna Loa Observatory, Hawaii · <a href="https://commons.wikimedia.org/wiki/File:Mauna_Loa_Observatory_in_Hawaii_-_2008-10-17.jpg" target="_blank">Commons (CC BY 2.0)</a></div>
   </div>
-  <div class="s-body">
-    <div class="clearfix">
-      <img class="img-float" src="images/mount-rainier-glaciers.jpg"
-           alt="Mount Rainier's summit and its Emmons and Ingraham Glaciers, seen from Crystal Lakes Trail" height="220"
-           onerror="this.style.display='none'">
-      <div class="img-caption" style="border-radius:6px;margin-bottom:8px;font-size:.7rem">
-        Mount Rainier's summit, with the Emmons Glacier covering most of the visible flank. <a href="https://commons.wikimedia.org/wiki/File:Mount_Rainier_5917s.JPG" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a>
-      </div>
-      <p>
-        <strong>These aren't abstract numbers on a chart — they're changes scientists can actually go out and measure, in places you can visit.</strong> Here are two, one global and one right in our own backyard.
-      </p>
+  <p>How do scientists know this so precisely? In <strong>March 1958</strong>, Charles David Keeling set up an instrument at Mauna Loa Observatory, Hawaii, and started continuous, direct CO<sub>2</sub> measurement. Nobody has stopped since — scientists call the result the <strong>Keeling Curve</strong>.<a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA</a></p>
+
+  <div class="vocab">
+    <b>Key Word — Keeling Curve</b>
+    <p>The continuous, direct CO₂ record from Mauna Loa since 1958 — a real-time measurement, not a reconstruction from proxies.<a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA</a></p>
+  </div>
+
+  <div class="chart-wrap">
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <line x1="50" y1="20" x2="50" y2="170" stroke="#d4cfc4" stroke-width="1.5"/>
+      <line x1="50" y1="170" x2="660" y2="170" stroke="#d4cfc4" stroke-width="1.5"/>
+      <path d="M 50,150 C 140,140 190,128 250,110 C 310,90 350,80 400,60 C 450,42 500,30 560,18 C 590,12 620,8 650,4"
+            fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+      <circle cx="50" cy="150" r="5" fill="#767066"/>
+      <circle cx="650" cy="4" r="5" fill="#a02c2c"/>
+      <text x="55" y="145" font-size="12" font-weight="700" fill="#4a4a4a">315 ppm</text>
+      <text x="650" y="18" text-anchor="end" font-size="13" font-weight="800" fill="#a02c2c">431 ppm</text>
+      <text x="50" y="190" font-size="11" fill="#767066">1958</text>
+      <text x="650" y="190" text-anchor="end" font-size="11" fill="#767066">2026</text>
+    </svg>
+    <div class="chart-cap">The Keeling Curve: from 315 ppm in 1958 to 431 ppm in June 2026 — a steady climb, no plateau, in under 70 years. Put it beside the 800,000-year chart above: the natural record never crossed 300 ppm.</div>
+  </div>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q3', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q3">
+      <div class="quiz-q">How does today's warming speed compare to past natural shifts?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. Roughly 10x faster than the average natural post-ice-age warming rate.')">Roughly 10x faster than past natural warming</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — today\'s warming is roughly 10x faster than past natural rates.')">About the same speed</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — today\'s warming is roughly 10x faster than past natural rates.')">Slower than past natural warming</button>
+      <div class="quiz-fb" id="fb-q3"></div>
     </div>
-
-    <p>
-      <strong>Sea levels are rising, worldwide.</strong> As ocean water warms, it expands, and melting ice sheets and glaciers add even more water to the ocean. Satellites have tracked global sea level rise since 1993, and the rate has been speeding up: it was about 2.1 millimeters per year in 1993, and had climbed to about 4.5 millimeters per year by 2024 — more than double. <cite-link><a href="https://www.earthdata.nasa.gov/learn/data-in-action/rate-global-sea-level-rise-doubled-during-past-three-decades" target="_blank">src</a></cite-link> Altogether, sea level rose about 11.1 centimeters (roughly 4.4 inches) between 1993 and 2023. <cite-link><a href="https://www.earthdata.nasa.gov/learn/data-in-action/rate-global-sea-level-rise-doubled-during-past-three-decades" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      <strong>Now for our backyard: Mount Rainier's glaciers are shrinking.</strong> Mount Rainier, less than 60 miles from Seattle, is the most heavily glaciated peak in the continental United States — and scientists have been able to directly measure how much of that ice has disappeared. The U.S. Geological Survey compared detailed surveys of the mountain from 1970 and from 2007/2008 and found that Mount Rainier had lost about <strong>14% of its glacial ice and snow volume</strong> in those 37-38 years. <cite-link><a href="https://www.usgs.gov/publications/whole-edifice-ice-volume-change-ad-1970-20072008-mount-rainier-washington-based-lidar" target="_blank">src</a></cite-link> Nearly all of the mountain's glaciers got thinner and retreated up-slope, especially at lower elevations and on slopes that face south, toward more direct sun. <cite-link><a href="https://www.usgs.gov/publications/whole-edifice-ice-volume-change-ad-1970-20072008-mount-rainier-washington-based-lidar" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      Rising seas and shrinking glaciers are two different kinds of evidence, measured in two totally different ways — one from orbiting satellites, one from a scientist standing on a mountain with survey equipment. They point to the same conclusion: the warming isn't just numbers in a report. It's visibly reshaping real coastlines and real glaciers, including ones close to home.
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q4')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
+</div>
 
-<!-- ═══════════ WASHINGTON'S CLIMATE STORY ═══════════ -->
-<section class="s-card" id="washington-climate">
-  <div class="s-header">
-    <div class="s-icon si-forest">📍</div>
-    <h2><span class="q-label">Close to Home</span>Washington's Climate Story</h2>
+<!-- ═══════════ EFFECTS ═══════════ -->
+<div class="sec-head" id="effects">
+  <span class="num">Section 4</span>
+  <h2>Effects Being Observed</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>These aren't abstract numbers on a chart</strong> — they're changes scientists can actually go out and measure, in places you can visit. Here are two: one global, one right in our own backyard.</p>
+
+  <div class="photo-break">
+    <img src="images/mount-rainier-glaciers.jpg" alt="Mount Rainier glaciers">
+    <div class="cap">Mount Rainier · <a href="https://commons.wikimedia.org/wiki/File:Mount_Rainier_5917s.JPG" target="_blank">Commons (CC BY-SA 3.0)</a></div>
   </div>
-  <div class="s-body">
-    <h3 style="font-size:1.05rem;margin:4px 0 8px;color:var(--forest)">The Climate Commitment Act</h3>
-    <p>
-      In 2021, Washington's governor signed a law called the <strong>Climate Commitment Act (CCA)</strong>. <cite-link><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">src</a></cite-link> It's a <strong>cap-and-invest</strong> program: the state sets a shrinking limit ("cap") on how much greenhouse gas the state's largest polluters are allowed to release, and lowers that limit over time. <cite-link><a href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">src</a></cite-link> Companies that need to emit more than their share have to buy "allowances" at auction — and that auction money becomes the program's revenue. <cite-link><a href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">src</a></cite-link> The program's first auction was held in 2023. <cite-link><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">src</a></cite-link>
-    </p>
 
-    <p>
-      You may also hear the CCA called a "gas tax" in everyday conversation. That's worth untangling, because Washington actually has two separate things affecting what you pay at the pump: a traditional <strong>state fuel tax</strong> that funds road construction and maintenance, and the CCA's cap-and-invest program, which is a different kind of program with a different purpose (reducing emissions, not funding roads) even though its costs can also show up in the price of gas. <cite-link><a href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">src</a></cite-link> Exactly how many cents per gallon the CCA adds has been debated — Washington state's own early official estimate and independent analyses since have landed on different numbers — so this page won't state one specific figure as settled fact.
-    </p>
-
-    <p>
-      Where does the CCA's auction money go? By law, it has to fund specific kinds of projects: clean transportation, climate resilience, and programs in communities most affected by pollution — with at least 35% required to benefit overburdened communities and at least 10% required to have Tribal support. <cite-link><a href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">src</a></cite-link> The Washington State Department of Ecology reported that during the 2023–2025 budget period, 37 state agencies had invested roughly $1.5 billion of CCA revenue into projects including clean transportation, wildfire resiliency, salmon habitat restoration, and household energy-bill assistance. <cite-link><a href="https://ecology.wa.gov/about-us/who-we-are/news/2024/nov-27-cca-investments" target="_blank">src</a></cite-link>
-    </p>
-
-    <p>
-      In November 2024, Washington voters decided the CCA's fate directly, through a ballot measure called <strong>Initiative 2117</strong>, which would have repealed the entire program. Voters rejected the repeal: about 62% voted against Initiative 2117, and about 38% voted for it, so the Climate Commitment Act stayed in place. <cite-link><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">src</a></cite-link> Supporters and opponents of the measure together spent well over $13 million campaigning before the vote. <cite-link><a href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">src</a></cite-link>
-    </p>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--forest)">Washington's Electricity Mix</h3>
-    <div class="clearfix">
-      <img class="img-float" src="images/grand-coulee-dam.jpg"
-           alt="Grand Coulee Dam on the Columbia River, a wide concrete gravity dam spanning the river at dusk" height="200"
-           onerror="this.style.display='none'">
-      <div class="img-caption" style="border-radius:6px;margin-bottom:8px;font-size:.7rem">
-        Grand Coulee Dam on the Columbia River — the largest power plant of any kind in the United States. <a href="https://commons.wikimedia.org/wiki/File:Grand_Coulee_Dam_Panorama.jpg" target="_blank">Wikimedia Commons (CC BY 3.0)</a>
-      </div>
-      <p>
-        Flip on a light switch in Washington, and there's a good chance the electricity came from a river. In 2024, hydropower — electricity generated by the force of moving water — made up roughly 60% of Washington's own electricity generation, more than any other single source. <cite-link><a href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">src</a></cite-link> Washington generates more hydropower in total than any other U.S. state — about a quarter of the entire country's utility-scale hydropower in 2024 came from Washington alone. <cite-link><a href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">src</a></cite-link>
-      </p>
-
-      <p>
-        A big reason why: the <strong>Grand Coulee Dam</strong>, on the Columbia River in eastern Washington. It's the largest power plant of any kind in the United States. In 2024, it alone generated about 15.4 million megawatt-hours of electricity — enough to help supply eight western states and parts of Canada. <cite-link><a href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">src</a></cite-link>
-      </p>
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">2×</div>
+      <div class="desc"><b>the rate of sea-level rise since 1993</b>2.1 mm/year in 1993 → 4.5 mm/year by 2024.</div>
     </div>
-
-    <div class="vocab">
-      <strong>📖 Key Word: Hydropower</strong> — Electricity generated by using the force of flowing or falling water, usually through dams, to spin turbines. It produces no direct carbon dioxide emissions while generating electricity. <cite-link><a href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">src</a></cite-link>
+    <div class="stat">
+      <div class="num">14%</div>
+      <div class="desc"><b>of Rainier's ice, gone since 1970</b>Measured directly by USGS survey comparison.</div>
     </div>
-
-    <h3 style="font-size:1.05rem;margin:20px 0 8px;color:var(--forest)">Washington's Carbon Footprint</h3>
-    <p>
-      A <strong>carbon footprint</strong> is the total amount of greenhouse gas that an activity, a person, or a whole state's economy is responsible for putting into the atmosphere, usually measured in metric tons. It's a way of comparing how much different places or activities contribute to the buildup of greenhouse gases.
-    </p>
-
-    <p>
-      In 2019, Washington's per-person greenhouse gas footprint was about <strong>13.5 metric tons of CO<sub>2</sub> equivalent</strong> — down 15% from where it stood in 2005. <cite-link><a href="https://apps.ecology.wa.gov/publications/documents/2414077.pdf" target="_blank">src</a></cite-link> That same year, the U.S. national average per-person footprint was about <strong>17.6 metric tons</strong>, according to EPA data. <cite-link><a href="https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks" target="_blank">src</a></cite-link> In other words, the average Washingtonian's footprint that year was noticeably smaller than the average American's.
-    </p>
-
-    <p>
-      This connects directly back to the electricity mix above. Producing electricity by burning fossil fuels (like natural gas or coal) releases CO<sub>2</sub>; producing it with hydropower generally doesn't. Since Washington gets such an unusually large share of its electricity from hydropower instead of fossil fuels, the state's electricity sector tends to release less CO<sub>2</sub> per person than states that rely more heavily on fossil fuels for power. That's a structural fact about the state's energy mix — not a claim about what any individual Washingtonian personally does or doesn't do.
-    </p>
-
-    <button class="quiz-btn" onclick="openQuiz('q5')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
 
-<!-- ═══════════ HISTORY TIMELINE ═══════════ -->
-<section class="s-card" id="timeline">
-  <div class="s-header">
-    <div class="s-icon si-ice">📅</div>
-    <h2><span class="q-label">History</span>How did we learn all this?</h2>
+  <p><strong>Sea levels are rising, worldwide.</strong> Satellites have tracked the global average continuously since 1993 — and altogether, sea level has risen about 11.1 cm (4.4 in) since then, with the pace itself still climbing.<a class="cite-inline" href="https://www.earthdata.nasa.gov/learn/data-in-action/rate-global-sea-level-rise-doubled-during-past-three-decades" target="_blank">NASA</a></p>
+
+  <p><strong>Now for our backyard: Mount Rainier's glaciers are shrinking.</strong> Mount Rainier, less than 60 miles from Seattle, is the most heavily glaciated peak in the continental U.S. The USGS compared surveys from 1970 and 2007/2008 to get that number — nearly all the mountain's glaciers had thinned and retreated in the years between.<a class="cite-inline" href="https://www.usgs.gov/publications/whole-edifice-ice-volume-change-ad-1970-20072008-mount-rainier-washington-based-lidar" target="_blank">USGS</a></p>
+
+  <p>Rising seas and shrinking glaciers are two totally different kinds of evidence — one from orbiting satellites, one from a scientist standing on a mountain with survey gear. They point the same direction.</p>
+
+  <div class="pull-quote">
+    <p>The warming isn't just numbers in a report. It's visibly reshaping real coastlines and glaciers, including ones close to home.</p>
   </div>
-  <div class="s-body">
-    <div class="callout c-ice" style="background:var(--ice-ll);border-color:var(--ice)">
-      <span class="callout-icon">💡</span>
-      <div class="callout-body">
-        <h4>Why does history matter here?</h4>
-        <p>Every fact on this page came from somewhere — a scientist who ran an experiment, a program that started measuring something and never stopped. Here's the timeline of how we got the evidence this page is built on. <strong>Click the quiz button below to test yourself and earn points!</strong></p>
-      </div>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q4', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q4">
+      <div class="quiz-q">About how much of Mount Rainier's ice/snow volume disappeared, 1970–2007/08?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. About 14%, measured directly by USGS survey comparison.')">About 14%</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was about 14%.')">About 1%</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was about 14%.')">About 50%</button>
+      <div class="quiz-fb" id="fb-q4"></div>
     </div>
-
-    <div class="timeline" id="mainTimeline">
-
-      <!-- 1856 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-ice"></div>
-        <div class="tl-content">
-          <div class="tl-year">1856</div>
-          <div class="tl-title">🔬 Eunice Foote demonstrates the greenhouse effect</div>
-          <div class="tl-desc">
-            American scientist Eunice Foote sealed different gases inside glass cylinders and set them in the sun, measuring how hot each one got. The cylinder filled with carbon dioxide heated up the most and stayed warm the longest. <cite-link><a href="https://www.climate.gov/news-features/features/happy-200th-birthday-eunice-foote-hidden-climate-science-pioneer" target="_blank">src</a></cite-link> She wrote that "an atmosphere of that gas would give to our earth a high temperature" — describing what we now call the greenhouse effect, decades before it had that name. <cite-link><a href="https://www.climate.gov/news-features/features/happy-200th-birthday-eunice-foote-hidden-climate-science-pioneer" target="_blank">src</a></cite-link> Because she was a woman, a male colleague read her paper aloud at the scientific meeting where it was presented — and for over a century, credit for this discovery went to a different scientist who reached similar conclusions three years later.
-          </div>
-        </div>
-      </div>
-
-      <!-- 1896 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-slate"></div>
-        <div class="tl-content">
-          <div class="tl-year">1896</div>
-          <div class="tl-title">🧮 Svante Arrhenius calculates the numbers</div>
-          <div class="tl-desc">
-            Swedish scientist Svante Arrhenius went a step further than Foote's experiment: he did the math. He calculated that doubling the amount of CO<sub>2</sub> in the atmosphere would raise Earth's average temperature by several degrees Celsius — and he was the first person to connect this to burning fossil fuels. <cite-link><a href="https://en.wikipedia.org/wiki/Svante_Arrhenius" target="_blank">src</a></cite-link> His estimate, made entirely by hand over a century ago, was in the same ballpark as the far more sophisticated estimates scientists use today.
-          </div>
-        </div>
-      </div>
-
-      <!-- 1958 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-forest"></div>
-        <div class="tl-content">
-          <div class="tl-year">1958</div>
-          <div class="tl-title">📈 The Keeling Curve begins</div>
-          <div class="tl-desc">
-            Charles David Keeling started continuous, direct measurement of atmospheric CO<sub>2</sub> at the Mauna Loa Observatory in Hawaii — the measurement Section 3 covers in detail. <cite-link><a href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">src</a></cite-link> It's still running today, over 65 years later.
-          </div>
-        </div>
-      </div>
-
-      <!-- 1988 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-dark"></div>
-        <div class="tl-content">
-          <div class="tl-year">1988</div>
-          <div class="tl-title">🌐 The IPCC is established</div>
-          <div class="tl-desc">
-            The United Nations Environment Programme and the World Meteorological Organization jointly established the <strong>Intergovernmental Panel on Climate Change (IPCC)</strong> to review and summarize the world's climate science. <cite-link><a href="https://www.ipcc.ch/about/history/" target="_blank">src</a></cite-link> It doesn't run its own experiments — its job is to read and summarize the published research from thousands of scientists worldwide.
-          </div>
-        </div>
-      </div>
-
-      <!-- 2015 -->
-      <div class="tl-item">
-        <div class="tl-dot tl-ice"></div>
-        <div class="tl-content">
-          <div class="tl-year">December 12, 2015</div>
-          <div class="tl-title">🤝 The Paris Agreement</div>
-          <div class="tl-desc">
-            195 countries adopted the Paris Agreement, an international treaty aiming to keep global average temperature rise "well below" 2°C above pre-industrial levels. <cite-link><a href="https://unfccc.int/process-and-meetings/the-paris-agreement" target="_blank">src</a></cite-link> This page's focus is Washington's own climate story, not international climate diplomacy — but this is the single most well-known international climate agreement, so it earns a mention here.
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q7')">🧠 Quick Quiz — Test yourself!</button>
   </div>
-</section>
+</div>
+
+<!-- ═══════════ WA STORY ═══════════ -->
+<div class="sec-head" id="wa-story">
+  <span class="num">Close to Home</span>
+  <h2>Washington's Climate Story</h2>
+</div>
+<div class="article">
+  <h3>The Climate Commitment Act</h3>
+  <div class="photo-inline clearfix">
+    <img src="images/card-wa-capitol.jpg" alt="Washington State Capitol">
+    <div class="cap">Washington State Capitol, Olympia · <a href="https://commons.wikimedia.org/wiki/File:Washington_State_Capitol_Legislative_Building.jpg" target="_blank">Commons (CC BY-SA 3.0)</a></div>
+  </div>
+  <p class="lede">In 2021, Washington's governor signed the <strong>Climate Commitment Act (CCA)</strong> — a <strong>cap-and-invest</strong> program. The state sets a shrinking limit on greenhouse gas from big polluters, and lowers that limit over time. Companies that need to emit more than their share buy "allowances" at auction — that auction money is the program's revenue. First auction: 2023.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">Wikipedia</a><a class="cite-inline" href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">WA Ecology</a></p>
+
+  <p>Washington also has a separate, traditional state fuel tax that funds roads — the CCA is a different program with a different purpose (cutting emissions), even though its costs can also show up at the pump. Exactly how many cents per gallon the CCA adds has been debated; official estimates and independent analyses have landed on different figures, so this page won't state one as settled fact.<a class="cite-inline" href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">WA Ecology</a></p>
+
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">35%+</div>
+      <div class="desc"><b>must benefit overburdened communities</b>By law. At least 10% must have Tribal support.</div>
+    </div>
+    <div class="stat">
+      <div class="num">$1.5B</div>
+      <div class="desc"><b>invested, 2023–2025 biennium</b>By 37 state agencies — transportation, wildfire resiliency, salmon habitat.</div>
+    </div>
+  </div>
+
+  <p><strong>November 2024: voters weighed in.</strong> Initiative 2117 would have repealed the CCA entirely. Voters rejected it: ~62% against, ~38% for. The Climate Commitment Act stayed in place. Supporters and opponents together spent over $13 million campaigning before the vote.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">Wikipedia</a></p>
+
+  <h3>Washington's Electricity Mix</h3>
+  <div class="photo-break">
+    <img src="images/grand-coulee-dam.jpg" alt="Grand Coulee Dam">
+    <div class="cap">Grand Coulee Dam · <a href="https://commons.wikimedia.org/wiki/File:Grand_Coulee_Dam_Panorama.jpg" target="_blank">Commons (CC BY 3.0)</a></div>
+  </div>
+
+  <p><strong>Flip a light switch in Washington, and it's probably from a river.</strong> Hydropower makes up roughly 60% of the state's electricity generation, more than any other single source — Washington alone generates about a quarter of all U.S. utility-scale hydropower. A big reason why: <strong>Grand Coulee Dam</strong>, the largest power plant of any kind in the U.S. — in 2024 it generated about 15.4 million MWh, enough to help supply eight western states and parts of Canada.<a class="cite-inline" href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">U.S. EIA</a></p>
+
+  <div class="vocab">
+    <b>Key Word — Hydropower</b>
+    <p>Electricity generated by the force of flowing or falling water, usually through dams. Produces no direct CO₂ emissions while generating electricity.<a class="cite-inline" href="https://www.eia.gov/todayinenergy/detail.php?id=49676" target="_blank">U.S. EIA</a></p>
+  </div>
+
+  <h3>Washington's Carbon Footprint</h3>
+  <div class="stat-pair">
+    <div class="stat">
+      <div class="num">13.5</div>
+      <div class="desc"><b>metric tons CO₂e per person, WA (2019)</b>Down 15% since 2005.</div>
+    </div>
+    <div class="stat">
+      <div class="num">17.6</div>
+      <div class="desc"><b>metric tons CO₂e per person, U.S. average</b>Same year, for comparison.</div>
+    </div>
+  </div>
+  <p>That gap isn't really a story about individual Washingtonians. It's a story about the electricity mix you just read above: a state that leans on hydropower instead of fossil fuels will tend to have a lower footprint, as a structural fact about its energy supply, not a comment on personal choices.<a class="cite-inline" href="https://apps.ecology.wa.gov/publications/documents/2414077.pdf" target="_blank">WA Ecology</a><a class="cite-inline" href="https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks" target="_blank">EPA</a></p>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q5', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q5">
+      <div class="quiz-q">What is Washington's single largest source of electricity?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. Hydropower — about 60% of WA\'s electricity generation.')">Hydropower</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it\'s hydropower, about 60% of the mix.')">Natural gas</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it\'s hydropower, about 60% of the mix.')">Coal</button>
+      <div class="quiz-fb" id="fb-q5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec-head" id="timeline">
+  <span class="num">History</span>
+  <h2>How Did We Learn All This?</h2>
+</div>
+<div class="article">
+  <p class="lede">Every fact on this page came from somewhere — a scientist who ran an experiment, a program that started measuring something and never stopped. Here's the timeline.</p>
+
+  <div class="tl-item">
+    <div class="tl-year">1856</div>
+    <div class="tl-body">
+      <h4>Eunice Foote demonstrates the greenhouse effect</h4>
+      <p>She sealed different gases in glass cylinders and set them in the sun. The CO<sub>2</sub> cylinder heated the most and stayed warm longest. A male colleague read her paper aloud — for over a century, credit went to someone else.<a class="cite-inline" href="https://www.climate.gov/news-features/features/happy-200th-birthday-eunice-foote-hidden-climate-science-pioneer" target="_blank">NOAA</a></p>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1896</div>
+    <div class="tl-body">
+      <h4>Svante Arrhenius calculates the numbers</h4>
+      <p>He calculated that doubling atmospheric CO<sub>2</sub> would raise Earth's temperature several degrees — and was first to link this to burning fossil fuels.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Svante_Arrhenius" target="_blank">Wikipedia</a></p>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1958</div>
+    <div class="tl-body">
+      <h4>The Keeling Curve begins</h4>
+      <p>Continuous, direct CO<sub>2</sub> measurement starts at Mauna Loa. Still running, 65+ years later.<a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA</a></p>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1988</div>
+    <div class="tl-body">
+      <h4>The IPCC is established</h4>
+      <p>The UN's climate science body — it reviews and summarizes the world's published research.<a class="cite-inline" href="https://www.ipcc.ch/about/history/" target="_blank">IPCC</a></p>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Dec 12, 2015</div>
+    <div class="tl-body">
+      <h4>The Paris Agreement</h4>
+      <p>195 countries adopted a treaty aiming to keep warming "well below" 2°C.<a class="cite-inline" href="https://unfccc.int/process-and-meetings/the-paris-agreement" target="_blank">UNFCCC</a></p>
+    </div>
+  </div>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q7', this)">Test Yourself</button>
+    <div class="quiz-body" id="quiz-q7">
+      <div class="quiz-q">Who ran the 1856 experiment that first showed CO₂ traps heat?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. Eunice Foote, decades before the term greenhouse effect existed.')">Eunice Foote</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was Eunice Foote, in 1856.')">Svante Arrhenius</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — it was Eunice Foote, in 1856.')">Charles David Keeling</button>
+      <div class="quiz-fb" id="fb-q7"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
-<section class="s-card" id="key-people">
-  <div class="s-header">
-    <div class="s-icon si-ice">🧑‍🤝‍🧑</div>
-    <h2><span class="q-label">Bonus</span>Key People</h2>
-  </div>
-  <div class="s-body">
-    <p>This section sticks to historical figures whose scientific contributions are already settled — not anyone currently active in climate policy or advocacy.</p>
-    <div class="people-grid">
+<div class="sec-head" id="people">
+  <span class="num">Bonus</span>
+  <h2>Key People</h2>
+</div>
+<div class="article">
+  <p class="lede">This section sticks to historical figures whose scientific contributions are already settled — not anyone currently active in climate policy.</p>
 
-      <div class="person-card">
-        <div class="portrait-ring">
-          <div class="person-emoji-fallback">🔬</div>
-        </div>
-        <h4>Eunice Foote</h4>
-        <div class="person-role">Scientist, demonstrated the greenhouse effect, 1856</div>
-        <p>An American scientist and women's rights activist whose 1856 experiments showed that carbon dioxide traps heat from the sun more than ordinary air does — decades before the term "greenhouse effect" existed. Her paper was read aloud by a male colleague at the scientific meeting where it was presented, and for over a century, credit went to a different scientist instead. We could not find a verified public-domain or Creative Commons photograph of Eunice Foote — no confirmed photograph of her is known to survive.</p>
-        <div class="person-citation"><a href="https://www.climate.gov/news-features/features/happy-200th-birthday-eunice-foote-hidden-climate-science-pioneer" target="_blank">Source: NOAA Climate.gov</a></div>
-      </div>
-
-      <div class="person-card">
-        <div class="portrait-ring">
-          <div class="portrait-inner">
-            <img src="images/claude-lorius.jpg"
-                 alt="Claude Lorius in Antarctica, 2008" onerror="this.parentElement.parentElement.outerHTML='<div class=\'person-emoji-fallback\'>🧊</div>'">
-          </div>
-        </div>
-        <h4>Claude Lorius</h4>
-        <div class="person-role">Glaciologist, Vostok ice core pioneer, 1932–2023</div>
-        <p>A French glaciologist who led some of the earliest ice-core research at Vostok Station in Antarctica, starting in the 1960s. He was among the first to realize that air bubbles trapped in ancient ice could reveal the composition of Earth's past atmosphere — the same technique Section 1 of this page describes. He led 22 research expeditions to Antarctica and Greenland over his career.</p>
-        <div class="person-citation"><a href="https://news.cnrs.fr/articles/claude-lorius-a-life-on-the-ice" target="_blank">Source: CNRS News</a> · <a href="https://commons.wikimedia.org/wiki/File:Claude.Lorius.jpg" target="_blank">Photo: Wikimedia Commons (CC BY-SA 3.0)</a></div>
-      </div>
-
+  <div class="person">
+    <div class="emoji-fallback">🔬</div>
+    <div>
+      <h4>Eunice Foote</h4>
+      <div class="role">Scientist, demonstrated the greenhouse effect, 1856</div>
+      <p>We could not find a verified public-domain or Creative Commons photograph of Eunice Foote — no confirmed photograph of her is known to survive.<a class="cite-inline" href="https://www.climate.gov/news-features/features/happy-200th-birthday-eunice-foote-hidden-climate-science-pioneer" target="_blank">NOAA</a></p>
     </div>
-
-    <button class="quiz-btn" onclick="openQuiz('q8')">🧠 Quiz: Key People</button>
   </div>
-</section>
+
+  <div class="person">
+    <img src="images/claude-lorius.jpg" alt="Claude Lorius">
+    <div>
+      <h4>Claude Lorius</h4>
+      <div class="role">Glaciologist, Vostok ice core pioneer, 1932–2023</div>
+      <p>A French glaciologist who pioneered ice-core research at Vostok Station, Antarctica, starting in the 1960s — the same technique behind Section 1. Led 22 expeditions to Antarctica and Greenland.<a class="cite-inline" href="https://news.cnrs.fr/articles/claude-lorius-a-life-on-the-ice" target="_blank">CNRS</a></p>
+    </div>
+  </div>
+
+  <div class="quiz-inline">
+    <button class="quiz-toggle" onclick="toggleQuiz('q8', this)">Quiz: Key People</button>
+    <div class="quiz-body" id="quiz-q8">
+      <div class="quiz-q">What was Claude Lorius's key contribution?</div>
+      <button class="quiz-choice" data-correct="true" onclick="answerQuiz(this,'Correct. He pioneered ice-core research at Vostok Station, revealing Earth\'s past atmosphere.')">Pioneered ice-core research at Vostok Station</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — he pioneered ice-core research at Vostok Station.')">Invented the greenhouse</button>
+      <button class="quiz-choice" onclick="answerQuiz(this,'Not quite — he pioneered ice-core research at Vostok Station.')">Discovered the ozone layer</button>
+      <div class="quiz-fb" id="fb-q8"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
-<section class="s-card" id="videos">
-  <div class="s-header">
-    <div class="s-icon si-slate">📺</div>
-    <h2><span class="q-label">Watch</span>Videos — see it for yourself</h2>
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>Videos — See It for Yourself</h2>
+</div>
+<div class="article">
+  <p class="lede">Sometimes a video explains things better than words. Here are two good ones.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9PFhrpyWV-w?rel=0" title="Crash Course Climate & Energy #1" allowfullscreen loading="lazy"></iframe></div>
+  <div class="video-label">Crash Course Climate &amp; Energy #1</div>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/I4EZCy14te0?rel=0" title="TED-Ed" allowfullscreen loading="lazy"></iframe></div>
+  <div class="video-label">TED-Ed — Lorraine Lisiecki, "When will the next ice age happen?"</div>
+
+  <div class="photo-break">
+    <img src="images/pnw-old-growth-forest.jpg" alt="Olympic Peninsula old-growth forest">
+    <div class="cap">Olympic Peninsula old-growth forest · <a href="https://commons.wikimedia.org/wiki/File:Old_Growth_Forest_along_US_101_in_Washington.jpg" target="_blank">Commons (CC BY 2.0)</a></div>
   </div>
-  <div class="s-body">
-    <p>Sometimes a video explains things better than words. Here are two good ones — one covers the whole picture, the other zooms in on the deep-time evidence this page opened with. You can pause, rewind, or watch with captions on.</p>
-
-    <div class="video-grid">
-
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/9PFhrpyWV-w?rel=0&modestbranding=1"
-          title="What is Climate Change?: Crash Course Climate &amp; Energy #1 (YouTube)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"></iframe>
-      </div>
-
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/I4EZCy14te0?rel=0&modestbranding=1"
-          title="When will the next ice age happen? - Lorraine Lisiecki, TED-Ed (YouTube)"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"></iframe>
-      </div>
-
-    </div>
-
-    <div class="clearfix" style="margin-top:22px">
-      <img class="img-float-left" src="images/pnw-old-growth-forest.jpg"
-           alt="Old-growth temperate rainforest on the Olympic Peninsula in Washington State" height="200"
-           onerror="this.style.display='none'">
-      <div class="img-caption" style="border-radius:6px;margin-bottom:8px;font-size:.7rem">
-        Old-growth rainforest on Washington's Olympic Peninsula. This page has covered ice, charts, and policy — but Washington's climate story includes places like this too. <a href="https://commons.wikimedia.org/wiki/File:Old_Growth_Forest_along_US_101_in_Washington.jpg" target="_blank">Wikimedia Commons (CC BY 2.0)</a>
-      </div>
-      <p>
-        From 800,000-year-old ice in Antarctica to a rainforest a few hours from Seattle — the evidence on this page spans the whole planet, but a lot of it also runs right through our own backyard.
-      </p>
-    </div>
-  </div>
-</section>
+  <p>From 800,000-year-old ice in Antarctica to a rainforest a few hours from Seattle — the evidence on this page spans the whole planet, and runs right through our own backyard.</p>
+</div>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
-<section class="s-card" id="resources">
-  <div class="s-header">
-    <div class="s-icon si-dark">🔗</div>
-    <h2><span class="q-label">Resources</span>All sources — dig deeper into what you're curious about</h2>
-  </div>
-  <div class="s-body">
-    <p style="margin-bottom:6px">Each card below links to a real article or resource. Look for the colored tag to see where it comes from!</p>
-    <div class="callout c-ice" style="margin-bottom:18px;background:var(--ice-ll);border-color:var(--ice)">
-      <span class="callout-icon">🎓</span>
-      <div class="callout-body">
-        <h4>Reading levels</h4>
-        <p>Labels: <strong>⭐ Easier</strong> = great starting point · <strong>⭐⭐ Medium</strong> = some reading required · <strong>⭐⭐⭐ Harder</strong> = for students who want a deeper challenge</p>
-      </div>
-    </div>
-
-    <div class="resource-grid">
-      <a class="rc" href="https://climatekids.nasa.gov/" target="_blank">
-        <span class="rc-tag t-gov">🚀 NASA Climate Kids</span>
-        <h4>NASA Climate Kids</h4>
-        <p>NASA's own kid-focused climate science site — articles, games, and videos on everything from the greenhouse effect to ice cores.</p>
-        <div class="rc-level">⭐ Easier — Built for students</div>
-      </a>
-
-      <a class="rc" href="https://www.climate.gov/teaching" target="_blank">
-        <span class="rc-tag t-gov">🌊 NOAA Climate.gov</span>
-        <h4>Teaching Climate</h4>
-        <p>NOAA's educational hub, with classroom-ready explainers on ice cores, the Keeling Curve, and how scientists study past climate.</p>
-        <div class="rc-level">⭐⭐ Medium — Some reading required</div>
-      </a>
-
-      <a class="rc" href="https://www.ipcc.ch/" target="_blank">
-        <span class="rc-tag t-gov">🌐 IPCC</span>
-        <h4>Intergovernmental Panel on Climate Change</h4>
-        <p>The United Nations body that reviews and summarizes the world's published climate science. Dense, but it's the primary source behind most climate reporting.</p>
-        <div class="rc-level">⭐⭐⭐ Harder — Technical source material</div>
-      </a>
-
-      <a class="rc" href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">
-        <span class="rc-tag t-gov">📍 WA Dept. of Ecology</span>
-        <h4>Climate Commitment Act</h4>
-        <p>The state's own official explanation of the Climate Commitment Act — how it works, what it funds, and how to track auction results.</p>
-        <div class="rc-level">⭐⭐ Medium — Official state source</div>
-      </a>
-
-      <a class="rc" href="https://www.eia.gov/state/?sid=WA" target="_blank">
-        <span class="rc-tag t-gov">⚡ U.S. EIA</span>
-        <h4>Washington State Energy Profile</h4>
-        <p>The federal government's data hub for Washington's electricity mix, hydropower, and energy statistics — the source behind this page's energy-mix numbers.</p>
-        <div class="rc-level">⭐⭐⭐ Harder — Raw data and tables</div>
-      </a>
-
-      <a class="rc" href="https://www.usgs.gov/programs/climate-research-and-development-program" target="_blank">
-        <span class="rc-tag t-gov">🏔️ USGS</span>
-        <h4>Climate Research and Development Program</h4>
-        <p>The U.S. Geological Survey's climate science hub — includes the glacier research behind this page's Mount Rainier data.</p>
-        <div class="rc-level">⭐⭐⭐ Harder — Research-focused</div>
-      </a>
-    </div>
-
-    <h3 style="font-size:1.05rem;margin:26px 0 8px;color:var(--forest)">🗓️ Keep up with climate news <span style="font-weight:400;font-size:.8rem;color:#666">(as of July 22, 2026)</span></h3>
-    <div class="callout c-ice" style="margin-bottom:14px;background:var(--ice-ll);border-color:var(--ice)">
-      <span class="callout-icon">⏳</span>
-      <div class="callout-body">
-        <p>This list is a short, dated snapshot — not a permanent resource. It will get stale as time passes. If you're reading this well after July 2026, treat these links as historical background and look for newer coverage instead.</p>
-      </div>
-    </div>
-    <div class="resource-grid">
-      <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/07/health-risks-of-wildfire-smple-across-the-midwest" target="_blank">
-        <span class="rc-tag t-news">📺 PBS NewsHour Classroom</span>
-        <h4>The Health Risks of Wildfire Smoke Across the Midwest and Mid-Atlantic</h4>
-        <p>Published July 20, 2026. Covers wildfire smoke exposing more than 115 million people to unhealthy air quality across at least 17 states.</p>
-        <div class="rc-level">⭐⭐ Medium — Includes discussion questions</div>
-      </a>
-
-      <a class="rc" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/07/how-climate-change-and-rising-seas-endanger-historic-sites-like-jamestown-virginia" target="_blank">
-        <span class="rc-tag t-news">📺 PBS NewsHour Classroom</span>
-        <h4>How Climate Change and Rising Seas Endanger Historic Sites Like Jamestown, Virginia</h4>
-        <p>Published July 6, 2026. Explores how sea-level rise and coastal erosion threaten historic American sites, connecting directly to this page's Section 4 sea-level data.</p>
-        <div class="rc-level">⭐⭐ Medium — Includes discussion questions</div>
-      </a>
-
-      <a class="rc" href="https://ecology.wa.gov/about-us/who-we-are/news/2026/april-8-statewide-drought-declared-due-to-dismal-snowpack" target="_blank">
-        <span class="rc-tag t-gov">📍 WA Dept. of Ecology</span>
-        <h4>Statewide Drought Declared Due to Dismal Snowpack</h4>
-        <p>Published April 8, 2026. The state's own official announcement of its fourth consecutive drought emergency — the primary source behind this page's update-pane timeline.</p>
-        <div class="rc-level">⭐⭐ Medium — Official state source</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-</main>
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>Dig Deeper</h2>
+</div>
+<div class="article">
+  <a class="rc" href="https://climatekids.nasa.gov/" target="_blank">
+    <span class="tag">NASA Climate Kids</span>
+    <div class="rc-title">NASA Climate Kids</div>
+    <p>Articles, games, and videos on the greenhouse effect to ice cores.</p>
+  </a>
+  <a class="rc" href="https://www.climate.gov/teaching" target="_blank">
+    <span class="tag">NOAA Climate.gov</span>
+    <div class="rc-title">Teaching Climate</div>
+    <p>Classroom-ready explainers on ice cores and the Keeling Curve.</p>
+  </a>
+  <a class="rc" href="https://ecology.wa.gov/air-climate/climate-commitment-act" target="_blank">
+    <span class="tag">WA Dept. of Ecology</span>
+    <div class="rc-title">Climate Commitment Act</div>
+    <p>The state's own official explanation.</p>
+  </a>
+</div>
 
 <footer>
-  <p>Made for 8th grade Social Studies students · All links go to trusted, nonpartisan news and educational sources · Updated July 2026</p>
-  <p style="margin-top:6px;font-size:.75rem">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
-  <p style="margin-top:10px;font-size:.78rem;background:#f0f0f0;display:inline-block;padding:8px 18px;border-radius:20px">
-    🌐 <strong>Want to share this page?</strong> Host it free on
-    <a href="https://pages.github.com" target="_blank" style="color:var(--slate-l)">GitHub Pages</a> ·
-    <a href="https://app.netlify.com/drop" target="_blank" style="color:var(--slate-l)">Netlify Drop</a> · or
-    <a href="https://sites.google.com" target="_blank" style="color:var(--slate-l)">Google Sites</a>
-  </p>
-  <p style="margin-top:6px;font-size:.75rem">💡 <strong>Teacher tip:</strong> Try the Konami code on this page ↑↑↓↓←→←→BA</p>
-  <div class="secret-text" aria-hidden="true">Ice cores remember what we forget</div>
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
 </footer>
 
-<!-- ════════════════════════════════════════════════════
-     JAVASCRIPT: QUIZ SYSTEM + EASTER EGGS
-════════════════════════════════════════════════════ -->
 <script>
-// ─── STATE ───
-let pts = 0;
-let answeredQuizzes = new Set();
-let flagClicks = 0;
-let timelineClicks = 0;
-let statClicks = { geography: new Set() };
-let konamiIndex = 0;
-const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)
-
-// ─── QUIZ DATA ───
-// Empty for now -- subsequent tasks will add entries as they build each section's quiz.
-const quizzes = {
-  q1: {
-    q: "How do scientists know what Earth's climate was like hundreds of thousands of years ago, before anyone recorded weather data?",
-    choices: ["They guess based on today's weather patterns", "They study climate proxies, like ice cores, tree rings, and sediment layers", "They use only computer models with no real evidence", "They rely on ancient written historical records"],
-    correct: 1,
-    feedback: "✅ Correct! Climate proxies — natural evidence like ice cores, tree rings, and sediment layers — record clues about past climate. Ice cores trap actual air bubbles from the year the ice formed, giving scientists a direct sample of the ancient atmosphere.",
-    wrong: "Not quite. Scientists rely on climate proxies — natural evidence like ice cores, tree rings, and sediment layers — that record clues about the climate from long before anyone kept written weather records."
-  },
-  q2: {
-    q: "What happens to heat that greenhouse gases catch in the atmosphere?",
-    choices: ["It escapes to space immediately", "Some of it gets sent back down toward Earth's surface instead of escaping", "It turns into oxygen", "It only affects the ocean, not the air"],
-    correct: 1,
-    feedback: "✅ Correct! Sunlight warms Earth's surface, and the surface releases that heat back out. Greenhouse gases catch some of that outgoing heat and send it back down instead of letting it all escape to space — that's what keeps Earth warm enough to live on.",
-    wrong: "Not quite. Sunlight warms Earth's surface, and the surface releases that heat back out. Greenhouse gases catch some of that outgoing heat and send it back down instead of letting it all escape to space."
-  },
-  q3: {
-    q: "About how long did past natural climate shifts take, compared to the warming happening now?",
-    choices: ["Past shifts took thousands of years; today's warming is happening about 10 times faster", "Past shifts and today's warming happen at about the same speed", "Past shifts happened faster than today's warming", "There's no way to compare the two speeds"],
-    correct: 0,
-    feedback: "✅ Correct! Natural warming after past ice ages happened gradually over thousands of years. NASA reports today's warming is happening roughly 10 times faster than that — a pace not seen in at least the last 10,000 years.",
-    wrong: "Not quite. Natural warming after past ice ages happened gradually over thousands of years. Today's warming is happening roughly 10 times faster than that, according to NASA — a pace not seen in at least the last 10,000 years."
-  },
-  q4: {
-    q: "About how much of Mount Rainier's glacial ice and snow volume did the USGS find had disappeared between 1970 and 2007/2008?",
-    choices: ["About 1%", "About 14%", "About 50%", "About 90%"],
-    correct: 1,
-    feedback: "✅ Correct! A USGS survey comparing Mount Rainier in 1970 to 2007/2008 found the mountain had lost about 14% of its glacial ice and perennial snow volume in less than 40 years.",
-    wrong: "Not quite. A USGS survey comparing Mount Rainier in 1970 to 2007/2008 found the mountain had lost about 14% of its glacial ice and perennial snow volume in less than 40 years."
-  },
-  q5: {
-    q: "What is Washington State's single largest source of electricity?",
-    choices: ["Natural gas", "Coal", "Hydropower", "Solar"],
-    correct: 2,
-    feedback: "✅ Correct! Hydropower — electricity generated by the force of moving water — made up roughly 60% of Washington's electricity generation in 2024, more than any other source. Washington generates more hydropower than any other U.S. state.",
-    wrong: "Not quite. Hydropower made up roughly 60% of Washington's electricity generation in 2024, more than any other source — Washington generates more hydropower than any other U.S. state."
-  },
-  q6: {
-    q: "What was Washington's total greenhouse gas emissions in the state's most recent official inventory (2022), and how did that compare to 2021?",
-    choices: ["96.1 million metric tons, down 0.5% from 2021", "10 million metric tons, up 20% from 2021", "96.1 million metric tons, up 15% from 2021", "The state does not track this"],
-    correct: 0,
-    feedback: "✅ Correct! Washington's most recent official inventory (Department of Ecology) shows total emissions at 96.1 million metric tons in 2022, a 0.5% decline from 2021's 96.6 million metric tons.",
-    wrong: "Not quite. Washington's most recent official inventory shows total emissions at 96.1 million metric tons in 2022, a 0.5% decline from 2021's 96.6 million metric tons."
-  },
-  q7: {
-    q: "Who ran the 1856 experiment that first demonstrated carbon dioxide traps heat from the sun?",
-    choices: ["Svante Arrhenius", "Charles David Keeling", "Eunice Foote", "Claude Lorius"],
-    correct: 2,
-    feedback: "✅ Correct! Eunice Foote sealed different gases in glass cylinders and measured how much each one heated in the sun in 1856 — decades before the term \"greenhouse effect\" existed. Svante Arrhenius calculated the numbers behind it 40 years later, in 1896.",
-    wrong: "Not quite. Eunice Foote sealed different gases in glass cylinders and measured how much each one heated in the sun in 1856 — decades before the term \"greenhouse effect\" existed."
-  },
-  q8: {
-    q: "What was Claude Lorius's key contribution to climate science?",
-    choices: ["He invented the greenhouse", "He pioneered ice-core research at Vostok Station, Antarctica, revealing Earth's past atmosphere", "He was the first U.S. president to sign a climate law", "He discovered the ozone layer"],
-    correct: 1,
-    feedback: "✅ Correct! Claude Lorius helped pioneer ice-core drilling as a way to study Earth's climate history at Vostok Station in Antarctica, starting in the 1960s — realizing that trapped air bubbles could reveal the composition of the ancient atmosphere.",
-    wrong: "Not quite. Claude Lorius helped pioneer ice-core drilling as a way to study Earth's climate history at Vostok Station in Antarctica, starting in the 1960s."
-  }
-};
-
-// ─── QUIZ FUNCTIONS ───
-function openQuiz(id) {
-  if (answeredQuizzes.has(id)) {
-    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
-    return;
-  }
-  const q = quizzes[id];
-  document.getElementById('quizQ').textContent = q.q;
-  const cc = document.getElementById('quizChoices');
-  cc.innerHTML = '';
-  q.choices.forEach((c,i) => {
-    const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.textContent = c;
-    btn.onclick = () => handleAnswer(id, i, btn);
-    cc.appendChild(btn);
-  });
-  document.getElementById('quizFeedback').className = 'quiz-feedback';
-  document.getElementById('quizFeedback').textContent = '';
-  document.getElementById('quizModal').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+function toggleQuiz(id, btn){
+  const el = document.getElementById('quiz-'+id);
+  el.classList.toggle('open');
+  if (btn) btn.classList.toggle('open');
 }
-function handleAnswer(id, chosen, btn) {
-  const q = quizzes[id];
-  const allBtns = document.querySelectorAll('.choice-btn');
-  allBtns.forEach(b => { b.disabled = true; });
-  const fb = document.getElementById('quizFeedback');
-  if (chosen === q.correct) {
-    btn.classList.add('correct');
-    fb.textContent = q.feedback;
-    fb.className = 'quiz-feedback show correct-fb';
-    if (!answeredQuizzes.has(id)) {
-      answeredQuizzes.add(id);
-      addPoints(1);
-    }
-  } else {
-    btn.classList.add('wrong');
-    allBtns[q.correct].classList.add('correct');
-    fb.textContent = q.wrong;
-    fb.className = 'quiz-feedback show wrong-fb';
-    answeredQuizzes.add(id); // still count as answered so they can't retry for points
-  }
+function answerQuiz(btn, msg){
+  const wrap = btn.closest('.quiz-body');
+  wrap.querySelectorAll('.quiz-choice').forEach(b => b.disabled = true);
+  btn.classList.add(btn.dataset.correct === 'true' ? 'correct' : 'wrong');
+  const fb = wrap.querySelector('.quiz-fb');
+  fb.textContent = msg;
+  fb.classList.add('show');
 }
-function closeQuiz() {
-  document.getElementById('quizModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-// ─── POINTS SYSTEM ───
-function addPoints(n) {
-  pts = Math.min(pts + n, MAX_PTS);
-  document.getElementById('pointsDisplay').textContent = pts + ' pts';
-  document.getElementById('progressFill').style.width = (MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0) + '%';
-
-  if (pts >= 3) {
-    const el = document.getElementById('unlock-section-1');
-    if (el) { el.style.display = 'block'; el.classList.add('revealed'); }
-  }
-  if (pts >= 5) {
-    const el = document.getElementById('unlock-5pts');
-    if (el) el.classList.add('show');
-    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus!';
-    showToast('🌟','5 Points!','You unlocked a bonus deep dive!');
-  }
-  if (pts >= 10) {
-    const el = document.getElementById('unlock-10pts');
-    if (el) el.classList.add('show');
-    document.getElementById('unlockHint').textContent = '🏆 Maximum points — Climate Expert unlocked!';
-    showToast('🏆','Climate Expert!','You hit 10 points! Check the final bonus.');
-  }
-}
-
-// ─── TOAST ───
-let toastTimer;
-function showToast(icon, title, msg) {
-  document.getElementById('toastIcon').textContent = icon;
-  document.getElementById('toastTitle').textContent = title;
-  document.getElementById('toastMsg').textContent = msg;
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
-}
-
-// ─── EASTER EGG: FLAG CLICKS ───
-function handleFlagClick() {
-  flagClicks++;
-  const flag = document.getElementById('heroFlag');
-  flag.classList.remove('shake');
-  void flag.offsetWidth; // reset animation
-  flag.classList.add('shake');
-
-  if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
-  if (flagClicks >= 5) {
-    flagClicks = 0;
-    showEgg('🧊','You found a secret!',
-      'Placeholder easter egg content -- a later task can add page-appropriate content here if desired.',
-      '');
-    addPoints(1);
-  }
-}
-
-// ─── EASTER EGG: STAT BOXES ───
-function handleStatClick(el, category) {
-  el.classList.add('clicked');
-  if (!statClicks[category]) statClicks[category] = new Set();
-  statClicks[category].add(el);
-
-  const totalInGrid = document.querySelectorAll('#statGrid .stat-box').length;
-  if (totalInGrid > 0 && statClicks[category].size >= totalInGrid) {
-    const el2 = document.getElementById('stat-unlock');
-    if (el2) { el2.style.display = 'block'; el2.classList.add('revealed'); }
-    showToast('🗺️','Explorer!','You clicked all the stat boxes — bonus fact unlocked!');
-    addPoints(1);
-    statClicks[category] = new Set(); // reset
-  }
-}
-
-// ─── EASTER EGG: TIMELINE LINE CLICKS ───
-document.addEventListener('DOMContentLoaded', () => {
-  const tl = document.getElementById('mainTimeline');
-  if (tl) {
-    tl.addEventListener('dblclick', (e) => {
-      const rect = tl.getBoundingClientRect();
-      if (e.clientX - rect.left < 40) { // clicked on the line area
-        timelineClicks++;
-        if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click the timeline line again...');
-        if (timelineClicks >= 2) {
-          timelineClicks = 0;
-          const el = document.getElementById('timeline-egg');
-          if (el) { el.style.display = 'block'; el.classList.add('revealed'); }
-          showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
-          addPoints(1);
-        }
-      }
-    });
-  }
-});
-
-// ─── EASTER EGG: KONAMI CODE ───
-document.addEventListener('keydown', (e) => {
-  if (e.key === KONAMI[konamiIndex]) {
-    konamiIndex++;
-    if (konamiIndex === KONAMI.length) {
-      konamiIndex = 0;
-      showEgg('🎮','You found the Konami Code easter egg!',
-        'Congratulations — you\'re officially the most curious student in the class! 🏆\n\nPlaceholder easter egg content -- a later task can add page-appropriate content here if desired.',
-        '↑↑↓↓←→←→BA');
-      addPoints(1);
-    }
-  } else {
-    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
-  }
-});
-
-// ─── EGG MODAL HELPERS ───
-function showEgg(emoji, title, text, farsi) {
-  document.getElementById('eggEmoji').textContent = emoji;
-  document.getElementById('eggTitle').textContent = title;
-  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
-  document.getElementById('eggFarsi').textContent = farsi || '';
-  document.getElementById('eggModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeEgg() {
-  document.getElementById('eggModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-document.getElementById('eggModal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('eggModal')) closeEgg();
-});
 </script>
 
 <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
