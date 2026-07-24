@@ -440,7 +440,35 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>Colonial Era &amp; Early Immigration</h2>
 </div>
 <div class="article">
-  <p>[Content added in Task 2]</p>
+  <p class="lede"><strong>Before there was a United States, before any ship from Europe ever crossed the Atlantic, people already lived here.</strong> Indigenous peoples had been living across North America for thousands of years — hunting, farming, building towns, and trading across huge networks that stretched from coast to coast. Archaeologists have found tools and artifacts in Virginia alone dating back more than 15,000 years.<a class="cite-inline" href="https://www.nps.gov/articles/000/deep-history.htm" target="_blank">NPS</a> By the time the first English colonists showed up in the late 1500s and early 1600s, Native nations had complex societies, governments, and cultures already in place. So the story of immigration to America doesn't start with the first immigrant. It starts with the people who were already home.</p>
+
+  <p>That's an important thing to keep in mind as you read the rest of this page. When European colonists began arriving, they weren't moving into an empty land — they were moving into land that belonged to someone else. The Library of Congress puts it plainly: European colonization of North America "was an invasion of territory controlled and settled for centuries by Native Americans."<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a></p>
+
+  <h3>Colonists arrive, mostly from England</h3>
+
+  <p>Starting in the early 1600s, small numbers of Europeans began crossing the Atlantic to build permanent settlements. The <strong>English</strong> founded Jamestown, Virginia in 1607 and Plymouth, Massachusetts in 1620. Around the same time, the French built Quebec, and the Dutch set up colonies in what's now New York.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a> Over the next several decades, companies like the Massachusetts Bay Company sent thousands of colonists — including whole families — across the ocean.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a></p>
+
+  <p>Most of these early arrivals came from <strong>England</strong>, but other European groups came too, in smaller numbers — including the Dutch, French, Germans, and Scots-Irish. This pattern of mostly-English, some-other-European immigration continued through the colonial period and into the early years of the new United States. Nearly all of these people came <strong>by choice</strong>, looking for land, religious freedom, or a fresh start.</p>
+
+  <div class="vocab">
+    <b>Key Word — Voluntary Immigration</b>
+    <p>Moving to a new country by choice — deciding for yourself to leave one place and settle in another. This is different from being forced to move against your will.</p>
+  </div>
+
+  <h3>A very different story: the transatlantic slave trade</h3>
+
+  <p>Not everyone who came to the American colonies had a choice. Starting in 1619 — a year before the Pilgrims even landed at Plymouth — enslaved Africans were being brought to England's Jamestown colony in chains.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/beginnings/" target="_blank">LOC</a> This was the start of what's known as the <strong>transatlantic slave trade</strong>: European traders kidnapped and purchased African people, packed them onto ships, and transported them across the Atlantic Ocean to be enslaved. This was <strong>forced migration</strong>, not immigration — people did not choose to come, and once they arrived, they were not free.</p>
+
+  <p>The scale of this forced migration was enormous. Historians estimate that over the centuries-long span of the transatlantic slave trade, more than <strong>10 million</strong> people were enslaved and transported from Africa to the Americas. Of those, several hundred thousand were brought specifically to Britain's American colonies and, later, the United States. An unknown number — but likely more than a million people — died during the brutal ocean crossing itself.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/beginnings/" target="_blank">LOC</a> Slavery would remain legal in the United States for nearly 250 years after that first ship reached Jamestown, until the Thirteenth Amendment abolished it in 1865.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Historians are careful to point out that the experience of enslaved Africans isn't really a story of "immigration" at all, since immigration describes people choosing to move. It's a separate and distinct history — one of forced removal, captivity, and survival.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/" target="_blank">LOC</a></p>
+  </div>
+
+  <p>Understanding both of these histories side by side — one of people choosing to cross an ocean for a new life, and one of people being forced across it against their will — is essential to understanding how the United States became a "nation of immigrants" in the first place.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
 
 <!-- ═══════════ THE GREAT WAVES ═══════════ -->
@@ -541,7 +569,15 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const MAX_PTS = 0;
 
 // Subsequent tasks add entries here as each section's quiz is built.
-const quizzes = {};
+const quizzes = {
+  q1: {
+    q: "Who already lived on the land that became the United States before any European colonization began?",
+    choices: ["No one — the land was empty", "Indigenous peoples, who had lived there for thousands of years", "Only a small number of explorers", "Enslaved Africans"],
+    correct: 1,
+    feedback: "✅ Correct! Indigenous peoples had lived across North America for thousands of years before the first European colonists ever arrived — archaeologists have found artifacts in Virginia dating back more than 15,000 years.",
+    wrong: "Not quite. Indigenous peoples had already been living across North America for thousands of years before any European colonization began."
+  }
+};
 
 function openQuiz(id) {
   if (answeredQuizzes.has(id)) {
