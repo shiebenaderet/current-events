@@ -477,7 +477,43 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>The Great Waves</h2>
 </div>
 <div class="article">
-  <p>[Content added in Task 3]</p>
+  <p class="lede"><strong>Starting in the 1840s, immigration to the United States changed completely.</strong> Instead of a slow trickle of newcomers, huge waves of people began arriving. First came Ireland and Germany, then later immigrants came from all over Europe and Asia. Two famous places tell this story best: Ellis Island in New York Harbor and Angel Island in San Francisco Bay. Both processed millions of immigrants. But they treated the people who passed through them very differently.</p>
+
+  <h3>Ireland and Germany: fleeing hunger and turmoil</h3>
+
+  <p>In 1845, a disease began destroying Ireland's potato crop, which most Irish families depended on for food. The crop failed again and again for years. More than 750,000 people in Ireland starved to death.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> Desperate to survive, over <strong>two million</strong> Irish people left for the United States during and after this famine.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> Most arrived with almost no money and settled in crowded East Coast cities, where they took factory and labor jobs.</p>
+
+  <p>Around the same time, more than <strong>a million Germans</strong> immigrated to the United States between 1845 and 1855.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> Their reasons were different from the Irish. Germany was going through economic hard times and political conflict, including a failed revolution in 1848. Many German immigrants arrived with more money than Irish immigrants did, which let them buy farmland in the Midwest instead of settling only in cities.</p>
+
+  <div class="vocab">
+    <b>Key Word — Famine</b>
+    <p>An extreme, widespread shortage of food that causes severe hunger and death. The Irish Potato Famine of the 1840s is one of the most well-known famines in history.</p>
+  </div>
+
+  <h3>Ellis Island: the gateway for millions</h3>
+
+  <p>As immigration from Europe kept growing, the U.S. government opened a new processing station in New York Harbor. <strong>Ellis Island</strong> operated from 1892 to 1954, and it became the busiest immigration station in the country.<a class="cite-inline" href="https://www.nps.gov/elis/learn/historyculture/history-of-ellis-island-from-1892-to-1954.htm" target="_blank">NPS</a> More than <strong>12 million immigrants</strong> passed through its halls, most of them from European countries like Italy, Russia, Poland, and Greece.<a class="cite-inline" href="https://www.statueofliberty.org/ellis-island/" target="_blank">Statue of Liberty–Ellis Island Foundation</a></p>
+
+  <p>For most people, Ellis Island meant a health check and a few questions. Most were free within a few hours to start their new lives. Historians estimate that a large majority of arriving immigrants passed through in under a day. Today, roughly <strong>40% of all Americans</strong> can trace at least one ancestor back through Ellis Island.<a class="cite-inline" href="https://www.statueofliberty.org/ellis-island/" target="_blank">Statue of Liberty–Ellis Island Foundation</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Ellis Island wasn't the only entry point, and it wasn't built to keep people out. It was built to process huge numbers of European arrivals quickly. Angel Island, on the other side of the country, worked very differently — as the next section explains.</p>
+  </div>
+
+  <h3>Angel Island: a very different welcome</h3>
+
+  <p>While Ellis Island welcomed European immigrants, a different immigration station opened on <strong>Angel Island</strong> in San Francisco Bay. It operated from 1910 to 1940 and became the main entry point for immigrants arriving from Asia, especially China.<a class="cite-inline" href="https://www.aiisf.org/history" target="_blank">Angel Island Immigration Station Foundation</a></p>
+
+  <p>Angel Island was not designed to welcome newcomers quickly the way Ellis Island was. It was built to detain and question them.<a class="cite-inline" href="https://www.aiisf.org/history" target="_blank">Angel Island Immigration Station Foundation</a> Chinese immigrants in particular faced long interrogations. Many were held for weeks, months, or even years while officials decided whether to let them in. This harsh treatment was not an accident. It was the result of a law passed decades earlier.</p>
+
+  <h3>The Chinese Exclusion Act of 1882</h3>
+
+  <p>In 1882, Congress passed the <strong>Chinese Exclusion Act</strong>. It banned Chinese laborers from immigrating to the United States for ten years. It also required Chinese people already living in the country to carry special identification papers.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The National Archives describes it as the first major U.S. law to restrict immigration based on someone's nationality.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The U.S. State Department's official historians describe it the same way, calling it the first law in American history to place broad restrictions on immigration.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a></p>
+
+  <p>This law was exclusionary and discriminatory — it targeted people specifically because of their nationality and ethnicity, not because of anything they had done. Congress kept extending it. The Geary Act of 1892 renewed the exclusion for another ten years. In 1902, lawmakers made Chinese exclusion permanent and expanded it to Hawaii and the Philippines.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a> These exclusion laws stayed in effect for 61 years, until Congress repealed them in 1943. By then, the broader pattern of restricting immigration by nationality had already expanded far beyond Chinese immigrants, as the next section explains.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
 
 <!-- ═══════════ THE QUOTA ERA ═══════════ -->
@@ -576,6 +612,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! Indigenous peoples had lived across North America for thousands of years before the first European colonists ever arrived — archaeologists have found artifacts in Virginia dating back more than 15,000 years.",
     wrong: "Not quite. Indigenous peoples had already been living across North America for thousands of years before any European colonization began."
+  },
+  q2: {
+    q: "What was the key difference between Ellis Island and Angel Island?",
+    choices: ["They were the same kind of station, just in different cities", "Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese", "Angel Island processed European immigrants and Ellis Island processed Asian immigrants", "Neither station actually processed many immigrants"],
+    correct: 1,
+    feedback: "✅ Correct! Ellis Island (1892–1954) processed over 12 million mostly European immigrants, often in under a day. Angel Island (1910–1940) was built to detain and interrogate immigrants, especially Chinese immigrants affected by the Chinese Exclusion Act.",
+    wrong: "Not quite. Ellis Island was built to process European immigrants quickly, while Angel Island was built to detain and interrogate immigrants — especially Chinese immigrants — for much longer periods."
   }
 };
 
