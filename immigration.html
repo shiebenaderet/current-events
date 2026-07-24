@@ -285,6 +285,38 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .update-sources a{color:var(--gold-l)}
 .update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
 
+/* ══ DIFFERING PERSPECTIVES (Part B contested claims only — scoped to this page) ══ */
+.perspectives{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  margin:20px 0;
+}
+.perspective{padding:18px 20px}
+.perspective + .perspective{border-left:1px solid var(--rule)}
+.perspective-label{
+  font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:8px;
+}
+.perspective p{font-family:'Source Serif 4',Georgia,serif;font-size:.95rem;
+  color:var(--ink-light);line-height:1.65;margin-bottom:8px}
+.perspective p:last-of-type{margin-bottom:0}
+.perspective .cite-inline{font-size:.8rem}
+@media(max-width:600px){
+  .perspectives{grid-template-columns:1fr}
+  .perspective + .perspective{border-left:none;border-top:1px solid var(--rule)}
+}
+/* Dark-background override — .perspectives sits inside .update-box, matching the treatment already used for .vocab/.callout/.stat-pair in that context. Both sides keep identical padding, size, and treatment. */
+.update-box .perspectives{border-color:rgba(255,255,255,.15)}
+.update-box .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+@media(max-width:600px){
+  .update-box .perspective + .perspective{border-top-color:rgba(255,255,255,.15)}
+}
+.update-box .perspective-label{color:var(--gold-l)}
+.update-box .perspective p{color:rgba(255,255,255,.82)}
+.update-box .perspective .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .perspective .cite-inline:hover{color:var(--gold-l)}
+
 /* ══ VIDEO / RESOURCES ══ */
 .video-wrap{margin:30px 0;border:1px solid var(--rule)}
 .video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
@@ -427,10 +459,116 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <div class="update-pane-inner">
     <div class="update-head">
       <span class="num">Situation Update</span>
-      <h2>Where Things Stand</h2>
+      <h2>Where Things Stand <span class="update-badge">As of July 2026</span></h2>
     </div>
-    <div class="update-date">Updated July 22, 2026</div>
-    <p>[Content added in Task 7]</p>
+    <div class="update-date">Updated July 22, 2026 — a dated snapshot, not an ongoing claim</div>
+
+    <div class="mini-tl">
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot"></div>
+        <span class="mini-tl-date">Jun 2026</span>
+        <span class="mini-tl-text"><strong>Supreme Court rules on birthright citizenship —</strong> On June 30, 2026, the Supreme Court ruled that children born in the United States are U.S. citizens at birth under the 14th Amendment, regardless of their parents' immigration status. The ruling came in a case testing a January 2025 executive order that had sought to change this. <a class="cite-inline" href="https://www.aclu.org/news/immigrants-rights/supreme-court-rules-to-protect-birthright-citizenship-in-landmark-case" target="_blank">ACLU</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot blue"></div>
+        <span class="mini-tl-date">Jun 2026</span>
+        <span class="mini-tl-text"><strong>Same term, a different ruling on Temporary Protected Status —</strong> In a separate case decided the same term, the Supreme Court ruled 6-3 that the president has largely unreviewable authority to end Temporary Protected Status for a given country. The case involved roughly 300,000 Haitian TPS holders and about 3,800 Syrian TPS holders. <a class="cite-inline" href="https://www.clarkhill.com/news-events/news/scotus-immigration-rulings-tps-birthright-citizenship/" target="_blank">Clark Hill</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot green"></div>
+        <span class="mini-tl-date">Jul 2026</span>
+        <span class="mini-tl-text"><strong>Asylum eligibility narrowed at the border —</strong> In a companion ruling, the Court held that a person standing on the Mexican side of the border has not legally "arrived" in the United States yet — narrowing where migrants can first make an asylum claim. <a class="cite-inline" href="https://www.bal.com/immigration-news/united-states-supreme-court-issues-key-immigration-decisions-on-tps-asylum-processing-and-birthright-citizenship/" target="_blank">BAL</a></span>
+      </div>
+    </div>
+
+    <div class="update-grid">
+
+      <div class="update-box">
+        <span class="update-box-icon">🪪</span>
+        <h3>How many green cards are issued each year, and for what reasons?</h3>
+        <p>In fiscal year 2025 (Oct. 2024–Sept. 2025), <strong>1,320,080 people</strong> became lawful permanent residents (got a green card) — down about 2.7% from 1,356,760 the year before. <a class="cite-inline" href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS</a></p>
+        <div class="stat-trio">
+          <div class="stat">
+            <div class="num">684,530</div>
+            <div class="desc"><b>Immediate relatives</b>Spouses, minor children, and parents of U.S. citizens</div>
+          </div>
+          <div class="stat">
+            <div class="num">196,740</div>
+            <div class="desc"><b>Family preference</b>Other family members, like adult children or siblings of citizens</div>
+          </div>
+          <div class="stat">
+            <div class="num">159,070</div>
+            <div class="desc"><b>Employment-based</b>Workers sponsored by an employer, plus their families</div>
+          </div>
+        </div>
+        <p>The rest — about 177,000 people — came through refugee and asylee status adjustments, the diversity visa lottery, and smaller humanitarian categories. <a class="cite-inline" href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek/DHS</a></p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS Office of Homeland Security Statistics — Lawful Permanent Residents Annual Flow Reports</a></li>
+            <li><a href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek — reporting DHS's FY2025 LPR figures</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">⏳</span>
+        <h3>Why "get in line" can mean waiting over a decade</h3>
+        <p>The number of green cards available in each category, per country, is capped every year. When more people apply than there are slots, a backlog forms — the U.S. Department of State tracks it monthly in something called the <strong>Visa Bulletin</strong>. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
+        <p>One concrete example: in the July 2026 Visa Bulletin, the employment-based EB-3 category for applicants born in India was only processing applications filed on or before <strong>January 1, 2014</strong> — meaning someone applying in that category today would be waiting well over a decade. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
+        <p class="small-note">Wait times vary a lot by category and country of birth — this is one specific, currently long-backlogged example, not the wait time for every applicant.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis — summary of the U.S. Department of State's July 2026 Visa Bulletin</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">⚖️</span>
+        <h3>How big is the immigration court backlog?</h3>
+        <p>Immigration courts are run by the Executive Office for Immigration Review (EOIR), part of the U.S. Department of Justice — not part of the regular federal court system. As of <strong>June 30, 2026</strong>, EOIR had <strong>3,195,137 pending cases</strong>. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
+        <p>Of those, <strong>2,310,698</strong> — about 72% — involve people who have already filed a formal asylum application and are waiting for a hearing or decision. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
+        <p class="small-note">This figure comes from TRAC (Transactional Records Access Clearinghouse), a Syracuse University research center that obtains and publishes EOIR's own case-level data through federal records requests.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC Immigration — Immigration Court Quick Facts (sourced from EOIR case data)</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">🚔</span>
+        <h3>What do ICE's own enforcement numbers show?</h3>
+        <p>ICE's fiscal year 2026 runs from October 2025 through September 2026. As of <strong>July 21, 2026</strong>, ICE reported <strong>356,389 removals</strong> so far this fiscal year, and a detained population of <strong>65,765 people</strong> in ICE custody. <a class="cite-inline" href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News/ICE</a></p>
+        <p>These are ICE's own published enforcement totals — plain counts, not in dispute. What <em>is</em> disputed is a different question: who, exactly, is being arrested along the way.</p>
+
+        <div class="perspectives">
+          <div class="perspective">
+            <div class="perspective-label">DHS's stated position</div>
+            <p>Responding to reporting on arrest data in April 2026, a DHS spokesperson said: "Nationwide, our law enforcement is targeting the worst of the worst criminal illegal aliens — including murderers, rapists, gang members, pedophiles, and terrorists," and stated that "70% of illegal aliens ICE arrested across the country have criminal convictions or pending criminal charges."<a class="cite-inline" href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY</a></p>
+          </div>
+          <div class="perspective">
+            <div class="perspective-label">American Immigration Council's stated position</div>
+            <p>The American Immigration Council, an immigrant-rights research and advocacy group, has documented a rising share of arrests involving people with no criminal record — reporting the share of ICE arrests with no criminal record rose from 6% in January 2025 to 41% by December 2025, a trend it attributes to expanded "collateral arrests" during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council</a></p>
+          </div>
+        </div>
+        <p class="small-note">Both figures describe the same underlying enforcement activity — they disagree on how to characterize who is being caught up in it. This page reports both stated positions rather than picking one.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News — reporting ICE's FY2026 enforcement statistics</a></li>
+            <li><a href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY — DHS spokesperson statement and ICE arrest data analysis</a></li>
+            <li><a href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council — ICE arrest statistics analysis</a></li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
   </div>
 </div>
 
@@ -752,6 +890,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! Refugee and asylum status use the exact same legal definition of persecution. The difference is where the person is when they apply: refugee status is sought from outside the U.S., while asylum is sought by people already in the U.S. or at a U.S. port of entry.",
     wrong: "Not quite. Refugee and asylum status share the same legal definition — the real difference is location. Refugee status is granted to people outside the U.S.; asylum is granted to people already in the U.S. or arriving at a port of entry."
+  },
+  q6: {
+    q: "As of June 30, 2026, roughly how many cases were pending in U.S. immigration courts?",
+    choices: ["About 300,000", "About 1 million", "About 3.2 million", "There is no backlog"],
+    correct: 2,
+    feedback: "✅ Correct! As of June 30, 2026, EOIR (the Executive Office for Immigration Review) reported 3,195,137 pending cases — and about 72% of those involve people already waiting on a filed asylum application.",
+    wrong: "Not quite. As of June 30, 2026, EOIR reported 3,195,137 pending cases in U.S. immigration courts — a backlog of over 3 million."
   }
 };
 
