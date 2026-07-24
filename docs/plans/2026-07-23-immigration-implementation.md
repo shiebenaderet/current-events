@@ -4,9 +4,9 @@
 
 **Goal:** Build a new topic page, `immigration.html`, from scratch, matching the established structure and conventions of `iran.html`/`ukraine.html`/`ai.html`/`us-elections.html`/`climate-change.html` — a history-first explainer ("A Nation of Immigrants") running from the colonial era through the 1965 Immigration and Nationality Act, then today's legal-process mechanics, a live update-pane, and a Washington-specific local-history section — and wire it into the site's index/nav. This is the highest nonpartisanship-risk page built on this site to date; it introduces one new, tightly-scoped component (a side-by-side differing-perspectives block) used only for genuinely contested present-day enforcement claims in the update-pane.
 
-**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8. Task 11 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 10's verification pass is clean, matching the exact ordering discipline every prior page build on this site has used.
+**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 sources at least one real, verified image per content section — added as a dedicated task because a page this long and text-heavy needs real visual breaks, not just Key People portraits. Task 11 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8 and a check that Task 10's images all resolve and are properly licensed/captioned. Task 12 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 11's verification pass is clean, matching the exact ordering discipline every prior page build on this site has used.
 
-**Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and dedicated nonpartisanship read-throughs on Tasks 4 (quota era), 7 (update-pane/enforcement), and 8 (local section), plus a final whole-page pass in Task 10.
+**Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and dedicated nonpartisanship read-throughs on Tasks 4 (quota era), 7 (update-pane/enforcement), and 8 (local section), plus a final whole-page pass in Task 11.
 
 ## Global Constraints
 
@@ -87,7 +87,7 @@ Add CSS custom properties for a palette distinct from every existing page's (Ira
 
 Adapt `climate-change.html`'s masthead/nav/points-bar markup to this page:
 - Hero: title "A Nation of Immigrants", subtitle summarizing the page's actual angle (the long history behind today's immigration system, and where things stand now), a dated hero-note ("Updated [DATE] · 8th Grade Social Studies · Earn points by answering quizzes!" — use the actual write date).
-- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 11 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
+- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 12 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
 - Points-bar: identical structural pattern to `climate-change.html`, no changes needed beyond the container existing.
 - Accessibility controls: confirm `climate-change.html`'s dyslexic-font toggle and text-size controls are present in this port, not just the toggle button alone — per this project's standing requirement that these be pervasive across every page.
 
@@ -95,7 +95,7 @@ Adapt `climate-change.html`'s masthead/nav/points-bar markup to this page:
 
 Copy `climate-change.html`'s two `<script>` blocks into this new file. Adapt:
 - The `quizzes` object: replace with an empty object for now (`const quizzes = {};`) — subsequent tasks will add entries as they build each section's quiz.
-- `MAX_PTS`: set to `const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)` — an intentional, explicitly-flagged placeholder resolved in Task 10's Step 1, not a silent gap.
+- `MAX_PTS`: set to `const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)` — an intentional, explicitly-flagged placeholder resolved in Task 11's Step 1, not a silent gap.
 - Confirm `openQuiz`, `showToast`, and the points-tracking logic are copied verbatim (they're topic-agnostic) — do not modify their internal logic.
 - Any Climate-specific easter-egg content (e.g., anything tied to an ice/glacier/forest theme) — keep the generic mechanism (any Konami-code array, click-counter mechanics, `showToast` function) but do not port topic-specific *content* inside those mechanisms. Leave the trigger mechanism in place; a later task can add page-appropriate easter-egg content if desired, but this is not required by this plan.
 
@@ -492,7 +492,54 @@ git commit -m "feat: add Immigration history timeline, key people, videos, resou
 
 ---
 
-## Task 10: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
+## Task 10: Source Images for Every Section
+
+**Files:**
+- Modify: `immigration.html` (add `<img>` elements into each of Sections 1–5, the update-pane, Washington's Immigration Story, and History Timeline — every section that doesn't already have a real photo from Task 9's Key People portraits)
+- Add: new image files under `images/` (or confirm the site's actual image directory convention — check where `climate-change.html`'s images live before assuming a path)
+
+**Context:** By the end of Task 9, this page is entirely (or almost entirely) prose plus two Key People portraits — a genuinely text-heavy page given its length (7 content sections plus the update-pane and local section). This task adds at least one real, verified image to every content section, more than one where a natural fit exists (e.g., a distinct image for each of the "great waves" — Ellis Island AND Angel Island — rather than just one for the whole section). This task runs after all content is finalized (Tasks 2–9) so each image can be matched to the actual finished prose, sourced and captioned precisely, rather than guessed at before the section's final wording exists. It runs before Task 11's verification pass so that pass can also check these images (broken references, licensing, caption accuracy) as part of its normal sweep.
+
+- [ ] **Step 1: Inventory which sections need images**
+
+Read the full `immigration.html` file as it stands after Task 9. List every content section that does NOT yet contain a real photo: almost certainly Section 1 (Colonial Era), Section 2 (The Great Waves — likely wants two: Ellis Island and Angel Island), Section 3 (The Quota Era), Section 4 (The Modern System Begins/1965 Act), Section 5 (How Immigration Works Today), the update-pane, Washington's Immigration Story (likely wants two or three: Scandinavian settlement, Japanese American incarceration, refugee resettlement), and the History Timeline (per this site's established `.tl-img`-style pattern on other pages' timelines, if `climate-change.html`/`ukraine.html` use one — confirm the exact pattern name). Key People (Task 9) already has portraits and does not need additional sourcing here.
+
+- [ ] **Step 2: Source and verify one image per section (minimum), more where natural**
+
+For each section identified in Step 1, search Wikimedia Commons for a historically accurate, subject-matched image. Per this project's established, non-negotiable image discipline: verify BOTH the license (public domain or CC-licensed) AND the subject match directly on the image's own Wikimedia Commons file page — not from an embedding Wikipedia article, not from a general web image search. Candidate subjects (research and confirm real, existing, correctly-licensed files — do not assume any of these exist without checking):
+- Section 1: a period-appropriate image of colonial-era arrival or Jamestown/Plymouth settlement (or, if a suitable one isn't found, an image related to the section's other content).
+- Section 2: a real photo of Ellis Island's Great Hall or immigrants arriving there (this era is extremely well-documented photographically, so a real, well-known, correctly-licensed photo should exist), and separately a real photo of Angel Island's immigration station or detention barracks.
+- Section 3: a period photo or the actual text/document image of the 1924 Immigration Act, or a relevant photo from that era (e.g., an immigration inspection station from the 1920s).
+- Section 4: a photo from the 1965 Immigration and Nationality Act's signing (President Johnson signed this at the Statue of Liberty — a specific, well-documented, likely-photographed event; verify a real Commons file exists before assuming).
+- Section 5: a contemporary, generic, non-political image illustrating a legal process step (e.g., a naturalization ceremony — these are commonly and neutrally photographed public events) — confirm the specific photo isn't tied to any identifiable current political figure or moment.
+- Update-pane: if a suitable neutral image exists (e.g., a stock-style photo of an immigration court or a U.S. port of entry) — this is optional, given the update-pane's already dense factual content; do not force an image here if nothing suitably neutral and well-sourced turns up.
+- Washington's Immigration Story: images tied to each sub-topic from Task 8 (a Puget Sound Scandinavian-community photo, a Minidoka incarceration camp photo — Densho and the National Archives both hold extensive verified photo archives for this specific subject, a strong place to start — and a Seattle-area refugee resettlement photo).
+- History Timeline: per this site's established pattern, confirm whether timeline entries typically carry small inline images (`climate-change.html`/`ukraine.html`) and, if so, add at least 2-3 across the timeline's entries, prioritizing entries that don't already have a photo elsewhere on the page.
+
+If no verifiably-licensed, subject-matched image can be found for a given slot after genuine search, use this project's established honest fallback (an emoji/gradient placeholder with a brief note, matching the precedent already set on `iran.html`, rather than a forced or unverified image) — do not stretch a loosely-related or unverified image into a slot just to satisfy "at least one image per section."
+
+- [ ] **Step 3: Download and add each verified image**
+
+Download each verified image into the site's established image directory (confirm the exact path convention from `climate-change.html` or another recently-built page rather than assuming `images/`). Use descriptive, kebab-case filenames consistent with this site's existing image-naming convention (check a few existing filenames in the images directory for the pattern). Respect this project's known Wikimedia rate-limiting behavior — space out sequential downloads (25–90 second delays between requests) rather than firing them in rapid succession, which has caused 429 errors on prior builds.
+
+- [ ] **Step 4: Insert each image into its section with a proper caption and citation**
+
+Following this page's established visual patterns (check for a `.photo-break`-equivalent full-width image style and/or the smaller inline/`.tl-img`-equivalent style already used elsewhere on the site — confirm the exact class names from `climate-change.html`/`ukraine.html` rather than inventing new markup) — for each image, add: the `<img>` with a real, descriptive `alt` attribute (not just the filename), a visible caption stating what the image shows and its source/license (e.g., "Ellis Island's Great Hall, c. 1920s. Photo: [photographer/collection if known], public domain / Wikimedia Commons"), and an `onerror` fallback matching this site's established pattern for a broken/missing image.
+
+- [ ] **Step 5: Verify**
+
+Run: `open immigration.html`, scroll through the entire page, confirm every new image loads (not a broken-image icon), confirm each image's caption accurately describes what's actually shown (a real risk if an image was sourced hastily — re-look at each image itself, not just its Commons page description, to confirm the caption matches what's visually in the photo), confirm no image's caption or alt text drifts into editorializing about the historical event depicted (a neutral, descriptive caption only — e.g., state what's shown and when, not an interpretation of it). Re-confirm every image's Commons file page license directly (not from memory of Step 2's research) one more time before finalizing.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add immigration.html images/
+git commit -m "feat: source and add images for every Immigration page section"
+```
+
+---
+
+## Task 11: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
 
 **Files:** None modified unless this step surfaces a real problem — verification only, except for the `MAX_PTS` fix flagged in Task 1.
 
@@ -559,13 +606,13 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ---
 
-## Task 11: Wire the New Page into the Site
+## Task 12: Wire the New Page into the Site
 
 **Files:**
 - Modify: `index.html`
 - Modify: `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` (add a sibling-nav link to Immigration on each)
 
-**Context:** This task runs LAST, only after Task 10's full verification pass is complete and clean — so the site's actual front page and every existing page's nav are never pointed at unfinished or unreviewed content, matching the exact ordering discipline every prior page build on this site has used.
+**Context:** This task runs LAST, only after Task 11's full verification pass is complete and clean — so the site's actual front page and every existing page's nav are never pointed at unfinished or unreviewed content, matching the exact ordering discipline every prior page build on this site has used.
 
 - [ ] **Step 1: Read the existing Immigration "Coming Soon" entry and a live entry directly**
 
@@ -598,6 +645,6 @@ git commit -m "feat: wire Immigration page into the site (homepage card, cross-p
 
 ## Self-Review Notes
 
-- **Spec coverage:** All design doc sections (page structure items 1–10, the update-pane's Part A/Part B split, the nonpartisanship discipline including the new differing-perspectives component, Washington's Immigration Story, Key People, sourcing standards, reading level, out-of-scope list) map to Tasks 1–11 in this plan. The design doc's explicit scope guard against state-level immigration policy is carried into both Task 8 (Washington section) and the Global Constraints so every task inherits it, not just Task 8. The differing-perspectives component is fully specified (CSS, markup pattern, and scope constraint) in Task 7 rather than left as a vague "figure it out at implementation time" — Task 10 Step 5 verifies it didn't leak beyond its intended scope.
-- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 10 Step 1, and Tasks 2–9's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in this plan; every research step names specific candidate facts/figures/organizations to verify rather than leaving anything as "TBD," and every deliberately-deferred decision (exact Key People names, exact accent color, whether to source a real image for the Immigration homepage card, exact contested claims to cover in Task 7's differing-perspectives blocks) is explicitly flagged as "confirm/decide/research at implementation time" rather than silently assumed.
+- **Spec coverage:** All design doc sections (page structure items 1–10, the update-pane's Part A/Part B split, the nonpartisanship discipline including the new differing-perspectives component, Washington's Immigration Story, Key People, sourcing standards, reading level, out-of-scope list) map to Tasks 1–12 in this plan. The design doc's explicit scope guard against state-level immigration policy is carried into both Task 8 (Washington section) and the Global Constraints so every task inherits it, not just Task 8. The differing-perspectives component is fully specified (CSS, markup pattern, and scope constraint) in Task 7 rather than left as a vague "figure it out at implementation time" — Task 11 Step 5 verifies it didn't leak beyond its intended scope. Task 10 (image sourcing) was added after initial plan review, per explicit direction that a page this long needs real visual variety per section, not just Key People portraits — inserted after content is finalized (Task 9) so images can be matched to actual finished prose, and before verification (Task 11) so the verification pass also covers image licensing/captions/broken-reference checks.
+- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 11 Step 1, and Tasks 2–9's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in this plan; every research step names specific candidate facts/figures/organizations to verify rather than leaving anything as "TBD," and every deliberately-deferred decision (exact Key People names, exact accent color, whether to source a real image for the Immigration homepage card, exact contested claims to cover in Task 7's differing-perspectives blocks, and the exact image subjects/sources for Task 10) is explicitly flagged as "confirm/decide/research at implementation time" rather than silently assumed.
 - **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names are specified throughout as "confirm the exact name against `climate-change.html`'s real markup" rather than asserted from memory, since this plan's author has not read every line of `climate-change.html` firsthand and some exact naming (e.g., whether content sections use `s-card` or a different class name on the more recently rebuilt pages) may have drifted from the Climate plan's own naming — Task 1 Step 1 requires reading the real file before locking in any class names, and every subsequent task that references a shared class name flags it as "confirm the exact name" rather than treating this plan's guesses as ground truth. Quiz IDs are pre-assigned sequentially per task (`q1` Task 2 through `q7` Task 9) to avoid quiz-ID collisions; if task order changes during implementation, whoever makes that change is responsible for re-checking quiz-ID uniqueness directly against the live `quizzes` object.
