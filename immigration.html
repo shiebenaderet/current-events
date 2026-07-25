@@ -169,6 +169,44 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8a6608;margin-bottom:6px;font-weight:800}
 .vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
 
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+.update-box .term{border-bottom-color:var(--gold-l)}
+.update-box .term::after{background:#fff;color:var(--ink)}
+.update-box .term::before{border-top-color:#fff}
+@media(max-width:600px){
+  .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
+  .term::before{left:16px;transform:translateX(0)}
+}
+
 /* callout / think-about-it */
 .callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
 .callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
@@ -500,8 +538,8 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
       <div class="update-box">
         <span class="update-box-icon">🪪</span>
-        <h3>How many green cards are issued each year, and for what reasons?</h3>
-        <p>In fiscal year 2025 (Oct. 2024–Sept. 2025), <strong>1,320,080 people</strong> became lawful permanent residents (got a green card) — down about 2.7% from 1,356,760 the year before. <a class="cite-inline" href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS</a></p>
+        <h3>How many <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span> are issued each year, and for what reasons?</h3>
+        <p>In fiscal year 2025 (Oct. 2024–Sept. 2025), <strong>1,320,080 people</strong> became <span class="term" tabindex="0" data-def="Someone with legal permission to live and work in the U.S. permanently, without being a citizen — a green card holder.">lawful permanent residents</span> (got a green card) — down about 2.7% from 1,356,760 the year before. <a class="cite-inline" href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS</a></p>
         <div class="stat-trio">
           <div class="stat">
             <div class="num">684,530</div>
@@ -516,7 +554,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
             <div class="desc"><b>Employment-based</b>Workers sponsored by an employer, plus their families</div>
           </div>
         </div>
-        <p>The rest — about 177,000 people — came through refugee and asylee status adjustments, the diversity visa lottery, and smaller humanitarian categories. <a class="cite-inline" href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek/DHS</a></p>
+        <p>The rest — about 177,000 people — came through <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugee</span> and asylee status adjustments, the diversity <span class="term" tabindex="0" data-def="Official permission to travel to the United States, issued by the U.S. government, usually stamped in a passport.">visa</span> lottery, and smaller humanitarian categories. <a class="cite-inline" href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek/DHS</a></p>
         <details class="update-sources">
           <summary>Sources for this section</summary>
           <ul>
@@ -529,7 +567,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
       <div class="update-box">
         <span class="update-box-icon">⏳</span>
         <h3>Why "get in line" can mean waiting over a decade</h3>
-        <p>The number of green cards available in each category, per country, is capped every year. When more people apply than there are slots, a backlog forms — the U.S. Department of State tracks it monthly in something called the <strong>Visa Bulletin</strong>. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
+        <p>The number of <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span> available in each category, per country, is capped every year. When more people apply than there are slots, a backlog forms — the U.S. Department of State tracks it monthly in something called the <strong>Visa Bulletin</strong>. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
         <p>One concrete example: in the July 2026 Visa Bulletin, the employment-based EB-3 category for applicants born in India was only processing applications filed on or before <strong>January 1, 2014</strong> — meaning someone applying in that category today would be waiting well over a decade. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
         <p class="small-note">Wait times vary a lot by category and country of birth — this is one specific, currently long-backlogged example, not the wait time for every applicant.</p>
         <details class="update-sources">
@@ -544,7 +582,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
         <span class="update-box-icon">⚖️</span>
         <h3>How big is the immigration court backlog?</h3>
         <p>Immigration courts are run by the Executive Office for Immigration Review (EOIR), part of the U.S. Department of Justice — not part of the regular federal court system. As of <strong>June 30, 2026</strong>, EOIR had <strong>3,195,137 pending cases</strong>. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
-        <p>Of those, <strong>2,310,698</strong> — about 72% — involve people who have already filed a formal asylum application and are waiting for a hearing or decision. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
+        <p>Of those, <strong>2,310,698</strong> — about 72% — involve people who have already filed a formal <span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">asylum</span> application and are waiting for a hearing or decision. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
         <p class="small-note">This figure comes from TRAC (Transactional Records Access Clearinghouse), a Syracuse University research center that obtains and publishes EOIR's own case-level data through federal records requests.</p>
         <details class="update-sources">
           <summary>Sources for this section</summary>
@@ -556,18 +594,18 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
       <div class="update-box">
         <span class="update-box-icon">🚔</span>
-        <h3>What do ICE's own enforcement numbers show?</h3>
-        <p>ICE's fiscal year 2026 runs from October 2025 through September 2026. As of <strong>July 21, 2026</strong>, ICE reported <strong>356,389 removals</strong> so far this fiscal year, and a detained population of <strong>65,765 people</strong> in ICE custody. <a class="cite-inline" href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News/ICE</a></p>
+        <h3>What do <span class="term" tabindex="0" data-def="U.S. Immigration and Customs Enforcement — the federal agency that enforces immigration law inside U.S. borders.">ICE</span>'s own enforcement numbers show?</h3>
+        <p>ICE's fiscal year 2026 runs from October 2025 through September 2026. As of <strong>July 21, 2026</strong>, ICE reported <strong>356,389 <span class="term" tabindex="0" data-def="The formal, legal process of removing someone from the United States for violating immigration law.">removals</span></strong> so far this fiscal year, and a detained population of <strong>65,765 people</strong> in ICE custody. <a class="cite-inline" href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News/ICE</a></p>
         <p>These are ICE's own published enforcement totals — plain counts, not in dispute. What <em>is</em> disputed is a different question: who, exactly, is being arrested along the way.</p>
 
         <div class="perspectives">
           <div class="perspective">
             <div class="perspective-label">DHS's stated position</div>
-            <p>Responding to reporting on arrest data in April 2026, a DHS spokesperson said: "Nationwide, our law enforcement is targeting the worst of the worst criminal illegal aliens — including murderers, rapists, gang members, pedophiles, and terrorists," and stated that "70% of illegal aliens ICE arrested across the country have criminal convictions or pending criminal charges."<a class="cite-inline" href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY</a></p>
+            <p>Responding to reporting on arrest data in April 2026, a DHS spokesperson said: "Nationwide, our law enforcement is targeting the worst of the worst criminal illegal aliens — including murderers, rapists, gang members, pedophiles, and terrorists." The spokesperson also stated that "70% of illegal aliens ICE arrested across the country have criminal convictions or pending criminal charges."<a class="cite-inline" href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY</a></p>
           </div>
           <div class="perspective">
             <div class="perspective-label">American Immigration Council's stated position</div>
-            <p>The American Immigration Council, an immigrant-rights research and advocacy group, has documented a rising share of arrests involving people with no criminal record — reporting the share of ICE arrests with no criminal record rose from 6% in January 2025 to 41% by December 2025, a trend it attributes to expanded "collateral arrests" during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council</a></p>
+            <p>The American Immigration Council, an immigrant-rights research and advocacy group, has documented a rising share of arrests involving people with no criminal record. It reports that share rose from 6% in January 2025 to 41% by December 2025 — a trend it attributes to expanded "collateral arrests" during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council</a></p>
           </div>
         </div>
         <p class="small-note">Both figures describe the same underlying enforcement activity — they disagree on how to characterize who is being caught up in it. This page reports both stated positions rather than picking one.</p>
@@ -701,7 +739,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <p>In 1924, Congress passed the <strong>Immigration Act of 1924</strong>, also known as the <strong>Johnson-Reed Act</strong>. It set a strict yearly limit on immigration and divided that limit into quotas — a fixed number of visas — for each country.<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> Each country's quota was based on how many people from that country already lived in the United States, according to the 1890 census.<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a></p>
 
-  <p>Choosing the 1890 census was not an accident. Most Southern and Eastern European immigrants — Italians, Greeks, Poles, Russians, and others — arrived in the U.S. after 1890. Using that earlier year meant their communities barely counted toward the new quotas. The State Department's official historians explain what this shift did. Visas for "the British Isles and Western Europe increased," while "newer immigration from other areas like Southern and Eastern Europe was limited."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a></p>
+  <p>Choosing the 1890 census was not an accident. Most Southern and Eastern European immigrants — Italians, Greeks, Poles, Russians, and others — arrived in the U.S. after 1890. Using that earlier year meant their communities barely counted toward the new quotas. The State Department's official historians describe the result plainly: visas for "the British Isles and Western Europe increased." Meanwhile, "newer immigration from other areas like Southern and Eastern Europe was limited."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a></p>
 
   <div class="vocab">
     <b>Key Word — National-Origins Quota</b>
@@ -710,7 +748,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <h3>A formula designed to discriminate</h3>
 
-  <p>This wasn't a side effect of the law. Favoring Northern and Western Europe was the goal. The State Department's Office of the Historian states plainly that "the most basic purpose of the 1924 Immigration Act was to preserve the ideal of U.S. homogeneity."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> The National Archives agrees. It describes the same law as one that "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries." Those quotas heavily favored countries like Germany and Great Britain over countries like Estonia or Latvia.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a></p>
+  <p>This wasn't a side effect of the law. Favoring Northern and Western Europe was the goal. The State Department's Office of the Historian states plainly that "the most basic purpose of the 1924 Immigration Act was to preserve the ideal of U.S. homogeneity."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> The National Archives agrees. It describes the same law as one that "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries."<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> Those quotas favored countries like Germany and Great Britain over countries like Estonia or Latvia.</p>
 
   <div class="callout">
     <span class="tag">Worth Noticing</span>
@@ -734,7 +772,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>The Modern System Begins</h2>
 </div>
 <div class="article">
-  <p class="lede"><strong>For more than forty years, a person's country of birth decided almost everything about their chances of immigrating to the United States.</strong> The national-origins quota system from the last section had favored Northern and Western Europe and had nearly shut out Asia entirely. In 1965, Congress finally tore that formula out and replaced it. What lawmakers built in its place is still, in its basic shape, the system the United States uses today.</p>
+  <p class="lede"><strong>For more than forty years, a person's country of birth decided almost everything about their chances of immigrating to the United States.</strong> The <span class="term" tabindex="0" data-def="A limit on immigration that sets a specific number of visas for people from each country, based on nationality.">national-origins quota</span> system from the last section had favored Northern and Western Europe and had nearly shut out Asia entirely. In 1965, Congress finally tore that formula out and replaced it. What lawmakers built in its place is still, in its basic shape, the system the United States uses today.</p>
 
   <h3>The Immigration and Nationality Act of 1965</h3>
 
@@ -745,7 +783,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <p>On October 3, 1965, President Lyndon B. Johnson signed the <strong>Immigration and Nationality Act of 1965</strong>. He signed it at the base of the Statue of Liberty.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> The law is commonly known as the <strong>Hart-Celler Act</strong>, named after its two main sponsors in Congress, Senator Philip Hart and Representative Emanuel Celler.<a class="cite-inline" href="https://docsteach.org/document/immigration-and-nationality-act-of-1965" target="_blank">National Archives, DocsTeach</a></p>
 
-  <p>The law's first job was to get rid of the old system. The National Archives says it eliminated quotas that had "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries."<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> A person's nationality no longer decided whether they could come to America.</p>
+  <p>The law's first job was to get rid of the old system. The National Archives says the old quotas had "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries." The 1965 Act eliminated all of that.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> After 1965, a person's nationality no longer decided whether they could come to America.</p>
 
   <div class="vocab">
     <b>Key Word — Preference System</b>
@@ -776,7 +814,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>How Does Immigration Work Today?</h2>
 </div>
 <div class="article">
-  <p class="lede"><strong>The 1965 Act's basic idea — family ties and job skills instead of national origin — is still how U.S. immigration law works today.</strong> But "how it works" covers a lot of ground: green cards, citizenship, asylum, refugees, and government agencies with confusing initials. This section walks through the major pieces, using the U.S. government's own official explanations of each one.</p>
+  <p class="lede"><strong>The 1965 Act's basic idea — family ties and job skills instead of national origin — is still how U.S. immigration law works today.</strong> But "how it works" covers a lot of ground: <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span>, citizenship, <span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">asylum</span>, <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugees</span>, and government agencies with confusing initials. This section walks through the major pieces, using the U.S. government's own official explanations of each one.</p>
 
   <p>Before getting into the process, it helps to see the overall scale of who this system covers. As of June 2025, Pew Research Center's analysis of Census Bureau survey data found the following.<a class="cite-inline" href="https://www.pewresearch.org/short-reads/2025/02/13/key-findings-about-us-immigrants/" target="_blank">Pew Research Center</a></p>
 
@@ -793,11 +831,19 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <h3>Getting a green card: family and jobs</h3>
 
-  <p>A <strong>green card</strong> makes someone a lawful permanent resident — allowed to live and work in the United States permanently, without being a citizen. According to U.S. Citizenship and Immigration Services (USCIS), the federal agency that runs the legal immigration system, most green cards are granted through one of two main paths: family or employment.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility-categories" target="_blank">USCIS</a></p>
+  <p>A <strong>green card</strong> makes someone a <span class="term" tabindex="0" data-def="Someone with legal permission to live and work in the U.S. permanently, without being a citizen — a green card holder.">lawful permanent resident</span> — allowed to live and work in the United States permanently, without being a citizen. According to U.S. Citizenship and Immigration Services (USCIS), the federal agency that runs the legal immigration system, most green cards are granted through one of two main paths: family or employment.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility-categories" target="_blank">USCIS</a></p>
 
   <p>On the family side, USCIS splits applicants into two groups. <strong>Immediate relatives</strong> of U.S. citizens — spouses, unmarried children under 21, and parents — face no yearly limit on how many green cards can be issued.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility/green-card-for-immediate-relatives-of-us-citizen" target="_blank">USCIS</a> Everyone else with a qualifying family relationship falls into a <strong>family preference</strong> category, ranked F1 through F4, covering relatives like adult children or siblings of citizens. USCIS caps how many preference green cards it issues each year, so people in these categories often wait years for their turn.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility/green-card-for-family-preference-immigrants" target="_blank">USCIS</a></p>
 
-  <p>On the employment side, USCIS uses five ranked preference categories, called EB-1 through EB-5. USCIS describes EB-1 as reserved for "persons of extraordinary ability" and outstanding researchers; EB-2 for people with advanced degrees or exceptional ability; EB-3 for skilled and other workers; EB-4 for specific "special immigrant" groups like certain religious workers; and EB-5 for business investors who put at least $800,000 into a new U.S. company that creates jobs.<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a> About 140,000 employment-based green cards are available each year.<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a></p>
+  <p>On the employment side, USCIS uses five ranked preference categories, called EB-1 through EB-5. Here's what each one covers, in USCIS's own terms:<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a></p>
+  <ul>
+    <li><strong>EB-1</strong> — "persons of extraordinary ability" and outstanding researchers</li>
+    <li><strong>EB-2</strong> — people with advanced degrees or exceptional ability</li>
+    <li><strong>EB-3</strong> — skilled workers and other workers</li>
+    <li><strong>EB-4</strong> — specific "special immigrant" groups, like certain religious workers</li>
+    <li><strong>EB-5</strong> — business investors who put at least $800,000 into a new U.S. company that creates jobs</li>
+  </ul>
+  <p>About 140,000 employment-based green cards are available each year.<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a></p>
 
   <div class="vocab">
     <b>Key Word — Green Card</b>
@@ -811,20 +857,20 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <div class="cap">New citizens take the Oath of Allegiance at a naturalization ceremony held at Glacier National Park, September 25, 2025. <a href="https://commons.wikimedia.org/wiki/File:Naturalization_Ceremony_09-25-2025_(54811198082).jpg" target="_blank">Wikimedia Commons, National Park Service (public domain)</a></div>
   </div>
 
-  <p>A green card holder can eventually apply to become a U.S. citizen through a process called <strong>naturalization</strong>. USCIS lays out the general eligibility rules on its own naturalization pages. In most cases, an applicant must have held a green card for at least five years before applying — or three years if they are married to a U.S. citizen.<a class="cite-inline" href="https://www.uscis.gov/n-400" target="_blank">USCIS</a></p>
+  <p>A green card holder can eventually apply to become a U.S. citizen through a process called <span class="term" tabindex="0" data-def="The legal process a green card holder goes through to become a U.S. citizen.">naturalization</span>. USCIS lays out the general eligibility rules on its own naturalization pages. In most cases, an applicant must have held a green card for at least five years before applying — or three years if they are married to a U.S. citizen.<a class="cite-inline" href="https://www.uscis.gov/n-400" target="_blank">USCIS</a></p>
 
-  <p>During that time, USCIS checks two related things. The applicant needs <strong>continuous residence</strong>, meaning the U.S. stayed their real home the whole time, without long absences that break that continuity.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-3" target="_blank">USCIS</a> The applicant also needs <strong>physical presence</strong>, meaning they actually spent at least half that time physically inside the United States — at least 30 months out of the standard five years.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-4" target="_blank">USCIS</a></p>
+  <p>During that time, USCIS checks two related things. The applicant needs <strong>continuous residence</strong> — the U.S. stayed their real home the whole time, without long absences that break that continuity.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-3" target="_blank">USCIS</a> The applicant also needs <strong>physical presence</strong>. That means they actually spent at least half that time physically inside the United States — at least 30 months out of the standard five years.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-4" target="_blank">USCIS</a></p>
 
-  <p>Applicants must also pass an interview that includes an <strong>English test</strong> and a <strong>civics test</strong> about U.S. history and government, take an Oath of Allegiance, and meet USCIS's standards of "good moral character."<a class="cite-inline" href="https://www.uscis.gov/citizenship/learn-about-citizenship/10-steps-to-naturalization" target="_blank">USCIS</a> Only after all of that is an applicant sworn in as a citizen at a naturalization ceremony.</p>
+  <p>Applicants must also pass an interview. It includes an <strong>English test</strong> and a <strong>civics test</strong> about U.S. history and government. Applicants also take an Oath of Allegiance and must meet USCIS's standards of "good moral character."<a class="cite-inline" href="https://www.uscis.gov/citizenship/learn-about-citizenship/10-steps-to-naturalization" target="_blank">USCIS</a> Only after all of that is an applicant sworn in as a citizen at a naturalization ceremony.</p>
 
   <div class="callout">
     <span class="tag">Worth Noticing</span>
     <p>Naturalization isn't quick. Between the years of required residence and the paperwork, interview, and testing involved, becoming a U.S. citizen through this process is a multi-year commitment, not a one-time application.</p>
   </div>
 
-  <h3>Asylum and refugee status: a legal difference about location</h3>
+  <h3><span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">Asylum</span> and <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugee</span> status: a legal difference about location</h3>
 
-  <p>People fleeing danger in their home country sometimes seek protection in the United States through <strong>refugee</strong> or <strong>asylum</strong> status. Both use the exact same legal definition: someone who has been persecuted, or has a well-founded fear of future persecution, because of race, religion, nationality, membership in a particular social group, or political opinion.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a></p>
+  <p>People fleeing danger in their home country sometimes seek protection in the United States through <strong>refugee</strong> or <strong>asylum</strong> status. Both use the exact same legal definition: someone who has been persecuted, or has a well-founded fear of future persecution, based on their race, religion, nationality, social group, or political opinion.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a></p>
 
   <p>What separates the two statuses, according to USCIS, is location at the time of application. <strong>Refugee</strong> status can be granted only to people who are still <strong>outside</strong> the United States when they apply. <strong>Asylum</strong> status can be granted only to people who are already <strong>physically present in the United States or arriving at a U.S. port of entry</strong> when they apply.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a> Same legal standard, different location — that's the core distinction.</p>
 
@@ -833,13 +879,13 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <p>Serious mistreatment or harm directed at someone because of who they are — their race, religion, nationality, social group, or political beliefs. Fear of persecution is the legal basis for both refugee and asylum status.</p>
   </div>
 
-  <h3>What is ICE?</h3>
+  <h3>What is <span class="term" tabindex="0" data-def="U.S. Immigration and Customs Enforcement — the federal agency that enforces immigration law inside U.S. borders.">ICE</span>?</h3>
 
   <p><strong>ICE</strong> stands for <strong>U.S. Immigration and Customs Enforcement</strong>. It is a federal law enforcement agency inside the Department of Homeland Security (DHS).<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a></p>
 
   <p>ICE traces back to the reorganization of the federal government after the September 11, 2001 terrorist attacks. Congress passed the Homeland Security Act in November 2002, and DHS formally opened as a new Cabinet-level department on March 1, 2003, combining pieces of 22 different existing federal agencies.<a class="cite-inline" href="https://www.dhs.gov/creation-department-homeland-security" target="_blank">DHS</a> ICE itself was created in 2003 as part of that reorganization, formed by merging investigative and enforcement units from the former U.S. Customs Service with the former Immigration and Naturalization Service.<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a></p>
 
-  <p>ICE's legal authority is enforcing immigration and customs law <strong>within</strong> U.S. borders — for example, identifying, arresting, detaining, and removing people who are in the country in violation of immigration law.<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a> This is a different agency, with a different job, from U.S. Customs and Border Protection (CBP). CBP describes its own mission as securing official ports of entry and the border itself — screening travelers and cargo as they arrive in the country.<a class="cite-inline" href="https://www.cbp.gov/border-security/ports-entry" target="_blank">CBP</a> In short: CBP's job is mainly at the border and points of entry; ICE's job is mainly enforcement inside the country's interior.</p>
+  <p>ICE's legal authority is enforcing immigration and customs law <strong>within</strong> U.S. borders — for example, identifying, arresting, detaining, and <span class="term" tabindex="0" data-def="The formal, legal process of removing someone from the United States for violating immigration law.">removing</span> people who are in the country in violation of immigration law.<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a> This is a different agency, with a different job, from U.S. Customs and Border Protection (CBP). CBP describes its own mission as securing official ports of entry and the border itself — screening travelers and cargo as they arrive in the country.<a class="cite-inline" href="https://www.cbp.gov/border-security/ports-entry" target="_blank">CBP</a> In short: CBP's job is mainly at the border and points of entry; ICE's job is mainly enforcement inside the country's interior.</p>
 
   <div class="vocab">
     <b>Key Word — Department of Homeland Security (DHS)</b>
@@ -857,7 +903,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>Washington's Immigration Story</h2>
 </div>
 <div class="article">
-  <p class="lede"><strong>Washington State's history isn't separate from the story told above — it's a local chapter of the exact same story.</strong> Scandinavian farmers and fishermen, a thriving Japanese American community torn apart by a wartime order, refugees rebuilding their lives after a war on the other side of the world — all of it happened right here, in Seattle and the towns around Puget Sound.</p>
+  <p class="lede"><strong>Washington State's history isn't separate from the story told above — it's a local chapter of the exact same story.</strong> Scandinavian farmers and fishermen. A thriving Japanese American community torn apart by a wartime order. Refugees rebuilding their lives after a war on the other side of the world. All of it happened right here, in Seattle and the towns around Puget Sound.</p>
 
   <h3>Scandinavian settlers and the Puget Sound</h3>
 
@@ -877,7 +923,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <h3>A Japanese American community, then a forced removal</h3>
 
-  <p>Long before World War II, Seattle had a thriving Japanese American community, numbering around 7,000 people, centered in what's now the city's International District.<a class="cite-inline" href="https://encyclopedia.densho.org/International_District/" target="_blank">Densho Encyclopedia</a> That changed abruptly in 1942. On February 19, 1942, President Franklin D. Roosevelt signed <strong>Executive Order 9066</strong>, authorizing the military to force people out of designated areas.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a> Although the order never named Japanese Americans directly, it was used to forcibly remove and incarcerate roughly 120,000 Japanese Americans living on the West Coast — including nearly 70,000 who were U.S. citizens by birth.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a></p>
+  <p>Long before World War II, Seattle had a thriving Japanese American community, numbering around 7,000 people, centered in what's now the city's International District.<a class="cite-inline" href="https://encyclopedia.densho.org/International_District/" target="_blank">Densho Encyclopedia</a> That changed abruptly in 1942. On February 19, 1942, President Franklin D. Roosevelt signed <strong>Executive Order 9066</strong>, authorizing the military to force people out of designated areas. (<span class="term" tabindex="0" data-def="An official directive from the president that carries the force of law, without needing a vote in Congress.">An executive order</span> is a directive from the president that carries the force of law, without a vote in Congress.)<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a> Although the order never named Japanese Americans directly, it was used to forcibly remove and incarcerate roughly 120,000 Japanese Americans living on the West Coast. Nearly 70,000 of them were U.S. citizens by birth.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a></p>
 
   <div class="callout">
     <span class="tag">Worth Noticing</span>
@@ -908,7 +954,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <div class="cap">Camp Murray, the Washington military installation converted into a refugee resettlement site in 1975. This photo was taken in 2009, not during the resettlement itself. <a href="https://commons.wikimedia.org/wiki/File:Camp_Murray,_Washington.jpg" target="_blank">Wikimedia Commons, Washington National Guard (CC BY 2.0)</a></div>
   </div>
 
-  <p>Seattle's history also includes welcoming refugees fleeing war and persecution. After the Vietnam War ended in April 1975, tens of thousands of Vietnamese, Cambodian, Laotian, and Hmong refugees were resettled across the United States.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a> Washington's governor at the time, Dan Evans, invited refugees being processed in California to relocate to Washington, and the state converted the Camp Murray military base into a resettlement site that housed 500 to 600 Vietnamese refugees over several months in 1975.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a></p>
+  <p>Seattle's history also includes welcoming refugees fleeing war and persecution. After the Vietnam War ended in April 1975, tens of thousands of Vietnamese, Cambodian, Laotian, and Hmong refugees were resettled across the United States.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a> Washington's governor at the time, Dan Evans, invited refugees being processed in California to relocate to Washington. The state converted the Camp Murray military base into a resettlement site, which housed 500 to 600 Vietnamese refugees over several months in 1975.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a></p>
 
   <p>Many of the refugees who resettled in the Seattle area built new communities and businesses, including in Seattle's Chinatown-International District. That wave of resettlement was followed by decades more arrivals, and today Washington is home to some of the largest Vietnamese, Cambodian, and Laotian American communities in the country.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a></p>
 
@@ -995,7 +1041,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <div class="tl-year">1924</div>
     <div class="tl-body">
       <h4>The Immigration Act of 1924 (Johnson-Reed Act)</h4>
-      <p>Congress replaced the older exclusion laws with a national-origins quota system, calculated using the 1890 census specifically to favor Northern and Western Europe. It excluded almost all immigration from Asia and lasted more than forty years.</p>
+      <p>Congress replaced the older exclusion laws with a <span class="term" tabindex="0" data-def="A limit on immigration that sets a specific number of visas for people from each country, based on nationality.">national-origins quota</span> system, calculated using the 1890 census specifically to favor Northern and Western Europe. It excluded almost all immigration from Asia and lasted more than forty years.</p>
       <a class="tl-link" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">→ State Department, Office of the Historian: The Immigration Act of 1924</a>
     </div>
   </div>
