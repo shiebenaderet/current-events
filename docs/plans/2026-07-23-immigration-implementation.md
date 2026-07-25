@@ -4,9 +4,9 @@
 
 **Goal:** Build a new topic page, `immigration.html`, from scratch, matching the established structure and conventions of `iran.html`/`ukraine.html`/`ai.html`/`us-elections.html`/`climate-change.html` — a history-first explainer ("A Nation of Immigrants") running from the colonial era through the 1965 Immigration and Nationality Act, then today's legal-process mechanics, a live update-pane, and a Washington-specific local-history section — and wire it into the site's index/nav. This is the highest nonpartisanship-risk page built on this site to date; it introduces one new, tightly-scoped component (a side-by-side differing-perspectives block) used only for genuinely contested present-day enforcement claims in the update-pane.
 
-**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 sources at least one real, verified image per content section — added as a dedicated task because a page this long and text-heavy needs real visual breaks, not just Key People portraits. Task 11 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8 and a check that Task 10's images all resolve and are properly licensed/captioned. Task 12 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 11's verification pass is clean, matching the exact ordering discipline every prior page build on this site has used.
+**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 sources at least one real, verified image per content section — added as a dedicated task because a page this long and text-heavy needs real visual breaks, not just Key People portraits. Task 11 sources a real full-bleed hero image for the masthead. Task 12 adds a statistics/graphs section on overall immigration numbers and current trends. Task 13 is a dedicated reading-level review pass plus inline vocabulary tooltips for essential jargon (green card, naturalization, quota, asylum, etc.) — both added mid-build per explicit user request after the core content was already complete, so this pass has full, finished prose to work against rather than draft text. Task 14 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8 and a check that Tasks 10–13's images/stats/tooltips all resolve correctly. Task 15 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 14's verification pass is clean, matching the exact ordering discipline every prior page build on this site has used.
 
-**Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and dedicated nonpartisanship read-throughs on Tasks 4 (quota era), 7 (update-pane/enforcement), and 8 (local section), plus a final whole-page pass in Task 11.
+**Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and dedicated nonpartisanship read-throughs on Tasks 4 (quota era), 7 (update-pane/enforcement), and 8 (local section), plus a final whole-page pass in Task 14.
 
 ## Global Constraints
 
@@ -87,7 +87,7 @@ Add CSS custom properties for a palette distinct from every existing page's (Ira
 
 Adapt `climate-change.html`'s masthead/nav/points-bar markup to this page:
 - Hero: title "A Nation of Immigrants", subtitle summarizing the page's actual angle (the long history behind today's immigration system, and where things stand now), a dated hero-note ("Updated [DATE] · 8th Grade Social Studies · Earn points by answering quizzes!" — use the actual write date).
-- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 12 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
+- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 15 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
 - Points-bar: identical structural pattern to `climate-change.html`, no changes needed beyond the container existing.
 - Accessibility controls: confirm `climate-change.html`'s dyslexic-font toggle and text-size controls are present in this port, not just the toggle button alone — per this project's standing requirement that these be pervasive across every page.
 
@@ -95,7 +95,7 @@ Adapt `climate-change.html`'s masthead/nav/points-bar markup to this page:
 
 Copy `climate-change.html`'s two `<script>` blocks into this new file. Adapt:
 - The `quizzes` object: replace with an empty object for now (`const quizzes = {};`) — subsequent tasks will add entries as they build each section's quiz.
-- `MAX_PTS`: set to `const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)` — an intentional, explicitly-flagged placeholder resolved in Task 11's Step 1, not a silent gap.
+- `MAX_PTS`: set to `const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)` — an intentional, explicitly-flagged placeholder resolved in Task 14's Step 1, not a silent gap.
 - Confirm `openQuiz`, `showToast`, and the points-tracking logic are copied verbatim (they're topic-agnostic) — do not modify their internal logic.
 - Any Climate-specific easter-egg content (e.g., anything tied to an ice/glacier/forest theme) — keep the generic mechanism (any Konami-code array, click-counter mechanics, `showToast` function) but do not port topic-specific *content* inside those mechanisms. Leave the trigger mechanism in place; a later task can add page-appropriate easter-egg content if desired, but this is not required by this plan.
 
@@ -498,7 +498,7 @@ git commit -m "feat: add Immigration history timeline, key people, videos, resou
 - Modify: `immigration.html` (add `<img>` elements into each of Sections 1–5, the update-pane, Washington's Immigration Story, and History Timeline — every section that doesn't already have a real photo from Task 9's Key People portraits)
 - Add: new image files under `images/` (or confirm the site's actual image directory convention — check where `climate-change.html`'s images live before assuming a path)
 
-**Context:** By the end of Task 9, this page is entirely (or almost entirely) prose plus two Key People portraits — a genuinely text-heavy page given its length (7 content sections plus the update-pane and local section). This task adds at least one real, verified image to every content section, more than one where a natural fit exists (e.g., a distinct image for each of the "great waves" — Ellis Island AND Angel Island — rather than just one for the whole section). This task runs after all content is finalized (Tasks 2–9) so each image can be matched to the actual finished prose, sourced and captioned precisely, rather than guessed at before the section's final wording exists. It runs before Task 11's verification pass so that pass can also check these images (broken references, licensing, caption accuracy) as part of its normal sweep.
+**Context:** By the end of Task 9, this page is entirely (or almost entirely) prose plus two Key People portraits — a genuinely text-heavy page given its length (7 content sections plus the update-pane and local section). This task adds at least one real, verified image to every content section, more than one where a natural fit exists (e.g., a distinct image for each of the "great waves" — Ellis Island AND Angel Island — rather than just one for the whole section). This task runs after all content is finalized (Tasks 2–9) so each image can be matched to the actual finished prose, sourced and captioned precisely, rather than guessed at before the section's final wording exists. It runs before Task 14's verification pass so that pass can also check these images (broken references, licensing, caption accuracy) as part of its normal sweep.
 
 - [ ] **Step 1: Inventory which sections need images**
 
@@ -539,7 +539,116 @@ git commit -m "feat: source and add images for every Immigration page section"
 
 ---
 
-## Task 11: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
+## Task 11: Source a Hero Image
+
+**Files:**
+- Modify: `immigration.html` (the `.article-hero`/`.article-hero-bg` masthead)
+- Add: one new image file under `images/`
+
+**Context:** The masthead currently uses a plain gradient background (no photo), unlike `climate-change.html`'s hero (`images/ice-core-hero.jpg` behind a gradient overlay for text legibility). This task sources a real, iconic, wide, high-resolution photo distinct from any image already used in the page body (the page already has an Ellis Island Great Hall photo in Section 2 — do not reuse it here, since that would be redundant with an image appearing shortly after in the reading flow).
+
+- [ ] **Step 1: Source a candidate hero image**
+
+Research and verify a wide, high-resolution, historically resonant image suitable for a full-bleed masthead — strong candidates include: immigrants on a ship's deck viewing the Statue of Liberty/New York harbor (a classic, widely-reproduced "nation of immigrants" image), a wide exterior shot of Ellis Island's main building, or a large-scale historical immigration scene distinct from the Great Hall interior already used in Section 2. Search Wikimedia Commons directly (browse relevant Commons categories — e.g. "Immigrants arriving in New York," "Ellis Island," "Statue of Liberty historical photographs" — rather than guessing file names) for a real candidate.
+
+- [ ] **Step 2: Verify license and subject match directly on the image's own Commons file page**
+
+Per this project's non-negotiable image discipline: confirm both the license (public domain or CC-licensed) and the subject match directly on the image's own Wikimedia Commons file page — not from an embedding article, not from a general search result thumbnail. Confirm the image is high enough resolution to look sharp as a full-bleed background at typical desktop widths (at least ~1600px wide, ideally more).
+
+- [ ] **Step 3: Download and integrate**
+
+Download the verified image into `images/` with a descriptive kebab-case filename. Update `.article-hero-bg`'s CSS to reference it, following `climate-change.html`'s exact pattern: a gradient overlay (dark enough at the bottom for the headline/dek text to stay legible, per the existing `.article-hero h1`/`.dek` white-text styling) composited over the photo via `background:linear-gradient(...), url('images/...') center [Y%]/cover no-repeat`. Adjust the vertical focal point (`center Y%`) as needed so the image's most important visual content isn't cropped out at typical viewport heights.
+
+- [ ] **Step 4: Add a photo credit**
+
+Add a small, unobtrusive photo-credit line in the hero (matching whatever pattern `climate-change.html` or another page uses for hero photo attribution — check directly rather than assuming one exists) stating the source and license.
+
+- [ ] **Step 5: Verify**
+
+Run: `open immigration.html`. Confirm the hero renders with the new photo, the headline/dek text stays legible against it, the image doesn't look pixelated or oddly cropped, and the photo credit is present and accurate.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add immigration.html images/
+git commit -m "feat: add hero image to Immigration masthead"
+```
+
+---
+
+## Task 12: Add a Statistics/Trends Section
+
+**Files:**
+- Modify: `immigration.html` (add a new content block — placement TBD at implementation time, likely adjacent to or inside the update-pane, or as its own small section between Section 5 and the update-pane)
+
+**Context:** The page currently has some numeric content scattered through the update-pane (green card counts, backlogs, enforcement figures) but no dedicated overview of immigration's overall scale and trends over time — e.g., how the total foreign-born population has changed, top countries of origin, or a simple visual trend line. This task adds a compact statistics/graphs treatment giving readers a numeric "big picture" view, distinct from the update-pane's dated snapshot of current administrative facts.
+
+- [ ] **Step 1: Decide scope and placement**
+
+Given this page already has extensive numeric content in the update-pane (Task 7) and in Section 5/Washington's Immigration Story, scope this task narrowly: 1-2 genuinely illuminating statistics or a single simple chart (e.g., total U.S. foreign-born population over time, or top countries of origin for recent legal immigrants) — not a duplicate dashboard. Decide placement: either fold 1-2 new `.stat-pair`/`.stat-trio` blocks into an existing section where they fit naturally (e.g., Section 5's "how it works today" could use a "how many people does this system actually process" stat), or add one small new subsection. Avoid creating a second, competing "numbers" section that fights with the update-pane for the reader's attention — this should feel like it enriches the existing structure, not bolts on a new one.
+
+- [ ] **Step 2: Research and verify the actual statistics**
+
+Fetch and read a primary/authoritative source directly (Pew Research Center, Migration Policy Institute, U.S. Census Bureau, or DHS's own statistics office — all already used or referenced elsewhere on this page) to confirm real, current, accurately-dated figures for whatever specific stat(s) chosen in Step 1 (e.g., total U.S. foreign-born population and its share of the total population, confirmed against the Census Bureau or Pew; top countries of origin for recent green card recipients, confirmed against DHS's own Annual Flow Report, which Task 7 already cited and verified). Do not reuse a figure from memory or approximate — fetch and confirm directly, per this project's standing sourcing discipline.
+
+- [ ] **Step 3: Build the chosen visual**
+
+If a simple chart is chosen (e.g., a bar chart of top countries of origin, or a line showing population share over a few decades), build it as a simple inline SVG or the same `.stat-pair`/`.stat-trio` numeric-callout pattern already used throughout this page and site — per this site's established discipline (see `climate-change.html`'s design doc), prefer data-driven bar/line charts over any node-and-arrow relationship diagram, and keep any chart to a simple, legible 2-3 data-point comparison rather than a dense multi-series graphic that would be hard to read at this page's width.
+
+- [ ] **Step 4: Add citation and verify**
+
+Cite the source directly, following this page's established `cite-inline` pattern. Run: `open immigration.html`, confirm the new stat/chart renders legibly, confirm it doesn't visually clash with or duplicate content already in the update-pane, click the citation link to confirm it resolves and supports the specific claim.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add immigration.html
+git commit -m "feat: add immigration statistics/trends content"
+```
+
+---
+
+## Task 13: Reading-Level Review and Vocabulary Tooltips
+
+**Files:**
+- Modify: `immigration.html` (full-page prose review; add a new inline vocabulary-tooltip component)
+
+**Context:** Requested after all core content (Tasks 1-9) was already written and reviewed, specifically to (1) confirm/adjust the page's reading level is appropriately calibrated for this teacher's actual students, and (2) add inline hover/tap tooltips for essential jargon terms (green card, naturalization, quota, asylum, ICE, and others found during the review) — a new interaction pattern distinct from the existing `.vocab` callout boxes (which are static, block-level definitions already used for a few terms), giving lighter-weight inline definitions for terms that appear repeatedly throughout the page without needing a full callout box every time.
+
+- [ ] **Step 1: Do a full-page reading-level pass**
+
+Read the entire page section by section. Per this project's standing target (5th-6th grade for durable content, with accepted higher density in factually-dense sections like the update-pane), identify any sentences or passages that run notably harder than the site's established register — prior task reviews already flagged specific instances (e.g., Task 6's ~85-word semicolon-delimited EB-1 through EB-5 sentence, a few 27-29-word sentences in Tasks 2 and 4 caused by embedded direct quotes). Compile a list of concrete passages to simplify, not a vague "make it easier" note — cite exact locations.
+
+- [ ] **Step 2: Simplify flagged passages**
+
+For each flagged passage, rewrite for clarity and shorter sentence length without losing the factual content or its citation. Where a passage's length comes from a direct quote (this project's citation discipline favors direct quotes for settled-history/high-stakes claims), consider whether the quote can be trimmed to its essential clause, or whether the sentence can be restructured around it rather than dropping the quote's use entirely — preserve exact quotes verbatim; a shortened attribution should never alter what's inside the quotation marks.
+
+- [ ] **Step 3: Identify essential vocabulary terms needing an inline tooltip**
+
+Compile a list of jargon terms that appear multiple times across the page and would benefit from a lightweight, always-available inline definition — strong candidates based on this page's actual content: green card, naturalization, quota (national-origins quota), asylum, refugee, ICE, deportation/removal, visa, lawful permanent resident, Executive Order (as used for EO 9066). Cross-check against terms already covered by an existing `.vocab` callout box (Task 2-9 already added several) — a term with its own dedicated `.vocab` box on first use may not need a duplicate inline tooltip at that exact spot, but likely still benefits from one at LATER mentions elsewhere on the page, since a reader may land mid-page rather than read start to finish.
+
+- [ ] **Step 4: Build the inline tooltip component**
+
+Add a new CSS/HTML component for inline definitions — e.g. a `<span class="term" tabindex="0" data-def="...">green card</span>` pattern using a CSS-only hover/focus-triggered tooltip (accessible via keyboard focus for students using assistive tech, not just mouse hover) — check whether any existing page on this site already has an inline-tooltip pattern to reuse (search `climate-change.html`, `us-elections.html`, `ai.html` for anything resembling `title=`, `data-tooltip`, or a `.term`/`.tooltip` class) before inventing a new one; reuse if found, build fresh only if genuinely absent from the site. Keep the definition text itself short (one plain-language sentence, 5th-6th grade level) and visually distinct (e.g., a subtle dotted underline indicating "hover/tap for definition," matching a common, recognizable web convention) from ordinary emphasis (`<strong>`) already used throughout the page, so students can tell the difference between "this word is important" and "this word has a definition available."
+
+- [ ] **Step 5: Apply the tooltip markup to identified terms throughout the page**
+
+Wrap each identified term (per Step 3's list) at its first 2-3 meaningful mentions per section (not literally every single occurrence, which would be visually noisy) with the new tooltip markup, using a consistent, accurate definition for each term used everywhere it appears (define "green card" the same way every time it's tooltipped, not slightly differently in different sections).
+
+- [ ] **Step 6: Verify**
+
+Run: `open immigration.html`. Confirm: reading-level-flagged passages now read more clearly without losing their citations or factual content; every new tooltip term shows its definition on hover AND on keyboard focus (tab to it, confirm the definition becomes visible); tooltip definitions are accurate and consistent everywhere the same term appears; the tooltip's visual treatment doesn't clash with or get confused for the existing `.vocab` callout boxes or `<strong>` emphasis.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add immigration.html
+git commit -m "fix: improve reading level and add inline vocabulary tooltips"
+```
+
+---
+
+## Task 14: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
 
 **Files:** None modified unless this step surfaces a real problem — verification only, except for the `MAX_PTS` fix flagged in Task 1.
 
@@ -606,13 +715,13 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ---
 
-## Task 12: Wire the New Page into the Site
+## Task 15: Wire the New Page into the Site
 
 **Files:**
 - Modify: `index.html`
 - Modify: `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` (add a sibling-nav link to Immigration on each)
 
-**Context:** This task runs LAST, only after Task 11's full verification pass is complete and clean — so the site's actual front page and every existing page's nav are never pointed at unfinished or unreviewed content, matching the exact ordering discipline every prior page build on this site has used.
+**Context:** This task runs LAST, only after Task 14's full verification pass is complete and clean — so the site's actual front page and every existing page's nav are never pointed at unfinished or unreviewed content, matching the exact ordering discipline every prior page build on this site has used.
 
 - [ ] **Step 1: Read the existing Immigration "Coming Soon" entry and a live entry directly**
 
@@ -645,6 +754,6 @@ git commit -m "feat: wire Immigration page into the site (homepage card, cross-p
 
 ## Self-Review Notes
 
-- **Spec coverage:** All design doc sections (page structure items 1–10, the update-pane's Part A/Part B split, the nonpartisanship discipline including the new differing-perspectives component, Washington's Immigration Story, Key People, sourcing standards, reading level, out-of-scope list) map to Tasks 1–12 in this plan. The design doc's explicit scope guard against state-level immigration policy is carried into both Task 8 (Washington section) and the Global Constraints so every task inherits it, not just Task 8. The differing-perspectives component is fully specified (CSS, markup pattern, and scope constraint) in Task 7 rather than left as a vague "figure it out at implementation time" — Task 11 Step 5 verifies it didn't leak beyond its intended scope. Task 10 (image sourcing) was added after initial plan review, per explicit direction that a page this long needs real visual variety per section, not just Key People portraits — inserted after content is finalized (Task 9) so images can be matched to actual finished prose, and before verification (Task 11) so the verification pass also covers image licensing/captions/broken-reference checks.
-- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 11 Step 1, and Tasks 2–9's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in this plan; every research step names specific candidate facts/figures/organizations to verify rather than leaving anything as "TBD," and every deliberately-deferred decision (exact Key People names, exact accent color, whether to source a real image for the Immigration homepage card, exact contested claims to cover in Task 7's differing-perspectives blocks, and the exact image subjects/sources for Task 10) is explicitly flagged as "confirm/decide/research at implementation time" rather than silently assumed.
+- **Spec coverage:** All design doc sections (page structure items 1–10, the update-pane's Part A/Part B split, the nonpartisanship discipline including the new differing-perspectives component, Washington's Immigration Story, Key People, sourcing standards, reading level, out-of-scope list) map to Tasks 1–15 in this plan. The design doc's explicit scope guard against state-level immigration policy is carried into both Task 8 (Washington section) and the Global Constraints so every task inherits it, not just Task 8. The differing-perspectives component is fully specified (CSS, markup pattern, and scope constraint) in Task 7 rather than left as a vague "figure it out at implementation time" — Task 14 Step 5 verifies it didn't leak beyond its intended scope. Task 10 (image sourcing), Task 11 (hero image), Task 12 (stats/graphs), and Task 13 (reading-level pass + vocab tooltips) were all added mid-build after initial content was complete, per explicit user direction — inserted after content is finalized (Task 9) so each addition can be matched to actual finished prose rather than draft text, and before verification (Task 14) so the verification pass also covers all of it (image licensing/captions, stat accuracy, tooltip content, reading level).
+- **Placeholder scan:** Task 1's two intentional placeholders (`MAX_PTS = 0` and the `[Content added in Task N]` section stubs) are both explicitly flagged with a specific resolution step in a later task (Task 14 Step 1, and Tasks 2–9's content-writing steps respectively) — neither is a silent gap. No other placeholders appear in this plan; every research step names specific candidate facts/figures/organizations to verify rather than leaving anything as "TBD," and every deliberately-deferred decision (exact Key People names, exact accent color, whether to source a real image for the Immigration homepage card, exact contested claims to cover in Task 7's differing-perspectives blocks, the exact image subjects/sources for Task 10, the exact hero image for Task 11, the exact statistics/chart data for Task 12, and the exact vocab-term list for Task 13) is explicitly flagged as "confirm/decide/research at implementation time" rather than silently assumed.
 - **Type consistency:** N/A (no code interfaces — HTML/CSS/JS content only, no typed signatures). Class/ID names are specified throughout as "confirm the exact name against `climate-change.html`'s real markup" rather than asserted from memory, since this plan's author has not read every line of `climate-change.html` firsthand and some exact naming (e.g., whether content sections use `s-card` or a different class name on the more recently rebuilt pages) may have drifted from the Climate plan's own naming — Task 1 Step 1 requires reading the real file before locking in any class names, and every subsequent task that references a shared class name flags it as "confirm the exact name" rather than treating this plan's guesses as ground truth. Quiz IDs are pre-assigned sequentially per task (`q1` Task 2 through `q7` Task 9) to avoid quiz-ID collisions; if task order changes during implementation, whoever makes that change is responsible for re-checking quiz-ID uniqueness directly against the live `quizzes` object.
