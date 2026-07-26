@@ -491,7 +491,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 <header class="article-hero">
   <div class="article-hero-bg"></div>
   <div class="article-hero-inner">
-    <span class="kicker">Immigration &amp; U.S. Policy</span>
+    <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">Immigration &amp; U.S. Policy</button>
     <h1>A Nation of Immigrants</h1>
     <p class="dek">Almost everyone in the United States can trace their family back to somewhere else. Here's the long history behind today's immigration system — and where things stood as of July 2026.</p>
     <div class="byline">Student Edition · Updated July 22, 2026</div>
@@ -605,7 +605,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
           </div>
           <div class="perspective">
             <div class="perspective-label">American Immigration Council's stated position</div>
-            <p>The American Immigration Council, an immigrant-rights research and advocacy group, has documented a rising share of arrests involving people with no criminal record. It reports that share rose from 6% in January 2025 to 41% by December 2025 — a trend it attributes to expanded "collateral arrests" during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council</a></p>
+            <p>The American Immigration Council, an immigrant-rights research and advocacy group, has documented a rising share of people with no criminal record among those ICE arrests and then holds in detention. It reports that share rose from 6% in January 2025 to 41% by December 2025 — a trend it attributes to expanded "collateral arrests" during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/press-release/report-trump-immigration-detention-2026/" target="_blank">American Immigration Council</a></p>
           </div>
         </div>
         <p class="small-note">Both figures describe the same underlying enforcement activity — they disagree on how to characterize who is being caught up in it. This page reports both stated positions rather than picking one.</p>
@@ -614,7 +614,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
           <ul>
             <li><a href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News — reporting ICE's FY2026 enforcement statistics</a></li>
             <li><a href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY — DHS spokesperson statement and ICE arrest data analysis</a></li>
-            <li><a href="https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/" target="_blank">American Immigration Council — ICE arrest statistics analysis</a></li>
+            <li><a href="https://www.americanimmigrationcouncil.org/press-release/report-trump-immigration-detention-2026/" target="_blank">American Immigration Council — report on 2025 immigration detention expansion</a></li>
           </ul>
         </details>
       </div>
@@ -816,14 +816,14 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 <div class="article">
   <p class="lede"><strong>The 1965 Act's basic idea — family ties and job skills instead of national origin — is still how U.S. immigration law works today.</strong> But "how it works" covers a lot of ground: <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span>, citizenship, <span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">asylum</span>, <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugees</span>, and government agencies with confusing initials. This section walks through the major pieces, using the U.S. government's own official explanations of each one.</p>
 
-  <p>Before getting into the process, it helps to see the overall scale of who this system covers. As of June 2025, Pew Research Center's analysis of Census Bureau survey data found the following.<a class="cite-inline" href="https://www.pewresearch.org/short-reads/2025/02/13/key-findings-about-us-immigrants/" target="_blank">Pew Research Center</a></p>
+  <p>Before getting into the process, it helps to see the overall scale of who this system covers. As of June 2025, Pew Research Center's analysis of Census Bureau survey data found the following.<a class="cite-inline" href="https://www.pewresearch.org/short-reads/2025/08/21/key-findings-about-us-immigrants/" target="_blank">Pew Research Center</a></p>
 
   <div class="stat-pair">
-    <div class="stat">
+    <div class="stat clickable" onclick="handleStatClick(this)">
       <div class="num">51.9M</div>
       <div class="desc"><b>Foreign-born residents</b>People living in the U.S. who were born in another country, as of June 2025</div>
     </div>
-    <div class="stat">
+    <div class="stat clickable" onclick="handleStatClick(this)">
       <div class="num">15.4%</div>
       <div class="desc"><b>Share of the U.S. population</b>Immigrants as a share of everyone living in the country, the same month</div>
     </div>
@@ -1205,8 +1205,7 @@ let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
-// TODO: update once all quizzes are added (final verification pass)
-const MAX_PTS = 0;
+const MAX_PTS = 8;
 
 // Subsequent tasks add entries here as each section's quiz is built.
 const quizzes = {
@@ -1338,7 +1337,7 @@ function showToast(icon, title, msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-// ─── EASTER EGG: HERO KICKER CLICKS (generic mechanism, page-specific content TBD) ───
+// ─── EASTER EGG: HERO KICKER CLICKS ───
 function handleFlagClick() {
   flagClicks++;
   const flag = document.getElementById('heroFlag');
@@ -1349,7 +1348,9 @@ function handleFlagClick() {
   if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
   if (flagClicks >= 5) {
     flagClicks = 0;
-    showEgg('🔍','You found a secret!','More to come here in a later task.','');
+    showEgg('🗽','You found a secret!',
+      'The words on the Statue of Liberty\'s pedestal — "Give me your tired, your poor, your huddled masses yearning to breathe free" — come from a poem called "The New Colossus," written by Emma Lazarus in 1883.\n\nThe poem wasn\'t part of the original statue at all. It was added to the pedestal in 1903, twenty years later, after a fundraising campaign that Lazarus\'s poem itself was part of.',
+      'The New Colossus, 1883');
     addPoints(1);
   }
 }
@@ -1360,7 +1361,9 @@ function handleStatClick(el) {
   statClicks.add(el);
   const totalInPair = el.closest('.stat-pair, .stat-trio').querySelectorAll('.stat').length;
   if (statClicks.size >= totalInPair) {
-    showEgg('🔢','You clicked every number!','More to come here in a later task.','');
+    showEgg('🔢','You clicked every number!',
+      'The United States is home to more immigrants than any other country in the world — more than Germany, Saudi Arabia, the United Kingdom, and France combined.\n\nBut a country having a large immigrant population, and a large share of its population being immigrants, are two different measurements. Even though the U.S. has the most immigrants of any country by count, dozens of countries — including Canada, at 22% — have a higher immigrant share of their total population.',
+      'Pew Research Center, 2025');
     addPoints(1);
     statClicks.clear();
   }
@@ -1385,7 +1388,7 @@ document.addEventListener('keydown', (e) => {
     konamiIndex++;
     if (konamiIndex === KONAMI.length) {
       konamiIndex = 0;
-      showEgg('🎮','You found the Konami Code easter egg!','More to come here in a later task.','↑↑↓↓←→←→BA');
+      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\n<strong>One more immigrant story:</strong> Ellis Island processors sometimes shortened or changed immigrants\' names on arrival — but not usually on purpose. Most immigration officers actually worked from the name already written on a ship\'s passenger manifest, filled out before the ship ever left Europe. Name changes more often happened later, when immigrants themselves adopted easier-to-pronounce American spellings.\n\nCase in point: Israel Beilin, who arrived at Ellis Island in 1893, later became known to the world as Irving Berlin.','↑↑↓↓←→←→BA');
       addPoints(1);
     }
   } else {
