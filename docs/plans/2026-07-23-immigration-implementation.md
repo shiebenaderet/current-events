@@ -4,7 +4,7 @@
 
 **Goal:** Build a new topic page, `immigration.html`, from scratch, matching the established structure and conventions of `iran.html`/`ukraine.html`/`ai.html`/`us-elections.html`/`climate-change.html` — a history-first explainer ("A Nation of Immigrants") running from the colonial era through the 1965 Immigration and Nationality Act, then today's legal-process mechanics, a live update-pane, and a Washington-specific local-history section — and wire it into the site's index/nav. This is the highest nonpartisanship-risk page built on this site to date; it introduces one new, tightly-scoped component (a side-by-side differing-perspectives block) used only for genuinely contested present-day enforcement claims in the update-pane.
 
-**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 sources at least one real, verified image per content section — added as a dedicated task because a page this long and text-heavy needs real visual breaks, not just Key People portraits. Task 11 sources a real full-bleed hero image for the masthead. Task 12 adds a statistics/graphs section on overall immigration numbers and current trends. Task 13 is a dedicated reading-level review pass plus inline vocabulary tooltips for essential jargon (green card, naturalization, quota, asylum, etc.) — both added mid-build per explicit user request after the core content was already complete, so this pass has full, finished prose to work against rather than draft text. Task 14 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8 and a check that Tasks 10–13's images/stats/tooltips all resolve correctly. Task 15 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 14's verification pass is clean, matching the exact ordering discipline every prior page build on this site has used.
+**Architecture:** Task 1 scaffolds the entire page shell by adapting `climate-change.html`'s proven structure (the most recently built, most refined reference implementation) — CSS palette, shared JS engine, nav, hero, points bar, footer — with content-section placeholders. Tasks 2–5 build the historical arc (Sections 1–4) in strict chronological order, each ending in the next. Task 6 builds Section 5 (today's legal mechanics + the ICE explainer). Task 7 builds the update-pane, including the new differing-perspectives component — this is this plan's single highest-risk task. Task 8 builds Washington's Immigration Story (the local section — lower risk than Task 7 by design, since it's scoped to history/community, not policy). Task 9 covers History Timeline, Key People, Videos, Resources. Task 10 sources at least one real, verified image per content section — added as a dedicated task because a page this long and text-heavy needs real visual breaks, not just Key People portraits. Task 11 sources a real full-bleed hero image for the masthead. Task 12 adds a statistics/graphs section on overall immigration numbers and current trends. Task 13 is a dedicated reading-level review pass plus inline vocabulary tooltips for essential jargon (green card, naturalization, quota, asylum, etc.) — both added mid-build per explicit user request after the core content was already complete, so this pass has full, finished prose to work against rather than draft text. Task 14 is the full-page verification pass, including a fresh, independent nonpartisanship read-through of Tasks 2–8 and a check that Tasks 10–13's images/stats/tooltips all resolve correctly. Task 15 is a second, more aggressive reading-level rewrite pass to a genuine 5th-6th grade target, added per explicit project-owner review after Task 13's lighter pass was judged still too high — this task also re-verifies citation/quote/tooltip integrity given how broadly it touches the page. Task 16 wires the new page into `index.html` and adds sibling-nav links across every other page — this task runs LAST, after Task 15 is clean, matching the exact ordering discipline every prior page build on this site has used.
 
 **Tech Stack:** Plain HTML, no build step, no test runner. Verification is manual: grep checks, browser opens, citation-link clicks, and dedicated nonpartisanship read-throughs on Tasks 4 (quota era), 7 (update-pane/enforcement), and 8 (local section), plus a final whole-page pass in Task 14.
 
@@ -87,7 +87,7 @@ Add CSS custom properties for a palette distinct from every existing page's (Ira
 
 Adapt `climate-change.html`'s masthead/nav/points-bar markup to this page:
 - Hero: title "A Nation of Immigrants", subtitle summarizing the page's actual angle (the long history behind today's immigration system, and where things stand now), a dated hero-note ("Updated [DATE] · 8th Grade Social Studies · Earn points by answering quizzes!" — use the actual write date).
-- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 15 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
+- Sticky-nav: anchor links for each of this page's sections, in this order: `#update-pane` (or this page's equivalent id — confirm the exact id convention against Task 7's Step 2), `#colonial-era`, `#great-waves`, `#quota-era`, `#modern-system`, `#how-it-works-today`, `#washington-immigration`, `#timeline`, `#key-people`, `#videos`, `#resources`. Include a "🏠 All Topics" link to `index.html` and sibling links to `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html` from the start, per this site's established cross-page-navigation convention (do not treat this as a later retrofit — Task 16 will add the reverse links on those five pages, but this page's own outbound links belong here in Task 1).
 - Points-bar: identical structural pattern to `climate-change.html`, no changes needed beyond the container existing.
 - Accessibility controls: confirm `climate-change.html`'s dyslexic-font toggle and text-size controls are present in this port, not just the toggle button alone — per this project's standing requirement that these be pervasive across every page.
 
@@ -715,7 +715,72 @@ If no fixes were needed beyond Step 1's `MAX_PTS` update, note that explicitly r
 
 ---
 
-## Task 15: Wire the New Page into the Site
+## Task 15: Genuine 5th–6th Grade Reading-Level Rewrite
+
+**Files:**
+- Modify: `immigration.html` (full-page prose rewrite)
+
+**Context:** Task 13 already did one reading-level pass, but the project owner reviewed the result directly and judged it still too high — readable and well-structured, but still adult-register prose (legal-category paraphrases, layered clauses, sentences regularly running 20-25+ words). The explicit target confirmed by the project owner: **true 5th-6th grade** — short sentences (aim ~12-15 words), one idea per sentence, common vocabulary, minimal embedded jargon even when paraphrasing official terms. This is a second, more aggressive pass, not a repeat of Task 13's lighter touch. Because this touches nearly every paragraph on the page, this task is also responsible for re-confirming several things Task 14 already verified once — a rewrite this broad can silently reintroduce exactly the kind of defect Task 14 just caught (a citation quietly detached from its claim, a quote subtly altered, a `.perspectives` balance disrupted) if not done carefully.
+
+- [ ] **Step 1: Read the entire page and rewrite paragraph by paragraph**
+
+Read `immigration.html` start to finish. For every paragraph of durable/narrative prose (Sections 1-5, Washington's Immigration Story, section intros in the update-pane), rewrite for genuine 5th-6th grade reading level:
+- Target ~12-15 words per sentence, not the ~25-word ceiling used previously.
+- One idea per sentence — split any sentence doing two jobs (e.g., stating a fact AND its significance) into two sentences.
+- Replace remaining legal/bureaucratic phrasing with plainer wording wherever the underlying meaning survives intact (e.g., prefer "the government" over "the federal government" only where precision doesn't suffer; keep exact legal category names like "EB-1" or "F1 through F4" since those are the actual official terms students need to recognize, but make the surrounding explanatory sentence shorter and simpler).
+- Vocabulary: prefer common, everyday words over multisyllabic or Latinate alternatives wherever a simpler word means the same thing (e.g., "start" over "commence," "show" over "demonstrate") — but do not simplify away a term that already has a `.vocab` box or `.term` tooltip defining it; those are supposed to carry the harder vocabulary, so the surrounding sentence can stay simple around them.
+
+- [ ] **Step 2: Preserve every direct quote character-for-character**
+
+Wherever a sentence contains a direct quote (`"..."`) from a cited source, the text INSIDE the quotation marks must remain byte-identical to what's there now — this project's citation discipline treats quote alteration as a serious integrity problem, not a style choice. Only the sentence/attribution AROUND a quote may be shortened or restructured. Before finishing this task, diff every quote-bearing passage against the pre-task version of the file to confirm zero characters changed inside any quotation marks.
+
+- [ ] **Step 3: Preserve every citation**
+
+Do not drop, move, or detach any `cite-inline` citation link while shortening its sentence — if a sentence carrying a citation is split into two sentences, keep the citation attached to whichever new sentence still carries the specific claim it supports. Before finishing, count `cite-inline` occurrences in the file before and after this task's edits and confirm the count is unchanged (this exact check is what Task 13's reviewer used to confirm nothing was silently dropped — reuse it here).
+
+- [ ] **Step 4: Preserve `.term` tooltip definitions and wrapping**
+
+Do not alter the definition text inside any `data-def="..."` attribute, and do not remove the `.term` wrapping from any of the 10 vocabulary terms Task 13 already tooltipped. If rewriting a sentence containing a tooltipped term changes the sentence around it, keep the `<span class="term" ...>` wrapper intact around the same term.
+
+- [ ] **Step 5: Preserve the `.perspectives` block's balance**
+
+The update-pane's differing-perspectives block (Section 4/ICE enforcement) must keep both sides comparably specific and comparably long after simplification — if one side gets simplified more aggressively than the other, re-balance them so neither side ends up shorter/thinner than its counterpart. Do not touch the underlying claims or sources, only the sentence-level phrasing.
+
+- [ ] **Step 6: Preserve settled-history accuracy — no new hedging**
+
+For the exclusion-law content (Chinese Exclusion Act), the 1924 quota system, and the Japanese American incarceration content: simplifying these sentences must not introduce hedging language that wasn't there before ("some believe," "many say," etc.) — these remain settled historical fact, stated plainly, just in shorter sentences.
+
+- [ ] **Step 7: Re-run Task 14's citation-integrity checks**
+
+Since this task touches nearly the whole file, re-run the exact citation-link-resolution check from Task 14:
+```bash
+grep -oE 'href="https://[^"]+"' immigration.html | sed -E 's/^[^:]+:href="//;s/"$//' | sort -u > /tmp/immigration-links-t15.txt
+wc -l /tmp/immigration-links-t15.txt
+while read -r url; do
+  code=$(curl -s -o /dev/null -w "%{http_code}" -A "Mozilla/5.0" -L --max-time 10 "$url")
+  echo "$code $url"
+done < /tmp/immigration-links-t15.txt | sort -n
+```
+Confirm the link count and set of URLs matches what Task 14 already verified (no citations were accidentally dropped or altered) — this list should be identical to Task 14's, not just similarly-sized.
+
+- [ ] **Step 8: Spot-check reading level directly**
+
+Pick 5-6 paragraphs spread across different sections (at least one from Section 1, one from Section 5, one from Washington's Immigration Story, one from the update-pane) and read them aloud/count words per sentence directly. Confirm the rewritten sentences genuinely average shorter than Task 13's pass — this should be checkable by direct inspection, not just asserted.
+
+- [ ] **Step 9: Verify**
+
+Run: `open immigration.html`. Confirm the page still renders correctly, no broken markup was introduced by the widespread edits (check div/tag balance), every quiz still functions, every `.term` tooltip still shows its definition on hover/focus, and the page reads noticeably simpler than before on a straight read-through.
+
+- [ ] **Step 10: Commit**
+
+```bash
+git add immigration.html
+git commit -m "fix: rewrite prose to genuine 5th-6th grade reading level"
+```
+
+---
+
+## Task 16: Wire the New Page into the Site
 
 **Files:**
 - Modify: `index.html`
