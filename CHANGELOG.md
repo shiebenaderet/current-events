@@ -2,6 +2,13 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.5.1] — 2026-07-26
+
+**Patch — fixed broken cross-page navigation on climate-change.html, introduced by v2.5.0's Immigration site-wiring.**
+
+- A follow-up site-wide audit (reading level + navigation, run right after the Immigration launch) caught that the sibling-nav link added to `climate-change.html` in v2.5.0 had landed in the wrong nav bar — an orphaned `<a href="immigration.html">` sitting alone atop the in-page `section-nav`, while the actual sibling-links list in `masthead-top` never got Immigration added at all. Moved the link to the correct bar.
+- The same audit also surfaced two larger, deliberately-deferred follow-ups, tracked for future work: (1) a site-wide inconsistency in where hub/sibling nav links live — older pages (`iran.html`, `ukraine.html`, `ai.html`, `us-elections.html`) put them in `section-nav`, while `climate-change.html`/`immigration.html` put them in `masthead-top` instead; every page still reaches every other page, just via a different location — and (2) a reading-level pass on `ai.html` and `ukraine.html`, ranked as the two pages furthest from the true 5th–6th grade bar `immigration.html` reached in its v2.5.0 build (both pages predate the `.term` tooltip component and currently carry jargon via inline parentheticals instead).
+
 ## [2.5.0] — 2026-07-26
 
 **Minor — Immigration & U.S. Policy page ships, built directly in the editorial design system.**
