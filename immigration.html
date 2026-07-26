@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Nation of Immigrants: The Story of U.S. Immigration – Student Resource</title>
+<meta name="description" content="How U.S. immigration policy came to be — from the colonial era to today's system — and what's happening right now, explained for middle schoolers.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;overflow-wrap:break-word}
+:root{
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  /* This page's own palette: a muted teal accent. Deliberately not red or
+     blue — this page's subject matter (immigration policy) carries real
+     partisan-association risk, more so than most other topics on this site.
+     Teal reads as neutral/institutional (think: passport-office signage,
+     harbor/coastline imagery, Ellis Island's ferry) without echoing either
+     major party's brand color. A second, warmer gold-tan is used sparingly
+     for secondary accents (progress bar, highlights), echoed from the
+     site's shared civic-neutral gold rather than introducing a third hue. */
+  --accent:#2c6e6b; --accent-ink:#1a4644; --accent-tint:#e5f0ef;
+  --gold:#b8860a; --gold-l:#d4a017; --gold-tint:#fef3db;
+}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+/* ══════════════ MASTHEAD ══════════════ */
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;
+  letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;gap:6px;
+}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
+
+.section-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  padding:0 6vw;border-bottom:1px solid var(--rule);
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;
+  background:var(--paper);position:sticky;top:0;z-index:150;
+}
+.section-nav a{
+  color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav a.hub{color:var(--accent);font-weight:800}
+
+/* ══════════════ ARTICLE HERO ══════════════ */
+.article-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden}
+.article-hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.2) 45%,rgba(8,8,8,.86) 100%),
+             url('images/immigrants-statue-of-liberty-1887.jpg') center 32%/cover no-repeat;
+}
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
+.article-hero .kicker{
+  display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#3a2000;background:var(--gold-l);
+  padding:5px 14px;margin-bottom:22px;border:none;
+}
+.article-hero h1{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px;
+}
+.article-hero .dek{
+  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;
+  color:#f0ece4;max-width:660px;margin:0 auto 22px;
+}
+.article-hero .byline{
+  font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);
+  letter-spacing:.03em;
+}
+.hero-credit{
+  position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;max-width:360px;
+}
+.hero-credit a{color:inherit}
+.hero-note{
+  position:absolute;bottom:14px;left:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:left;max-width:360px;
+}
+@media(max-width:700px){
+  .hero-note,.hero-credit{position:static;max-width:none;text-align:left;padding:0 6vw;display:block}
+  .hero-note{margin-top:14px}
+  .hero-credit{margin-top:4px;margin-bottom:14px}
+}
+
+/* ══════════════ POINTS BAR ══════════════ */
+.points-bar{display:flex;align-items:center;gap:14px;padding:10px 6vw;background:var(--ink);color:#f0ece4;font-family:-apple-system,sans-serif;font-size:.8rem;flex-wrap:wrap}
+.points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
+.progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden;min-width:0}
+.progress-fill{height:100%;background:var(--gold-l);width:0%;transition:width .3s}
+.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
+
+/* ══════════════ SECTION HEADS ══════════════ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{
+  font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:800;
+}
+.sec-head h2{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);
+  line-height:1.18;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px;
+}
+
+/* ══════════════ ARTICLE BODY ══════════════ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.14rem;line-height:1.75;margin:0 0 22px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.28rem;
+  margin:34px 0 14px;color:var(--ink);
+}
+.article p.lede::first-letter{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:5rem;line-height:.78;
+  float:left;padding:6px 10px 0 0;color:var(--accent);
+}
+.article ul{margin:0 0 22px 22px}
+.article ul li{margin-bottom:8px;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+
+/* inline citations */
+.cite-inline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);
+  text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;letter-spacing:.01em;
+}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
+
+/* stat callouts */
+.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
+
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .stat,.stat-trio .stat{min-width:0}
+.stat-pair .num,.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
+.stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+.stat-pair .stat.clickable,.stat-trio .stat.clickable{cursor:pointer}
+.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--gold)}
+@media (max-width:560px){.stat-pair,.stat-trio{grid-template-columns:1fr}}
+
+/* vocab */
+.vocab{margin:28px 0;padding-left:20px;border-left:3px solid var(--gold)}
+.vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8a6608;margin-bottom:6px;font-weight:800}
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+.update-box .term{border-bottom-color:var(--gold-l)}
+.update-box .term::after{background:#fff;color:var(--ink)}
+.update-box .term::before{border-top-color:#fff}
+@media(max-width:600px){
+  .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
+  .term::before{left:16px;transform:translateX(0)}
+}
+
+/* callout / think-about-it */
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+.callout.think{border-left-color:var(--accent);background:var(--accent-tint)}
+
+/* pull quotes */
+.pull-quote{margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy)}
+.pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0}
+.pull-quote .attrib{display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase}
+
+/* full-bleed inline photo */
+.photo-break{margin:40px calc(50% - 50vw) 40px;width:100vw}
+.photo-break img{width:100%;max-height:520px;object-fit:cover;display:block}
+.photo-break .cap{max-width:700px;margin:10px auto 0;padding:0 6vw;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);line-height:1.5}
+.photo-break .cap a{color:inherit}
+
+/* smaller inline photo */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
+.clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
+
+/* chart frame */
+.chart-wrap{margin:36px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
+
+/* ══ QUIZ ══ */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{display:inline-flex;align-items:center;gap:9px;font-family:-apple-system,sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;cursor:pointer;padding:13px 24px;box-shadow:0 2px 10px rgba(44,110,107,.25)}
+.quiz-toggle::after{content:'→';font-weight:700}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle.answered{background:var(--ink-faint)}
+
+.quiz-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.75);align-items:center;justify-content:center;padding:24px}
+.quiz-modal.open{display:flex}
+.quiz-box{background:var(--paper);max-width:520px;width:100%;padding:32px;position:relative;border-top:4px solid var(--accent)}
+.quiz-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink-faint);line-height:1}
+.quiz-box h3{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.quiz-q{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:18px;line-height:1.35}
+.quiz-choices{display:flex;flex-direction:column;gap:8px}
+.choice-btn{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);padding:11px 14px;font-family:-apple-system,sans-serif;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.choice-btn:hover:not(:disabled){border-color:var(--ink)}
+.choice-btn.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.choice-btn.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.choice-btn:disabled{cursor:default}
+.quiz-feedback{margin-top:16px;font-family:-apple-system,sans-serif;font-size:.88rem;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.correct-fb{color:#2f5934}
+.wrong-fb{color:var(--accent-ink)}
+
+/* ══ TIMELINE ══ */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:var(--accent);flex-shrink:0;width:150px}
+.tl-body{flex:1;min-width:0}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;margin-bottom:8px}
+.tl-body p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.tl-body img{width:100%;max-width:220px;display:block;margin:0 auto 10px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.tl-body .cap{font-family:-apple-system,sans-serif;font-size:.68rem;color:var(--ink-faint);margin-bottom:10px;line-height:1.4;text-align:center}
+.tl-body .cap a{color:inherit}
+.tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--gold)}
+.hidden-egg.revealed{display:block}
+.hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a6608;margin-bottom:8px}
+.hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
+
+/* ══ PERSON ══ */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%)}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
+.person .src a{color:inherit}
+@media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
+
+/* ══ UPDATE PANE ══ */
+.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane-inner{max-width:900px;margin:0 auto}
+.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl-item{display:flex;gap:14px;align-items:baseline}
+.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
+.mini-tl-dot.blue{background:#82b1ff}
+.mini-tl-dot.green{background:#5a8a5a}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85);min-width:0}
+.mini-tl-text strong{color:#fff}
+.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
+.mini-tl-text .cite-inline:hover{color:var(--gold-l)}
+
+.update-grid{display:grid;grid-template-columns:1fr;gap:0}
+.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box:last-child{border-bottom:none}
+.update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
+.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p:last-of-type{margin-bottom:14px}
+.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline:hover{color:var(--gold-l)}
+.update-box .vocab{border-left-color:var(--gold-l)}
+.update-box .vocab b{color:var(--gold-l)}
+.update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
+.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .callout .tag{color:var(--gold-l)}
+.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources li{margin-bottom:5px;line-height:1.5}
+.update-sources a{color:var(--gold-l)}
+.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
+
+/* ══ DIFFERING PERSPECTIVES (Part B contested claims only — scoped to this page) ══ */
+.perspectives{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  margin:20px 0;
+}
+.perspective{padding:18px 20px}
+.perspective + .perspective{border-left:1px solid var(--rule)}
+.perspective-label{
+  font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:8px;
+}
+.perspective p{font-family:'Source Serif 4',Georgia,serif;font-size:.95rem;
+  color:var(--ink-light);line-height:1.65;margin-bottom:8px}
+.perspective p:last-of-type{margin-bottom:0}
+.perspective .cite-inline{font-size:.8rem}
+@media(max-width:600px){
+  .perspectives{grid-template-columns:1fr}
+  .perspective + .perspective{border-left:none;border-top:1px solid var(--rule)}
+}
+/* Dark-background override — .perspectives sits inside .update-box, matching the treatment already used for .vocab/.callout/.stat-pair in that context. Both sides keep identical padding, size, and treatment. */
+.update-box .perspectives{border-color:rgba(255,255,255,.15)}
+.update-box .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+@media(max-width:600px){
+  .update-box .perspective + .perspective{border-top-color:rgba(255,255,255,.15)}
+}
+.update-box .perspective-label{color:var(--gold-l)}
+.update-box .perspective p{color:rgba(255,255,255,.82)}
+.update-box .perspective .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .perspective .cite-inline:hover{color:var(--gold-l)}
+
+/* ══ VIDEO / RESOURCES ══ */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:10px 0 30px}
+.video-label h4{font-family:'Source Serif 4',serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.06rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
+.rc .level{font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-faint);margin-top:4px}
+
+footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint)}
+
+/* ══ EASTER EGG MODAL + TOAST ══ */
+.egg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.8);align-items:center;justify-content:center;padding:24px}
+.egg-modal.show{display:flex}
+.egg-box{background:var(--paper);max-width:480px;width:100%;padding:32px;text-align:center;border-top:4px solid var(--accent)}
+.egg-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.egg-box p{font-family:'Source Serif 4',serif;font-size:.98rem;line-height:1.7;color:var(--ink-light);margin-bottom:14px;text-align:left}
+.egg-extra{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:16px}
+.egg-close{background:var(--ink);color:#fff;border:none;padding:10px 22px;font-family:-apple-system,sans-serif;font-weight:700;cursor:pointer}
+
+.toast{position:fixed;top:20px;right:20px;z-index:600;background:var(--ink);color:#fff;padding:16px 20px;max-width:300px;transform:translateX(340px);transition:transform .3s;border-left:4px solid var(--gold-l)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+.hero-flag-click{cursor:pointer}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.shake{animation:shake .4s}
+
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
+.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
+body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
+</style>
+</head>
+<body>
+
+<!-- EASTER EGG MODAL -->
+<div class="egg-modal" id="eggModal">
+  <div class="egg-box">
+    <div style="font-size:2rem;margin-bottom:8px" id="eggEmoji">🎉</div>
+    <h2 id="eggTitle">You found a secret!</h2>
+    <p id="eggText"></p>
+    <div class="egg-extra" id="eggExtra"></div>
+    <button class="egg-close" onclick="closeEgg()">Got it</button>
+  </div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box">
+    <button class="quiz-close" onclick="closeQuiz()">×</button>
+    <h3>Quick Quiz</h3>
+    <p id="quizQ" class="quiz-q"></p>
+    <div class="quiz-choices" id="quizChoices"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">⭐</span>
+  <div class="toast-title" id="toastTitle"></div>
+  <div class="toast-msg" id="toastMsg"></div>
+</div>
+
+<div class="masthead-top">
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="climate-change.html">Climate Change</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a></span>
+  <span class="date">Updated July 22, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
+</div>
+
+<nav class="section-nav">
+  <a href="#update-pane">Situation Update</a>
+  <a href="#colonial-era">Colonial Era</a>
+  <a href="#great-waves">The Great Waves</a>
+  <a href="#quota-era">The Quota Era</a>
+  <a href="#modern-system">The Modern System</a>
+  <a href="#how-it-works-today">How It Works Today</a>
+  <a href="#washington-immigration">Washington's Story</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#key-people">Key People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-inner">
+    <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">Immigration &amp; U.S. Policy</button>
+    <h1>A Nation of Immigrants</h1>
+    <p class="dek">Almost everyone in the United States can trace their family back to somewhere else. Here's the long history behind today's immigration system — and where things stood as of July 2026.</p>
+    <div class="byline">Student Edition · Updated July 22, 2026</div>
+  </div>
+  <div class="hero-note">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
+  <div class="hero-credit">Photo: immigrants on the steerage deck view the Statue of Liberty, <em>Frank Leslie's Illustrated Newspaper</em>, 1887. <a href="https://commons.wikimedia.org/wiki/File:New_York_-_Welcome_to_the_land_of_freedom_-_An_ocean_steamer_passing_the_Statue_of_Liberty-_Scene_on_the_steerage_deck_-_from_a_sketch_by_a_staff_artist._LCCN97502086.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+</header>
+
+<div class="points-bar">
+  <span>Discovery Points:</span>
+  <span class="points-display" id="pointsDisplay">0 pts</span>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content</span>
+</div>
+
+<!-- ═══════════ UPDATE PANE ═══════════ -->
+<div class="update-pane" id="update-pane">
+  <div class="update-pane-inner">
+    <div class="update-head">
+      <span class="num">Situation Update</span>
+      <h2>Where Things Stand <span class="update-badge">As of July 2026</span></h2>
+    </div>
+    <div class="update-date">Updated July 22, 2026 — a dated snapshot, not an ongoing claim</div>
+
+    <div class="mini-tl">
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot"></div>
+        <span class="mini-tl-date">Jun 2026</span>
+        <span class="mini-tl-text"><strong>Supreme Court rules on birthright citizenship —</strong> On June 30, 2026, the Supreme Court made a ruling. It said children born in the United States are U.S. citizens at birth. This is true under the 14th Amendment, no matter their parents' immigration status. The case had tested a January 2025 executive order. That order had tried to change this rule. <a class="cite-inline" href="https://www.aclu.org/news/immigrants-rights/supreme-court-rules-to-protect-birthright-citizenship-in-landmark-case" target="_blank">ACLU</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot blue"></div>
+        <span class="mini-tl-date">Jun 2026</span>
+        <span class="mini-tl-text"><strong>Same term, a different ruling on Temporary Protected Status —</strong> The Supreme Court decided a separate case that same term. It ruled 6-3 that the president has broad power. That power lets a president end Temporary Protected Status for a country, and courts mostly can't review that choice. The case involved about 300,000 Haitian TPS holders. It also involved about 3,800 Syrian TPS holders. <a class="cite-inline" href="https://www.clarkhill.com/news-events/news/scotus-immigration-rulings-tps-birthright-citizenship/" target="_blank">Clark Hill</a></span>
+      </div>
+      <div class="mini-tl-item">
+        <div class="mini-tl-dot green"></div>
+        <span class="mini-tl-date">Jul 2026</span>
+        <span class="mini-tl-text"><strong>Asylum eligibility narrowed at the border —</strong> The Court made one more ruling. It said a person standing on the Mexican side of the border has not legally "arrived" in the United States yet. This narrows where migrants can first make an asylum claim. <a class="cite-inline" href="https://www.bal.com/immigration-news/united-states-supreme-court-issues-key-immigration-decisions-on-tps-asylum-processing-and-birthright-citizenship/" target="_blank">BAL</a></span>
+      </div>
+    </div>
+
+    <div class="update-grid">
+
+      <div class="update-box">
+        <span class="update-box-icon">🪪</span>
+        <h3>How many <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span> are issued each year, and for what reasons?</h3>
+        <p>Fiscal year 2025 ran from October 2024 to September 2025. During that year, <strong>1,320,080 people</strong> became <span class="term" tabindex="0" data-def="Someone with legal permission to live and work in the U.S. permanently, without being a citizen — a green card holder.">lawful permanent residents</span>. That means they got a green card. That number is down about 2.7% from the year before, when 1,356,760 people got green cards. <a class="cite-inline" href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS</a></p>
+        <div class="stat-trio">
+          <div class="stat">
+            <div class="num">684,530</div>
+            <div class="desc"><b>Immediate relatives</b>Spouses, minor children, and parents of U.S. citizens</div>
+          </div>
+          <div class="stat">
+            <div class="num">196,740</div>
+            <div class="desc"><b>Family preference</b>Other family members, like adult children or siblings of citizens</div>
+          </div>
+          <div class="stat">
+            <div class="num">159,070</div>
+            <div class="desc"><b>Employment-based</b>Workers sponsored by an employer, plus their families</div>
+          </div>
+        </div>
+        <p>About 177,000 more people got green cards through other paths. These include <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugee</span> and asylee status changes, the diversity <span class="term" tabindex="0" data-def="Official permission to travel to the United States, issued by the U.S. government, usually stamped in a passport.">visa</span> lottery, and other smaller humanitarian categories. <a class="cite-inline" href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek/DHS</a></p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://ohss.dhs.gov/topics/immigration/lawful-permanent-residents/annual-flow-report" target="_blank">DHS Office of Homeland Security Statistics — Lawful Permanent Residents Annual Flow Reports</a></li>
+            <li><a href="https://www.newsweek.com/green-card-recipients-drop-12218265" target="_blank">Newsweek — reporting DHS's FY2025 LPR figures</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">⏳</span>
+        <h3>Why "get in line" can mean waiting over a decade</h3>
+        <p>Every year, the government caps the number of <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span> for each category and each country. Sometimes more people apply than there are open slots. When that happens, a backlog forms. The U.S. Department of State tracks this backlog every month. It publishes the numbers in something called the <strong>Visa Bulletin</strong>. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
+        <p>Here's one real example. The July 2026 Visa Bulletin covers the EB-3 employment category for people born in India. It was only processing applications filed on or before <strong>January 1, 2014</strong>. That means someone applying today in that category would wait well over a decade. <a class="cite-inline" href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis</a></p>
+        <p class="small-note">Wait times vary a lot by category and country of birth. This is one specific, long-backlogged example, not the wait time for every applicant.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://www.morganlewis.com/pubs/2026/06/us-department-of-state-releases-july-2026-visa-bulletin" target="_blank">Morgan Lewis — summary of the U.S. Department of State's July 2026 Visa Bulletin</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">⚖️</span>
+        <h3>How big is the immigration court backlog?</h3>
+        <p>Immigration courts are run by the Executive Office for Immigration Review, or EOIR. EOIR is part of the U.S. Department of Justice. It is not part of the regular federal court system. As of <strong>June 30, 2026</strong>, EOIR had <strong>3,195,137 pending cases</strong>. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
+        <p>Of those cases, <strong>2,310,698</strong> — about 72% — involve people waiting on an <span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">asylum</span> claim. They have already filed a formal application. Now they are waiting for a hearing or decision. <a class="cite-inline" href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC</a></p>
+        <p class="small-note">This figure comes from TRAC (Transactional Records Access Clearinghouse), a Syracuse University research center that obtains and publishes EOIR's own case-level data through federal records requests.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://tracreports.org/immigration/quickfacts/eoir.html" target="_blank">TRAC Immigration — Immigration Court Quick Facts (sourced from EOIR case data)</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">🚔</span>
+        <h3>What do <span class="term" tabindex="0" data-def="U.S. Immigration and Customs Enforcement — the federal agency that enforces immigration law inside U.S. borders.">ICE</span>'s own enforcement numbers show?</h3>
+        <p>ICE's fiscal year 2026 runs from October 2025 through September 2026. As of <strong>July 21, 2026</strong>, ICE reported <strong>356,389 <span class="term" tabindex="0" data-def="The formal, legal process of removing someone from the United States for violating immigration law.">removals</span></strong> so far this fiscal year. ICE also reported a detained population of <strong>65,765 people</strong> in its custody. <a class="cite-inline" href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News/ICE</a></p>
+        <p>These are ICE's own published enforcement totals. They are plain counts, and nobody disputes them. But there is a different question people do disagree about: who, exactly, is getting arrested along the way?</p>
+
+        <div class="perspectives">
+          <div class="perspective">
+            <div class="perspective-label">DHS's stated position</div>
+            <p>A DHS spokesperson responded to reporting on arrest data in April 2026. The spokesperson said: "Nationwide, our law enforcement is targeting the worst of the worst criminal illegal aliens — including murderers, rapists, gang members, pedophiles, and terrorists." The spokesperson also stated that "70% of illegal aliens ICE arrested across the country have criminal convictions or pending criminal charges."<a class="cite-inline" href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY</a></p>
+          </div>
+          <div class="perspective">
+            <div class="perspective-label">American Immigration Council's stated position</div>
+            <p>The American Immigration Council is an immigrant-rights research and advocacy group. It has tracked people with no criminal record among ICE's arrests and detentions. It reports that share rose from 6% in January 2025 to 41% by December 2025. The group says this trend comes from expanded "collateral arrests" — arrests made during operations aimed at other people.<a class="cite-inline" href="https://www.americanimmigrationcouncil.org/press-release/report-trump-immigration-detention-2026/" target="_blank">American Immigration Council</a></p>
+          </div>
+        </div>
+        <p class="small-note">Both figures describe the same underlying enforcement activity. The two sides disagree on how to describe who is getting caught up in it. This page reports both stated positions rather than picking one.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://abcnews.com/Politics/ice-350000-individuals-removed-fiscal-year-2026/story?id=134948878" target="_blank">ABC News — reporting ICE's FY2026 enforcement statistics</a></li>
+            <li><a href="https://www.huffpost.com/entry/ice-immigration-arrests-collateral-operation-trump_n_69cef172e4b05537a7f08c9e" target="_blank">HuffPost/THE CITY — DHS spokesperson statement and ICE arrest data analysis</a></li>
+            <li><a href="https://www.americanimmigrationcouncil.org/press-release/report-trump-immigration-detention-2026/" target="_blank">American Immigration Council — report on 2025 immigration detention expansion</a></li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
+  </div>
+</div>
+
+<!-- ═══════════ COLONIAL ERA ═══════════ -->
+<div class="sec-head" id="colonial-era">
+  <span class="num">Section 1</span>
+  <h2>Colonial Era &amp; Early Immigration</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Before there was a United States, people already lived here.</strong> This was true before any ship from Europe ever crossed the Atlantic. Indigenous peoples had been living across North America for thousands of years. They hunted, farmed, and built towns. They also traded across huge networks that stretched from coast to coast. Archaeologists have found tools and artifacts in Virginia alone dating back more than 15,000 years.<a class="cite-inline" href="https://www.nps.gov/articles/000/deep-history.htm" target="_blank">NPS</a> The first English colonists showed up in the late 1500s and early 1600s. By then, Native nations already had complex societies, governments, and cultures in place. So the story of immigration to America doesn't start with the first immigrant. It starts with the people who were already home.</p>
+
+  <p>That's an important thing to keep in mind as you read the rest of this page. European colonists weren't moving into an empty land when they arrived. They were moving into land that belonged to someone else. The Library of Congress puts it plainly: European colonization of North America "was an invasion of territory controlled and settled for centuries by Native Americans."<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a></p>
+
+  <h3>Colonists arrive, mostly from England</h3>
+
+  <div class="photo-break">
+    <img src="images/jamestown-fort.jpg" alt="Reconstructed palisade wall, thatched-roof buildings, and period cannon at the Jamestown Settlement fort site in Virginia" onerror="this.style.display='none'">
+    <div class="cap">A reconstruction of James Fort at Jamestown, Virginia, showing the type of palisade and thatched-roof buildings the first English colonists built after 1607. <a href="https://commons.wikimedia.org/wiki/File:Fort_at_Jamestown_settlement,_Virginia.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+  </div>
+
+  <p>Starting in the early 1600s, small numbers of Europeans began crossing the Atlantic. They came to build permanent settlements. The <strong>English</strong> founded Jamestown, Virginia in 1607. They founded Plymouth, Massachusetts in 1620. Around the same time, the French built Quebec. The Dutch set up colonies in what's now New York.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a> Over the next several decades, companies like the Massachusetts Bay Company sent thousands of colonists across the ocean. That included whole families.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">LOC</a></p>
+
+  <p>Most of these early arrivals came from <strong>England</strong>. But other European groups came too, in smaller numbers. These included the Dutch, French, Germans, and Scots-Irish. This pattern continued through the colonial period. It lasted into the early years of the new United States: mostly English, with some other Europeans. Nearly all of these people came <strong>by choice</strong>. They were looking for land, religious freedom, or a fresh start.</p>
+
+  <div class="vocab">
+    <b>Key Word — Voluntary Immigration</b>
+    <p>Moving to a new country by choice — deciding for yourself to leave one place and settle in another. This is different from being forced to move against your will.</p>
+  </div>
+
+  <h3>A very different story: the transatlantic slave trade</h3>
+
+  <p>Not everyone who came to the American colonies had a choice. Starting in 1619, enslaved Africans were brought to England's Jamestown colony in chains. That was a year before the Pilgrims even landed at Plymouth.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/beginnings/" target="_blank">LOC</a> This was the start of what's known as the <strong>transatlantic slave trade</strong>. European traders kidnapped and purchased African people. They packed them onto ships and transported them across the Atlantic Ocean to be enslaved. This was <strong>forced migration</strong>, not immigration. People did not choose to come, and once they arrived, they were not free.</p>
+
+  <p>The scale of this forced migration was enormous. Historians estimate that more than <strong>10 million</strong> people were enslaved and transported from Africa to the Americas over the centuries-long span of the slave trade. Of those, several hundred thousand were brought specifically to Britain's American colonies and, later, the United States. An unknown number of people died during the brutal ocean crossing itself — but it was likely more than a million.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/beginnings/" target="_blank">LOC</a> Slavery would remain legal in the United States for nearly 250 years after that first ship reached Jamestown. The Thirteenth Amendment finally abolished it in 1865.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Historians are careful to point out that the experience of enslaved Africans isn't really a story of "immigration" at all, since immigration describes people choosing to move. It's a separate and distinct history — one of forced removal, captivity, and survival.<a class="cite-inline" href="https://www.loc.gov/classroom-materials/immigration/african/" target="_blank">LOC</a></p>
+  </div>
+
+  <p>This page covers two very different histories side by side. One is about people choosing to cross an ocean for a new life. The other is about people being forced across it against their will. Understanding both is essential to understanding how the United States became a "nation of immigrants" in the first place.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ THE GREAT WAVES ═══════════ -->
+<div class="sec-head" id="great-waves">
+  <span class="num">Section 2</span>
+  <h2>The Great Waves</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Starting in the 1840s, immigration to the United States changed completely.</strong> Instead of a slow trickle of newcomers, huge waves of people began arriving. First came Ireland and Germany. Later, immigrants came from all over Europe and Asia. Two famous places tell this story best: Ellis Island in New York Harbor and Angel Island in San Francisco Bay. Both processed millions of immigrants. But they treated the people who passed through them very differently.</p>
+
+  <h3>Ireland and Germany: fleeing hunger and turmoil</h3>
+
+  <p>In 1845, a disease began destroying Ireland's potato crop. Most Irish families depended on potatoes for food. The crop failed again and again for years. More than 750,000 people in Ireland starved to death.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> They were desperate to survive. Over <strong>two million</strong> Irish people left for the United States during and after this famine.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> Most arrived with almost no money. They settled in crowded East Coast cities, where they took factory and labor jobs.</p>
+
+  <p>Around the same time, more than <strong>a million Germans</strong> immigrated to the United States between 1845 and 1855.<a class="cite-inline" href="https://www.ushistory.org/us/25f.asp" target="_blank">USHistory.org</a> Their reasons were different from the Irish. Germany was going through economic hard times and political conflict, including a failed revolution in 1848. Many German immigrants arrived with more money than Irish immigrants did. That money let them buy farmland in the Midwest instead of settling only in cities.</p>
+
+  <div class="vocab">
+    <b>Key Word — Famine</b>
+    <p>An extreme, widespread shortage of food that causes severe hunger and death. The Irish Potato Famine of the 1840s is one of the most well-known famines in history.</p>
+  </div>
+
+  <h3>Ellis Island: the gateway for millions</h3>
+
+  <div class="photo-break">
+    <img src="images/ellis-island-great-hall.jpg" alt="The Registry Room, or Great Hall, at Ellis Island, with rows of inspection benches, large American flags, and arched windows, photographed in the early 1900s" onerror="this.style.display='none'">
+    <div class="cap">The Registry Room ("Great Hall") at Ellis Island, where arriving immigrants lined up for inspection, photographed between 1900 and 1915. <a href="https://commons.wikimedia.org/wiki/File:(Inspection_room,_Ellis_Island,_New_York,_N.Y.)_(LOC).jpg" target="_blank">Wikimedia Commons, Library of Congress (public domain)</a></div>
+  </div>
+
+  <p>Immigration from Europe kept growing. So the U.S. government opened a new processing station in New York Harbor. <strong>Ellis Island</strong> operated from 1892 to 1954. It became the busiest immigration station in the country.<a class="cite-inline" href="https://www.nps.gov/elis/learn/historyculture/history-of-ellis-island-from-1892-to-1954.htm" target="_blank">NPS</a> More than <strong>12 million immigrants</strong> passed through its halls. Most of them came from European countries like Italy, Russia, Poland, and Greece.<a class="cite-inline" href="https://www.statueofliberty.org/ellis-island/" target="_blank">Statue of Liberty–Ellis Island Foundation</a></p>
+
+  <p>For most people, Ellis Island meant a health check and a few questions. Most were free within a few hours to start their new lives. Historians estimate that a large majority of arriving immigrants passed through in under a day. Today, roughly <strong>40% of all Americans</strong> can trace at least one ancestor back through Ellis Island.<a class="cite-inline" href="https://www.statueofliberty.org/ellis-island/" target="_blank">Statue of Liberty–Ellis Island Foundation</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Ellis Island wasn't the only entry point, and it wasn't built to keep people out. It was built to process huge numbers of European arrivals quickly. Angel Island, on the other side of the country, worked very differently — as the next section explains.</p>
+  </div>
+
+  <h3>Angel Island: a very different welcome</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/angel-island-detention.jpg" alt="The preserved wooden detention barracks building at the Angel Island Immigration Station in San Francisco Bay, photographed in the present day" onerror="this.style.display='none'">
+    <div class="cap">The detention barracks at the Angel Island Immigration Station, preserved today as part of Angel Island State Park. <a href="https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+  </div>
+
+  <p>Ellis Island welcomed European immigrants. But a different immigration station opened on <strong>Angel Island</strong> in San Francisco Bay. It operated from 1910 to 1940. It became the main entry point for immigrants arriving from Asia, especially China.<a class="cite-inline" href="https://www.aiisf.org/history" target="_blank">Angel Island Immigration Station Foundation</a></p>
+
+  <p>Angel Island was not designed to welcome newcomers quickly the way Ellis Island was. It was built to detain and question them.<a class="cite-inline" href="https://www.aiisf.org/history" target="_blank">Angel Island Immigration Station Foundation</a> Chinese immigrants in particular faced long interrogations. Many were held for weeks, months, or even years while officials decided whether to let them in. This harsh treatment was not an accident. It was the result of a law passed decades earlier.</p>
+
+  <h3>The Chinese Exclusion Act of 1882</h3>
+
+  <p>In 1882, Congress passed the <strong>Chinese Exclusion Act</strong>. It banned Chinese laborers from immigrating to the United States for ten years. It also required Chinese people already living in the country to carry special identification papers.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The National Archives describes it as the first major U.S. law to restrict immigration based on someone's nationality.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The U.S. State Department's official historians describe it the same way. They call it the first law in American history to place broad restrictions on immigration.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a></p>
+
+  <p>This law was exclusionary and discriminatory. It targeted people specifically because of their nationality and ethnicity, not because of anything they had done. Congress kept extending it. The Geary Act of 1892 renewed the exclusion for another ten years. In 1902, lawmakers made Chinese exclusion permanent. They also expanded it to Hawaii and the Philippines.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a> These exclusion laws stayed in effect for 61 years, until Congress repealed them in 1943. By then, the broader pattern of restricting immigration by nationality had already expanded far beyond Chinese immigrants, as the next section explains.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ THE QUOTA ERA ═══════════ -->
+<div class="sec-head" id="quota-era">
+  <span class="num">Section 3</span>
+  <h2>The Quota Era</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>In 1924, Congress didn't just restrict one nationality — it rewrote the rules for almost everyone.</strong> A new law created strict numerical limits on immigration, based on where a person came from. It replaced the older, narrower exclusion laws with a much bigger system. That system was built around a mathematical formula. The formula wasn't neutral. It was calculated specifically to favor some countries and shut out others.</p>
+
+  <h3>The 1924 Immigration Act</h3>
+
+  <div class="photo-break">
+    <img src="images/immigration-act-1924-nyt.jpg" alt="New York Times clipping from April 27, 1924, headlined 'America of the Melting Pot Comes to End,' with two maps of Europe comparing immigration flow under the old law and the proposed 1924 quota law" onerror="this.style.display='none'">
+    <div class="cap">A New York Times article from April 27, 1924, describing the new immigration bill, with maps comparing how many immigrants each European country could send under the existing law versus the proposed quota law. <a href="https://commons.wikimedia.org/wiki/File:America_of_the_melting_pot_comes_to_end.png" target="_blank">Wikimedia Commons (public domain)</a></div>
+  </div>
+
+  <p>In 1924, Congress passed the <strong>Immigration Act of 1924</strong>. It's also known as the <strong>Johnson-Reed Act</strong>. It set a strict yearly limit on immigration. It divided that limit into quotas — a fixed number of visas — for each country.<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> Each country's quota was based on how many people from that country already lived in the United States, according to the 1890 census.<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a></p>
+
+  <p>Choosing the 1890 census was not an accident. Most Southern and Eastern European immigrants arrived in the U.S. after 1890. That group included Italians, Greeks, Poles, Russians, and others. Using that earlier year meant their communities barely counted toward the new quotas. The State Department's official historians describe the result plainly: visas for "the British Isles and Western Europe increased." Meanwhile, "newer immigration from other areas like Southern and Eastern Europe was limited."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a></p>
+
+  <div class="vocab">
+    <b>Key Word — National-Origins Quota</b>
+    <p>A limit on immigration that sets a specific number of visas for people from each country, based on nationality rather than any individual's skills or story.</p>
+  </div>
+
+  <h3>A formula designed to discriminate</h3>
+
+  <p>This wasn't a side effect of the law. Favoring Northern and Western Europe was the goal. The State Department's Office of the Historian states plainly that "the most basic purpose of the 1924 Immigration Act was to preserve the ideal of U.S. homogeneity."<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> The National Archives agrees. It describes the same law as one that "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries."<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> Those quotas favored countries like Germany and Great Britain. They favored those countries over ones like Estonia or Latvia.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This is documented historical fact, not one side of a debate. Government sources use direct language here. The law aimed to "preserve" one specific ethnic makeup of the country. Its formula was built to favor some nationalities and restrict others.</p>
+  </div>
+
+  <p>The 1924 Act went even further than restricting Southern and Eastern Europe. It excluded people from Asia almost entirely. The law barred "any alien who by virtue of race or nationality was ineligible for citizenship". That rule blocked immigration from Japan and the rest of Asia.<a class="cite-inline" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">State Department, Office of the Historian</a> The older Chinese Exclusion Act was still in effect too. Combined, the two laws meant that by the mid-1920s, almost no legal path to the U.S. existed for people from Asia.</p>
+
+  <h3>A system built to last — for four decades</h3>
+
+  <p>The national-origins quota system didn't fade away quickly. According to the National Archives, these quotas "lasted from 1924 through 1965." That's more than forty years shaping who could come to America.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> Lawmakers adjusted parts of the system over the decades. But the basic idea stayed firmly in place: a strict quota favoring some nationalities over others.</p>
+
+  <p>That finally changed in 1965. Congress passed a sweeping new law that year. It abolished the national-origins quota system for good. What replaced it, and why, is the subject of the next section.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ THE MODERN SYSTEM ═══════════ -->
+<div class="sec-head" id="modern-system">
+  <span class="num">Section 4</span>
+  <h2>The Modern System Begins</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>For more than forty years, a person's country of birth decided almost everything about their chances of immigrating to the United States.</strong> The <span class="term" tabindex="0" data-def="A limit on immigration that sets a specific number of visas for people from each country, based on nationality.">national-origins quota</span> system from the last section had favored Northern and Western Europe. It had nearly shut out Asia entirely. In 1965, Congress finally tore that formula out and replaced it. What lawmakers built in its place is still, in its basic shape, the system the United States uses today.</p>
+
+  <h3>The Immigration and Nationality Act of 1965</h3>
+
+  <div class="photo-break">
+    <img src="images/lbj-signs-1965-act.jpg" alt="President Lyndon B. Johnson seated at a desk on Liberty Island signing the Immigration and Nationality Act of 1965, surrounded by Vice President Hubert Humphrey, Lady Bird Johnson, and members of Congress, with the Manhattan skyline visible across the harbor" onerror="this.style.display='none'">
+    <div class="cap">President Lyndon B. Johnson signs the Immigration and Nationality Act of 1965 on Liberty Island, October 3, 1965, as Vice President Hubert Humphrey, Lady Bird Johnson, and Sens. Edward Kennedy and Robert Kennedy look on. <a href="https://commons.wikimedia.org/wiki/File:President_Lyndon_B._Johnson_Signing_of_the_Immigration_Act_of_1965_(02)_-_restoration1.jpg" target="_blank">Wikimedia Commons, LBJ Library (public domain)</a></div>
+  </div>
+
+  <p>On October 3, 1965, President Lyndon B. Johnson signed the <strong>Immigration and Nationality Act of 1965</strong>. He signed it at the base of the Statue of Liberty.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> The law is commonly known as the <strong>Hart-Celler Act</strong>. It's named after its two main sponsors in Congress: Senator Philip Hart and Representative Emanuel Celler.<a class="cite-inline" href="https://docsteach.org/document/immigration-and-nationality-act-of-1965" target="_blank">National Archives, DocsTeach</a></p>
+
+  <p>The law's first job was to get rid of the old system. The National Archives says the old quotas had "barred Asian immigrants, limited Latin American immigrants, and established rigid immigration quotas for European countries." The 1965 Act eliminated all of that.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> After 1965, a person's nationality no longer decided whether they could come to America.</p>
+
+  <div class="vocab">
+    <b>Key Word — Preference System</b>
+    <p>A way of ranking immigration applicants using categories like family ties or job skills, instead of using a country-by-country quota.</p>
+  </div>
+
+  <h3>A new system: family and skills, not nationality</h3>
+
+  <p>In place of the quotas, the 1965 Act built a <strong>preference system</strong>. The National Archives explains that it prioritized two things: keeping families together and admitting workers with needed skills.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> Close relatives of U.S. citizens could now immigrate without being counted against any numerical limit at all. This group includes spouses, children, and parents.<a class="cite-inline" href="https://docsteach.org/document/immigration-and-nationality-act-of-1965" target="_blank">National Archives, DocsTeach</a> Beyond those immediate relatives, the law set up ranked categories. Those categories covered other family members and workers with skills the country needed.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This wasn't a small adjustment. It was a complete change in the basic question the government asked. The old system asked, "Where were you born?" The new system asked, "Do you have close family here, or skills this country needs?"</p>
+  </div>
+
+  <h3>The direct ancestor of today's system</h3>
+
+  <p>The 1965 Act didn't just matter in its own moment. Its family-and-employment framework is still recognizably the basis of U.S. immigration law today. Researchers who study immigration policy have looked at today's family-based and employment-based visa categories. They describe those categories as growing directly out of the preference system Congress created in 1965.<a class="cite-inline" href="https://www.migrationpolicy.org/article/fifty-years-1965-immigration-and-nationality-act-continues-reshape-united-states" target="_blank">Migration Policy Institute</a> The details have changed over the decades. But the core structure has not.</p>
+
+  <p>The next section explains how that system actually works today. It covers how family and employment categories function. It also covers what paths exist for someone hoping to immigrate to the United States now.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ HOW IT WORKS TODAY ═══════════ -->
+<div class="sec-head" id="how-it-works-today">
+  <span class="num">Section 5</span>
+  <h2>How Does Immigration Work Today?</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>The 1965 Act's basic idea is still how U.S. immigration law works today: family ties and job skills instead of national origin.</strong> But "how it works" covers a lot of ground. It includes <span class="term" tabindex="0" data-def="The nickname for a Permanent Resident Card — proof someone can live and work in the U.S. permanently, without being a citizen.">green cards</span>, citizenship, <span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">asylum</span>, <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugees</span>, and government agencies with confusing initials. This section walks through the major pieces, using the U.S. government's own official explanations of each one.</p>
+
+  <p>Before getting into the process, it helps to see the overall scale of who this system covers. Pew Research Center studied Census Bureau survey data as of June 2025. Here is what it found.<a class="cite-inline" href="https://www.pewresearch.org/short-reads/2025/08/21/key-findings-about-us-immigrants/" target="_blank">Pew Research Center</a></p>
+
+  <div class="stat-pair">
+    <div class="stat clickable" onclick="handleStatClick(this)">
+      <div class="num">51.9M</div>
+      <div class="desc"><b>Foreign-born residents</b>People living in the U.S. who were born in another country, as of June 2025</div>
+    </div>
+    <div class="stat clickable" onclick="handleStatClick(this)">
+      <div class="num">15.4%</div>
+      <div class="desc"><b>Share of the U.S. population</b>Immigrants as a share of everyone living in the country, the same month</div>
+    </div>
+  </div>
+
+  <h3>Getting a green card: family and jobs</h3>
+
+  <p>A <strong>green card</strong> makes someone a <span class="term" tabindex="0" data-def="Someone with legal permission to live and work in the U.S. permanently, without being a citizen — a green card holder.">lawful permanent resident</span>. That means they can live and work in the United States permanently, without being a citizen. U.S. Citizenship and Immigration Services (USCIS) is the federal agency that runs the legal immigration system. It grants most green cards through one of two main paths: family or employment.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility-categories" target="_blank">USCIS</a></p>
+
+  <p>On the family side, USCIS splits applicants into two groups. <strong>Immediate relatives</strong> of U.S. citizens face no yearly limit on how many green cards can be issued. This group includes spouses, unmarried children under 21, and parents.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility/green-card-for-immediate-relatives-of-us-citizen" target="_blank">USCIS</a> Everyone else with a qualifying family relationship falls into a <strong>family preference</strong> category, ranked F1 through F4. This covers relatives like adult children or siblings of citizens. USCIS caps how many preference green cards it issues each year. So people in these categories often wait years for their turn.<a class="cite-inline" href="https://www.uscis.gov/green-card/green-card-eligibility/green-card-for-family-preference-immigrants" target="_blank">USCIS</a></p>
+
+  <p>On the employment side, USCIS uses five ranked preference categories, called EB-1 through EB-5. Here's what each one covers, in USCIS's own terms:<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a></p>
+  <ul>
+    <li><strong>EB-1</strong> — "persons of extraordinary ability" and outstanding researchers</li>
+    <li><strong>EB-2</strong> — people with advanced degrees or exceptional ability</li>
+    <li><strong>EB-3</strong> — skilled workers and other workers</li>
+    <li><strong>EB-4</strong> — specific "special immigrant" groups, like certain religious workers</li>
+    <li><strong>EB-5</strong> — business investors who put at least $800,000 into a new U.S. company that creates jobs</li>
+  </ul>
+  <p>About 140,000 employment-based green cards are available each year.<a class="cite-inline" href="https://www.uscis.gov/working-in-the-united-states/permanent-workers" target="_blank">USCIS</a></p>
+
+  <div class="vocab">
+    <b>Key Word — Green Card</b>
+    <p>The common nickname for a Permanent Resident Card. It shows that someone has lawful permanent resident status — the right to live and work in the U.S. permanently, one step short of citizenship.</p>
+  </div>
+
+  <h3>Becoming a citizen: naturalization</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/naturalization-ceremony.jpg" alt="A row of new U.S. citizens with their right hands raised, taking the Oath of Allegiance at an outdoor naturalization ceremony" onerror="this.style.display='none'">
+    <div class="cap">New citizens take the Oath of Allegiance at a naturalization ceremony held at Glacier National Park, September 25, 2025. <a href="https://commons.wikimedia.org/wiki/File:Naturalization_Ceremony_09-25-2025_(54811198082).jpg" target="_blank">Wikimedia Commons, National Park Service (public domain)</a></div>
+  </div>
+
+  <p>A green card holder can eventually apply to become a U.S. citizen. This process is called <span class="term" tabindex="0" data-def="The legal process a green card holder goes through to become a U.S. citizen.">naturalization</span>. USCIS lays out the general eligibility rules on its own naturalization pages. In most cases, an applicant must have held a green card for at least five years before applying. That drops to three years if they are married to a U.S. citizen.<a class="cite-inline" href="https://www.uscis.gov/n-400" target="_blank">USCIS</a></p>
+
+  <p>During that time, USCIS checks two related things. First, the applicant needs <strong>continuous residence</strong>. That means the U.S. stayed their real home the whole time, without long absences that break that continuity.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-3" target="_blank">USCIS</a> The applicant also needs <strong>physical presence</strong>. That means they actually spent at least half that time physically inside the United States. That's at least 30 months out of the standard five years.<a class="cite-inline" href="https://www.uscis.gov/policy-manual/volume-12-part-d-chapter-4" target="_blank">USCIS</a></p>
+
+  <p>Applicants must also pass an interview. It includes an <strong>English test</strong> and a <strong>civics test</strong> about U.S. history and government. Applicants also take an Oath of Allegiance. They must meet USCIS's standards of "good moral character."<a class="cite-inline" href="https://www.uscis.gov/citizenship/learn-about-citizenship/10-steps-to-naturalization" target="_blank">USCIS</a> Only after all of that is an applicant sworn in as a citizen at a naturalization ceremony.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Naturalization isn't quick. Between the years of required residence and the paperwork, interview, and testing involved, becoming a U.S. citizen through this process is a multi-year commitment, not a one-time application.</p>
+  </div>
+
+  <h3><span class="term" tabindex="0" data-def="Legal protection for someone already in the U.S. (or at its border) who fears persecution if sent back to their home country.">Asylum</span> and <span class="term" tabindex="0" data-def="Legal protection for someone still outside the U.S. who fears persecution if they stay in their home country.">refugee</span> status: a legal difference about location</h3>
+
+  <p>People fleeing danger in their home country sometimes seek protection in the United States through <strong>refugee</strong> or <strong>asylum</strong> status. Both use the exact same legal definition. That definition covers someone who has been persecuted, or has a well-founded fear of future persecution, based on their race, religion, nationality, social group, or political opinion.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a></p>
+
+  <p>What separates the two statuses, according to USCIS, is location at the time of application. <strong>Refugee</strong> status can be granted only to people who are still <strong>outside</strong> the United States when they apply. <strong>Asylum</strong> status can be granted only to people who are already <strong>physically present in the United States or arriving at a U.S. port of entry</strong> when they apply.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a> Same legal standard, different location. That's the core distinction.</p>
+
+  <div class="vocab">
+    <b>Key Word — Persecution</b>
+    <p>Serious mistreatment or harm directed at someone because of who they are — their race, religion, nationality, social group, or political beliefs. Fear of persecution is the legal basis for both refugee and asylum status.</p>
+  </div>
+
+  <h3>What is <span class="term" tabindex="0" data-def="U.S. Immigration and Customs Enforcement — the federal agency that enforces immigration law inside U.S. borders.">ICE</span>?</h3>
+
+  <p><strong>ICE</strong> stands for <strong>U.S. Immigration and Customs Enforcement</strong>. It is a federal law enforcement agency inside the Department of Homeland Security (DHS).<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a></p>
+
+  <p>ICE traces back to the reorganization of the federal government after the September 11, 2001 terrorist attacks. Congress passed the Homeland Security Act in November 2002. DHS formally opened as a new Cabinet-level department on March 1, 2003. It combined pieces of 22 different existing federal agencies.<a class="cite-inline" href="https://www.dhs.gov/creation-department-homeland-security" target="_blank">DHS</a> ICE itself was created in 2003 as part of that reorganization. It formed by merging investigative and enforcement units from the former U.S. Customs Service with the former Immigration and Naturalization Service.<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a></p>
+
+  <p>ICE's legal authority is enforcing immigration and customs law <strong>within</strong> U.S. borders. For example, it identifies, arrests, detains, and <span class="term" tabindex="0" data-def="The formal, legal process of removing someone from the United States for violating immigration law.">removes</span> people who are in the country in violation of immigration law.<a class="cite-inline" href="https://www.ice.gov/about-ice" target="_blank">ICE</a> This is a different agency, with a different job, from U.S. Customs and Border Protection (CBP). CBP describes its own mission as securing official ports of entry and the border itself. It screens travelers and cargo as they arrive in the country.<a class="cite-inline" href="https://www.cbp.gov/border-security/ports-entry" target="_blank">CBP</a> In short: CBP's job is mainly at the border and points of entry. ICE's job is mainly enforcement inside the country's interior.</p>
+
+  <div class="vocab">
+    <b>Key Word — Department of Homeland Security (DHS)</b>
+    <p>The federal department created in 2003, after the September 11 attacks, to coordinate the country's efforts against terrorism and other security threats. ICE and CBP are both agencies within DHS.</p>
+  </div>
+
+  <p>This page covers the ongoing, current-events side of immigration enforcement — including ICE's activities — in the "Where Things Stand" update section below.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ WASHINGTON'S STORY ═══════════ -->
+<div class="sec-head" id="washington-immigration">
+  <span class="num">Close to Home</span>
+  <h2>Washington's Immigration Story</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Washington State's history isn't separate from the story told above — it's a local chapter of the exact same story.</strong> Scandinavian farmers and fishermen came here. A thriving Japanese American community was torn apart by a wartime order. Refugees rebuilt their lives here after a war on the other side of the world. All of it happened right here, in Seattle and the towns around Puget Sound.</p>
+
+  <h3>Scandinavian settlers and the Puget Sound</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/ballard-syttende-mai.jpg" alt="People in traditional Norwegian dress waving Norwegian flags at the Syttende Mai (Norwegian Constitution Day) parade in Seattle's Ballard neighborhood" onerror="this.style.display='none'">
+    <div class="cap">Marchers in traditional dress carry Norwegian flags in Ballard's Syttende Mai parade, May 17, 2023 — Ballard remains known for the Nordic heritage its Scandinavian immigrants built. <a href="https://commons.wikimedia.org/wiki/File:Syttende_Mai_2023_-_Ballard_-_176_-_Norwegian_Commercial_Club.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+  </div>
+
+  <p>Railroads finally connected the Pacific Northwest to the rest of the country starting in the 1880s. Norwegian, Swedish, Danish, and other Scandinavian immigrants began arriving in noticeable numbers around that time.<a class="cite-inline" href="https://www.historylink.org/file/3476" target="_blank">HistoryLink.org</a> By 1910, Scandinavians were the largest foreign-born ethnic group in the entire state. They made up more than 20 percent of Washington's foreign-born population — and in Seattle itself, nearly a third.<a class="cite-inline" href="https://www.historylink.org/file/3476" target="_blank">HistoryLink.org</a></p>
+
+  <p>What drew them here was familiarity. The Puget Sound region's saltwater, forests, and mountains reminded Scandinavian immigrants of home. The region also offered work they already knew how to do.<a class="cite-inline" href="https://www.historylink.org/file/3476" target="_blank">HistoryLink.org</a> Norwegians in particular became central to the region's fishing industry. They eventually came to dominate the cod, halibut, and salmon fisheries. By 1908, Scandinavians made up roughly 40 percent of the Pacific Coast and Alaska Fisherman's Union.<a class="cite-inline" href="https://www.historylink.org/file/3476" target="_blank">HistoryLink.org</a> Others worked as loggers, farmers, and boat builders. Seattle's Ballard neighborhood became so closely associated with Scandinavian settlement that it's still known for its Nordic heritage today.<a class="cite-inline" href="https://www.historylink.org/file/3476" target="_blank">HistoryLink.org</a></p>
+
+  <div class="vocab">
+    <b>Key Word — Ethnic Enclave</b>
+    <p>A neighborhood or community where immigrants from a particular country or region settle close together, often building shops, churches, and organizations connected to their shared heritage. Ballard was an ethnic enclave for Seattle's Scandinavian immigrants.</p>
+  </div>
+
+  <h3>A Japanese American community, then a forced removal</h3>
+
+  <p>Long before World War II, Seattle had a thriving Japanese American community. It numbered around 7,000 people, centered in what's now the city's International District.<a class="cite-inline" href="https://encyclopedia.densho.org/International_District/" target="_blank">Densho Encyclopedia</a> That changed abruptly in 1942. On February 19, 1942, President Franklin D. Roosevelt signed <strong>Executive Order 9066</strong>. This order authorized the military to force people out of designated areas. (<span class="term" tabindex="0" data-def="An official directive from the president that carries the force of law, without needing a vote in Congress.">An executive order</span> is a directive from the president that carries the force of law, without a vote in Congress.)<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a> The order never named Japanese Americans directly. But it was used to forcibly remove and incarcerate roughly 120,000 Japanese Americans living on the West Coast. Nearly 70,000 of them were U.S. citizens by birth.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This is settled historical fact, documented by the U.S. government's own National Archives: American citizens, guilty of no crime, were forced from their homes and imprisoned because of their ethnicity. The government brought no charges against them and gave them no chance to appeal.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/executive-order-9066" target="_blank">National Archives</a></p>
+  </div>
+
+  <p>In April 1942, Seattle's Japanese American residents were sent by train to a temporary detention site. Most of them were U.S. citizens. That site, at the Puyallup fairgrounds, was known as "Camp Harmony." From there, they were transferred to the <strong>Minidoka</strong> incarceration camp in the Idaho desert, roughly 800 miles from home.<a class="cite-inline" href="https://encyclopedia.densho.org/Puyallup_(detention_facility)/" target="_blank">Densho Encyclopedia</a> Over 13,000 people were incarcerated at Minidoka in total, most of them from Seattle and Portland, Oregon. They stayed there behind barbed wire and guard towers until the war's end.<a class="cite-inline" href="https://encyclopedia.densho.org/Minidoka/" target="_blank">Densho Encyclopedia</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/camp-harmony-puyallup.jpg" alt="Aerial photograph of the Puyallup fairgrounds in 1942, showing rows of hastily built barracks where Japanese American detainees were held before transfer to Minidoka" onerror="this.style.display='none'">
+    <div class="cap">An aerial view of the Puyallup Assembly Center ("Camp Harmony"), 1942, with barracks built on the fairgrounds to detain Seattle-area Japanese Americans before their transfer to Minidoka. <a href="https://commons.wikimedia.org/wiki/File:Camp_Harmony.jpg" target="_blank">Wikimedia Commons, University of Washington Libraries (public domain)</a></div>
+  </div>
+
+  <div class="photo-inline clearfix">
+    <img src="images/minidoka-barracks.jpg" alt="A large group of Japanese American incarcerees, including many children, standing outside wooden barracks buildings at the Minidoka incarceration camp in Idaho" onerror="this.style.display='none'">
+    <div class="cap">Japanese Americans incarcerated at the Minidoka War Relocation Center in Idaho, 1942–1945. <a href="https://commons.wikimedia.org/wiki/File:Barracks-group-shot1.jpg" target="_blank">Wikimedia Commons, National Park Service (public domain)</a></div>
+  </div>
+
+  <div class="vocab">
+    <b>Key Word — Incarceration Camp</b>
+    <p>A prison camp where people were confined without trial. Historians and organizations like Densho use "incarceration camp" rather than the government's softer wartime term "relocation center" because it more accurately describes what these places were.</p>
+  </div>
+
+  <h3>Refugees rebuild their lives in Seattle</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/camp-murray.jpg" alt="Camp Murray, the Washington National Guard base that housed Vietnamese refugees in 1975" onerror="this.style.display='none'">
+    <div class="cap">Camp Murray, the Washington military installation converted into a refugee resettlement site in 1975. This photo was taken in 2009, not during the resettlement itself. <a href="https://commons.wikimedia.org/wiki/File:Camp_Murray,_Washington.jpg" target="_blank">Wikimedia Commons, Washington National Guard (CC BY 2.0)</a></div>
+  </div>
+
+  <p>Seattle's history also includes welcoming refugees fleeing war and persecution. The Vietnam War ended in April 1975. After that, tens of thousands of Vietnamese, Cambodian, Laotian, and Hmong refugees were resettled across the United States.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a> Washington's governor at the time, Dan Evans, invited refugees being processed in California to relocate to Washington. The state converted the Camp Murray military base into a resettlement site. It housed 500 to 600 Vietnamese refugees over several months in 1975.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a></p>
+
+  <p>Many of the refugees who resettled in the Seattle area built new communities and businesses. This included businesses in Seattle's Chinatown-International District. That wave of resettlement was followed by decades more arrivals. Today, Washington is home to some of the largest Vietnamese, Cambodian, and Laotian American communities in the country.<a class="cite-inline" href="https://asianamericanedu.org/sea-refugees-washington.html" target="_blank">Asian American Education Project</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Three very different stories — voluntary immigration for work and opportunity, forced removal and incarceration, and refugee resettlement after war — all shaped the Seattle area within about a hundred years of each other. Washington's immigration history contains the same range of experiences as the national story.</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec-head" id="timeline">
+  <span class="num">History</span>
+  <h2>History Timeline</h2>
+</div>
+<div class="article">
+  <p class="lede">Every date on this page came from somewhere. Here's the whole story, in order — the same facts from the sections above, laid out on one timeline.</p>
+
+  <div class="tl-item">
+    <div class="tl-year">1607–1620</div>
+    <div class="tl-body">
+      <h4>Colonial-era immigration begins</h4>
+      <p>English colonists founded Jamestown, Virginia in 1607 and Plymouth, Massachusetts in 1620. This was the start of a mostly-English, some-other-European pattern of voluntary immigration into land already inhabited by Native nations.</p>
+      <a class="tl-link" href="https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/colonial-settlement-1600-1763/overview/" target="_blank">→ Library of Congress: Colonial Settlement, 1600–1763</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1619</div>
+    <div class="tl-body">
+      <h4>Forced migration begins</h4>
+      <p>Enslaved Africans were first brought to England's Jamestown colony in chains, a year before the Pilgrims landed at Plymouth. This was forced migration, not immigration. People did not choose to come, and once they arrived, they were not free.</p>
+      <a class="tl-link" href="https://www.loc.gov/classroom-materials/immigration/african/beginnings/" target="_blank">→ Library of Congress: Beginnings of the Slave Trade</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1845–1855</div>
+    <div class="tl-body">
+      <h4>The Irish and German waves</h4>
+      <p>Ireland's potato famine began in 1845. It drove more than two million Irish immigrants to the U.S. At the same time, more than a million Germans arrived between 1845 and 1855, fleeing economic hardship and political conflict.</p>
+      <a class="tl-link" href="https://www.ushistory.org/us/25f.asp" target="_blank">→ USHistory.org: Emigration and Immigration</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1882</div>
+    <div class="tl-body">
+      <h4>The Chinese Exclusion Act</h4>
+      <p>Congress banned Chinese laborers from immigrating for ten years. It also required Chinese residents to carry identification papers. This was the first major U.S. law to restrict immigration based on nationality. It stayed in effect, in various renewed forms, for 61 years.</p>
+      <a class="tl-link" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">→ National Archives: Chinese Exclusion Act</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1892</div>
+    <div class="tl-body">
+      <h4>Ellis Island opens</h4>
+      <img src="images/irving-berlin.jpg" alt="Irving Berlin at a piano, photographed in 1937" onerror="this.style.display='none'">
+      <div class="cap">Irving Berlin, photographed in 1937 — he arrived at Ellis Island from Russia in 1893 at age five and grew up to write "God Bless America." <a href="https://commons.wikimedia.org/wiki/File:Irving_Berlin_1937.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+      <p>The new immigration station in New York Harbor became the busiest in the country. It processed more than 12 million immigrants, most from Europe, before it closed in 1954. Today, roughly 40% of Americans can trace an ancestor through it.</p>
+      <a class="tl-link" href="https://www.nps.gov/elis/learn/historyculture/history-of-ellis-island-from-1892-to-1954.htm" target="_blank">→ National Park Service: History of Ellis Island</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1910</div>
+    <div class="tl-body">
+      <h4>Angel Island opens</h4>
+      <img src="images/angel-island-detention.jpg" alt="The preserved wooden detention barracks building at the Angel Island Immigration Station in San Francisco Bay, photographed in the present day" onerror="this.style.display='none'">
+      <div class="cap">The detention barracks at Angel Island, preserved today at Angel Island State Park. <a href="https://commons.wikimedia.org/wiki/File:Detention_center_at_U.S._Immigration_Station_Angel_Island.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+      <p>On the other side of the country, a very different immigration station opened in San Francisco Bay. Angel Island became the main entry point for immigrants from Asia, especially China. It was built to detain and interrogate them rather than process them quickly. It operated until 1940.</p>
+      <button class="quiz-toggle" style="margin-top:6px;background:none;border:1px dashed var(--rule);color:var(--ink-faint);font-size:.7rem;padding:8px 14px;box-shadow:none" id="mainTimelineTrigger" ondblclick="handleTimelineDblClick(event)">Double-click near this line...</button>
+      <div class="hidden-egg" id="timeline-egg">
+        <h4>Hidden History Unlocked</h4>
+        <p><strong>Poetry on the walls:</strong> Immigrants detained at Angel Island were sometimes held for weeks, months, or even years. While they waited, they carved poems into the wooden walls of the barracks. Over 200 of these poems have since been documented, recorded, and translated. They give historians a rare direct record of what detention there actually felt like. <a href="https://www.aiisf.org/history" target="_blank" style="color:inherit">src</a></p>
+      </div>
+      <a class="tl-link" href="https://www.aiisf.org/history" target="_blank">→ Angel Island Immigration Station Foundation: History</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1924</div>
+    <div class="tl-body">
+      <h4>The Immigration Act of 1924 (Johnson-Reed Act)</h4>
+      <p>Congress replaced the older exclusion laws with a <span class="term" tabindex="0" data-def="A limit on immigration that sets a specific number of visas for people from each country, based on nationality.">national-origins quota</span> system. It was calculated using the 1890 census, specifically to favor Northern and Western Europe. It excluded almost all immigration from Asia and lasted more than forty years.</p>
+      <a class="tl-link" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">→ State Department, Office of the Historian: The Immigration Act of 1924</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Oct 3, 1965</div>
+    <div class="tl-body">
+      <h4>The Immigration and Nationality Act (Hart-Celler Act)</h4>
+      <img src="images/emanuel-celler.jpg" alt="Rep. Emanuel Celler, photographed April 5, 1943" onerror="this.style.display='none'">
+      <div class="cap">Rep. Emanuel Celler of New York, photographed April 5, 1943. He introduced immigration reform bills for decades before finally seeing the national-origins quota system repealed in 1965. <a href="https://commons.wikimedia.org/wiki/File:Emanuel_Celler_%E2%80%93_1943.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+      <p>President Lyndon B. Johnson signed the law at the base of the Statue of Liberty. It abolished the national-origins quota system. In its place, it created a preference system based on family ties and job skills — still the basic framework of U.S. immigration law today.</p>
+      <a class="tl-link" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">→ National Archives: The Immigration Act of 1965</a>
+      <div class="quiz-inline" style="margin:16px 0 0"><button class="quiz-toggle" onclick="openQuiz('q8')">Test Yourself</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ KEY PEOPLE ═══════════ -->
+<div class="sec-head" id="key-people">
+  <span class="num">Bonus</span>
+  <h2>Key People</h2>
+</div>
+<div class="article">
+  <p>This section sticks to historical figures whose part in the story is already settled. It does not include anyone currently holding office or active in public life today.</p>
+
+  <div class="person">
+    <img src="images/irving-berlin.jpg" alt="Irving Berlin" onerror="this.outerHTML='<div class=\'emoji-fallback\'>🎹</div>'">
+    <div>
+      <h4>Irving Berlin</h4>
+      <div class="role">Ellis Island immigrant, 1893 · Composer</div>
+      <p>He was born Israel Beilin in the Russian Empire. He arrived at Ellis Island in 1893 at age five with his family, one of eight children. He grew up on New York's Lower East Side. He went on to write roughly 1,500 songs, including "God Bless America" and "White Christmas". That made him one of the most successful songwriters in American history. His story is one the National Park Service itself lists among Ellis Island's notable immigrants.</p>
+      <div class="src"><a href="https://www.statueofliberty.org/discover/famous-passengers/" target="_blank">Source: Statue of Liberty–Ellis Island Foundation</a> · <a href="https://commons.wikimedia.org/wiki/File:Irving_Berlin_1937.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="images/emanuel-celler.jpg" alt="Rep. Emanuel Celler" onerror="this.outerHTML='<div class=\'emoji-fallback\'>📜</div>'">
+    <div>
+      <h4>Emanuel Celler</h4>
+      <div class="role">U.S. Representative, New York, 1923–1973</div>
+      <p>Celler represented Brooklyn in the House for exactly fifty years. He had pushed for immigration reform since the 1920s. As chairman of the House Judiciary Committee, he co-sponsored the Immigration and Nationality Act of 1965 with Senator Philip Hart. The law is still commonly known as the Hart-Celler Act. He also helped guide the Voting Rights Act and the 24th Amendment through Congress that same decade.</p>
+      <div class="src"><a href="https://history.house.gov/Historical-Highlights/1951-2000/Immigration-and-Nationality-Act-of-1965/" target="_blank">Source: U.S. House of Representatives, Office of the Historian</a> · <a href="https://commons.wikimedia.org/wiki/File:Emanuel_Celler_%E2%80%93_1943.jpg" target="_blank">Photo: Wikimedia Commons (public domain)</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ VIDEOS ═══════════ -->
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>Videos — See It for Yourself</h2>
+</div>
+<div class="article">
+  <p>Sometimes a video explains things better than words. Both of these focus on history you've already read about above. You can pause, rewind, or watch with captions on.</p>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/RRhjqqe750A?rel=0&modestbranding=1" title="Growth, Cities, and Immigration: Crash Course US History #25 (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-label">
+    <h4>The great waves of immigration, explained (~13 min)</h4>
+    <p>Crash Course US History walks through the massive European and Asian immigration of the late 1800s and early 1900s. It covers Ellis Island, Angel Island, and the backlash that followed.</p>
+  </div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/2K88pWCimZg?rel=0&modestbranding=1" title="The dark history of the Chinese Exclusion Act - Robert Chang (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-label">
+    <h4>The Chinese Exclusion Act, explained (~5 min)</h4>
+    <p>A TED-Ed animation, narrated by law professor Robert Chang, on how the 1882 law worked and the lasting impact it had on Chinese immigrants' rights.</p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">While you watch, think about</span>
+    <p>What surprised you? What questions do you still have? What do the videos say that matches — or doesn't match — what you read on this page?</p>
+  </div>
+</div>
+
+<!-- ═══════════ RESOURCES ═══════════ -->
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>Dig Deeper</h2>
+</div>
+<div class="article">
+  <div class="callout">
+    <span class="tag">Reading levels</span>
+    <p><strong>⭐ Easier</strong> = great starting point · <strong>⭐⭐ Medium</strong> = some reading required · <strong>⭐⭐⭐ Harder</strong> = for students who want a deeper challenge</p>
+  </div>
+
+  <a class="rc" href="https://www.uscis.gov/green-card/green-card-eligibility-categories" target="_blank">
+    <span class="tag">USCIS</span>
+    <div class="rc-title">Green Card Eligibility Categories</div>
+    <p>The federal government's own explanation of the family and employment paths to a green card.</p>
+    <div class="level">⭐ Easier — Clear, official info</div>
+  </a>
+  <a class="rc" href="https://www.nps.gov/elis/index.htm" target="_blank">
+    <span class="tag">National Park Service</span>
+    <div class="rc-title">Ellis Island — Statue of Liberty National Monument</div>
+    <p>History, photos, and notable-immigrant stories from the busiest immigration station in U.S. history.</p>
+    <div class="level">⭐ Easier — Story-driven</div>
+  </a>
+  <a class="rc" href="https://www.aiisf.org/history" target="_blank">
+    <span class="tag">Angel Island Immigration Station Foundation</span>
+    <div class="rc-title">History of Angel Island</div>
+    <p>The nonprofit that preserves the immigration station and its poetry-carved barracks walls.</p>
+    <div class="level">⭐⭐ Medium — More detail</div>
+  </a>
+  <a class="rc" href="https://history.state.gov/milestones/1921-1936/immigration-act" target="_blank">
+    <span class="tag">State Department, Office of the Historian</span>
+    <div class="rc-title">The Immigration Act of 1924</div>
+    <p>The official historical account of the national-origins quota system and why it was built the way it was.</p>
+    <div class="level">⭐⭐ Medium — Primary-source focused</div>
+  </a>
+  <a class="rc" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">
+    <span class="tag">National Archives</span>
+    <div class="rc-title">Fifty Years Later: A Brief History of the Immigration Act of 1965</div>
+    <p>How the Hart-Celler Act replaced the quota system and reshaped who could come to America.</p>
+    <div class="level">⭐⭐ Medium — Historical deep dive</div>
+  </a>
+  <a class="rc" href="https://www.migrationpolicy.org/journal/country-profile/immigration-has-been-defining-often-contentious-element-throughout-us" target="_blank">
+    <span class="tag">Migration Policy Institute</span>
+    <div class="rc-title">Immigration Has Been a Defining, Often Contentious, Element Throughout U.S. History</div>
+    <p>A nonpartisan think tank's full country profile — history, data, and how the modern system actually works.</p>
+    <div class="level">⭐⭐⭐ Harder — Long and data-rich</div>
+  </a>
+
+  <h3 style="margin-top:44px">🗓️ Keep up with immigration policy news <span style="font-weight:400;font-size:.75em;color:var(--ink-faint)">(as of July 24, 2026)</span></h3>
+  <div class="callout">
+    <span class="tag">⏳ A dated snapshot, not a permanent resource</span>
+    <p>Immigration policy is one of the fastest-moving topics in the news. This short list will get stale. If you're reading this well after July 2026, treat these links as historical background. Look for newer coverage instead.</p>
+  </div>
+
+  <a class="rc" href="https://www.pewresearch.org/short-reads/2026/02/02/migrant-encounters-at-the-us-mexico-border-are-at-their-lowest-level-in-more-than-50-years/" target="_blank">
+    <span class="tag">Pew Research Center</span>
+    <div class="rc-title">Migrant Encounters at the U.S.-Mexico Border Are at Their Lowest Level in More Than 50 Years</div>
+    <p>Published February 2, 2026. A nonpartisan fact tank's look at the historical data behind a major recent shift in border crossings, covering policy changes under both the Biden and Trump administrations.</p>
+    <div class="level">⭐⭐ Medium — Data-driven</div>
+  </a>
+  <a class="rc" href="https://apnews.com/article/trump-immigration-border-security-deportations-c06c989b1b1e85522c0d44c4d36fd9fb" target="_blank">
+    <span class="tag">Associated Press</span>
+    <div class="rc-title">Trump's Return to Office Has Seen Sweeping Changes to Immigration Enforcement</div>
+    <p>Published February 25, 2026. A wire-service look at six key immigration-enforcement indicators — arrests, detention, spending, and asylum outcomes — using government and independent data.</p>
+    <div class="level">⭐⭐⭐ Harder — Detailed and data-heavy</div>
+  </a>
+  <a class="rc" href="https://www.migrationpolicy.org/journal/spotlight/frequently-requested-statistics-immigrants-and-immigration-united-states" target="_blank">
+    <span class="tag">Migration Policy Institute</span>
+    <div class="rc-title">Frequently Requested Statistics on Immigrants and Immigration in the United States</div>
+    <p>Published March 12, 2026. An annually updated, nonpartisan statistical snapshot — population size, legal status breakdown, and a factual summary of major policy changes since January 2025.</p>
+    <div class="level">⭐⭐ Medium — Reference-style</div>
+  </a>
+</div>
+
+<footer>
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
+</footer>
+
+<script>
+let pts = 0;
+let answeredQuizzes = new Set();
+let flagClicks = 0;
+let timelineClicks = 0;
+let statClicks = new Set();
+let konamiIndex = 0;
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+
+const MAX_PTS = 8;
+
+// Subsequent tasks add entries here as each section's quiz is built.
+const quizzes = {
+  q1: {
+    q: "Who already lived on the land that became the United States before any European colonization began?",
+    choices: ["No one — the land was empty", "Indigenous peoples, who had lived there for thousands of years", "Only a small number of explorers", "Enslaved Africans"],
+    correct: 1,
+    feedback: "✅ Correct! Indigenous peoples had lived across North America for thousands of years before the first European colonists ever arrived — archaeologists have found artifacts in Virginia dating back more than 15,000 years.",
+    wrong: "Not quite. Indigenous peoples had already been living across North America for thousands of years before any European colonization began."
+  },
+  q2: {
+    q: "What was the key difference between Ellis Island and Angel Island?",
+    choices: ["They were the same kind of station, just in different cities", "Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese", "Angel Island processed European immigrants and Ellis Island processed Asian immigrants", "Neither station actually processed many immigrants"],
+    correct: 1,
+    feedback: "✅ Correct! Ellis Island (1892–1954) processed over 12 million mostly European immigrants, often in under a day. Angel Island (1910–1940) was built to detain and interrogate immigrants, especially Chinese immigrants affected by the Chinese Exclusion Act.",
+    wrong: "Not quite. Ellis Island was built to process European immigrants quickly, while Angel Island was built to detain and interrogate immigrants — especially Chinese immigrants — for much longer periods."
+  },
+  q3: {
+    q: "What did the national-origins quota system created by the 1924 Immigration Act actually do?",
+    choices: ["Treated every country's immigrants exactly the same", "Favored immigration from Northern and Western Europe, sharply restricted Southern and Eastern Europe, and excluded Asian immigration almost entirely", "Only applied to immigrants from Asia", "Had no real effect on who could immigrate"],
+    correct: 1,
+    feedback: "✅ Correct! The 1924 Act's quota formula was calculated using the 1890 census, which favored Northern and Western Europe. It sharply restricted Southern and Eastern Europe and excluded almost all immigration from Asia. This system lasted until 1965.",
+    wrong: "Not quite. The 1924 Act's quotas were calculated to favor Northern and Western Europe, restrict Southern and Eastern Europe, and exclude Asian immigration almost entirely."
+  },
+  q4: {
+    q: "What did the Immigration and Nationality Act of 1965 (the Hart-Celler Act) replace the national-origins quota system with?",
+    choices: ["Nothing — it removed all immigration limits", "A preference system based on family ties and job skills, instead of country of birth", "The exact same quota system, just renamed", "A system based only on how much money a person had"],
+    correct: 1,
+    feedback: "✅ Correct! The 1965 Act abolished the national-origins quotas and replaced them with a preference system based on family reunification and employment skills. That basic framework is still the foundation of U.S. immigration law today.",
+    wrong: "Not quite. The 1965 Act replaced country-based quotas with a preference system built around family ties and job skills — a framework still used today."
+  },
+  q5: {
+    q: "What's the main legal difference between refugee status and asylum status?",
+    choices: ["There is no real difference — they're the same thing", "Refugee status is for people applying from outside the U.S.; asylum is for people already in the U.S. or arriving at a port of entry", "Refugees are always children, and asylum seekers are always adults", "Asylum is only for people from certain countries"],
+    correct: 1,
+    feedback: "✅ Correct! Refugee and asylum status use the exact same legal definition of persecution. The difference is where the person is when they apply: refugee status is sought from outside the U.S., while asylum is sought by people already in the U.S. or at a U.S. port of entry.",
+    wrong: "Not quite. Refugee and asylum status share the same legal definition — the real difference is location. Refugee status is granted to people outside the U.S.; asylum is granted to people already in the U.S. or arriving at a port of entry."
+  },
+  q6: {
+    q: "As of June 30, 2026, roughly how many cases were pending in U.S. immigration courts?",
+    choices: ["About 300,000", "About 1 million", "About 3.2 million", "There is no backlog"],
+    correct: 2,
+    feedback: "✅ Correct! As of June 30, 2026, EOIR (the Executive Office for Immigration Review) reported 3,195,137 pending cases — and about 72% of those involve people already waiting on a filed asylum application.",
+    wrong: "Not quite. As of June 30, 2026, EOIR reported 3,195,137 pending cases in U.S. immigration courts — a backlog of over 3 million."
+  },
+  q7: {
+    q: "What happened to Japanese Americans living in Washington State during World War II?",
+    choices: ["Nothing changed for them", "They were forcibly removed from their homes and incarcerated, many at the Minidoka camp in Idaho — including U.S. citizens", "They were asked to volunteer for extra farm work", "They were given new jobs in Seattle"],
+    correct: 1,
+    feedback: "✅ Correct! After Executive Order 9066 in 1942, Seattle's Japanese American community — the majority of them U.S. citizens — was forced from their homes and sent first to Puyallup's 'Camp Harmony' and then to the Minidoka incarceration camp in Idaho.",
+    wrong: "Not quite. Executive Order 9066 led to the forced removal and incarceration of Japanese Americans, including U.S. citizens. Seattle's Japanese American community was sent to the Minidoka camp in Idaho."
+  },
+  q8: {
+    q: "Who signed the Immigration and Nationality Act of 1965, and where?",
+    choices: ["President Lyndon B. Johnson, at the base of the Statue of Liberty", "President John F. Kennedy, at the White House", "Rep. Emanuel Celler, in the House chamber", "President Herbert Hoover, at Ellis Island"],
+    correct: 0,
+    feedback: "✅ Correct! President Lyndon B. Johnson signed the Immigration and Nationality Act on October 3, 1965, at the base of the Statue of Liberty. The law is also known as the Hart-Celler Act, after its two main sponsors in Congress.",
+    wrong: "Not quite. President Lyndon B. Johnson signed the law on October 3, 1965, at the base of the Statue of Liberty."
+  }
+};
+
+function openQuiz(id) {
+  if (answeredQuizzes.has(id)) {
+    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
+    return;
+  }
+  const q = quizzes[id];
+  document.getElementById('quizQ').textContent = q.q;
+  const cc = document.getElementById('quizChoices');
+  cc.innerHTML = '';
+  q.choices.forEach((c,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => handleAnswer(id, i, btn);
+    cc.appendChild(btn);
+  });
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function handleAnswer(id, chosen, btn) {
+  const q = quizzes[id];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  const fb = document.getElementById('quizFeedback');
+  if (chosen === q.correct) {
+    btn.classList.add('correct');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show correct-fb';
+    if (!answeredQuizzes.has(id)) { answeredQuizzes.add(id); addPoints(1); }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    fb.textContent = q.wrong;
+    fb.className = 'quiz-feedback show wrong-fb';
+    answeredQuizzes.add(id);
+  }
+}
+function closeQuiz() {
+  document.getElementById('quizModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function addPoints(n) {
+  pts = Math.min(pts + n, MAX_PTS);
+  document.getElementById('pointsDisplay').textContent = pts + ' pts';
+  const pct = MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (MAX_PTS > 0 && pts >= 5) {
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus.';
+    showToast('🌟','5 Points!','You unlocked a bonus deep dive!');
+  }
+  if (MAX_PTS > 0 && pts >= MAX_PTS) {
+    document.getElementById('unlockHint').textContent = '🏆 Maximum points — Immigration Expert unlocked!';
+    showToast('🏆','Immigration Expert!',"You hit " + MAX_PTS + " points! Check the final bonus.");
+  }
+}
+
+let toastTimer;
+function showToast(icon, title, msg) {
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── EASTER EGG: HERO KICKER CLICKS ───
+function handleFlagClick() {
+  flagClicks++;
+  const flag = document.getElementById('heroFlag');
+  if (!flag) return;
+  flag.classList.remove('shake');
+  void flag.offsetWidth;
+  flag.classList.add('shake');
+  if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
+  if (flagClicks >= 5) {
+    flagClicks = 0;
+    showEgg('🗽','You found a secret!',
+      'The words on the Statue of Liberty\'s pedestal — "Give me your tired, your poor, your huddled masses yearning to breathe free" — come from a poem called "The New Colossus," written by Emma Lazarus in 1883.\n\nThe poem wasn\'t part of the original statue at all. It was added to the pedestal in 1903, twenty years later, after a fundraising campaign that Lazarus\'s poem itself was part of.',
+      'The New Colossus, 1883');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: STAT BOX CLICK-ALL ───
+function handleStatClick(el) {
+  el.classList.add('clicked');
+  statClicks.add(el);
+  const totalInPair = el.closest('.stat-pair, .stat-trio').querySelectorAll('.stat').length;
+  if (statClicks.size >= totalInPair) {
+    showEgg('🔢','You clicked every number!',
+      'The United States is home to more immigrants than any other country in the world — more than Germany, Saudi Arabia, the United Kingdom, and France combined.\n\nBut a country having a large immigrant population, and a large share of its population being immigrants, are two different measurements. Even though the U.S. has the most immigrants of any country by count, dozens of countries — including Canada, at 22% — have a higher immigrant share of their total population.',
+      'Pew Research Center, 2025');
+    addPoints(1);
+    statClicks.clear();
+  }
+}
+
+// ─── EASTER EGG: TIMELINE DOUBLE-CLICK ───
+function handleTimelineDblClick(e) {
+  timelineClicks++;
+  if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click again...');
+  if (timelineClicks >= 2) {
+    timelineClicks = 0;
+    const egg = document.getElementById('timeline-egg');
+    if (egg) egg.classList.add('revealed');
+    showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: KONAMI CODE ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === KONAMI.length) {
+      konamiIndex = 0;
+      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\n<strong>One more immigrant story:</strong> Ellis Island processors sometimes shortened or changed immigrants\' names on arrival — but not usually on purpose. Most immigration officers actually worked from the name already written on a ship\'s passenger manifest, filled out before the ship ever left Europe. Name changes more often happened later, when immigrants themselves adopted easier-to-pronounce American spellings.\n\nCase in point: Israel Beilin, who arrived at Ellis Island in 1893, later became known to the world as Irving Berlin.','↑↑↓↓←→←→BA');
+      addPoints(1);
+    }
+  } else {
+    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
+  }
+});
+
+function showEgg(emoji, title, text, extra) {
+  document.getElementById('eggEmoji').textContent = emoji;
+  document.getElementById('eggTitle').textContent = title;
+  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
+  document.getElementById('eggExtra').textContent = extra || '';
+  document.getElementById('eggModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeEgg() {
+  document.getElementById('eggModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('eggModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('eggModal')) closeEgg();
+});
+</script>
+
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
+}
+</script>
+
+</body>
+</html>
