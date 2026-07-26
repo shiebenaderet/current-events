@@ -2,6 +2,16 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.5.0] — 2026-07-26
+
+**Minor — Immigration & U.S. Policy page ships, built directly in the editorial design system.**
+
+- New page `immigration.html` — "A Nation of Immigrants," the sixth topic on the site and the first genuinely new topic since the site-wide editorial redesign completed. History-first structure: colonial-era immigration (with Indigenous peoples' prior presence and the transatlantic slave trade both stated explicitly, not folded into a "waves of immigration" narrative), the Great Waves (Ellis Island, Angel Island, the Chinese Exclusion Act), the 1924 national-origins quota system, the 1965 Immigration and Nationality Act, how the system works today (visa/green-card categories, naturalization, asylum vs. refugee status, and a neutral explainer of ICE's origin and legal authority), a dated update-pane, Washington's Immigration Story (Scandinavian settlement, Japanese American incarceration at Minidoka, Southeast Asian refugee resettlement via Camp Murray), a history timeline, two historical Key People (Irving Berlin, Emanuel Celler), videos, and resources.
+- Built through a full 16-task plan with per-task review and a dedicated final verification pass — every citation independently fetched and confirmed to support its specific claim (one mid-build citation mismatch in the update-pane was caught and corrected before shipping, along with a 404'd link and two dead easter-egg code paths).
+- Introduced one new, deliberately narrow-scoped component: a side-by-side "differing perspectives" block, used only for genuinely contested present-day claims in the update-pane's ICE-enforcement coverage (e.g., named, sourced, equally-weighted positions from DHS and the American Immigration Council on who is being arrested) — settled history elsewhere on the page (the Chinese Exclusion Act, the 1924 quota system, Japanese American incarceration) is stated as plain fact, not run through this component, since accuracy rather than false balance is the standard for settled history.
+- Reading level went through two dedicated passes: an initial simplification plus inline vocabulary tooltips (hover- and keyboard-focus-triggered, for terms like green card, naturalization, and asylum), followed by a second, more aggressive rewrite to a genuine 5th–6th grade target after the first pass was judged still too advanced — every citation, direct quote, and tooltip definition was independently verified byte-identical before and after this second pass.
+- `index.html`: Immigration moved from "Coming Soon" into the live topic grid (reusing its own hero image, an 1887 engraving of immigrants viewing the Statue of Liberty, rather than sourcing a duplicate asset); the vacated "Coming Soon" slot backfilled with the site's next two roadmap topics, Gun Violence & School Safety Policy and Space Race 2.0. All five other topic pages received a new cross-page nav link to Immigration.
+
 ## [2.4.0] — 2026-07-23
 
 **Minor — US Elections & Government page rebuilt; site-wide editorial redesign complete.**
