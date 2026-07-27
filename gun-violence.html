@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keeping Schools Safe: Gun Violence &amp; School Safety Policy – Student Resource</title>
+<meta name="description" content="How school safety policy actually works in the U.S. — what's been tried, how the law works today, and how other countries compare — explained for middle schoolers.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;overflow-wrap:break-word}
+:root{
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  /* This page's own palette: a muted pewter/steel-gray accent. Deliberately
+     not red or blue — this is likely the highest nonpartisanship-risk topic
+     the site has built, more directly and continuously politically contested
+     in U.S. life than immigration or elections. Pewter reads as institutional
+     and procedural (think: a courthouse railing, a school security badge, a
+     policy binder) without echoing either major party's brand color. Distinct
+     from every existing page's palette: Iran/Ukraine/AI/Climate's red
+     (#a02c2c), US Elections' navy (#1a2a52), and Immigration's teal
+     (#2c6e6b). RGB distance check against party reference hexes: to
+     Democrat blue (#0015bc) ≈144/441; to Republican red (#b31942) ≈121/441 —
+     a clearly distinct, desaturated hue in both directions. A second, warmer
+     gold-tan is used sparingly for secondary accents (progress bar, badges,
+     vocab markers), echoed from the site's shared civic-neutral gold rather
+     than introducing a third hue. */
+  --accent:#5a6169; --accent-ink:#3a4048; --accent-tint:#eaecee;
+  --gold:#b8860a; --gold-l:#d4a017; --gold-tint:#fef3db;
+}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+/* ══════════════ MASTHEAD ══════════════ */
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;
+  letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;gap:6px;
+}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
+
+.section-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  padding:0 6vw;border-bottom:1px solid var(--rule);
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;
+  background:var(--paper);position:sticky;top:0;z-index:150;
+}
+.section-nav a{
+  color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav a.hub{color:var(--accent);font-weight:800}
+
+/* ══════════════ ARTICLE HERO ══════════════ */
+.article-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden}
+.article-hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.2) 45%,rgba(8,8,8,.86) 100%),
+             var(--ink);
+}
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
+.article-hero .kicker{
+  display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#3a2000;background:var(--gold-l);
+  padding:5px 14px;margin-bottom:22px;border:none;
+}
+.article-hero h1{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px;
+}
+.article-hero .dek{
+  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;
+  color:#f0ece4;max-width:660px;margin:0 auto 22px;
+}
+.article-hero .byline{
+  font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);
+  letter-spacing:.03em;
+}
+.hero-credit{
+  position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;max-width:360px;
+}
+.hero-credit a{color:inherit}
+.hero-note{
+  position:absolute;bottom:14px;left:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:left;max-width:360px;
+}
+@media(max-width:700px){
+  .hero-note,.hero-credit{position:static;max-width:none;text-align:left;padding:0 6vw;display:block}
+  .hero-note{margin-top:14px}
+  .hero-credit{margin-top:4px;margin-bottom:14px}
+}
+
+/* ══════════════ POINTS BAR ══════════════ */
+.points-bar{display:flex;align-items:center;gap:14px;padding:10px 6vw;background:var(--ink);color:#f0ece4;font-family:-apple-system,sans-serif;font-size:.8rem;flex-wrap:wrap}
+.points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
+.progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden;min-width:0}
+.progress-fill{height:100%;background:var(--gold-l);width:0%;transition:width .3s}
+.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
+
+/* ══════════════ SECTION HEADS ══════════════ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{
+  font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:800;
+}
+.sec-head h2{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);
+  line-height:1.18;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px;
+}
+
+/* ══════════════ ARTICLE BODY ══════════════ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.14rem;line-height:1.75;margin:0 0 22px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.28rem;
+  margin:34px 0 14px;color:var(--ink);
+}
+.article p.lede::first-letter{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:5rem;line-height:.78;
+  float:left;padding:6px 10px 0 0;color:var(--accent);
+}
+.article ul{margin:0 0 22px 22px}
+.article ul li{margin-bottom:8px;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+
+/* inline citations */
+.cite-inline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);
+  text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;letter-spacing:.01em;
+}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
+
+/* stat callouts */
+.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
+
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .stat,.stat-trio .stat{min-width:0}
+.stat-pair .num,.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
+.stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+.stat-pair .stat.clickable,.stat-trio .stat.clickable{cursor:pointer}
+.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--gold)}
+@media (max-width:560px){.stat-pair,.stat-trio{grid-template-columns:1fr}}
+
+/* vocab */
+.vocab{margin:28px 0;padding-left:20px;border-left:3px solid var(--gold)}
+.vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8a6608;margin-bottom:6px;font-weight:800}
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+.update-box .term{border-bottom-color:var(--gold-l)}
+.update-box .term::after{background:#fff;color:var(--ink)}
+.update-box .term::before{border-top-color:#fff}
+@media(max-width:600px){
+  .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
+  .term::before{left:16px;transform:translateX(0)}
+}
+
+/* callout / think-about-it */
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+.callout.think{border-left-color:var(--accent);background:var(--accent-tint)}
+
+/* pull quotes */
+.pull-quote{margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy)}
+.pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0}
+.pull-quote .attrib{display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase}
+
+/* full-bleed inline photo */
+.photo-break{margin:40px calc(50% - 50vw) 40px;width:100vw}
+.photo-break img{width:100%;max-height:520px;object-fit:cover;display:block}
+.photo-break .cap{max-width:700px;margin:10px auto 0;padding:0 6vw;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);line-height:1.5}
+.photo-break .cap a{color:inherit}
+
+/* smaller inline photo */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
+.clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
+
+/* chart frame */
+.chart-wrap{margin:36px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
+
+/* ══ QUIZ ══ */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{display:inline-flex;align-items:center;gap:9px;font-family:-apple-system,sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;cursor:pointer;padding:13px 24px;box-shadow:0 2px 10px rgba(90,97,105,.25)}
+.quiz-toggle::after{content:'→';font-weight:700}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle.answered{background:var(--ink-faint)}
+
+.quiz-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.75);align-items:center;justify-content:center;padding:24px}
+.quiz-modal.open{display:flex}
+.quiz-box{background:var(--paper);max-width:520px;width:100%;padding:32px;position:relative;border-top:4px solid var(--accent)}
+.quiz-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink-faint);line-height:1}
+.quiz-box h3{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.quiz-q{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:18px;line-height:1.35}
+.quiz-choices{display:flex;flex-direction:column;gap:8px}
+.choice-btn{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);padding:11px 14px;font-family:-apple-system,sans-serif;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.choice-btn:hover:not(:disabled){border-color:var(--ink)}
+.choice-btn.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.choice-btn.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.choice-btn:disabled{cursor:default}
+.quiz-feedback{margin-top:16px;font-family:-apple-system,sans-serif;font-size:.88rem;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.correct-fb{color:#2f5934}
+.wrong-fb{color:var(--accent-ink)}
+
+/* ══ TIMELINE ══ */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:var(--accent);flex-shrink:0;width:150px}
+.tl-body{flex:1;min-width:0}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;margin-bottom:8px}
+.tl-body p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.tl-body img{width:100%;max-width:220px;display:block;margin:0 auto 10px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.tl-body .cap{font-family:-apple-system,sans-serif;font-size:.68rem;color:var(--ink-faint);margin-bottom:10px;line-height:1.4;text-align:center}
+.tl-body .cap a{color:inherit}
+.tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--gold)}
+.hidden-egg.revealed{display:block}
+.hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a6608;margin-bottom:8px}
+.hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
+
+/* ══ PERSON ══ */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%)}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
+.person .src a{color:inherit}
+@media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
+
+/* ══ UPDATE PANE ══ */
+.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane-inner{max-width:900px;margin:0 auto}
+.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl-item{display:flex;gap:14px;align-items:baseline}
+.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
+.mini-tl-dot.blue{background:#82b1ff}
+.mini-tl-dot.green{background:#5a8a5a}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85);min-width:0}
+.mini-tl-text strong{color:#fff}
+.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
+.mini-tl-text .cite-inline:hover{color:var(--gold-l)}
+
+.update-grid{display:grid;grid-template-columns:1fr;gap:0}
+.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box:last-child{border-bottom:none}
+.update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
+.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p:last-of-type{margin-bottom:14px}
+.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline:hover{color:var(--gold-l)}
+.update-box .vocab{border-left-color:var(--gold-l)}
+.update-box .vocab b{color:var(--gold-l)}
+.update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
+.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .callout .tag{color:var(--gold-l)}
+.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources li{margin-bottom:5px;line-height:1.5}
+.update-sources a{color:var(--gold-l)}
+.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
+
+/* ══ DIFFERING PERSPECTIVES (reused verbatim from immigration.html — reserved
+   exclusively for the update-pane's Part B, per the design doc's Nonpartisanship
+   Discipline section; not used elsewhere on this page) ══ */
+.perspectives{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  margin:20px 0;
+}
+.perspective{padding:18px 20px}
+.perspective + .perspective{border-left:1px solid var(--rule)}
+.perspective-label{
+  font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:8px;
+}
+.perspective p{font-family:'Source Serif 4',Georgia,serif;font-size:.95rem;
+  color:var(--ink-light);line-height:1.65;margin-bottom:8px}
+.perspective p:last-of-type{margin-bottom:0}
+.perspective .cite-inline{font-size:.8rem}
+@media(max-width:600px){
+  .perspectives{grid-template-columns:1fr}
+  .perspective + .perspective{border-left:none;border-top:1px solid var(--rule)}
+}
+/* Dark-background override — .perspectives sits inside .update-box, matching the treatment already used for .vocab/.callout/.stat-pair in that context. Both sides keep identical padding, size, and treatment. */
+.update-box .perspectives{border-color:rgba(255,255,255,.15)}
+.update-box .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+@media(max-width:600px){
+  .update-box .perspective + .perspective{border-top-color:rgba(255,255,255,.15)}
+}
+.update-box .perspective-label{color:var(--gold-l)}
+.update-box .perspective p{color:rgba(255,255,255,.82)}
+.update-box .perspective .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .perspective .cite-inline:hover{color:var(--gold-l)}
+
+/* ══ VIDEO / RESOURCES ══ */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:10px 0 30px}
+.video-label h4{font-family:'Source Serif 4',serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.06rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
+.rc .level{font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-faint);margin-top:4px}
+
+footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint)}
+
+/* ══ EASTER EGG MODAL + TOAST ══ */
+.egg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.8);align-items:center;justify-content:center;padding:24px}
+.egg-modal.show{display:flex}
+.egg-box{background:var(--paper);max-width:480px;width:100%;padding:32px;text-align:center;border-top:4px solid var(--accent)}
+.egg-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.egg-box p{font-family:'Source Serif 4',serif;font-size:.98rem;line-height:1.7;color:var(--ink-light);margin-bottom:14px;text-align:left}
+.egg-extra{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:16px}
+.egg-close{background:var(--ink);color:#fff;border:none;padding:10px 22px;font-family:-apple-system,sans-serif;font-weight:700;cursor:pointer}
+
+.toast{position:fixed;top:20px;right:20px;z-index:600;background:var(--ink);color:#fff;padding:16px 20px;max-width:300px;transform:translateX(340px);transition:transform .3s;border-left:4px solid var(--gold-l)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+.hero-flag-click{cursor:pointer}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.shake{animation:shake .4s}
+
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
+.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
+body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
+</style>
+</head>
+<body>
+
+<!-- EASTER EGG MODAL -->
+<div class="egg-modal" id="eggModal">
+  <div class="egg-box">
+    <div style="font-size:2rem;margin-bottom:8px" id="eggEmoji">🎉</div>
+    <h2 id="eggTitle">You found a secret!</h2>
+    <p id="eggText"></p>
+    <div class="egg-extra" id="eggExtra"></div>
+    <button class="egg-close" onclick="closeEgg()">Got it</button>
+  </div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box">
+    <button class="quiz-close" onclick="closeQuiz()">×</button>
+    <h3>Quick Quiz</h3>
+    <p id="quizQ" class="quiz-q"></p>
+    <div class="quiz-choices" id="quizChoices"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">⭐</span>
+  <div class="toast-title" id="toastTitle"></div>
+  <div class="toast-msg" id="toastMsg"></div>
+</div>
+
+<div class="masthead-top">
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="climate-change.html">Climate Change</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="immigration.html">Immigration</a></span>
+  <span class="date">Updated July 26, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
+</div>
+
+<nav class="section-nav">
+  <a href="#update-pane">Situation Update</a>
+  <a href="#second-amendment">2nd Amendment &amp; Laws</a>
+  <a href="#scale">Understanding the Scale</a>
+  <a href="#measures-tried">Measures Tried</a>
+  <a href="#policy-today">How Policy Works Today</a>
+  <a href="#washington-story">Washington's Story</a>
+  <a href="#international">Other Countries</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#key-people">Key People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-inner">
+    <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">School Safety &amp; U.S. Policy</button>
+    <h1>Keeping Schools Safe</h1>
+    <p class="dek">This page is about policy, not headlines — what schools and lawmakers have actually tried, how the law works today, and how the United States compares to other countries. Here's what's been done, and what's being debated, as of July 2026.</p>
+    <div class="byline">Student Edition · Updated July 26, 2026</div>
+  </div>
+  <div class="hero-note">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
+  <div class="hero-credit">Hero image: placeholder — a real, verified photo will be added in the images task.</div>
+</header>
+
+<div class="points-bar">
+  <span>Discovery Points:</span>
+  <span class="points-display" id="pointsDisplay">0 pts</span>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content</span>
+</div>
+
+<!-- ═══════════ UPDATE PANE ═══════════ -->
+<div class="update-pane" id="update-pane">
+  <div class="update-pane-inner">
+    <div class="update-head">
+      <span class="num">Situation Update</span>
+      <h2>Where Things Stand <span class="update-badge">As of July 2026</span></h2>
+    </div>
+    <div class="update-date">Updated July 26, 2026 — a dated snapshot, not an ongoing claim</div>
+
+    <p>[Content added in Task 6]</p>
+  </div>
+</div>
+
+<!-- ═══════════ SECOND AMENDMENT & LANDMARK LAWS ═══════════ -->
+<div class="sec-head" id="second-amendment">
+  <span class="num">Section 1</span>
+  <h2>The Second Amendment &amp; Landmark Laws</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 2]</p>
+</div>
+
+<!-- ═══════════ UNDERSTANDING THE SCALE ═══════════ -->
+<div class="sec-head" id="scale">
+  <span class="num">Section 2</span>
+  <h2>Understanding the Scale</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 3]</p>
+</div>
+
+<!-- ═══════════ SCHOOL SAFETY MEASURES TRIED ═══════════ -->
+<div class="sec-head" id="measures-tried">
+  <span class="num">Section 3</span>
+  <h2>School Safety Measures That Have Been Tried</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 4]</p>
+</div>
+
+<!-- ═══════════ HOW POLICY WORKS TODAY ═══════════ -->
+<div class="sec-head" id="policy-today">
+  <span class="num">Section 4</span>
+  <h2>How Policy Actually Works Today</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 5]</p>
+</div>
+
+<!-- ═══════════ WASHINGTON'S SCHOOL SAFETY STORY ═══════════ -->
+<div class="sec-head" id="washington-story">
+  <span class="num">Close to Home</span>
+  <h2>Washington's School Safety Story</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 7]</p>
+</div>
+
+<!-- ═══════════ HOW OTHER COUNTRIES HANDLE THIS ═══════════ -->
+<div class="sec-head" id="international">
+  <span class="num">Global Comparison</span>
+  <h2>How Other Countries Handle This</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 8]</p>
+</div>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec-head" id="timeline">
+  <span class="num">History</span>
+  <h2>History Timeline</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 9]</p>
+</div>
+
+<!-- ═══════════ KEY PEOPLE ═══════════ -->
+<div class="sec-head" id="key-people">
+  <span class="num">Bonus</span>
+  <h2>Key People</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 9]</p>
+</div>
+
+<!-- ═══════════ VIDEOS ═══════════ -->
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>Videos — See It for Yourself</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 9]</p>
+</div>
+
+<!-- ═══════════ RESOURCES ═══════════ -->
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>Dig Deeper</h2>
+</div>
+<div class="article">
+  <p>[Content added in Task 9]</p>
+
+  <h3 style="margin-top:44px">Groups Working on This Issue</h3>
+  <p>[Content added in Task 10 — a genuinely balanced pair of Washington-active organizations, or omitted entirely if a balanced pair cannot be verified, per the design doc's composition rule.]</p>
+</div>
+
+<footer>
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
+</footer>
+
+<script>
+let pts = 0;
+let answeredQuizzes = new Set();
+let flagClicks = 0;
+let timelineClicks = 0;
+let statClicks = new Set();
+let konamiIndex = 0;
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+
+const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)
+
+// Subsequent tasks add entries here as each section's quiz is built.
+const quizzes = {};
+
+function openQuiz(id) {
+  if (answeredQuizzes.has(id)) {
+    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
+    return;
+  }
+  const q = quizzes[id];
+  document.getElementById('quizQ').textContent = q.q;
+  const cc = document.getElementById('quizChoices');
+  cc.innerHTML = '';
+  q.choices.forEach((c,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => handleAnswer(id, i, btn);
+    cc.appendChild(btn);
+  });
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function handleAnswer(id, chosen, btn) {
+  const q = quizzes[id];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  const fb = document.getElementById('quizFeedback');
+  if (chosen === q.correct) {
+    btn.classList.add('correct');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show correct-fb';
+    if (!answeredQuizzes.has(id)) { answeredQuizzes.add(id); addPoints(1); }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    fb.textContent = q.wrong;
+    fb.className = 'quiz-feedback show wrong-fb';
+    answeredQuizzes.add(id);
+  }
+}
+function closeQuiz() {
+  document.getElementById('quizModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function addPoints(n) {
+  pts = Math.min(pts + n, MAX_PTS);
+  document.getElementById('pointsDisplay').textContent = pts + ' pts';
+  const pct = MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (MAX_PTS > 0 && pts >= 5) {
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus.';
+    showToast('🌟','5 Points!','You unlocked a bonus deep dive!');
+  }
+  if (MAX_PTS > 0 && pts >= MAX_PTS) {
+    document.getElementById('unlockHint').textContent = '🏆 Maximum points — School Safety Expert unlocked!';
+    showToast('🏆','School Safety Expert!',"You hit " + MAX_PTS + " points! Check the final bonus.");
+  }
+}
+
+let toastTimer;
+function showToast(icon, title, msg) {
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── EASTER EGG: HERO KICKER CLICKS ───
+function handleFlagClick() {
+  flagClicks++;
+  const flag = document.getElementById('heroFlag');
+  if (!flag) return;
+  flag.classList.remove('shake');
+  void flag.offsetWidth;
+  flag.classList.add('shake');
+  if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
+  if (flagClicks >= 5) {
+    flagClicks = 0;
+    showEgg('🔎','You found a secret!',
+      'More to come here in a later task.',
+      '');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: STAT BOX CLICK-ALL ───
+function handleStatClick(el) {
+  el.classList.add('clicked');
+  statClicks.add(el);
+  const totalInPair = el.closest('.stat-pair, .stat-trio').querySelectorAll('.stat').length;
+  if (statClicks.size >= totalInPair) {
+    showEgg('🔢','You clicked every number!',
+      'More to come here in a later task.',
+      '');
+    addPoints(1);
+    statClicks.clear();
+  }
+}
+
+// ─── EASTER EGG: TIMELINE DOUBLE-CLICK ───
+function handleTimelineDblClick(e) {
+  timelineClicks++;
+  if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click again...');
+  if (timelineClicks >= 2) {
+    timelineClicks = 0;
+    const egg = document.getElementById('timeline-egg');
+    if (egg) egg.classList.add('revealed');
+    showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: KONAMI CODE ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === KONAMI.length) {
+      konamiIndex = 0;
+      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\nMore to come here in a later task.','↑↑↓↓←→←→BA');
+      addPoints(1);
+    }
+  } else {
+    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
+  }
+});
+
+function showEgg(emoji, title, text, extra) {
+  document.getElementById('eggEmoji').textContent = emoji;
+  document.getElementById('eggTitle').textContent = title;
+  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
+  document.getElementById('eggExtra').textContent = extra || '';
+  document.getElementById('eggModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeEgg() {
+  document.getElementById('eggModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('eggModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('eggModal')) closeEgg();
+});
+</script>
+
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
+}
+</script>
+
+</body>
+</html>
