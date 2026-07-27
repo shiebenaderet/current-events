@@ -93,6 +93,42 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:800}
 .vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
 
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+.focus-pane .term{border-bottom-color:#b3c0e8}
+.focus-pane .term::after{background:#fff;color:var(--ink)}
+.focus-pane .term::before{border-top-color:#fff}
+@media(max-width:600px){
+  .term::after{max-width:70vw;font-size:.74rem}
+}
+
 .callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
 .callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
 .callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
@@ -323,7 +359,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <span class="breaking-badge">Why This Matters</span>
     <div class="breaking-text">
       <h3>AI is everywhere — and it's changing fast</h3>
-      <p>Artificial intelligence is changing how we learn, work, create, and communicate — faster than almost anyone predicted. From chatbots writing essays to AI diagnosing diseases, this technology is reshaping everyday life. Understanding how it works is one of the most important things you can learn right now.</p>
+      <p>Artificial intelligence is changing how we learn, work, create, and communicate. It's moving faster than almost anyone predicted. Chatbots now write essays. AI helps doctors diagnose diseases. This technology is reshaping everyday life. Understanding how it works is one of the most important things you can learn right now.</p>
     </div>
   </div>
 </div>
@@ -336,19 +372,19 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 <div class="article">
   <div class="callout warn"><span class="tag">Before you read</span><p>AI is changing fast — this page covers the big ideas, but new things are happening all the time. Always check a trusted news source for the latest updates on AI.</p></div>
 
-  <p class="lede">You've probably heard people talk about "AI" — but what does it actually mean? <strong>Artificial intelligence</strong> is when a computer is built to do things that normally require human thinking — like recognizing faces, understanding speech, or making decisions.<a class="cite-inline" href="https://www.ibm.com/topics/artificial-intelligence" target="_blank">IBM</a></p>
+  <p class="lede">You've probably heard people talk about "AI." But what does it actually mean? <strong>Artificial intelligence</strong> is when a computer is built to do things that normally require human thinking. It can recognize faces. It can understand speech. It can make decisions.<a class="cite-inline" href="https://www.ibm.com/topics/artificial-intelligence" target="_blank">IBM</a></p>
 
-  <p>But here's the key: most AI today doesn't "think" the way you do. It learns by looking at <strong>huge amounts of data</strong> and finding patterns. That's very different from a regular computer program, where a programmer writes every rule by hand.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-one" target="_blank">Economist</a></p>
+  <p>Here's the key part: most AI today doesn't "think" the way you do. It learns by looking at <strong>huge amounts of data</strong>. Then it finds patterns in that data. That's very different from a regular computer program. In a regular program, a programmer writes every rule by hand.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-one" target="_blank">Economist</a></p>
 
   <h3>How the brain inspired AI</h3>
 
-  <p>The idea behind modern AI actually comes from the <strong>human brain</strong>. Your brain has about 86 billion tiny cells called <strong>neurons</strong>. These neurons send signals to each other — and that's how you think, learn, and remember things.<a class="cite-inline" href="https://pubmed.ncbi.nlm.nih.gov/19226510/" target="_blank">Journal of Comparative Neurology</a></p>
+  <p>The idea behind modern AI actually comes from the <strong>human brain</strong>. Your brain has about 86 billion tiny cells called <strong>neurons</strong>. These neurons send signals to each other. That's how you think, learn, and remember things.<a class="cite-inline" href="https://pubmed.ncbi.nlm.nih.gov/19226510/" target="_blank">Journal of Comparative Neurology</a></p>
 
-  <p>Geoffrey Hinton, one of the scientists who helped build modern AI, explains it like this: think of yourself as a brain cell. Other brain cells are sending you signals — like votes. Some are voting "go ping!" (fire a signal) and some are voting "don't go ping!" If you get enough votes to go ping, you fire. The whole system learns by <strong>changing how strong those votes are</strong>.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
+  <p><span class="term" tabindex="0" data-def="A British-Canadian computer scientist who spent decades studying neural networks and later won the 2024 Nobel Prize in Physics for that work.">Geoffrey Hinton</span> is one of the scientists who helped build modern AI. He explains it like this. Think of yourself as a brain cell. Other brain cells are sending you signals, like votes. Some are voting "go ping!" and some are voting "don't go ping!" If you get enough votes to go ping, you fire. The whole system learns by <strong>changing how strong those votes are</strong>.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
 
   <div class="pull-quote"><p>"You have a whole bunch of brain cells, and brain cells sometimes go ping... Brain cells are listening to other brain cells going ping. And when one brain cell goes ping, it's kind of voting for whether another brain cell should go ping."</p><span class="attrib">Geoffrey Hinton, Babbage, The Economist, 2025</span></div>
 
-  <p>In the 1980s, scientists figured out how to build a version of this inside a computer. They created <strong>artificial neural networks</strong> — software that mimics the way brain cells connect and communicate. Instead of real neurons, you have virtual ones. And instead of changing real connections in your brain, the computer changes numbers called <strong>weights</strong> (the strength of the votes).</p>
+  <p>In the 1980s, scientists figured out how to build a version of this inside a computer. They created <strong>artificial neural networks</strong>. This is software that copies the way brain cells connect and communicate. Instead of real neurons, you have virtual ones. Instead of changing real connections in your brain, the computer changes numbers called <span class="term" tabindex="0" data-def="Numbers inside a neural network that control how strong each connection is — like the strength of each 'vote.'">weights</span>.</p>
 
   <div class="vocab"><b>Key Word — Artificial Intelligence (AI)</b><p>When computers are built to do things that normally require human thinking, like understanding language, recognizing images, or making decisions.</p></div>
   <div class="vocab"><b>Key Word — Neural Network</b><p>A computer system inspired by the human brain. It has layers of connected "neurons" that learn to recognize patterns by adjusting the strength of their connections.</p></div>
@@ -384,25 +420,25 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="cap">Glen Beck and Betty Snyder program the ENIAC in Building 328 at the Ballistic Research Laboratory, c. 1947–1955. <a href="https://en.wikipedia.org/wiki/File:Glen_Beck_and_Betty_Snyder_program_the_ENIAC_in_building_328_at_the_Ballistic_Research_Laboratory.jpg" target="_blank">Wikimedia, public domain (U.S. Army photo)</a></div>
   </div>
 
-  <p class="lede">When you learn something new, your brain strengthens certain connections between neurons. When a machine learns, it does something surprisingly similar — it adjusts the <strong>weights</strong> (connection strengths) between artificial neurons until it gets better at its task.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-two" target="_blank">Economist</a></p>
+  <p class="lede">When you learn something new, your brain strengthens certain connections between neurons. A machine learns in a surprisingly similar way. It adjusts the <span class="term" tabindex="0" data-def="Numbers inside a neural network that control how strong each connection is — like the strength of each 'vote.'">weights</span> between artificial neurons. It keeps adjusting until it gets better at its task.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/babbage-the-science-that-built-the-ai-revolutionpart-two" target="_blank">Economist</a></p>
 
   <h3>Learning by example</h3>
 
-  <p>Imagine you want to teach a computer to tell the difference between a cat and a dog in photos. You don't write rules like "cats have pointy ears." Instead, you show it <strong>thousands of photos</strong> of cats and dogs, each labeled. Every time it guesses wrong, it adjusts its internal connections so it's less likely to make the same mistake again. After seeing enough examples, it learns the patterns on its own.</p>
+  <p>Imagine you want to teach a computer to tell a cat from a dog in photos. You don't write rules like "cats have pointy ears." Instead, you show it <strong>thousands of photos</strong> of cats and dogs, each labeled. Every time it guesses wrong, it adjusts its internal connections. That makes it less likely to repeat the mistake. After enough examples, it learns the patterns on its own.</p>
 
-  <p>This process is called <strong>training</strong>, and the method that makes it work is called <strong>backpropagation</strong>. Geoffrey Hinton, one of its inventors, describes it simply: you send signals <em>backwards</em> through the network to tell each connection how to change so the network gets better at predicting the right answer.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
+  <p>This process is called <strong>training</strong>. The method that makes it work is called <span class="term" tabindex="0" data-def="The main method AI uses to learn — sending a signal backwards through the network to adjust its connections after a mistake.">backpropagation</span>. Geoffrey Hinton, one of its inventors, describes it simply. You send signals <em>backwards</em> through the network. That tells each connection how to change. The goal is for the network to get better at predicting the right answer.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
 
   <div class="vocab"><b>Key Word — Backpropagation</b><p>The main method AI uses to learn. When the AI makes a mistake, it sends a signal backwards through the network to adjust the connections — making it a little more accurate each time.</p></div>
 
   <h3>The magic of patterns</h3>
 
-  <p>Here's where it gets wild. When a neural network learns words, it turns each word into a big list of numbers — called a <strong>vector</strong>. Words with similar meanings end up with similar numbers. And you can actually do <em>math</em> with them.</p>
+  <p>Here's where it gets wild. When a neural network learns words, it turns each word into a big list of numbers. This list is called a <span class="term" tabindex="0" data-def="A list of numbers that represents something — like a word — so a computer can do math with it and compare it to other things.">vector</span>. Words with similar meanings end up with similar numbers. You can actually do <em>math</em> with them.</p>
 
   <div class="callout"><span class="tag">Paris − France + Italy = Rome</span><p>If you take the number pattern for "Paris," subtract the pattern for "France," and add the pattern for "Italy" — you get a pattern that's closest to "Rome." The AI learned the relationship between countries and capitals entirely on its own, just from reading text.</p></div>
 
-  <p>Hinton demonstrated another example of this pattern-matching. He asked people: which seems more likely — that all dogs are male and all cats are female, or the other way around? Almost everyone says dogs are male and cats are female — even though it's complete nonsense. Why? Because in our language and culture, the <em>patterns</em> associated with "dog" are more similar to the patterns associated with "male." Neural networks pick up on exactly the same patterns.</p>
+  <p>Hinton demonstrated another example of this pattern-matching. He asked people a question. Which seems more likely: that all dogs are male and all cats are female, or the other way around? Almost everyone says dogs are male and cats are female. That's complete nonsense, of course. Why does everyone say it, then? In our language and culture, the <em>patterns</em> linked to "dog" are more similar to the patterns linked to "male." Neural networks pick up on exactly the same patterns.</p>
 
-  <p>Hinton likes to test this with a fun sentence: <em>"She screamed him with the frying pan."</em> You've never seen "screamed" used as a verb meaning "to hit" — but you instantly know what it means from context. That's exactly how modern AI understands language: not by memorizing definitions, but by figuring out meaning from how words are used together.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
+  <p>Hinton likes to test this with a fun sentence: <em>"She screamed him with the frying pan."</em> You've never seen "screamed" used as a verb meaning "to hit." But you instantly know what it means from context. That's exactly how modern AI understands language. It doesn't memorize definitions. It figures out meaning from how words are used together.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
 
   <div class="callout"><span class="tag">Think about it</span><p>If AI learns language the same way you do — by picking up patterns from context — does that mean it "understands" language? Or is it just really good at faking it?</p></div>
 
@@ -437,19 +473,19 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <p class="lede">For decades, most computer scientists thought neural networks were a dead end. Geoffrey Hinton remembers: "People in computer science thought neural nets were nonsense. I'm very confident about that."<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a> So what changed?</p>
 
-  <p>Three things came together at once — and they transformed AI from a niche research topic into the most talked-about technology in the world.</p>
+  <p>Three things came together at once. Together, they transformed AI. It went from a niche research topic to the most talked-about technology in the world.</p>
 
   <h3>1. Massive datasets</h3>
 
-  <p>In 2009, Stanford professor <strong>Fei-Fei Li</strong> and her team released <strong>ImageNet</strong> — a database of more than 14 million images, each labeled by hand. For the first time, neural networks had enough examples to learn from. Before ImageNet, AI researchers had been trying to teach computers to see with just a few thousand images. It was like trying to learn a language from a single page of a book.</p>
+  <p>In 2009, Stanford professor <strong>Fei-Fei Li</strong> and her team released <strong>ImageNet</strong>. It was a database of more than 14 million images, each labeled by hand. For the first time, neural networks had enough examples to learn from. Before ImageNet, AI researchers had tried to teach computers to see with just a few thousand images. It was like trying to learn a language from a single page of a book.</p>
 
-  <h3>2. Powerful computer chips (GPUs)</h3>
+  <h3>2. Powerful computer chips</h3>
 
-  <p>Training a neural network requires doing billions of math calculations. Regular computer processors (CPUs) weren't fast enough. But a different kind of chip — the <strong>GPU</strong> (graphics processing unit) — originally designed for video games, turned out to be perfect for neural networks. One of Hinton's students, Alex Krizhevsky, "managed to make Nvidia GPUs talk to each other" and built a system that was dramatically faster than anything before.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
+  <p>Training a neural network takes billions of math calculations. Regular computer processors weren't fast enough. But a different kind of chip, the <span class="term" tabindex="0" data-def="A computer chip originally built for video games that turned out to be great at running neural networks too.">GPU</span>, turned out to be perfect for neural networks. It was originally designed for video games. One of Hinton's students, Alex Krizhevsky, "managed to make Nvidia GPUs talk to each other." He built a system dramatically faster than anything before.<a class="cite-inline" href="https://shows.acast.com/theeconomistbabbage/episodes/geoffrey-hinton-ai-is-more-human-than-you-think" target="_blank">Hinton, 2025</a></p>
 
   <h3>3. AlexNet — the big bang moment (2012)</h3>
 
-  <p>In 2012, Hinton's two students — Alex Krizhevsky and Ilya Sutskever (who later co-founded OpenAI) — entered the annual ImageNet competition. Their system, called <strong>AlexNet</strong>, used deep neural networks trained on GPUs. It cut the error rate roughly in half compared to every other system.</p>
+  <p>In 2012, Hinton's two students entered the annual ImageNet competition. Their names were Alex Krizhevsky and Ilya Sutskever. Sutskever later helped start the company OpenAI. Their system, called <strong>AlexNet</strong>, used deep neural networks trained on GPUs. It cut the error rate roughly in half compared to every other system.</p>
 
   <div class="pull-quote"><p>AlexNet "finally convinced all the people doing computer vision that what they were doing was wrong and they should do neural nets."</p><span class="attrib">Geoffrey Hinton</span></div>
 
@@ -461,11 +497,11 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <h3>The auction in the casino</h3>
 
-  <p>After AlexNet's success, Hinton and his two students set up a company — and every major tech company wanted to buy it. Since they had "absolutely no idea" what they were worth, a friend suggested they run an auction.</p>
+  <p>After AlexNet's success, Hinton and his two students set up a company. Every major tech company wanted to buy it. They had "absolutely no idea" what they were worth. So a friend suggested they run an auction.</p>
 
   <div class="callout"><span class="tag">A $44 million poker game</span><p>"Our standard neural net conference was happening in a casino in Lake Tahoe... on the ground floor they had this casino with people pulling one-armed bandits and smoking. And upstairs in our hotel room, we were running this auction where you had to raise by $1 million... we were raking in $1 million every half hour, which is quite fun in a casino." Google won the auction for $44 million. Years later, a senior VP told Hinton "they were amazed that they got it so cheaply."</p></div>
 
-  <p>Hinton compared the resistance to neural networks to another famous example in science: <strong>Continental Drift</strong>. In the early 1900s, a scientist noticed that South America and Africa fit together like puzzle pieces. He had strong evidence — matching rock formations, similar fossils on both sides of the Atlantic. But geologists dismissed him because they believed the Earth was rigid. "It was like that," Hinton says. The evidence was right there, but the established experts couldn't see it.</p>
+  <p>Hinton compared the resistance to neural networks to another famous example in science: <strong>Continental Drift</strong>. In the early 1900s, a scientist noticed something. South America and Africa fit together like puzzle pieces. He had strong evidence: matching rock formations, and similar fossils on both sides of the Atlantic. But geologists dismissed him. They believed the Earth was rigid. "It was like that," Hinton says. The evidence was right there. The established experts just couldn't see it.</p>
 
   <div class="vocab"><b>Key Word — GPU (Graphics Processing Unit)</b><p>A computer chip originally designed for video games that turned out to be perfect for training AI. GPUs can do billions of math calculations at the same time, which is exactly what neural networks need.</p></div>
   <div class="vocab"><b>Key Word — Dataset</b><p>A large collection of information (images, text, sounds, etc.) used to train an AI system. The quality and size of the dataset directly affects how well the AI learns.</p></div>
@@ -497,13 +533,13 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="cap">We could not confirm exactly where this screenshot came from.</div>
   </div>
 
-  <p class="lede">For decades, AI was something only scientists and engineers thought about. Then, on November 30, 2022, a company called <strong>OpenAI</strong> released a chatbot called <strong>ChatGPT</strong> (short for "Chat Generative Pre-trained Transformer") — and everything changed. Within two months, 100 million people were using it, making it the fastest-growing consumer application in history.<a class="cite-inline" href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" target="_blank">Reuters</a></p>
+  <p class="lede">For decades, AI was something only scientists and engineers thought about. Then everything changed. On November 30, 2022, a company called <strong>OpenAI</strong> released a chatbot called <strong>ChatGPT</strong>. The name is short for "Chat Generative Pre-trained Transformer." Within two months, 100 million people were using it. That made it the fastest-growing consumer application in history.<a class="cite-inline" href="https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/" target="_blank">Reuters</a></p>
 
-  <p>Since January 2025, the pace of AI progress hasn't slowed down. By mid-2026, OpenAI, Anthropic, Google, and other companies had each released several new, more capable model generations — versions that could reason through harder problems, hold much longer conversations, and make fewer factual mistakes than the AI most people first tried back in 2022 and 2023.<a class="cite-inline" href="https://techcrunch.com/2025/08/07/openais-gpt-5-is-here/" target="_blank">TechCrunch</a></p>
+  <p>Since January 2025, the pace of AI progress hasn't slowed down. By mid-2026, OpenAI, Anthropic, Google, and other companies had each released several new, more capable model generations. These newer versions could reason through harder problems. They could hold much longer conversations. They made fewer factual mistakes than the AI most people first tried back in 2022 and 2023.<a class="cite-inline" href="https://techcrunch.com/2025/08/07/openais-gpt-5-is-here/" target="_blank">TechCrunch</a></p>
 
-  <p>The bigger change during this period wasn't just "smarter chatbots," though — it was AI learning to act on its own. By 2026, AI systems could handle multi-step jobs without a person doing each step: browsing websites, filling out forms, and even writing and running their own computer code. Some travel companies, for example, rolled out AI agents that could compare flight options and handle guest messages for hotel partners automatically, cutting out a lot of the back-and-forth a human used to have to do.<a class="cite-inline" href="https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/" target="_blank">Booking.com</a> This shift — from AI you chat with to AI that acts for you — is called <strong>agentic AI</strong>.</p>
+  <p>The bigger change during this period wasn't just "smarter chatbots," though. It was AI learning to act on its own. By 2026, AI systems could handle multi-step jobs without a person doing each step. They could browse websites, fill out forms, and even write and run their own computer code. Some travel companies, for example, rolled out AI agents that could compare flight options. These agents could also handle guest messages for hotel partners automatically. That cut out a lot of the back-and-forth a human used to have to do.<a class="cite-inline" href="https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/" target="_blank">Booking.com</a> This shift is called <strong>agentic AI</strong> — AI you chat with becoming AI that acts for you.</p>
 
-  <p>ChatGPT is an example of a <strong>Large Language Model (LLM)</strong> — an AI trained on enormous amounts of text from the internet. It doesn't "know" facts the way you do. Instead, it predicts what word should come next, based on patterns it learned during training. Hinton built a tiny version of this back in the 1980s, but today's LLMs have billions of parameters (adjustable settings that control how the AI responds) and are trained on trillions of words.</p>
+  <p>ChatGPT is an example of a <span class="term" tabindex="0" data-def="An AI trained on huge amounts of text from the internet. ChatGPT, Gemini, and Claude are all examples.">Large Language Model</span>, or LLM. It doesn't "know" facts the way you do. Instead, it predicts what word should come next. It bases that prediction on patterns it learned during training. Hinton built a tiny version of this back in the 1980s. Today's LLMs have billions of <span class="term" tabindex="0" data-def="Adjustable settings inside an AI model that control how it responds — the modern, much larger version of the 'weights' idea.">parameters</span> and are trained on trillions of words.</p>
 
   <div class="stat-pair">
     <div class="stat"><div class="num">900M</div><div class="desc"><b>ChatGPT weekly users, Feb 2026</b>TechCrunch, 2026</div></div>
@@ -512,17 +548,17 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <h3>Generative AI — machines that create</h3>
 
-  <p>Today's AI doesn't just analyze data — it <strong>creates</strong> new things. It can write essays, generate realistic images, compose music, and even write code. This is called <strong>generative AI</strong>. Tools like ChatGPT (text), DALL-E and Midjourney (images), and Suno (music) are examples.</p>
+  <p>Today's AI doesn't just analyze data. It <strong>creates</strong> new things. It can write essays, generate realistic images, compose music, and even write code. This is called <strong>generative AI</strong>. ChatGPT makes text. DALL-E and Midjourney make images. Suno makes music.</p>
 
   <p>This has raised huge questions. If AI can write a school essay, what does that mean for learning? If it can create a photo of a person who doesn't exist, how do we know what's real? These are some of the biggest questions of our time.</p>
 
   <h3>Hallucinations — or as Hinton calls it, "confabulation"</h3>
 
-  <p>One of the biggest problems with AI chatbots is that they sometimes make things up — stating "facts" that are completely wrong but sound convincing. Most people call this <strong>hallucination</strong>. But Hinton says that's actually evidence that AI works more like the human brain than we thought.</p>
+  <p>One of the biggest problems with AI chatbots is that they sometimes make things up. They state "facts" that are completely wrong but sound convincing. Most people call this <strong>hallucination</strong>. But Hinton says that's actually evidence AI works more like the human brain than we thought.</p>
 
   <div class="pull-quote"><p>"Most people have a completely wrong model of what memory is. They think of memory as like a file on a computer... When you want to recall something, what you do is you generate it. You make it up."</p><span class="attrib">Geoffrey Hinton, Babbage, 2025</span></div>
 
-  <p>Hinton says AI chatbots are "a bit worse than us at present" at noticing their mistakes — but the newest models, like DeepSeek and OpenAI's reasoning models, can now produce "strings of words that are their thinking" and then reflect on them to catch errors. "They're getting to the stage when they're going to be as good as people at noticing when they're making it up."</p>
+  <p>Hinton says AI chatbots are "a bit worse than us at present" at noticing their mistakes. But the newest models, like DeepSeek and OpenAI's reasoning models, can do more. They can now produce "strings of words that are their thinking" and then reflect on them to catch errors. "They're getting to the stage when they're going to be as good as people at noticing when they're making it up."</p>
 
   <div class="vocab"><b>Key Word — GPT (Generative Pre-trained Transformer)</b><p>The type of AI behind ChatGPT. "Generative" means it creates new text. "Pre-trained" means it learned from huge amounts of text before you ever talk to it. "Transformer" is the architecture (design) that lets it pay attention to the most important words in a sentence.</p></div>
   <div class="vocab"><b>Key Word — Large Language Model (LLM)</b><p>An AI system trained on enormous amounts of text to predict and generate language. ChatGPT, Gemini, and Claude are all LLMs.</p></div>
@@ -556,9 +592,9 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>AI &amp; Your School — What Changes?</h2></div>
 
-    <p>This might be the section that matters most to <strong>you</strong> — because AI is already changing how schools work, and your generation is the first to deal with it.</p>
+    <p>This might be the section that matters most to <strong>you</strong>. AI is already changing how schools work. Your generation is the first to deal with it.</p>
 
-    <p>In April 2025, the Center for Humane Technology podcast <em>Your Undivided Attention</em> brought together two experts to talk about exactly this: <strong>Maryanne Wolf</strong>, a brain scientist who studies how we learn to read, and <strong>Rebecca Winthrop</strong>, an expert on education from a research center called Brookings.</p>
+    <p>In April 2025, the Center for Humane Technology podcast <em>Your Undivided Attention</em> brought together two experts to talk about exactly this. <strong>Maryanne Wolf</strong> is a brain scientist who studies how we learn to read. <strong>Rebecca Winthrop</strong> is an education expert at a research center called Brookings.</p>
   </div>
 
   <div class="audio-embed" style="max-width:700px;margin-left:auto;margin-right:auto;padding:0 6vw">
@@ -569,13 +605,13 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="focus-pane-inner">
     <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key takeaways</h3>
 
-    <p><strong>Past tech in classrooms often failed.</strong> Every generation gets excited about a new technology transforming education — radio, TV, desktop computers, iPads. But research from the OECD (a group of 38 countries that study education policy) found that just putting computers in classrooms didn't actually help students learn better.</p>
+    <p><strong>Past tech in classrooms often failed.</strong> Every generation gets excited about a new technology transforming education: radio, TV, desktop computers, iPads. But research from the <span class="term" tabindex="0" data-def="A group of 38 countries that study and compare education policy across nations.">OECD</span> found something different. Just putting computers in classrooms didn't actually help students learn better.</p>
 
-    <p><strong>Screens affect how your brain develops.</strong> A major medical study (published in JAMA, one of the world's top medical journals) found that too much screen time can slow down how quickly young kids learn to talk. Another study in Singapore found that students who spent too much time on screens had a harder time paying attention.</p>
+    <p><strong>Screens affect how your brain develops.</strong> A major medical study published in JAMA, one of the world's top medical journals, found something concerning. Too much screen time can slow down how quickly young kids learn to talk. Another study in Singapore found that students who spent too much time on screens had a harder time paying attention.</p>
 
-    <p><strong>But this moment is also an opportunity.</strong> Rather than fighting AI or pretending it doesn't exist, both experts argued that schools should redesign around the skills AI <em>can't</em> replicate: curiosity, creativity, critical thinking, collaboration, and genuine human connection. The question isn't "how do we stop students from using AI?" — it's "how do we build schools that develop the parts of you that AI can't replace?"</p>
+    <p><strong>But this moment is also an opportunity.</strong> Both experts argued against fighting AI or pretending it doesn't exist. Instead, they said schools should redesign around the skills AI <em>can't</em> replicate: curiosity, creativity, critical thinking, collaboration, and genuine human connection. The question isn't "how do we stop students from using AI?" It's "how do we build schools that develop the parts of you that AI can't replace?"</p>
 
-    <p><strong>Human connection matters more than task completion.</strong> Wolf emphasized that the deepest learning happens through relationships — a great teacher who sees what you're misunderstanding and gives you exactly the right nudge. AI tutors may eventually get good at this, but right now, the human element is irreplaceable.</p>
+    <p><strong>Human connection matters more than task completion.</strong> Wolf emphasized that the deepest learning happens through relationships. Think of a great teacher who sees what you're misunderstanding and gives you exactly the right nudge. AI tutors may eventually get good at this. But right now, the human element is irreplaceable.</p>
 
     <div class="callout"><span class="tag">Think about it</span><p>Your generation is the first to go through school with AI tools that can write essays, summarize readings, and solve problems for you. Does using AI to do your homework help you learn — or does it skip the part where learning actually happens?</p></div>
 
@@ -594,7 +630,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>Talking to Animals Using AI</h2></div>
 
-    <p>For years, using AI meant typing a question and reading an answer. But researchers are now using AI for something stranger and more ambitious: trying to understand what animals are actually saying to each other.</p>
+    <p>For years, using AI meant typing a question and reading an answer. But researchers are now using AI for something stranger and more ambitious. They're trying to understand what animals are actually saying to each other.</p>
 
     <div class="audio-embed">
       <iframe src="https://open.spotify.com/embed/episode/2tCoKxrVVCUYhfi575XUID?utm_source=generator&theme=0" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -603,15 +639,15 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
     <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key takeaways</h3>
 
-    <p><strong>AI is learning to decode animal communication.</strong> The Earth Species Project, a nonprofit founded by Aza Raskin and Britt Selvitelle, is using machine learning to find patterns in animal vocalizations that humans can't detect. Their goal is to translate animal communication — not just identify species by sound, but understand what animals are actually saying to each other.</p>
+    <p><strong>AI is learning to decode animal communication.</strong> The Earth Species Project is a nonprofit founded by Aza Raskin and Britt Selvitelle. It uses machine learning to find patterns in animal sounds that humans can't detect. Their goal is to translate animal communication. That means more than identifying species by sound. It means understanding what animals are actually saying to each other.</p>
 
-    <p><strong>Scientists expect to synthesize animal calls within years.</strong> Raskin predicted that within 12 to 36 months (from May 2023), AI would be able to generate synthetic animal vocalizations — like whale songs or monkey calls — that are indistinguishable from real ones. This could let researchers "speak back" to animals for the first time in history.</p>
+    <p><strong>Scientists expect to synthesize animal calls within years.</strong> In May 2023, Raskin predicted that within 12 to 36 months, AI would be able to generate fake animal calls, like whale songs or monkey calls, that sound just like the real thing. This could let researchers "speak back" to animals for the first time in history.</p>
 
-    <p><strong>This could save lives — literally.</strong> One practical application: playing whale calls to redirect whales away from shipping lanes, preventing deadly ship strikes. Over 20,000 whales are estimated to be killed by ship strikes worldwide each year. AI-generated calls could warn them away from danger.</p>
+    <p><strong>This could save lives — literally.</strong> One practical use: playing whale calls to redirect whales away from shipping lanes. That could prevent deadly ship strikes. Over 20,000 whales are estimated to be killed by ship strikes worldwide each year. AI-generated calls could warn them away from danger.</p>
 
-    <p><strong>But there are serious risks.</strong> The same technology that could protect animals could be used to exploit them. Poachers could use synthetic bird calls to lure endangered species. Ecotourism operators could manipulate wildlife behavior for profit. And we might project human meanings onto animal communication in ways that aren't accurate — a problem researchers call "anthropomorphism."</p>
+    <p><strong>But there are serious risks.</strong> The same technology that could protect animals could be used to exploit them. Poachers could use fake bird calls to lure endangered species. Ecotourism operators could manipulate wildlife behavior for profit. And we might read human meanings into animal communication that aren't actually there. Researchers call this problem <span class="term" tabindex="0" data-def="Giving human traits or meanings to something non-human — in this case, assuming an animal sound means what it would mean coming from a person.">anthropomorphism</span>.</p>
 
-    <p><strong>Animal "language" is more complex than we thought.</strong> Researchers found that a type of monkey called the gelada makes sounds with a rhythm that's surprisingly similar to how humans talk. And across many species, certain sounds seem to carry similar meanings — scientists call this "sound symbolism." This suggests communication systems far more sophisticated than simple alarm calls.</p>
+    <p><strong>Animal "language" is more complex than we thought.</strong> Researchers found that a type of monkey called the gelada makes sounds with a rhythm surprisingly similar to how humans talk. Across many species, certain sounds seem to carry similar meanings. Scientists call this "sound symbolism." This suggests communication systems far more sophisticated than simple alarm calls.</p>
 
     <div class="callout"><span class="tag">Think about it</span><p>If we could talk to animals, should we? What would it mean for conservation — and what could go wrong if the wrong people got access to this technology?</p></div>
 
@@ -637,21 +673,21 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
     <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Who is Geoffrey Hinton?</h3>
 
-    <p>Geoffrey Hinton spent over 40 years working on neural networks — the technology behind modern AI — when almost nobody believed it would work. For decades, the mainstream AI community dismissed his research as a dead end. Then, in 2012, his student's system called AlexNet crushed the competition in an image recognition contest, and everything changed. As Hinton described it: <em>"It felt validating. It feels like all those years of doing something that people thought was nonsense were okay."</em></p>
+    <p>Geoffrey Hinton spent over 40 years working on neural networks, the technology behind modern AI. Almost nobody believed it would work. For decades, the mainstream AI community dismissed his research as a dead end. Then, in 2012, his student's system called AlexNet crushed the competition in an image recognition contest. Everything changed. As Hinton described it: <em>"It felt validating. It feels like all those years of doing something that people thought was nonsense were okay."</em></p>
 
-    <p>Hinton went on to work at Google, where his research helped build the AI systems we use today. In 2024, he won the Nobel Prize in Physics for his foundational work on neural networks. But in 2023, he did something unexpected — he quit Google specifically so he could speak freely about the dangers of the technology he helped create.</p>
+    <p>Hinton went on to work at Google, where his research helped build the AI systems we use today. In 2024, he won the Nobel Prize in Physics for his foundational work on neural networks. But in 2023, he did something unexpected. He quit Google specifically so he could speak freely about the dangers of the technology he helped create.</p>
 
     <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key insights from the interview</h3>
 
-    <p><strong>"Hallucinations" mean AI is more like us than we thought.</strong> When AI makes things up, most people see it as a bug. Hinton sees it differently: <em>"What that tells us is they're even more like us than we thought."</em> He explained that human memory works the same way — we don't store exact recordings of experiences. <em>"You don't store any strings of words in your head... you make it up."</em> The technical term for this is "confabulation," and humans do it all the time.</p>
+    <p><strong>"Hallucinations" mean AI is more like us than we thought.</strong> When AI makes things up, most people see it as a bug. Hinton sees it differently: <em>"What that tells us is they're even more like us than we thought."</em> He explained that human memory works the same way. We don't store exact recordings of experiences. <em>"You don't store any strings of words in your head... you make it up."</em> The technical term for this is "confabulation," and humans do it all the time.</p>
 
-    <p><strong>The cucumber experiment.</strong> Hinton described a fascinating study about short-term memory: if someone says a word very faintly — so faintly you can barely hear it — you're more likely to understand it correctly if someone said that same word five minutes earlier. Your brain stored a trace of the word even though you weren't trying to remember it. AI systems show similar behavior.</p>
+    <p><strong>The cucumber experiment.</strong> Hinton described a fascinating study about short-term memory. If someone says a word very faintly, so faintly you can barely hear it, something interesting happens. You're more likely to understand it correctly if someone said that same word five minutes earlier. Your brain stored a trace of the word even though you weren't trying to remember it. AI systems show similar behavior.</p>
 
-    <p><strong>Only about 1% goes into safety.</strong> Hinton warned that AI companies are spending almost all their resources on making AI more powerful and almost nothing on making it safe: <em>"It's probably 1% goes into safety... governments need to force them to work on safety."</em> He compared this to the early days of the drug-making industry, before governments required companies to test medicines for safety.</p>
+    <p><strong>Only about 1% goes into safety.</strong> Hinton warned that AI companies spend almost all their resources on making AI more powerful. Almost nothing goes toward making it safe: <em>"It's probably 1% goes into safety... governments need to force them to work on safety."</em> He compared this to the early days of the drug-making industry, before governments required companies to test medicines for safety.</p>
 
-    <p><strong>The best case and the worst case are both real possibilities.</strong> Hinton described two plausible futures. In the best case, AI dramatically improves healthcare, education, and scientific research — helping us solve problems we couldn't solve before. In the worst case, AI could become smarter than humans and start working toward goals we didn't choose — or powerful leaders could use it to spy on people and build weapons that operate on their own. His honest assessment: <em>"I sort of believe both those things are quite plausible."</em></p>
+    <p><strong>The best case and the worst case are both real possibilities.</strong> Hinton described two plausible futures. In the best case, AI dramatically improves healthcare, education, and scientific research. It helps us solve problems we couldn't solve before. In the worst case, AI could become smarter than humans and start working toward goals we didn't choose. Or powerful leaders could use it to spy on people and build weapons that operate on their own. His honest assessment: <em>"I sort of believe both those things are quite plausible."</em></p>
 
-    <p>Hinton's call for governments to step in didn't go unanswered: starting August 2, 2026, new transparency rules under the European Union's AI Act require AI systems to tell people when they're talking to a machine, not a human.</p>
+    <p>Hinton's call for governments to step in didn't go unanswered. Starting August 2, 2026, new transparency rules under the European Union's AI Act require AI systems to tell people when they're talking to a machine, not a human.</p>
 
     <div class="stat-trio">
       <div class="stat"><div class="num">2024</div><div class="desc"><b>Nobel Prize in Physics</b></div></div>
@@ -676,11 +712,11 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>AI That Takes Action</h2></div>
 
-    <p>For years, using AI meant typing a question and reading an answer — you did the actual work yourself. That started to change by the mid-2020s. Companies began building AI that could carry out a whole task on its own, not just describe how to do it.</p>
+    <p>For years, using AI meant typing a question and reading an answer. You did the actual work yourself. That started to change by the mid-2020s. Companies began building AI that could carry out a whole task on its own, not just describe how to do it.</p>
 
     <div class="vocab"><b>Key Word — Agentic AI</b><p>AI that can take multiple steps on its own to complete a task, like browsing a website, filling out a form, or writing and running code, instead of just answering one question at a time.</p></div>
 
-    <p>One real example: starting in April 2025, Amazon rolled out a feature called "Buy for Me." If Amazon doesn't sell something a shopper wants, the shopper can pick that item from another store's website without leaving the Amazon app. A person still reviews the order first — the address, taxes, shipping cost, and payment method — on an Amazon checkout screen. But after that, the AI takes over: it visits the other store's website itself, fills in the shopper's name, address, and payment details, and completes the purchase there. A task that used to take a person several steps on a different website happens automatically once they've said yes.</p>
+    <p>One real example: starting in April 2025, Amazon rolled out a feature called "Buy for Me." If Amazon doesn't sell something a shopper wants, the shopper can pick that item from another store's website without leaving the Amazon app. A person still reviews the order first. That means the address, taxes, shipping cost, and payment method, all shown on an Amazon checkout screen. But after that, the AI takes over. It visits the other store's website itself. It fills in the shopper's name, address, and payment details. Then it completes the purchase there. A task that used to take a person several steps on a different website now happens automatically once they've said yes.</p>
 
     <div class="callout"><span class="tag">Think about it</span><p>If an AI can complete tasks for you without you watching each step, how do you know it did what you actually wanted? What could go wrong — and how much of the process would you want to check yourself before you'd trust it?</p></div>
 
@@ -702,29 +738,29 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <p class="lede">From a thought experiment to a technology that's changing everything — here's AI's story in key moments.</p>
 
   <div id="aiTimeline">
-    <div class="tl-item"><div class="tl-year">1950</div><div class="tl-body"><h4>The Turing Test</h4><p>Alan Turing publishes "Computing Machinery and Intelligence," asking: "Can machines think?" He proposes the Turing Test — if a machine can fool a human into thinking it's human, it can be considered intelligent.</p></div></div>
-    <div class="tl-item"><div class="tl-year">1957</div><div class="tl-body"><h4>The First Neural Network</h4><p>Frank Rosenblatt at Cornell builds the Perceptron — the first machine that could learn from examples. It was inspired by how neurons in the brain connect to each other.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1950</div><div class="tl-body"><h4>The Turing Test</h4><p>Alan Turing publishes "Computing Machinery and Intelligence," asking: "Can machines think?" He proposes the Turing Test. If a machine can fool a human into thinking it's human, it can be considered intelligent.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1957</div><div class="tl-body"><h4>The First Neural Network</h4><p>Frank Rosenblatt at Cornell builds the Perceptron, the first machine that could learn from examples. It was inspired by how neurons in the brain connect to each other.</p></div></div>
     <div class="tl-item"><div class="tl-year">1969</div><div class="tl-body"><h4>The First AI Winter</h4><p>Marvin Minsky and Seymour Papert publish Perceptrons, a book arguing that neural networks have fundamental limitations. Funding for neural network research dries up for over a decade.</p></div></div>
-    <div class="tl-item"><div class="tl-year">1986</div><div class="tl-body"><h4>Backpropagation</h4><p>Geoffrey Hinton, David Rumelhart, and Ronald Williams publish their paper on backpropagation — a way for neural networks to learn from their mistakes by adjusting connections backward through the network. This becomes the foundation of all modern deep learning.</p></div></div>
-    <div class="tl-item"><div class="tl-year">1997</div><div class="tl-body"><h4>Deep Blue Beats Kasparov</h4><p>IBM's Deep Blue defeats world chess champion Garry Kasparov. It's a milestone, but Deep Blue used brute-force calculation — not the learning approach that would later define modern AI.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2009</div><div class="tl-body"><h4>Neural Nets Beat Speech Recognition</h4><p>Hinton's team at the University of Toronto proves that neural networks can outperform traditional methods at recognizing speech — the first sign that the "dismissed" technology was about to take over.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2011</div><div class="tl-body"><h4>Watson Wins Jeopardy!</h4><p>IBM's Watson beats two all-time Jeopardy! champions. Unlike Deep Blue, Watson had to understand natural language — puns, wordplay, and tricky clues.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1986</div><div class="tl-body"><h4>Backpropagation</h4><p>Geoffrey Hinton, David Rumelhart, and Ronald Williams publish their paper on backpropagation. It's a way for neural networks to learn from mistakes by adjusting connections backward through the network. This becomes the foundation of all modern deep learning.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1997</div><div class="tl-body"><h4>Deep Blue Beats Kasparov</h4><p>IBM's Deep Blue defeats world chess champion Garry Kasparov. It's a milestone. But Deep Blue used brute-force calculation, not the learning approach that would later define modern AI.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2009</div><div class="tl-body"><h4>Neural Nets Beat Speech Recognition</h4><p>Hinton's team at the University of Toronto proves that neural networks can outperform traditional methods at recognizing speech. It's the first sign that the "dismissed" technology was about to take over.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2011</div><div class="tl-body"><h4>Watson Wins Jeopardy!</h4><p>IBM's Watson beats two all-time Jeopardy! champions. Unlike Deep Blue, Watson had to understand natural language: puns, wordplay, and tricky clues.</p></div></div>
     <div class="tl-item"><div class="tl-year">2012</div><div class="tl-body"><h4>AlexNet: The Big Bang</h4><p>Hinton's student Alex Krizhevsky builds AlexNet, a deep neural network that crushes the annual ImageNet image recognition competition. Error rates drop by 10 percentage points overnight. This is the moment the AI revolution truly begins.</p></div></div>
     <div class="tl-item"><div class="tl-year">2013</div><div class="tl-body"><h4>Google Buys Hinton's Company</h4><p>Google, Microsoft, and Baidu get into a bidding war for Hinton's tiny company. Google wins for $44 million. Hinton later recalled that the buyers "were amazed they got it so cheaply."</p></div></div>
-    <div class="tl-item"><div class="tl-year">2014</div><div class="tl-body"><h4>GANs: AI Learns to Create</h4><p>Ian Goodfellow invents Generative Adversarial Networks (GANs) — two neural networks competing against each other, one creating fake images and one trying to detect them. This is the birth of AI-generated images.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2016</div><div class="tl-body"><h4>AlphaGo Shocks the World</h4><p>DeepMind's AlphaGo defeats Lee Sedol, one of the greatest Go players ever. Go has more possible positions than atoms in the universe — brute force was impossible. AlphaGo had to develop intuition.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2017</div><div class="tl-body"><h4>"Attention Is All You Need"</h4><p>A team at Google publishes the Transformer paper. This new architecture — based on an "attention" mechanism that lets AI focus on relevant words in a sentence — becomes the foundation for ChatGPT, Gemini, and every major language model.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2020</div><div class="tl-body"><h4>GPT-3 Released</h4><p>OpenAI releases GPT-3, a language model with 175 billion parameters that can write essays, code, poetry, and more. Researchers are stunned by its capabilities — and worried about misuse.</p></div></div>
-    <div class="tl-item"><div class="tl-year">2022</div><div class="tl-body"><h4>ChatGPT Goes Viral</h4><p>OpenAI launches ChatGPT in November. It reaches 100 million users in just two months — the fastest-growing consumer technology in history. AI goes from a research topic to a household word overnight.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2014</div><div class="tl-body"><h4>GANs: AI Learns to Create</h4><p>Ian Goodfellow invents <span class="term" tabindex="0" data-def="Two neural networks that compete against each other — one creating fake images, one trying to catch the fakes — until the fakes get very convincing.">Generative Adversarial Networks</span>, or GANs. This is the birth of AI-generated images.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2016</div><div class="tl-body"><h4>AlphaGo Shocks the World</h4><p>DeepMind's AlphaGo defeats Lee Sedol, one of the greatest Go players ever. Go has more possible positions than atoms in the universe, so brute force was impossible. AlphaGo had to develop intuition.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2017</div><div class="tl-body"><h4>"Attention Is All You Need"</h4><p>A team at Google publishes the Transformer paper. This new design is based on an "attention" mechanism that lets AI focus on relevant words in a sentence. It becomes the foundation for ChatGPT, Gemini, and every major language model.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2020</div><div class="tl-body"><h4>GPT-3 Released</h4><p>OpenAI releases GPT-3, a language model with 175 billion parameters that can write essays, code, poetry, and more. Researchers are stunned by its capabilities, and worried about misuse.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2022</div><div class="tl-body"><h4>ChatGPT Goes Viral</h4><p>OpenAI launches ChatGPT in November. It reaches 100 million users in just two months, the fastest-growing consumer technology in history. AI goes from a research topic to a household word overnight.</p></div></div>
     <div class="tl-item"><div class="tl-year">2023</div><div class="tl-body"><h4>The AI Race Explodes</h4><p>GPT-4, Google's Gemini, Meta's LLaMA, and dozens of open-source models launch. AI can now pass the bar exam, write code, and generate photorealistic images. Hinton quits Google to warn about AI risks.</p></div></div>
     <div class="tl-item"><div class="tl-year">2024</div><div class="tl-body"><h4>Nobel Prizes for AI</h4><p>Geoffrey Hinton and John Hopfield win the Nobel Prize in Physics for neural network research. Demis Hassabis wins the Nobel Prize in Chemistry for AlphaFold, which predicted the shape of nearly every known protein.</p></div></div>
     <div class="tl-item"><div class="tl-year">2025</div><div class="tl-body"><h4>Reasoning Models &amp; Regulation</h4><p>China's DeepSeek and new "reasoning models" show AI systems that can think step-by-step. Governments worldwide debate AI regulation. As Hinton put it: "They can produce strings of words that are their thinking."</p></div></div>
-    <div class="tl-item"><div class="tl-year">Oct 2025</div><div class="tl-body"><h4>"Agents" Become a Product, Not Just an Idea</h4><p>OpenAI, the company behind ChatGPT, releases AgentKit — a toolkit that lets companies build their own AI agents instead of having to invent the technology from scratch. It's a sign that "agentic AI" has moved from a research idea to something major companies are building on as a core, named feature.</p></div></div>
+    <div class="tl-item"><div class="tl-year">Oct 2025</div><div class="tl-body"><h4>"Agents" Become a Product, Not Just an Idea</h4><p>OpenAI, the company behind ChatGPT, releases AgentKit. It's a toolkit that lets companies build their own AI agents instead of having to invent the technology from scratch. It's a sign that "agentic AI" has moved from a research idea to a core, named feature major companies build on.</p></div></div>
     <div class="tl-item">
       <div class="tl-year">Aug 2, 2026</div>
       <div class="tl-body">
         <h4>Europe's AI Transparency Rules Take Effect</h4>
-        <p>New parts of the European Union's AI Act — one of the world's first major AI laws — take effect. Starting on this date, AI systems must tell people when they're talking to a machine instead of a human, and AI-generated content like deepfakes must be clearly labeled.</p>
+        <p>New parts of the European Union's AI Act take effect. It's one of the world's first major AI laws. Starting on this date, AI systems must tell people when they're talking to a machine instead of a human. AI-generated content like deepfakes must be clearly labeled.</p>
         <button class="quiz-toggle" style="margin-top:14px;background:none;border:1px dashed var(--rule);color:var(--ink-faint);font-size:.7rem;padding:8px 14px" id="mainTimeline" ondblclick="handleTimelineDblClick(event)">Double-click near this line...</button>
         <div class="hidden-egg" id="timeline-egg">
           <h4>Hidden History Unlocked</h4>
@@ -771,7 +807,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Alan Turing</h4>
         <div class="role">Father of Computer Science</div>
-        <p>Created the concept of a "universal machine" and proposed the Turing Test in 1950 — the idea that a machine is intelligent if it can fool a human in conversation. His work laid the theoretical foundation for all of computing.</p>
+        <p>Created the concept of a "universal machine". Proposed the Turing Test in 1950: the idea that a machine is intelligent if it can fool a human in conversation. His work laid the theoretical foundation for all of computing.</p>
         <div class="src">We could not confirm exactly where this photo came from.</div>
       </div>
     </div>
@@ -789,7 +825,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Fei-Fei Li</h4>
         <div class="role">Computer Vision Pioneer</div>
-        <p>Created ImageNet, the massive dataset of 14 million labeled images that proved neural networks could "see." Without ImageNet, the 2012 AlexNet breakthrough might never have happened. Now a professor at Stanford and advocate for human-centered AI.</p>
+        <p>Created ImageNet, the massive dataset of 14 million labeled images that proved neural networks could "see." Without ImageNet, the 2012 AlexNet breakthrough might never have happened. Now a professor at Stanford, and an advocate for human-centered AI.</p>
         <div class="src">We could not confirm exactly where this photo came from.</div>
       </div>
     </div>
@@ -798,7 +834,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Yoshua Bengio</h4>
         <div class="role">Deep Learning Pioneer</div>
-        <p>Helped develop foundational ideas behind modern language models and neural networks. Won the 2018 Turing Award (the "Nobel Prize of computing") alongside Hinton and Yann LeCun. Now a leading voice for AI safety research.</p>
+        <p>Helped develop foundational ideas behind modern language models and neural networks. Won the 2018 Turing Award, often called the <span class="term" tabindex="0" data-def="A nickname for the Turing Award, computer science's top honor, comparing it to the prestige of a Nobel Prize.">"Nobel Prize of computing"</span>, alongside Hinton and Yann LeCun. Now a leading voice for AI safety research.</p>
         <div class="src">We could not confirm exactly where this photo came from.</div>
       </div>
     </div>
@@ -807,7 +843,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Sam Altman</h4>
         <div class="role">CEO of OpenAI</div>
-        <p>Leads the company behind ChatGPT, the AI chatbot that brought artificial intelligence to the mainstream in 2022. Under his leadership, OpenAI grew from a small research lab to one of the most influential tech companies in the world.</p>
+        <p>Leads the company behind ChatGPT, the AI chatbot that brought artificial intelligence to the mainstream in 2022. Under his leadership, OpenAI grew from a small research lab into one of the most influential tech companies in the world.</p>
       </div>
     </div>
     <div class="person" data-person="5">
@@ -815,7 +851,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Timnit Gebru</h4>
         <div class="role">AI Ethics Researcher</div>
-        <p>Studies bias and fairness in AI systems. Co-authored landmark research showing facial recognition works worse on darker-skinned faces. Founded the DAIR Institute after a high-profile departure from Google, becoming a leading voice for responsible AI.</p>
+        <p>Studies bias and fairness in AI systems. Co-authored landmark research showing facial recognition works worse on darker-skinned faces. Founded the DAIR Institute after a high-profile departure from Google. Now a leading voice for responsible AI.</p>
         <div class="src">We could not confirm exactly where this photo came from.</div>
       </div>
     </div>
@@ -824,7 +860,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Demis Hassabis</h4>
         <div class="role">DeepMind Founder</div>
-        <p>Founded DeepMind, the lab behind AlphaGo and AlphaFold. AlphaFold predicted the 3D shape of nearly every known protein — a problem scientists had struggled with for 50 years. Won the 2024 Nobel Prize in Chemistry.</p>
+        <p>Founded DeepMind, the lab behind AlphaGo and AlphaFold. AlphaFold predicted the 3D shape of nearly every known protein. Scientists had struggled with that problem for 50 years. Won the 2024 Nobel Prize in Chemistry.</p>
         <div class="src">We could not confirm exactly where this photo came from.</div>
       </div>
     </div>
