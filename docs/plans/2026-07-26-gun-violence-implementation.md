@@ -14,7 +14,7 @@
 - Every factual claim gets an inline `<a class="cite-inline" href="..." target="_blank">src</a>` (confirm exact markup from `immigration.html` — do not assume, read the real file), pointing to a real, currently-live, non-paywalled source.
 - Fetch and read every source directly to confirm it supports the specific claim it's cited for — a live/200 URL is necessary but not sufficient. Prioritize primary/authoritative sources: the CDC (gun-death statistics), the Congressional Research Service or a comparable nonpartisan federal research source (policy mechanics), an established, methodologically-transparent school-shooting tracking organization (incident counts — e.g., a university-affiliated database), and, for the international-comparison section, each country's own government sources or a comparable authoritative reference (not a U.S. advocacy group's summary of another country's law).
 - **Default nonpartisanship discipline, non-negotiable everywhere on this page**: state facts, dates, and figures plainly. Attribute any characterization to a named, dated source's own findings — never assert it directly as the page's own judgment. Apply the party-swap/perspective-swap test to every sentence touching current or recent U.S. policy: *would this sentence read the same regardless of which political side, party, or administration is associated with it?*
-- **Settled-fact exception to the above**: Section 1's landmark-law history, Section 2's scale/statistics, Section 3's school-safety-measures content (effectiveness claims attributed to a named study/source, not staged as a two-sided debate), and Section 8's international comparisons are all held to an *accuracy* standard, not a *balance* standard. A true statistic doesn't need "some say" hedging. Another country's actual law doesn't need a U.S.-partisan lens applied to it. Do NOT apply the party-swap test to these sections' core content — apply it only to genuinely live, present-day, contested U.S. policy questions (concentrated in Task 6's update-pane and touched briefly in Task 5's policy-mechanics content).
+- **Settled-fact exception to the above**: the scale/statistics section (built in Task 3, reordered to open the page in Task 3a), the Second Amendment/landmark-law history (built in Task 2, now follows the scale section per Task 3a's reorder), Section 3's school-safety-measures content (effectiveness claims attributed to a named study/source, not staged as a two-sided debate), and Section 8's international comparisons are all held to an *accuracy* standard, not a *balance* standard. A true statistic doesn't need "some say" hedging. Another country's actual law doesn't need a U.S.-partisan lens applied to it. Do NOT apply the party-swap test to these sections' core content — apply it only to genuinely live, present-day, contested U.S. policy questions (concentrated in Task 6's update-pane and touched briefly in Task 5's policy-mechanics content). **Note on page order after Task 3a**: `<main>`'s actual document order is now scale/stakes → Second Amendment/landmark laws → measures tried → policy today, NOT the "Section 1/2/3/4" numbering these constraints and later task descriptions use for historical/labeling convenience — that numbering refers to each task's own build order, not final document position. Confirm actual document order directly in the file rather than assuming from a "Section N" label.
 - **The differing-perspectives component (Task 6 ONLY)**: reused verbatim from `immigration.html` — for genuinely contested present-day U.S. policy claims in the update-pane, present two or more named viewpoints side by side, each with its own real, verifiable citation. Equal visual weight, equal specificity, no side gets the last word. Scoped ONLY to Task 6's update-pane content — do not use it in Section 8 (international comparisons state facts, they don't stage a debate about whether the U.S. should adopt similar policies) or anywhere else on this page.
 - **Suicide-data handling (Task 3 specifically)**: state the fact plainly and briefly (that a majority of U.S. gun deaths are suicides, not homicides), cited, with the 988 Suicide & Crisis Lifeline note placed immediately adjacent to that specific sentence/paragraph — not several paragraphs removed, not relegated to a general disclaimer elsewhere on the page. Phrase the crisis note supportively, not clinically. This is not the page's emotional center — keep it brief and move on to Section 4 (school safety measures) promptly.
 - **"Groups Working on This Issue" composition rule (Task 10), non-negotiable**: if a gun-violence-prevention advocacy organization active in Washington is included, a gun-rights/Second Amendment advocacy organization active in Washington must be included alongside it, with equal visual treatment (same card size, same description length/specificity, same neutral descriptive tone). Each description states what that organization says it does, sourced from that organization's own materials — never a characterization from the opposing side. If a genuinely balanced pair cannot be found and verified, this subsection does not ship at all. There is no acceptable version of this subsection with only one side.
@@ -192,6 +192,46 @@ Run: `open gun-violence.html`, scroll to this section, confirm it renders correc
 ```bash
 git add gun-violence.html
 git commit -m "feat: add Gun Violence Section 2 — understanding the scale"
+```
+
+---
+
+## Task 3a: Reorder Sections 1-2 and Add Worsening-Trend Content
+
+**Files:**
+- Modify: `gun-violence.html` (swap the `#second-amendment` and `#scale` section positions in `<main>`; add new opening/closing content to each; add verified long-run trend data)
+
+**Context:** Added mid-build per explicit project-owner direction, after reviewing Tasks 2-3's completed content. The project owner's reasoning: growing up with lockdown drills and persistent fear of school shootings is not a historical constant in American life, and the page should establish that fact and its weight before walking through the legal/historical framework that's part of how the country got here — and further, this isn't just "currently high," it's "gotten worse over time," a claim that needs its own verified data, not just the existing 2023-vs-2025 comparison (a 2-year window showing a *decline*, which cannot on its own support a multi-decade "worse over time" claim). This task does NOT change either section's core factual content from Tasks 2-3 (the Second Amendment/landmark-laws content and the gun-death/school-shooting statistics both stay as already verified and reviewed) — it reorders them, adds new bridging/framing content at the seams, and adds new, separately-sourced long-run trend data to Section 1.
+
+- [ ] **Step 1: Verify long-run school-shooting trend data**
+
+Fetch and read directly (do not reuse only the already-cited 2023/2025 figures — those show a recent 2-year window, not a long-run trend). Candidates to research: the K-12 School Shooting Database's own published trend analysis or downloadable dataset (it tracks incidents back to 1966, per Task 3's already-verified citation — confirm whether the database or a source citing it publishes a genuine multi-decade comparison, e.g., incidents-per-decade or a comparable measure); RAND's own trend analysis (RAND was already cited in Task 3 for the 2023 figure — check whether RAND's report includes a longer historical comparison); or a comparable authoritative source (e.g., a peer-reviewed study on long-run school-shooting trends). Confirm the actual shape of the trend — do not assume it is a clean, monotonic increase. If the verified data shows a more complicated pattern (e.g., a rise across recent decades with a partial recent decline — which the existing 2023→2025 numbers already hint at), state that complexity honestly rather than flattening it into a simple "always getting worse" narrative. This is settled-fact content held to an accuracy standard, same as the rest of Section 1/2's content — verify before asserting, per this project's standing sourcing discipline.
+
+- [ ] **Step 2: Reorder the sections in the HTML**
+
+Move the `#scale` section (currently second in `<main>`, built in Task 3) to appear BEFORE the `#second-amendment` section (currently first, built in Task 2). Update the sticky-nav's anchor order in `<nav class="section-nav">` to match the new order (scale link before second-amendment link). Do not change either section's internal content structure yet — that's Steps 3-4.
+
+- [ ] **Step 3: Add new opening content to Section 1 (now `#scale`) and a closing bridge**
+
+At the very start of the section (before the existing gun-death-statistics content from Task 3), add new opening content establishing that this level of school-shooting concern — lockdown drills, active-shooter drills, the general backdrop of fear — is not a historical constant in American life. State this as a framing observation, not an unsourced editorial claim — if a specific, verifiable fact supports it (e.g., a dated source on when lockdown/active-shooter drills became widespread in U.S. schools, which Task 9's History Timeline may also want later), cite it; otherwise frame it as an invitation to look at the data that follows, e.g., "Growing up with lockdown drills might feel normal. It hasn't always been this way. Here's what the numbers show." Insert the newly-verified long-run trend data from Step 1 into the school-shooting-incident subsection (already built in Task 3), presented alongside or immediately following the existing 2023/2025 figures — do not delete or contradict those figures, add the longer-run context around them. At the END of the section (after all of Task 3's existing content), add a short bridging paragraph or `<h3>` transition explicitly posing the question the next section will answer — e.g., "So how did the U.S. end up here? Part of the answer starts with one sentence written in 1791." — leading directly into Section 2's Second Amendment content.
+
+- [ ] **Step 4: Add a new opening line to Section 2 (now `#second-amendment`)**
+
+Adjust the section's own opening (the existing `.lede` paragraph from Task 2) so it reads as picking up the bridge question from Section 1's new closing, rather than as a cold open. This may be as light as changing the first sentence's framing (e.g., ensuring it explicitly connects to "how did we get here" rather than starting a fresh, disconnected thought) — do not rewrite the rest of the section's already-reviewed content.
+
+- [ ] **Step 5: Verify the reorder didn't break anything**
+
+Run: `open gun-violence.html`. Confirm: the nav anchors now scroll in the new order (scale section first, second-amendment section second), both sections still render their original Task 2/3 content correctly (nothing was accidentally dropped or duplicated during the move), the new bridge content at the seam reads naturally across the section boundary, the new long-run trend data is clearly cited and doesn't contradict the existing 2023/2025 figures, and both sections' existing quizzes (`q1`, `q2`) still function correctly regardless of section order (quiz IDs don't depend on document order, but confirm their trigger buttons are still in the right section after the move).
+
+- [ ] **Step 6: Confirm citation and quote integrity after the reorder**
+
+Count `cite-inline` occurrences before and after this task's edits — should increase only by the number of new citations added for the long-run trend data in Step 1/3, with zero citations lost from the move itself. Confirm no existing quote or citation from Tasks 2-3 was altered during the section swap (a pure move should leave existing markup byte-identical except for its position in the document).
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: reorder Sections 1-2 (scale opens the page), add long-run trend data and bridge content"
 ```
 
 ---
@@ -601,7 +641,7 @@ Run: `grep -n "perspectives\|perspective-label" gun-violence.html` and confirm e
 
 - [ ] **Step 6: Confirm the suicide-data handling is still correct after all subsequent edits**
 
-Re-read Section 2's suicide-data sentences one more time in the fully-assembled page (checking that nothing added in later tasks accidentally pushed the 988 crisis note further from its sentence, or altered its supportive tone).
+Re-read the scale/statistics section's suicide-data sentences one more time in the fully-assembled page (this section opens the page as of Task 3a's reorder — confirm its actual current section, don't assume "Section 2" — checking that nothing added in later tasks accidentally pushed the 988 crisis note further from its sentence, or altered its supportive tone).
 
 - [ ] **Step 7: Re-verify all citation links resolve**
 
