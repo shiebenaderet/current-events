@@ -29,7 +29,8 @@ A new topic page, built directly in the site's now-locked editorial design syste
 7. **How Other Countries Handle This** (the page's distinctive hook, added per explicit project-owner direction mid-brainstorm): structural, factual comparison of 3-4 countries with genuinely different regulatory approaches — strong candidates: Australia (the 1996 National Firearms Agreement and mandatory buyback following the Port Arthur massacre), Japan (near-total civilian firearm restriction), Switzerland (comparatively high civilian gun ownership tied to its militia-based reserve system, but a very different regulatory structure than the U.S.), and Canada (a regulatory middle ground, geographically and culturally proximate to the U.S., making the comparison concrete for students). Each country's actual laws and, where a clear, well-documented before/after data point exists (e.g., Australia's post-1996 trends), factual outcomes — stated plainly with sources, with **no editorializing about which country's approach is "better"** and no side-by-side "supporters say / critics say" framing here (that pattern is reserved for the update-pane's genuinely live U.S. policy debates, not for describing other countries' settled law).
 8. **History Timeline**: pulls dates already established in Sections 1-3 (1934, 1968, 1994/2004, *Heller* 2008, plus a small number of major school-shooting-era inflection points if directly relevant to policy history — e.g., Columbine 1999 as the point after which SROs/lockdown drills became widespread, stated as a policy-history fact, not an incident narrative).
 9. **Key People**: two historical figures only, per this site's hard, non-negotiable rule (no current sitting officials, ever). Candidates to research and verify at implementation time — one figure tied to a landmark law's passage, one figure tied to school-safety-policy advocacy or research, both confirmed as genuinely historical (not currently active in the role that would make them politically live) before being locked in.
-10. **Videos, Resources**: standard pattern — videos, a resources grid of nonpartisan/reputable sources, and a dated "Keep up with school safety policy news" curated-links subsection mirroring every other page's equivalent.
+10. **Videos, Resources**: standard pattern — videos, a resources grid of nonpartisan/reputable sources, and a dated "Keep up with school safety policy news" curated-links subsection mirroring every other page's equivalent. Also includes a new subsection, **"Groups Working on This Issue"** (see dedicated section below).
+11. **Images**: at least one real, verified image per major section (see dedicated section below) — added as its own implementation task, not woven in ad hoc per-section the way earlier pages on this site initially did, following the lesson from Immigration's build that a dedicated image-sourcing pass works better once all section prose is finalized.
 
 ---
 
@@ -76,6 +77,22 @@ Both names researched and confirmed against real, settled historical sourcing be
 
 ---
 
+## "Groups Working on This Issue" (Resources subsection)
+
+Added per explicit project-owner direction. A small, deliberately balanced set of Washington-based or Washington-active organizations working on gun violence prevention and/or school safety, from genuinely different perspectives — placed in the Resources section (not the update-pane, and not cited elsewhere on the page as a source for any factual claim), framed explicitly as "organizations working on this issue" for students who want to learn more, not as evidence the article itself relies on.
+
+**Composition rule, non-negotiable:** if a gun-violence-prevention advocacy organization is included, a gun-rights/Second Amendment advocacy organization active in Washington must be included alongside it, with equal visual treatment (same card size, same description length/specificity, same neutral descriptive tone — "this organization advocates for X" stated factually for both, never "this organization exists to spread X's dangerous view" for one and a neutral description for the other). Apply the same party-swap-style test used elsewhere on this site: would each organization's one-line description read as evenhanded if a reader who supports the *other* organization's position read it? Descriptions state what each group says it does, sourced from that group's own materials, not a characterization from the opposing side.
+
+If, at implementation time, a genuinely balanced pair of Washington-active organizations cannot be found and verified, omit this subsection entirely rather than include an unbalanced set — do not ship one side without the other.
+
+---
+
+## Images
+
+At least one real, verified image per major section (Sections 1-4, the update-pane, Washington's School Safety Story, the international-comparison section, and the History Timeline) — implemented as its own dedicated task after all page prose is finalized, mirroring `immigration.html`'s Task 10 (added mid-build there after the rest of the page was already text-heavy; built into this page's plan from the start instead). Same non-negotiable discipline as every image on this site: license (public domain or CC) and subject match verified directly on the image's own Wikimedia Commons file page, never from an embedding article or search-result thumbnail. Given this topic's sensitivity, images should be non-graphic and non-incident-specific by default — favor images of policy/institutional subjects (a courtroom, a state capitol, a school security checkpoint, a red-flag-law press conference, a foreign country's relevant landmark/context for the international section) over anything depicting an actual shooting scene, memorial, or victim — this is a stronger constraint on image selection than any prior page on this site has needed, and should be treated as a hard filter, not a preference, during sourcing.
+
+---
+
 ## Sourcing Standards
 
 Same discipline as every prior page: fetch and read every source directly to confirm it supports the specific claim it's cited for — a live/200 URL is not sufficient. Prioritize primary/authoritative sources: the CDC (for gun-death statistics), the Congressional Research Service or a comparable nonpartisan federal research source (for policy-mechanics content), an established, methodologically-transparent school-shooting tracking organization (e.g., a university-affiliated database) for incident counts, and, for the international-comparison section, each country's own government sources or a comparable authoritative reference (not a single U.S.-advocacy-group summary of another country's law). For the update-pane's Part B differing-perspectives content, both sides of any pairing must cite a real, named, verifiable source in that side's own words — no unsourced assertion on either side. Images: Wikimedia Commons only, verified license and subject-match confirmed directly on the file's own Commons page, with this site's established honest "no verifiable image found" fallback used rather than a forced or unverified citation.
@@ -88,6 +105,8 @@ Same discipline as every prior page: fetch and read every source directly to con
 
 The update-pane's Part A/Part B content may land slightly higher given factual density, matching this site's standing accepted trade-off for update-panes generally — but even there, prefer short sentences over long ones wherever the content allows it.
 
+**A dedicated grade-level review pass is a required implementation task, not an assumption.** Per explicit project-owner direction, the implementation plan must include its own task — after all content sections are written — that rereads the entire page section by section, spot-checks actual sentence length against the ~12-15 word target, and fixes anything that drifted during drafting. Writing to the target from the start (above) reduces how much this pass needs to fix, but does not replace the pass itself; every prior page on this site that skipped a dedicated review step needed one added later anyway.
+
 ---
 
 ## Out of Scope (for this build)
@@ -96,4 +115,5 @@ The update-pane's Part A/Part B content may land slightly higher given factual d
 - Detailed state-by-state comparison of every U.S. state's gun laws — Washington gets its own dedicated section; other states are not individually profiled.
 - A deep dive into the international comparison countries' broader criminal-justice or social-policy systems beyond what's directly relevant to their firearm regulation — e.g., Japan's broader criminal justice system is out of scope beyond what explains its firearm law specifically.
 - Any use of the differing-perspectives component outside the update-pane's Part B, per the Nonpartisanship Discipline section above.
+- An unbalanced "Groups Working on This Issue" subsection — either a genuinely balanced pair ships, or the subsection doesn't ship at all, per the composition rule above.
 - A running, frequently-refreshed news ticker — the update-pane is a dated snapshot like every other page's, refreshed at future site updates, not a live feed.
