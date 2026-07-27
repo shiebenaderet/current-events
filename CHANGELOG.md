@@ -2,6 +2,15 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.6.0] — 2026-07-26
+
+**Minor — site-wide reading-level pass on four pages, plus a new inline vocabulary-tooltip component ported everywhere.**
+
+- A post-launch audit of `immigration.html` (comparing its two-pass reading-level work against the site's other five pages) found `ai.html` and `ukraine.html` were the furthest from the site's 5th–6th grade target — both predate the `.term` inline tooltip component introduced with Immigration, so jargon was defined inline via parentheticals (e.g. "the Bolsheviks (the communist revolutionaries who created the Soviet Union)"), which reliably bundles multiple ideas into one long sentence. `iran.html` and `us-elections.html` were already close to target and needed only light touch-ups.
+- `ai.html` and `ukraine.html`: full reading-level rewrites, following the same process and integrity bar as Immigration's own rewrite — every direct quote, citation, and `.vocab` box verified byte-identical before and after (ukraine.html: 22 quotes independently re-verified, including sensitive Holodomor/wartime quotes; citations and vocab boxes confirmed unchanged on both pages). The `.term` tooltip component (hover- and keyboard-focus-triggered, ported from `immigration.html`) now carries the jargon that used to live in parentheticals — 12 tooltips added to each page.
+- `iran.html` and `us-elections.html`: light touch-ups only — a handful of clearly-bundled em-dash sentences split, `.term` ported for site-wide consistency (with each page's own accent color, not a shared hardcoded one — `us-elections.html` keeps its deliberate navy/gold palette). `us-elections.html`'s two touched sentences (Speaker of the House, Senate Majority Leader) were independently verified against the party-swap nonpartisanship test; `iran.html`'s existing attribution language (e.g. "though the Israeli military denied being responsible") was verified character-for-character unchanged.
+- One real mistake caught and fixed mid-effort: an early fix attempt on `ai.html` moved a period from outside to inside a closing quotation mark on three quotes, which turned out to still not match the original — the original quotes had no trailing punctuation at all, since they sat mid-sentence rather than at a sentence's end. The correct fix restructured the surrounding sentences so each quote could stay in its original grammatical position instead of forcing punctuation next to it.
+
 ## [2.5.1] — 2026-07-26
 
 **Patch — fixed broken cross-page navigation on climate-change.html, introduced by v2.5.0's Immigration site-wiring.**
