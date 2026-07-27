@@ -534,7 +534,34 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>The Second Amendment &amp; Landmark Laws</h2>
 </div>
 <div class="article">
-  <p>[Content added in Task 2]</p>
+  <p class="lede"><strong>Every gun law in America connects back to one sentence.</strong> That sentence is the Second Amendment. It was added to the U.S. Constitution in 1791. It reads: "A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed."<a class="cite-inline" href="https://www.archives.gov/founding-docs/bill-of-rights-transcript" target="_blank">National Archives</a> That's the whole amendment. It's just one sentence. But people have argued about what it means for over 200 years.</p>
+
+  <h3>What the Supreme Court decided in 2008</h3>
+
+  <p>For most of American history, courts mostly connected this amendment to militia service. A <span class="term" tabindex="0" data-def="An armed group of ordinary citizens, not full-time soldiers, that a state could call on to defend itself.">militia</span> is a group of citizens who can be called on to defend their state. But in 2008, the Supreme Court took a major case. It was called <em>District of Columbia v. Heller</em>.</p>
+
+  <p>The Court ruled 5-4. It held that the Second Amendment protects an individual person's right to own a gun. That right applies even if the person is not part of a militia. The Court said people can keep a gun at home for "traditionally lawful purposes," including self-defense.<a class="cite-inline" href="https://www.law.cornell.edu/supct/html/07-290.ZS.html" target="_blank">Cornell Law School (Supreme Court syllabus)</a> This was a major shift. It was the first time the Court had ruled this way. The case struck down a strict handgun ban in Washington, D.C.<a class="cite-inline" href="https://www.law.cornell.edu/supct/html/07-290.ZS.html" target="_blank">Cornell Law School (Supreme Court syllabus)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p><em>Heller</em> settled one big question. It said the Second Amendment protects an individual right. But it did not settle every question about gun laws. Courts are still deciding how far that right goes, and which gun laws can still stand.</p>
+  </div>
+
+  <h3>Four laws that shaped today's rules</h3>
+
+  <p>Congress has passed several major gun laws since the 1930s. Here are four of the most important ones.</p>
+
+  <p><strong>The National Firearms Act (1934)</strong> was the first major federal gun law. It taxed and required registration for the most dangerous weapons. That includes machine guns, short-barreled rifles and shotguns, and <span class="term" tabindex="0" data-def="A device attached to a gun that muffles the sound it makes when fired.">silencers</span>. Congress passed it during an era of gangster violence. Owners of these weapons still have to register them with the federal government today.</p>
+
+  <p><strong>The Gun Control Act (1968)</strong> went much further. It created the system of <span class="term" tabindex="0" data-def="A business or person the federal government has approved to sell guns legally, after passing a background check and other requirements.">federally licensed dealers</span> that still exists today. Anyone who sells guns as a business must get a federal license. The law also created "prohibited person" categories. Convicted felons, for example, cannot legally buy a gun.</p>
+
+  <p><strong>The Brady Handgun Violence Prevention Act (1993)</strong> added a new requirement. Licensed dealers must run a <span class="term" tabindex="0" data-def="A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one.">background check</span> before selling a gun. This stops many prohibited buyers before a sale happens. A national instant-check system now runs these checks in minutes.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Brady_Handgun_Violence_Prevention_Act" target="_blank">Wikipedia, citing Pub. L. 103-159</a></p>
+
+  <p><strong>The federal assault weapons ban (1994)</strong> banned certain semi-automatic weapons and large ammunition magazines. But the law had a built-in expiration date. It was written to last only ten years. Congress did not pass a new law to extend it. So the ban expired on its own in 2004, and it has not been renewed since.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Federal_Assault_Weapons_Ban" target="_blank">Wikipedia, citing Pub. L. 103-322</a></p>
+
+  <p>These four laws are still the foundation of federal gun policy today. The next section looks at how big the problem they were meant to address really is.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
 
 <!-- ═══════════ UNDERSTANDING THE SCALE ═══════════ -->
@@ -637,7 +664,15 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)
 
 // Subsequent tasks add entries here as each section's quiz is built.
-const quizzes = {};
+const quizzes = {
+  q1: {
+    q: "What did the Supreme Court decide in District of Columbia v. Heller (2008)?",
+    choices: ["That the Second Amendment only applies to militia members", "That the Second Amendment protects an individual's right to own a gun, even outside a militia", "That handgun bans are always constitutional", "That Congress cannot pass any gun laws"],
+    correct: 1,
+    feedback: "✅ Correct! In 2008, the Supreme Court ruled 5-4 that the Second Amendment protects an individual person's right to own a gun for lawful purposes like self-defense, even if they are not part of a militia.",
+    wrong: "Not quite. In Heller, the Supreme Court ruled that the Second Amendment protects an individual's right to own a gun, even outside of militia service."
+  }
+};
 
 function openQuiz(id) {
   if (answeredQuizzes.has(id)) {
