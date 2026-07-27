@@ -243,6 +243,40 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .chart-wrap svg{width:100%;height:auto;display:block}
 .chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
 
+/* ══ HEX-GRID CHOROPLETH MAP ══
+   50-state map built as inline SVG hexagons, one per state, in an offset grid
+   positioned to approximate real relative U.S. geography (a "hex cartogram" —
+   the same simplified-map convention used by NPR and similar outlets, chosen
+   because literal state-boundary paths are far harder to keep both accurate
+   and legible at small sizes than a grid of same-size shapes). Alaska and
+   Hawaii sit as a clearly separated inset, matching standard convention. */
+.map-wrap{margin:36px 0;padding:24px 0 20px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.map-wrap .hexmap-svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+.map-wrap .hexmap-svg polygon{cursor:default}
+.map-legend{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:18px;font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-light)}
+.map-legend .legend-label{font-weight:700;color:var(--ink);margin-right:4px}
+.map-legend .swatch{display:inline-flex;align-items:center;gap:4px}
+.map-legend .swatch i{width:18px;height:18px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.map-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:16px;line-height:1.55;text-align:center}
+.map-not-to-scale{font-size:.68rem;color:var(--ink-faint);text-align:center;margin-top:4px;font-family:-apple-system,sans-serif}
+
+/* ══ STATE-COMPARISON CALLOUT (used for both map + table WA callouts) ══ */
+.state-callout{margin:24px 0;padding:18px 22px;background:var(--accent-tint);border-left:3px solid var(--accent)}
+.state-callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
+.state-callout p{margin:0;font-size:1.02rem;color:var(--ink)}
+.state-callout p+p{margin-top:8px}
+
+/* ══ RANKED STATE TABLE ══ */
+.state-table-wrap{margin:28px 0;overflow-x:auto}
+.state-table{width:100%;border-collapse:collapse;font-family:-apple-system,sans-serif;font-size:.88rem}
+.state-table caption{text-align:left;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+.state-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-light)}
+.state-table td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink)}
+.state-table td.num,.state-table th.num{text-align:right;font-variant-numeric:tabular-nums}
+.state-table tr.wa-row td{background:var(--accent-tint);font-weight:700}
+.state-table tr.wa-row td:first-child{border-left:3px solid var(--accent)}
+.state-table tr.ellipsis td{color:var(--ink-faint);text-align:center;font-style:italic;border-bottom:1px solid var(--rule)}
+
 /* ══ QUIZ ══ */
 .quiz-inline{margin:36px 0}
 .quiz-toggle{display:inline-flex;align-items:center;gap:9px;font-family:-apple-system,sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;cursor:pointer;padding:13px 24px;box-shadow:0 2px 10px rgba(90,97,105,.25)}
@@ -563,6 +597,124 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 
+  <h3>How does Washington compare to other states?</h3>
+
+  <p>Gun deaths and school shootings don't happen evenly across the country. Some states have higher numbers than others. Researchers measure this in two different ways, and it's important not to mix them up.</p>
+
+  <p>The first way is a <span class="term" tabindex="0" data-def="A number adjusted for population size, so places with more or fewer people can be fairly compared. Usually shown as a rate 'per 100,000 people.'">rate per capita</span>. This adjusts for how many people live in a state, so a big state and a small state can be fairly compared. The second way is a raw count — just the total number of incidents, with no adjustment for population. A big state will almost always have a higher raw count than a small state, just because it has more people and more schools. Below are both kinds of numbers: a map of gun death rates, and a table of school-shooting counts. They measure different things, so don't expect them to match.</p>
+
+  <h4 style="font-family:'Source Serif 4',serif;font-weight:700;font-size:1.05rem;margin-bottom:14px">Gun death rate by state (a per-capita rate, not a raw count)</h4>
+
+  <p>The map below shows each state's gun death rate — deaths per 100,000 people — for 2024, the most recent year with full data. Darker states have higher rates. Lighter states have lower rates. This includes suicides, homicides, and all other gun deaths added together, the same categories covered earlier in this section.<a class="cite-inline" href="https://www.kff.org/other/state-indicator/firearms-death-rate-per-100000/" target="_blank">KFF, citing CDC WONDER</a></p>
+
+  <div class="map-wrap">
+    <svg class="hexmap-svg" viewBox="-26.0 -26.0 520.0 367.2" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplified hexagon map of the United States, showing each state colored by its 2024 gun death rate per 100,000 people, from light (lowest) to dark (highest). Washington is outlined in black.">
+<g><polygon points="24.5,315.2 12.3,336.5 -12.2,336.5 -24.5,315.2 -12.3,294.0 12.3,294.0" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Alaska: 24.4 gun deaths per 100,000 people (2024)</title></polygon><text x="0.0" y="319.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AK</text></g>
+<g><polygon points="297.5,202.6 285.2,223.9 260.8,223.9 248.5,202.6 260.8,181.4 285.2,181.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Alabama: 23.7 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="206.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AL</text></g>
+<g><polygon points="219.5,202.6 207.2,223.9 182.8,223.9 170.5,202.6 182.8,181.4 207.2,181.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Arkansas: 20.6 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="206.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AR</text></g>
+<g><polygon points="102.5,180.1 90.2,201.4 65.8,201.4 53.5,180.1 65.7,158.9 90.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Arizona: 16.9 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AZ</text></g>
+<g><polygon points="63.5,112.6 51.2,133.8 26.8,133.8 14.5,112.6 26.7,91.4 51.2,91.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>California: 7.0 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CA</text></g>
+<g><polygon points="141.5,112.6 129.2,133.8 104.8,133.8 92.5,112.6 104.7,91.4 129.2,91.4" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Colorado: 15.3 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CO</text></g>
+<g><polygon points="453.5,157.6 441.2,178.8 416.8,178.8 404.5,157.6 416.8,136.4 441.2,136.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Connecticut: 5.8 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CT</text></g>
+<g><polygon points="414.5,180.1 402.2,201.4 377.8,201.4 365.5,180.1 377.8,158.9 402.2,158.9" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Delaware: 11.8 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">DE</text></g>
+<g><polygon points="336.5,225.2 324.2,246.4 299.8,246.4 287.5,225.2 299.8,203.9 324.2,203.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Florida: 12.7 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="229.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">FL</text></g>
+<g><polygon points="336.5,135.1 324.2,156.3 299.8,156.3 287.5,135.1 299.8,113.9 324.2,113.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Georgia: 17.6 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">GA</text></g>
+<g><polygon points="102.5,315.2 90.2,336.5 65.8,336.5 53.5,315.2 65.7,294.0 90.2,294.0" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Hawaii: 3.7 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="319.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">HI</text></g>
+<g><polygon points="219.5,112.6 207.2,133.8 182.8,133.8 170.5,112.6 182.8,91.4 207.2,91.4" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Iowa: 11.8 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">IA</text></g>
+<g><polygon points="102.5,45.0 90.2,66.3 65.8,66.3 53.5,45.0 65.7,23.8 90.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Idaho: 15.9 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ID</text></g>
+<g><polygon points="258.5,90.1 246.2,111.3 221.8,111.3 209.5,90.1 221.8,68.8 246.2,68.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Illinois: 12.4 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">IL</text></g>
+<g><polygon points="297.5,67.5 285.2,88.8 260.8,88.8 248.5,67.5 260.8,46.3 285.2,46.3" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Indiana: 17.2 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">IN</text></g>
+<g><polygon points="180.5,135.1 168.2,156.3 143.8,156.3 131.5,135.1 143.8,113.9 168.2,113.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Kansas: 15.2 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">KS</text></g>
+<g><polygon points="297.5,112.6 285.2,133.8 260.8,133.8 248.5,112.6 260.8,91.4 285.2,91.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Kentucky: 18.5 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">KY</text></g>
+<g><polygon points="219.5,247.7 207.2,268.9 182.8,268.9 170.5,247.7 182.8,226.5 207.2,226.5" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Louisiana: 22.9 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="251.7" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">LA</text></g>
+<g><polygon points="453.5,112.6 441.2,133.8 416.8,133.8 404.5,112.6 416.8,91.4 441.2,91.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Massachusetts: 3.8 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MA</text></g>
+<g><polygon points="414.5,90.1 402.2,111.3 377.8,111.3 365.5,90.1 377.8,68.8 402.2,68.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Maryland: 11.6 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MD</text></g>
+<g><polygon points="453.5,22.5 441.2,43.7 416.8,43.7 404.5,22.5 416.8,1.3 441.2,1.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Maine: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ME</text></g>
+<g><polygon points="297.5,22.5 285.2,43.7 260.8,43.7 248.5,22.5 260.8,1.3 285.2,1.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Michigan: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MI</text></g>
+<g><polygon points="219.5,67.5 207.2,88.8 182.8,88.8 170.5,67.5 182.8,46.3 207.2,46.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Minnesota: 9.8 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MN</text></g>
+<g><polygon points="219.5,157.6 207.2,178.8 182.8,178.8 170.5,157.6 182.8,136.4 207.2,136.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Missouri: 19.6 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MO</text></g>
+<g><polygon points="258.5,180.1 246.2,201.4 221.8,201.4 209.5,180.1 221.8,158.9 246.2,158.9" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Mississippi: 28.0 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MS</text></g>
+<g><polygon points="141.5,22.5 129.2,43.7 104.8,43.7 92.5,22.5 104.7,1.3 129.2,1.3" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Montana: 20.2 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MT</text></g>
+<g><polygon points="297.5,157.6 285.2,178.8 260.8,178.8 248.5,157.6 260.8,136.4 285.2,136.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>North Carolina: 16.3 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NC</text></g>
+<g><polygon points="180.5,0.0 168.2,21.2 143.8,21.2 131.5,0.0 143.8,-21.2 168.2,-21.2" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>North Dakota: 12.2 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="4.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ND</text></g>
+<g><polygon points="180.5,90.1 168.2,111.3 143.8,111.3 131.5,90.1 143.8,68.8 168.2,68.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Nebraska: 10.9 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NE</text></g>
+<g><polygon points="453.5,67.5 441.2,88.8 416.8,88.8 404.5,67.5 416.8,46.3 441.2,46.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>New Hampshire: 10.2 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NH</text></g>
+<g><polygon points="414.5,135.1 402.2,156.3 377.8,156.3 365.5,135.1 377.8,113.9 402.2,113.9" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>New Jersey: 4.0 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NJ</text></g>
+<g><polygon points="141.5,157.6 129.2,178.8 104.8,178.8 92.5,157.6 104.7,136.4 129.2,136.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>New Mexico: 26.6 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NM</text></g>
+<g><polygon points="102.5,90.1 90.2,111.3 65.8,111.3 53.5,90.1 65.7,68.8 90.2,68.8" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Nevada: 17.2 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NV</text></g>
+<g><polygon points="375.5,67.5 363.2,88.8 338.8,88.8 326.5,67.5 338.8,46.3 363.2,46.3" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>New York: 4.4 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NY</text></g>
+<g><polygon points="336.5,45.0 324.2,66.3 299.8,66.3 287.5,45.0 299.8,23.8 324.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Ohio: 14.6 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">OH</text></g>
+<g><polygon points="180.5,180.1 168.2,201.4 143.8,201.4 131.5,180.1 143.8,158.9 168.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Oklahoma: 19.1 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">OK</text></g>
+<g><polygon points="63.5,67.5 51.2,88.8 26.8,88.8 14.5,67.5 26.7,46.3 51.2,46.3" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Oregon: 14.2 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">OR</text></g>
+<g><polygon points="375.5,112.6 363.2,133.8 338.8,133.8 326.5,112.6 338.8,91.4 363.2,91.4" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Pennsylvania: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">PA</text></g>
+<g><polygon points="492.5,90.1 480.2,111.3 455.8,111.3 443.5,90.1 455.8,68.8 480.2,68.8" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Rhode Island: 4.6 gun deaths per 100,000 people (2024)</title></polygon><text x="468.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">RI</text></g>
+<g><polygon points="336.5,180.1 324.2,201.4 299.8,201.4 287.5,180.1 299.8,158.9 324.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>South Carolina: 19.5 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">SC</text></g>
+<g><polygon points="180.5,45.0 168.2,66.3 143.8,66.3 131.5,45.0 143.8,23.8 168.2,23.8" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>South Dakota: 17.3 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">SD</text></g>
+<g><polygon points="258.5,135.1 246.2,156.3 221.8,156.3 209.5,135.1 221.8,113.9 246.2,113.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Tennessee: 19.8 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">TN</text></g>
+<g><polygon points="180.5,225.2 168.2,246.4 143.8,246.4 131.5,225.2 143.8,203.9 168.2,203.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Texas: 13.9 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="229.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">TX</text></g>
+<g><polygon points="102.5,135.1 90.2,156.3 65.8,156.3 53.5,135.1 65.7,113.9 90.2,113.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Utah: 13.3 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">UT</text></g>
+<g><polygon points="375.5,157.6 363.2,178.8 338.8,178.8 326.5,157.6 338.8,136.4 363.2,136.4" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Virginia: 12.8 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">VA</text></g>
+<g><polygon points="414.5,45.0 402.2,66.3 377.8,66.3 365.5,45.0 377.8,23.8 402.2,23.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Vermont: 10.6 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">VT</text></g>
+<g class="hex-wa"><polygon points="63.5,22.5 51.2,43.7 26.8,43.7 14.5,22.5 26.7,1.3 51.2,1.3" fill="#c3c9cd" stroke="#1a1a1a" stroke-width="3"><title>Washington: 11.0 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WA</text></g>
+<g><polygon points="258.5,45.0 246.2,66.3 221.8,66.3 209.5,45.0 221.8,23.8 246.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Wisconsin: 12.1 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WI</text></g>
+<g><polygon points="336.5,90.1 324.2,111.3 299.8,111.3 287.5,90.1 299.8,68.8 324.2,68.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>West Virginia: 15.3 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WV</text></g>
+<g><polygon points="141.5,67.5 129.2,88.8 104.8,88.8 92.5,67.5 104.7,46.3 129.2,46.3" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Wyoming: 23.4 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">WY</text></g>
+</svg>
+    <div class="map-legend">
+      <span class="legend-label">Gun deaths per 100,000 people:</span>
+      <span class="swatch"><i style="background:#eaecee"></i> Under 8</span>
+      <span class="swatch"><i style="background:#c3c9cd"></i> 8–12</span>
+      <span class="swatch"><i style="background:#94a0a7"></i> 12–16</span>
+      <span class="swatch"><i style="background:#697079"></i> 16–20</span>
+      <span class="swatch"><i style="background:#3a4048"></i> 20 and up</span>
+    </div>
+    <p class="map-cap">Each hexagon represents one state, arranged in roughly its real position on the map — this is a simplified "hex map," not a precise outline of state borders. Alaska and Hawaii are shown as an inset, not to scale or true distance.</p>
+  </div>
+
+  <div class="state-callout">
+    <span class="tag">Washington, By the Numbers</span>
+    <p>In 2024, Washington's gun death rate was <strong>11.0 deaths per 100,000 people</strong>. That places Washington <strong>12th out of 50 states, counting from the lowest rate to the highest</strong>. Washington's rate is below the national rate of 12.8 per 100,000.<a class="cite-inline" href="https://www.kff.org/other/state-indicator/firearms-death-rate-per-100000/" target="_blank">KFF, citing CDC WONDER</a></p>
+  </div>
+
+  <h4 style="font-family:'Source Serif 4',serif;font-weight:700;font-size:1.05rem;margin-bottom:14px;margin-top:36px">School-shooting incidents by state (a raw count, not a rate)</h4>
+
+  <p>The table below is different from the map above. It does not adjust for population. It's a simple count of how many school-shooting incidents the K-12 School Shooting Database has recorded in each state, from 1966 through March 2025. Because it's a raw count, larger states with more people and more schools tend to rank higher, almost no matter what. That's why Texas, California, and Florida — three of the most populous states — appear at the top.<a class="cite-inline" href="https://k12ssdb.org/data-visualizations" target="_blank">K-12 School Shooting Database, via World Population Review</a></p>
+
+  <div class="state-table-wrap">
+    <table class="state-table">
+      <caption>School-shooting incidents by state, 1966–March 2025 (top 10, plus Washington)</caption>
+      <thead>
+        <tr><th class="num">Rank</th><th>State</th><th class="num">Incidents</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>California</td><td class="num">277</td></tr>
+        <tr><td class="num">2</td><td>Texas</td><td class="num">237</td></tr>
+        <tr><td class="num">3</td><td>Florida</td><td class="num">159</td></tr>
+        <tr><td class="num">4</td><td>Illinois</td><td class="num">152</td></tr>
+        <tr><td class="num">5</td><td>Ohio</td><td class="num">143</td></tr>
+        <tr><td class="num">6</td><td>Pennsylvania</td><td class="num">128</td></tr>
+        <tr><td class="num">7</td><td>Michigan</td><td class="num">119</td></tr>
+        <tr><td class="num">8</td><td>New York</td><td class="num">119</td></tr>
+        <tr><td class="num">9</td><td>Georgia</td><td class="num">112</td></tr>
+        <tr><td class="num">10</td><td>North Carolina</td><td class="num">110</td></tr>
+        <tr class="ellipsis"><td colspan="3">⋯</td></tr>
+        <tr class="wa-row"><td class="num">16</td><td>Washington</td><td class="num">67</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="state-callout">
+    <span class="tag">Washington, By the Numbers</span>
+    <p>Washington has recorded <strong>67 school-shooting incidents</strong> since 1966, according to the K-12 School Shooting Database. That ranks Washington <strong>16th out of 50 states</strong> for raw incident count — remember, this is a total count, not adjusted for population.<a class="cite-inline" href="https://k12ssdb.org/data-visualizations" target="_blank">K-12 School Shooting Database, via World Population Review</a></p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>The map and the table measure two different things. The map shows a rate — deaths per 100,000 people — which lets you fairly compare a small state to a large one. The table shows a raw count, which tends to be higher for states with more people. A state can rank very differently on the two lists, and that doesn't mean the data is wrong. It means the two measurements answer different questions.</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
+
   <h3>So how did the U.S. get here?</h3>
 
   <p>Numbers alone don't explain why gun policy in America looks the way it does. Part of the answer starts with one sentence written in 1791.</p>
@@ -709,6 +861,13 @@ const quizzes = {
     correct: 2,
     feedback: "✅ Correct! The K-12 School Shooting Database recorded 349 separate incidents at U.S. schools in 2023, the highest yearly total it has ever tracked.",
     wrong: "Not quite. The K-12 School Shooting Database recorded its highest-ever yearly total, 349 incidents, in 2023."
+  },
+  q3: {
+    q: "Where does Washington rank among the 50 states for gun death rate per capita (12th) compared to school-shooting raw incident count (16th)?",
+    choices: ["Washington ranks 12th for gun death rate per capita and 16th for raw incident count", "Washington ranks 1st on both lists", "Washington ranks 40th on both lists", "Washington does not appear on either list"],
+    correct: 0,
+    feedback: "✅ Correct! Washington's 2024 gun death rate of 11.0 per 100,000 people ranks 12th out of 50 states, lowest to highest. Its 67 school-shooting incidents since 1966 rank 16th out of 50 states by raw count.",
+    wrong: "Not quite. Washington ranks 12th out of 50 states for gun death rate per capita (11.0 per 100,000) and 16th out of 50 states for raw school-shooting incident count (67 incidents)."
   }
 };
 
