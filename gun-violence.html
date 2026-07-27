@@ -570,7 +570,30 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>Understanding the Scale</h2>
 </div>
 <div class="article">
-  <p>[Content added in Task 3]</p>
+  <p class="lede"><strong>How many people die from guns in America each year?</strong> The Centers for Disease Control and Prevention, or <span class="term" tabindex="0" data-def="A federal health agency that tracks disease, injury, and death across the United States.">CDC</span>, tracks this every year. In 2024, the most recent full year of data, 44,447 people in the U.S. died from a gun-related injury.<a class="cite-inline" href="https://publichealth.jhu.edu/2026/johns-hopkins-report-finds-declining-gun-homicides-record-gun-suicides-in-2024" target="_blank">Johns Hopkins Center for Gun Violence Solutions, citing CDC data</a></p>
+
+  <p>That number breaks down into different categories. Most people assume gun deaths are mostly homicides. The data says something different. Gun suicides made up the largest share, at 27,593 deaths. Gun homicides were next, at 15,364 deaths. The remaining 1,490 deaths were law enforcement actions, accidents, or deaths where the cause could not be determined.<a class="cite-inline" href="https://publichealth.jhu.edu/2026/johns-hopkins-report-finds-declining-gun-homicides-record-gun-suicides-in-2024" target="_blank">Johns Hopkins Center for Gun Violence Solutions, citing CDC data</a> Gun suicide has been the largest single category for years, and 2024's total was the highest ever recorded.<a class="cite-inline" href="https://publichealth.jhu.edu/sites/default/files/2026-07/2024-CGVS-gun-violence-in-the-united-states.pdf" target="_blank">Johns Hopkins Center for Gun Violence Solutions report (PDF)</a> If you or someone you know is struggling, help is available right now. You can call or text <strong>988</strong> to reach the 988 Suicide &amp; Crisis Lifeline, any time of day, every day of the year.<a class="cite-inline" href="https://988lifeline.org/" target="_blank">988lifeline.org</a></p>
+
+  <div class="stat-trio">
+    <div class="stat"><span class="num">44,447</span><div class="desc"><b>Total gun deaths</b>in the U.S. in 2024</div></div>
+    <div class="stat"><span class="num">27,593</span><div class="desc"><b>Gun suicides</b>the largest category, 2024</div></div>
+    <div class="stat"><span class="num">15,364</span><div class="desc"><b>Gun homicides</b>the second-largest category, 2024</div></div>
+  </div>
+
+  <h3>How many of these happen at schools?</h3>
+
+  <p>Most gun deaths do not happen at schools. But school shootings are their own serious problem, and researchers track them closely. The <span class="term" tabindex="0" data-def="A research database, run by homeland security researcher David Riedman, that records every time a gun is fired, shown with intent to harm, or a bullet hits school property in the U.S. since 1966.">K-12 School Shooting Database</span> is one of the most detailed trackers. It records every time a gun is fired, brandished, or a bullet hits school property, going back to 1966.<a class="cite-inline" href="https://k12ssdb.org/all-shootings" target="_blank">K-12 School Shooting Database (Riedman, 2025)</a></p>
+
+  <p>By this database's count, gun violence at schools hit an all-time high in 2023, with 349 separate incidents.<a class="cite-inline" href="https://www.rand.org/pubs/research_reports/RRA3930-2.html" target="_blank">RAND Corporation, citing K-12 School Shooting Database</a> The number dropped after that. In 2025, the same database counted roughly 231 incidents at K-12 schools, with 148 total victims.<a class="cite-inline" href="https://www.omnilert.com/blog/school-shootings-2025" target="_blank">Omnilert, citing K-12 School Shooting Database</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Different trackers count school shootings differently. Some count any time a gun is fired on school property. Others only count incidents with a certain number of victims. That is why you will see different totals from different sources for the same year — they are not measuring the exact same thing.</p>
+  </div>
+
+  <p>Even with 2025's lower count, gun violence at schools remains far more common than it was decades ago. The next section looks at what schools have actually done in response.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
 
 <!-- ═══════════ SCHOOL SAFETY MEASURES TRIED ═══════════ -->
@@ -671,6 +694,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! In 2008, the Supreme Court ruled 5-4 that the Second Amendment protects an individual person's right to own a gun for lawful purposes like self-defense, even if they are not part of a militia.",
     wrong: "Not quite. In Heller, the Supreme Court ruled that the Second Amendment protects an individual's right to own a gun, even outside of militia service."
+  },
+  q2: {
+    q: "According to the K-12 School Shooting Database, in what year did gun violence at U.S. schools reach an all-time high?",
+    choices: ["2018", "2020", "2023", "2025"],
+    correct: 2,
+    feedback: "✅ Correct! The K-12 School Shooting Database recorded 349 separate incidents at U.S. schools in 2023, the highest yearly total it has ever tracked.",
+    wrong: "Not quite. The K-12 School Shooting Database recorded its highest-ever yearly total, 349 incidents, in 2023."
   }
 };
 
