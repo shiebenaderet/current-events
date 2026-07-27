@@ -65,6 +65,39 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .cite-inline::after{content:']'}
 .cite-inline:hover{color:var(--accent)}
 
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+@media(max-width:600px){
+  .term::after{max-width:70vw;font-size:.74rem}
+}
+
 .pull-quote{margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy)}
 .pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0}
 .pull-quote .attrib{display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase}
@@ -192,6 +225,9 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .update-box .vocab{border-left-color:#e8c9c9}
 .update-box .vocab b{color:#e8c9c9}
 .update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .term{border-bottom-color:#e8c9c9}
+.update-box .term::after{background:#fff;color:var(--ink)}
+.update-box .term::before{border-top-color:#fff}
 .update-box .callout{background:rgba(255,255,255,.06);border-left-color:#e8c9c9}
 .update-box .callout .tag{color:#e8c9c9}
 .update-box .callout p{color:rgba(255,255,255,.75)}
@@ -519,7 +555,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="stat"><div class="num">85%</div><div class="desc"><b>Literacy rate</b>Nat Geo Kids</div></div>
   </div>
 
-  <p>Under Iran's current government, people face many restrictions. Women must wear a hijab (head covering) in public by law.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a> Freedom of speech and peaceful protest are restricted, and people can be arrested for criticizing the government — big reasons why so many Iranians have been protesting.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a></p>
+  <p>Under Iran's current government, people face many restrictions. Women must wear a <span class="term" tabindex="0" data-def="A head covering. Iranian law requires women to wear one in public.">hijab</span> in public by law.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a> Freedom of speech and peaceful protest are restricted, and people can be arrested for criticizing the government — big reasons why so many Iranians have been protesting.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a></p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
   <p style="margin-top:24px"><a class="tl-link" href="https://www.cbc.ca/kidsnews/post/the-u.s-israel-and-iran-conflict-explained" target="_blank">→ CBC Kids News: The conflict explained simply</a></p>
@@ -537,7 +573,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="tl-year">Around 550 BCE</div>
     <div class="tl-body">
       <h4>The Persian Empire</h4>
-      <p>Long before it was called Iran, this region was home to the mighty Persian Empire — one of the largest empires in history, stretching from Egypt to India.<a class="cite-inline" href="https://kids.nationalgeographic.com/geography/countries/article/iran" target="_blank">Nat Geo Kids</a> Persia was known for its science, law, art, and culture — this is why Iranians today are very proud of their ancient heritage.</p>
+      <p>Long before it was called Iran, this region was home to the mighty Persian Empire — one of the largest empires in history, stretching from Egypt to India.<a class="cite-inline" href="https://kids.nationalgeographic.com/geography/countries/article/iran" target="_blank">Nat Geo Kids</a> Persia was known for its science, law, art, and culture. That long history is a big reason Iranians today are very proud of their ancient heritage.</p>
     </div>
   </div>
 
@@ -555,8 +591,8 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <h4>Iran's Democracy Is Overthrown — With CIA Help</h4>
       <img src="images/mosaddegh.jpg" alt="Mohammad Mosaddegh, Iran's elected Prime Minister">
       <div class="cap">Mohammad Mosaddegh, removed from power in 1953. <a href="https://commons.wikimedia.org/wiki/File:Mohammad_Mosaddegh_portrait.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
-      <p>Iran elected a very popular prime minister named Mohammad Mosaddegh.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> He wanted Iran to control its own oil instead of letting Britain profit from it — which seemed very reasonable to most Iranians.</p>
-      <p>Britain was furious. They worked with the CIA (the U.S. spy agency) to secretly remove Mosaddegh from power and put the Shah back in control, in an operation called Operation Ajax.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> Many Iranians never forgot this — it's one of the biggest reasons for deep distrust of the United States in Iran today.</p>
+      <p>Iran elected a very popular prime minister named Mohammad Mosaddegh.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> He wanted Iran to control its own oil instead of letting Britain profit from it. Most Iranians thought that seemed very reasonable.</p>
+      <p>Britain was furious. They worked with the <span class="term" tabindex="0" data-def="The Central Intelligence Agency — the U.S. government's spy agency.">CIA</span> to secretly remove Mosaddegh from power and put the Shah back in control, in an operation called Operation Ajax.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> Many Iranians never forgot this. It's one of the biggest reasons for deep distrust of the United States in Iran today.</p>
       <a class="tl-link" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">→ NPR: How the CIA overthrew Iran's democracy in four days</a>
       <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
     </div>
@@ -577,7 +613,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="tl-year">1979–1981</div>
     <div class="tl-body">
       <h4>The Hostage Crisis</h4>
-      <p>Iranian students stormed the U.S. Embassy in Tehran and held 52 Americans hostage for 444 days.<a class="cite-inline" href="https://www.npr.org/2026/01/01/1263733173/throughline-iran-and-the-us-part-one" target="_blank">NPR</a> The two countries have had no normal diplomatic relations since — meaning they have no embassies in each other's countries and rarely communicate directly.</p>
+      <p>Iranian students stormed the U.S. Embassy in Tehran and held 52 Americans hostage for 444 days.<a class="cite-inline" href="https://www.npr.org/2026/01/01/1263733173/throughline-iran-and-the-us-part-one" target="_blank">NPR</a> The two countries have had no normal diplomatic relations since. That means they have no embassies in each other's countries and rarely communicate directly.</p>
     </div>
   </div>
 
