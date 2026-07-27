@@ -236,6 +236,50 @@ git commit -m "feat: reorder Sections 1-2 (scale opens the page), add long-run t
 
 ---
 
+## Task 3b: State-by-State Comparison Subsection
+
+**Files:**
+- Modify: `gun-violence.html` (add a new subsection inside the `#scale` section, after Task 3a's content)
+
+**Context:** Added mid-build per explicit project-owner direction, after Task 3a's reorder was reviewed and approved. A new subsection inside the scale/stakes section covering two distinct, clearly-labeled state-level metrics — NOT a state-by-state legal/regulatory comparison (that stays out of scope; Washington's own laws remain covered only in Task 7's Washington's School Safety Story). This is the most visually complex component built on this site to date (a 50-state choropleth map, inline SVG, no external library) — budget real iteration time for legibility, not a quick add.
+
+- [ ] **Step 1: Verify gun death rate per capita by state**
+
+Fetch and read directly from the CDC's own published state-level data (WISQARS or a comparable CDC data product — if CDC's own domain is blocked for direct fetch, as it was in Task 3, use the same corroboration approach: cross-check via a source that cites CDC data directly, such as the Johns Hopkins Center for Gun Violence Solutions or KFF, both already used and verified elsewhere on this page). Confirm the actual current per-state rates (deaths per 100,000 people) for all 50 states and their "as of" year. Confirm Washington's specific rate and its national rank (e.g., "Washington ranks Nth out of 50 states, from lowest to highest" — confirm which direction the rank runs and state it unambiguously).
+
+- [ ] **Step 2: Verify school-shooting incidents by state**
+
+Fetch and read directly from the K-12 School Shooting Database's state-level breakdown (reuse the same source already verified in Task 3 — confirm it publishes a per-state count, not just a national total). Confirm Washington's specific incident count and where it falls relative to other states. Confirm the time period this count covers (a specific year or range — do not present an undated cumulative total as if it were a current snapshot).
+
+- [ ] **Step 3: Build the gun-death-rate choropleth map**
+
+Build a simplified (not photorealistic) inline SVG map of the United States, states rendered as simplified shapes (not requiring precise real-world geographic accuracy — a recognizable, simplified state-shape approximation is acceptable and consistent with "simplified," per the design doc), each colored on a light-to-dark scale (e.g., a single-hue scale from this page's palette, light for low rates, dark for high rates) corresponding to its verified per-capita gun death rate from Step 1. Include a visible legend explaining the color scale. Include an explicit, highlighted callout stating Washington's specific rate and rank in text (do not rely on the map alone to convey this — a reader should not have to visually parse the map to find Washington's number). Since this is more visually complex than any chart previously built on this site, verify it renders legibly at both desktop and mobile widths before finalizing — if full 50-state legibility at mobile width proves genuinely unachievable, a simplified regional grouping or a scrollable/zoomable treatment is an acceptable fallback, but only after a real attempt at the full map, not skipped preemptively.
+
+- [ ] **Step 4: Build the school-shooting-incidents ranked table**
+
+Build a simple ranked table (not a second map) showing a top-N list of states by school-shooting incident count from Step 2, with Washington's specific position included and visually distinguished (e.g., highlighted row) whether or not it falls within the top-N shown. Label this table explicitly as raw counts, not population-adjusted rates — the subsection's copy must make the distinction between this table and Step 3's per-capita map explicit and clear, so a reader doesn't conflate the two different metrics.
+
+- [ ] **Step 5: Write the subsection's connecting prose**
+
+At true 5th-6th grade level. Introduce the subsection (e.g., "How does Washington compare to other states?"), present the two metrics with clear sub-headings distinguishing them, and write the Washington-specific callouts for each. Do not editorialize about which states are "better" or "worse" — state the data plainly, matching the accuracy-not-balance standard already established for the rest of this section.
+
+- [ ] **Step 6: Add a quiz for this subsection**
+
+Add a quiz testing Washington's specific rank or count from this subsection (confirm the next available quiz ID directly from the file — this task runs after Task 3's `q2`, so likely `q2b` or the next sequential `qN`, whichever this plan's actual quiz-numbering convention has settled on by this point in the build — check the live `quizzes` object before assigning). Add the corresponding button.
+
+- [ ] **Step 7: Verify**
+
+Run: `open gun-violence.html`, scroll to this subsection, confirm the map renders legibly with a working legend, confirm Washington's rate/rank and incident count are both clearly stated in text (not just visually implied), confirm the two metrics are clearly distinguished from each other in the copy, click every citation link, click the quiz button. Confirm this subsection doesn't duplicate or contradict the national-level statistics already established earlier in Task 3's content.
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: add state-by-state comparison subsection (gun death rate map + school-shooting table)"
+```
+
+---
+
 ## Task 4: Section 3 — School Safety Measures That Have Been Tried
 
 **Files:**
@@ -251,10 +295,13 @@ Fetch and read directly, for each measure covered:
 - Lockdown drills: confirm adoption prevalence and any research on their effectiveness or psychological effects on students, attributed to source.
 - Threat-assessment programs: confirm what these programs actually do procedurally and any effectiveness research, attributed to source.
 - Security-vestibule/access-control changes: confirm adoption data and any effectiveness findings, attributed to source.
+- **School-climate/bullying-reduction programs (social-emotional learning, restorative justice, trauma-informed care) — added mid-build per a project-owner-supplied source**: fetch and read directly KQED's coverage (`https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong`) of UCLA professor Ron Avi Astor's April 2026 public reversal of his own long-held theory that improving school climate/reducing bullying would prevent school shootings — confirm the article's actual claims directly (don't rely on a secondhand summary): Astor's prior position, the specific data he presented showing declining student weapon-carrying in California (2001-2024) alongside rising national school-shooting incidents over the same period, his revised view that shooters are primarily motivated by a desire for notoriety/media attention rather than local grievances (quote: "Their number one audience was the media"), and his resulting recommendation — media/social-media guidelines limiting perpetrator coverage and delaying manifesto publication, drawing an explicit comparison to contagion-effect research in suicide and terrorism prevention. If Astor's own underlying research/data (not just KQED's reporting on it) is findable and fetchable, verify the specific figures directly against his own published work rather than relying solely on the news article's characterization.
 
 - [ ] **Step 2: Write the section content**
 
 Write at true 5th-6th grade level. Cover each measure factually: what it is, how common it's become (with data), and what research says about it — explicitly attributed ("A [year] study by [organization] found..." rather than "Metal detectors work" or "Metal detectors don't work" stated as the page's own verdict). Where findings are genuinely mixed for a given measure, state that mixedness factually (e.g., "Researchers have found mixed results" followed by what specific studies found) rather than picking a favored interpretation.
+
+**Include the Astor reversal as its own short passage or callout**, positioned appropriately relative to the school-climate content it revises (if school-climate/bullying-reduction programs are covered as a "measure tried," place this immediately after that coverage as a direct update to it; if none of the other measures cover school-climate programs directly, this stands as its own brief passage). State it as a genuine, notable event in the research literature — a leading researcher publicly changing his position based on new evidence — not as a settled final word on the topic (his reversal is itself one researcher's current view, attributed to him by name and date, not asserted as the page's own established fact). His media-coverage recommendation is a genuinely novel policy idea for this section — state it factually and attributed, and do NOT route it through the differing-perspectives component (that component is reserved exclusively for Task 6's update-pane; this is Task 4's settled-fact-with-attribution territory, consistent with how every other effectiveness claim in this section is handled).
 
 - [ ] **Step 3: Add a quiz for this section**
 

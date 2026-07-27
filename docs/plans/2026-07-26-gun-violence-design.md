@@ -107,6 +107,19 @@ Same discipline as every prior page: fetch and read every source directly to con
 
 ---
 
+## State-by-State Comparison (New Subsection, Added Mid-Build)
+
+Added per explicit project-owner direction after Sections 1-2 were built and reordered. Lives as a new subsection inside the scale/stakes section (which now opens the page, per the reorder above) — a natural extension of "how big is this problem" before the page moves into policy history, rather than a separate new top-level section or a late addition to Washington's School Safety Story.
+
+**This is a real, deliberate scope change from this design doc's original "Out of Scope" list**, which had excluded "detailed state-by-state comparison of every U.S. state's gun laws." That exclusion still holds for state *laws* — this subsection does not catalog every state's regulatory regime (that remains out of scope; Washington's own laws are still covered only in the dedicated Washington's School Safety Story section). What's now in scope is state-by-state *outcome data* — two distinct, clearly-labeled metrics, not a legal comparison:
+
+1. **Gun death rate per capita by state**, sourced from the CDC's own published state-level data — genuinely comparable across all 50 states (unlike raw counts, which are population-skewed), and a direct extension of the national gun-death statistic already established earlier in the section. Presented as a simplified inline SVG choropleth (heat) map of the United States, states colored on a light-to-dark scale by rate, built following this site's established no-external-library discipline (inline SVG/CSS only, matching the site's existing chart precedent — e.g. Climate Change's data-driven charts — extended here to a genuinely more complex visual than anything previously built on this site, so implementation should budget real iteration time for legibility, not treat this as a quick add). Washington's specific rate and national rank are called out explicitly, not left for the reader to find on the map alone (e.g., a highlighted callout: "Washington ranks Nth out of 50 states").
+2. **School-shooting incidents by state**, sourced from the K-12 School Shooting Database's state-level breakdown — presented as a simple ranked table (not a second map, to avoid two overlapping visual metaphors competing for the reader's attention on one page), showing a top-N list and Washington's specific position, explicitly labeled as counts rather than population-adjusted rates (state population differences make raw incident counts a different, less apples-to-apples comparison than the per-capita death-rate map — the subsection's copy must make this distinction clear to the reader, not blur the two metrics together).
+
+Both metrics get their own clearly-labeled sub-heading so a reader never has to guess which one they're looking at. Both are held to the same accuracy-not-balance sourcing standard as the rest of Section 1's content — no differing-perspectives treatment, no editorializing about which states are "better" or "worse," just sourced, dated, comparable data.
+
+---
+
 ## Reading Level
 
 **Target true 5th–6th grade from the start** — short sentences (~12-15 words), one idea per sentence, plain vocabulary, jargon carried by `.term` inline tooltips (ported from `immigration.html`) rather than left in prose as parentheticals. This is stated as a first-draft requirement, not a follow-up pass: a site-wide audit after Immigration shipped found that pages written without this discipline from the start (`ai.html`, `ukraine.html`) needed a full second rewrite pass later to reach it, while pages that had it from the start didn't. Build this page to the target the first time.
@@ -120,7 +133,7 @@ The update-pane's Part A/Part B content may land slightly higher given factual d
 ## Out of Scope (for this build)
 
 - A chronological or incident-by-incident history of specific school shootings — this page is policy-and-prevention-focused by deliberate design choice, not an incident chronicle. Individual incidents may be referenced factually where directly relevant to a specific policy change (e.g., Columbine's relationship to SRO adoption), but this page does not narrate incidents for their own sake.
-- Detailed state-by-state comparison of every U.S. state's gun laws — Washington gets its own dedicated section; other states are not individually profiled.
+- Detailed state-by-state comparison of every U.S. state's gun *laws/regulatory regimes* — Washington gets its own dedicated section for its own laws; other states' laws are not individually profiled. (State-by-state *outcome data* — gun death rate per capita and school-shooting incident counts — IS in scope as of the mid-build addition above; only the legal/regulatory comparison remains excluded.)
 - A deep dive into the international comparison countries' broader criminal-justice or social-policy systems beyond what's directly relevant to their firearm regulation — e.g., Japan's broader criminal justice system is out of scope beyond what explains its firearm law specifically.
 - Any use of the differing-perspectives component outside the update-pane's Part B, per the Nonpartisanship Discipline section above.
 - An unbalanced "Groups Working on This Issue" subsection — either a genuinely balanced pair ships, or the subsection doesn't ship at all, per the composition rule above.
