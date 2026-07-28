@@ -942,6 +942,50 @@ git commit -m "feat: add early images and update-pane vocabulary grounding"
 
 ---
 
+## Task 17: Persona Review Fixes
+
+**Files:**
+- Modify: `gun-violence.html` (lede content-note, MAX_PTS fix, aria-describedby wiring, update-pane trim, new discussion-questions block — no citation removal, no section reordering, no repositioning of the update-pane)
+
+**Context:** Added after a 3-persona review (student, teacher, UX-focused edtech developer — each reading the live page independently, with no persona seeing the others' output) surfaced 5 concrete findings. See the design doc's "Persona Review Findings & Fixes" subsection for the full rationale behind each. This task fixes all 5 in one pass.
+
+- [ ] **Step 1: Add a content note before the opening lede**
+
+Read the current lede (`<p class="lede">The lights go off first...`). Immediately before it, add one short, calm sentence acknowledging the topic directly — not alarmist, matching the tone of the page's existing 988 crisis-note. Do not alter the lede itself.
+
+- [ ] **Step 2: Fix the points-accounting bug**
+
+Find `MAX_PTS` in the JS (search `MAX_PTS`). Count the true total obtainable points: 9 quizzes (`q1`-`q9`, each presumably worth 1 point — confirm the actual per-quiz point value in `addPoints()` calls, don't assume) plus the 3 discoverable easter eggs (hero-flag, stat-click-all, Konami code — confirm each egg's actual `addPoints()` call value). Set `MAX_PTS` to the correct true sum, not a guess. Confirm the progress bar and `unlockHint` logic still work correctly with the corrected total.
+
+- [ ] **Step 3: Add `aria-describedby` to `.term` tooltips**
+
+Read the current `.term` markup pattern (search `class="term"`) and its `data-def` attribute usage. Wire each `.term` span to an accessible description of its `data-def` text via `aria-describedby` (pointing at a visually-hidden element carrying the same text, or an equivalent standard accessible-name technique) — reuse the exact `data-def` text, do not rewrite or duplicate-with-drift. Since this pattern likely repeats for every `.term` instance on the page, implement it as a consistent, repeatable markup pattern (e.g., a hidden `<span>` immediately after each term with a unique `id` referenced by that term's `aria-describedby`) rather than one-off fixes.
+
+- [ ] **Step 4: Trim the update-pane's perspectives density**
+
+Read the update-pane's `.perspectives` blocks in full. Tighten each side's statement for length (shorter, punchier per-side statements; fewer total quoted clauses stacked in a row) without weakening the balance (equal visual weight, equal specificity between sides) or removing any citation. This is a length/density edit — do not change either side's actual position or add/remove a contested question.
+
+- [ ] **Step 5: Add a discussion-questions block**
+
+Add a short (3-5 question) open-ended discussion-question set near the Resources section, in the same spirit as the existing "While you watch, think about" video callout (reuse a similar `.callout` pattern rather than inventing new markup). Frame it explicitly for classroom/small-group use. Questions should be genuinely open-ended (no single correct answer), drawing on the page's actual content (e.g., referencing the differing-perspectives questions, the international comparison, or the measures-tried research).
+
+- [ ] **Step 6: Verify citation and structural integrity**
+
+Count `cite-inline` occurrences before and after — confirm unchanged (no citations removed by the update-pane trim). Check div/tag balance is unchanged aside from intentional new blocks (content-note, hidden description spans, discussion-questions block).
+
+- [ ] **Step 7: Verify**
+
+Run: `open gun-violence.html`. Confirm the content note reads calm and appropriate before the lede. Confirm the points math is internally consistent (manually trace: if a student answers all 9 quizzes and finds all 3 eggs, do they hit exactly `MAX_PTS` with no overflow or shortfall). Spot-check a `.term` span's `aria-describedby` wiring renders correctly (inspect the DOM or view source). Confirm the trimmed perspectives boxes still read balanced. Confirm the new discussion questions read naturally and reference real page content.
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "fix: persona-review fixes — lede framing, points accounting, tooltip a11y, perspectives density, discussion questions"
+```
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage:** All design doc sections (page structure items 1-11, the update-pane's Part A/Part B split reusing the differing-perspectives component, nonpartisanship discipline, Washington's School Safety Story, the international-comparison section, Key People, the "Groups Working on This Issue" balanced-pair subsection, images with the non-graphic hard filter, sourcing standards, reading level with its required dedicated review task, out-of-scope list) map to Tasks 1-14 in this plan. The design doc's explicit requirement that images, advocacy groups, and grade-level review be *built in from the start* (not discovered as mid-build gaps, per the explicit lesson from Immigration's build) is reflected by Tasks 10, 11, and 12 existing as first-class tasks in this plan's original numbering, not inserted later.
