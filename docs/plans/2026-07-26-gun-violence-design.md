@@ -164,6 +164,23 @@ A direct comparison against `immigration.html` (the site's most refined page) lo
 
 ---
 
+## Early Images & Update-Pane Vocabulary (added after Task 15, per live browser review)
+
+After Task 15's warmth pass shipped, the project owner opened the actual rendered page in a browser and flagged three related issues: the page still lacks images in its opening third, the update-pane is front-loaded with unexplained policy vocabulary, and the overall early reading experience feels heavy.
+
+**Diagnosis, confirmed by direct inspection of the file:**
+- The page's first real in-content photo (a `.photo-break`) doesn't appear until deep into `#second-amendment` (around line 840) — everything before that (hero, opening narrative hook, the update-pane, and the entire `#scale` section, which is itself stat/table/map-heavy) is text-only apart from the hero photo.
+- The update-pane sits first in document order (by design, per the Task 11a narrative-hook work) but its differing-perspectives content uses terms like "red-flag laws" and "extreme risk protection orders" before `#policy-today` — the section that actually explains that mechanism — has been read. The term does carry a `.term` tooltip with a correct plain-language definition, so it's not undefined, but a first-time reader hits real policy jargon with only a hover-tooltip for grounding, before the page has built any context for it.
+- These two problems compound: the densest, least-illustrated, most-jargon-forward stretch of the page is also the stretch every reader sees first.
+
+**Fix, confirmed with the project owner:**
+- Add a short, plain-language framing sentence or clause immediately before each contested question in the update-pane that uses a term the page hasn't taught yet (starting with the "red-flag laws" question) — grounding the reader in one or two sentences of what the mechanism is, in addition to (not instead of) the existing `.term` tooltip. Keep the update-pane's structure and position as-is; this is a light, local addition, not a reorganization.
+- Add an image to `#scale` — the page's largest early data section (stats, hex map, ranked table) currently has none.
+- Add an image to the update-pane itself, to give the top-of-page policy snapshot a visual anchor.
+- Add an image near the opening narrative hook, fitting the lockdown-drill scene, subject to the same hard non-graphic filter as every other image on this page (policy/institutional imagery, no incident/victim/memorial content) — if no compliant, verified image can be found for this specific placement, it's acceptable to skip it rather than force a weak fit, but the other two placements (Scale, update-pane) are expected to ship.
+
+---
+
 ## Out of Scope (for this build)
 
 - A chronological or incident-by-incident history of specific school shootings — this page is policy-and-prevention-focused by deliberate design choice, not an incident chronicle. Individual incidents may be referenced factually where directly relevant to a specific policy change (e.g., Columbine's relationship to SRO adoption), but this page does not narrate incidents for their own sake.
