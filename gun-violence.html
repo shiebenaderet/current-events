@@ -76,7 +76,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .article-hero-bg{
   position:absolute;inset:0;z-index:0;
   background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.2) 45%,rgba(8,8,8,.86) 100%),
-             var(--ink);
+             url('images/us-capitol-west-front.jpg') center 38%/cover no-repeat;
 }
 .article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
 .article-hero .kicker{
@@ -539,7 +539,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <div class="byline">Student Edition · Updated July 26, 2026</div>
   </div>
   <div class="hero-note">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
-  <div class="hero-credit">Hero image: placeholder — a real, verified photo will be added in the images task.</div>
+  <div class="hero-credit">Photo: the west front of the United States Capitol, Washington, D.C. <a href="https://commons.wikimedia.org/wiki/File:United_States_Capitol_west_front_edit2.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
 </header>
 
 <!-- ═══════════ OPENING NARRATIVE HOOK ═══════════ -->
@@ -683,9 +683,9 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <p>That number breaks down into different categories. Most people assume gun deaths are mostly homicides. The data says something different. Gun suicides made up the largest share, at 27,593 deaths. Gun homicides were next, at 15,364 deaths. The remaining 1,490 deaths were law enforcement actions, accidents, or deaths where the cause could not be determined.<a class="cite-inline" href="https://publichealth.jhu.edu/2026/johns-hopkins-report-finds-declining-gun-homicides-record-gun-suicides-in-2024" target="_blank">Johns Hopkins Center for Gun Violence Solutions, citing CDC data</a> Gun suicide has been the largest single category for years, and 2024's total was the highest ever recorded.<a class="cite-inline" href="https://publichealth.jhu.edu/sites/default/files/2026-07/2024-CGVS-gun-violence-in-the-united-states.pdf" target="_blank">Johns Hopkins Center for Gun Violence Solutions report (PDF)</a> If you or someone you know is struggling, help is available right now. You can call or text <strong>988</strong> to reach the 988 Suicide &amp; Crisis Lifeline, any time of day, every day of the year.<a class="cite-inline" href="https://988lifeline.org/" target="_blank">988lifeline.org</a></p>
 
   <div class="stat-trio">
-    <div class="stat"><span class="num">44,447</span><div class="desc"><b>Total gun deaths</b>in the U.S. in 2024</div></div>
-    <div class="stat"><span class="num">27,593</span><div class="desc"><b>Gun suicides</b>the largest category, 2024</div></div>
-    <div class="stat"><span class="num">15,364</span><div class="desc"><b>Gun homicides</b>the second-largest category, 2024</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">44,447</span><div class="desc"><b>Total gun deaths</b>in the U.S. in 2024</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">27,593</span><div class="desc"><b>Gun suicides</b>the largest category, 2024</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">15,364</span><div class="desc"><b>Gun homicides</b>the second-largest category, 2024</div></div>
   </div>
 
   <h3>How many of these happen at schools?</h3>
@@ -1401,7 +1401,7 @@ let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
-const MAX_PTS = 0; // TODO: update once all quizzes are added (final verification pass)
+const MAX_PTS = 9;
 
 // Subsequent tasks add entries here as each section's quiz is built.
 const quizzes = {
@@ -1552,7 +1552,7 @@ function handleFlagClick() {
   if (flagClicks >= 5) {
     flagClicks = 0;
     showEgg('🔎','You found a secret!',
-      'More to come here in a later task.',
+      '<strong>Why "pewter"?</strong> This page\'s accent color was chosen on purpose. It\'s not red or blue, and it\'s not any political party\'s brand color — it\'s a muted gray, meant to look institutional and procedural, like a courthouse railing or a policy binder, not a campaign sign.',
       '');
     addPoints(1);
   }
