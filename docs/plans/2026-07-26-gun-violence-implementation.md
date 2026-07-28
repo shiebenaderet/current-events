@@ -848,6 +848,48 @@ git commit -m "feat: wire Gun Violence page into the site (homepage card, cross-
 
 ---
 
+## Task 15: Warmth & Engagement Pass
+
+**Files:**
+- Modify: `gun-violence.html` (prose adjustments and one new `.pull-quote` use — no structural/section changes, no new claims, no citation changes)
+
+**Context:** Added after the project owner reviewed the fully-built, fully-wired page and found it doesn't have the warm, engaging feel of the site's other topic pages. See the design doc's "Warmth & Engagement Pass" subsection for the full diagnosis. This is a rhythm-and-tone pass on already-approved content, not new research: no new facts, no new sections, no reordering, no touching the update-pane or international-comparison sections (their clinical register is a deliberate nonpartisanship requirement, not a defect).
+
+**Scope, in order:**
+
+1. Rewrite 2-3 of the flattest, most methodology-focused `.callout` boxes into genuine "Worth Noticing" reveals — a surprising, concrete, human-stakes fact, matching the register of `immigration.html`'s callouts (e.g., its "the old system asked... the new system asked..." callout). Best candidates: the map-vs-table callout near `#scale` (~line 820, "The map and the table measure two different things...") and the federal/state "two-layer system" callout near `#policy-today` (~line 969). Do NOT touch the Astor "A Researcher Changes His Mind" callout — it already works. Keep every rewritten callout's existing citation(s) attached to the same claim; do not remove sourcing in the process of making a callout more engaging.
+2. Introduce one real `.pull-quote` use (the CSS component already exists in this page but is never invoked in its content — confirm this yourself by checking the file before starting). Build it from a shortened excerpt of the James Brady story already written in full in Key People (~search `<h4>James Brady</h4>`), and place it near the landmark-laws section (`#second-amendment`) where it's thematically anchored. Key People keeps Brady's full bio as-is — the pull-quote is a short, standalone callback (a sentence or two, in his or a close paraphrase's voice, with an `.attrib` line), not a duplicate of the full bio.
+3. Optional: add one additional short human-scale moment near `#measures-tried` or `#washington-story`, only if you find something genuinely well-sourced while reading through — do not manufacture one or stretch a citation to force this in.
+
+- [ ] **Step 1: Read the current state of both target callouts and the Brady bio**
+
+Read the map-vs-table callout, the two-layer-system callout, and the full James Brady bio in Key People, exactly as currently written. Confirm your read of what's flat about the two callouts and what's usable from Brady's story before editing.
+
+- [ ] **Step 2: Rewrite the 2-3 selected callouts**
+
+Keep the `.callout`/`<span class="tag">` structure and each callout's existing citation(s) intact. Change only the `<p>` content to lead with a concrete, surprising, human-stakes framing rather than a methodology explanation. Keep the page's 5th-6th grade reading level (~12-15 words/sentence).
+
+- [ ] **Step 3: Add the `.pull-quote` near `#second-amendment`**
+
+Use the exact `.pull-quote`/`.attrib` markup pattern already defined in this page's CSS (confirm the real class names and structure directly in the file — do not assume from memory). Content is a short excerpt/paraphrase drawn from the Brady bio already on this page, not a new unsourced claim.
+
+- [ ] **Step 4: Verify citation and structural integrity**
+
+Count `cite-inline` occurrences before and after this task's edits — confirm identical (no citation added, removed, or duplicated by this prose-only task, aside from whatever the pull-quote's `.attrib` may reference, which should point to a citation already used for Brady elsewhere on the page, not a new source). Check div/tag balance is unchanged aside from the intentional new `.pull-quote` block.
+
+- [ ] **Step 5: Verify**
+
+Run: `open gun-violence.html`. Read through `#second-amendment` and the two rewritten callouts. Confirm the pull-quote renders visually consistent with how `.pull-quote` looks/behaves on `immigration.html` or other pages that use it. Confirm nothing outside the touched callouts/pull-quote changed.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: warmth and engagement pass — human-stakes callouts and first pull-quote use"
+```
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage:** All design doc sections (page structure items 1-11, the update-pane's Part A/Part B split reusing the differing-perspectives component, nonpartisanship discipline, Washington's School Safety Story, the international-comparison section, Key People, the "Groups Working on This Issue" balanced-pair subsection, images with the non-graphic hard filter, sourcing standards, reading level with its required dedicated review task, out-of-scope list) map to Tasks 1-14 in this plan. The design doc's explicit requirement that images, advocacy groups, and grade-level review be *built in from the start* (not discovered as mid-build gaps, per the explicit lesson from Immigration's build) is reflected by Tasks 10, 11, and 12 existing as first-class tasks in this plan's original numbering, not inserted later.
