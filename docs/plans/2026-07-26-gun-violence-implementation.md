@@ -890,6 +890,58 @@ git commit -m "feat: warmth and engagement pass — human-stakes callouts and fi
 
 ---
 
+## Task 16: Early Images & Update-Pane Vocabulary Grounding
+
+**Files:**
+- Modify: `gun-violence.html` (add images near the top of the page; add short grounding text in the update-pane — no citation changes, no section reordering, no content deletion)
+
+**Context:** Added after the project owner opened the live page in a browser (post-Task 15) and found two related problems: the page's opening third (hero, narrative hook, update-pane, all of `#scale`) has no in-content images, and the update-pane opens with policy jargon like "red-flag laws" before `#policy-today` (further down the page) ever explains the underlying mechanism. See the design doc's "Early Images & Update-Pane Vocabulary" subsection for the full diagnosis.
+
+**Scope:**
+
+1. In the update-pane, find each contested question that uses a term the page hasn't taught yet by that point (start with the "Should more states adopt or expand red-flag laws?" question, which uses "extreme risk protection orders"/"red-flag laws" — confirm by reading the update-pane's full content whether any other question has the same issue). For each one, add one short, plain-language grounding sentence or clause immediately before the term's first use in that question — in addition to the existing `.term` tooltip, not a replacement for it. Do not remove or alter the tooltip itself, its `data-def` text, or the surrounding question structure.
+2. Source and add a genuine, verified, non-graphic image to `#scale` (the stats/hex-map/table section), following this page's established image discipline: Wikimedia Commons only, license and subject verified directly on the image's own Commons file page, no incident/victim/memorial imagery — favor policy/institutional subject matter (e.g., a CDC building, a data/statistics-adjacent institutional photo, or similar).
+3. Source and add a genuine, verified, non-graphic image to the update-pane, same discipline as above.
+4. Attempt to source a genuine, verified, non-graphic image fitting the opening narrative hook (the lockdown-drill scene) — same discipline. If no compliant, verified image can be found that actually fits this specific placement without forcing a weak or borderline match, it is acceptable to skip this one placement only; Steps 2 and 3 are expected to ship regardless.
+5. For every new image: use the same `.photo-break` (for section-level images) or an inline placement consistent with this page's existing image markup (confirm the exact pattern by reading how images were added in Task 11, rather than inventing new markup). Every new image needs real alt text describing its actual subject, and a caption/credit line crediting Wikimedia Commons and the license, matching this page's existing image-credit convention exactly.
+
+- [ ] **Step 1: Read the update-pane's full current content and the existing image markup pattern**
+
+Read the entire `#update-pane` block to identify every term needing grounding text (not just the red-flag example). Read Task 11's existing image markup elsewhere on the page (`.photo-break` usage, credit-line format) to match it exactly rather than inventing a new pattern.
+
+- [ ] **Step 2: Add grounding text in the update-pane**
+
+Add the short grounding sentence(s)/clause(s) identified in Step 1. Keep the page's 5th-6th grade reading level (~12-15 words/sentence). Do not touch any citation or the `.term` tooltip itself.
+
+- [ ] **Step 3: Source and verify images for Scale and the update-pane**
+
+For each image: find a candidate on Wikimedia Commons, open its own Commons file page directly (not a search thumbnail or an embedding article) to verify the license (public domain or CC) and confirm the subject matches what you intend to use it for. Reject and try again if either check fails. Confirm neither image is incident/victim/memorial imagery.
+
+- [ ] **Step 4: Attempt the narrative-hook image**
+
+Same sourcing/verification process as Step 3. If nothing suitable is found after a genuine attempt, skip this one placement and note it in your report — do not force a weak match.
+
+- [ ] **Step 5: Add the image markup**
+
+Insert each verified image using this page's existing `.photo-break` (or equivalent inline) markup pattern, with accurate alt text and a properly formatted Commons credit/license line.
+
+- [ ] **Step 6: Verify citation and structural integrity**
+
+Count `cite-inline` occurrences before and after — confirm unchanged (this task adds images and grounding prose, not new cited claims, so the count should not change unless the grounding text itself needs a citation — if it restates a fact already cited elsewhere on the page, it does not need a new citation of its own). Check div/tag balance is unchanged aside from the intentional new image blocks.
+
+- [ ] **Step 7: Verify**
+
+Run: `open gun-violence.html`. Confirm all new images render (no broken paths — the `onerror` fallback should not trigger), read the update-pane's grounding additions in context to confirm they genuinely help a first-time reader without feeling redundant with the tooltip, and confirm nothing else on the page changed.
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: add early images and update-pane vocabulary grounding"
+```
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage:** All design doc sections (page structure items 1-11, the update-pane's Part A/Part B split reusing the differing-perspectives component, nonpartisanship discipline, Washington's School Safety Story, the international-comparison section, Key People, the "Groups Working on This Issue" balanced-pair subsection, images with the non-graphic hard filter, sourcing standards, reading level with its required dedicated review task, out-of-scope list) map to Tasks 1-14 in this plan. The design doc's explicit requirement that images, advocacy groups, and grade-level review be *built in from the start* (not discovered as mid-build gaps, per the explicit lesson from Immigration's build) is reflected by Tasks 10, 11, and 12 existing as first-class tasks in this plan's original numbering, not inserted later.
