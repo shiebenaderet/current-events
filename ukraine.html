@@ -129,6 +129,12 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
   opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
 }
 .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+/* visually-hidden text for the .term-desc spans that back each .term's aria-describedby —
+   keeps the definition available to screen readers without duplicating it visibly on the page */
+.term-desc{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
 @media(max-width:600px){
   .term::after{max-width:70vw;font-size:.74rem}
 }
@@ -186,6 +192,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .tl-body .cap a{color:inherit}
 .tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
 .tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
 .hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--accent)}
 .hidden-egg.revealed{display:block}
 .hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:8px}
@@ -311,10 +318,34 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-.dyslexic-toggle{position:fixed;bottom:20px;right:20px;z-index:9999;background:#111;color:white;border:none;border-radius:50px;padding:10px 16px;font-size:.8rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .2s;display:flex;align-items:center;gap:6px;font-family:-apple-system,sans-serif}
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
 .dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
 .dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
 body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
 </head>
 <body>
@@ -444,7 +475,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <div class="callout"><span class="tag">Putin's argument vs. Ukraine's response</span><p><strong>Putin says:</strong> "Russians and Ukrainians are one people — a single whole." He points to their shared roots in Kievan Rus' as proof. <strong>Ukrainians respond:</strong> Sharing ancient roots doesn't make two countries the same. England and the United States both trace back to English settlers — but nobody says they're "one people." Ukraine has its own language, its own traditions, and its own right to choose its future.</p></div>
 
-  <p>In 1240, the Mongol Empire invaded. It destroyed Kyiv and scattered its people. Power shifted north to Moscow, which would eventually become Russia. Meanwhile, fierce, independent warriors called <span class="term" tabindex="0" data-def="Self-governing warrior communities on the Ukrainian steppe who fiercely defended their independence.">Cossacks</span> built self-governing settlements in what is now southern Ukraine, along the Dnipro River. The Cossacks are still a powerful symbol of Ukrainian freedom and resistance.<a class="cite-inline" href="https://www.britannica.com/topic/Cossack" target="_blank">Britannica</a></p>
+  <p>In 1240, the Mongol Empire invaded. It destroyed Kyiv and scattered its people. Power shifted north to Moscow, which would eventually become Russia. Meanwhile, fierce, independent warriors called <span class="term" tabindex="0" data-def="Self-governing warrior communities on the Ukrainian steppe who fiercely defended their independence." aria-describedby="term-desc-1">Cossacks</span><span id="term-desc-1" class="term-desc">Self-governing warrior communities on the Ukrainian steppe who fiercely defended their independence.</span> built self-governing settlements in what is now southern Ukraine, along the Dnipro River. The Cossacks are still a powerful symbol of Ukrainian freedom and resistance.<a class="cite-inline" href="https://www.britannica.com/topic/Cossack" target="_blank">Britannica</a></p>
 
   <div class="vocab"><b>Key Word — Kievan Rus'</b><p>A medieval state (about 882–1240 AD) centered on Kyiv. Both Ukraine and Russia trace their origins to it — which is part of why they disagree about who it "belongs" to.</p></div>
   <div class="vocab"><b>Key Word — Cossacks</b><p>Self-governing warrior communities who lived on the Ukrainian steppe. They fiercely defended their independence and became a symbol of Ukrainian identity.</p></div>
@@ -460,11 +491,11 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 <div class="article">
   <p class="lede">Starting in the 1700s, the <strong>Russian Empire</strong> swallowed up most of Ukraine piece by piece. In 1783, Catherine the Great seized Crimea. Over the next century, the empire banned the Ukrainian language in schools, books, and public life. The message was clear: be Russian, or be silent.<a class="cite-inline" href="https://www.britannica.com/event/Ems-Decree" target="_blank">Britannica</a></p>
 
-  <p>But one person refused to be silent. <strong>Taras Shevchenko</strong> (1814–1861) was a poet and artist. He wrote in Ukrainian when it was illegal to do so. He was born into <span class="term" tabindex="0" data-def="A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery.">serfdom</span>. He was later freed, and became the voice of Ukrainian identity. His poetry is about freedom, the beauty of Ukraine, and resisting oppression. Ukrainian schoolchildren still memorize it today. He's considered the father of Ukrainian literature.<a class="cite-inline" href="https://www.britannica.com/biography/Taras-Shevchenko" target="_blank">Britannica</a></p>
+  <p>But one person refused to be silent. <strong>Taras Shevchenko</strong> (1814–1861) was a poet and artist. He wrote in Ukrainian when it was illegal to do so. He was born into <span class="term" tabindex="0" data-def="A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery." aria-describedby="term-desc-2">serfdom</span><span id="term-desc-2" class="term-desc">A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery.</span>. He was later freed, and became the voice of Ukrainian identity. His poetry is about freedom, the beauty of Ukraine, and resisting oppression. Ukrainian schoolchildren still memorize it today. He's considered the father of Ukrainian literature.<a class="cite-inline" href="https://www.britannica.com/biography/Taras-Shevchenko" target="_blank">Britannica</a></p>
 
   <div class="callout"><span class="tag">Why writing in your own language was an act of rebellion</span><p>Imagine if someone told you that your language didn't count — that it was just a "dialect" and you had to speak someone else's language in school, in court, and in every book you read. That's what Ukraine experienced under the Russian Empire. When Shevchenko wrote poetry in Ukrainian, he wasn't just writing poems — he was saying "we exist, and our culture matters."</p></div>
 
-  <p>World War I and the Russian Revolution shook everything apart in 1917. Ukrainians saw their chance. Historian <strong>Mykhailo Hrushevsky</strong> led them. They declared the <strong>Ukrainian People's Republic</strong> — their first modern independent state. But it didn't last. The <span class="term" tabindex="0" data-def="Communist revolutionaries who took over Russia in 1917 and created the Soviet Union.">Bolsheviks</span> crushed Ukrainian independence by 1921. They absorbed the country into the USSR.<a class="cite-inline" href="https://www.britannica.com/place/Ukraine/World-War-I-and-the-struggle-for-independence" target="_blank">Britannica</a></p>
+  <p>World War I and the Russian Revolution shook everything apart in 1917. Ukrainians saw their chance. Historian <strong>Mykhailo Hrushevsky</strong> led them. They declared the <strong>Ukrainian People's Republic</strong> — their first modern independent state. But it didn't last. The <span class="term" tabindex="0" data-def="Communist revolutionaries who took over Russia in 1917 and created the Soviet Union." aria-describedby="term-desc-3">Bolsheviks</span><span id="term-desc-3" class="term-desc">Communist revolutionaries who took over Russia in 1917 and created the Soviet Union.</span> crushed Ukrainian independence by 1921. They absorbed the country into the USSR.<a class="cite-inline" href="https://www.britannica.com/place/Ukraine/World-War-I-and-the-struggle-for-independence" target="_blank">Britannica</a></p>
 
   <div class="pull-quote"><p>Ukraine tries to be free → a bigger power takes over. It happened with the Mongols. It happened with the Russian Empire. It happened with the Bolsheviks.</p><span class="attrib">A pattern that repeats across Ukrainian history</span></div>
 
@@ -488,7 +519,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="focus-pane-inner">
     <p>The Holodomor is one of the darkest chapters in Ukrainian history. It is also one of the least known. Between 1932 and 1933, the Soviet dictator <strong>Joseph Stalin</strong> engineered a famine. It killed between <strong>3.5 and 7 million Ukrainians</strong>. The word "Holodomor" comes from the Ukrainian words for "death by hunger."<a class="cite-inline" href="https://www.britannica.com/event/Holodomor" target="_blank">Britannica</a></p>
 
-    <p>Here's what happened. Stalin's government forced Ukrainian farmers onto <span class="term" tabindex="0" data-def="Farms owned and controlled by the government instead of by individual families.">collective farms</span>. Then the government seized nearly all the grain those farms produced. The grain was exported or sent to Russian cities while Ukrainians starved. Borders were sealed so people couldn't leave to find food elsewhere. A law known as the "Five Stalks of Grain" law made it a crime to take even a small handful of wheat from a collective farm. The punishment was death or 10 years in a labor camp.<a class="cite-inline" href="https://education.holodomor.ca/" target="_blank">HREC</a></p>
+    <p>Here's what happened. Stalin's government forced Ukrainian farmers onto <span class="term" tabindex="0" data-def="Farms owned and controlled by the government instead of by individual families." aria-describedby="term-desc-4">collective farms</span><span id="term-desc-4" class="term-desc">Farms owned and controlled by the government instead of by individual families.</span>. Then the government seized nearly all the grain those farms produced. The grain was exported or sent to Russian cities while Ukrainians starved. Borders were sealed so people couldn't leave to find food elsewhere. A law known as the "Five Stalks of Grain" law made it a crime to take even a small handful of wheat from a collective farm. The punishment was death or 10 years in a labor camp.<a class="cite-inline" href="https://education.holodomor.ca/" target="_blank">HREC</a></p>
 
     <div class="stat-trio">
       <div class="stat"><div class="num">3.5–7M</div><div class="desc"><b>Ukrainians killed</b>Estimates vary; HREC</div></div>
@@ -498,7 +529,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
     <p><strong>Why did Stalin do this?</strong> Historians believe it was deliberate. It was designed to crush Ukrainian resistance to Soviet rule. Ukrainian farmers were the backbone of Ukrainian culture, and the famine destroyed that farming class. It was also meant to punish Ukraine for wanting independence. It was an attack on Ukrainian identity itself.<a class="cite-inline" href="https://cla.umn.edu/chgs/holocaust-genocide-education/resource-guides/holodomor" target="_blank">UMN</a></p>
 
-    <p>For decades, the Soviet government denied the Holodomor ever happened. They called it a "natural famine" and punished anyone who said otherwise. The full truth didn't start coming out until Ukraine gained independence in 1991. Today, the Holodomor is recognized as <span class="term" tabindex="0" data-def="The deliberate destruction of a group of people, often based on their nationality, ethnicity, or culture.">genocide</span> by Ukraine, the United States, Canada, the European Parliament, and more than 20 other countries.<a class="cite-inline" href="https://www.britannica.com/event/Holodomor" target="_blank">Britannica</a></p>
+    <p>For decades, the Soviet government denied the Holodomor ever happened. They called it a "natural famine" and punished anyone who said otherwise. The full truth didn't start coming out until Ukraine gained independence in 1991. Today, the Holodomor is recognized as <span class="term" tabindex="0" data-def="The deliberate destruction of a group of people, often based on their nationality, ethnicity, or culture." aria-describedby="term-desc-5">genocide</span><span id="term-desc-5" class="term-desc">The deliberate destruction of a group of people, often based on their nationality, ethnicity, or culture.</span> by Ukraine, the United States, Canada, the European Parliament, and more than 20 other countries.<a class="cite-inline" href="https://www.britannica.com/event/Holodomor" target="_blank">Britannica</a></p>
 
     <div class="callout"><span class="tag">Think about it</span><p>The Holodomor was hidden from the world for decades. Why would a government try to cover up a famine it caused — and what happens when history gets erased? Can you think of other examples where a government tried to hide what it did?</p></div>
 
@@ -528,7 +559,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <p>Chernobyl didn't just poison the land. It poisoned Ukrainians' trust in the Soviet government. People saw that Moscow cared more about hiding the truth than protecting lives. The disaster fueled the independence movement. If the Soviet Union couldn't even keep its people safe, why stay?</p>
 
-  <p>The Soviet Union began to collapse in 1991. Ukraine held a <span class="term" tabindex="0" data-def="A nationwide vote where everyone answers the same yes-or-no question.">referendum</span> on one question: should Ukraine be independent? <strong>92% voted yes.</strong> Many people in Crimea spoke Russian and felt close ties to Moscow. Even there, a majority voted for independence. On December 1, 1991, Ukraine became a free country for the first time in modern history.<a class="cite-inline" href="https://www.britannica.com/place/Ukraine/Independent-Ukraine" target="_blank">Britannica</a></p>
+  <p>The Soviet Union began to collapse in 1991. Ukraine held a <span class="term" tabindex="0" data-def="A nationwide vote where everyone answers the same yes-or-no question." aria-describedby="term-desc-6">referendum</span><span id="term-desc-6" class="term-desc">A nationwide vote where everyone answers the same yes-or-no question.</span> on one question: should Ukraine be independent? <strong>92% voted yes.</strong> Many people in Crimea spoke Russian and felt close ties to Moscow. Even there, a majority voted for independence. On December 1, 1991, Ukraine became a free country for the first time in modern history.<a class="cite-inline" href="https://www.britannica.com/place/Ukraine/Independent-Ukraine" target="_blank">Britannica</a></p>
 
   <div class="stat-trio">
     <div class="stat"><div class="num">92%</div><div class="desc"><b>Voted for independence</b>1991 referendum</div></div>
@@ -594,7 +625,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
   <p>Russia then held a rushed referendum in Crimea. It was widely condemned as illegal. Russia declared Crimea part of Russia anyway. It was the first time since World War II that a European country had annexed part of another country by force.</p>
 
-  <p>A month later, Russia-backed separatists seized government buildings in eastern Ukraine's <span class="term" tabindex="0" data-def="A region in eastern Ukraine made up mostly of the Donetsk and Luhansk areas.">Donbas</span> region. They declared independence from Ukraine. A grinding war began — trenches, artillery, snipers. By 2022, over <strong>14,000 people</strong> had been killed in the Donbas conflict.<a class="cite-inline" href="https://www.cfr.org/backgrounder/ukraine-conflict-crossroads-europe-and-russia" target="_blank">CFR</a></p>
+  <p>A month later, Russia-backed separatists seized government buildings in eastern Ukraine's <span class="term" tabindex="0" data-def="A region in eastern Ukraine made up mostly of the Donetsk and Luhansk areas." aria-describedby="term-desc-7">Donbas</span><span id="term-desc-7" class="term-desc">A region in eastern Ukraine made up mostly of the Donetsk and Luhansk areas.</span> region. They declared independence from Ukraine. A grinding war began — trenches, artillery, snipers. By 2022, over <strong>14,000 people</strong> had been killed in the Donbas conflict.<a class="cite-inline" href="https://www.cfr.org/backgrounder/ukraine-conflict-crossroads-europe-and-russia" target="_blank">CFR</a></p>
 
   <h3>Full-Scale Invasion — February 24, 2022</h3>
   <p>At 5:00 AM on February 24, 2022, Russia launched a full-scale invasion of Ukraine. Over <strong>200,000 troops</strong> attacked from three directions: north toward Kyiv, east into the Donbas, and south from Crimea. Missiles hit cities across the country. It was the largest military attack in Europe since World War II.<a class="cite-inline" href="https://www.bbc.com/news/articles/c0l0k4389g2o" target="_blank">BBC</a></p>
@@ -607,6 +638,8 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <p><strong>Bucha massacre (April 2022):</strong> Russian troops withdrew from the suburbs of Kyiv. The world saw what they had left behind. In the town of Bucha, evidence of mass killings, torture, and violence against civilians shocked the world. Satellite images showed bodies lying in the streets. Russia denied responsibility, but the evidence was overwhelming.<a class="cite-inline" href="https://www.bbc.com/news/60981238" target="_blank">BBC</a></p>
 
   <div class="pull-quote"><p>Satellite images showed bodies lying in the streets. Russia denied responsibility, but the evidence was overwhelming.</p><span class="attrib">The Bucha massacre, April 2022</span></div>
+
+  <div class="callout"><span class="tag">Think about it</span><p>Stories like Bucha are hard to read. Why do journalists and investigators keep documenting things like this instead of looking away? What do you think happens to the truth of an event like this if no one writes it down?</p></div>
 
   <p><strong>Siege of Mariupol / Azovstal (February–May 2022):</strong> Russian forces surrounded the port city of Mariupol and bombarded it for over 80 days. The last Ukrainian defenders held out inside the Azovstal steel plant, a massive industrial complex with underground tunnels. They became a symbol of resistance before eventually surrendering in May 2022.</p>
 
@@ -640,7 +673,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <p>The pace of fighting has slowed down a lot in 2026. Russian forces seized about 622 square kilometers of Ukrainian land in the first half of 2026. That's way down from the 2,190 square kilometers they took in the first half of 2025. Ukraine also took back some small bits of land. Once you subtract that, Russia's net gain for the first six months of 2026 was only about 97 square kilometers. It came at a huge cost in Russian casualties.<a class="cite-inline" href="https://www.aljazeera.com/news/2026/7/3/russian-advance-collapses-in-ukraine-as-anxiety-rises-in-moscow" target="_blank">Al Jazeera</a> As of July 2026, the front lines remain largely where they were in early 2026. Neither side has been able to make a big breakthrough.</p>
 
   <h3>Peace talks — so far</h3>
-  <p>Many countries have tried to end the war through <span class="term" tabindex="0" data-def="Talks where both sides try to agree on a deal to stop fighting.">peace negotiations</span>. President Trump took office in January 2025, and the U.S. pushed hard for a deal. Leaders have kept talking through 2026. But so far there is still no ceasefire and no final agreement.</p>
+  <p>Many countries have tried to end the war through <span class="term" tabindex="0" data-def="Talks where both sides try to agree on a deal to stop fighting." aria-describedby="term-desc-8">peace negotiations</span><span id="term-desc-8" class="term-desc">Talks where both sides try to agree on a deal to stop fighting.</span>. President Trump took office in January 2025, and the U.S. pushed hard for a deal. Leaders have kept talking through 2026. But so far there is still no ceasefire and no final agreement.</p>
 
   <p>In January 2026, a group of <strong>35 countries</strong> called the "coalition of the willing" met in Paris. France and the United Kingdom said they would send troops to Ukraine to help keep the peace <em>if</em> a ceasefire is reached. The U.S. said it would back security guarantees for Ukraine. It also said it would help set up a system to monitor a truce.<a class="cite-inline" href="https://abcnews.go.com/International/european-nations-commit-troops-ukraine-part-milestone-peace/story?id=128972870" target="_blank">ABC News</a> The next month, officials from the U.S., Ukraine, and Russia sat down together for two days of talks in Geneva, Switzerland, after earlier rounds in Abu Dhabi. They made some progress on smaller issues, like how prisoner exchanges might work. But they got stuck on the biggest question of all: territory.<a class="cite-inline" href="https://kyivindependent.com/ukraine-russia-begin-new-peace-talks-in-geneva/" target="_blank">Kyiv Independent</a> Talks stalled after that. A U.S. deadline to reach a deal by June came and went. Since then, Russia and Ukraine have kept swapping prisoners of war and the bodies of soldiers killed in battle. There were pauses around Orthodox Easter in April and Russia's Victory Day holiday in May. But those exchanges haven't led to a wider ceasefire.<a class="cite-inline" href="https://www.euronews.com/my-europe/2026/06/26/russia-and-ukraine-swap-160-soldiers-each-in-latest-prisoner-exchange" target="_blank">Euronews</a></p>
 
@@ -653,7 +686,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <p>The Donbas and Crimea remain the core obstacles to peace. Russia says these areas are now part of Russia. Ukraine — and most of the world — says they are still Ukrainian land, taken illegally. This is a problem no one has solved yet. Any peace deal will have to answer a very hard question: <em>who keeps the land?</em></p>
 
   <h3>The human cost</h3>
-  <p>The numbers are staggering. As of early 2026, about <strong>5.9 million Ukrainians</strong> have fled the country as refugees. Another <strong>3.7 million</strong> are <span class="term" tabindex="0" data-def="Forced to leave home but still living inside your own country, unlike a refugee who leaves the country entirely.">displaced</span> inside Ukraine. In total, about <strong>10.8 million people</strong> need humanitarian help.<a class="cite-inline" href="https://data.unhcr.org/en/situations/ukraine" target="_blank">UNHCR, 2026</a></p>
+  <p>The numbers are staggering. As of early 2026, about <strong>5.9 million Ukrainians</strong> have fled the country as refugees. Another <strong>3.7 million</strong> are <span class="term" tabindex="0" data-def="Forced to leave home but still living inside your own country, unlike a refugee who leaves the country entirely." aria-describedby="term-desc-9">displaced</span><span id="term-desc-9" class="term-desc">Forced to leave home but still living inside your own country, unlike a refugee who leaves the country entirely.</span> inside Ukraine. In total, about <strong>10.8 million people</strong> need humanitarian help.<a class="cite-inline" href="https://data.unhcr.org/en/situations/ukraine" target="_blank">UNHCR, 2026</a></p>
 
   <p>Russia has repeatedly attacked Ukraine's power grid, leaving millions of people without heat or electricity during winter. Schools have been destroyed. Children study in bomb shelters or online. The World Bank estimates that rebuilding Ukraine will cost around <strong>$588 billion</strong> — one of the most expensive reconstruction efforts in history.<a class="cite-inline" href="https://www.csis.org/analysis/russia-ukraine-war-10-charts" target="_blank">CSIS</a></p>
 
@@ -665,7 +698,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <h3>Global impact</h3>
   <p>This war has changed the world in ways you can feel even here. Ukraine and Russia are two of the world's biggest grain exporters. The war disrupted grain shipments, and food prices rose around the globe. Poorer countries were hit the hardest. Energy prices spiked too, because Europe had relied on Russian natural gas.</p>
 
-  <p>The war also pushed countries to take sides. <strong>Finland and Sweden</strong> had stayed neutral for decades. Both joined <span class="term" tabindex="0" data-def="A military alliance of countries in North America and Europe that agree to defend each other if one member is attacked.">NATO</span> after the invasion. Russia's invasion is exactly what Putin said he wanted to prevent. But his actions made NATO bigger and stronger.<a class="cite-inline" href="https://apnews.com/article/russia-ukraine-war-numbers-f023cd82917ccb29ad2dda54ea589249" target="_blank">AP News</a></p>
+  <p>The war also pushed countries to take sides. <strong>Finland and Sweden</strong> had stayed neutral for decades. Both joined <span class="term" tabindex="0" data-def="A military alliance of countries in North America and Europe that agree to defend each other if one member is attacked." aria-describedby="term-desc-10">NATO</span><span id="term-desc-10" class="term-desc">A military alliance of countries in North America and Europe that agree to defend each other if one member is attacked.</span> after the invasion. Russia's invasion is exactly what Putin said he wanted to prevent. But his actions made NATO bigger and stronger.<a class="cite-inline" href="https://apnews.com/article/russia-ukraine-war-numbers-f023cd82917ccb29ad2dda54ea589249" target="_blank">AP News</a></p>
 
   <p style="font-size:.95rem"><strong>See the live front lines:</strong> The Institute for the Study of War (ISW) keeps an updated interactive map showing exactly where fighting is happening. <a class="tl-link" href="https://storymaps.arcgis.com/stories/36a7f6a6f5a9448496de641cf64bd375" target="_blank">View the ISW StoryMap →</a></p>
 
@@ -746,7 +779,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Taras Shevchenko</h4>
         <div class="role">Poet &amp; National Hero, 1814–1861</div>
-        <p>Born into <span class="term" tabindex="0" data-def="A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery.">serfdom</span>, Shevchenko became Ukraine's greatest poet. He wrote in Ukrainian when the Russian Empire had banned the language. His poetry about freedom and Ukrainian identity inspired generations. He's still the most important cultural figure in Ukraine — there are more statues of him worldwide than almost any other poet.</p>
+        <p>Born into <span class="term" tabindex="0" data-def="A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery." aria-describedby="term-desc-11">serfdom</span><span id="term-desc-11" class="term-desc">A system where a person is legally tied to land they don't own and forced to work it for a landowner, with almost no freedom or rights — very close to slavery.</span>, Shevchenko became Ukraine's greatest poet. He wrote in Ukrainian when the Russian Empire had banned the language. His poetry about freedom and Ukrainian identity inspired generations. He's still the most important cultural figure in Ukraine — there are more statues of him worldwide than almost any other poet.</p>
         <div class="src">Photo: Public domain (died 1861) via <a href="https://commons.wikimedia.org/wiki/Category:Photographs_of_Taras_Shevchenko" target="_blank">Wikimedia</a></div>
       </div>
     </div>
@@ -755,7 +788,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div>
         <h4>Mykhailo Hrushevsky</h4>
         <div class="role">First President of Ukraine, 1917–1918</div>
-        <p>A historian and scholar, Hrushevsky led the Ukrainian People's Republic — Ukraine's first attempt at modern independence. The republic was crushed by the <span class="term" tabindex="0" data-def="Communist revolutionaries who took over Russia in 1917 and created the Soviet Union.">Bolsheviks</span>. But Hrushevsky's work still matters today — he proved that Ukraine had its own distinct history, separate from Russia's. He appears on Ukraine's 50 hryvnia banknote today.</p>
+        <p>A historian and scholar, Hrushevsky led the Ukrainian People's Republic — Ukraine's first attempt at modern independence. The republic was crushed by the <span class="term" tabindex="0" data-def="Communist revolutionaries who took over Russia in 1917 and created the Soviet Union." aria-describedby="term-desc-12">Bolsheviks</span><span id="term-desc-12" class="term-desc">Communist revolutionaries who took over Russia in 1917 and created the Soviet Union.</span>. But Hrushevsky's work still matters today — he proved that Ukraine had its own distinct history, separate from Russia's. He appears on Ukraine's 50 hryvnia banknote today.</p>
         <div class="src">Photo: Public domain (died 1934) via <a href="https://commons.wikimedia.org/wiki/Category:Mykhailo_Hrushevsky" target="_blank">Wikimedia</a></div>
       </div>
     </div>
@@ -820,7 +853,16 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
 </footer>
 
-<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">Aa Dyslexic Font</button>
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
 
 <script>
 // ─── STATE ───
@@ -1074,6 +1116,17 @@ function toggleDyslexic(){
 if(localStorage.getItem('dyslexicFont')==='on'){
   document.body.classList.add('dyslexic');
   document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
 }
 </script>
 
