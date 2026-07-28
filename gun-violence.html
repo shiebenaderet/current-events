@@ -828,7 +828,45 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h2>How Policy Actually Works Today</h2>
 </div>
 <div class="article">
-  <p>[Content added in Task 5]</p>
+  <p class="lede"><strong>Gun policy in the U.S. isn't made in just one place.</strong> Some rules come from Washington, D.C. Other rules come from each state's own capital. Understanding gun policy means understanding how that split works.</p>
+
+  <h3>What the federal government regulates</h3>
+
+  <p>The federal government sets a baseline set of rules. Every state has to follow these rules, no matter where you live. Two federal laws form the core of this baseline. They are the National Firearms Act of 1934 and the Gun Control Act of 1968. Both laws were covered in Section 2.</p>
+
+  <p>These federal laws cover things like who can sell guns as a business, which buyers must pass a <span class="term" tabindex="0" data-def="A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one.">background check</span>, and which categories of people are barred from owning a gun at all — such as convicted felons. The federal government's power to make these rules comes mainly from its constitutional authority over interstate commerce.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <h3>What states regulate</h3>
+
+  <p>Federal law is described as a "floor," not a ceiling. States are free to add their own, stricter rules on top of it. States just cannot pass a law that directly conflicts with federal law.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <p>This is why gun laws can look very different depending on which state you're in. One state might require a permit to carry a concealed gun in public. A neighboring state might not. One state might set its own waiting period before a gun sale. Another might not. These are all choices made at the state level, layered on top of the shared federal baseline.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Think of it like a two-layer system. The federal layer applies everywhere, the same way, in every state. The state layer sits on top of it, and that layer can vary a lot from state to state. A gun law that exists in one state may not exist in the state next door.</p>
+  </div>
+
+  <h3>Red-flag laws: one example of a state-level tool</h3>
+
+  <p>One example of a state-level policy is a type of law often called a <span class="term" tabindex="0" data-def="A civil court order, also called a red-flag law, that can temporarily restrict a person's access to firearms. Different states that have passed this kind of law set their own specific rules for how it works.">extreme risk protection order</span>, or ERPO. These are sometimes nicknamed "red-flag laws." As of 2019, at least 17 states and Washington, D.C. had passed some version of this kind of law. More states have passed their own versions since then.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p>An ERPO is a civil court order. That means it is handled in civil court, not criminal court. Details vary by state, but most of these laws share a common structure.</p>
+
+  <p><strong>Who can ask a court for one.</strong> Only certain people are allowed to petition, or formally ask, a court for this kind of order. In most states, that group is limited to law enforcement officers and, in many cases, family or household members.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p><strong>What the court can order.</strong> A judge can issue two different kinds of orders. The first is a short, temporary order. A judge can issue this kind without the other person present. This happens if the judge finds reasonable cause to believe that person poses an immediate risk. This kind of order usually lasts only a few days to a few weeks. The second is a longer, final order. Before a judge can issue this kind, the other person must be notified. That person must also be given a chance to appear in court. A final order usually requires a higher standard of proof — clear and convincing evidence of a significant danger. If a court grants either kind of order, the named person must turn over any firearms they have. They must do this right away or within a set window of time.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p><strong>How long it lasts.</strong> A final order can last up to one year in most states that have this kind of law. Courts can renew a final order before it expires, following the same kind of court process used to issue it the first time.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This section describes how this type of law works as a general category of state policy tool. Each state that has passed one writes its own specific version, with its own exact rules. Washington's specific law is covered later in this page.</p>
+  </div>
+
+  <p>Whether a state has passed an ERPO law, and exactly how that state's version works, is a decision made entirely at the state level. That's true of most of the policy differences you'll see from state to state — they trace back to this same federal/state structure.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
 </div>
 
 <!-- ═══════════ WASHINGTON'S SCHOOL SAFETY STORY ═══════════ -->
@@ -932,6 +970,13 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Correct! A 2023 meta-analysis (Fisher et al.) found consistently strong evidence that SROs are linked to more suspensions, expulsions, and law-enforcement referrals, with the effect largest for Black and Latino students — even as other studies found SROs linked to catching more weapons and fewer violent incidents.",
     wrong: "Not quite. A 2023 meta-analysis found SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals for students, and that this effect was largest for Black and Latino students."
+  },
+  q5: {
+    q: "Under a typical extreme risk protection order (\"red-flag\") law, who is usually allowed to petition a court for an order?",
+    choices: ["Any adult resident of the state", "Only the person's employer", "Law enforcement officers and, in many cases, family or household members", "Only the state's governor"],
+    correct: 2,
+    feedback: "✅ Correct! According to the Congressional Research Service, most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members.",
+    wrong: "Not quite. Most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members."
   }
 };
 
