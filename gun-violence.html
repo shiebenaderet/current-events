@@ -1396,7 +1396,6 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 let pts = 0;
 let answeredQuizzes = new Set();
 let flagClicks = 0;
-let timelineClicks = 0;
 let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
@@ -1565,23 +1564,10 @@ function handleStatClick(el) {
   const totalInPair = el.closest('.stat-pair, .stat-trio').querySelectorAll('.stat').length;
   if (statClicks.size >= totalInPair) {
     showEgg('🔢','You clicked every number!',
-      'More to come here in a later task.',
-      '');
+      'Most people guess that gun deaths in the U.S. are mostly homicides. The data says something different: gun suicide has been the single largest category for years, and it was again in 2024 — more than gun homicides and every other cause combined.',
+      'Johns Hopkins Center for Gun Violence Solutions, citing CDC data, 2024');
     addPoints(1);
     statClicks.clear();
-  }
-}
-
-// ─── EASTER EGG: TIMELINE DOUBLE-CLICK ───
-function handleTimelineDblClick(e) {
-  timelineClicks++;
-  if (timelineClicks === 1) showToast('🕵️','Interesting...','Double-click again...');
-  if (timelineClicks >= 2) {
-    timelineClicks = 0;
-    const egg = document.getElementById('timeline-egg');
-    if (egg) egg.classList.add('revealed');
-    showToast('🕵️','Hidden History Unlocked!','A secret timeline event appeared!');
-    addPoints(1);
   }
 }
 
@@ -1591,7 +1577,7 @@ document.addEventListener('keydown', (e) => {
     konamiIndex++;
     if (konamiIndex === KONAMI.length) {
       konamiIndex = 0;
-      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\nMore to come here in a later task.','↑↑↓↓←→←→BA');
+      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\nOne more fact for the road: the Gun-Free School Zones Act of 1990 moved fast. Senator Herb Kohl introduced it, and it passed the Senate and the House that same day — then was signed into law five weeks later.','U.S. Congress, legislative record, 1990');
       addPoints(1);
     }
   } else {
