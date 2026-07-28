@@ -144,6 +144,26 @@ The update-pane's Part A/Part B content may land slightly higher given factual d
 
 ---
 
+## Warmth & Engagement Pass (added after Task 14, per explicit project-owner review)
+
+After the page was fully built, verified, and wired into the site, the project owner reviewed it end-to-end and found it doesn't have the warm, inviting, engaging feel of the site's other topic pages — the content isn't wrong, but the reading experience feels flatter and more like a policy briefing than a story with policy in it.
+
+A direct comparison against `immigration.html` (the site's most refined page) localizes the gap to specific, fixable causes rather than a vague tone problem:
+
+1. **The `.callout`/"Worth Noticing" boxes are mostly methodology footnotes, not human moments.** Immigration's callouts mostly deliver a surprising, concrete, human-stakes reveal ("the old system asked... the new system asked..."). This page's callouts mostly explain how to read a chart, or clarify that two nearby sections aren't contradicting each other — accurate and useful, but not engaging. Only one callout on the page (Ron Avi Astor's mind-change) has real narrative pull.
+2. **James Brady's story is buried at the very bottom of Key People**, disconnected from the page's arc, when it's genuinely the single most human-scale, emotionally resonant piece of content already written for this page — and it's thematically about the landmark-laws section, not a standalone bio.
+3. **The page is unusually dense with policy machinery** (federal/state split, ERPO mechanics, licensing categories, a hex map, a ranked table) relative to human-scale storytelling, more so than any other page on the site.
+4. **The `.pull-quote` component — used by every other page on the site for rhythm and breathing room — is defined in this page's CSS but never actually used anywhere in its content.** This is a concrete, mechanical gap, not just a stylistic one.
+
+**Fix, scoped as its own follow-up task (Task 15) rather than a rewrite:**
+- Rewrite 2-3 of the flattest, most methodology-focused callouts into genuine "Worth Noticing" reveals — a surprising, concrete, human-stakes fact, in the same register Immigration's callouts use. Candidates: the map-vs-table callout (~line 820) and the federal/state "two-layer system" callout (~line 969) are the most mechanical and the best candidates to reconsider; do not touch the Astor callout, which already works.
+- Introduce at least one real `.pull-quote` use, built from a shortened version of the James Brady story, placed near the landmark-laws section (Section 2 / `#second-amendment`) where it's thematically anchored — not simply moved wholesale from Key People. Key People keeps Brady's full bio; the pull-quote is a shorter, standalone excerpt/callback, using the component that already exists in this page's CSS but has never been invoked.
+- Optionally, add one additional short human-scale moment near Measures Tried or Washington's Story if a genuinely well-sourced one can be found — not manufactured, and not required if nothing suitable turns up.
+
+**Explicitly not in scope for this task**: rewriting the update-pane or international-comparison sections (their clinical register is a deliberate nonpartisanship requirement, not a defect), reordering any section, changing any citation, or touching the page's already-reviewed data/statistics content. This is a warmth-and-rhythm pass on existing prose and an activation of an already-built-but-unused component, not new research or new claims.
+
+---
+
 ## Out of Scope (for this build)
 
 - A chronological or incident-by-incident history of specific school shootings — this page is policy-and-prevention-focused by deliberate design choice, not an incident chronicle. Individual incidents may be referenced factually where directly relevant to a specific policy change (e.g., Columbine's relationship to SRO adoption), but this page does not narrate incidents for their own sake.
