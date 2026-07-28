@@ -619,6 +619,40 @@ git commit -m "feat: source and add non-graphic policy/institutional images for 
 
 ---
 
+## Task 11a: Opening Narrative Hook
+
+**Files:**
+- Modify: `gun-violence.html` (insert new content between the `.article-hero` and the `#update-pane` section)
+
+**Context:** Added mid-build per explicit project-owner review of the fully-assembled page (after Task 11's images landed). The page currently goes: hero → update-pane (numbers) → Section 1's own lede (also numbers-first) — an abrupt, stats-first opening unlike every other page on this site, which opens with a genuine narrative/scene-setting moment before any citation-heavy content. This task inserts a short narrative passage to fix that, breaking this site's usual "update-pane comes first" convention deliberately for this one page.
+
+- [ ] **Step 1: Read the existing drill reference**
+
+Read Section 1's existing lede (search `id="scale"`) — it currently contains one sentence comparing lockdown/active-shooter drills to earlier generations' fire drills. This task expands that single sentence into a fuller opening scene placed BEFORE the update-pane, not a duplicate of it — Section 1's existing sentence can stay as-is (a callback/echo is fine), but do not delete or contradict it.
+
+- [ ] **Step 2: Write the narrative passage**
+
+Write 3-5 sentences at true 5th-6th grade level, placed in a new block between `</header>` (end of the hero) and the `<!-- ═══ UPDATE PANE ═══ -->` comment. Content: a plain, procedural, non-graphic description of what a lockdown or active-shooter drill actually involves — e.g., lights off, silence, locked/barricaded doors, staying away from windows, waiting for an all-clear. Matter-of-fact, not fear-mongering — describing the institutional practice itself, not narrating a threat or any violence. No citations or stat callouts in this passage — it is a scene-setting moment, not a claim requiring a source (the fact that drills are now common is already established with citations elsewhere on the page). End with a short pivot sentence into "this wasn't always the routine" or equivalent, leading naturally into the update-pane/Section 1 content that follows.
+
+Use a distinct but consistent visual treatment — reuse the existing `.lede`-style typography or a comparable established pattern (check what's available in this page's CSS; do not invent a new component for a single short passage) so it reads as an intentional opening beat, not a stray paragraph.
+
+- [ ] **Step 3: Verify tone and scope**
+
+Re-read the passage in isolation. Confirm: no depiction of an actual attack, shooter, victim, or violence — only the drill procedure itself. Confirm it doesn't duplicate Section 1's existing sentence verbatim (should feel like an expansion/scene, not a repeat). Confirm it contains no citations (this is a deliberate exception to this page's usual "every factual claim is cited" rule, since this passage is scene-setting/procedural description, not a claim requiring a source — if it does end up asserting something citation-worthy, either add a citation or rephrase to avoid the claim).
+
+- [ ] **Step 4: Verify**
+
+Run: `open gun-violence.html`. Confirm the new passage renders between the hero and the update-pane, confirm it reads as a genuine narrative beat distinct from the stats that follow, confirm no HTML structure was broken by the insertion (div/tag balance).
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: add opening narrative hook before the update-pane"
+```
+
+---
+
 ## Task 12: Dedicated Grade-Level Review Pass
 
 **Files:**
