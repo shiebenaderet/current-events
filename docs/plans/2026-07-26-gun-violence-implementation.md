@@ -695,6 +695,50 @@ If Step 1 finds nothing needing fixes, commit is still required to document the 
 
 ---
 
+## Task 12a: Section-to-Section Transitions
+
+**Files:**
+- Modify: `gun-violence.html` (prose adjustments only — no structural changes, no new sections)
+
+**Context:** Added after the project owner reviewed the fully-assembled, grade-level-tightened page and found the overall reading experience still doesn't flow: each section's own prose is fine individually, but the page reads as a set of disconnected mini-essays rather than one continuous argument. See the design doc's "Section-to-Section Transitions" subsection for the full rationale. The `#scale` → `#second-amendment` seam already works (it closes with a "how did we get here?" question that `#second-amendment`'s opening picks up) — that seam is the model for what a real transition looks like here, not a generic transition word or phrase.
+
+**Scope:** add a genuine bridging beat at the seam of each of these transitions, in this order:
+1. `#second-amendment` → `#measures-tried`
+2. `#measures-tried` → `#policy-today`
+3. `#policy-today` → `#washington-story` (this seam is a partial exception — `#washington-story` already opens by referencing the ERPO mechanism just covered in `#policy-today`; read it first and only strengthen it if it still reads as an abrupt handoff, don't duplicate work that's already done)
+4. `#washington-story` → `#international`
+
+The update-pane, `#timeline`, Key People, Videos, and Resources are explicitly OUT of scope for this task — the update-pane is a deliberate "current snapshot" interlude and the back-matter sections are naturally list-like, not narrative.
+
+- [ ] **Step 1: Read each seam's current opening/closing sentences**
+
+For each of the four transitions listed above, read the last 2-3 sentences of the earlier section and the first 2-3 sentences (the `<p class="lede">`) of the later section. Confirm in your own notes what specific thread (a question, a fact with an implication, an unresolved tension) could genuinely connect them — don't invent a connection that isn't actually there in the content.
+
+- [ ] **Step 2: Add the bridging beat at each seam**
+
+For each transition, make ONE of these two edits — whichever reads more naturally for that specific seam:
+- (a) add a short sentence or clause to the END of the earlier section's final paragraph that sets up what's coming, or
+- (b) add a short sentence or clause to the START of the later section's lede that references what was just covered.
+
+Do not rewrite the rest of either section's content. Keep every added sentence at the page's 5th-6th grade target (~12-15 words). Do not touch any citation, quote, or `.term` tooltip in the process — if a paragraph you're editing contains a quote, edit only the non-quoted portion and leave the quoted span's exact text and adjacent punctuation untouched (same discipline as Task 12).
+
+- [ ] **Step 3: Verify citation and quote integrity after edits**
+
+Count `cite-inline` occurrences before and after this task's edits — confirm identical (no citation should be added, removed, or accidentally duplicated by this prose-only task). For any quote-bearing paragraph touched in Step 2, confirm the quoted span itself is byte-identical to before this task's edits.
+
+- [ ] **Step 4: Verify**
+
+Run: `open gun-violence.html` and read straight through from `#second-amendment` to `#international` in one pass. Confirm each of the four seams now reads as a continuous handoff rather than a cold start — you should be able to point to the specific sentence/clause that does the bridging at each seam. Check div/tag balance is unchanged.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add gun-violence.html
+git commit -m "feat: add section-to-section transitions from Measures Tried through International"
+```
+
+---
+
 ## Task 13: Full-Page Verification Pass (Including Dedicated Nonpartisanship Pass)
 
 **Files:** None modified unless this step surfaces a real problem — verification only, except for the `MAX_PTS` fix flagged in Task 1.
