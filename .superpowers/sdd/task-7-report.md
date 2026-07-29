@@ -1,52 +1,121 @@
-# Task 7 Report — Update Pane with Differing-Perspectives Component
+# Task 7 Report — Full Cross-Page Verification Pass
 
-**Note on provenance:** The implementer that built this content hit a connection error before writing this report (twice — a follow-up dispatched specifically to reconstruct the report also failed via infrastructure stall). The content itself (commit `7f50ef1`) is real, complete, and was not lost. This report was written by the controller directly from the committed diff and a live inspection of the file, not by the original implementer. All checks below were performed for real against the actual committed file, not assumed.
+**Status:** DONE_WITH_CONCERNS
+**Scope:** Fresh, independent verification pass over `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, `us-elections.html`, `immigration.html` at HEAD `360844c`, per `.superpowers/sdd/task-7-brief.md` and the design doc `docs/plans/2026-07-28-site-wide-persona-audit-design.md`.
 
-**Commit:** `7f50ef1` — "feat: add Immigration update-pane, including new differing-perspectives component"
+**Provenance note:** This worktree already contained a `task-7-report.md` and `task-8-report.md` from an unrelated prior project (an "Immigration update-pane / differing-perspectives component" build and a "Washington's Immigration Story" section — neither matches this batch's Task 7 brief). This appears to be the same kind of filename collision Task 1's report flagged for `task-1-report.md`. This file **replaces** that unrelated content with the real Task 7 (verification-pass) report; the prior content is preserved in git history if it's still needed elsewhere.
 
-## What was built
+**One fix made and committed this pass** — see "Fix found and applied" below.
 
-**Part A — structural status facts** (immigration.html:484-540), three `.update-box` blocks:
-1. **Green card issuance** (line 486-512): FY2025 total (1,320,080 LPRs, down 2.7% from 1,356,760), broken into a `.stat-trio` (immediate relatives 684,530 / family preference 196,740 / employment-based 159,070) plus a closing line on the remaining ~177,000 via refugee/asylee adjustments, diversity lottery, and humanitarian categories. Cited to DHS Office of Homeland Security Statistics' Annual Flow Report and a Newsweek article reporting the same DHS figures.
-2. **Visa backlog** (line 514-526): explains the per-country/per-category cap mechanism and the State Department's Visa Bulletin as the tracking source, then gives one concrete example (EB-3 India processing applications filed on or before January 1, 2014, as of the July 2026 bulletin) with an explicit disclaimer that this is one specific long-backlogged example, not a universal wait time. Cited to Morgan Lewis's summary of the July 2026 Visa Bulletin.
-3. **Immigration court backlog** (line 528-540): EOIR (DOJ, not the regular federal court system) pending caseload as of June 30, 2026 — 3,195,137 total, 2,310,698 (~72%) involving filed asylum applications awaiting a hearing/decision. Cited to TRAC (Transactional Records Access Clearinghouse, Syracuse University), with an explicit note on what TRAC is and how it sources EOIR data.
+---
 
-**Part B — enforcement/ICE content plus the new differing-perspectives component** (immigration.html:542-567):
-- Plain enforcement statistics stated first, uncontested: ICE's FY2026 (Oct 2025–Sept 2026) totals as of July 21, 2026 — 356,389 removals, 65,765 people in detention. Cited to ABC News reporting ICE's own published figures.
-- A transition sentence explicitly separates the uncontested count from a genuinely contested question: "who, exactly, is being arrested along the way."
-- The new `.perspectives` block (line 548-557) presents two named, sourced positions on that specific contested question:
-  - **DHS's stated position**: a direct quote from a DHS spokesperson (responding to reporting in April 2026) stating enforcement targets "the worst of the worst criminal illegal aliens" and that "70% of illegal aliens ICE arrested across the country have criminal convictions or pending criminal charges." Cited to HuffPost/THE CITY.
-  - **American Immigration Council's stated position**: AIC's own documented statistic that the share of ICE arrests involving people with no criminal record rose from 6% (Jan 2025) to 41% (Dec 2025), attributed by AIC to expanded "collateral arrests" during operations targeting other people. Cited directly to AIC's own blog post.
-  - A closing `.small-note` explicitly frames this as two characterizations of the same underlying activity, stating the page reports both rather than picking one.
+## Step 1 — Component-parity pass/fail table
 
-## Nonpartisanship verification (performed live against the committed file)
+| Page | text-size-controls | `.term` aria-describedby wired | `.tl-item` mobile-stacking |
+|---|---|---|---|
+| iran.html | PASS (byte-identical `.a11y-controls` markup) | PASS (2/2 spans wired, byte-identical `data-def`/`.term-desc` text) | PASS (verbatim media rule present) |
+| ukraine.html | PASS | PASS (12/12 spans wired) | PASS |
+| climate-change.html | PASS | PASS (6/6 spans wired — see fix below) | PASS |
+| ai.html | PASS | PASS (12/12 spans wired) | PASS |
+| us-elections.html | PASS | N/A — confirmed zero `.term` spans in body content (previously confirmed twice; re-confirmed this pass). Not a gap. | PASS |
+| immigration.html | PASS | PASS (20/20 spans wired) | PASS |
 
-Read the `.perspectives` block (immigration.html:548-557) directly. Findings:
-- **Equal length/specificity**: DHS's entry is one direct quote plus one statistic (70% claim), ~65 words. AIC's entry is one specific documented statistic (6%→41%) plus AIC's own attributed causal explanation, ~55 words. Roughly equal in length and specificity — neither side is a one-line stub next to a fully-developed paragraph.
-- **Each side is that side's own stated position, not a paraphrase of the other's characterization**: DHS's entry is a direct quote in DHS's own words ("worst of the worst," "criminal convictions or pending criminal charges") — not the page's or AIC's summary of DHS's position. AIC's entry cites AIC's own published statistic and AIC's own stated causal attribution ("collateral arrests") — not DHS's characterization of what critics say. Both read as each organization's own claim in its own framing, not one side filtered through the other.
-- **No unattributed characterization outside the `.perspectives` block**: the surrounding prose (the FY2026 removal/detention counts, the transition sentence) states only plain, uncontested counts and explicitly flags the contested question as contested rather than resolving it in the page's own voice. The closing `.small-note` reinforces this ("This page reports both stated positions rather than picking one") rather than adjudicating between them.
-- **Party-swap test**: every sentence in Part A and the plain-fact portion of Part B (counts, dates, "as of" markers) would read identically regardless of which administration or party is in office — they're agency-reported figures with sources and dates, not characterizations.
+All 6 pages carry **byte-identical** `.a11y-controls`/`.text-size-controls` HTML, `.term-desc` visually-hidden CSS, and `.tl-item` mobile media-query text — confirmed with direct string diffs, not just presence checks. This is strong evidence of a clean verbatim port, not independent reimplementations that happened to converge.
 
-## Component scope check
+Every `.term` span across all 5 applicable pages also carries `tabindex="0"` (keyboard-focusable), confirmed by count match against total span count on each page.
 
-```
-grep -n "perspectives\|perspective-label" immigration.html
-```
-Result: CSS definitions at lines 289, 296, 306, 309-310, 315 (all inside the `<style>` block, defining the component and its dark-background `.update-box` override — the override exists because this component's only real usage sits inside a dark `.update-box`, matching the treatment already given to `.vocab`/`.callout`/`.stat-pair` in that same dark context). Markup usage at lines 548, 550, 554 — all three occurrences are within the single ICE-enforcement `.update-box`, inside the update-pane. No occurrences anywhere else in the file (Sections 1-6, or any other section). Confirms the plan's requirement that this component stay scoped to Task 7's Part B content only.
+`climate-change.html`'s `.stat-trio`/`.focus-pane` absence is confirmed intentional out-of-scope per the design doc (Finding 5) — not flagged as a gap.
 
-## Quiz wiring
+## Step 2 — Citation counts (never decreased)
 
-`q6` entry exists at immigration.html:894, in the `quizzes` object. The trigger button at line 571 (`onclick="openQuiz('q6')"`) matches the key exactly. No collision with `q1`–`q5` (each is a distinct, sequentially-assigned key per the established pattern from Tasks 2-6).
+Compared `cite-inline` link counts (and, as a cross-check, all `target="_blank"` outbound links) against each page's actual pre-task base commit:
 
-## Sourcing
+| Page | Base commit | cite-inline before → after | outbound links before → after |
+|---|---|---|---|
+| iran.html | `f5c0f31` | 61 → 62 | 118 → 119 |
+| ukraine.html | `bf3918a` | 32 → 32 | 61 → 61 |
+| ai.html | `1506c65` | 12 → 14 | 82 → 88 |
+| us-elections.html | `868b27d` | 84 → 84 | 122 → 122 |
+| immigration.html | `5ed273c` | 75 → 75 | 118 → 118 |
+| climate-change.html | `214cc7f` | 35 → 35 | 46 → 46 |
 
-All Part A citations point to primary/authoritative sources (DHS's own statistics office, the State Department's Visa Bulletin via a legal-industry summary, TRAC's EOIR data) or reputable reporting of the same primary figures (Newsweek reporting DHS's own numbers). Part B's plain-fact statement cites ABC News reporting ICE's own published totals. The `.perspectives` block's two sides are each cited directly to that side's own source (a DHS spokesperson quote via HuffPost/THE CITY's reporting, and AIC's own blog post) — not to a third party's characterization of either position.
+All 6 pages: unchanged or increased, none decreased.
 
-## Div/tag balance
+## Step 3 — Duplicate `id` census
 
-The diff hunk for this task shows a single `<div class="update-pane">` opened and closed, containing a `.update-pane-inner`, a `.mini-tl` (3 balanced `.mini-tl-item`s), and a `.update-grid` containing 4 balanced `.update-box` divs (3 Part A + 1 Part B), the last of which contains the new `.perspectives` div with 2 balanced `.perspective` children. All tags close correctly within the diff.
+Ran a full `id="..."` census on each of the 6 files. **Zero duplicates on every page.**
 
-## Concerns
+## Step 4 — Page-specific fix spot-checks (read directly in final file, not trusted from prior reports)
 
-- **Process concern, not a content concern**: this report is a reconstruction, not written contemporaneously by the implementer that did the research. The controller did not re-fetch or independently re-verify the cited sources' content in this report (unlike Tasks 2-6, where either the implementer or a reviewer fetched sources directly). This should be treated as an open item for the task reviewer to independently verify at least the two `.perspectives` sources (the DHS quote via HuffPost/THE CITY, and the AIC blog post) and 1-2 of the Part A sources, since this report cannot itself serve as that verification.
-- No other concerns — the content itself, read directly, is specific, dated, well-attributed, and the differing-perspectives treatment reads as genuinely balanced rather than token.
+- **iran.html**
+  - Elementary-school-strike callout: confirmed present at line 506, `<div class="callout"><span class="tag">A heavy early loss</span>...`, PBS-cited, includes the Israeli military's denial (balanced). PASS.
+  - Wikipedia citation swap: **not swapped** — both casualty citations still point to Wikipedia. Confirmed this is a documented, compliant "leave as-is" outcome (Task 1's own report documents the WebFetch/WebSearch attempts and the brief's explicit "don't force a weak substitution" instruction). Not a regression, but noting it's an open opportunity if a future pass has search budget.
+  - Cross-page nav link to `climate-change.html`: confirmed present (`<a href="climate-change.html">Climate Change</a>`). PASS.
+  - `.hidden-egg`/`.hidden-section` dedup: confirmed only `.hidden-section` remains in both CSS and markup (3 usages); `.hidden-egg` fully removed. PASS.
+- **ukraine.html**
+  - Bucha "Think about it" prompt: confirmed present immediately after the Bucha passage and pull-quote, matching the page's existing prompt style. PASS.
+  - `.update-box .stat-trio` dark-mode override: confirmed present (line 243-246). Per given context this predates the batch (git-blame confirmed separately) — verified present, not claimed as new.
+- **ai.html**
+  - Focus-pane trims: confirmed 4 focus-panes remain (`school`, `animals`, `hinton`, `agentic`) — School and Agentic AI were trimmed for length per the brief, not removed as panes (design doc's fix was explicitly length-trim, not deletion). Consistent with brief.
+  - Misinformation/academic-integrity subsection: confirmed new subsection present ("Two problems that come with the territory" — cheating via generative AI + teens fooled by AI-deepfakes, both citing 2024/later Common Sense Media surveys). PASS.
+  - Regulation counter-perspective: confirmed present inside the Hinton focus-pane (`.perspectives` block, lines 763-773) — Hinton's "regulate now" position paired with a Stanford SETR researcher counter-view on regulation costs/tradeoffs, each independently sourced and cited. Reflects the additional narrowing fix from commit `868b27d`. PASS.
+- **us-elections.html**
+  - SVG color-token refactor: confirmed still hardcoded hex, **not** refactored. Confirmed via Task 4's own report this was a deliberate, reasoned skip under the brief's explicit optionality clause (no token exists in `:root` for 3 of 9 SVG colors; refactoring would require inventing new tokens, which was out of the brief's stated zero-risk bar). Correctly deferred, not an oversight.
+- **immigration.html**
+  - Konami-code teaser: confirmed present (`💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA`), matching `us-elections.html`'s copy/placement pattern exactly. PASS.
+  - DHS neutral-labeling note: confirmed present in the ICE-arrest `.perspectives` box — DHS's entry now opens with "DHS is the federal department that oversees ICE — the government agency whose own enforcement actions are the subject of this dispute," directly parallel to AIC's existing "immigrant-rights research and advocacy group" label. PASS.
+
+## Step 5 — Nonpartisanship spot-check (party-swap test) on all new prose
+
+Read each new passage directly in the final file:
+
+- **iran.html callout** (153 civilians / girls' elementary school): attributes the death toll to Iran's own report and includes the Israeli military's denial in the same short callout. No unattributed editorializing. Clean.
+- **ukraine.html Bucha "Think about it" prompt**: reflective/pedagogical framing ("why do journalists... keep documenting"), not a claim about any party or government's current policy. Foreign-conflict historical content, not U.S. domestic-partisan; reads clean regardless.
+- **ai.html misinformation/academic-integrity subsection**: survey-statistic reporting (Common Sense Media, dated), no policy or partisan framing at all. Clean.
+- **ai.html regulation counter-perspective**: Hinton's "regulate now" view and the Stanford SETR "regulate carefully" view are each given roughly equal length/specificity and cited to that side's own source (Hinton's podcast interview; the Stanford SETR 2025 report with a direct quote). Neither is filtered through the other's framing. A closing small-note flags that even AI researchers close to the field's founding (Fei-Fei Li) disagree — genuinely balanced, not token. Clean.
+- **immigration.html DHS labeling sentence**: adds a structurally parallel, factual label ("the government department that oversees ICE... the agency whose own enforcement actions are the subject of this dispute") without characterizing DHS's credibility either way — matches AIC's equally neutral, factual label ("immigrant-rights research and advocacy group"). Both sides retain their own direct quotes/statistics with equal length and specificity. Clean.
+
+No new lean introduced by any addition in this batch, read together.
+
+## Step 6 — Browser check
+
+**No browser or headless-browser tool was available anywhere in this session.** This limitation is stated honestly rather than claimed away: no interactive/visual confirmation of text-size-control clicks, `.term` tooltip hover/focus behavior, or climate-change.html's quiz/points/egg flow end-to-end was performed. In its place, the following **static/structural** verification was done, which is the strongest substitute available in this environment:
+
+- Full document tag-balance check (Python `html.parser`-based) on all 6 files: **0 errors, empty stack at EOF** on every page — confirms no unclosed/mismatched tags from any of the batch's edits.
+- `node --check` syntax validation on every inline `<script>` block across all 6 pages (8 script blocks total): **all pass**, including climate-change.html's new points/quiz/egg engine (2 script blocks).
+- climate-change.html quiz wiring: all 8 `openQuiz('qN')` trigger calls (`q1`–`q8`) have a matching key in the `quizzes` object — no orphaned triggers, no unused quiz entries.
+- climate-change.html points/localStorage engine: `setTextSize`, `openQuiz`, `showEgg`, `toggleDyslexic`, and `localStorage` persistence for both text-size and dyslexic-font settings all present and referenced consistently.
+- All `.term` spans confirmed keyboard-focusable (`tabindex="0"`) on every applicable page.
+
+**Recommend a follow-up manual browser pass** (open each of the 6 pages, click through text-size buttons, tab through a few `.term` spans, and click through climate-change.html's quiz end-to-end) once a browser tool becomes available in this environment — this report cannot substitute a genuine interactive check, only a rigorous static one.
+
+## Fix found and applied
+
+**climate-change.html — `data-def`/`.term-desc` text mismatch (byte-identity violation).** The brief's Step 1 explicitly requires `.term` spans' `data-def` attribute and their paired `.term-desc` span to be byte-identical. A script comparing all `.term` spans' `data-def` text against their linked `.term-desc` span text (matched by `aria-describedby` → `id`) found exactly one mismatch, on the `cap-and-invest` term (id `term-desc-5`): the `data-def` attribute used single/straight scare-quotes (`'cap'`, `'invest'`) while the visible `.term-desc` span used double straight quotes (`"cap"`, `"invest"`) — a copy/paste drift introduced when the two were authored together, not a pre-existing issue (this term didn't exist before Task 6). Every other `.term` span on all 6 pages (46 spans total) passed the byte-identity check cleanly.
+
+**Fix:** edited the `data-def` attribute to use `&quot;` (matching the double-quote style used in the visible `.term-desc` text and consistent with the page's own later use of `"allowances"` in the same paragraph). Re-ran the comparison script after the edit: 0 mismatches remain across all 6 pages.
+
+This is a screen-reader-facing accessibility text consistency issue (a screen-reader user tabbing to the term would hear a subtly different rendering of the quote characters than a sighted user hovering the tooltip would see) — minor but real, and exactly the kind of drift a fresh whole-batch pass is meant to catch.
+
+## Verification performed (this pass)
+
+- `.term`/`.term-desc` byte-identity check via a Python script matching `data-def` ↔ `aria-describedby`/`id` pairs across all 6 files (`html.unescape`-normalized comparison) — found and fixed 1 mismatch (above), 0 remaining.
+- Full-document `id=` census, all 6 files: 0 duplicates.
+- `cite-inline` and outbound-link (`target="_blank"`) counts, each page vs. its actual pre-task base commit: none decreased, 3 of 6 increased.
+- Full HTML tag-balance parse (Python `html.parser`), all 6 files: 0 errors.
+- `node --check` on all 8 inline `<script>` blocks across the 6 files: 0 syntax errors.
+- Direct byte-for-byte comparison of the ported `.a11y-controls` HTML, `.term-desc` CSS, and `.tl-item` mobile media-query text across all 6 files: identical everywhere.
+- Direct re-read (not trusted from prior task reports) of every page-specific fix listed in the design doc, in the final file state.
+- Direct re-read of every new sentence/paragraph added by this batch, applying the party-swap test.
+
+## Concerns (why DONE_WITH_CONCERNS, not DONE)
+
+1. **Design-doc Finding 1 (update-pane grounding clauses) was never assigned to any task in this batch and was not implemented on any of the 5 applicable pages.** Checked all 6 task briefs (`task-1-brief.md` through `task-6-brief.md`) directly: none contain a step for auditing/adding jargon-grounding clauses to any update-pane, despite the design doc listing it as the *first* site-wide finding (confirmed on 5 of 6 pages by the original persona review) and explicitly citing gun-violence.html's Task 16 as the proven precedent technique to reuse. Spot-checked `iran.html`'s update-pane directly: it opens with dense terms ("Revolutionary Guard," "Strait of Hormuz," ceasefire mechanics) with no grounding clauses added at first use, consistent with the finding never having been addressed. This is a real gap between the design doc and the six task briefs that were actually written and executed — not a regression from this pass, and not something Task 7 (verification-only) is scoped to fix itself, but it should be flagged for the project owner as unresolved scope, likely needing its own follow-up task.
+2. **iran.html's update-pane mini-timeline uses the literal label "Now"** (`<span class="mini-tl-date">Now</span>`, paired with "Fighting continues") as a timeline-entry date. This directly matches the project's own standing convention violation pattern (no "now"/"currently" without an explicit date). Confirmed via `git show f5c0f31:iran.html` that this predates Task 1 / this entire batch — it is not something this batch introduced, and it's outside this batch's assigned scope (none of the 6 task briefs touch update-pane mini-timeline content). Flagging for awareness, not claiming as a batch regression.
+3. **iran.html's Wikipedia casualty citations remain unswapped.** Documented, compliant "leave as-is" per the brief's own instruction (Task 1 attempted a swap, hit WebFetch/WebSearch budget limits, correctly declined to force a weak substitution) — not a defect, but worth another attempt in a future pass with fresh search budget.
+4. **No live/interactive browser verification was possible in this session** (no browser tool available at all, not just no headless Chrome). All Step 6 verification is static/structural, as detailed above. This should not be read as equivalent to an actual interactive pass — a follow-up manual check is recommended before treating the batch as fully closed.
+5. This worktree contained stale, unrelated `task-7-report.md`/`task-8-report.md` content from a different project (noted above) — flagging in case the original content is still needed and was only supposed to live elsewhere.
+
+## Commit
+
+`data-def` byte-identity fix on `climate-change.html` committed as a standalone commit (see git log) — this is the only content change made by this verification pass; all other findings above were either confirmed-clean or flagged as pre-existing/out-of-scope rather than fixed.
