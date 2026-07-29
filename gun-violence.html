@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keeping Schools Safe: Gun Violence &amp; School Safety Policy – Student Resource</title>
+<meta name="description" content="How school safety policy actually works in the U.S. — what's been tried, how the law works today, and how other countries compare — explained for middle schoolers.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;overflow-wrap:break-word}
+:root{
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  /* This page's own palette: a muted pewter/steel-gray accent. Deliberately
+     not red or blue — this is likely the highest nonpartisanship-risk topic
+     the site has built, more directly and continuously politically contested
+     in U.S. life than immigration or elections. Pewter reads as institutional
+     and procedural (think: a courthouse railing, a school security badge, a
+     policy binder) without echoing either major party's brand color. Distinct
+     from every existing page's palette: Iran/Ukraine/AI/Climate's red
+     (#a02c2c), US Elections' navy (#1a2a52), and Immigration's teal
+     (#2c6e6b). RGB distance check against party reference hexes: to
+     Democrat blue (#0015bc) ≈144/441; to Republican red (#b31942) ≈121/441 —
+     a clearly distinct, desaturated hue in both directions. A second, warmer
+     gold-tan is used sparingly for secondary accents (progress bar, badges,
+     vocab markers), echoed from the site's shared civic-neutral gold rather
+     than introducing a third hue. */
+  --accent:#5a6169; --accent-ink:#3a4048; --accent-tint:#eaecee;
+  --gold:#b8860a; --gold-l:#d4a017; --gold-tint:#fef3db;
+}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+/* ══════════════ MASTHEAD ══════════════ */
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;
+  letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;gap:6px;
+}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
+
+.section-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  padding:0 6vw;border-bottom:1px solid var(--rule);
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;
+  background:var(--paper);position:sticky;top:0;z-index:150;
+}
+.section-nav a{
+  color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav a.hub{color:var(--accent);font-weight:800}
+
+/* ══════════════ ARTICLE HERO ══════════════ */
+.article-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden}
+.article-hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.2) 45%,rgba(8,8,8,.86) 100%),
+             url('images/us-capitol-west-front.jpg') center 38%/cover no-repeat;
+}
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
+.article-hero .kicker{
+  display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#3a2000;background:var(--gold-l);
+  padding:5px 14px;margin-bottom:22px;border:none;
+}
+.article-hero h1{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px;
+}
+.article-hero .dek{
+  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;
+  color:#f0ece4;max-width:660px;margin:0 auto 22px;
+}
+.article-hero .byline{
+  font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);
+  letter-spacing:.03em;
+}
+.hero-credit{
+  position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;max-width:360px;
+}
+.hero-credit a{color:inherit}
+.hero-note{
+  position:absolute;bottom:14px;left:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:left;max-width:360px;
+}
+@media(max-width:700px){
+  .hero-note,.hero-credit{position:static;max-width:none;text-align:left;padding:0 6vw;display:block}
+  .hero-note{margin-top:14px}
+  .hero-credit{margin-top:4px;margin-bottom:14px}
+}
+
+/* ══════════════ POINTS BAR ══════════════ */
+.points-bar{display:flex;align-items:center;gap:14px;padding:10px 6vw;background:var(--ink);color:#f0ece4;font-family:-apple-system,sans-serif;font-size:.8rem;flex-wrap:wrap}
+.points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
+.progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden;min-width:0}
+.progress-fill{height:100%;background:var(--gold-l);width:0%;transition:width .3s}
+.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
+
+/* ══════════════ SECTION HEADS ══════════════ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{
+  font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:800;
+}
+.sec-head h2{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);
+  line-height:1.18;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px;
+}
+
+/* ══════════════ ARTICLE BODY ══════════════ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.14rem;line-height:1.75;margin:0 0 22px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.28rem;
+  margin:34px 0 14px;color:var(--ink);
+}
+.article p.lede::first-letter{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:5rem;line-height:.78;
+  float:left;padding:6px 10px 0 0;color:var(--accent);
+}
+/* calm, brief content note ahead of the opening lede — same acknowledging-not-alarmist
+   register as the 988 crisis-note in Section 1, styled quietly so it reads as a heads-up,
+   not a warning banner */
+.content-note{
+  font-family:-apple-system,sans-serif;font-size:.92rem;line-height:1.6;
+  color:var(--ink-light);font-style:italic;
+  margin:0 0 18px;padding-left:14px;border-left:2px solid var(--rule);
+}
+.article ul{margin:0 0 22px 22px}
+.article ul li{margin-bottom:8px;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+
+/* inline citations */
+.cite-inline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);
+  text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;letter-spacing:.01em;
+}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
+
+/* stat callouts */
+.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
+
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .stat,.stat-trio .stat{min-width:0}
+.stat-pair .num,.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
+.stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+.stat-pair .stat.clickable,.stat-trio .stat.clickable{cursor:pointer}
+.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--gold)}
+@media (max-width:560px){.stat-pair,.stat-trio{grid-template-columns:1fr}}
+
+/* vocab */
+.vocab{margin:28px 0;padding-left:20px;border-left:3px solid var(--gold)}
+.vocab b{display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8a6608;margin-bottom:6px;font-weight:800}
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+.update-box .term{border-bottom-color:var(--gold-l)}
+.update-box .term::after{background:#fff;color:var(--ink)}
+.update-box .term::before{border-top-color:#fff}
+/* visually-hidden text for the .term-desc spans that back each .term's aria-describedby —
+   keeps the definition available to screen readers without duplicating it visibly on the page */
+.term-desc{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+@media(max-width:600px){
+  .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
+  .term::before{left:16px;transform:translateX(0)}
+}
+
+/* callout / think-about-it */
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+.callout.think{border-left-color:var(--accent);background:var(--accent-tint)}
+
+/* pull quotes */
+.pull-quote{margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy)}
+.pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0}
+.pull-quote .attrib{display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase}
+
+/* full-bleed inline photo */
+.photo-break{margin:40px calc(50% - 50vw) 40px;width:100vw}
+.photo-break img{width:100%;max-height:520px;object-fit:cover;display:block}
+.photo-break .cap{max-width:700px;margin:10px auto 0;padding:0 6vw;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);line-height:1.5}
+.photo-break .cap a{color:inherit}
+
+/* smaller inline photo */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
+.clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
+
+/* chart frame */
+.chart-wrap{margin:36px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
+
+/* ══ HEX-GRID CHOROPLETH MAP ══
+   50-state map built as inline SVG hexagons, one per state, in an offset grid
+   positioned to approximate real relative U.S. geography (a "hex cartogram" —
+   the same simplified-map convention used by NPR and similar outlets, chosen
+   because literal state-boundary paths are far harder to keep both accurate
+   and legible at small sizes than a grid of same-size shapes). Alaska and
+   Hawaii sit as a clearly separated inset, matching standard convention. */
+.map-wrap{margin:36px 0;padding:24px 0 20px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.map-wrap .hexmap-svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+.map-wrap .hexmap-svg polygon{cursor:default}
+.map-legend{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:18px;font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-light)}
+.map-legend .legend-label{font-weight:700;color:var(--ink);margin-right:4px}
+.map-legend .swatch{display:inline-flex;align-items:center;gap:4px}
+.map-legend .swatch i{width:18px;height:18px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.map-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:16px;line-height:1.55;text-align:center}
+.map-not-to-scale{font-size:.68rem;color:var(--ink-faint);text-align:center;margin-top:4px;font-family:-apple-system,sans-serif}
+
+/* ══ STATE-COMPARISON CALLOUT (used for both map + table WA callouts) ══ */
+.state-callout{margin:24px 0;padding:18px 22px;background:var(--accent-tint);border-left:3px solid var(--accent)}
+.state-callout .tag{display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
+.state-callout p{margin:0;font-size:1.02rem;color:var(--ink)}
+.state-callout p+p{margin-top:8px}
+
+/* ══ RANKED STATE TABLE ══ */
+.state-table-wrap{margin:28px 0;overflow-x:auto}
+.state-table{width:100%;border-collapse:collapse;font-family:-apple-system,sans-serif;font-size:.88rem}
+.state-table caption{text-align:left;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+.state-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-light)}
+.state-table td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink)}
+.state-table td.num,.state-table th.num{text-align:right;font-variant-numeric:tabular-nums}
+.state-table tr.wa-row td{background:var(--accent-tint);font-weight:700}
+.state-table tr.wa-row td:first-child{border-left:3px solid var(--accent)}
+.state-table tr.ellipsis td{color:var(--ink-faint);text-align:center;font-style:italic;border-bottom:1px solid var(--rule)}
+
+/* ══ QUIZ ══ */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{display:inline-flex;align-items:center;gap:9px;font-family:-apple-system,sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;cursor:pointer;padding:13px 24px;box-shadow:0 2px 10px rgba(90,97,105,.25)}
+.quiz-toggle::after{content:'→';font-weight:700}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle.answered{background:var(--ink-faint)}
+
+.quiz-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.75);align-items:center;justify-content:center;padding:24px}
+.quiz-modal.open{display:flex}
+.quiz-box{background:var(--paper);max-width:520px;width:100%;padding:32px;position:relative;border-top:4px solid var(--accent)}
+.quiz-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink-faint);line-height:1}
+.quiz-box h3{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.quiz-q{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:18px;line-height:1.35}
+.quiz-choices{display:flex;flex-direction:column;gap:8px}
+.choice-btn{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);padding:11px 14px;font-family:-apple-system,sans-serif;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.choice-btn:hover:not(:disabled){border-color:var(--ink)}
+.choice-btn.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.choice-btn.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.choice-btn:disabled{cursor:default}
+.quiz-feedback{margin-top:16px;font-family:-apple-system,sans-serif;font-size:.88rem;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.correct-fb{color:#2f5934}
+.wrong-fb{color:var(--accent-ink)}
+
+/* ══ TIMELINE ══ */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:var(--accent);flex-shrink:0;width:150px}
+.tl-body{flex:1;min-width:0}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;margin-bottom:8px}
+.tl-body p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.tl-body img{width:100%;max-width:220px;display:block;margin:0 auto 10px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.tl-body .cap{font-family:-apple-system,sans-serif;font-size:.68rem;color:var(--ink-faint);margin-bottom:10px;line-height:1.4;text-align:center}
+.tl-body .cap a{color:inherit}
+.tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--gold)}
+.hidden-egg.revealed{display:block}
+.hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a6608;margin-bottom:8px}
+.hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
+
+/* ══ PERSON ══ */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%)}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
+.person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
+.person .src a{color:inherit}
+@media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
+
+/* ══ UPDATE PANE ══ */
+.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane-inner{max-width:900px;margin:0 auto}
+.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl-item{display:flex;gap:14px;align-items:baseline}
+.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
+.mini-tl-dot.blue{background:#82b1ff}
+.mini-tl-dot.green{background:#5a8a5a}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85);min-width:0}
+.mini-tl-text strong{color:#fff}
+.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
+.mini-tl-text .cite-inline:hover{color:var(--gold-l)}
+
+.update-grid{display:grid;grid-template-columns:1fr;gap:0}
+.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box:last-child{border-bottom:none}
+.update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
+.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p:last-of-type{margin-bottom:14px}
+.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline:hover{color:var(--gold-l)}
+.update-box .vocab{border-left-color:var(--gold-l)}
+.update-box .vocab b{color:var(--gold-l)}
+.update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
+.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .callout .tag{color:var(--gold-l)}
+.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources li{margin-bottom:5px;line-height:1.5}
+.update-sources a{color:var(--gold-l)}
+.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
+.update-box .photo-inline .cap{color:rgba(255,255,255,.55)}
+
+/* ══ DIFFERING PERSPECTIVES (reused verbatim from immigration.html — reserved
+   exclusively for the update-pane's Part B, per the design doc's Nonpartisanship
+   Discipline section; not used elsewhere on this page) ══ */
+.perspectives{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  margin:20px 0;
+}
+.perspective{padding:18px 20px}
+.perspective + .perspective{border-left:1px solid var(--rule)}
+.perspective-label{
+  font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:8px;
+}
+.perspective p{font-family:'Source Serif 4',Georgia,serif;font-size:.95rem;
+  color:var(--ink-light);line-height:1.65;margin-bottom:8px}
+.perspective p:last-of-type{margin-bottom:0}
+.perspective .cite-inline{font-size:.8rem}
+@media(max-width:600px){
+  .perspectives{grid-template-columns:1fr}
+  .perspective + .perspective{border-left:none;border-top:1px solid var(--rule)}
+}
+/* Dark-background override — .perspectives sits inside .update-box, matching the treatment already used for .vocab/.callout/.stat-pair in that context. Both sides keep identical padding, size, and treatment. */
+.update-box .perspectives{border-color:rgba(255,255,255,.15)}
+.update-box .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+@media(max-width:600px){
+  .update-box .perspective + .perspective{border-top-color:rgba(255,255,255,.15)}
+}
+.update-box .perspective-label{color:var(--gold-l)}
+.update-box .perspective p{color:rgba(255,255,255,.82)}
+.update-box .perspective .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .perspective .cite-inline:hover{color:var(--gold-l)}
+
+/* ══ VIDEO / RESOURCES ══ */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:10px 0 30px}
+.video-label h4{font-family:'Source Serif 4',serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.06rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
+.rc .level{font-family:-apple-system,sans-serif;font-size:.72rem;color:var(--ink-faint);margin-top:4px}
+
+footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint)}
+
+/* ══ EASTER EGG MODAL + TOAST ══ */
+.egg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.8);align-items:center;justify-content:center;padding:24px}
+.egg-modal.show{display:flex}
+.egg-box{background:var(--paper);max-width:480px;width:100%;padding:32px;text-align:center;border-top:4px solid var(--accent)}
+.egg-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.egg-box p{font-family:'Source Serif 4',serif;font-size:.98rem;line-height:1.7;color:var(--ink-light);margin-bottom:14px;text-align:left}
+.egg-extra{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:16px}
+.egg-close{background:var(--ink);color:#fff;border:none;padding:10px 22px;font-family:-apple-system,sans-serif;font-weight:700;cursor:pointer}
+
+.toast{position:fixed;top:20px;right:20px;z-index:600;background:var(--ink);color:#fff;padding:16px 20px;max-width:300px;transform:translateX(340px);transition:transform .3s;border-left:4px solid var(--gold-l)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+.hero-flag-click{cursor:pointer}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.shake{animation:shake .4s}
+
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
+.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
+body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
+</style>
+</head>
+<body>
+
+<!-- EASTER EGG MODAL -->
+<div class="egg-modal" id="eggModal">
+  <div class="egg-box">
+    <div style="font-size:2rem;margin-bottom:8px" id="eggEmoji">🎉</div>
+    <h2 id="eggTitle">You found a secret!</h2>
+    <p id="eggText"></p>
+    <div class="egg-extra" id="eggExtra"></div>
+    <button class="egg-close" onclick="closeEgg()">Got it</button>
+  </div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box">
+    <button class="quiz-close" onclick="closeQuiz()">×</button>
+    <h3>Quick Quiz</h3>
+    <p id="quizQ" class="quiz-q"></p>
+    <div class="quiz-choices" id="quizChoices"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">⭐</span>
+  <div class="toast-title" id="toastTitle"></div>
+  <div class="toast-msg" id="toastMsg"></div>
+</div>
+
+<div class="masthead-top">
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="climate-change.html">Climate Change</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="immigration.html">Immigration</a></span>
+  <span class="date">Updated July 26, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
+</div>
+
+<nav class="section-nav">
+  <a href="#update-pane">Situation Update</a>
+  <a href="#scale">Understanding the Scale</a>
+  <a href="#second-amendment">2nd Amendment &amp; Laws</a>
+  <a href="#measures-tried">Measures Tried</a>
+  <a href="#policy-today">How Policy Works Today</a>
+  <a href="#washington-story">Washington's Story</a>
+  <a href="#international">Other Countries</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#key-people">Key People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<header class="article-hero">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-inner">
+    <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">School Safety &amp; U.S. Policy</button>
+    <h1>Keeping Schools Safe</h1>
+    <p class="dek">This page is about policy, not headlines — what schools and lawmakers have actually tried, how the law works today, and how the United States compares to other countries. Here's what's been done, and what's being debated, as of July 2026.</p>
+    <div class="byline">Student Edition · Updated July 26, 2026</div>
+  </div>
+  <div class="hero-note">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
+  <div class="hero-credit">Photo: the west front of the United States Capitol, Washington, D.C. <a href="https://commons.wikimedia.org/wiki/File:United_States_Capitol_west_front_edit2.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+</header>
+
+<!-- ═══════════ OPENING NARRATIVE HOOK ═══════════ -->
+<div class="article">
+  <p class="content-note">A note before you start: this page describes lockdown drills and talks honestly about gun violence and school safety. It doesn't include graphic details. If you need to pause or talk to someone while reading, that's okay.</p>
+  <p class="lede">The lights go off first. A teacher locks the door, or pushes a desk in front of it. Students move to a corner, out of sight of the windows, and stay quiet. No one talks or checks a phone. Everyone waits for an announcement that it's safe to stand up again. This wasn't always the routine.</p>
+</div>
+
+<div class="points-bar">
+  <span>Discovery Points:</span>
+  <span class="points-display" id="pointsDisplay">0 pts</span>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock hidden content</span>
+</div>
+
+<!-- ═══════════ UPDATE PANE ═══════════ -->
+<div class="update-pane" id="update-pane">
+  <div class="update-pane-inner">
+    <div class="update-head">
+      <span class="num">Situation Update</span>
+      <h2>Where Things Stand <span class="update-badge">As of July 2026</span></h2>
+    </div>
+    <div class="update-date">Updated July 26, 2026 — a dated snapshot, not an ongoing claim</div>
+
+    <div class="update-grid">
+
+      <div class="update-box">
+        <span class="update-box-icon">📊</span>
+        <h3>What the tracking numbers show</h3>
+        <p>The <span class="term" tabindex="0" data-def="A research database, run by homeland-security researcher David Riedman, that tracks school shootings across the U.S. back to 1966." aria-describedby="term-desc-1">K-12 School Shooting Database</span><span id="term-desc-1" class="term-desc">A research database, run by homeland-security researcher David Riedman, that tracks school shootings across the U.S. back to 1966.</span> is the same tracking source used earlier on this page. It recorded an all-time-high year in 2023, with 349 separate incidents at U.S. schools.<a class="cite-inline" href="https://www.rand.org/pubs/research_reports/RRA3930-2.html" target="_blank">RAND Corporation, citing K-12 School Shooting Database</a> For 2025, the database's count was roughly 231 incidents, with 148 total victims — lower than the 2023 peak, but still part of a database that has tracked incidents at schools since 1966.<a class="cite-inline" href="https://www.omnilert.com/blog/school-shootings-2025" target="_blank">Omnilert, citing K-12 School Shooting Database</a></p>
+        <p class="small-note">Different trackers use different definitions of what counts as a "school shooting," so totals can vary between organizations. This page uses the K-12 School Shooting Database consistently, as explained in Section 1.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://k12ssdb.org/" target="_blank">K-12 School Shooting Database</a></li>
+            <li><a href="https://www.rand.org/pubs/research_reports/RRA3930-2.html" target="_blank">RAND Corporation — "Understanding School Safety Trends," citing the K-12 School Shooting Database</a></li>
+            <li><a href="https://www.omnilert.com/blog/school-shootings-2025" target="_blank">Omnilert, citing the K-12 School Shooting Database</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">🏛️</span>
+        <h3>A recent example of state-level gun legislation</h3>
+        <div class="photo-inline clearfix">
+          <img src="images/california-state-capitol.jpg" alt="The front facade of the California State Capitol building in Sacramento" onerror="this.style.display='none'">
+          <div class="cap">The California State Capitol in Sacramento, where lawmakers passed Assembly Bill 1127. <a href="https://commons.wikimedia.org/wiki/File:California_State_Capitol_Building_-_Full_Front_Facade.jpg" target="_blank">Wikimedia Commons, Asilvero (CC BY-SA 3.0)</a></div>
+        </div>
+        <p>Gun laws change at the state level fairly often. One recent example is California's <strong>Assembly Bill 1127</strong>. It bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons. Those conversions use a small add-on part sometimes called a "switch." California's governor approved the bill on October 10, 2025, and its dealer-sales rule took effect on July 1, 2026.<a class="cite-inline" href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1127" target="_blank">California Legislative Information</a></p>
+        <p class="small-note">This is one example of state-level activity, not a national law — states regularly pass their own gun legislation on many different topics, as Section 4 explains.</p>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1127" target="_blank">California Legislative Information — full text of AB 1127</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">⚖️</span>
+        <h3>Should the U.S. bring back a federal assault weapons ban?</h3>
+        <p>Section 2 covered how the 1994 federal assault weapons ban expired in 2004 and was never renewed. Whether Congress should pass a new one is a genuinely contested question, with real organizations on each side.</p>
+
+        <div class="perspectives">
+          <div class="perspective">
+            <div class="perspective-label">Giffords Law Center's stated position</div>
+            <p>Giffords Law Center, a gun-violence-prevention group, supports a new federal ban. It says these guns are "the weapon of choice" in mass-casualty attacks and cause more severe wounds. It also cites research finding mass-shooting deaths were 70% less likely during the 10 years the earlier ban was in effect.<a class="cite-inline" href="https://giffords.org/lawcenter/gun-laws/policy-areas/hardware-ammunition/assault-weapons/" target="_blank">Giffords Law Center</a></p>
+          </div>
+          <div class="perspective">
+            <div class="perspective-label">NRA's stated position</div>
+            <p>The NRA, a gun-rights group, opposes a new federal ban. It cites a government study finding "the banned guns were never used in more than a modest fraction of gun murders." It also argues these guns are legally protected as "in common use" for lawful purposes, the standard set in <em>District of Columbia v. Heller</em>.<a class="cite-inline" href="https://www.nraila.org/get-the-facts/assault-weapons-large-magazines/" target="_blank">NRA-ILA</a></p>
+          </div>
+        </div>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://giffords.org/lawcenter/gun-laws/policy-areas/hardware-ammunition/assault-weapons/" target="_blank">Giffords Law Center — Assault Weapons policy page</a></li>
+            <li><a href="https://www.nraila.org/get-the-facts/assault-weapons-large-magazines/" target="_blank">NRA-ILA — "Assault Weapons" | "Large" Magazines</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">🎂</span>
+        <h3>Should 18-to-20-year-olds be able to buy a gun?</h3>
+        <p>Some states set the minimum age to buy certain guns at 21, rather than 18. Whether that kind of law is fair, and whether it's constitutional, is currently being argued in real court cases.</p>
+
+        <div class="perspectives">
+          <div class="perspective">
+            <div class="perspective-label">Giffords Law Center's stated position</div>
+            <p>Giffords Law Center supports a minimum age of 21 to buy a handgun. It cites brain-development research showing "impulse control, judgement, and long-range planning" may not fully mature "until at least age 26." It also notes 18-to-20-year-olds are "just 4% of the US population, but account for 17% of known gun homicide offenders."<a class="cite-inline" href="https://giffords.org/lawcenter/gun-laws/policy-areas/who-can-have-a-gun/minimum-age/" target="_blank">Giffords Law Center</a></p>
+          </div>
+          <div class="perspective">
+            <div class="perspective-label">NRA's stated position</div>
+            <p>The NRA, a gun-rights group, is challenging a Florida law barring adults under 21 from buying a gun, arguing it violates the Second Amendment. It says 18-year-olds "are considered adults who can vote, enter into contracts, marry, and enlist and fight for our country" and deserve the same right to self-defense.<a class="cite-inline" href="https://www.nraila.org/articles/20250516/nra-takes-fight-to-defend-the-constitutional-rights-of-young-adults-to-the-us-supreme-court" target="_blank">NRA-ILA</a></p>
+          </div>
+        </div>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://giffords.org/lawcenter/gun-laws/policy-areas/who-can-have-a-gun/minimum-age/" target="_blank">Giffords Law Center — Minimum Age policy page</a></li>
+            <li><a href="https://www.nraila.org/articles/20250516/nra-takes-fight-to-defend-the-constitutional-rights-of-young-adults-to-the-us-supreme-court" target="_blank">NRA-ILA — coverage of Supreme Court petition on age-21 purchase laws</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="update-box">
+        <span class="update-box-icon">🚩</span>
+        <h3>Should more states adopt or expand red-flag laws?</h3>
+        <p>Some states let a court temporarily take away a person's guns if there's evidence they're a danger to themselves or others. Section 4 explains this state-level tool, known as an <span class="term" tabindex="0" data-def="A civil court order, also called a red-flag law, that can temporarily restrict a person's access to firearms. Different states that have passed this kind of law set their own specific rules for how it works." aria-describedby="term-desc-2">extreme risk protection order</span><span id="term-desc-2" class="term-desc">A civil court order, also called a red-flag law, that can temporarily restrict a person's access to firearms. Different states that have passed this kind of law set their own specific rules for how it works.</span>. Whether more states should pass this kind of law, or broaden who can request one, is contested.</p>
+
+        <div class="perspectives">
+          <div class="perspective">
+            <div class="perspective-label">Giffords Law Center's stated position</div>
+            <p>Giffords Law Center supports wider adoption of these laws, calling them "a proactive way to stop mass shootings and other tragedies" when someone shows "clear warning signs of violence." It also wants more people able to petition a court — noting some states already allow "mental health providers" and "school administrators" to do so, not just police.<a class="cite-inline" href="https://giffords.org/lawcenter/gun-laws/policy-areas/who-can-have-a-gun/extreme-risk-protection-orders/" target="_blank">Giffords Law Center</a></p>
+          </div>
+          <div class="perspective">
+            <div class="perspective-label">Crime Prevention Research Center's stated position</div>
+            <p>The Crime Prevention Research Center, a gun-policy research group, is skeptical of expanding these laws, calling them procedurally flawed. It says a judge often issues the initial order after "a mere written complaint," before the person affected is heard, and that existing involuntary-commitment laws already offer more protections, including "legal representation" and "mental health expert evaluation."<a class="cite-inline" href="https://crimeresearch.org/2023/04/at-the-detroit-news-red-flag-laws-dont-necessarily-prevent-harm/" target="_blank">Crime Prevention Research Center</a></p>
+          </div>
+        </div>
+        <details class="update-sources">
+          <summary>Sources for this section</summary>
+          <ul>
+            <li><a href="https://giffords.org/lawcenter/gun-laws/policy-areas/who-can-have-a-gun/extreme-risk-protection-orders/" target="_blank">Giffords Law Center — Extreme Risk Protection Orders policy page</a></li>
+            <li><a href="https://crimeresearch.org/2023/04/at-the-detroit-news-red-flag-laws-dont-necessarily-prevent-harm/" target="_blank">Crime Prevention Research Center — "Red flag laws don't necessarily prevent harm"</a></li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
+  </div>
+</div>
+
+<!-- ═══════════ UNDERSTANDING THE SCALE ═══════════ -->
+<div class="sec-head" id="scale">
+  <span class="num">Section 1</span>
+  <h2>Understanding the Scale</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Growing up with lockdown drills might feel normal.</strong> It hasn't always been this way. Students today practice hiding from an active shooter the way earlier generations practiced fire drills. That routine is relatively new in American schools. Here's what the numbers show, and how they got this way.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/cdc-headquarters.jpg" alt="The Arlen Specter Headquarters and Emergency Operations Center building on the CDC's Roybal campus in Atlanta, Georgia" onerror="this.style.display='none'">
+    <div class="cap">The CDC's headquarters in Atlanta, Georgia — the federal agency that tracks gun deaths nationwide. <a href="https://commons.wikimedia.org/wiki/File:Arlen_Specter_Headquarters_Building_PHIL_7971.tif" target="_blank">Wikimedia Commons, CDC/James Gathany (public domain)</a></div>
+  </div>
+
+  <p><strong>How many people die from guns in America each year?</strong> The Centers for Disease Control and Prevention, or <span class="term" tabindex="0" data-def="A federal health agency that tracks disease, injury, and death across the United States." aria-describedby="term-desc-3">CDC</span><span id="term-desc-3" class="term-desc">A federal health agency that tracks disease, injury, and death across the United States.</span>, tracks this every year. In 2024, the most recent full year of data, 44,447 people in the U.S. died from a gun-related injury.<a class="cite-inline" href="https://publichealth.jhu.edu/2026/johns-hopkins-report-finds-declining-gun-homicides-record-gun-suicides-in-2024" target="_blank">Johns Hopkins Center for Gun Violence Solutions, citing CDC data</a></p>
+
+  <p>That number breaks down into different categories. Most people assume gun deaths are mostly homicides. The data says something different. Gun suicides made up the largest share, at 27,593 deaths. Gun homicides were next, at 15,364 deaths. The remaining 1,490 deaths were law enforcement actions, accidents, or deaths where the cause could not be determined.<a class="cite-inline" href="https://publichealth.jhu.edu/2026/johns-hopkins-report-finds-declining-gun-homicides-record-gun-suicides-in-2024" target="_blank">Johns Hopkins Center for Gun Violence Solutions, citing CDC data</a> Gun suicide has been the largest single category for years, and 2024's total was the highest ever recorded.<a class="cite-inline" href="https://publichealth.jhu.edu/sites/default/files/2026-07/2024-CGVS-gun-violence-in-the-united-states.pdf" target="_blank">Johns Hopkins Center for Gun Violence Solutions report (PDF)</a> If you or someone you know is struggling, help is available right now. You can call or text <strong>988</strong> to reach the 988 Suicide &amp; Crisis Lifeline, any time of day, every day of the year.<a class="cite-inline" href="https://988lifeline.org/" target="_blank">988lifeline.org</a></p>
+
+  <div class="stat-trio">
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">44,447</span><div class="desc"><b>Total gun deaths</b>in the U.S. in 2024</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">27,593</span><div class="desc"><b>Gun suicides</b>the largest category, 2024</div></div>
+    <div class="stat clickable" onclick="handleStatClick(this)"><span class="num">15,364</span><div class="desc"><b>Gun homicides</b>the second-largest category, 2024</div></div>
+  </div>
+
+  <h3>How many of these happen at schools?</h3>
+
+  <p>Most gun deaths do not happen at schools. But school shootings are their own serious problem, and researchers track them closely. The <span class="term" tabindex="0" data-def="A research database, run by homeland security researcher David Riedman, that records every time a gun is fired, shown with intent to harm, or a bullet hits school property in the U.S. since 1966." aria-describedby="term-desc-4">K-12 School Shooting Database</span><span id="term-desc-4" class="term-desc">A research database, run by homeland security researcher David Riedman, that records every time a gun is fired, shown with intent to harm, or a bullet hits school property in the U.S. since 1966.</span> is one of the most detailed trackers. It records every time a gun is fired, brandished, or a bullet hits school property, going back to 1966.<a class="cite-inline" href="https://k12ssdb.org/all-shootings" target="_blank">K-12 School Shooting Database (Riedman, 2025)</a></p>
+
+  <p>By this database's count, gun violence at schools hit an all-time high in 2023, with 349 separate incidents.<a class="cite-inline" href="https://www.rand.org/pubs/research_reports/RRA3930-2.html" target="_blank">RAND Corporation, citing K-12 School Shooting Database</a> The number dropped after that. In 2025, the same database counted roughly 231 incidents at K-12 schools, with 148 total victims.<a class="cite-inline" href="https://www.omnilert.com/blog/school-shootings-2025" target="_blank">Omnilert, citing K-12 School Shooting Database</a></p>
+
+  <p>That two-year dip is real, but it doesn't tell the long-run story. KFF, a nonpartisan health policy research group, looked further back. It compared how often students were exposed to a school shooting in 1999-2004 to how often it happened in 2020-2024. The rate nearly tripled, rising from 19 exposures per 100,000 students to 51 per 100,000.<a class="cite-inline" href="https://www.kff.org/mental-health/examining-school-shootings-at-the-national-and-state-level-and-mental-health-implications/" target="_blank">KFF</a> Most of that increase happened during the pandemic years. It was not a smooth, steady climb every single year.<a class="cite-inline" href="https://www.kff.org/mental-health/examining-school-shootings-at-the-national-and-state-level-and-mental-health-implications/" target="_blank">KFF</a> So the honest picture is not "always going up" and not "always going down." It is a level that has climbed a lot since the late 1990s, with bumps and dips along the way, including the recent one from 2023 to 2025.</p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Different trackers count school shootings differently. Some count any time a gun is fired on school property. Others only count incidents with a certain number of victims. That is why you will see different totals from different sources for the same year — they are not measuring the exact same thing.</p>
+  </div>
+
+  <p>Even with 2025's lower count, gun violence at schools remains far more common than it was decades ago.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
+
+  <h3>How does Washington compare to other states?</h3>
+
+  <p>Gun deaths and school shootings don't happen evenly across the country. Some states have higher numbers than others. Researchers measure this in two different ways, and it's important not to mix them up.</p>
+
+  <p>The first way is a <span class="term" tabindex="0" data-def="A number adjusted for population size, so places with more or fewer people can be fairly compared. Usually shown as a rate 'per 100,000 people.'" aria-describedby="term-desc-5">rate per capita</span><span id="term-desc-5" class="term-desc">A number adjusted for population size, so places with more or fewer people can be fairly compared. Usually shown as a rate 'per 100,000 people.'</span>. This adjusts for how many people live in a state, so a big state and a small state can be fairly compared. The second way is a raw count — just the total number of incidents, with no adjustment for population. A big state will almost always have a higher raw count than a small state, just because it has more people and more schools. Below are both kinds of numbers: a map of gun death rates, and a table of school-shooting counts. They measure different things, so don't expect them to match.</p>
+
+  <h4 style="font-family:'Source Serif 4',serif;font-weight:700;font-size:1.05rem;margin-bottom:14px">Gun death rate by state (a per-capita rate, not a raw count)</h4>
+
+  <p>The map below shows each state's gun death rate — deaths per 100,000 people — for 2024, the most recent year with full data. Darker states have higher rates. Lighter states have lower rates. This includes suicides, homicides, and all other gun deaths added together, the same categories covered earlier in this section.<a class="cite-inline" href="https://www.kff.org/other/state-indicator/firearms-death-rate-per-100000/" target="_blank">KFF, citing CDC WONDER</a></p>
+
+  <div class="map-wrap">
+    <svg class="hexmap-svg" viewBox="-26.0 -26.0 520.0 367.2" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplified hexagon map of the United States, showing each state colored by its 2024 gun death rate per 100,000 people, from light (lowest) to dark (highest). Washington is outlined in black.">
+<g><polygon points="24.5,315.2 12.3,336.5 -12.2,336.5 -24.5,315.2 -12.3,294.0 12.3,294.0" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Alaska: 24.4 gun deaths per 100,000 people (2024)</title></polygon><text x="0.0" y="319.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AK</text></g>
+<g><polygon points="297.5,202.6 285.2,223.9 260.8,223.9 248.5,202.6 260.8,181.4 285.2,181.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Alabama: 23.7 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="206.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AL</text></g>
+<g><polygon points="219.5,202.6 207.2,223.9 182.8,223.9 170.5,202.6 182.8,181.4 207.2,181.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Arkansas: 20.6 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="206.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AR</text></g>
+<g><polygon points="102.5,180.1 90.2,201.4 65.8,201.4 53.5,180.1 65.7,158.9 90.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Arizona: 16.9 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">AZ</text></g>
+<g><polygon points="63.5,112.6 51.2,133.8 26.8,133.8 14.5,112.6 26.7,91.4 51.2,91.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>California: 7.0 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CA</text></g>
+<g><polygon points="141.5,112.6 129.2,133.8 104.8,133.8 92.5,112.6 104.7,91.4 129.2,91.4" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Colorado: 15.3 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CO</text></g>
+<g><polygon points="453.5,157.6 441.2,178.8 416.8,178.8 404.5,157.6 416.8,136.4 441.2,136.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Connecticut: 5.8 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">CT</text></g>
+<g><polygon points="414.5,180.1 402.2,201.4 377.8,201.4 365.5,180.1 377.8,158.9 402.2,158.9" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Delaware: 11.8 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">DE</text></g>
+<g><polygon points="336.5,225.2 324.2,246.4 299.8,246.4 287.5,225.2 299.8,203.9 324.2,203.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Florida: 12.7 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="229.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">FL</text></g>
+<g><polygon points="336.5,135.1 324.2,156.3 299.8,156.3 287.5,135.1 299.8,113.9 324.2,113.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Georgia: 17.6 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">GA</text></g>
+<g><polygon points="102.5,315.2 90.2,336.5 65.8,336.5 53.5,315.2 65.7,294.0 90.2,294.0" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Hawaii: 3.7 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="319.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">HI</text></g>
+<g><polygon points="219.5,112.6 207.2,133.8 182.8,133.8 170.5,112.6 182.8,91.4 207.2,91.4" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Iowa: 11.8 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">IA</text></g>
+<g><polygon points="102.5,45.0 90.2,66.3 65.8,66.3 53.5,45.0 65.7,23.8 90.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Idaho: 15.9 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ID</text></g>
+<g><polygon points="258.5,90.1 246.2,111.3 221.8,111.3 209.5,90.1 221.8,68.8 246.2,68.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Illinois: 12.4 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">IL</text></g>
+<g><polygon points="297.5,67.5 285.2,88.8 260.8,88.8 248.5,67.5 260.8,46.3 285.2,46.3" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Indiana: 17.2 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">IN</text></g>
+<g><polygon points="180.5,135.1 168.2,156.3 143.8,156.3 131.5,135.1 143.8,113.9 168.2,113.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Kansas: 15.2 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">KS</text></g>
+<g><polygon points="297.5,112.6 285.2,133.8 260.8,133.8 248.5,112.6 260.8,91.4 285.2,91.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Kentucky: 18.5 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">KY</text></g>
+<g><polygon points="219.5,247.7 207.2,268.9 182.8,268.9 170.5,247.7 182.8,226.5 207.2,226.5" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Louisiana: 22.9 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="251.7" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">LA</text></g>
+<g><polygon points="453.5,112.6 441.2,133.8 416.8,133.8 404.5,112.6 416.8,91.4 441.2,91.4" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Massachusetts: 3.8 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MA</text></g>
+<g><polygon points="414.5,90.1 402.2,111.3 377.8,111.3 365.5,90.1 377.8,68.8 402.2,68.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Maryland: 11.6 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MD</text></g>
+<g><polygon points="453.5,22.5 441.2,43.7 416.8,43.7 404.5,22.5 416.8,1.3 441.2,1.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Maine: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ME</text></g>
+<g><polygon points="297.5,22.5 285.2,43.7 260.8,43.7 248.5,22.5 260.8,1.3 285.2,1.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Michigan: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MI</text></g>
+<g><polygon points="219.5,67.5 207.2,88.8 182.8,88.8 170.5,67.5 182.8,46.3 207.2,46.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Minnesota: 9.8 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">MN</text></g>
+<g><polygon points="219.5,157.6 207.2,178.8 182.8,178.8 170.5,157.6 182.8,136.4 207.2,136.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Missouri: 19.6 gun deaths per 100,000 people (2024)</title></polygon><text x="195.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MO</text></g>
+<g><polygon points="258.5,180.1 246.2,201.4 221.8,201.4 209.5,180.1 221.8,158.9 246.2,158.9" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Mississippi: 28.0 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MS</text></g>
+<g><polygon points="141.5,22.5 129.2,43.7 104.8,43.7 92.5,22.5 104.7,1.3 129.2,1.3" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Montana: 20.2 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">MT</text></g>
+<g><polygon points="297.5,157.6 285.2,178.8 260.8,178.8 248.5,157.6 260.8,136.4 285.2,136.4" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>North Carolina: 16.3 gun deaths per 100,000 people (2024)</title></polygon><text x="273.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NC</text></g>
+<g><polygon points="180.5,0.0 168.2,21.2 143.8,21.2 131.5,0.0 143.8,-21.2 168.2,-21.2" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>North Dakota: 12.2 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="4.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">ND</text></g>
+<g><polygon points="180.5,90.1 168.2,111.3 143.8,111.3 131.5,90.1 143.8,68.8 168.2,68.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Nebraska: 10.9 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NE</text></g>
+<g><polygon points="453.5,67.5 441.2,88.8 416.8,88.8 404.5,67.5 416.8,46.3 441.2,46.3" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>New Hampshire: 10.2 gun deaths per 100,000 people (2024)</title></polygon><text x="429.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NH</text></g>
+<g><polygon points="414.5,135.1 402.2,156.3 377.8,156.3 365.5,135.1 377.8,113.9 402.2,113.9" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>New Jersey: 4.0 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NJ</text></g>
+<g><polygon points="141.5,157.6 129.2,178.8 104.8,178.8 92.5,157.6 104.7,136.4 129.2,136.4" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>New Mexico: 26.6 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NM</text></g>
+<g><polygon points="102.5,90.1 90.2,111.3 65.8,111.3 53.5,90.1 65.7,68.8 90.2,68.8" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Nevada: 17.2 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">NV</text></g>
+<g><polygon points="375.5,67.5 363.2,88.8 338.8,88.8 326.5,67.5 338.8,46.3 363.2,46.3" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>New York: 4.4 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">NY</text></g>
+<g><polygon points="336.5,45.0 324.2,66.3 299.8,66.3 287.5,45.0 299.8,23.8 324.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Ohio: 14.6 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">OH</text></g>
+<g><polygon points="180.5,180.1 168.2,201.4 143.8,201.4 131.5,180.1 143.8,158.9 168.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Oklahoma: 19.1 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">OK</text></g>
+<g><polygon points="63.5,67.5 51.2,88.8 26.8,88.8 14.5,67.5 26.7,46.3 51.2,46.3" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Oregon: 14.2 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">OR</text></g>
+<g><polygon points="375.5,112.6 363.2,133.8 338.8,133.8 326.5,112.6 338.8,91.4 363.2,91.4" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Pennsylvania: 11.9 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="116.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">PA</text></g>
+<g><polygon points="492.5,90.1 480.2,111.3 455.8,111.3 443.5,90.1 455.8,68.8 480.2,68.8" fill="#eaecee" stroke="#fbf9f4" stroke-width="1.5"><title>Rhode Island: 4.6 gun deaths per 100,000 people (2024)</title></polygon><text x="468.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">RI</text></g>
+<g><polygon points="336.5,180.1 324.2,201.4 299.8,201.4 287.5,180.1 299.8,158.9 324.2,158.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>South Carolina: 19.5 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="184.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">SC</text></g>
+<g><polygon points="180.5,45.0 168.2,66.3 143.8,66.3 131.5,45.0 143.8,23.8 168.2,23.8" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>South Dakota: 17.3 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">SD</text></g>
+<g><polygon points="258.5,135.1 246.2,156.3 221.8,156.3 209.5,135.1 221.8,113.9 246.2,113.9" fill="#697079" stroke="#fbf9f4" stroke-width="1.5"><title>Tennessee: 19.8 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">TN</text></g>
+<g><polygon points="180.5,225.2 168.2,246.4 143.8,246.4 131.5,225.2 143.8,203.9 168.2,203.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Texas: 13.9 gun deaths per 100,000 people (2024)</title></polygon><text x="156.0" y="229.2" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">TX</text></g>
+<g><polygon points="102.5,135.1 90.2,156.3 65.8,156.3 53.5,135.1 65.7,113.9 90.2,113.9" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Utah: 13.3 gun deaths per 100,000 people (2024)</title></polygon><text x="78.0" y="139.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">UT</text></g>
+<g><polygon points="375.5,157.6 363.2,178.8 338.8,178.8 326.5,157.6 338.8,136.4 363.2,136.4" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Virginia: 12.8 gun deaths per 100,000 people (2024)</title></polygon><text x="351.0" y="161.6" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">VA</text></g>
+<g><polygon points="414.5,45.0 402.2,66.3 377.8,66.3 365.5,45.0 377.8,23.8 402.2,23.8" fill="#c3c9cd" stroke="#fbf9f4" stroke-width="1.5"><title>Vermont: 10.6 gun deaths per 100,000 people (2024)</title></polygon><text x="390.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">VT</text></g>
+<g class="hex-wa"><polygon points="63.5,22.5 51.2,43.7 26.8,43.7 14.5,22.5 26.7,1.3 51.2,1.3" fill="#c3c9cd" stroke="#1a1a1a" stroke-width="3"><title>Washington: 11.0 gun deaths per 100,000 people (2024)</title></polygon><text x="39.0" y="26.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WA</text></g>
+<g><polygon points="258.5,45.0 246.2,66.3 221.8,66.3 209.5,45.0 221.8,23.8 246.2,23.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>Wisconsin: 12.1 gun deaths per 100,000 people (2024)</title></polygon><text x="234.0" y="49.0" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WI</text></g>
+<g><polygon points="336.5,90.1 324.2,111.3 299.8,111.3 287.5,90.1 299.8,68.8 324.2,68.8" fill="#94a0a7" stroke="#fbf9f4" stroke-width="1.5"><title>West Virginia: 15.3 gun deaths per 100,000 people (2024)</title></polygon><text x="312.0" y="94.1" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#1a1a1a" pointer-events="none">WV</text></g>
+<g><polygon points="141.5,67.5 129.2,88.8 104.8,88.8 92.5,67.5 104.7,46.3 129.2,46.3" fill="#3a4048" stroke="#fbf9f4" stroke-width="1.5"><title>Wyoming: 23.4 gun deaths per 100,000 people (2024)</title></polygon><text x="117.0" y="71.5" text-anchor="middle" font-size="11" font-weight="700" font-family="-apple-system,sans-serif" fill="#fff" pointer-events="none">WY</text></g>
+</svg>
+    <div class="map-legend">
+      <span class="legend-label">Gun deaths per 100,000 people:</span>
+      <span class="swatch"><i style="background:#eaecee"></i> Under 8</span>
+      <span class="swatch"><i style="background:#c3c9cd"></i> 8–12</span>
+      <span class="swatch"><i style="background:#94a0a7"></i> 12–16</span>
+      <span class="swatch"><i style="background:#697079"></i> 16–20</span>
+      <span class="swatch"><i style="background:#3a4048"></i> 20 and up</span>
+    </div>
+    <p class="map-cap">Each hexagon represents one state, arranged in roughly its real position on the map — this is a simplified "hex map," not a precise outline of state borders. Alaska and Hawaii are shown as an inset, not to scale or true distance.</p>
+  </div>
+
+  <div class="state-callout">
+    <span class="tag">Washington, By the Numbers</span>
+    <p>In 2024, Washington's gun death rate was <strong>11.0 deaths per 100,000 people</strong>. That places Washington <strong>12th out of 50 states, counting from the lowest rate to the highest</strong>. Washington's rate is below the national rate of 12.8 per 100,000.<a class="cite-inline" href="https://www.kff.org/other/state-indicator/firearms-death-rate-per-100000/" target="_blank">KFF, citing CDC WONDER</a></p>
+  </div>
+
+  <h4 style="font-family:'Source Serif 4',serif;font-weight:700;font-size:1.05rem;margin-bottom:14px;margin-top:36px">School-shooting incidents by state (a raw count, not a rate)</h4>
+
+  <p>The table below is different from the map above. It does not adjust for population. It's a simple count of how many school-shooting incidents the K-12 School Shooting Database has recorded in each state, from 1966 through March 2025. Because it's a raw count, larger states with more people and more schools tend to rank higher, almost no matter what. That's why Texas, California, and Florida — three of the most populous states — appear at the top.<a class="cite-inline" href="https://k12ssdb.org/data-visualizations" target="_blank">K-12 School Shooting Database, via World Population Review</a></p>
+
+  <div class="state-table-wrap">
+    <table class="state-table">
+      <caption>School-shooting incidents by state, 1966–March 2025 (top 10, plus Washington)</caption>
+      <thead>
+        <tr><th class="num">Rank</th><th>State</th><th class="num">Incidents</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>California</td><td class="num">277</td></tr>
+        <tr><td class="num">2</td><td>Texas</td><td class="num">237</td></tr>
+        <tr><td class="num">3</td><td>Florida</td><td class="num">159</td></tr>
+        <tr><td class="num">4</td><td>Illinois</td><td class="num">152</td></tr>
+        <tr><td class="num">5</td><td>Ohio</td><td class="num">143</td></tr>
+        <tr><td class="num">6</td><td>Pennsylvania</td><td class="num">128</td></tr>
+        <tr><td class="num">7</td><td>Michigan</td><td class="num">119</td></tr>
+        <tr><td class="num">8</td><td>New York</td><td class="num">119</td></tr>
+        <tr><td class="num">9</td><td>Georgia</td><td class="num">112</td></tr>
+        <tr><td class="num">10</td><td>North Carolina</td><td class="num">110</td></tr>
+        <tr class="ellipsis"><td colspan="3">⋯</td></tr>
+        <tr class="wa-row"><td class="num">16</td><td>Washington</td><td class="num">67</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="state-callout">
+    <span class="tag">Washington, By the Numbers</span>
+    <p>Washington has recorded <strong>67 school-shooting incidents</strong> since 1966, according to the K-12 School Shooting Database. That ranks Washington <strong>16th out of 50 states</strong> for raw incident count — remember, this is a total count, not adjusted for population.<a class="cite-inline" href="https://k12ssdb.org/data-visualizations" target="_blank">K-12 School Shooting Database, via World Population Review</a></p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>A small state can quietly have the worst rate in the country. It might barely crack the top ten in raw incidents. A huge state can do the opposite. It can lead the incident count while sitting in the middle of the rate list. Same 50 states, two very different rankings. The map counts deaths per person; the table counts events. Neither one is wrong. They're just answering different questions.</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
+
+  <h3>So how did the U.S. get here?</h3>
+
+  <p>Numbers alone don't explain why gun policy in America looks the way it does. Part of the answer starts with one sentence written in 1791.</p>
+</div>
+
+<!-- ═══════════ SECOND AMENDMENT & LANDMARK LAWS ═══════════ -->
+<div class="sec-head" id="second-amendment">
+  <span class="num">Section 2</span>
+  <h2>The Second Amendment &amp; Landmark Laws</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>So how did the U.S. end up here?</strong> Every gun law in America connects back to one sentence. That sentence is the Second Amendment. It was added to the U.S. Constitution in 1791. It reads: "A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed."<a class="cite-inline" href="https://www.archives.gov/founding-docs/bill-of-rights-transcript" target="_blank">National Archives</a> That's the whole amendment. It's just one sentence. But people have argued about what it means for over 200 years.</p>
+
+  <div class="photo-break">
+    <img src="images/us-capitol-west-front.jpg" alt="The west front of the United States Capitol building in Washington, D.C., seen from the National Mall" onerror="this.style.display='none'">
+    <div class="cap">The U.S. Capitol, where Congress has passed every major federal gun law described in this section. <a href="https://commons.wikimedia.org/wiki/File:United_States_Capitol_west_front_edit2.jpg" target="_blank">Wikimedia Commons, Architect of the Capitol (public domain)</a></div>
+  </div>
+
+  <h3>What the Supreme Court decided in 2008</h3>
+
+  <p>For most of American history, courts mostly connected this amendment to militia service. A <span class="term" tabindex="0" data-def="An armed group of ordinary citizens, not full-time soldiers, that a state could call on to defend itself." aria-describedby="term-desc-6">militia</span><span id="term-desc-6" class="term-desc">An armed group of ordinary citizens, not full-time soldiers, that a state could call on to defend itself.</span> is a group of citizens who can be called on to defend their state. But in 2008, the Supreme Court took a major case. It was called <em>District of Columbia v. Heller</em>.</p>
+
+  <p>The Court ruled 5-4. It held that the Second Amendment protects an individual person's right to own a gun. That right applies even if the person is not part of a militia. The Court said people can keep a gun at home for "traditionally lawful purposes," including self-defense.<a class="cite-inline" href="https://www.law.cornell.edu/supct/html/07-290.ZS.html" target="_blank">Cornell Law School (Supreme Court syllabus)</a> This was a major shift. It was the first time the Court had ruled this way. The case struck down a strict handgun ban in Washington, D.C.<a class="cite-inline" href="https://www.law.cornell.edu/supct/html/07-290.ZS.html" target="_blank">Cornell Law School (Supreme Court syllabus)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p><em>Heller</em> settled one big question. It said the Second Amendment protects an individual right. But it did not settle every question about gun laws. Courts are still deciding how far that right goes, and which gun laws can still stand.</p>
+  </div>
+
+  <h3>Four laws that shaped today's rules</h3>
+
+  <p>Congress has passed several major gun laws since the 1930s. Here are four of the most important ones.</p>
+
+  <p><strong>The National Firearms Act (1934)</strong> was the first major federal gun law. It taxed and required registration for the most dangerous weapons. That includes machine guns, short-barreled rifles and shotguns, and <span class="term" tabindex="0" data-def="A device attached to a gun that muffles the sound it makes when fired." aria-describedby="term-desc-7">silencers</span><span id="term-desc-7" class="term-desc">A device attached to a gun that muffles the sound it makes when fired.</span>. Congress passed it during an era of gangster violence. Owners of these weapons still have to register them with the federal government today.</p>
+
+  <p><strong>The Gun Control Act (1968)</strong> went much further. It created the system of <span class="term" tabindex="0" data-def="A business or person the federal government has approved to sell guns legally, after passing a background check and other requirements." aria-describedby="term-desc-8">federally licensed dealers</span><span id="term-desc-8" class="term-desc">A business or person the federal government has approved to sell guns legally, after passing a background check and other requirements.</span> that still exists today. Anyone who sells guns as a business must get a federal license. The law also created "prohibited person" categories. Convicted felons, for example, cannot legally buy a gun.</p>
+
+  <p><strong>The Brady Handgun Violence Prevention Act (1993)</strong> added a new requirement. Licensed dealers must run a <span class="term" tabindex="0" data-def="A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one." aria-describedby="term-desc-9">background check</span><span id="term-desc-9" class="term-desc">A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one.</span> before selling a gun. This stops many prohibited buyers before a sale happens. A national instant-check system now runs these checks in minutes.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Brady_Handgun_Violence_Prevention_Act" target="_blank">Wikipedia, citing Pub. L. 103-159</a></p>
+
+  <div class="pull-quote">
+    <p>James Brady was shot in the head and left paralyzed in the 1981 attempt on President Reagan's life. He and his wife Sarah spent the next twelve years pushing Congress for this law. "If it hadn't been for them, we would not have passed the Brady law," President Clinton said when he signed it.</p>
+    <span class="attrib">James Brady, 1929–2014 · See Key People, below</span>
+  </div>
+
+  <p><strong>The federal assault weapons ban (1994)</strong> banned certain semi-automatic weapons and large ammunition magazines. But the law had a built-in expiration date. It was written to last only ten years. Congress did not pass a new law to extend it. So the ban expired on its own in 2004, and it has not been renewed since.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Federal_Assault_Weapons_Ban" target="_blank">Wikipedia, citing Pub. L. 103-322</a></p>
+
+  <p>These four laws are still the foundation of federal gun policy today. But none of them were written specifically for schools. That gap is part of why schools have had to decide for themselves what to try.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ SCHOOL SAFETY MEASURES TRIED ═══════════ -->
+<div class="sec-head" id="measures-tried">
+  <span class="num">Section 3</span>
+  <h2>School Safety Measures That Have Been Tried</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>With no single federal rule for schools, they have tried a lot of things on their own.</strong> After a shooting makes the news, districts often respond fast. They add cameras, hire officers, run drills, or lock down entrances. Some of these measures are now nearly universal. Others are rare. And researchers have studied many of them directly. Here's what's actually been tried, how common each measure is, and what the evidence says about whether it works.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/school-metal-detector.jpg" alt="A walk-through metal detector installed at a school entrance" onerror="this.style.display='none'">
+    <div class="cap">A walk-through metal detector installed at a school entrance. <a href="https://commons.wikimedia.org/wiki/File:Walk-through_metal_detector,_schol_in_Russia.jpg" target="_blank">Wikimedia Commons (CC0)</a></div>
+  </div>
+
+  <h3>Metal detectors</h3>
+
+  <p>A <span class="term" tabindex="0" data-def="A device that senses metal objects, like guns or knives, as a person walks through it or is scanned with a handheld wand." aria-describedby="term-desc-10">metal detector</span><span id="term-desc-10" class="term-desc">A device that senses metal objects, like guns or knives, as a person walks through it or is scanned with a handheld wand.</span> is a device that senses metal on a person's body. Some schools use walk-through models at entrances. Others use handheld wands for random checks. Despite the attention metal detectors get after a shooting, they are actually one of the least common school safety measures. In the 2021-22 school year, only 6 percent of U.S. public schools used random metal detector checks on students, and even fewer used daily checks.<a class="cite-inline" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">National Center for Education Statistics, School Survey on Crime and Safety, 2021-22</a></p>
+
+  <p>Researchers have looked closely at whether metal detectors actually work. A 2019 research brief from WestEd's Justice &amp; Prevention Research Center reviewed decades of studies. It found "little evidence to support their effectiveness at preventing school shootings or successfully detecting weapons at schools."<a class="cite-inline" href="https://files.eric.ed.gov/fulltext/ED595716.pdf" target="_blank">Schildkraut &amp; Grogan, WestEd Justice &amp; Prevention Research Center (2019)</a> The same brief found something else, too. Students in schools with metal detectors reported feeling less safe, not more, than students in schools without them.<a class="cite-inline" href="https://files.eric.ed.gov/fulltext/ED595716.pdf" target="_blank">Schildkraut &amp; Grogan, WestEd Justice &amp; Prevention Research Center (2019)</a> Researchers have also found that metal detectors show up more often in schools with larger shares of Black and Latino students. That held true even after accounting for how much crime happens nearby.<a class="cite-inline" href="https://files.eric.ed.gov/fulltext/ED595716.pdf" target="_blank">Schildkraut &amp; Grogan, WestEd Justice &amp; Prevention Research Center (2019)</a></p>
+
+  <h3>School resource officers</h3>
+
+  <p>A <span class="term" tabindex="0" data-def="A sworn police officer, employed by a local law enforcement agency, who works in a school on a regular or full-time basis." aria-describedby="term-desc-11">school resource officer</span><span id="term-desc-11" class="term-desc">A sworn police officer, employed by a local law enforcement agency, who works in a school on a regular or full-time basis.</span>, or SRO, is a police officer assigned to work inside a school. This is one of the most common security measures. By the 2019-20 school year, 65 percent of U.S. public schools reported having security staff present at least once a week, up from 43 percent a decade earlier. That figure dipped slightly to 61 percent in 2021-22.<a class="cite-inline" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">National Center for Education Statistics, School Survey on Crime and Safety</a></p>
+
+  <p>SROs are also one of the most studied — and most debated — measures on this list. Research findings genuinely point in different directions, depending on what outcome is being measured.</p>
+
+  <p>Some rigorous studies have found safety benefits. A 2017 study looked at a federal grant program that paid to place SROs in schools. It found the funding was linked to more officially recorded weapons and drug crimes being caught at school — a sign that SROs may improve detection of dangerous items.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">Owens (2017), cited in RAND Corporation (2024)</a> A 2021 study of middle schools in North Carolina found that SRO presence was linked to fewer reports of serious violent behavior.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">Sorensen, Shen &amp; Bushway (2021), cited in RAND Corporation (2024)</a> A larger 2023 study used national data from nearly 95,000 schools. It found that schools with SROs had 30 percent fewer non-firearm violent incidents, like fights and threats, than schools without them.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">Sorensen et al. (2023), cited in RAND Corporation (2024)</a></p>
+
+  <p>Other research points to real costs. A major 2023 <span class="term" tabindex="0" data-def="A study that combines and analyzes the results of many earlier studies on the same question, to look for overall patterns." aria-describedby="term-desc-12">meta-analysis</span><span id="term-desc-12" class="term-desc">A study that combines and analyzes the results of many earlier studies on the same question, to look for overall patterns.</span> found consistently strong evidence linking SROs to more suspensions, expulsions, and law-enforcement referrals. That effect was largest for Black and Latino students.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">Fisher et al. (2023), cited in RAND Corporation (2024)</a> A federal study published in 2022 found something more specific. SROs were linked to fewer suspensions overall, and fewer suspensions of Black students specifically — but researchers did not find that same drop for white students.<a class="cite-inline" href="https://www.ojp.gov/pdffiles1/nij/grants/305085.pdf" target="_blank">Fisher, Dawson-Edwards, Swartz, Higgins, Coffey &amp; Overstreet, National Institute of Justice (2022)</a> For scale: in 2017-18, Black students made up about 15 percent of public school enrollment nationally. But they made up about 32 percent of school-related arrests.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">RAND Corporation, citing U.S. Department of Education Civil Rights Data Collection (2024)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Notice that these findings aren't contradicting each other by accident. They're measuring different things. Some studies ask "does this catch more weapons or reduce violent incidents?" Others ask "does this change how often students get suspended, expelled, or arrested?" A measure can do both at once — that's exactly what the research on SROs has found.</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
+
+  <h3>Lockdown drills</h3>
+
+  <p>A <span class="term" tabindex="0" data-def="A practice exercise where students and staff act out what they would do if a dangerous person were in or near the school, often by hiding, locking doors, and staying silent." aria-describedby="term-desc-13">lockdown drill</span><span id="term-desc-13" class="term-desc">A practice exercise where students and staff act out what they would do if a dangerous person were in or near the school, often by hiding, locking doors, and staying silent.</span> is a practice exercise for responding to a threat inside or near the school. These drills are now nearly universal. In the 2021-22 school year, about 96 percent of U.S. public schools had drilled students on lockdown procedures.<a class="cite-inline" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">National Center for Education Statistics, School Survey on Crime and Safety, 2021-22</a></p>
+
+  <p>Researchers have started studying what these drills do to students' mental health. A 2023 study surveyed children who came to a pediatric emergency room, along with their caregivers. It found that 27 percent of children reported anxiety after a lockdown drill. Children who had a history of being bullied, or of skipping school out of fear, were more likely to report that anxiety.<a class="cite-inline" href="https://pubmed.ncbi.nlm.nih.gov/37489107/" target="_blank">Riggs et al., Journal of School Health (2023)</a> The same study found that many caregivers didn't recognize when their child was struggling afterward. Caregivers and children often disagreed about whether the child felt anxious or down after a drill.<a class="cite-inline" href="https://pubmed.ncbi.nlm.nih.gov/37489107/" target="_blank">Riggs et al., Journal of School Health (2023)</a> The study's authors concluded that lockdown drills may increase mental health symptoms in children. They said more research is needed to find out which students are most affected.<a class="cite-inline" href="https://pubmed.ncbi.nlm.nih.gov/37489107/" target="_blank">Riggs et al., Journal of School Health (2023)</a></p>
+
+  <h3>Threat assessment programs</h3>
+
+  <p>A <span class="term" tabindex="0" data-def="A school team, usually including an administrator, a counselor, and a school resource officer, that meets to evaluate specific reports of concerning behavior and decide how to respond." aria-describedby="term-desc-14">threat assessment program</span><span id="term-desc-14" class="term-desc">A school team, usually including an administrator, a counselor, and a school resource officer, that meets to evaluate specific reports of concerning behavior and decide how to respond.</span> works differently than the other measures on this list. It's not a device or a guard. It's a process. A trained team reviews reports of concerning student behavior. That team is usually a mix of administrators, counselors, and school resource officers. The team decides how serious a risk is, then creates a plan to support that student and address the risk. The goal is to step in before a threat turns into violence, not just to react after something happens.</p>
+
+  <p>Adoption has grown fast. A decade ago, fewer than half of U.S. schools had a threat assessment team. By April 2024, roughly eight in ten schools reported having one.<a class="cite-inline" href="https://www.secretservice.gov/sites/default/files/reports/2025-11/The-State-of-Behavioral-Threat-Assessment-and-Management-in-K-12-Public-Schools.pdf" target="_blank">RAND Corporation &amp; U.S. Secret Service National Threat Assessment Center (2025), citing NCES School Pulse Panel</a></p>
+
+  <p>A 2025 national survey of principals, run by the Secret Service's National Threat Assessment Center, found most of these teams rely on support rather than punishment. Over 75 percent of principals said they rarely or never use suspension or expulsion for students referred to their threat assessment team. About 80 percent said they rarely or never involve arrest or prosecution.<a class="cite-inline" href="https://www.secretservice.gov/sites/default/files/reports/2025-11/The-State-of-Behavioral-Threat-Assessment-and-Management-in-K-12-Public-Schools.pdf" target="_blank">RAND Corporation &amp; U.S. Secret Service National Threat Assessment Center (2025)</a> A separate study looked at one widely used model, the Comprehensive School Threat Assessment Guidelines. It found that students who went through the program were less likely to be suspended, expelled, or arrested than students who didn't.<a class="cite-inline" href="https://www.researchgate.net/publication/391901155_Overview_and_Research_Summary_of_The_Comprehensive_School_Threat_Assessment_Guidelines_CSTAG" target="_blank">Overview and Research Summary of the Comprehensive School Threat Assessment Guidelines (CSTAG)</a></p>
+
+  <h3>Security vestibules and access control</h3>
+
+  <p>A <span class="term" tabindex="0" data-def="A small, secured entryway — often with locked doors on both sides and a window for checking ID — that visitors must pass through before reaching the rest of the school." aria-describedby="term-desc-15">security vestibule</span><span id="term-desc-15" class="term-desc">A small, secured entryway — often with locked doors on both sides and a window for checking ID — that visitors must pass through before reaching the rest of the school.</span> is a controlled entry area. Visitors are stopped and checked before they can reach classrooms or hallways. This is now one of the most widely adopted school safety measures in the country. In the 2021-22 school year, 97 percent of U.S. public schools reported controlling access to their buildings during school hours.<a class="cite-inline" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">National Center for Education Statistics, School Survey on Crime and Safety, 2021-22</a> Security cameras have grown just as fast — used by 93 percent of schools in 2021-22, up from 61 percent in 2009-10.<a class="cite-inline" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">National Center for Education Statistics, School Survey on Crime and Safety</a></p>
+
+  <p>Because these measures are now so common, researchers have a harder time comparing schools that have them to schools that don't. Almost every school does. Security experts generally agree on one thing, though. A single unlocked or propped-open door can defeat the purpose of a vestibule entirely. So how consistently a school follows its own procedure matters as much as whether it has the equipment.</p>
+
+  <h3>School-climate and bullying-reduction programs</h3>
+
+  <p>Not every measure on this list is about hardware or officers. Many schools have also invested in programs meant to improve the overall climate of the school. These include <span class="term" tabindex="0" data-def="Classroom lessons that teach students skills like managing emotions, resolving conflict, and communicating — the idea is that stronger social skills reduce the conditions that lead to violence." aria-describedby="term-desc-16">social-emotional learning</span><span id="term-desc-16" class="term-desc">Classroom lessons that teach students skills like managing emotions, resolving conflict, and communicating — the idea is that stronger social skills reduce the conditions that lead to violence.</span>, <span class="term" tabindex="0" data-def="An approach to discipline that focuses on repairing harm and rebuilding relationships, instead of relying only on suspension or punishment." aria-describedby="term-desc-17">restorative justice</span><span id="term-desc-17" class="term-desc">An approach to discipline that focuses on repairing harm and rebuilding relationships, instead of relying only on suspension or punishment.</span>, and <span class="term" tabindex="0" data-def="An approach to working with students that assumes difficult behavior may be connected to past trauma, and responds with support rather than only punishment." aria-describedby="term-desc-18">trauma-informed care</span><span id="term-desc-18" class="term-desc">An approach to working with students that assumes difficult behavior may be connected to past trauma, and responds with support rather than only punishment.</span>. For years, many researchers believed that reducing bullying and improving school climate would also reduce school shootings, since many attackers had histories of being bullied or feeling isolated.<a class="cite-inline" href="https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong" target="_blank">KQED Mindshift (July 2026)</a></p>
+
+  <div class="callout">
+    <span class="tag">A Researcher Changes His Mind</span>
+    <p>In April 2026, one of the country's leading school-violence researchers said that theory doesn't hold up. Ron Avi Astor is a UCLA professor who has spent decades studying school violence. He told fellow researchers at the American Educational Research Association's annual meeting: "We were wrong." For years, Astor believed that improving school climate and reducing bullying would help prevent school shootings.<a class="cite-inline" href="https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong" target="_blank">KQED Mindshift (July 2026)</a></p>
+    <p>He changed his mind after comparing two graphs covering 2001 to 2024. One tracked California students who said they carried a weapon to school. That number went down substantially over those years. The other tracked school shootings nationwide. That number went up sharply over the same period. If bullying and school climate were the main driver, Astor said, those two lines should have moved together. They didn't.<a class="cite-inline" href="https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong" target="_blank">KQED Mindshift (July 2026)</a></p>
+    <p>Astor's revised view is that most school shooters are driven less by local bullying. He now thinks they're driven more by a desire for notoriety. "Their number one audience was the media," he said. "That's really clear to me now."<a class="cite-inline" href="https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong" target="_blank">KQED Mindshift (July 2026)</a> Based on this, Astor now recommends media guidelines. Those guidelines would limit coverage of a shooter's name and image, and delay the release of any manifestos or videos the attacker leaves behind. He compares this to research on suicide and terrorism. In both areas, researchers have found that heavy publicity can inspire copycat attacks.<a class="cite-inline" href="https://www.kqed.org/mindshift/66493/a-leading-school-shootings-researcher-says-he-was-wrong" target="_blank">KQED Mindshift (July 2026)</a></p>
+    <p>It's worth being clear about what this reversal is — and isn't. It's one leading researcher, changing his own view based on new evidence, as of April 2026. It is not a final, settled answer for the whole field. Other researchers continue to study school climate, bullying, and violence prevention. Social-emotional learning and restorative justice programs remain widely used for other reasons too, including everyday student well-being and discipline. But Astor's reversal is itself a notable moment. It's a reminder that even well-established theories in this field can change when researchers look hard at new data.</p>
+  </div>
+
+  <p>Taken together, these measures show a pattern. The most common ones — locked entrances, cameras, drills — are also the ones researchers have studied the least for stopping an actual shooting. The measures researchers have studied most closely, like SROs and threat assessment, show real but complicated results. There are some clear benefits. There are also real costs that fall unevenly across different groups of students. No single measure has been shown to reliably prevent a school shooting on its own. And every measure a school picks still has to fit inside the gun laws set above it.</p>
+</div>
+
+<!-- ═══════════ HOW POLICY WORKS TODAY ═══════════ -->
+<div class="sec-head" id="policy-today">
+  <span class="num">Section 4</span>
+  <h2>How Policy Actually Works Today</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Those laws come from a system bigger than any one school. Gun policy in the U.S. isn't made in just one place.</strong> Some rules come from Washington, D.C. Other rules come from each state's own capital. Understanding gun policy means understanding how that split works.</p>
+
+  <div class="photo-break">
+    <img src="images/state-courtroom.jpg" alt="The interior of the Colorado Court of Appeals courtroom, with judges' bench, wood paneling, and rows of seating" onerror="this.style.display='none'">
+    <div class="cap">The Colorado Court of Appeals courtroom in Denver — an example of a state-level court, where disputes over state gun laws are often decided. <a href="https://commons.wikimedia.org/wiki/File:Colorado_Court_of_Appeals.JPG" target="_blank">Wikimedia Commons (CC BY 3.0)</a></div>
+  </div>
+
+  <h3>What the federal government regulates</h3>
+
+  <p>The federal government sets a baseline set of rules. Every state has to follow these rules, no matter where you live. Two federal laws form the core of this baseline. They are the National Firearms Act of 1934 and the Gun Control Act of 1968. Both laws were covered in Section 2.</p>
+
+  <p>These federal laws cover several things. They cover who can sell guns as a business. They cover which buyers must pass a <span class="term" tabindex="0" data-def="A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one." aria-describedby="term-desc-19">background check</span><span id="term-desc-19" class="term-desc">A check of criminal and other records, run before someone can buy a gun from a licensed dealer, to see if they are legally allowed to own one.</span>. And they cover which categories of people are barred from owning a gun at all — such as convicted felons. The federal government's power to make these rules comes mainly from its constitutional authority over interstate commerce.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <h3>What states regulate</h3>
+
+  <p>Federal law is described as a "floor," not a ceiling. States are free to add their own, stricter rules on top of it. States just cannot pass a law that directly conflicts with federal law.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <p>This is why gun laws can look very different depending on which state you're in. One state might require a permit to carry a concealed gun in public. A neighboring state might not. One state might set its own waiting period before a gun sale. Another might not. These are all choices made at the state level, layered on top of the shared federal baseline.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">Congressional Research Service, "U.S. Gun Policy: Framework and Major Issues" (2025)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Drive across a state line, and the gun laws that apply to you can change instantly. A required permit, a waiting period, a background-check rule — any of it can vanish or appear the moment you cross the border. That's not a glitch. It's the federal floor, with each state building whatever it wants on top.</p>
+  </div>
+
+  <h3>Red-flag laws: one example of a state-level tool</h3>
+
+  <p>One example of a state-level policy is a type of law often called a <span class="term" tabindex="0" data-def="A civil court order, also called a red-flag law, that can temporarily restrict a person's access to firearms. Different states that have passed this kind of law set their own specific rules for how it works." aria-describedby="term-desc-20">extreme risk protection order</span><span id="term-desc-20" class="term-desc">A civil court order, also called a red-flag law, that can temporarily restrict a person's access to firearms. Different states that have passed this kind of law set their own specific rules for how it works.</span>, or ERPO. These are sometimes nicknamed "red-flag laws." As of 2019, at least 17 states and Washington, D.C. had passed some version of this kind of law. More states have passed their own versions since then.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p>An ERPO is a civil court order. That means it is handled in civil court, not criminal court. Details vary by state, but most of these laws share a common structure.</p>
+
+  <p><strong>Who can ask a court for one.</strong> Only certain people are allowed to petition, or formally ask, a court for this kind of order. In most states, that group is limited to law enforcement officers and, in many cases, family or household members.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p><strong>What the court can order.</strong> A judge can issue two different kinds of orders. The first is a short, temporary order. A judge can issue this kind without the other person present. This happens if the judge finds reasonable cause to believe that person poses an immediate risk. This kind of order usually lasts only a few days to a few weeks. The second is a longer, final order. Before a judge can issue this kind, the other person must be notified. That person must also be given a chance to appear in court. A final order usually requires a higher standard of proof — clear and convincing evidence of a significant danger. If a court grants either kind of order, the named person must turn over any firearms they have. They must do this right away or within a set window of time.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <p><strong>How long it lasts.</strong> A final order can last up to one year in most states that have this kind of law. Courts can renew a final order before it expires, following the same kind of court process used to issue it the first time.<a class="cite-inline" href="https://www.everycrsreport.com/reports/IF11205.html" target="_blank">Congressional Research Service, "Firearm 'Red Flag' Laws" (2019)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This section describes how this type of law works as a general category of state policy tool. Each state that has passed one writes its own specific version, with its own exact rules. Washington's specific law is covered later in this page.</p>
+  </div>
+
+  <p>Whether a state has passed an ERPO law, and exactly how that state's version works, is a decision made entirely at the state level. That's true of most of the policy differences you'll see from state to state — they trace back to this same federal/state structure.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ WASHINGTON'S SCHOOL SAFETY STORY ═══════════ -->
+<div class="sec-head" id="washington-story">
+  <span class="num">Close to Home</span>
+  <h2>Washington's School Safety Story</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>Section 4 explained how extreme risk protection orders work as a general category of state law.</strong> Washington is one of the states that passed one. Here's how Washington's own version works, plus two other Washington-specific policies connected to school safety: state funding for school security upgrades, and the state's minimum age to buy certain guns.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/card-wa-capitol.jpg" alt="The Legislative Building at the Washington State Capitol campus in Olympia" onerror="this.style.display='none'">
+    <div class="cap">The Legislative Building at the Washington State Capitol in Olympia, where the state's extreme risk protection order law, school-security funding, and firearm purchase-age law were all passed. <a href="https://commons.wikimedia.org/wiki/File:Washington_State_Capitol_Legislative_Building.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
+
+  <h3>Washington's extreme risk protection order law</h3>
+
+  <p>Washington voters created this law themselves, at the ballot box. On November 8, 2016, voters approved Initiative 1491, which created Washington's extreme risk protection order process. It took effect the following year.<a class="cite-inline" href="https://apps.leg.wa.gov/rcw/default.aspx?cite=7.105" target="_blank">Washington State Legislature, RCW Chapter 7.105</a></p>
+
+  <p>The law has since been recodified — moved into a different, reorganized part of Washington's law books — but the same basic process still applies today. Here's how it works in Washington specifically.</p>
+
+  <p><strong>Who can petition.</strong> Three types of people can ask a Washington court for an extreme risk protection order. They are an intimate partner, a family or household member, or a law enforcement agency.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=7.105.410" target="_blank">Washington State Legislature, RCW 7.105.410</a></p>
+
+  <p><strong>What a Washington court can order.</strong> A judge can issue a temporary order right away, without the other person present. To do that, the judge must find reasonable cause to believe that person poses a significant danger of injuring themselves or others by having a gun. That temporary order lasts until the full court hearing. At the full hearing, a judge decides whether to issue a full order. Washington law sets the standard of proof as a "preponderance of the evidence" — meaning it's more likely than not to be true. To meet that standard, the judge must find the person poses a significant danger. That danger must come from hurting themselves or others by having, buying, or trying to buy a gun.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=7.105.225" target="_blank">Washington State Legislature, RCW 7.105.225</a> If a court issues either kind of order, the named person must surrender any firearms right away. They must also surrender any concealed pistol license they hold.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=7.105.330" target="_blank">Washington State Legislature, RCW 7.105.330</a><a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=7.105.335" target="_blank">Washington State Legislature, RCW 7.105.335</a></p>
+
+  <p><strong>How long it lasts.</strong> A full order in Washington lasts up to one year. Before it expires, the petitioner can request a renewal. The petitioner is the intimate partner, family or household member, or law enforcement agency who asked for it. If a court finds the same standard is still met, it renews the order for one more year. There's no limit on how many times an order can be renewed, as long as a court keeps finding the standard is met.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=7.105.410" target="_blank">Washington State Legislature, RCW 7.105.410</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>This is the same general tool described in Section 4 — a civil court order, not a criminal charge — just with Washington's own specific rules for who can ask, what a judge must find, and how long it lasts.</p>
+  </div>
+
+  <h3>State funding for school security upgrades</h3>
+
+  <p>On May 19, 2025, Washington Governor Bob Ferguson signed Senate Bill 5004, sometimes called "Alyssa's Law," after Alyssa Alhadeff, a student killed in the 2018 shooting at Marjory Stoneman Douglas High School in Parkland, Florida. The Washington Senate passed it 49-0, and the House passed it 98-0. It took effect on July 27, 2025.<a class="cite-inline" href="https://app.leg.wa.gov/billsummary?BillNumber=5004&Year=2025" target="_blank">Washington State Legislature, SB 5004 bill history</a></p>
+
+  <p>The law requires Washington school districts to build an emergency response system that can get help to a school fast. Each district must include at least one of these: a panic or alert button, a live video or audio feed police and school staff can access, remote-control access to doors, or live two-way communication during an emergency.<a class="cite-inline" href="https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/5004-S.PL.pdf" target="_blank">Washington State Legislature, SB 5004, engrossed substitute bill text</a></p>
+
+  <p>To help districts pay for this, the Washington Legislature created the School Security and Preparedness Infrastructure Grant, administered by the Office of Superintendent of Public Instruction (OSPI). As of the 2025-27 capital budget, the Legislature set aside $6 million for this grant program, with no district able to receive more than $500,000.<a class="cite-inline" href="https://ospi.k12.wa.us/sites/default/files/2025-06/2025legislativesessioninreviewpptjune5_0.pdf" target="_blank">Office of Superintendent of Public Instruction, "2025 Legislative Session in Review" (June 5, 2025)</a> Districts can use the money for things like entrance and door security, including panic buttons, fencing, and other upgrades to expedite a law enforcement response to a threat.<a class="cite-inline" href="https://ospi.k12.wa.us/sites/default/files/2025-06/2025legislativesessioninreviewpptjune5_0.pdf" target="_blank">Office of Superintendent of Public Instruction, "2025 Legislative Session in Review" (June 5, 2025)</a></p>
+
+  <h3>Washington's firearm purchase-age requirement</h3>
+
+  <p>Washington also has its own state law on the minimum age to buy certain guns — separate from any federal rule. Under Washington law, a person under 21 years old may not purchase a pistol or a semiautomatic assault rifle, and no one may sell or transfer a semiautomatic assault rifle to a person under 21. This rule traces back to Initiative 1639, which Washington voters approved on November 6, 2018.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=9.41.240" target="_blank">Washington State Legislature, RCW 9.41.240</a></p>
+
+  <p>The law does allow some exceptions to possession — not purchase — for 18-to-20-year-olds. For example, someone in that age range can still possess a semiautomatic assault rifle at their own home, at their fixed place of business, or on property they control, as long as other conditions in the law are met.<a class="cite-inline" href="https://app.leg.wa.gov/rcw/default.aspx?cite=9.41.240" target="_blank">Washington State Legislature, RCW 9.41.240</a></p>
+
+  <p>Together, these three policies — the extreme risk protection order process, state funding for school security infrastructure, and the purchase-age rule — are all specifically Washington's own. Each one shows how a state builds its own, more detailed version of a general policy tool described earlier in this page. Washington made these choices within the U.S. system. Other countries have made very different choices.</p>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ HOW OTHER COUNTRIES HANDLE THIS ═══════════ -->
+<div class="sec-head" id="international">
+  <span class="num">Global Comparison</span>
+  <h2>How Other Countries Handle This</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>The United States is not the only country that has to decide how to regulate guns.</strong> Every country makes its own choice, based on its own history, culture, and laws. Comparing those choices shows just how wide the range of options really is. This section looks at four countries — Australia, Japan, Switzerland, and Canada — and states plainly what each one's actual law says. It doesn't argue that any one of these approaches is better or worse than another, or better or worse than the U.S. approach described earlier on this page. It's simply a factual look at how gun regulation can differ from country to country.</p>
+
+  <h3>Australia: a nationwide buyback after a mass shooting</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/australia-parliament-house.jpg" alt="Parliament House in Canberra, Australia's national capital" onerror="this.style.display='none'">
+    <div class="cap">Parliament House in Canberra, where Australia's federal government agreed to the National Firearms Agreement in 1996. <a href="https://commons.wikimedia.org/wiki/File:Parliament_House,_Canberra.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
+
+  <p>On April 28, 1996, a gunman killed 35 people and wounded 18 others at Port Arthur, a historic site in the Australian state of Tasmania. Twelve days later, Australia's federal government and all six of its states and two territories agreed to a single, nationwide set of gun laws called the National Firearms Agreement.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/1996-national-firearms-agreement.html" target="_blank">RAND Corporation, "The Effects of the 1996 National Firearms Agreement in Australia"</a></p>
+
+  <p>The agreement did several things at once. It banned private ownership, sale, and import of self-loading (semi-automatic) rifles and shotguns, and pump-action shotguns, with narrow exceptions for some farmers and professional shooters. It required a "genuine reason" to get a license to own any gun. Reasons like hunting, pest control on a farm, or membership in an approved shooting club counted. Personal self-defense did not. The agreement also created a national system for registering every gun and set uniform, strict rules for how guns must be stored. To get the newly banned guns out of circulation, the government ran a temporary "buyback" program. Gun owners had a set window of time to turn in now-illegal firearms in exchange for a government payment at market value.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/1996-national-firearms-agreement.html" target="_blank">RAND Corporation, "The Effects of the 1996 National Firearms Agreement in Australia"</a></p>
+
+  <p>The buyback worked at large scale. Between October 1996 and August 2001, the government bought back 659,940 newly banned firearms. A second, smaller buyback in 2003 collected another 68,727 handguns.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/1996-national-firearms-agreement.html" target="_blank">RAND Corporation, "The Effects of the 1996 National Firearms Agreement in Australia"</a> Household gun ownership in Australia fell sharply in the years after: one international survey found it dropped from about 15% of households in 1995-1998 to about 6% in 2004-2005.<a class="cite-inline" href="https://www.rand.org/research/gun-policy/analysis/essays/1996-national-firearms-agreement.html" target="_blank">RAND Corporation, "The Effects of the 1996 National Firearms Agreement in Australia"</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>Australia's gun deaths were already falling before 1996 — that trend didn't start with this law. RAND, a nonpartisan research organization, reviewed the studies on what happened next and found the strongest evidence supports a real drop in firearm suicides, mass shootings, and homicides of women specifically, following the agreement. But RAND also found the research questions whether some of those changes can be fully credited to the law itself, versus other factors already in motion at the same time. Both of those things are part of the honest picture.</p>
+  </div>
+
+  <h3>Japan: near-total restriction, with a real but narrow licensing path</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/japan-national-diet.jpg" alt="The National Diet Building in Tokyo, Japan, seat of Japan's national legislature" onerror="this.style.display='none'">
+    <div class="cap">The National Diet Building in Tokyo, seat of Japan's national legislature, which passed the Law Controlling the Possession of Firearms and Swords. <a href="https://commons.wikimedia.org/wiki/File:Diet_of_Japan_Kokkai_2009.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
+
+  <p>Japan's civilian gun law is one of the strictest in the world. But "near-total restriction" is not the same as "completely banned." Under Japan's Law Controlling the Possession of Firearms and Swords, handguns are not available to ordinary civilians at all. The only exception in the law is for researchers using one for testing purposes. But hunting rifles, hunting shotguns, and air guns can legally be owned by civilians who complete a specific licensing process.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a></p>
+
+  <p>That process is long. An applicant must take a class on gun laws, safety, and storage. They must also pass a skills test or complete shooting classes. They must also submit documents to the local Public Safety Commission, including a medical certificate. The law lists specific reasons someone can be disqualified. These include a mental illness or dementia that affects full mental ability. They also include addiction to alcohol or drugs, a recent criminal record, or a history of domestic violence or stalking warnings.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a></p>
+
+  <p>A rifle license has an even higher bar. It generally isn't granted unless the applicant meets one of three conditions. The applicant must be a professional hunter, or need it for pest control tied to their business. Or the applicant must have already held a hunting-gun license for at least ten years. Once granted, a license lasts three years and can be renewed. The gun itself must be stored in a locker that meets government standards, and police can inspect it.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a></p>
+
+  <p>The result of this system is a very small number of legally owned guns for a country of Japan's size. As of 2011, the most recent year with detailed figures in this review, Japan's National Police Agency counted about 271,100 total civilian-owned guns nationwide — nearly all of them hunting rifles, shotguns, or air guns, and none of them handguns.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy," citing National Police Agency data</a></p>
+
+  <h3>Switzerland: high ownership tied to a citizen-soldier military system</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/switzerland-bundeshaus.jpg" alt="The Bundeshaus, Switzerland's Federal Palace, in Bern" onerror="this.style.display='none'">
+    <div class="cap">The Bundeshaus (Federal Palace) in Bern, home to the Swiss Parliament, which voted in 2007 to change how militia rifle ammunition is stored. <a href="https://commons.wikimedia.org/wiki/File:Bundeshaus_Bern_2015-06.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
+
+  <p>Switzerland is often described as having both a militia-based military and a high rate of civilian gun ownership, and that connection is real — but it's more specific than it's sometimes made to sound. Military service is compulsory for able-bodied Swiss men. During their years of service, militia members are issued a personal weapon and are generally allowed to keep it at their own home rather than in a government armory.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a> When a soldier finishes their service, Swiss law allows them to keep that issued weapon.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a></p>
+
+  <p>But that militia system is a separate track from Switzerland's general civilian gun law, the Weapons Act. Under that law, most rifles and shotguns commonly used for hunting don't require an acquisition license to buy from a private individual. A license is required to buy a handgun, or to buy any gun from a licensed dealer. To get one, an applicant must be at least 18, cannot be under legal guardianship, and cannot have a criminal record involving violent crime.<a class="cite-inline" href="https://tile.loc.gov/storage-services/service/ll/llglrd/2013417226/2013417226.pdf" target="_blank">Law Library of Congress, "Firearms-Control Legislation and Policy"</a></p>
+
+  <p>The military side of this system has also changed over time in response to safety concerns. Ammunition for the issued militia rifle used to be stored at the soldier's home alongside the weapon. After a string of suicides and domestic killings involving that ammunition, the Swiss Parliament voted in 2007 to require that ammunition be stored in central military arsenals instead. The rifle itself could still generally stay at home.<a class="cite-inline" href="https://www.swissinfo.ch/eng/swiss-politics/soldiers-can-keep-guns-at-home-but-not-ammo/970614" target="_blank">SWI swissinfo.ch (Swiss Broadcasting Corporation), "Soldiers can keep guns at home but not ammo"</a> As of late 2025, Swiss lawmakers were still actively debating whether to reverse that 2007 change. Some wanted to let soldiers bring ammunition home again, citing regional security concerns in Europe. That debate is a sign this specific rule is still contested inside Switzerland's own political system, not a settled fact frozen in time.<a class="cite-inline" href="https://lenews.ch/2025/11/21/swiss-soldiers-may-soon-take-ammunition-home-again/" target="_blank">Le News, "Swiss soldiers may soon take ammunition home again"</a></p>
+
+  <h3>Canada: a three-tier "middle ground" system</h3>
+
+  <div class="photo-inline clearfix">
+    <img src="images/canada-parliament-hill.jpg" alt="Centre Block and the Peace Tower on Parliament Hill in Ottawa, Canada" onerror="this.style.display='none'">
+    <div class="cap">Centre Block and the Peace Tower on Parliament Hill in Ottawa, home to Canada's Parliament, which has amended the country's list of prohibited firearms several times, most recently in 2025. <a href="https://commons.wikimedia.org/wiki/File:Centre_Block_Peace_Tower.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+  </div>
+
+  <p>Canada's approach is often described as a middle ground between the U.S. and countries with tighter restrictions, and its actual legal structure supports that description. Canada's Criminal Code sorts every firearm into one of three categories. Non-restricted firearms include ordinary hunting rifles and shotguns. Restricted firearms include most handguns and some semi-automatic long guns. Prohibited firearms include fully automatic weapons, sawed-off shotguns, and certain military-style rifles named specifically in the law.<a class="cite-inline" href="https://www.canada.ca/en/public-safety-canada/news/2023/05/strengthened-measures-to-protect-canadians-from-gun-violence0.html" target="_blank">Public Safety Canada, "Strengthened Measures to Protect Canadians from Gun Violence"</a></p>
+
+  <p>To legally possess or acquire any firearm in Canada, a person must hold a Possession and Acquisition Licence, or PAL, issued by the Royal Canadian Mounted Police. Getting a PAL requires being at least 18 years old, passing the Canadian Firearms Safety Course, and passing a background check. To possess or acquire a restricted firearm, such as most handguns, an applicant needs an additional license level. That level requires also passing the Canadian Restricted Firearms Safety Course. Restricted and prohibited firearms also come with extra rules on where they can be legally stored and transported. Minors aged 12 to 17 can get a limited minor's license to use a non-restricted rifle or shotgun, but only under a licensed adult's responsibility.<a class="cite-inline" href="https://rcmp.ca/en/firearms/apply-firearms-licence" target="_blank">Royal Canadian Mounted Police, "Apply for a firearms licence"</a></p>
+
+  <p>Canada's list of prohibited firearms has also changed over time through amendments to the law, most recently in 2020, 2024, and 2025, when the government added more than 300 additional makes and models of semi-automatic firearms to the prohibited category. As of that most recent update, the government reported that more than 19,000 non-restricted makes and models — over 127,000 individual firearm variations — remained legally available in Canada for hunting and sport shooting.<a class="cite-inline" href="https://www.canada.ca/en/public-safety-canada/news/2025/03/government-of-canada-prohibits-additional-assault-style-firearms.html" target="_blank">Public Safety Canada, "Government of Canada prohibits additional assault-style firearms" (2025)</a></p>
+
+  <div class="callout">
+    <span class="tag">Worth Noticing</span>
+    <p>These four countries show four different structures. Australia used a nationwide ban and buyback. Japan uses near-total restriction with a narrow licensing path. Switzerland ties part of its system to a citizen-soldier military tradition. Canada uses a three-tier classification system. None of these laws could simply be copied onto the U.S. without also changing the U.S. Constitution, since the Second Amendment — covered earlier on this page — limits what gun laws Congress and the states can pass here. This section exists to show how other countries have answered the same basic question, not to argue that the U.S. should or shouldn't follow any of them.</p>
+  </div>
+
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q8')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec-head" id="timeline">
+  <span class="num">History</span>
+  <h2>History Timeline</h2>
+</div>
+<div class="article">
+  <p class="lede">Every date on this page came from somewhere. Here's the whole story, in order — the same facts from the sections above, laid out on one timeline.</p>
+
+  <div class="tl-item">
+    <div class="tl-year">1791</div>
+    <div class="tl-body">
+      <h4>The Second Amendment is ratified</h4>
+      <img src="images/us-capitol-west-front.jpg" alt="The west front of the United States Capitol building in Washington, D.C." onerror="this.style.display='none'">
+      <div class="cap">The U.S. Capitol, where Congress has passed every major federal gun law on this timeline. <a href="https://commons.wikimedia.org/wiki/File:United_States_Capitol_west_front_edit2.jpg" target="_blank">Wikimedia Commons, Architect of the Capitol (public domain)</a></div>
+      <p>The Bill of Rights, including the Second Amendment, was ratified on December 15, 1791. Its single sentence — "A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed" — is the starting point for every gun law that followed.</p>
+      <a class="tl-link" href="https://www.archives.gov/founding-docs/bill-of-rights-transcript" target="_blank">→ National Archives: Bill of Rights transcript</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1934</div>
+    <div class="tl-body">
+      <h4>The National Firearms Act</h4>
+      <p>Congress passed the first major federal gun law during an era of gangster violence. It taxed and required registration for the most dangerous weapons of the time — machine guns, short-barreled rifles and shotguns, and silencers.</p>
+      <a class="tl-link" href="https://en.wikipedia.org/wiki/National_Firearms_Act" target="_blank">→ Wikipedia: National Firearms Act</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1968</div>
+    <div class="tl-body">
+      <h4>The Gun Control Act</h4>
+      <p>This law created the system of federally licensed dealers that still exists today, and it created "prohibited person" categories — including convicted felons — who cannot legally buy a gun.</p>
+      <a class="tl-link" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">→ Congressional Research Service: U.S. Gun Policy: Framework and Major Issues</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Nov 29, 1990</div>
+    <div class="tl-body">
+      <h4>The Gun-Free School Zones Act</h4>
+      <img src="images/herb-kohl.jpg" alt="Sen. Herb Kohl of Wisconsin, official Senate portrait" onerror="this.style.display='none'">
+      <div class="cap">Sen. Herb Kohl of Wisconsin, whose official Senate portrait is held by the U.S. Congress Biographical Directory. <a href="https://commons.wikimedia.org/wiki/File:Herbert_Kohl,_official_photo.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+      <p>Sen. Herb Kohl (D-WI) introduced this bill in the Senate on October 27, 1990. It made it a federal crime to knowingly possess a gun in or near a school zone. The Senate and House both passed it the same day, and President George H.W. Bush signed it into law a month later. It's still on the books today, though the Supreme Court forced Congress to rewrite part of it after <em>United States v. Lopez</em> (1995) found the original version exceeded Congress's power to regulate interstate commerce.</p>
+      <a class="tl-link" href="https://www.law.cornell.edu/uscode/text/18/922" target="_blank">→ Cornell Law School: 18 U.S.C. § 922(q), the Gun-Free School Zones Act</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1993</div>
+    <div class="tl-body">
+      <h4>The Brady Handgun Violence Prevention Act</h4>
+      <img src="images/james-brady.jpg" alt="James Brady, White House Press Secretary, photographed in 1986" onerror="this.style.display='none'">
+      <div class="cap">James Brady, photographed in 1986, five years after being shot during the 1981 assassination attempt on President Reagan. <a href="https://commons.wikimedia.org/wiki/File:James_Brady_1986.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+      <p>This law required licensed dealers to run a background check before selling a gun. It's named for James Brady, Reagan's press secretary, who was shot and permanently disabled in the March 1981 assassination attempt. He and his wife Sarah spent over a decade pushing for the law that bears his name. President Clinton signed it on November 30, 1993, with the Bradys as his guests of honor.</p>
+      <a class="tl-link" href="https://en.wikipedia.org/wiki/Brady_Handgun_Violence_Prevention_Act" target="_blank">→ Wikipedia, citing Pub. L. 103-159</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">1994</div>
+    <div class="tl-body">
+      <h4>The federal assault weapons ban — and rising SRO funding</h4>
+      <p>Congress banned certain semi-automatic weapons and large-capacity magazines, but wrote the ban to expire after ten years. That same year, the newly created federal Office of Community Oriented Policing Services (COPS) began funding local police departments to place more officers, and eventually school resource officers, in communities.</p>
+      <a class="tl-link" href="https://en.wikipedia.org/wiki/Federal_Assault_Weapons_Ban" target="_blank">→ Wikipedia, citing Pub. L. 103-322</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Apr 20, 1999</div>
+    <div class="tl-body">
+      <h4>Columbine, and a surge in federal SRO funding</h4>
+      <p>The Columbine High School shooting in Colorado is widely seen as a turning point for how Americans think about school safety. That same year, the COPS office started a dedicated COPS in Schools grant program to help districts hire and train school resource officers. Between 1999 and 2008, it awarded $750 million to local police departments for that purpose. Researchers say that period drastically increased how common SROs became in American schools. (Section 3 covers what SROs actually do, and what the research says about them, in detail.)</p>
+      <a class="tl-link" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">→ RAND Corporation: School Resource Officers</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">2004</div>
+    <div class="tl-body">
+      <h4>The assault weapons ban expires</h4>
+      <p>Congress did not pass a new law to extend the 1994 assault weapons ban before its built-in ten-year expiration date. It expired on its own and has not been renewed since.</p>
+      <a class="tl-link" href="https://en.wikipedia.org/wiki/Federal_Assault_Weapons_Ban" target="_blank">→ Wikipedia, citing Pub. L. 103-322</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">2008</div>
+    <div class="tl-body">
+      <h4><em>District of Columbia v. Heller</em></h4>
+      <p>The Supreme Court ruled 5-4 that the Second Amendment protects an individual person's right to own a gun, even outside militia service, and struck down a strict Washington, D.C. handgun ban. It was the first time the Court had ruled this way.</p>
+      <a class="tl-link" href="https://www.law.cornell.edu/supct/html/07-290.ZS.html" target="_blank">→ Cornell Law School: Supreme Court syllabus</a>
+      <div class="quiz-inline" style="margin:16px 0 0"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Nov 8, 2016</div>
+    <div class="tl-body">
+      <h4>Washington voters pass Initiative 1491</h4>
+      <img src="images/card-wa-capitol.jpg" alt="The Legislative Building at the Washington State Capitol campus in Olympia" onerror="this.style.display='none'">
+      <div class="cap">The Legislative Building at the Washington State Capitol in Olympia. <a href="https://commons.wikimedia.org/wiki/File:Washington_State_Capitol_Legislative_Building.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+      <p>Washington voters approved this ballot measure directly, creating the state's extreme risk protection order ("red-flag") process. It took effect the following year, letting courts temporarily remove a person's access to guns if they're found to pose a significant danger to themselves or others.</p>
+      <a class="tl-link" href="https://apps.leg.wa.gov/rcw/default.aspx?cite=7.105" target="_blank">→ Washington State Legislature: RCW Chapter 7.105</a>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div class="tl-year">Nov 6, 2018</div>
+    <div class="tl-body">
+      <h4>Washington voters pass Initiative 1639</h4>
+      <p>Washington voters raised the minimum age to buy a pistol or semiautomatic assault rifle in the state to 21, among other changes. This is Washington's own purchase-age rule, separate from any federal law.</p>
+      <a class="tl-link" href="https://app.leg.wa.gov/rcw/default.aspx?cite=9.41.240" target="_blank">→ Washington State Legislature: RCW 9.41.240</a>
+      <div class="quiz-inline" style="margin:16px 0 0"><button class="quiz-toggle" onclick="openQuiz('q9')">Test Yourself</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ KEY PEOPLE ═══════════ -->
+<div class="sec-head" id="key-people">
+  <span class="num">Bonus</span>
+  <h2>Key People</h2>
+</div>
+<div class="article">
+  <p>This section sticks to historical figures whose part in the story is already settled. It does not include anyone currently holding office or currently active in gun-policy or school-safety advocacy today.</p>
+
+  <div class="person">
+    <img src="images/james-brady.jpg" alt="James Brady" onerror="this.outerHTML='<div class=\'emoji-fallback\'>📰</div>'">
+    <div>
+      <h4>James Brady</h4>
+      <div class="role">White House Press Secretary, 1981 · Gun-control advocate, 1981–2014</div>
+      <p>Brady was President Reagan's press secretary when he was shot in the head during the March 1981 assassination attempt on the president. He survived but was left partially paralyzed and used a wheelchair for the rest of his life. He and his wife, Sarah Brady, spent the next twelve years pushing Congress to pass a national background-check law. When President Clinton signed the Brady Handgun Violence Prevention Act in 1993, he told the Bradys, "If it hadn't been for them, we would not have passed the Brady law." Brady never held elected office. He died in 2014 at age 73.</p>
+      <div class="src"><a href="https://en.wikipedia.org/wiki/James_Brady" target="_blank">Source: Wikipedia, citing contemporary reporting</a> · <a href="https://commons.wikimedia.org/wiki/File:James_Brady_1986.jpg" target="_blank">Photo: Wikimedia Commons (public domain, Reagan Presidential Library)</a></div>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="images/herb-kohl.jpg" alt="Sen. Herb Kohl" onerror="this.outerHTML='<div class=\'emoji-fallback\'>🏫</div>'">
+    <div>
+      <h4>Herb Kohl</h4>
+      <div class="role">U.S. Senator, Wisconsin, 1989–2013</div>
+      <p>Kohl represented Wisconsin in the Senate for 24 years. In October 1990, he introduced the Gun-Free School Zones Act, which made it a federal crime to knowingly bring a gun near a school. It passed the Senate and House the same day it was introduced and was signed into law five weeks later. After the Supreme Court struck down part of the original law in 1995, finding it exceeded Congress's power to regulate interstate commerce, Kohl and other lawmakers worked to rewrite it so it could stand. He retired from the Senate in 2013 and died in 2023.</p>
+      <div class="src"><a href="https://en.wikipedia.org/wiki/Gun-Free_School_Zones_Act_of_1990" target="_blank">Source: Wikipedia, citing the bill's legislative record</a> · <a href="https://commons.wikimedia.org/wiki/File:Herbert_Kohl,_official_photo.jpg" target="_blank">Photo: Wikimedia Commons (public domain, U.S. Congress)</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ VIDEOS ═══════════ -->
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>Videos — See It for Yourself</h2>
+</div>
+<div class="article">
+  <p>Sometimes a video explains things better than words. Both of these focus on topics you've already read about above. You can pause, rewind, or watch with captions on.</p>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/2EjEUoeIccc?rel=0&modestbranding=1" title="The Second Amendment | The National Constitution Center | Khan Academy (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-label">
+    <h4>The Second Amendment, explained (~6 min)</h4>
+    <p>Produced with the National Constitution Center's Interactive Constitution project, which pairs scholars from different legal perspectives on every part of the Constitution. This video has Kim Kutz Elliott walking through the Second Amendment's history and legal debate with two scholars — Alan Gura, who argued <em>Heller</em> before the Supreme Court, and Adam Winkler, a constitutional law professor — who explain where they agree and where they don't.</p>
+  </div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/FnFLR8J5L-o?rel=0&modestbranding=1" title="School resource officers and the quest for safer schools - PBS NewsHour (YouTube)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="video-label">
+    <h4>School resource officers, explained (~3.5 min)</h4>
+    <p>A PBS NewsHour segment from 2013 in which the president of the National Association of School Resource Officers talks with a PBS correspondent about what SROs actually do day to day, and why more schools were adding them at the time. Pair this with Section 3's look at the research on SROs, which covers both the benefits and the costs researchers have found.</p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">While you watch, think about</span>
+    <p>What surprised you? What questions do you still have? Where does what you already read on this page agree — or not quite agree — with what these videos say?</p>
+  </div>
+</div>
+
+<!-- ═══════════ DISCUSSION QUESTIONS ═══════════ -->
+<div class="article">
+  <div class="callout">
+    <span class="tag">For classroom or small-group discussion</span>
+    <p><strong>1.</strong> Schools have tried many different safety measures — metal detectors, school resource officers, lockdown drills, threat assessment teams. Which ones seem most likely to actually help, and why? Are there trade-offs even for the ones that help?</p>
+    <p><strong>2.</strong> The Situation Update section shows real advocacy groups disagreeing about assault weapons bans, the minimum age to buy a gun, and red-flag laws. Pick one of those questions. What's the strongest point each side makes? Where do you land, and why?</p>
+    <p><strong>3.</strong> Australia, Japan, Switzerland, and Canada all regulate guns differently than the U.S. does. Is there a policy from another country that you think could work here? What might make it harder to adopt in the U.S.?</p>
+    <p><strong>4.</strong> Researchers have studied school resource officers and found both benefits (like catching weapons) and costs (like more suspensions for some students). How should a school weigh evidence like that when deciding on a policy?</p>
+    <p><strong>5.</strong> This page tries hard to stay neutral and show real numbers instead of just headlines. Did that change how you think about this topic? What's one fact from this page you didn't know before?</p>
+  </div>
+</div>
+
+<!-- ═══════════ RESOURCES ═══════════ -->
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>Dig Deeper</h2>
+</div>
+<div class="article">
+  <div class="callout">
+    <span class="tag">Reading levels</span>
+    <p><strong>⭐ Easier</strong> = great starting point · <strong>⭐⭐ Medium</strong> = some reading required · <strong>⭐⭐⭐ Harder</strong> = for students who want a deeper challenge</p>
+  </div>
+
+  <a class="rc" href="https://www.everycrsreport.com/reports/IF11038.html" target="_blank">
+    <span class="tag">Congressional Research Service</span>
+    <div class="rc-title">U.S. Gun Policy: Framework and Major Issues</div>
+    <p>Congress's own nonpartisan research arm explains how federal and state gun laws fit together, in plain language.</p>
+    <div class="level">⭐⭐ Medium — Clear, official overview</div>
+  </a>
+  <a class="rc" href="https://www.rand.org/research/gun-policy/analysis/essays/school-resource-officers.html" target="_blank">
+    <span class="tag">RAND Corporation</span>
+    <div class="rc-title">School Resource Officers</div>
+    <p>A nonpartisan research organization's deep dive into what SROs do, how common they are, and what decades of research say about their effects.</p>
+    <div class="level">⭐⭐⭐ Harder — Research-heavy, well-organized</div>
+  </a>
+  <a class="rc" href="https://nces.ed.gov/programs/coe/indicator/a19" target="_blank">
+    <span class="tag">National Center for Education Statistics</span>
+    <div class="rc-title">School Safety and Security Measures</div>
+    <p>The federal government's own data on how many U.S. schools use metal detectors, security cameras, lockdown drills, and other safety measures, and how that's changed over time.</p>
+    <div class="level">⭐ Easier — Charts and short explanations</div>
+  </a>
+  <a class="rc" href="https://k12ssdb.org/all-shootings" target="_blank">
+    <span class="tag">K-12 School Shooting Database</span>
+    <div class="rc-title">All School Shootings, 1966–Present</div>
+    <p>A searchable, incident-by-incident database of gun violence at U.S. schools, built and maintained by homeland security researcher David Riedman.</p>
+    <div class="level">⭐⭐ Medium — Raw data you can explore yourself</div>
+  </a>
+  <a class="rc" href="https://www.kff.org/mental-health/examining-school-shootings-at-the-national-and-state-level-and-mental-health-implications/" target="_blank">
+    <span class="tag">KFF</span>
+    <div class="rc-title">Examining School Shootings at the National and State Level</div>
+    <p>A nonpartisan health policy research group's look at long-run trends in school shootings and their effects on students' mental health.</p>
+    <div class="level">⭐⭐ Medium — Data plus context</div>
+  </a>
+  <a class="rc" href="https://www.secretservice.gov/sites/default/files/reports/2025-11/The-State-of-Behavioral-Threat-Assessment-and-Management-in-K-12-Public-Schools.pdf" target="_blank">
+    <span class="tag">U.S. Secret Service National Threat Assessment Center</span>
+    <div class="rc-title">The State of Behavioral Threat Assessment and Management in K-12 Public Schools (2025)</div>
+    <p>A national survey of principals on how threat assessment teams actually work, and how often they lead to support versus punishment.</p>
+    <div class="level">⭐⭐⭐ Harder — Full federal report</div>
+  </a>
+
+  <h3 style="margin-top:44px">🗓️ Keep up with school safety policy news <span style="font-weight:400;font-size:.75em;color:var(--ink-faint)">(as of July 27, 2026)</span></h3>
+  <div class="callout">
+    <span class="tag">⏳ A dated snapshot, not a permanent resource</span>
+    <p>School safety policy keeps changing as states pass new laws and try new technology. This short list will get stale. If you're reading this well after July 2026, treat these links as historical background. Look for newer coverage instead.</p>
+  </div>
+
+  <a class="rc" href="https://www.edweek.org/leadership/see-which-safety-technologies-schools-are-betting-on/2026/05" target="_blank">
+    <span class="tag">Education Week</span>
+    <div class="rc-title">See Which Safety Technologies Schools Are Betting On</div>
+    <p>Published May 23, 2026. A survey-based look at which safety technologies — from AI cameras to panic buttons — schools are actually adopting, including both administrator support and documented problems like false weapon alerts.</p>
+    <div class="level">⭐⭐ Medium — Data-driven</div>
+  </a>
+  <a class="rc" href="https://www.edweek.org/leadership/drones-to-stop-school-shootings-promising-tool-or-unproven-strategy/2026/05" target="_blank">
+    <span class="tag">Education Week</span>
+    <div class="rc-title">Drones to Stop School Shootings: Promising Tool or Unproven Strategy?</div>
+    <p>Published May 21, 2026. A balanced look at schools piloting shooter-response drones, including both a sheriff who calls the technology "the future" and a safety consultant who argues it's "really impractical" and unproven.</p>
+    <div class="level">⭐⭐ Medium — Weighs both sides</div>
+  </a>
+  <a class="rc" href="https://www.edweek.org/leadership/school-shootings-in-2025-the-fewest-incidents-and-deaths-in-5-years/2025/12" target="_blank">
+    <span class="tag">Education Week</span>
+    <div class="rc-title">School Shootings in 2025: The Fewest Incidents and Deaths in 5 Years</div>
+    <p>Published December 31, 2025, updated January 5, 2026. Education Week's own shooting tracker shows 2025 had the fewest incidents and deaths since 2020 — while being honest that "there's no immediately available explanation for the sharp decrease."</p>
+    <div class="level">⭐⭐ Medium — Data-driven, appropriately cautious</div>
+  </a>
+  <a class="rc" href="https://apnews.com/article/education-funding-michigan-gretchen-whitmer-tim-kelly-school-safety-597c71d48c1532dcb065b3b110f6b978" target="_blank">
+    <span class="tag">Associated Press</span>
+    <div class="rc-title">Michigan Has $321M for School Safety. The Catch: Districts Must Waive Rights</div>
+    <p>Published November 10, 2025. A wire-service report on a real policy tension: Michigan tied new school-safety funding to a requirement that districts waive certain legal protections if a mass-casualty event happens on campus, and some school groups are pushing back.</p>
+    <div class="level">⭐⭐ Medium — Shows a live policy debate</div>
+  </a>
+
+  <h3 style="margin-top:44px">Groups Working on This Issue</h3>
+  <p>These are two Washington-based organizations that work on gun policy from very different perspectives. They're listed here so you can look into them further and see how each one describes its own mission — not as sources cited elsewhere on this page.</p>
+  <a class="rc" href="https://gunresponsibility.org/about/" target="_blank">
+    <span class="tag">Alliance for Gun Responsibility</span>
+    <div class="rc-title">Seattle, WA</div>
+    <p>A Seattle-based advocacy organization that works to pass stricter gun laws in Washington state, describing gun violence as "a public health crisis" that is preventable through policy change.</p>
+    <div class="level">🏛️ Advocacy group — states its own position</div>
+  </a>
+  <a class="rc" href="https://saf.org/about/" target="_blank">
+    <span class="tag">Second Amendment Foundation</span>
+    <div class="rc-title">Bellevue, WA</div>
+    <p>A Bellevue-based advocacy organization that works through lawsuits and public education to defend Second Amendment rights, describing its mission as defending, securing, and restoring the right to keep and bear arms.</p>
+    <div class="level">🏛️ Advocacy group — states its own position</div>
+  </a>
+</div>
+
+<footer>
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
+</footer>
+
+<script>
+let pts = 0;
+let answeredQuizzes = new Set();
+let flagClicks = 0;
+let statClicks = new Set();
+let konamiIndex = 0;
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+
+// 9 quizzes (q1-q9, 1 pt each) + 3 easter eggs (hero-flag click, click-all-3-stats, Konami code, 1 pt each) = 12
+const MAX_PTS = 12;
+
+// Subsequent tasks add entries here as each section's quiz is built.
+const quizzes = {
+  q1: {
+    q: "What did the Supreme Court decide in District of Columbia v. Heller (2008)?",
+    choices: ["That the Second Amendment only applies to militia members", "That the Second Amendment protects an individual's right to own a gun, even outside a militia", "That handgun bans are always constitutional", "That Congress cannot pass any gun laws"],
+    correct: 1,
+    feedback: "✅ Correct! In 2008, the Supreme Court ruled 5-4 that the Second Amendment protects an individual person's right to own a gun for lawful purposes like self-defense, even if they are not part of a militia.",
+    wrong: "Not quite. In Heller, the Supreme Court ruled that the Second Amendment protects an individual's right to own a gun, even outside of militia service."
+  },
+  q2: {
+    q: "According to the K-12 School Shooting Database, in what year did gun violence at U.S. schools reach an all-time high?",
+    choices: ["2018", "2020", "2023", "2025"],
+    correct: 2,
+    feedback: "✅ Correct! The K-12 School Shooting Database recorded 349 separate incidents at U.S. schools in 2023, the highest yearly total it has ever tracked.",
+    wrong: "Not quite. The K-12 School Shooting Database recorded its highest-ever yearly total, 349 incidents, in 2023."
+  },
+  q3: {
+    q: "Where does Washington rank among the 50 states for gun death rate per capita (12th) compared to school-shooting raw incident count (16th)?",
+    choices: ["Washington ranks 12th for gun death rate per capita and 16th for raw incident count", "Washington ranks 1st on both lists", "Washington ranks 40th on both lists", "Washington does not appear on either list"],
+    correct: 0,
+    feedback: "✅ Correct! Washington's 2024 gun death rate of 11.0 per 100,000 people ranks 12th out of 50 states, lowest to highest. Its 67 school-shooting incidents since 1966 rank 16th out of 50 states by raw count.",
+    wrong: "Not quite. Washington ranks 12th out of 50 states for gun death rate per capita (11.0 per 100,000) and 16th out of 50 states for raw school-shooting incident count (67 incidents)."
+  },
+  q4: {
+    q: "According to research cited by RAND Corporation, what did a 2023 meta-analysis find about school resource officers (SROs) and school discipline?",
+    choices: ["SROs had no effect on suspensions or arrests for any students", "SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals, with the largest effect for Black and Latino students", "SROs eliminated racial disparities in school discipline", "SROs were only used in schools with no security cameras"],
+    correct: 1,
+    feedback: "✅ Correct! A 2023 meta-analysis (Fisher et al.) found consistently strong evidence that SROs are linked to more suspensions, expulsions, and law-enforcement referrals, with the effect largest for Black and Latino students — even as other studies found SROs linked to catching more weapons and fewer violent incidents.",
+    wrong: "Not quite. A 2023 meta-analysis found SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals for students, and that this effect was largest for Black and Latino students."
+  },
+  q5: {
+    q: "Under a typical extreme risk protection order (\"red-flag\") law, who is usually allowed to petition a court for an order?",
+    choices: ["Any adult resident of the state", "Only the person's employer", "Law enforcement officers and, in many cases, family or household members", "Only the state's governor"],
+    correct: 2,
+    feedback: "✅ Correct! According to the Congressional Research Service, most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members.",
+    wrong: "Not quite. Most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members."
+  },
+  q6: {
+    q: "What does California's Assembly Bill 1127 do?",
+    choices: ["It bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons", "It raises the minimum age to buy any gun in California to 25", "It bans all handgun sales in California", "It creates a new federal assault weapons ban"],
+    correct: 0,
+    feedback: "✅ Correct! AB 1127 bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons using an add-on part sometimes called a \"switch.\" It was approved on October 10, 2025, and its dealer-sales rule took effect on July 1, 2026.",
+    wrong: "Not quite. AB 1127 bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons using an add-on part sometimes called a \"switch.\""
+  },
+  q7: {
+    q: "How did Washington's extreme risk protection order law get created?",
+    choices: ["The governor issued an executive order", "Voters approved it directly through Initiative 1491 in 2016", "Congress passed it as a federal law", "A court ordered the legislature to pass it"],
+    correct: 1,
+    feedback: "✅ Correct! Washington voters approved Initiative 1491 on November 8, 2016, creating the state's extreme risk protection order process. It took effect the following year.",
+    wrong: "Not quite. Washington voters approved Initiative 1491 on November 8, 2016, creating the state's extreme risk protection order process directly at the ballot box."
+  },
+  q8: {
+    q: "Under Japan's gun law, what is a civilian legally allowed to own?",
+    choices: ["Handguns only, with a background check", "Hunting rifles, hunting shotguns, and air guns, through a licensing process — but not handguns", "Any gun, as long as it is registered", "No guns of any kind, with zero exceptions"],
+    correct: 1,
+    feedback: "✅ Correct! Japan's civilian gun ownership is near-total restriction, not a complete ban. Handguns are off-limits to ordinary civilians, but hunting rifles, hunting shotguns, and air guns can be legally owned through a licensing process that includes classes, a skills test, a medical certificate, and a background check.",
+    wrong: "Not quite. Japan bans civilian handgun ownership, but hunting rifles, hunting shotguns, and air guns can be legally owned through a licensing process that includes classes, a skills test, a medical certificate, and a background check."
+  },
+  q9: {
+    q: "How did Washington's minimum age to buy a pistol or semiautomatic assault rifle become 21?",
+    choices: ["Congress passed a federal law setting the age at 21", "Washington voters approved it directly through Initiative 1639 in 2018", "A single sheriff's department set the rule for the whole state", "It has always been 21 under the original 1968 federal law"],
+    correct: 1,
+    feedback: "✅ Correct! Washington voters approved Initiative 1639 on November 6, 2018, raising the minimum age to buy a pistol or semiautomatic assault rifle in the state to 21 — a state rule, separate from any federal law.",
+    wrong: "Not quite. Washington voters approved Initiative 1639 on November 6, 2018, raising the minimum purchase age for a pistol or semiautomatic assault rifle to 21 directly at the ballot box."
+  }
+};
+
+function openQuiz(id) {
+  if (answeredQuizzes.has(id)) {
+    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
+    return;
+  }
+  const q = quizzes[id];
+  document.getElementById('quizQ').textContent = q.q;
+  const cc = document.getElementById('quizChoices');
+  cc.innerHTML = '';
+  q.choices.forEach((c,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => handleAnswer(id, i, btn);
+    cc.appendChild(btn);
+  });
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function handleAnswer(id, chosen, btn) {
+  const q = quizzes[id];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  const fb = document.getElementById('quizFeedback');
+  if (chosen === q.correct) {
+    btn.classList.add('correct');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show correct-fb';
+    if (!answeredQuizzes.has(id)) { answeredQuizzes.add(id); addPoints(1); }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    fb.textContent = q.wrong;
+    fb.className = 'quiz-feedback show wrong-fb';
+    answeredQuizzes.add(id);
+  }
+}
+function closeQuiz() {
+  document.getElementById('quizModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function addPoints(n) {
+  pts = Math.min(pts + n, MAX_PTS);
+  document.getElementById('pointsDisplay').textContent = pts + ' pts';
+  const pct = MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (MAX_PTS > 0 && pts >= 5) {
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus.';
+    showToast('🌟','5 Points!','You unlocked a bonus deep dive!');
+  }
+  if (MAX_PTS > 0 && pts >= MAX_PTS) {
+    document.getElementById('unlockHint').textContent = '🏆 Maximum points — School Safety Expert unlocked!';
+    showToast('🏆','School Safety Expert!',"You hit " + MAX_PTS + " points! Check the final bonus.");
+  }
+}
+
+let toastTimer;
+function showToast(icon, title, msg) {
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── EASTER EGG: HERO KICKER CLICKS ───
+function handleFlagClick() {
+  flagClicks++;
+  const flag = document.getElementById('heroFlag');
+  if (!flag) return;
+  flag.classList.remove('shake');
+  void flag.offsetWidth;
+  flag.classList.add('shake');
+  if (flagClicks === 3) showToast('🤔','Keep clicking...','Something might happen if you keep going!');
+  if (flagClicks >= 5) {
+    flagClicks = 0;
+    showEgg('🔎','You found a secret!',
+      '<strong>Why "pewter"?</strong> This page\'s accent color was chosen on purpose. It\'s not red or blue, and it\'s not any political party\'s brand color — it\'s a muted gray, meant to look institutional and procedural, like a courthouse railing or a policy binder, not a campaign sign.',
+      '');
+    addPoints(1);
+  }
+}
+
+// ─── EASTER EGG: STAT BOX CLICK-ALL ───
+function handleStatClick(el) {
+  el.classList.add('clicked');
+  statClicks.add(el);
+  const totalInPair = el.closest('.stat-pair, .stat-trio').querySelectorAll('.stat').length;
+  if (statClicks.size >= totalInPair) {
+    showEgg('🔢','You clicked every number!',
+      'Most people guess that gun deaths in the U.S. are mostly homicides. The data says something different: gun suicide has been the single largest category for years, and it was again in 2024 — more than gun homicides and every other cause combined.',
+      'Johns Hopkins Center for Gun Violence Solutions, citing CDC data, 2024');
+    addPoints(1);
+    statClicks.clear();
+  }
+}
+
+// ─── EASTER EGG: KONAMI CODE ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === KONAMI.length) {
+      konamiIndex = 0;
+      showEgg('🎮','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\nOne more fact for the road: the Gun-Free School Zones Act of 1990 moved fast. Senator Herb Kohl introduced it, and it passed the Senate and the House that same day — then was signed into law five weeks later.','U.S. Congress, legislative record, 1990');
+      addPoints(1);
+    }
+  } else {
+    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
+  }
+});
+
+function showEgg(emoji, title, text, extra) {
+  document.getElementById('eggEmoji').textContent = emoji;
+  document.getElementById('eggTitle').textContent = title;
+  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
+  document.getElementById('eggExtra').textContent = extra || '';
+  document.getElementById('eggModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeEgg() {
+  document.getElementById('eggModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('eggModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('eggModal')) closeEgg();
+});
+</script>
+
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
+<script>
+function toggleDyslexic(){
+  document.body.classList.toggle('dyslexic');
+  const on = document.body.classList.contains('dyslexic');
+  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
+  document.getElementById('dyslexicToggle').classList.toggle('active', on);
+}
+if(localStorage.getItem('dyslexicFont')==='on'){
+  document.body.classList.add('dyslexic');
+  document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
+}
+</script>
+
+</body>
+</html>
