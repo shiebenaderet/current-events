@@ -282,10 +282,34 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-.dyslexic-toggle{position:fixed;bottom:20px;right:20px;z-index:9999;background:#111;color:white;border:none;border-radius:50px;padding:10px 16px;font-size:.8rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .2s;display:flex;align-items:center;gap:6px;font-family:-apple-system,sans-serif}
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
 .dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
 .dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
 body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
 </head>
 <body>
@@ -400,7 +424,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
         <h3>Who controls what, right now?</h3>
         <p>Here's a plain, dated snapshot of Washington, as of <strong>July 21, 2026</strong> — before any 2026 votes are counted. <strong>Republicans</strong> currently hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <a class="cite-inline" href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></p>
         <p>The current <strong>Speaker of the House is Mike Johnson</strong>. He's held the role since October 2023. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> The current <strong>Senate Majority Leader is John Thune</strong>. He's held the role since January 2025. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></p>
-        <p>Section 1 explained what these two roles do. The Speaker decides which bills get a vote on the House floor. The Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.</p>
+        <p>Section 1, further down this page, explains these two roles in more detail. In short: the Speaker decides which bills get a vote on the House floor, and the Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.</p>
         <div class="callout" style="background:rgba(255,255,255,.06);border-left-color:var(--gold-l)">
           <span class="tag" style="color:var(--gold-l)">Think about it</span>
           <p style="color:rgba(255,255,255,.7)">This same fact block would read exactly the same no matter which party held these roles. Why do you think it matters that a civics page describe "who's in charge" as a plain fact, instead of as good news or bad news?</p>
@@ -905,7 +929,16 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="secret-text" aria-hidden="true">We the People — E Pluribus Unum</div>
 </footer>
 
-<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">Aa Dyslexic Font</button>
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
 
 <script>
 let pts = 0;
@@ -1115,6 +1148,17 @@ function toggleDyslexic(){
 if(localStorage.getItem('dyslexicFont')==='on'){
   document.body.classList.add('dyslexic');
   document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
 }
 </script>
 

@@ -94,6 +94,12 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
   opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
 }
 .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+/* visually-hidden text for the .term-desc spans that back each .term's aria-describedby —
+   keeps the definition available to screen readers without duplicating it visibly on the page */
+.term-desc{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
 @media(max-width:600px){
   .term::after{max-width:70vw;font-size:.74rem}
 }
@@ -178,10 +184,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .tl-body .cap a{color:inherit}
 .tl-link{display:inline-block;margin-top:8px;font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
 .tl-link:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
-.hidden-egg{display:none;margin-top:20px;padding:18px 22px;background:var(--paper-warm);border-left:3px solid var(--accent)}
-.hidden-egg.revealed{display:block}
-.hidden-egg h4{font-family:-apple-system,sans-serif;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:8px}
-.hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
 
 /* ══ PERSON ══ */
 .person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
@@ -280,10 +283,34 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-.dyslexic-toggle{position:fixed;bottom:20px;right:20px;z-index:9999;background:#111;color:white;border:none;border-radius:50px;padding:10px 16px;font-size:.8rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .2s;display:flex;align-items:center;gap:6px;font-family:-apple-system,sans-serif}
+/* dyslexic toggle + text-size controls */
+.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.dyslexic-toggle{
+  background:#111;color:white;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
+  transition:all .2s;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+}
 .dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
 .dyslexic-toggle.active{background:var(--accent)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
 body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
+body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
+body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
+body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
 </head>
 <body>
@@ -327,6 +354,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <a href="ukraine.html">Ukraine</a>
   <a href="ai.html">AI &amp; Society</a>
   <a href="us-elections.html">US Elections</a>
+  <a href="climate-change.html">Climate Change</a>
   <a href="immigration.html">Immigration</a>
   <a href="gun-violence.html">Gun Violence</a>
   <a href="#update-week1">Situation Update</a>
@@ -363,7 +391,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <h2>Ceasefire Collapses as Fighting Resumes</h2>
 </div>
 <div class="article">
-  <p class="lede">In early July 2026, Iran's Revolutionary Guard struck commercial tankers in the Strait of Hormuz. The U.S. retaliated with strikes across Iran, and President Trump declared the ceasefire "over." Fighting has continued for more than a week. See the full situation update below.<a class="cite-inline" href="#update-week1">Jump to update</a></p>
+  <p class="lede">In early July 2026, fighters from Iran's Revolutionary Guard, a branch of Iran's military that answers directly to its Supreme Leader, struck commercial tankers in the Strait of Hormuz, the narrow waterway between Iran and Oman that a fifth of the world's oil passes through. The U.S. retaliated with strikes across Iran, and President Trump declared the ceasefire "over." Fighting has continued for more than a week. See the full situation update below.<a class="cite-inline" href="#update-week1">Jump to update</a></p>
 </div>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
@@ -474,7 +502,9 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <p>The protest movement returned in July 2026, right after Khamenei's funeral, driven by the same economic hardship.<a class="cite-inline" href="https://www.npr.org/2026/01/22/nx-s1-5684033/iran-2026-protests" target="_blank">NPR</a></p>
 
   <h3>War between the U.S., Israel, and Iran (February–July 2026)</h3>
-  <p>On February 28, 2026, the U.S. and Israel launched major strikes — described by PBS News as "a war to overthrow the Iranian regime," not a limited operation.<a class="cite-inline" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">PBS</a> Khamenei was killed, and Iran launched retaliatory strikes. In the opening days, 3 U.S. troops were killed and 5 wounded; Iran reported 153 civilians killed at a girls' elementary school in southern Iran, though the Israeli military denied being responsible.<a class="cite-inline" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">PBS</a></p>
+  <p>On February 28, 2026, the U.S. and Israel launched major strikes — described by PBS News as "a war to overthrow the Iranian regime," not a limited operation.<a class="cite-inline" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">PBS</a> Khamenei was killed, and Iran launched retaliatory strikes. In the opening days, 3 U.S. troops were killed and 5 wounded.<a class="cite-inline" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">PBS</a></p>
+
+  <div class="callout"><span class="tag">A heavy early loss</span><p>Iran reported that 153 civilians were killed at a girls' elementary school in southern Iran in the opening days of the war. The Israeli military denied being responsible.<a class="cite-inline" href="https://www.pbs.org/newshour/classroom/daily-news-lessons/2026/03/what-we-know-about-the-us-israel-attacks-on-iran" target="_blank">PBS</a></p></div>
 
   <p>A ceasefire held from April 8, and a peace memorandum was signed June 17 — but it collapsed after the July 6–8 tanker strikes.<a class="cite-inline" href="https://www.cnn.com/2026/07/09/world/live-news/iran-war-trump" target="_blank">CNN</a> As of July 17, 2026, the two sides are still fighting.<a class="cite-inline" href="https://www.aljazeera.com/news/2026/7/16/us-mounts-sixth-straight-night-of-attacks-as-iran-warns-of-wider-war" target="_blank">Al Jazeera</a></p>
 
@@ -556,7 +586,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
     <div class="stat"><div class="num">85%</div><div class="desc"><b>Literacy rate</b>Nat Geo Kids</div></div>
   </div>
 
-  <p>Under Iran's current government, people face many restrictions. Women must wear a <span class="term" tabindex="0" data-def="A head covering. Iranian law requires women to wear one in public.">hijab</span> in public by law.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a> Freedom of speech and peaceful protest are restricted, and people can be arrested for criticizing the government — big reasons why so many Iranians have been protesting.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a></p>
+  <p>Under Iran's current government, people face many restrictions. Women must wear a <span class="term" tabindex="0" data-def="A head covering. Iranian law requires women to wear one in public." aria-describedby="term-desc-1">hijab</span><span id="term-desc-1" class="term-desc">A head covering. Iranian law requires women to wear one in public.</span> in public by law.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a> Freedom of speech and peaceful protest are restricted, and people can be arrested for criticizing the government — big reasons why so many Iranians have been protesting.<a class="cite-inline" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">UConn</a></p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
   <p style="margin-top:24px"><a class="tl-link" href="https://www.cbc.ca/kidsnews/post/the-u.s-israel-and-iran-conflict-explained" target="_blank">→ CBC Kids News: The conflict explained simply</a></p>
@@ -593,7 +623,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <img src="images/mosaddegh.jpg" alt="Mohammad Mosaddegh, Iran's elected Prime Minister">
       <div class="cap">Mohammad Mosaddegh, removed from power in 1953. <a href="https://commons.wikimedia.org/wiki/File:Mohammad_Mosaddegh_portrait.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
       <p>Iran elected a very popular prime minister named Mohammad Mosaddegh.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> He wanted Iran to control its own oil instead of letting Britain profit from it. Most Iranians thought that seemed very reasonable.</p>
-      <p>Britain was furious. They worked with the <span class="term" tabindex="0" data-def="The Central Intelligence Agency — the U.S. government's spy agency.">CIA</span> to secretly remove Mosaddegh from power and put the Shah back in control, in an operation called Operation Ajax.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> Many Iranians never forgot this. It's one of the biggest reasons for deep distrust of the United States in Iran today.</p>
+      <p>Britain was furious. They worked with the <span class="term" tabindex="0" data-def="The Central Intelligence Agency — the U.S. government's spy agency." aria-describedby="term-desc-2">CIA</span><span id="term-desc-2" class="term-desc">The Central Intelligence Agency — the U.S. government's spy agency.</span> to secretly remove Mosaddegh from power and put the Shah back in control, in an operation called Operation Ajax.<a class="cite-inline" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">NPR</a> Many Iranians never forgot this. It's one of the biggest reasons for deep distrust of the United States in Iran today.</p>
       <a class="tl-link" href="https://www.npr.org/2019/01/31/690363402/how-the-cia-overthrew-irans-democracy-in-four-days" target="_blank">→ NPR: How the CIA overthrew Iran's democracy in four days</a>
       <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
     </div>
@@ -709,7 +739,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <h4>Ceasefire Collapses</h4>
       <p>Iran's Revolutionary Guard struck commercial tankers near Oman, and the U.S. struck back. The peace deal fell apart.<a class="cite-inline" href="https://www.cnn.com/2026/07/09/world/live-news/iran-war-trump" target="_blank">CNN</a></p>
       <button class="quiz-toggle" style="margin-top:14px;background:none;border:1px dashed var(--rule);color:var(--ink-faint);font-size:.7rem;padding:8px 14px" id="mainTimeline" ondblclick="handleTimelineDblClick(event)">Double-click near this line...</button>
-      <div class="hidden-egg" id="timeline-egg">
+      <div class="hidden-section" id="timeline-egg">
         <h4>Hidden History Unlocked</h4>
         <p><strong>1960s — The Shah's White Revolution:</strong> Between the 1953 coup and the 1979 revolution, the Shah launched major modernization programs — building roads, schools, and giving women the right to vote. But he also used a brutal secret police force called SAVAK to silence critics. Many historians say this repression actually helped cause the 1979 revolution, because people grew more and more angry.</p>
       </div>
@@ -855,7 +885,16 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div style="opacity:.02;font-size:1px;margin-top:10px">زندگی، آزادی، زن</div>
 </footer>
 
-<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">Aa Dyslexic Font</button>
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
 
 <script>
 // ─── STATE ───
@@ -1052,6 +1091,17 @@ function toggleDyslexic(){
 if(localStorage.getItem('dyslexicFont')==='on'){
   document.body.classList.add('dyslexic');
   document.getElementById('dyslexicToggle').classList.add('active');
+}
+
+function setTextSize(size){
+  document.body.classList.remove('text-lg','text-xl');
+  if (size === 'lg') document.body.classList.add('text-lg');
+  if (size === 'xl') document.body.classList.add('text-xl');
+  localStorage.setItem('textSize', size);
+}
+const savedTextSize = localStorage.getItem('textSize');
+if (savedTextSize && savedTextSize !== 'normal') {
+  document.body.classList.add('text-' + savedTextSize);
 }
 </script>
 
