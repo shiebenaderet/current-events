@@ -2,6 +2,15 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [2.8.0] — 2026-07-29
+
+**Minor — ship-readiness visual-polish pass: image-coverage gaps closed on three pages, climate-change.html gets its own accent color, graceful image-load-failure handling ported site-wide.**
+
+- A final "does every page look ship-ready" pass, prompted specifically by image coverage, found four concrete gaps and fixed all of them: `us-elections.html` had only 3 `<img>` tags total, with four main content sections (`#branches`, `#elections-mechanics`, `#checks-balances`, `#local-representation`) entirely image-free — each now has a real, Wikimedia-Commons-sourced photo. `ukraine.html`'s `#empire` section (Shevchenko, serfdom, 1917 independence) was a pure text wall unlike every other section on the page — given an image. `ai.html` had four consecutive image-free deep-dives (`#school`, `#animals`, `#hinton`, `#agentic`), the site's worst text-wall stretch — each now illustrated. All nine new images verified individually on their own Wikimedia Commons file pages for license and subject match before use.
+- `climate-change.html` moved off the shared default red accent (`#a02c2c`, still used by `iran.html`/`ukraine.html`/`ai.html`) onto its own distinct green/earth-tone accent (`#3d6b35`), matching the deliberate per-page accent treatment `us-elections.html`/`immigration.html`/`gun-violence.html` already have — closes a gap flagged as "reads unfinished," especially since this page was originally meant as the site's editorial-redesign reference. A reviewer follow-up caught and fixed a hero kicker-text contrast issue introduced by the new accent.
+- Ported the graceful `onerror` image-load-failure fallback (previously only on `immigration.html`/`gun-violence.html`) to every `<img>` tag on `iran.html`, `ukraine.html`, `climate-change.html`, `ai.html`, and `us-elections.html` — including the nine images added by this same effort — so a failed image load degrades gracefully instead of showing a broken-image icon.
+- A fresh, independent whole-batch verification pass (image-file existence, full `onerror` coverage, citation-count-unchanged, div balance, no duplicate ids, zero remaining old-accent-color references) confirmed all five touched pages clean with no regressions; no fixes were needed at verification time. That pass was static/structural only (grep, tag-balance, id-census) — no browser tool has been available in any session on this project, so visual rendering was not interactively confirmed and remains a standing limitation noted for future work.
+
 ## [2.7.0] — 2026-07-28
 
 **Minor — Gun Violence & School Safety Policy page ships; site-wide 3-persona review pass fixes the other six pages.**
