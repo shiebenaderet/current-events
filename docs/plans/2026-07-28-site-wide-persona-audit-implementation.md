@@ -294,6 +294,42 @@ If this verification pass finds and fixes any issue, commit it with a clear mess
 
 ---
 
+## Task 8: Update-Pane Jargon-Grounding (Finding 1 — Planning Gap Fix)
+
+**Files:**
+- Modify: `iran.html`, `ukraine.html`, `ai.html`, `us-elections.html`, `immigration.html`
+
+**Context:** Task 7's verification pass caught a real gap in this plan: the design doc's Finding 1 (update-pane/"Situation Update" content opens with dense, unglossed jargon before any foundational section has built context — confirmed by the student-persona review on 5 of 6 pages, the single highest-confidence site-wide finding) was never actually assigned to a task in Tasks 1-6 above, despite the design doc's explicit instruction to apply gun-violence.html's Task-16 grounding-clause technique to these five pages. This task fixes that gap. `climate-change.html` has no comparable update-pane and is not part of this task.
+
+**Technique (already proven on `gun-violence.html`'s Task 16, do not reinvent)**: for each update-pane, identify terms/concepts used in that pane before the page's own later sections have explained them. Add a short, plain-language grounding clause or sentence immediately before the term's first use in the pane — in addition to any existing `.term`/`.vocab` treatment, not a replacement for it. Do NOT reorder or relocate any update-pane — this is a targeted, additive text fix at the point of first use, matching the precedent exactly.
+
+- [ ] **Step 1: Read `gun-violence.html`'s Task 16 fix as the reference pattern**
+
+Read the grounding clause gun-violence.html added before "extreme risk protection order" in its update-pane (search that page for the surrounding context) — this is the exact technique and tone to replicate: one short clause, plain language, placed right before the jargon term's first use.
+
+- [ ] **Step 2: Audit each of the 5 pages' update-panes for ungrounded jargon**
+
+For `iran.html`, `ukraine.html`, `ai.html`, `us-elections.html`, and `immigration.html`: read that page's update-pane/"Situation Update" section in full. Identify every term or concept used there that isn't explained until a later section of the same page (or isn't explained anywhere on the page at all). Do not assume — read the whole page's later sections to confirm whether a term is genuinely explained later or not.
+
+- [ ] **Step 3: Add grounding clauses**
+
+For each ungrounded term found in Step 2, add one short grounding clause/sentence immediately before its first use in the update-pane. Keep each page's existing reading-level target. Do not touch any `.term`/`.vocab`/`data-def` content, any citation, or any other part of the update-pane's structure.
+
+- [ ] **Step 4: Verify**
+
+For each page: citation-link count unchanged (grounding clauses shouldn't need new citations unless they introduce a new specific factual claim — if one genuinely does, source it properly rather than leaving it uncited). Div/tag balance unchanged aside from the intentional new text. No quote or `data-def` text altered.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add iran.html ukraine.html ai.html us-elections.html immigration.html
+git commit -m "fix: add update-pane jargon-grounding clauses (Finding 1, previously unassigned)"
+```
+
+If a given page's update-pane is found to have no ungrounded jargon after a genuine read (Step 2), it's fine for that page to have no change — note this in the report rather than forcing an unnecessary edit.
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage**: every finding in the design doc (5 site-wide findings, plus all page-specific findings for iran/ukraine/ai/us-elections/immigration) maps to a task above. `climate-change.html`'s `.stat-trio`/`.focus-pane` additions are explicitly excluded per the design doc's stated out-of-scope list.
