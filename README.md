@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v2.6.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v2.7.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design, including `immigration.html`, the first new topic built directly in it.
+The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design, including `immigration.html` and `gun-violence.html`, the two new topics built directly in it.
 
 ---
 
@@ -38,7 +38,7 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 | 🗳️ US Elections & How Government Works | ✅ Live (new design) | `us-elections.html` | July 2026 |
 | 🌍 Climate Change | ✅ Live (new design) | `climate-change.html` | July 2026 |
 | 🗽 Immigration & U.S. Policy | ✅ Live (new design) | `immigration.html` | July 2026 |
-| 🔫 Gun Violence & School Safety | 🚧 Planned | — | — |
+| 🔫 Gun Violence & School Safety | ✅ Live (new design) | `gun-violence.html` | July 2026 |
 | 🚀 Space Race 2.0 | 🚧 Planned | — | — |
 
 ---
@@ -55,6 +55,7 @@ current-events/
 ├── us-elections.html            ← US Elections & Government topic page (self-contained)
 ├── climate-change.html          ← Climate Change topic page (self-contained)
 ├── immigration.html             ← Immigration & U.S. Policy topic page (self-contained)
+├── gun-violence.html            ← Gun Violence & School Safety Policy topic page (self-contained)
 ├── images/                      ← Shared image assets (portraits, hero photos)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh
