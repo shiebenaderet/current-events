@@ -186,6 +186,14 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .hidden-egg p{font-size:.92rem;line-height:1.6;color:var(--ink-light)}
 @media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
 
+/* ══ INLINE PHOTO ══ */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
+.clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
+
 /* ══ PERSON ══ */
 .person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
 .person:last-of-type{border-bottom:none}
@@ -485,6 +493,11 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 <div class="article">
   <p class="lede"><strong>The U.S. government has three parts, called branches.</strong> Each branch has its own job. This way, no single branch can run the whole government by itself. <a class="cite-inline" href="https://www.usa.gov/branches-of-government" target="_blank">src</a></p>
 
+  <div class="photo-inline clearfix">
+    <img src="images/us-capitol-west.jpg" alt="The west side of the U.S. Capitol building in Washington, D.C." onerror="this.style.display='none'">
+    <div class="cap">The U.S. Capitol, where the legislative branch — the House and Senate — meets and makes laws. <a href="https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
+
   <div class="diagram-wrap" role="img" aria-label="Diagram of the three branches of the U.S. government, arranged left to right as Legislative, Executive, Judicial, with two arrows showing how a law and a judge move through the system. Legislative branch: Congress, made up of the House and Senate, makes the laws, and sends bills to the President. Executive branch: the President, carries out the laws, and appoints federal judges. Judicial branch: the federal courts, including the Supreme Court, explains what the laws mean.">
     <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto" aria-hidden="true">
       <defs>
@@ -553,6 +566,11 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 <div class="article">
   <p class="lede"><strong>You just read about the three branches. Here's a fact that surprises a lot of people: only some of them are filled by election.</strong> Two of the three branches are filled by people voters choose, directly or indirectly. One of them isn't elected at all. Here's how each branch actually gets its members.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/wa-ballot-drop-box.jpg" alt="An official ballot drop box outside a fire station near Olympia, Washington" onerror="this.style.display='none'">
+    <div class="cap">A ballot drop box near Olympia, Washington, photographed in 2020. Washington is a vote-by-mail state, so drop boxes like this one are how most residents actually cast their ballot. <a href="https://commons.wikimedia.org/wiki/File:Olympia,_WA_-_Black_Lake_ballot_drop_box_01.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+  </div>
 
   <h3>Legislative branch — fully elected, most often</h3>
   <p>Congress gets elected the most often of the three branches. But the House and the Senate don't run on the same schedule. Every House member serves a <strong>2-year term</strong>. And the <strong>whole House — all 435 seats</strong> — is up for election every single time, including every midterm. <a class="cite-inline" href="https://www.usa.gov/midterm-elections" target="_blank">src</a> Senators serve much longer terms: <strong>6 years each.</strong> <a class="cite-inline" href="https://www.usa.gov/agencies/u-s-senate" target="_blank">src</a> But the Senate doesn't elect everyone at once. Senators are split into three equal-ish groups, called <strong>"classes."</strong> Each class's 6-year term ends two years apart from the other two. So <strong>only about a third of the Senate is up for election at any one time</strong> — never the whole chamber at once. <a class="cite-inline" href="https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm" target="_blank">src</a></p>
@@ -623,6 +641,10 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <p>Congress isn't stuck once a bill is vetoed. <strong>The House and the Senate can each vote to pass the bill again.</strong> If two-thirds of the House agrees, and two-thirds of the Senate agrees too, the bill becomes a law anyway — no signature needed. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/veto/" target="_blank">src</a> Two-thirds is a high bar on purpose.</p>
 
   <h3>Check 3: Courts can rule a law unconstitutional</h3>
+  <div class="photo-inline clearfix">
+    <img src="images/supreme-court-interior.jpg" alt="The courtroom inside the U.S. Supreme Court Building, showing the justices' bench" onerror="this.style.display='none'">
+    <div class="cap">The courtroom inside the Supreme Court Building, where the nine justices hear cases and can rule a law unconstitutional. <a href="https://commons.wikimedia.org/wiki/File:Inside_Supreme_Court.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
   <p>Even after a law is passed, <strong>federal courts can decide whether that law follows the rules in the Constitution.</strong> If a court rules a law is unconstitutional, that law can no longer be enforced. This power is called <strong>judicial review</strong>. <a class="cite-inline" href="https://www.annenbergclassroom.org/glossary_term/judicial-review/" target="_blank">src</a></p>
 
   <div class="vocab">
@@ -651,6 +673,11 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 <div class="article">
   <p class="lede"><strong>Every student at this school lives inside a specific set of voting districts — one state legislative district and one U.S. congressional district.</strong> Those districts decide which elected officials represent this exact school, and which of their seats are actually on the ballot this year. This section names them, plainly, and shows what's up for election near here in 2026.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/card-wa-capitol.jpg" alt="The Legislative Building at the Washington State Capitol campus in Olympia" onerror="this.style.display='none'">
+    <div class="cap">The Legislative Building at the Washington State Capitol in Olympia, where the 21st District's state senator and representatives named below do their work. <a href="https://commons.wikimedia.org/wiki/File:Washington_State_Capitol_Legislative_Building.jpg" target="_blank">Wikimedia Commons (CC BY-SA 3.0)</a></div>
+  </div>
 
   <h3>This school's districts</h3>
   <p>Alderwood Middle School sits in Washington's <strong>21st Legislative District</strong> and the state's <strong>1st Congressional District</strong>. <a class="cite-inline" href="https://geocoding.geo.census.gov/geocoder/geographies/address?street=1132+172nd+St+SW&city=Lynnwood&state=WA&zip=98037&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=json" target="_blank">src</a> The 21st Legislative District covers parts of Edmonds, Lynnwood, and Mukilteo. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington%27s_21st_legislative_district" target="_blank">src</a> It also includes Everett. <a class="cite-inline" href="https://myedmondsnews.com/2026/03/jason-moon-to-again-challenge-strom-peterson-in-21st-district-pos-1-race/" target="_blank">src</a> The 1st Congressional District covers a stretch of King and Snohomish counties, including the Alderwood Manor area this school is named for. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Washington%27s_1st_congressional_district" target="_blank">src</a></p>
