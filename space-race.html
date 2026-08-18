@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Race 2.0: The New Competition for the Moon and Mars – Student Resource</title>
+<meta name="description" content="Free, student-friendly explainer on the new space race — from Sputnik and Apollo to NASA's Artemis program, private rockets, and Washington State's own space story. Made by an 8th grade Social Studies teacher.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --paper:#fbf9f4; --paper-warm:#f5f1e8;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --rule:#d4cfc4; --rule-heavy:#1a1a1a;
+  --accent:#8a5424; --accent-ink:#5c3614; --accent-tint:#f4ebe0;
+}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+/* ══════════════ MASTHEAD (NYT-inspired: centered wordmark, hairline rules, dense utility nav) ══════════════ */
+.masthead-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;
+  letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule);
+}
+.masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
+.masthead-top a:last-child{margin-right:0}
+.masthead-top a:hover{color:var(--accent)}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
+
+.section-nav{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  padding:0 6vw;border-bottom:1px solid var(--rule);
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;
+  background:var(--paper);position:sticky;top:0;z-index:150;
+}
+.section-nav a{
+  color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.section-nav a.hub{color:var(--accent);font-weight:800}
+
+/* ══════════════ ARTICLE HERO (Atlantic-inspired: full-bleed image behind headline) ══════════════ */
+.article-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
+.article-hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,10,.05) 0%,rgba(10,10,10,.15) 45%,rgba(8,8,8,.88) 100%),
+             url('images/space-race-card.jpg') center 40%/cover no-repeat;
+}
+.article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 6vw 64px;text-align:center}
+.article-hero .kicker{
+  display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--accent);
+  padding:5px 14px;margin-bottom:22px;
+}
+.article-hero h1{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:1.04;color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:22px;
+}
+.article-hero .dek{
+  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;
+  color:#f0ece4;max-width:640px;margin:0 auto 24px;
+}
+.article-hero .byline{
+  font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);
+  letter-spacing:.03em;
+}
+.article-hero .byline a{color:inherit}
+.hero-credit{
+  position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;
+  font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;
+}
+.hero-credit a{color:inherit}
+
+/* ══════════════ SECTION HEADS (New Yorker-inspired: spare, rule-driven) ══════════════ */
+.sec-head{max-width:700px;margin:0 auto;padding:60px 6vw 6px}
+.sec-head .num{
+  font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:800;
+}
+.sec-head h2{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem);
+  line-height:1.15;margin-top:6px;border-bottom:1px solid var(--rule);padding-bottom:18px;
+}
+
+/* ══════════════ ARTICLE BODY — single reading column, no margin rail ══════════════ */
+.article{max-width:700px;margin:0 auto;padding:22px 6vw 8px}
+.article p{font-size:1.18rem;line-height:1.75;margin:0 0 24px;color:var(--ink)}
+.article p strong{font-weight:700;color:var(--ink)}
+.article h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.4rem;
+  margin:38px 0 16px;color:var(--ink);
+}
+
+/* Signature: drop cap opens the FIRST paragraph of every section */
+.article p.lede::first-letter{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:5.4rem;line-height:.78;
+  float:left;padding:6px 10px 0 0;color:var(--accent);
+}
+
+/* inline citations: visible source name, quiet but legible — never hover-only */
+.cite-inline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:600;color:var(--ink-faint);
+  text-decoration:none;vertical-align:super;line-height:0;margin-left:4px;
+  letter-spacing:.01em;
+}
+.cite-inline::before{content:'['}
+.cite-inline::after{content:']'}
+.cite-inline:hover{color:var(--accent)}
+.cite-inline:hover::before,.cite-inline:hover::after{color:var(--accent)}
+
+/* pull quotes (Atlantic-style: large, set into the column, hairline rules top/bottom) */
+.pull-quote{
+  margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy);
+}
+.pull-quote p{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+  font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0;
+}
+.pull-quote .attrib{
+  display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;
+  font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase;
+}
+
+/* stat callout: big number set inline in the flow, not boxed */
+.stat-line{
+  display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3.2rem;color:var(--accent);line-height:1}
+.stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
+.stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
+
+/* two-up stat pair */
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-pair .stat{text-align:left}
+.stat-pair .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.6rem;color:var(--accent);line-height:1}
+.stat-pair .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-pair .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+@media (max-width:560px){.stat-pair{grid-template-columns:1fr}}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio .stat{text-align:left}
+.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.4rem;color:var(--accent);line-height:1}
+.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-trio .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+@media (max-width:700px){.stat-trio{grid-template-columns:1fr}}
+.gh-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 8px}
+.gh-steps .step{padding:16px 18px;background:var(--paper-warm);border-top:3px solid var(--accent)}
+.gh-steps .n{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.gh-steps p{margin:0;font-size:.92rem;color:var(--ink-light);line-height:1.5}
+@media (max-width:700px){.gh-steps{grid-template-columns:1fr}}
+
+/* vocab / key word: inline, treated as a definition aside not a colored box */
+.vocab{
+  margin:28px 0;padding-left:20px;border-left:3px solid var(--accent);
+}
+.vocab b{
+  display:block;font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:800;
+}
+.vocab p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* inline vocabulary tooltip — lightweight, repeatable, distinct from .vocab callout boxes and <strong> emphasis.
+   Dotted underline is the common "hover for definition" web convention. Shows on hover AND keyboard focus
+   (:focus / :focus-visible), so a student tabbing through the page (not just using a mouse) can reach it. */
+.term{
+  position:relative;cursor:help;
+  border-bottom:1px dotted var(--accent);
+  text-decoration:none;color:inherit;
+}
+.term:focus{outline:2px solid var(--accent);outline-offset:2px}
+.term::after{
+  content:attr(data-def);
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);
+  width:max-content;max-width:min(280px,80vw);
+  background:var(--ink);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:400;line-height:1.45;
+  padding:9px 12px;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease,transform .15s ease;
+  z-index:50;
+}
+.term::before{
+  content:'';position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;visibility:hidden;transition:opacity .15s ease;z-index:50;
+}
+.term:hover::after,.term:focus::after,.term:focus-visible::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
+/* visually-hidden text for the .term-desc spans that back each .term's aria-describedby —
+   keeps the definition available to screen readers without duplicating it visibly on the page */
+.term-desc{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+@media(max-width:600px){
+  .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
+  .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
+  .term::before{left:16px;transform:translateX(0)}
+}
+
+/* callout / think-about-it: set as an editor's note */
+.callout{margin:32px 0;padding:20px 24px;background:var(--paper-warm);border-left:3px solid var(--ink)}
+.callout .tag{
+  display:block;font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;
+}
+.callout p{margin:0;font-size:1.02rem;color:var(--ink-light)}
+
+/* full-bleed inline photo (Atlantic points-of-entry style) */
+.photo-break{margin:40px calc(50% - 50vw) 40px;width:100vw}
+.photo-break img{width:100%;max-height:520px;object-fit:cover;display:block}
+.photo-break .cap{
+  max-width:700px;margin:10px auto 0;padding:0 6vw;font-family:-apple-system,sans-serif;
+  font-size:.76rem;color:var(--ink-faint);line-height:1.5;
+}
+.photo-break .cap a{color:inherit}
+
+/* smaller inline photo, right-aligned like a magazine spot image */
+.photo-inline{float:right;width:44%;margin:6px 0 20px 28px}
+.photo-inline img{width:100%;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.photo-inline .cap{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:7px;line-height:1.4}
+.photo-inline .cap a{color:inherit}
+.clearfix::after{content:'';display:table;clear:both}
+@media (max-width:640px){.photo-inline{float:none;width:100%;margin:20px 0}}
+
+/* chart: quiet frame, no card chrome */
+.chart-wrap{margin:36px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-cap{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--ink-light);margin-top:14px;line-height:1.55}
+
+/* quiz toggle: a real button-like affordance, not a quiet text link — this is the
+   one place on the page the reader is asked to DO something rather than read */
+.quiz-inline{margin:36px 0}
+.quiz-toggle{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:-apple-system,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.03em;
+  text-transform:uppercase;color:#fff;background:var(--accent);border:none;
+  cursor:pointer;padding:11px 20px;
+}
+.quiz-toggle::after{content:'→';font-weight:700;transition:transform .15s}
+.quiz-toggle:hover{background:var(--accent-ink)}
+.quiz-toggle:hover::after{transform:translateX(3px)}
+.quiz-toggle.answered{background:var(--ink-faint)}
+
+/* ══ QUIZ MODAL ══ */
+.quiz-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.75);align-items:center;justify-content:center;padding:24px}
+.quiz-modal.open{display:flex}
+.quiz-box{background:var(--paper);max-width:520px;width:100%;padding:32px;position:relative;border-top:4px solid var(--accent)}
+.quiz-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink-faint);line-height:1}
+.quiz-box h3{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.quiz-q{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:18px;line-height:1.35}
+.quiz-choices{display:flex;flex-direction:column;gap:8px}
+.choice-btn{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);padding:11px 14px;font-family:-apple-system,sans-serif;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.choice-btn:hover:not(:disabled){border-color:var(--ink)}
+.choice-btn.correct{background:#2f5934;border-color:#2f5934;color:#fff}
+.choice-btn.wrong{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+.choice-btn:disabled{cursor:default}
+.quiz-feedback{margin-top:16px;font-family:-apple-system,sans-serif;font-size:.88rem;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.correct-fb{color:#2f5934}
+.wrong-fb{color:var(--accent-ink)}
+
+/* ══ POINTS BAR ══ */
+.points-bar{display:flex;align-items:center;gap:14px;padding:10px 6vw;background:var(--ink);color:#f0ece4;font-family:-apple-system,sans-serif;font-size:.8rem;flex-wrap:wrap}
+.points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
+.progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden;min-width:0}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .3s}
+.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
+
+/* ══ EASTER EGG MODAL + TOAST ══ */
+.egg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,.8);align-items:center;justify-content:center;padding:24px}
+.egg-modal.show{display:flex}
+.egg-box{background:var(--paper);max-width:480px;width:100%;padding:32px;text-align:center;border-top:4px solid var(--accent)}
+.egg-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.egg-box p{font-family:'Source Serif 4',serif;font-size:.98rem;line-height:1.7;color:var(--ink-light);margin-bottom:14px;text-align:left}
+.egg-extra{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:16px}
+.egg-close{background:var(--ink);color:#fff;border:none;padding:10px 22px;font-family:-apple-system,sans-serif;font-weight:700;cursor:pointer}
+.toast{position:fixed;top:20px;right:20px;z-index:600;background:var(--ink);color:#fff;padding:16px 20px;max-width:300px;transform:translateX(340px);transition:transform .3s;border-left:4px solid var(--accent)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+/* timeline: rule-based, not card-based */
+.tl-item{display:flex;gap:22px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--accent);
+  flex-shrink:0;width:120px;
+}
+.tl-body h4{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.1rem;margin-bottom:8px}
+.tl-body p{font-size:1rem;line-height:1.65;margin:0;color:var(--ink-light)}
+@media(max-width:600px){.tl-item{flex-direction:column;gap:6px}.tl-year{width:auto}}
+
+/* person: editorial bio treatment */
+.person{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--rule)}
+.person:last-of-type{border-bottom:none}
+.person img,.person .emoji-fallback{
+  width:110px;height:110px;object-fit:cover;flex-shrink:0;filter:grayscale(35%);
+}
+.person .emoji-fallback{background:var(--paper-warm);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.person h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:3px}
+.person .role{font-family:-apple-system,sans-serif;font-size:.74rem;color:var(--ink-faint);margin-bottom:10px;letter-spacing:.02em}
+.person p{font-size:.98rem;line-height:1.65;margin:0;color:var(--ink-light)}
+
+/* video */
+.video-wrap{margin:30px 0;border:1px solid var(--rule)}
+.video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.video-label{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin:-20px 0 30px}
+
+/* resources: list, not cards */
+.rc{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+.rc:hover .rc-title{color:var(--accent)}
+.rc .tag{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px}
+.rc-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.08rem;color:var(--ink)}
+.rc p{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:4px}
+
+
+.person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);margin-top:8px}
+.person .src a{color:inherit}
+.rc .level{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-top:6px}
+.article h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:28px 0 10px}
+footer{
+  max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px double var(--rule-heavy);
+  text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);
+}
+
+
+.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw;margin:0}
+.update-pane-inner{max-width:700px;margin:0 auto}
+.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8d5c4;font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);padding:4px 10px;margin-left:8px;color:#fff}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:22px}
+.update-pane p{font-family:'Source Serif 4',Georgia,serif;font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:16px}
+.update-pane p strong{color:#fff}
+.update-pane .cite-inline{color:rgba(255,255,255,.5)}
+.update-pane .cite-inline:hover{color:#e8d5c4}
+.update-pane .vocab{border-left-color:#e8d5c4}
+.update-pane .vocab b{color:#e8d5c4}
+.update-pane .vocab p{color:rgba(255,255,255,.75);margin:0}
+.update-pane .callout{background:rgba(255,255,255,.06);border-left-color:#e8d5c4}
+.update-pane .callout .tag{color:#e8d5c4}
+.update-pane .callout p{color:rgba(255,255,255,.78);margin:0}
+.update-sources{margin-top:18px}
+.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources li{margin-bottom:5px;line-height:1.5;font-size:.78rem;font-family:-apple-system,sans-serif}
+.update-sources a{color:#e8d5c4}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl-item{display:flex;gap:14px;align-items:baseline}
+.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--accent)}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:70px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
+.mini-tl-text strong{color:#fff}
+</style>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+
+<!-- EASTER EGG MODAL -->
+<div class="egg-modal" id="eggModal">
+  <div class="egg-box">
+    <div id="eggEmoji" style="font-size:2.4rem;margin-bottom:10px"></div>
+    <h2 id="eggTitle"></h2>
+    <p id="eggText"></p>
+    <div class="egg-extra" id="eggExtra"></div>
+    <button class="egg-close" onclick="closeEgg()">Got it</button>
+  </div>
+</div>
+
+<!-- QUIZ MODAL -->
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box">
+    <button class="quiz-close" onclick="closeQuiz()">×</button>
+    <h3>Quick Quiz</h3>
+    <p id="quizQ" class="quiz-q"></p>
+    <div class="quiz-choices" id="quizChoices"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">⭐</span>
+  <div class="toast-title" id="toastTitle"></div>
+  <div class="toast-msg" id="toastMsg"></div>
+</div>
+
+<div class="masthead-top">
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a></span>
+  <span class="date">Updated August 18, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">Current Events Explained</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
+</div>
+
+<nav class="section-nav">
+  <a href="#update">Situation Update</a>
+  <a href="#first-race">The First Race</a>
+  <a href="#today">What's Happening Now</a>
+  <a href="#wa-story">Washington's Story</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#people">Key People</a>
+  <a href="#videos">Videos</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<header class="article-hero" id="main-content" tabindex="-1">
+  <div class="article-hero-bg"></div>
+  <div class="article-hero-inner">
+    <span class="kicker">Science · History · Technology</span>
+    <h1>Space Race 2.0</h1>
+    <p class="dek">Countries and companies are racing back to the Moon. Here's how the first race worked — and where the new one stood as of August 2026.</p>
+    <div class="byline">Student Edition · Updated August 18, 2026</div>
+  </div>
+  <div class="hero-credit">Photo: Buzz Aldrin on the Moon, Apollo 11, July 20, 1969. NASA / Neil Armstrong. <a href="https://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11.jpg" target="_blank">Wikimedia Commons (public domain)</a></div>
+</header>
+
+<div class="points-bar">
+  <span>Discovery Points:</span>
+  <span class="points-display" id="pointsDisplay">0 pts</span>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="unlock-hint" id="unlockHint">Answer quizzes to unlock a bonus fact</span>
+</div>
+
+<!-- ═══════════ UPDATE ═══════════ -->
+<div class="update-pane" id="update">
+  <div class="update-pane-inner">
+    <div class="update-head">
+      <span class="num">Situation Update</span>
+      <h2>Where Things Stand <span class="update-badge">As of Aug 2026</span></h2>
+    </div>
+    <p class="update-date">Updated August 18, 2026 — a dated snapshot, not an ongoing claim</p>
+
+    <div class="mini-tl">
+      <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Nov 2022</span><span class="mini-tl-text"><strong>Artemis I flies</strong> — NASA launches an uncrewed Orion capsule around the Moon on the Space Launch System rocket.<a class="cite-inline" href="https://www.nasa.gov/mission/artemis-i/" target="_blank">NASA</a></span></div>
+      <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Feb 2026</span><span class="mini-tl-text"><strong>Landing plan shifts</strong> — NASA redesignates Artemis III as a crewed test in Earth orbit, not a Moon landing. The first crewed landing is planned for Artemis IV.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></span></div>
+      <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Aug 2026</span><span class="mini-tl-text"><strong>Artemis III targeted for 2027</strong> — NASA is planning a second-half-2027 flight to practice docking with test versions of commercial Moon landers from SpaceX and Blue Origin.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a></span></div>
+    </div>
+
+    <p>The first space race was a two-country contest. This one is messier. NASA still wants to land astronauts on the Moon. Private companies are building the landers. China has its own robotic lunar program. Schedules slip. That is not a failure of the page — it is how hard spaceflight is.</p>
+
+    <p>As of August 2026, NASA says Artemis III will send four astronauts into low Earth orbit on Orion. They will practice meeting and docking with "pathfinder" landers from Blue Origin and SpaceX. Those test vehicles will not be full Moon landers with working crew cabins. NASA has said Artemis IV, planned for early 2028, is expected to be the program's first crewed lunar landing under the revised sequence.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a><a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></p>
+
+    <p>Boeing's Starliner capsule — a separate NASA crew vehicle meant for the International Space Station, not the Moon — still did not have a firm next launch date as of August 2026. After problems on its 2024 crewed test, the next flight is planned as uncrewed cargo. Boeing told investors it was aiming for no earlier than the fourth quarter of 2026. NASA declined to put a date on the calendar.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Boeing_Starliner-1" target="_blank">Wikipedia</a></p>
+
+    <div class="vocab"><b>Key Word — Artemis</b><p>NASA's program to send astronauts back to the Moon and, later, to help prepare for Mars. It is named for the Greek goddess of the Moon — and for Apollo's twin sister.</p></div>
+    <div class="callout"><span class="tag">Think About It</span><p>The first space race had two superpowers and one finish line: the Moon. This one has governments <em>and</em> companies, and more than one finish line. Why might that make the story harder to tell — and harder to date?</p></div>
+    <details class="update-sources"><summary>Sources for this section</summary>
+      <ul>
+        <li><a href="https://www.nasa.gov/mission/artemis-i/" target="_blank">NASA — Artemis I</a></li>
+        <li><a href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA — Artemis III mission plans</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia — Artemis III</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Boeing_Starliner-1" target="_blank">Wikipedia — Boeing Starliner-1</a></li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<!-- ═══════════ FIRST RACE ═══════════ -->
+<div class="sec-head" id="first-race">
+  <span class="num">Section 1</span>
+  <h2>The First Space Race</h2>
+</div>
+<div class="article">
+  <p class="lede"><strong>It started with a beep.</strong> On October 4, 1957, the Soviet Union launched Sputnik 1 — a metal sphere about the size of a beach ball. It circled Earth and sent a radio signal anyone with the right radio could hear. The United States had not expected to come in second.<a class="cite-inline" href="https://www.nasa.gov/history/sputnik/" target="_blank">NASA</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/sputnik.jpg" alt="A replica of the Sputnik 1 satellite, a polished metal sphere with four long antennas" onerror="this.style.display='none'">
+    <div class="cap">A replica of Sputnik 1, the first artificial satellite. <a href="https://commons.wikimedia.org/wiki/File:Sputnik_asm.jpg" target="_blank">Wikimedia Commons</a></div>
+  </div>
+
+  <p>The contest was not really about a beep. It was about the Cold War — a long standoff between the United States and the Soviet Union. If one country could put a satellite in orbit, it might also send a missile across the world. Space became a way to prove whose system worked better, without fighting a nuclear war.</p>
+
+  <div class="stat-trio">
+    <div class="stat"><div class="num">1957</div><div class="desc"><b>Sputnik 1</b>First satellite · Soviet Union</div></div>
+    <div class="stat"><div class="num">1961</div><div class="desc"><b>Yuri Gagarin</b>First human in space</div></div>
+    <div class="stat"><div class="num">1969</div><div class="desc"><b>Apollo 11</b>First humans on the Moon</div></div>
+  </div>
+
+  <p>On April 12, 1961, Soviet cosmonaut Yuri Gagarin became the first human to fly in space. The United States answered with its own astronauts, then with a much bigger goal. In 1961, President John F. Kennedy asked the country to land a man on the Moon and bring him home before the decade was over.<a class="cite-inline" href="https://www.nasa.gov/history/the-decision-to-go-to-the-moon/" target="_blank">NASA</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/apollo-11-launch.jpg" alt="The Apollo 11 Saturn V rocket launching from Kennedy Space Center in 1969" onerror="this.style.display='none'">
+    <div class="cap">Apollo 11 launches from Kennedy Space Center, July 16, 1969. <a href="https://commons.wikimedia.org/wiki/File:Apollo_11_Launch_-_GPN-2000-000630.jpg" target="_blank">NASA / Wikimedia Commons (public domain)</a></div>
+  </div>
+
+  <p>On July 20, 1969, Neil Armstrong and Buzz Aldrin walked on the Moon while Michael Collins flew overhead. About 650 million people watched. The first race had a clear finish line, and the United States crossed it.<a class="cite-inline" href="https://www.nasa.gov/mission/apollo-11/" target="_blank">NASA</a></p>
+
+  <div class="vocab"><b>Key Word — Cold War</b><p>The long rivalry, from the late 1940s to 1991, between the United States and the Soviet Union. It was called "cold" because the two sides avoided a direct shooting war with each other, even as they competed in almost every other way — including space.</p></div>
+  <div class="callout"><span class="tag">Think About It</span><p>Kennedy's Moon goal had a deadline: the end of the 1960s. Why might a public deadline change how a country spends money — and what it is willing to risk?</p></div>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ TODAY ═══════════ -->
+<div class="sec-head" id="today">
+  <span class="num">Section 2</span>
+  <h2>The New Race Is Not Just Two Countries</h2>
+</div>
+<div class="article">
+  <p class="lede">After Apollo, the United States flew the space shuttle for 30 years and helped build the International Space Station. People kept going to orbit. They did not keep going to the Moon. That is the gap this new race is trying to close.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/artemis-i-launch.jpg" alt="NASA's Space Launch System rocket launching Artemis I at night" onerror="this.style.display='none'">
+    <div class="cap">Artemis I lifts off, November 16, 2022. <a href="https://commons.wikimedia.org/wiki/File:Artemis_I_Launch_(NHQ202211160017).jpg" target="_blank">NASA / Wikimedia Commons (public domain)</a></div>
+  </div>
+
+  <p><strong>NASA's plan is called Artemis.</strong> Artemis I (2022) sent an empty Orion capsule around the Moon. Later flights are supposed to carry astronauts, then land them near the Moon's south pole, where ice in the shadows might be useful for fuel and water. As of August 2026, NASA's published plan for the next big crewed test — Artemis III — is an Earth-orbit docking practice with commercial lander companies, not a landing. The landing is planned later.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a></p>
+
+  <p><strong>Companies are part of the story now.</strong> SpaceX, founded by Elon Musk, flies cargo and crews to the space station and is building a huge vehicle called Starship that NASA picked as one Moon lander. Blue Origin, founded by Jeff Bezos and based in Kent, Washington, is building another lander. NASA wants more than one company so it is not stuck if one design fails.<a class="cite-inline" href="https://www.nasa.gov/humans-in-space/commercial-space/human-landing-system/" target="_blank">NASA HLS</a></p>
+
+  <p><strong>China has its own path.</strong> Its Chang'e program has landed robots on the Moon and brought samples home. China has also said it wants to send astronauts to the lunar surface later this decade. This page does not treat that as a race "score." It is a second, separate program with its own dates and goals.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Chinese_Lunar_Exploration_Program" target="_blank">Wikipedia</a></p>
+
+  <div class="vocab"><b>Key Word — Human Landing System</b><p>The spacecraft that would actually set astronauts down on the Moon. NASA is paying more than one company to build one, the way it pays more than one company to fly crews to the space station.</p></div>
+  <div class="callout"><span class="tag">Think About It</span><p>In the 1960s, only governments could afford a Moon shot. Today NASA is buying landers from companies. What is gained by that — and what new risks show up when a landing depends on a private schedule?</p></div>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ WASHINGTON ═══════════ -->
+<div class="sec-head" id="wa-story">
+  <span class="num">Section 3</span>
+  <h2>Washington's Space Story</h2>
+</div>
+<div class="article">
+  <p class="lede">You do not have to live next to a launch pad to be in this story. Washington State is home to one of the companies NASA picked to land astronauts on the Moon — and to the company that taught the Pacific Northwest how to build enormous flying machines.</p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/blue-origin-kent.jpg" alt="A NASA official touring Blue Origin facilities" onerror="this.style.display='none'">
+    <div class="cap">A NASA official tours Blue Origin. The company is headquartered in Kent, Washington. <a href="https://commons.wikimedia.org/wiki/File:NASA_Deputy_Administrator_Tours_Blue_Origin.jpg" target="_blank">NASA / Wikimedia Commons (public domain)</a></div>
+  </div>
+
+  <p><strong>Blue Origin is based in Kent, Washington</strong> — south of Seattle, in the same metro area as Alderwood Middle School. NASA selected Blue Origin to build a Human Landing System, a spacecraft meant to carry astronauts from lunar orbit down to the surface. As of August 2026, that lander is still being developed. A test version is part of NASA's Artemis III docking plan in Earth orbit.<a class="cite-inline" href="https://www.nasa.gov/humans-in-space/commercial-space/human-landing-system/" target="_blank">NASA HLS</a></p>
+
+  <div class="photo-inline clearfix">
+    <img src="images/boeing-everett.jpg" alt="The Boeing Everett factory, one of the largest buildings in the world" onerror="this.style.display='none'">
+    <div class="cap">Boeing's Everett factory. Boeing was founded in Seattle in 1916. Starliner is a different Boeing project — not built in this building. <a href="https://commons.wikimedia.org/wiki/File:Boeing_Everett_Plant.jpg" target="_blank">Wikimedia Commons</a></div>
+  </div>
+
+  <p><strong>Boeing started in Seattle in 1916.</strong> The Everett factory still builds jet airliners. Boeing's Starliner capsule is a NASA crew vehicle for the space station, assembled in Florida, not in Everett. This page names that difference on purpose. "A Washington company works in space" is true. "Starliner is built down the road from school" is not.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Boeing" target="_blank">Wikipedia</a></p>
+
+  <p>As of August 2026, Starliner's next flight was planned as uncrewed cargo. Boeing said "no earlier than" late 2026. NASA had not announced a launch date. That uncertainty is the news — not a guess about a day on the calendar.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Boeing_Starliner-1" target="_blank">Wikipedia</a></p>
+
+  <div class="callout"><span class="tag">Think About It</span><p>Blue Origin's headquarters is in this state. Boeing's history is too. Does that change how you read NASA's Moon plans — or should a civics page treat a local company the same way it treats any other contractor?</p></div>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec-head" id="timeline">
+  <span class="num">Timeline</span>
+  <h2>From Sputnik to Artemis</h2>
+</div>
+<div class="article">
+  <div class="tl-item"><div class="tl-year">1957</div><div class="tl-body"><h4>Sputnik 1</h4><p>The Soviet Union launches the first artificial satellite. The beep is heard around the world.</p></div></div>
+  <div class="tl-item"><div class="tl-year">1961</div><div class="tl-body"><h4>Gagarin / Kennedy</h4><p>Yuri Gagarin becomes the first human in space. Later that year, President Kennedy sets a Moon deadline for the decade.</p></div></div>
+  <div class="tl-item"><div class="tl-year">1969</div><div class="tl-body"><h4>Apollo 11</h4><p>Armstrong and Aldrin walk on the Moon. The first space race has a finish-line moment.</p></div></div>
+  <div class="tl-item"><div class="tl-year">1972</div><div class="tl-body"><h4>Last Apollo landing</h4><p>Apollo 17 is the last crewed Moon landing of the 20th century. No one has walked there since.</p></div></div>
+  <div class="tl-item"><div class="tl-year">2011</div><div class="tl-body"><h4>Space shuttle retires</h4><p>The United States stops flying its own crew vehicle for a while and buys seats on Russian Soyuz spacecraft.</p></div></div>
+  <div class="tl-item"><div class="tl-year">2020</div><div class="tl-body"><h4>SpaceX Crew Dragon</h4><p>A private American capsule starts flying NASA astronauts to the space station.</p></div></div>
+  <div class="tl-item"><div class="tl-year">2022</div><div class="tl-body"><h4>Artemis I</h4><p>NASA sends an uncrewed Orion around the Moon on the Space Launch System rocket.</p></div></div>
+  <div class="tl-item"><div class="tl-year">Feb 2026</div><div class="tl-body"><h4>Artemis sequence revised</h4><p>NASA redesignates Artemis III as an Earth-orbit docking test. The first crewed landing is planned for a later flight.</p></div></div>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ PEOPLE ═══════════ -->
+<div class="sec-head" id="people">
+  <span class="num">Key People</span>
+  <h2>Two Historical Figures</h2>
+</div>
+<div class="article">
+  <p class="lede">This page names people from the first race — not today's CEOs. Current company leaders are still in the news. Historical figures can be taught as history.</p>
+
+  <div class="person">
+    <img src="images/yuri-gagarin.jpg" alt="Yuri Gagarin in uniform, 1961" onerror="this.outerHTML='<div class=\'emoji-fallback\'>🚀</div>'">
+    <div>
+      <h4>Yuri Gagarin</h4>
+      <div class="role">First human in space · 1934–1968</div>
+      <p>A Soviet pilot who completed one orbit of Earth on April 12, 1961, aboard Vostok 1. His flight lasted 108 minutes. He became a worldwide celebrity overnight. He died in a training-jet crash in 1968.</p>
+      <div class="src"><a href="https://en.wikipedia.org/wiki/Yuri_Gagarin" target="_blank">Wikipedia — Yuri Gagarin</a></div>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="images/neil-armstrong.jpg" alt="Neil Armstrong in his Apollo 11 portrait" onerror="this.outerHTML='<div class=\'emoji-fallback\'>🌙</div>'">
+    <div>
+      <h4>Neil Armstrong</h4>
+      <div class="role">Apollo 11 commander · 1930–2012</div>
+      <p>An American test pilot and astronaut. On July 20, 1969, he became the first person to step onto the Moon. He later taught engineering and mostly stayed out of the spotlight. The photograph at the top of this page is one he took of Buzz Aldrin.</p>
+      <div class="src"><a href="https://en.wikipedia.org/wiki/Neil_Armstrong" target="_blank">Wikipedia — Neil Armstrong</a></div>
+    </div>
+  </div>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ VIDEOS ═══════════ -->
+<div class="sec-head" id="videos">
+  <span class="num">Watch</span>
+  <h2>See It Happen</h2>
+</div>
+<div class="article">
+  <p>Short, classroom-safe starting points. Watch with the sound on if you can — the radio calls are part of the history.</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/FlpstXNjImY" title="Historic Apollo 11 Moon Landing Footage" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <p style="font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-top:-8px;margin-bottom:28px">NASA — historic Apollo 11 landing footage and radio calls.</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/mYTvg2abusc" title="Artemis I Launches to the Moon (Official NASA Recap)" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <p style="font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-top:-8px;margin-bottom:28px">NASA — official recap of the Artemis I launch, November 16, 2022.</p>
+  <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
+</div>
+
+<!-- ═══════════ RESOURCES ═══════════ -->
+<div class="sec-head" id="resources">
+  <span class="num">Resources</span>
+  <h2>Keep Learning</h2>
+</div>
+<div class="article">
+  <h3>Easier</h3>
+  <a class="rc" href="https://www.nasa.gov/learning-resources/" target="_blank"><span class="tag">NASA</span><div class="rc-title">NASA Learning Resources</div><p>Student-friendly explainers, images, and classroom materials from the space agency itself.</p><div class="level">Easier</div></a>
+  <a class="rc" href="https://moon.nasa.gov/artemis/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Artemis program hub</div><p>What each Artemis flight is supposed to do, in NASA's own words.</p><div class="level">Easier</div></a>
+
+  <h3>Medium</h3>
+  <a class="rc" href="https://www.nasa.gov/mission/apollo-11/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Apollo 11 mission page</div><p>The first Moon landing — the crew, the timeline, and the primary sources.</p><div class="level">Medium</div></a>
+  <a class="rc" href="https://www.nasa.gov/humans-in-space/commercial-space/human-landing-system/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Human Landing System</div><p>Why NASA hired more than one company to build a Moon lander.</p><div class="level">Medium</div></a>
+
+  <h3>Harder</h3>
+  <a class="rc" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Artemis III mission plans</div><p>The August 2026 snapshot on this page comes in part from this NASA update.</p><div class="level">Harder</div></a>
+  <a class="rc" href="https://en.wikipedia.org/wiki/Chinese_Lunar_Exploration_Program" target="_blank"><span class="tag">Wikipedia</span><div class="rc-title">Chinese Lunar Exploration Program</div><p>A separate robotic (and planned crewed) path to the Moon — not a U.S. scoreboard.</p><div class="level">Harder</div></a>
+</div>
+
+<footer>
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
+  <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
+</footer>
+
+<script>
+let pts = 0;
+let answeredQuizzes = new Set();
+let konamiIndex = 0;
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+
+// 6 quizzes (q1-q6, 1 pt each) + 1 easter egg (Konami code, 1 pt) = 7
+const MAX_PTS = 7;
+
+const quizzes = {
+  q1: {
+    q: "What was Sputnik 1?",
+    choices: ["The first artificial satellite, launched by the Soviet Union in 1957", "The first American Moon lander", "A 2020s SpaceX rocket"],
+    correct: 0,
+    feedback: "✅ Correct! Sputnik 1 launched on October 4, 1957 — the beep that started the first space race.",
+    wrong: "Not quite — Sputnik 1 was the first artificial satellite, launched by the Soviet Union in 1957."
+  },
+  q2: {
+    q: "As of August 2026, what is NASA's published plan for Artemis III?",
+    choices: ["A crewed docking test in Earth orbit with commercial lander pathfinders", "A crewed landing at the Moon's south pole", "An uncrewed flight past Mars"],
+    correct: 0,
+    feedback: "✅ Correct! NASA redesignated Artemis III as an Earth-orbit docking test. The first crewed landing is planned later.",
+    wrong: "Not quite — as of August 2026, Artemis III is planned as a crewed Earth-orbit docking test, not a landing."
+  },
+  q3: {
+    q: "Which Washington city is home to Blue Origin's headquarters?",
+    choices: ["Kent", "Spokane", "Yakima"],
+    correct: 0,
+    feedback: "✅ Correct! Blue Origin is headquartered in Kent, south of Seattle — in the same metro area as this school.",
+    wrong: "Not quite — Blue Origin is headquartered in Kent, Washington."
+  },
+  q4: {
+    q: "Who was the first human in space?",
+    choices: ["Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin"],
+    correct: 0,
+    feedback: "✅ Correct! Yuri Gagarin orbited Earth on April 12, 1961, aboard Vostok 1.",
+    wrong: "Not quite — Yuri Gagarin was first, in 1961. Armstrong walked on the Moon eight years later."
+  },
+  q5: {
+    q: "Which Apollo mission first landed people on the Moon?",
+    choices: ["Apollo 11, in 1969", "Apollo 1, in 1967", "Artemis I, in 2022"],
+    correct: 0,
+    feedback: "✅ Correct! Apollo 11, July 20, 1969. Armstrong and Aldrin walked on the Moon; Collins flew overhead.",
+    wrong: "Not quite — it was Apollo 11 in 1969. Artemis I (2022) was uncrewed."
+  },
+  q6: {
+    q: "Why does NASA have more than one company building a Moon lander?",
+    choices: ["So it is not stuck if one design fails", "Because the Constitution requires two contractors", "So the landers can race each other to Mars"],
+    correct: 0,
+    feedback: "✅ Correct! NASA calls this dissimilar redundancy — more than one way to do a hard job.",
+    wrong: "Not quite — NASA wants more than one lander design so one failure does not stop the program."
+  }
+};
+
+function openQuiz(id) {
+  if (answeredQuizzes.has(id)) {
+    showToast('✅','Already answered!','You already got points for this one. Keep exploring!');
+    return;
+  }
+  const q = quizzes[id];
+  document.getElementById('quizQ').textContent = q.q;
+  const cc = document.getElementById('quizChoices');
+  cc.innerHTML = '';
+  q.choices.forEach((c,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c;
+    btn.onclick = () => handleAnswer(id, i, btn);
+    cc.appendChild(btn);
+  });
+  document.getElementById('quizFeedback').className = 'quiz-feedback';
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function handleAnswer(id, chosen, btn) {
+  const q = quizzes[id];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  const fb = document.getElementById('quizFeedback');
+  if (chosen === q.correct) {
+    btn.classList.add('correct');
+    fb.textContent = q.feedback;
+    fb.className = 'quiz-feedback show correct-fb';
+    if (!answeredQuizzes.has(id)) { answeredQuizzes.add(id); addPoints(1); }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    fb.textContent = q.wrong;
+    fb.className = 'quiz-feedback show wrong-fb';
+    answeredQuizzes.add(id);
+  }
+}
+function closeQuiz() {
+  document.getElementById('quizModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function addPoints(n) {
+  pts = Math.min(pts + n, MAX_PTS);
+  document.getElementById('pointsDisplay').textContent = pts + ' pts';
+  const pct = MAX_PTS > 0 ? (pts / MAX_PTS * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (MAX_PTS > 0 && pts >= 5) {
+    document.getElementById('unlockHint').textContent = '5 pts unlocked! Keep going for the final bonus.';
+    showToast('🌟','5 Points!','Keep answering — one more milestone to go!');
+  }
+  if (MAX_PTS > 0 && pts >= MAX_PTS) {
+    document.getElementById('unlockHint').textContent = '🏆 Maximum points — Space Cadet unlocked!';
+    showToast('🏆','Space Cadet!',"You hit " + MAX_PTS + " points! You've read every quiz on this page.");
+  }
+}
+
+let toastTimer;
+function showToast(icon, title, msg) {
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── EASTER EGG: KONAMI CODE ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === KONAMI.length) {
+      konamiIndex = 0;
+      showEgg('🚀','You found the Konami Code easter egg!','Congratulations — you\'re officially the most curious student in the class! 🏆\n\nOne more fact for the road: the photo at the top of this page was taken by Neil Armstrong. You can see him reflected in Buzz Aldrin\'s gold visor.','Apollo 11 / NASA');
+      addPoints(1);
+    }
+  } else {
+    konamiIndex = e.key === KONAMI[0] ? 1 : 0;
+  }
+});
+
+function showEgg(emoji, title, text, extra) {
+  document.getElementById('eggEmoji').textContent = emoji;
+  document.getElementById('eggTitle').textContent = title;
+  document.getElementById('eggText').innerHTML = text.replace(/\n/g,'<br>');
+  document.getElementById('eggExtra').textContent = extra || '';
+  document.getElementById('eggModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeEgg() {
+  document.getElementById('eggModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('eggModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('eggModal')) closeEgg();
+});
+</script>
+
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

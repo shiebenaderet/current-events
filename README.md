@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v2.8.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v3.0.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design, including `immigration.html` and `gun-violence.html`, the two new topics built directly in it.
+The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped.
 
 ---
 
@@ -24,7 +24,9 @@ Each topic page includes:
 - 📖 **Source citations on every fact**, linked to the original article
 - 📰 **Curated resource links** organized by reading level
 
-Everything is a single self-contained `.html` file. No build tools, no frameworks, no server required.
+- ♿ **Accessibility controls** — skip link, text size, and a self-hosted OpenDyslexic option on every page
+
+Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no frameworks, no server required.
 
 ---
 
@@ -32,14 +34,14 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live (new design) | `iran.html` | July 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live (new design) | `ukraine.html` | July 2026 |
-| 🤖 AI & Society | ✅ Live (new design) | `ai.html` | March 2026 |
-| 🗳️ US Elections & How Government Works | ✅ Live (new design) | `us-elections.html` | July 2026 |
-| 🌍 Climate Change | ✅ Live (new design) | `climate-change.html` | July 2026 |
-| 🗽 Immigration & U.S. Policy | ✅ Live (new design) | `immigration.html` | July 2026 |
-| 🔫 Gun Violence & School Safety | ✅ Live (new design) | `gun-violence.html` | July 2026 |
-| 🚀 Space Race 2.0 | 🚧 Planned | — | — |
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 2026 |
+| 🤖 AI & Society | ✅ Live | `ai.html` | August 2026 |
+| 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | July 2026 |
+| 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | July 2026 |
+| 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | July 2026 |
+| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 2026 |
 
 ---
 
@@ -49,13 +51,17 @@ Everything is a single self-contained `.html` file. No build tools, no framework
 current-events/
 │
 ├── index.html                   ← Landing page / topic hub
-├── iran.html                    ← Iran topic page (self-contained)
-├── ukraine.html                 ← Ukraine topic page (self-contained)
-├── ai.html                      ← AI & Society topic page (self-contained)
-├── us-elections.html            ← US Elections & Government topic page (self-contained)
-├── climate-change.html          ← Climate Change topic page (self-contained)
-├── immigration.html             ← Immigration & U.S. Policy topic page (self-contained)
-├── gun-violence.html            ← Gun Violence & School Safety Policy topic page (self-contained)
+├── iran.html                    ← Iran topic page
+├── ukraine.html                 ← Ukraine topic page
+├── ai.html                      ← AI & Society topic page
+├── us-elections.html            ← US Elections & Government topic page
+├── climate-change.html          ← Climate Change topic page
+├── immigration.html             ← Immigration & U.S. Policy topic page
+├── gun-violence.html            ← Gun Violence & School Safety Policy topic page
+├── space-race.html              ← Space Race 2.0 topic page
+├── site.css                     ← Shared accessibility + reduced-motion CSS
+├── site.js                      ← Shared text-size / OpenDyslexic controls
+├── fonts/                       ← Self-hosted OpenDyslexic (OFL)
 ├── images/                      ← Shared image assets (portraits, hero photos)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh
@@ -66,7 +72,7 @@ current-events/
 └── LICENSE                      ← CC BY 4.0
 ```
 
-Each topic is a single flat `.html` file at the repo root — not a per-topic folder. This changed from the project's original folder-per-topic plan once it became clear a flat structure was simpler to maintain for a small number of pages.
+Each topic is a flat `.html` file at the repo root, plus shared `site.css`, `site.js`, and `fonts/`. No build step. This changed from the project's original folder-per-topic plan once it became clear a flat structure was simpler to maintain for a small number of pages.
 
 ---
 
@@ -82,7 +88,7 @@ If your district allows external iframes in your LMS:
 ```
 
 **Option 3 — Download and host it yourself:**  
-Each page is a single `.html` file. Download it, rename it, modify it, host it wherever you want. No attribution required (but appreciated!).
+Download the topic `.html` file plus `site.css`, `site.js`, `fonts/`, and any `images/` it uses. Rename it, modify it, host it wherever you want. No attribution required (but appreciated!).
 
 ---
 
@@ -98,7 +104,7 @@ Pull requests are very welcome — especially from other Social Studies teachers
 **To suggest a topic or report an issue:** [Open a GitHub Issue](https://github.com/shiebenaderet/current-events/issues/new)
 
 ### Contribution guidelines
-- Each topic should be a single self-contained `.html` file at the repo root
+- Each topic should be a flat `.html` file at the repo root (shared `site.css` / `site.js` / `fonts/` are required alongside it)
 - Write for a reading level of approximately **5th–6th grade** (but content depth of 8th grade)
 - Every factual claim should have an inline source citation linked to the original article
 - When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of July 2026") rather than relative phrasing like "now" or "currently" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes

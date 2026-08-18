@@ -6,7 +6,6 @@
 <title>Current Events Explained — Alderwood Middle School Social Studies</title>
 <meta name="description" content="Free, student-friendly explainers on the background behind current events. Made by an 8th grade Social Studies teacher.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -210,20 +209,12 @@ footer{
 footer a{color:var(--ink-faint);text-decoration:none}
 footer a:hover{color:var(--accent)}
 
-.dyslexic-toggle{
-  position:fixed;bottom:20px;right:20px;z-index:9999;
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <div class="masthead-top">
   <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
@@ -245,7 +236,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <a href="climate-change.html">Climate</a>
   <a href="immigration.html">Immigration</a>
   <a href="gun-violence.html">Gun Violence</a>
-  <a href="#coming-soon">Coming Soon</a>
+  <a href="space-race.html">Space Race</a>
   <a href="#teachers">For Teachers</a>
   <a href="https://github.com/shiebenaderet/current-events" target="_blank" class="gh">★ GitHub</a>
 </nav>
@@ -255,12 +246,12 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
   <div class="ticker-track"><div class="ticker-inner" id="tickerInner"></div></div>
 </div>
 
-<main>
+<main id="main-content" tabindex="-1">
 
   <!-- ═══════════ LEAD STORY (largest headline on the page) ═══════════ -->
   <div class="section-flag" id="topics">
     <h2>Featured Story</h2>
-    <span class="flag-note">Most recent · Updated July 2026</span>
+    <span class="flag-note">Featured · 77 days to Election Day</span>
   </div>
 
   <a href="us-elections.html" class="lead-story">
@@ -288,28 +279,21 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div class="tier-kicker">Middle East · Conflict · History</div>
       <h3>Understanding Iran</h3>
       <p>From ancient Persia to the 1953 coup, the Islamic Revolution, and today's U.S.-Israel strikes — the full story.</p>
-      <div class="tier-meta"><span>20–40 min</span><span>Updated July 2026</span></div>
+      <div class="tier-meta"><span>20–40 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="ukraine.html" class="tier-card">
       <div class="tier-photo"><img src="images/ukraine-card.jpg" alt="Independence Square, Kyiv, Ukraine" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#16213e)'"></div>
       <div class="tier-kicker">Eastern Europe · War · History</div>
       <h3>Ukraine: How Did We Get Here?</h3>
       <p>A thousand years of history behind Europe's biggest war — from Kievan Rus' to the 2022 invasion.</p>
-      <div class="tier-meta"><span>30–50 min</span><span>Updated July 2026</span></div>
+      <div class="tier-meta"><span>30–50 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="ai.html" class="tier-card">
       <div class="tier-photo"><img src="images/ai-card.jpg" alt="Artificial intelligence concept" onerror="this.parentElement.style.background='linear-gradient(135deg,#0f172a,#1e1b4b)'"></div>
       <div class="tier-kicker">Technology · Society</div>
       <h3>Understanding AI</h3>
       <p>From neural networks to ChatGPT — the science, the people, and the big questions behind AI.</p>
-      <div class="tier-meta"><span>25–45 min</span><span>Updated July 2026</span></div>
-    </a>
-    <a href="us-elections.html" class="tier-card">
-      <div class="tier-photo"><img src="images/capitol-featured.jpg" alt="The U.S. Capitol building" onerror="this.parentElement.style.background='linear-gradient(135deg,#2e3d49,#1a2a4a)'"></div>
-      <div class="tier-kicker">US Government · Elections · Civics</div>
-      <h3>US Elections &amp; How Government Works</h3>
-      <p>How the three branches of government work, and a live, dated look at the 2026 midterms.</p>
-      <div class="tier-meta"><span>25–45 min</span><span>Updated July 2026</span></div>
+      <div class="tier-meta"><span>25–45 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="climate-change.html" class="tier-card">
       <div class="tier-photo"><img src="images/ice-core-card.jpg" alt="A freshly cut ice core sample" onerror="this.parentElement.style.background='linear-gradient(135deg,#2e3d49,#0d2430)'"></div>
@@ -332,22 +316,13 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <p>Why school safety became a constant concern, what's actually been tried, and where the policy debate stands now.</p>
       <div class="tier-meta"><span>25–45 min</span><span>Updated July 28, 2026</span></div>
     </a>
-  </div>
-
-  <!-- ═══════════ THIRD TIER: coming soon / planned ═══════════ -->
-  <div class="section-flag" id="coming-soon">
-    <h2>More Topics Coming</h2>
-    <span class="flag-note">Suggestions welcome</span>
-  </div>
-
-  <div class="tier-three">
-    <div class="small-item">
-      <span class="badge badge-planned">Planned</span>
-      <div class="body">
-        <h4>Space Race 2.0</h4>
-        <p>NASA, SpaceX, and the new competition to return to the Moon and reach Mars.</p>
-      </div>
-    </div>
+    <a href="space-race.html" class="tier-card">
+      <div class="tier-photo"><img src="images/space-race-card.jpg" alt="Buzz Aldrin on the Moon during Apollo 11" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#4a3c28)'"></div>
+      <div class="tier-kicker">Science · History · Technology</div>
+      <h3>Space Race 2.0</h3>
+      <p>From Sputnik to Artemis — why countries and companies are racing back to the Moon, and what that means from Washington State.</p>
+      <div class="tier-meta"><span>25–40 min</span><span>Updated August 2026</span></div>
+    </a>
   </div>
 
   <div class="suggest">
@@ -379,7 +354,7 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
       <div class="teacher-col">
         <h4>Contribute or Adapt</h4>
         <p>This project lives on GitHub. If you want to contribute a new topic page, fix a broken link, suggest a source, or adapt this for your own students — pull requests are welcome.</p>
-        <p>Each topic page is a single self-contained <code>.html</code> file — no build tools, no frameworks, no server needed.</p>
+        <p>Each topic page is plain HTML plus shared <code>site.css</code> / <code>site.js</code> — no build tools, no frameworks, no server needed.</p>
         <a href="https://github.com/shiebenaderet/current-events" target="_blank">View the repo on GitHub →</a><br><br>
         <a href="https://github.com/shiebenaderet/current-events/issues/new" target="_blank">Open an issue or suggestion →</a>
       </div>
@@ -408,10 +383,12 @@ body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
 
 <script>
 const headlines = [
-  {text:'🇮🇷 U.S. and Israel launch major military strikes on Iran', href:'iran.html'},
-  {text:"Iran's Supreme Leader Khamenei killed in 2026 strikes", href:'iran.html#now'},
-  {text:'🤖 NEW: Understanding AI — the science, the people, and the big questions', href:'ai.html'},
-  {text:'🇺🇦 NEW: Ukraine — How Did We Get Here? A thousand years of history explained', href:'ukraine.html'},
+  {text:'🗳️ 77 days until Election Day — Nov. 3, 2026 midterms', href:'us-elections.html'},
+  {text:'🇮🇷 Iran 60-day peace deadline expired Aug. 17 with no deal', href:'iran.html'},
+  {text:"🇺🇦 Russia's summer offensive: no operational breakthrough (ISW, Aug. 1)", href:'ukraine.html#now'},
+  {text:'🤖 71% of U.S. adults think AI will mean fewer jobs (Pew, Aug. 2026)', href:'ai.html#jobs'},
+  {text:"🌍 Washington's 4th straight drought year", href:'climate-change.html'},
+  {text:'🚀 NEW: Space Race 2.0 — the Moon, Mars, and who gets there', href:'space-race.html'},
   {text:'All resources are free and open source — contribute on GitHub', href:'https://github.com/shiebenaderet/current-events'},
 ];
 const all = [...headlines,...headlines];
@@ -424,19 +401,17 @@ all.forEach(h => {
 });
 </script>
 
-<button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">Aa Dyslexic Font</button>
-<script>
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
-</script>
+<div class="a11y-controls">
+  <div class="text-size-controls">
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
+  </div>
+  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
+    Aa Dyslexic Font
+  </button>
+</div>
 
+<script src="site.js"></script>
 </body>
 </html>

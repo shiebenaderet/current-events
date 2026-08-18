@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous"></script>
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -16,7 +15,7 @@ html{scroll-behavior:smooth}
   --paper:#fbf9f4; --paper-warm:#f5f1e8;
   --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
   --rule:#d4cfc4; --rule-heavy:#1a1a1a;
-  --accent:#a02c2c; --accent-ink:#6b1414; --accent-tint:#f6e9e6;
+  --accent:#2e6a9a; --accent-ink:#1a4568; --accent-tint:#e7f1f8;
 }
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
 
@@ -29,6 +28,20 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
 .section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .section-nav .hub{color:var(--accent-ink);font-weight:800}
+
+.masthead-top{flex-wrap:wrap;gap:6px}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
 
 /* ══ ARTICLE HERO ══ */
 .article-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -318,37 +331,12 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-/* dyslexic toggle + text-size controls */
-.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.dyslexic-toggle{
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-.text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
-}
-.text-size-controls button{
-  background:transparent;color:#fff;border:none;border-radius:50%;
-  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.text-size-controls button:hover{background:rgba(255,255,255,.15)}
-.text-size-controls .ts-small{font-size:.7rem}
-.text-size-controls .ts-large{font-size:1.05rem}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
-body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
-body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
-body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
@@ -380,18 +368,16 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <div class="masthead-top">
-  <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
-  <a href="https://mrbsocialstudies.org" target="_blank">← Back to main site</a>
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a><a href="space-race.html">Space Race</a></span>
+  <span class="date">Updated August 18, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">Current Events Explained</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
 <nav class="section-nav">
-  <a href="index.html" class="hub">All Topics</a>
-  <a href="iran.html">Iran</a>
-  <a href="ai.html">AI &amp; Society</a>
-  <a href="us-elections.html">US Elections</a>
-  <a href="climate-change.html">Climate Change</a>
-  <a href="immigration.html">Immigration</a>
-  <a href="gun-violence.html">Gun Violence</a>
   <a href="#now">Right Now</a>
   <a href="#where">Geography</a>
   <a href="#roots">Ancient Roots</a>
@@ -402,13 +388,13 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <a href="#resources">Resources</a>
 </nav>
 
-<header class="article-hero">
+<header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
   <div class="article-hero-inner">
     <button class="kicker hero-flag-click" id="heroFlag" onclick="handleEmojiClick()">🇺🇦 Understanding Ukraine</button>
     <h1>Ukraine: How Did We Get Here?</h1>
     <p class="dek">A thousand years of history behind Europe's biggest war.</p>
-    <div class="byline">Student Edition · Updated July 2026</div>
+    <div class="byline">Student Edition · Updated August 18, 2026</div>
   </div>
   <div class="hero-credit">A sunflower field in Ukraine — the national flower</div>
 </header>
@@ -426,7 +412,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
     <span class="breaking-badge">Ongoing Conflict</span>
     <div class="breaking-text">
       <h3>The largest war in Europe since 1945 — and it started with a question about identity.</h3>
-      <p>This conflict is ongoing — last updated July 2026. <a href="#now">Jump to where things stand today →</a></p>
+      <p>This conflict is ongoing — last updated August 18, 2026. <a href="#now">Jump to where things stand today →</a></p>
     </div>
   </div>
 </div>
@@ -454,7 +440,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
   <div class="vocab"><b>Key Word — Sovereignty</b><p>The right of a country to govern itself without outside interference. Ukraine's sovereignty is at the heart of this conflict.</p></div>
   <div class="vocab"><b>Key Word — Annexed</b><p>When one country takes over part of another country and claims it as its own. Russia annexed Crimea from Ukraine in 2014.</p></div>
-  <div class="vocab"><b>Key Word — Occupied territory</b><p>Land controlled by a foreign military force. As of July 2026, parts of eastern and southern Ukraine are occupied by Russia.</p></div>
+  <div class="vocab"><b>Key Word — Occupied territory</b><p>Land controlled by a foreign military force. As of August 2026, parts of eastern and southern Ukraine are occupied by Russia.</p></div>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
@@ -676,7 +662,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <h3>The front lines in 2026</h3>
   <p class="lede">Four years after Russia's full-scale invasion, the war is still going. The front lines have barely moved in months. Russia controls about <strong>20% of Ukraine's territory</strong> — roughly 116,000 square kilometers. That's an area about the size of Ohio.<a class="cite-inline" href="https://www.csis.org/analysis/russia-ukraine-war-10-charts" target="_blank">CSIS</a> Most of this land is in the east, in the Donbas region, and in the south, in Crimea and parts of Zaporizhzhia. Fighting happens every single day along a front line that stretches hundreds of miles.</p>
 
-  <p>The pace of fighting has slowed down a lot in 2026. Russian forces seized about 622 square kilometers of Ukrainian land in the first half of 2026. That's way down from the 2,190 square kilometers they took in the first half of 2025. Ukraine also took back some small bits of land. Once you subtract that, Russia's net gain for the first six months of 2026 was only about 97 square kilometers. It came at a huge cost in Russian casualties.<a class="cite-inline" href="https://www.aljazeera.com/news/2026/7/3/russian-advance-collapses-in-ukraine-as-anxiety-rises-in-moscow" target="_blank">Al Jazeera</a> As of July 2026, the front lines remain largely where they were in early 2026. Neither side has been able to make a big breakthrough.</p>
+  <p>The pace of fighting has slowed down a lot in 2026. Russian forces seized about 622 square kilometers of Ukrainian land in the first half of 2026. That's way down from the 2,190 square kilometers they took in the first half of 2025. Ukraine also took back some small bits of land. Once you subtract that, Russia's net gain for the first six months of 2026 was only about 97 square kilometers. It came at a huge cost in Russian casualties.<a class="cite-inline" href="https://www.aljazeera.com/news/2026/7/3/russian-advance-collapses-in-ukraine-as-anxiety-rises-in-moscow" target="_blank">Al Jazeera</a> The Institute for the Study of War then measured July 2026 on its own: about 38 square kilometers of confirmed Russian advance — smaller than Manhattan — and no operational breakthrough from Russia's spring-summer offensive.<a class="cite-inline" href="https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-august-1-2026/" target="_blank">ISW, Aug. 1, 2026</a> As of August 18, 2026, the front lines remain largely where they were earlier in the year. Neither side has been able to make a big breakthrough.</p>
 
   <h3>Peace talks — so far</h3>
   <p>Many countries have tried to end the war through <span class="term" tabindex="0" data-def="Talks where both sides try to agree on a deal to stop fighting." aria-describedby="term-desc-8">peace negotiations</span><span id="term-desc-8" class="term-desc">Talks where both sides try to agree on a deal to stop fighting.</span>. President Trump took office in January 2025, and the U.S. pushed hard for a deal. Leaders have kept talking through 2026. But so far there is still no ceasefire and no final agreement.</p>
@@ -856,14 +842,14 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <footer>
-  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
 </footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
-    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
-    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
-    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
@@ -1084,10 +1070,10 @@ const ukraineBorder = [
   [48.16,26.63],[47.72,24.90],[48.63,22.86],[48.40,22.15],[49.09,22.56],
   [49.44,22.72],[49.63,22.08],[50.43,22.68],[51.10,23.98],[52.38,22.14]
 ];
-L.polygon(ukraineBorder,{color:'#a02c2c',weight:2,fillColor:'#a02c2c',fillOpacity:.08,dashArray:'6,4'}).addTo(map);
+L.polygon(ukraineBorder,{color:'#2e6a9a',weight:2,fillColor:'#2e6a9a',fillOpacity:.08,dashArray:'6,4'}).addTo(map);
 
 const kyivIcon = L.divIcon({
-  html:'<div style="background:#a02c2c;color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.3)">🏛️</div>',
+  html:'<div style="background:#2e6a9a;color:white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.3)">🏛️</div>',
   className:'',iconSize:[34,34],iconAnchor:[17,17]
 });
 L.marker([50.4547,30.5238],{icon:kyivIcon}).addTo(map)
@@ -1113,28 +1099,9 @@ sites.forEach(s => {
   L.marker(s.pos,{icon:icon}).addTo(map).bindPopup(`<b>${s.name}</b><br>${s.desc}`);
 });
 
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
 
-function setTextSize(size){
-  document.body.classList.remove('text-lg','text-xl');
-  if (size === 'lg') document.body.classList.add('text-lg');
-  if (size === 'xl') document.body.classList.add('text-xl');
-  localStorage.setItem('textSize', size);
-}
-const savedTextSize = localStorage.getItem('textSize');
-if (savedTextSize && savedTextSize !== 'normal') {
-  document.body.classList.add('text-' + savedTextSize);
-}
 </script>
 
+<script src="site.js"></script>
 </body>
 </html>

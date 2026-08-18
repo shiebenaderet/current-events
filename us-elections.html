@@ -6,7 +6,6 @@
 <title>US Elections &amp; How Government Works – Student Resource</title>
 <meta name="description" content="Free, student-friendly explainer on the three branches of government, how elections actually work, and a dated look at the 2026 midterms. Made by an 8th grade Social Studies teacher.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -34,6 +33,20 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
 .section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .section-nav .hub{color:var(--accent-ink);font-weight:800}
+
+.masthead-top{flex-wrap:wrap;gap:6px}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
 
 /* ══ ARTICLE HERO ══ */
 .article-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(160deg,var(--accent) 0%,#0f1938 60%,#1a1230 100%)}
@@ -290,37 +303,12 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-/* dyslexic toggle + text-size controls */
-.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.dyslexic-toggle{
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-.text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
-}
-.text-size-controls button{
-  background:transparent;color:#fff;border:none;border-radius:50%;
-  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.text-size-controls button:hover{background:rgba(255,255,255,.15)}
-.text-size-controls .ts-small{font-size:.7rem}
-.text-size-controls .ts-large{font-size:1.05rem}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
-body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
-body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
-body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
@@ -352,18 +340,16 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <div class="masthead-top">
-  <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
-  <a href="https://mrbsocialstudies.org" target="_blank">← Back to main site</a>
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a><a href="space-race.html">Space Race</a></span>
+  <span class="date">Updated August 18, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">Current Events Explained</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
 <nav class="section-nav">
-  <a href="index.html" class="hub">All Topics</a>
-  <a href="iran.html">Iran</a>
-  <a href="ukraine.html">Ukraine</a>
-  <a href="ai.html">AI &amp; Society</a>
-  <a href="climate-change.html">Climate Change</a>
-  <a href="immigration.html">Immigration</a>
-  <a href="gun-violence.html">Gun Violence</a>
   <a href="#update-pane">2026 Midterms</a>
   <a href="#branches">Branches</a>
   <a href="#elections-mechanics">Elections</a>
@@ -375,13 +361,13 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <a href="#resources">Resources</a>
 </nav>
 
-<header class="article-hero">
+<header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-overlay"></div>
   <div class="article-hero-inner">
     <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">🗳️ US Government &amp; Elections</button>
     <h1>US Elections &amp; How Government Works</h1>
     <p class="dek">The three branches, how a bill becomes a law, how elections work, and what's happening in the 2026 midterms.</p>
-    <div class="byline">Student Edition · Updated July 2026</div>
+    <div class="byline">Student Edition · Updated August 18, 2026</div>
   </div>
   <div class="hero-credit">This page aims for strict nonpartisanship — see the Resources section for how it's sourced.</div>
 </header>
@@ -400,7 +386,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
       <span class="num">Situation Update</span>
       <h2>Where Things Stand: The 2026 Midterms <span class="update-badge">Counting Down to Nov 3</span></h2>
     </div>
-    <div class="update-date">Updated July 21, 2026 — 105 days until Election Day</div>
+    <div class="update-date">Updated August 18, 2026 — 77 days until Election Day</div>
 
     <div class="mini-tl">
       <div class="mini-tl-item">
@@ -415,8 +401,8 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
       </div>
       <div class="mini-tl-item">
         <div class="mini-tl-dot green"></div>
-        <span class="mini-tl-date">Jul 2026</span>
-        <span class="mini-tl-text"><strong>A high retirement count —</strong> As of July 2026, 59 U.S. Representatives and 11 U.S. Senators have said they won't run for reelection this year. That's one of the biggest retirement waves in decades. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> Two of the most senior members of Congress are in that group. Nancy Pelosi, a former Speaker of the House, was first elected in 1987. Mitch McConnell, a Senate Republican leader, was first elected in 1984. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Nancy_Pelosi" target="_blank">src</a></span>
+        <span class="mini-tl-date">Aug 2026</span>
+        <span class="mini-tl-text"><strong>A high retirement count —</strong> As of August 2026, 60 U.S. Representatives have said they won't run for reelection this year. As of July 2026, 11 U.S. Senators had also said they won't. That's one of the biggest retirement waves in decades. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> Two of the most senior members of Congress are in that group. Nancy Pelosi, a former Speaker of the House, was first elected in 1987. Mitch McConnell, a Senate Republican leader, was first elected in 1984. <a class="cite-inline" href="https://en.wikipedia.org/wiki/Nancy_Pelosi" target="_blank">src</a></span>
       </div>
       <div class="mini-tl-item">
         <div class="mini-tl-dot"></div>
@@ -430,7 +416,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
       <div class="update-box">
         <span class="update-box-icon">🏛️</span>
         <h3>Who controls what, right now?</h3>
-        <p>Here's a plain, dated snapshot of Washington, as of <strong>July 21, 2026</strong> — before any 2026 votes are counted. <strong>Republicans</strong> currently hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <a class="cite-inline" href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></p>
+        <p>Here's a plain, dated snapshot of Washington, as of <strong>August 18, 2026</strong> — before any 2026 votes are counted. <strong>Republicans</strong> currently hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <a class="cite-inline" href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></p>
         <p>The current <strong>Speaker of the House is Mike Johnson</strong>. He's held the role since October 2023. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> The current <strong>Senate Majority Leader is John Thune</strong>. He's held the role since January 2025. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></p>
         <p>Section 1, further down this page, explains these two roles in more detail. In short: the Speaker decides which bills get a vote on the House floor, and the Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.</p>
         <div class="callout" style="background:rgba(255,255,255,.06);border-left-color:var(--gold-l)">
@@ -950,7 +936,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <footer>
-  <p>Made for 8th grade Social Studies students · All links go to trusted, nonpartisan news and educational sources · Updated July 2026</p>
+  <p>Made for 8th grade Social Studies students · All links go to trusted, nonpartisan news and educational sources · Updated August 2026</p>
   <p style="margin-top:6px">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
   <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
   <div class="secret-text" aria-hidden="true">We the People — E Pluribus Unum</div>
@@ -958,9 +944,9 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 
 <div class="a11y-controls">
   <div class="text-size-controls">
-    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
-    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
-    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
@@ -1166,28 +1152,9 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('eggModal')) closeEgg();
 });
 
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
 
-function setTextSize(size){
-  document.body.classList.remove('text-lg','text-xl');
-  if (size === 'lg') document.body.classList.add('text-lg');
-  if (size === 'xl') document.body.classList.add('text-xl');
-  localStorage.setItem('textSize', size);
-}
-const savedTextSize = localStorage.getItem('textSize');
-if (savedTextSize && savedTextSize !== 'normal') {
-  document.body.classList.add('text-' + savedTextSize);
-}
 </script>
 
+<script src="site.js"></script>
 </body>
 </html>

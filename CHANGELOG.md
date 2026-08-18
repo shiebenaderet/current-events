@@ -2,7 +2,21 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.0.0] — 2026-08-18
+
+**Major — accessibility floor, shared CSS/JS, August freshness, chrome unification, and Space Race 2.0 ships.**
+
+- **Accessibility.** Every page now has a skip link, A/A/A text-size controls (including the homepage), and a self-hosted OpenDyslexic webfont (`fonts/OpenDyslexic-Regular.woff2`, SIL OFL) instead of the cdnfonts stylesheet. The dyslexic font is scoped to reading text — not maps, nav, buttons, or SVG. `prefers-reduced-motion` stops the homepage ticker and other decorative motion.
+- **Shared CSS/JS, still no build step.** Page-specific palettes, heroes, maps, and quizzes stay in each HTML file. Shared accessibility lives in `site.css` / `site.js`. Topic pages are no longer one-file islands; downloading a page for offline use also needs those two files plus `fonts/`.
+- **Chrome unification.** All topic pages use the magazine masthead **Current Events Explained** (not "The Current Events Desk"). Sibling links live in `masthead-top`. Sticky `section-nav` is in-page `#` anchors only.
+- **August freshness.** Homepage ticker rewritten from the live topics (no leftover March-era Iran strikes or "NEW" Ukraine/AI). US Elections stays the featured story and is no longer duplicated as a grid card. Midterms countdown is **77 days** from August 18 to November 3, 2026. House retirements: 60 as of August 2026; Senate: 11 as of July 2026 (not mixed with other "won't return" definitions). Iran lede/update: the June 17 60-day peace deadline expired August 17 with no deal (AP); Hormuz trickle of 3 vessels on August 16 and UAE missiles August 18 (CNBC). Ukraine: keeps first-half 2026 Al Jazeera 622 / net 97 km² and adds ISW's August 1 assessment (~38 km² July advance; spring-summer offensive, no operational breakthrough). Relative "Now" / "more than a week" phrasing removed from the Iran timeline.
+- **Accents.** Iran moves to Persian lapis (`#245a8c`), Ukraine to deeper sky (`#2e6a9a`), AI to violet/ink (`#4a3f6b`), so they no longer share the default newsprint red with each other or with elections navy.
+- **Climate density.** Washington's 51M / 96.1M emissions pair is now a trio (4th drought year). Greenhouse-effect section gets a 3-step restatement next to the existing diagram. No science claims rewritten.
+- **AI rebalance.** School remains a focus pane. A sourced jobs/displacement section (Pew August 18, 2026: 71% of U.S. adults expect fewer jobs; February 2025 worker survey) is now part of the spine. "Talking to Animals Using AI" is demoted to further reading. Quotes and prior citations left intact.
+- **New page `space-race.html`.** History of the first race (Sputnik, Gagarin, Apollo 11), a dated August 2026 Artemis snapshot (III as an Earth-orbit docking test; landing planned later), Washington's angle via Blue Origin in Kent (Boeing named carefully — Starliner is not built in Everett), historical Key People only, quizzes, videos, citations. Wired into the homepage grid (moved out of Coming Soon).
+
 ## [2.8.0] — 2026-07-29
+
 
 **Minor — ship-readiness visual-polish pass: image-coverage gaps closed on three pages, climate-change.html gets its own accent color, graceful image-load-failure handling ported site-wide.**
 

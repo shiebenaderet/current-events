@@ -6,7 +6,6 @@
 <title>A Nation of Immigrants: The Story of U.S. Immigration – Student Resource</title>
 <meta name="description" content="How U.S. immigration policy came to be — from the colonial era to today's system — and what's happening right now, explained for middle schoolers.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -409,37 +408,12 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
-/* dyslexic toggle + text-size controls */
-.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.dyslexic-toggle{
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-.text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
-}
-.text-size-controls button{
-  background:transparent;color:#fff;border:none;border-radius:50%;
-  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.text-size-controls button:hover{background:rgba(255,255,255,.15)}
-.text-size-controls .ts-small{font-size:.7rem}
-.text-size-controls .ts-large{font-size:1.05rem}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
-body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
-body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
-body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
@@ -471,12 +445,12 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <div class="masthead-top">
-  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="climate-change.html">Climate Change</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="gun-violence.html">Gun Violence</a></span>
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="gun-violence.html">Gun Violence</a><a href="space-race.html">Space Race</a></span>
   <span class="date">Updated July 22, 2026</span>
 </div>
 
 <div class="masthead">
-  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <a href="index.html" class="site-name">Current Events Explained</a>
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
@@ -494,7 +468,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   <a href="#resources">Resources</a>
 </nav>
 
-<header class="article-hero">
+<header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
   <div class="article-hero-inner">
     <button class="kicker hero-flag-click" id="heroFlag" onclick="handleFlagClick()">Immigration &amp; U.S. Policy</button>
@@ -1422,37 +1396,15 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
 
 <div class="a11y-controls">
   <div class="text-size-controls">
-    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
-    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
-    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
   </button>
 </div>
-<script>
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
 
-function setTextSize(size){
-  document.body.classList.remove('text-lg','text-xl');
-  if (size === 'lg') document.body.classList.add('text-lg');
-  if (size === 'xl') document.body.classList.add('text-xl');
-  localStorage.setItem('textSize', size);
-}
-const savedTextSize = localStorage.getItem('textSize');
-if (savedTextSize && savedTextSize !== 'normal') {
-  document.body.classList.add('text-' + savedTextSize);
-}
-</script>
-
+<script src="site.js"></script>
 </body>
 </html>

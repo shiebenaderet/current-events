@@ -152,6 +152,17 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .stat-pair .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
 .stat-pair .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
 @media (max-width:560px){.stat-pair{grid-template-columns:1fr}}
+.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat-trio .stat{text-align:left}
+.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.4rem;color:var(--accent);line-height:1}
+.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
+.stat-trio .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
+@media (max-width:700px){.stat-trio{grid-template-columns:1fr}}
+.gh-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 8px}
+.gh-steps .step{padding:16px 18px;background:var(--paper-warm);border-top:3px solid var(--accent)}
+.gh-steps .n{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.gh-steps p{margin:0;font-size:.92rem;color:var(--ink-light);line-height:1.5}
+@media (max-width:700px){.gh-steps{grid-template-columns:1fr}}
 
 /* vocab / key word: inline, treated as a definition aside not a colored box */
 .vocab{
@@ -326,39 +337,12 @@ footer{
   text-align:center;font-family:-apple-system,sans-serif;font-size:.76rem;color:var(--ink-faint);
 }
 
-/* dyslexic toggle + text-size controls */
-.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.dyslexic-toggle{
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-.text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
-}
-.text-size-controls button{
-  background:transparent;color:#fff;border:none;border-radius:50%;
-  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.text-size-controls button:hover{background:rgba(255,255,255,.15)}
-.text-size-controls .ts-small{font-size:.7rem}
-.text-size-controls .ts-large{font-size:1.05rem}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.dyslexic .article p.lede::first-letter{font-family:'OpenDyslexic',sans-serif!important;font-size:3.2rem}
-body.text-lg .article p{font-size:1.36rem}
-body.text-lg .stat-pair .desc,body.text-lg .stat-line .desc{font-size:.94rem}
-body.text-xl .article p{font-size:1.54rem}
-body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
 </style>
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
@@ -390,12 +374,12 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
 </div>
 
 <div class="masthead-top">
-  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a></span>
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a><a href="space-race.html">Space Race</a></span>
   <span class="date">Updated July 22, 2026</span>
 </div>
 
 <div class="masthead">
-  <a href="index.html" class="site-name">The Current Events Desk</a>
+  <a href="index.html" class="site-name">Current Events Explained</a>
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
@@ -412,13 +396,13 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
   <a href="#resources">Resources</a>
 </nav>
 
-<header class="article-hero">
+<header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
   <div class="article-hero-inner">
     <span class="kicker">Climate &amp; Environment</span>
     <h1>Frozen Time Capsules</h1>
     <p class="dek">Scientists drill deep into ancient ice to find real air bubbles from 800,000 years ago. Here's what that ice reveals — and why what's happening now looks so different.</p>
-    <div class="byline">By the Climate Desk · Updated July 22, 2026</div>
+    <div class="byline">Student Edition · Updated July 22, 2026</div>
   </div>
   <div class="hero-credit">Photo: a freshly cut ice core, EastGRIP project, Greenland. <a href="https://commons.wikimedia.org/wiki/File:The_EastGRIP_ice_core_freshly_cut_2.jpg" target="_blank">Wikimedia Commons (CC BY 4.0)</a></div>
 </header>
@@ -449,7 +433,7 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
   <h3>Washington's climate policy, right now</h3>
   <p>The Climate Commitment Act remains in place statewide — Washington voters rejected a 2024 ballot measure to cancel it (more on that below).<a class="cite-inline" href="https://en.wikipedia.org/wiki/Climate_Commitment_Act" target="_blank">Wikipedia</a></p>
 
-  <div class="stat-pair">
+  <div class="stat-trio">
     <div class="stat">
       <div class="num">51M</div>
       <div class="desc"><b>metric tons — WA's 2030 target</b>State law requires cutting total emissions to 45% below 1990 levels by 2030.</div>
@@ -457,6 +441,10 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
     <div class="stat">
       <div class="num">96.1M</div>
       <div class="desc"><b>metric tons — WA's 2022 total</b>Down 0.5% from 2021's 96.6 million — the most recent official inventory.</div>
+    </div>
+    <div class="stat">
+      <div class="num">4th</div>
+      <div class="desc"><b>straight drought year</b>Declared April 8, 2026, after snowpack at roughly half its usual level.</div>
     </div>
   </div>
 
@@ -573,6 +561,11 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-line .desc{font-size:1.04rem}
       <text x="600" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a1a">GASES TRAP HEAT</text>
       <text x="600" y="135" text-anchor="middle" font-size="28">🌫️</text>
     </svg>
+  </div>
+  <div class="gh-steps">
+    <div class="step"><div class="n">1 · Sunlight</div><p>Energy from the sun reaches Earth and warms the land and oceans.</p></div>
+    <div class="step"><div class="n">2 · Surface warms</div><p>The warmed surface tries to send that heat back out toward space.</p></div>
+    <div class="step"><div class="n">3 · Gases trap heat</div><p>Greenhouse gases catch some of that heat and send it back down.</p></div>
   </div>
 
   <p>So greenhouse gases aren't the villain of this story — not by themselves. Earth needs some of them. The real question: what happens when there's a lot <strong>more</strong> of them than there used to be?</p>
@@ -1023,37 +1016,15 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
 
 <div class="a11y-controls">
   <div class="text-size-controls">
-    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
-    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
-    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
   </button>
 </div>
-<script>
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
 
-function setTextSize(size){
-  document.body.classList.remove('text-lg','text-xl');
-  if (size === 'lg') document.body.classList.add('text-lg');
-  if (size === 'xl') document.body.classList.add('text-xl');
-  localStorage.setItem('textSize', size);
-}
-const savedTextSize = localStorage.getItem('textSize');
-if (savedTextSize && savedTextSize !== 'normal') {
-  document.body.classList.add('text-' + savedTextSize);
-}
-</script>
-
+<script src="site.js"></script>
 </body>
 </html>

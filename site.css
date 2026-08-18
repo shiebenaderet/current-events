@@ -1,0 +1,109 @@
+/* Shared accessibility + chrome helpers for Current Events Explained.
+   Page-specific palettes stay in each HTML file's :root (--accent, etc.). */
+
+@font-face{
+  font-family:'OpenDyslexic';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('fonts/OpenDyslexic-Regular.woff2') format('woff2');
+}
+
+.skip-link{
+  position:absolute;left:8px;top:-48px;z-index:10000;
+  background:var(--ink,#1a1a1a);color:#fff;
+  padding:8px 14px;font-family:-apple-system,sans-serif;
+  font-size:.8rem;font-weight:700;text-decoration:none;
+}
+.skip-link:focus{top:8px;outline:2px solid #fff;outline-offset:2px}
+
+.a11y-controls{
+  position:fixed;bottom:20px;right:20px;z-index:9999;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.dyslexic-toggle{
+  background:#111;color:#fff;border:none;border-radius:50px;
+  padding:10px 16px;font-size:.8rem;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;gap:6px;
+  font-family:-apple-system,sans-serif;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+.dyslexic-toggle:hover{background:#222}
+.dyslexic-toggle:focus-visible,.text-size-controls button:focus-visible{
+  outline:2px solid #fff;outline-offset:2px;
+}
+.dyslexic-toggle.active{background:var(--accent,#a02c2c)}
+.text-size-controls{
+  display:flex;align-items:center;gap:2px;background:#111;
+  border-radius:50px;padding:4px;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+.text-size-controls button{
+  background:transparent;color:#fff;border:none;border-radius:50%;
+  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.text-size-controls button:hover{background:rgba(255,255,255,.15)}
+.text-size-controls .ts-small{font-size:.7rem}
+.text-size-controls .ts-large{font-size:1.05rem}
+
+/* Apply OpenDyslexic to reading text only — never maps, nav, buttons, or SVG. */
+body.dyslexic,
+body.dyslexic .article,
+body.dyslexic .article p,
+body.dyslexic .article li,
+body.dyslexic .lede,
+body.dyslexic .dek,
+body.dyslexic .subhead,
+body.dyslexic .lead-dek,
+body.dyslexic .tier-card p,
+body.dyslexic .tier-card h3,
+body.dyslexic .small-item p,
+body.dyslexic .small-item h4,
+body.dyslexic h1,
+body.dyslexic h2,
+body.dyslexic h3,
+body.dyslexic h4,
+body.dyslexic .callout,
+body.dyslexic .vocab,
+body.dyslexic .update-box p,
+body.dyslexic .focus-pane p,
+body.dyslexic .teacher-col,
+body.dyslexic .about p{
+  font-family:'OpenDyslexic',sans-serif !important;
+}
+body.dyslexic .section-nav,
+body.dyslexic .masthead-top,
+body.dyslexic .a11y-controls,
+body.dyslexic button,
+body.dyslexic .leaflet-container,
+body.dyslexic svg,
+body.dyslexic code{
+  font-family:-apple-system,sans-serif !important;
+}
+
+body.text-lg .article p,
+body.text-lg .article ul li,
+body.text-lg .lead-dek,
+body.text-lg .subhead,
+body.text-lg .tier-card p{font-size:1.32rem}
+body.text-lg .stat-pair .desc,
+body.text-lg .stat-trio .desc{font-size:.9rem}
+body.text-xl .article p,
+body.text-xl .article ul li,
+body.text-xl .lead-dek,
+body.text-xl .subhead,
+body.text-xl .tier-card p{font-size:1.5rem}
+body.text-xl .stat-pair .desc,
+body.text-xl .stat-trio .desc{font-size:1rem}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .ticker-inner{
+    animation:none !important;transform:none !important;
+  }
+  .lead-photo img,
+  .tier-photo img,
+  .progress-fill,
+  .toast{animation:none !important;transition:none !important}
+}

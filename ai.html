@@ -6,7 +6,6 @@
 <title>Understanding AI: How It Works and Why It Matters – Student Resource</title>
 <meta name="description" content="Free, student-friendly explainer on artificial intelligence — how neural networks learn, why AI took off, and what it means for school and society. Made by an 8th grade Social Studies teacher.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -14,7 +13,7 @@ html{scroll-behavior:smooth}
   --paper:#fbf9f4; --paper-warm:#f5f1e8;
   --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
   --rule:#d4cfc4; --rule-heavy:#1a1a1a;
-  --accent:#a02c2c; --accent-ink:#6b1414; --accent-tint:#f6e9e6;
+  --accent:#4a3f6b; --accent-ink:#2f2848; --accent-tint:#eeeaf4;
 }
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
 
@@ -27,6 +26,20 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
 .section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .section-nav .hub{color:var(--accent-ink);font-weight:800}
+
+.masthead-top{flex-wrap:wrap;gap:6px}
+.masthead-top .date{font-variant-numeric:tabular-nums}
+.masthead{
+  text-align:center;padding:22px 6vw 16px;border-bottom:3px double var(--rule-heavy);
+}
+.masthead .site-name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:-.01em;color:var(--ink);text-decoration:none;
+}
+.masthead .tagline{
+  font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:4px;
+}
 
 /* ══ ARTICLE HERO ══ */
 .article-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -313,37 +326,12 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .shake{animation:shake .4s}
 .stat.clickable{cursor:pointer}
 
-/* dyslexic toggle + text-size controls */
-.a11y-controls{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.dyslexic-toggle{
-  background:#111;color:white;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);
-  transition:all .2s;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-}
-.dyslexic-toggle:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.dyslexic-toggle.active{background:var(--accent)}
-.text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;border-radius:50px;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);padding:4px;
-}
-.text-size-controls button{
-  background:transparent;color:#fff;border:none;border-radius:50%;
-  width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-.text-size-controls button:hover{background:rgba(255,255,255,.15)}
-.text-size-controls .ts-small{font-size:.7rem}
-.text-size-controls .ts-large{font-size:1.05rem}
-body.dyslexic,body.dyslexic *{font-family:'OpenDyslexic',sans-serif!important}
-body.text-lg .article p,body.text-lg .article ul li{font-size:1.32rem}
-body.text-lg .stat-pair .desc,body.text-lg .stat-trio .desc{font-size:.9rem}
-body.text-xl .article p,body.text-xl .article ul li{font-size:1.5rem}
-body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 
 <!-- EASTER EGG MODAL -->
 <div class="egg-modal" id="eggModal">
@@ -375,35 +363,34 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <div class="masthead-top">
-  <span>Alderwood Middle School · Room 1610 · 8th Grade Social Studies</span>
-  <a href="https://mrbsocialstudies.org" target="_blank">← Back to main site</a>
+  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a><a href="space-race.html">Space Race</a></span>
+  <span class="date">Updated August 18, 2026</span>
+</div>
+
+<div class="masthead">
+  <a href="index.html" class="site-name">Current Events Explained</a>
+  <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
 <nav class="section-nav">
-  <a href="index.html" class="hub">All Topics</a>
-  <a href="iran.html">Iran</a>
-  <a href="ukraine.html">Ukraine</a>
-  <a href="us-elections.html">US Elections</a>
-  <a href="climate-change.html">Climate Change</a>
-  <a href="immigration.html">Immigration</a>
-  <a href="gun-violence.html">Gun Violence</a>
   <a href="#what">What Is AI?</a>
   <a href="#learn">How It Learns</a>
   <a href="#today">AI Today</a>
   <a href="#school">School</a>
+  <a href="#jobs">Jobs</a>
   <a href="#timeline">Timeline</a>
   <a href="#people">People</a>
   <a href="#videos">Videos</a>
   <a href="#resources">Resources</a>
 </nav>
 
-<header class="article-hero">
+<header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
   <div class="article-hero-inner">
     <button class="kicker hero-flag-click" id="heroEmoji" onclick="handleEmojiClick()">🤖 Understanding AI</button>
     <h1>What Actually Is Artificial Intelligence?</h1>
     <p class="dek">How machines learned to think in patterns — and why that changes school, work, and everyday life.</p>
-    <div class="byline">Student Edition · Updated July 2026</div>
+    <div class="byline">Student Edition · Updated August 18, 2026</div>
   </div>
   <div class="hero-credit">A diagram of an artificial neural network — layers of connected nodes that learn patterns from data</div>
 </header>
@@ -702,46 +689,69 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
   </div>
 </div>
 
-<!-- ═══════════ FOCUS PANE: TALKING TO ANIMALS USING AI ═══════════ -->
-<div class="focus-pane" id="animals" style="background:#131826">
-  <div class="focus-pane-inner">
-    <div class="focus-head"><span class="num">Focus</span><h2>Talking to Animals Using AI</h2></div>
+<!-- ═══════════ JOBS & DISPLACEMENT ═══════════ -->
+<div class="sec-head" id="jobs">
+  <span class="num">Focus</span>
+  <h2>Will AI Take People's Jobs?</h2>
+</div>
+<div class="article">
+  <p class="lede">School is one place AI is changing life right now. Work is the other. Adults argue about whether AI will create new jobs, erase old ones, or both. As of August 2026, most people in the United States expect fewer jobs — not more.</p>
+
+  <p>A Pew Research Center survey published August 18, 2026, found that <strong>71% of U.S. adults</strong> think AI will lead to fewer jobs in the United States over the next two decades. That is up from 64% in 2024. Only 5% think AI will lead to more jobs. Among adults under 30 — people close to your age who will enter the workforce next — 73% now say fewer jobs, up from 61% two years earlier.<a class="cite-inline" href="https://www.pewresearch.org/short-reads/2026/08/18/young-adults-in-the-us-are-increasingly-wary-of-ai-concerned-it-will-take-jobs/" target="_blank">Pew Research Center, Aug. 18, 2026</a></p>
+
+  <div class="stat-trio">
+    <div class="stat"><div class="num">71%</div><div class="desc"><b>U.S. adults who expect fewer jobs from AI</b>Pew, Aug. 2026 · next 20 years</div></div>
+    <div class="stat"><div class="num">73%</div><div class="desc"><b>adults under 30 who say the same</b>up from 61% in 2024</div></div>
+    <div class="stat"><div class="num">5%</div><div class="desc"><b>who expect more jobs</b>Pew, Aug. 2026</div></div>
   </div>
 
-  <div class="photo-break">
+  <p>Workers talking about <em>their own</em> jobs are a little more mixed. In a February 2025 Pew survey, 32% of U.S. workers said workplace AI would lead to fewer opportunities for them in the long run. Only 6% said it would lead to more. About 31% said it would not make much difference.<a class="cite-inline" href="https://www.pewresearch.org/social-trends/2025/02/25/u-s-workers-are-more-worried-than-hopeful-about-future-ai-use-in-the-workplace/" target="_blank">Pew Research Center, Feb. 2025</a></p>
+
+  <p>Experts do not all agree with the public. Some researchers warn that AI could automate a lot of work. Others argue it will also create new kinds of jobs, the way earlier machines did. The 2025 Stanford Emerging Technology Review, already cited later on this page, is one place researchers argue over how to govern that change — not over a single official "jobs lost" number. There isn't one number everyone accepts yet.</p>
+
+  <div class="vocab"><b>Key Word — Displacement</b><p>When a new tool or machine means a job that used to need a person no longer does — or needs far fewer people. Displacement is not the same as "every job disappears." Some jobs change. Some go away. Some new ones appear.</p></div>
+
+  <div class="callout"><span class="tag">Think about it</span><p>If many adults think AI will mean fewer jobs, what skills are still worth practicing in school — the ones a chatbot can already do, or the ones it still can't?</p></div>
+</div>
+
+<!-- ═══════════ FURTHER READING: TALKING TO ANIMALS USING AI ═══════════ -->
+<div class="sec-head" id="animals">
+  <span class="num">Further reading</span>
+  <h2>Talking to Animals Using AI</h2>
+</div>
+<div class="article">
+  <div class="photo-inline clearfix">
     <img src="images/researcher-recording-bird-calls.jpg" alt="A field researcher holding a microphone on a boom pole and wearing headphones, recording bird calls outdoors" onerror="this.style.display='none'">
-    <div class="cap">A researcher records bird calls in the field. AI projects like the Earth Species Project build on exactly this kind of raw animal-sound recording. <a href="https://commons.wikimedia.org/wiki/File:Researcher_recording_bird_calls_JEG9300.jpg" target="_blank" style="color:#b3c0e8">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+    <div class="cap">A researcher records bird calls in the field. AI projects like the Earth Species Project build on exactly this kind of raw animal-sound recording. <a href="https://commons.wikimedia.org/wiki/File:Researcher_recording_bird_calls_JEG9300.jpg" target="_blank">Wikimedia Commons (CC BY-SA 4.0)</a></div>
   </div>
 
-  <div class="focus-pane-inner">
-    <p>For years, using AI meant typing a question and reading an answer. But researchers are now using AI for something stranger and more ambitious. They're trying to understand what animals are actually saying to each other.</p>
+  <p>For years, using AI meant typing a question and reading an answer. But researchers are now using AI for something stranger and more ambitious. They're trying to understand what animals are actually saying to each other.</p>
 
-    <div class="audio-embed">
-      <iframe src="https://open.spotify.com/embed/episode/2tCoKxrVVCUYhfi575XUID?utm_source=generator&theme=0" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <div class="cap">Your Undivided Attention — "Talking With Animals Using AI" (May 2023). <a href="https://www.humanetech.com/podcast/talking-with-animals-using-ai" target="_blank" style="color:#b3c0e8">Listen on humanetech.com →</a></div>
-    </div>
+  <div class="audio-embed">
+    <iframe src="https://open.spotify.com/embed/episode/2tCoKxrVVCUYhfi575XUID?utm_source=generator&theme=0" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div class="cap">Your Undivided Attention — "Talking With Animals Using AI" (May 2023). <a href="https://www.humanetech.com/podcast/talking-with-animals-using-ai" target="_blank">Listen on humanetech.com →</a></div>
+  </div>
 
-    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key takeaways</h3>
+  <h3>Key takeaways</h3>
 
-    <p><strong>AI is learning to decode animal communication.</strong> The Earth Species Project is a nonprofit founded by Aza Raskin and Britt Selvitelle. It uses machine learning to find patterns in animal sounds that humans can't detect. Their goal is to translate animal communication. That means more than identifying species by sound. It means understanding what animals are actually saying to each other.</p>
+  <p><strong>AI is learning to decode animal communication.</strong> The Earth Species Project is a nonprofit founded by Aza Raskin and Britt Selvitelle. It uses machine learning to find patterns in animal sounds that humans can't detect. Their goal is to translate animal communication. That means more than identifying species by sound. It means understanding what animals are actually saying to each other.</p>
 
-    <p><strong>Scientists expect to synthesize animal calls within years.</strong> In May 2023, Raskin predicted that within 12 to 36 months, AI would be able to generate fake animal calls, like whale songs or monkey calls, that sound just like the real thing. This could let researchers "speak back" to animals for the first time in history.</p>
+  <p><strong>Scientists expect to synthesize animal calls within years.</strong> In May 2023, Raskin predicted that within 12 to 36 months, AI would be able to generate fake animal calls, like whale songs or monkey calls, that sound just like the real thing. This could let researchers "speak back" to animals for the first time in history.</p>
 
-    <p><strong>This could save lives — literally.</strong> One practical use: playing whale calls to redirect whales away from shipping lanes. That could prevent deadly ship strikes. Over 20,000 whales are estimated to be killed by ship strikes worldwide each year. AI-generated calls could warn them away from danger.</p>
+  <p><strong>This could save lives — literally.</strong> One practical use: playing whale calls to redirect whales away from shipping lanes. That could prevent deadly ship strikes. Over 20,000 whales are estimated to be killed by ship strikes worldwide each year. AI-generated calls could warn them away from danger.</p>
 
-    <p><strong>But there are serious risks.</strong> The same technology that could protect animals could be used to exploit them. Poachers could use fake bird calls to lure endangered species. Ecotourism operators could manipulate wildlife behavior for profit. And we might read human meanings into animal communication that aren't actually there. Researchers call this problem <span class="term" tabindex="0" data-def="Giving human traits or meanings to something non-human — in this case, assuming an animal sound means what it would mean coming from a person." aria-describedby="term-desc-10">anthropomorphism</span><span id="term-desc-10" class="term-desc">Giving human traits or meanings to something non-human — in this case, assuming an animal sound means what it would mean coming from a person.</span>.</p>
+  <p><strong>But there are serious risks.</strong> The same technology that could protect animals could be used to exploit them. Poachers could use fake bird calls to lure endangered species. Ecotourism operators could manipulate wildlife behavior for profit. And we might read human meanings into animal communication that aren't actually there. Researchers call this problem <span class="term" tabindex="0" data-def="Giving human traits or meanings to something non-human — in this case, assuming an animal sound means what it would mean coming from a person." aria-describedby="term-desc-10">anthropomorphism</span><span id="term-desc-10" class="term-desc">Giving human traits or meanings to something non-human — in this case, assuming an animal sound means what it would mean coming from a person.</span>.</p>
 
-    <p><strong>Animal "language" is more complex than we thought.</strong> Researchers found that a type of monkey called the gelada makes sounds with a rhythm surprisingly similar to how humans talk. Across many species, certain sounds seem to carry similar meanings. Scientists call this "sound symbolism." This suggests communication systems far more sophisticated than simple alarm calls.</p>
+  <p><strong>Animal "language" is more complex than we thought.</strong> Researchers found that a type of monkey called the gelada makes sounds with a rhythm surprisingly similar to how humans talk. Across many species, certain sounds seem to carry similar meanings. Scientists call this "sound symbolism." This suggests communication systems far more sophisticated than simple alarm calls.</p>
 
-    <div class="callout"><span class="tag">Think about it</span><p>If we could talk to animals, should we? What would it mean for conservation — and what could go wrong if the wrong people got access to this technology?</p></div>
+  <div class="callout"><span class="tag">Think about it</span><p>If we could talk to animals, should we? What would it mean for conservation — and what could go wrong if the wrong people got access to this technology?</p></div>
 
-    <div class="footnotes">
-      <ol>
-        <li>"Talking With Animals Using AI," Your Undivided Attention, Center for Humane Technology, May 4, 2023. Guests: Aza Raskin, Britt Selvitelle. <a href="https://www.humanetech.com/podcast/talking-with-animals-using-ai" target="_blank">Link</a></li>
-        <li>Rockwood, L., et al., "Estimating global whale mortality from vessel strikes," Marine Policy, 2017. See also: NOAA, "Reducing Ship Strikes to North Atlantic Right Whales." <a href="https://www.fisheries.noaa.gov/national/endangered-species-conservation/reducing-vessel-strikes-north-atlantic-right-whales" target="_blank">NOAA Link</a></li>
-        <li>Bergman, T.J., "Speech-like Rhythm in a Voiced and Voiceless Primate Communication System," PLOS ONE, 2013. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071688" target="_blank">Link</a></li>
-      </ol>
-    </div>
+  <div class="footnotes">
+    <ol>
+      <li>"Talking With Animals Using AI," Your Undivided Attention, Center for Humane Technology, May 4, 2023. Guests: Aza Raskin, Britt Selvitelle. <a href="https://www.humanetech.com/podcast/talking-with-animals-using-ai" target="_blank">Link</a></li>
+      <li>Rockwood, L., et al., "Estimating global whale mortality from vessel strikes," Marine Policy, 2017. See also: NOAA, "Reducing Ship Strikes to North Atlantic Right Whales." <a href="https://www.fisheries.noaa.gov/national/endangered-species-conservation/reducing-vessel-strikes-north-atlantic-right-whales" target="_blank">NOAA Link</a></li>
+      <li>Bergman, T.J., "Speech-like Rhythm in a Voiced and Voiceless Primate Communication System," PLOS ONE, 2013. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071688" target="_blank">Link</a></li>
+    </ol>
   </div>
 </div>
 
@@ -1066,15 +1076,15 @@ body.text-xl .stat-pair .desc,body.text-xl .stat-trio .desc{font-size:1rem}
 </div>
 
 <footer>
-  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated July 2026
+  Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
   <br><span style="margin-top:6px;display:inline-block">Podcast content from The Economist and the Center for Humane Technology. Try the Konami code on this page: ↑↑↓↓←→←→BA</span>
 </footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
-    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size">A</button>
-    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text">A</button>
-    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text">A</button>
+    <button class="ts-small" onclick="setTextSize('normal')" title="Normal text size" aria-label="Normal text size">A</button>
+    <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
+    <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
@@ -1280,28 +1290,9 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('quizModal')) closeQuiz();
 });
 
-function toggleDyslexic(){
-  document.body.classList.toggle('dyslexic');
-  const on = document.body.classList.contains('dyslexic');
-  localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-  document.getElementById('dyslexicToggle').classList.toggle('active', on);
-}
-if(localStorage.getItem('dyslexicFont')==='on'){
-  document.body.classList.add('dyslexic');
-  document.getElementById('dyslexicToggle').classList.add('active');
-}
 
-function setTextSize(size){
-  document.body.classList.remove('text-lg','text-xl');
-  if (size === 'lg') document.body.classList.add('text-lg');
-  if (size === 'xl') document.body.classList.add('text-xl');
-  localStorage.setItem('textSize', size);
-}
-const savedTextSize = localStorage.getItem('textSize');
-if (savedTextSize && savedTextSize !== 'normal') {
-  document.body.classList.add('text-' + savedTextSize);
-}
 </script>
 
+<script src="site.js"></script>
 </body>
 </html>
