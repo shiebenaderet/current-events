@@ -2,6 +2,15 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.1.0] — 2026-08-18
+
+**Minor — leftover pass after v3.0.0: Suggest a Topic, August freshness on the remaining pages, Space Race reading-level pass, unused chrome removed.**
+
+- **Suggest a Topic is now a first-class homepage section.** The empty Coming Soon rail stays gone. Students and teachers can send an idea with a short form that opens a prefilled school email (nothing is stored on the site) or use a GitHub issue template. Topic pages link to it from the masthead.
+- **August freshness on Climate, Immigration, and Gun Violence.** Climate: Washington's August 1 wildfire emergency and burn ban, with DNR acreage from the governor's proclamation and NASA Earth Observatory for the July 31 "particularly dangerous situation" alert — replacing the April "fire officials expect" forecast. Immigration: August 2026 Visa Bulletin (India EB-3 still January 1, 2014; India EB-2 unavailable through the fiscal year), cited to Ogletree's table of the State Department chart. Gun Violence: Texas HB 3's armed-officer rule still unfinished as the 2026–27 year started (KXAN district check + Leander ISD's own August 5 update). Date stamps and stale-link notes moved to August 18. ICE and TRAC figures on Immigration keep their original July/June as-of dates; they were not re-invented.
+- **Space Race 3-persona pass.** Nav no longer says "What's Happening Now." Jargon simplified (no "redesignates," "pathfinder," or "dissimilar redundancy"). Inline vocabulary + screen-reader definitions, classroom discussion questions, a dated-snapshot note, and a short "this is Social Studies, not rocket science" frame. Unused climate-clone CSS (`.stat-pair`, `.gh-steps`) removed from that page.
+- **Cleanup.** Homepage teacher download line now names `site.css`, `site.js`, `fonts/`, and `images/`. Unused Coming Soon / planned-badge / small-item CSS removed from `index.html`. README no longer lists translation as if it already shipped.
+
 ## [3.0.0] — 2026-08-18
 
 **Major — accessibility floor, shared CSS/JS, August freshness, chrome unification, and Space Race 2.0 ships.**

@@ -144,34 +144,31 @@ main{max-width:1160px;margin:0 auto;padding:0 6vw 80px}
   .tier-card{border-right:none}
 }
 
-/* ══════════════ THIRD TIER — dense small-headline rail ══════════════ */
-.tier-three{border-top:1px solid var(--rule)}
-.small-item{
-  display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--rule);
-  text-decoration:none;color:inherit;
+/* ══════════════ SUGGEST A TOPIC ══════════════ */
+.suggest-block{margin-top:12px;padding:28px 0 8px;border-top:1px solid var(--rule)}
+.suggest-lede{font-size:1.05rem;line-height:1.65;color:var(--ink-light);max-width:640px;margin:0 0 22px}
+.suggest-form{display:grid;gap:16px;max-width:640px}
+.suggest-form label{display:block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+.suggest-form input,.suggest-form select,.suggest-form textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--rule);background:#fff;color:var(--ink);
+  font-family:'Source Serif 4',Georgia,serif;font-size:1rem;line-height:1.5;
 }
-.small-item.is-link:hover h4{color:var(--accent)}
-.small-item .badge{
-  font-family:-apple-system,sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.06em;
-  text-transform:uppercase;padding:3px 9px;flex-shrink:0;margin-top:3px;white-space:nowrap;
+.suggest-form textarea{min-height:110px;resize:vertical}
+.suggest-form input:focus,.suggest-form select:focus,.suggest-form textarea:focus{
+  outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent);
 }
-.badge-soon{background:var(--paper-warm);color:var(--ink-faint);border:1px solid var(--rule)}
-.badge-planned{background:var(--paper-warm);color:var(--ink-light);border:1px solid var(--rule)}
-.small-item .body{flex:1;min-width:0}
-.small-item h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;margin-bottom:4px}
-.small-item p{font-size:.85rem;color:var(--ink-light);line-height:1.5}
-.small-item .status{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint);flex-shrink:0;white-space:nowrap;margin-top:3px}
-
-/* ══════════════ SUGGEST BOX ══════════════ */
-.suggest{
-  margin-top:20px;padding:22px 26px;border:1px dashed var(--rule);
-  display:flex;align-items:center;gap:20px;
+.suggest-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:4px}
+.suggest-form button{
+  background:var(--ink);color:#fff;border:none;padding:11px 18px;
+  font-family:-apple-system,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;cursor:pointer;
 }
-.suggest .icon{font-size:1.8rem;flex-shrink:0}
-.suggest h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;margin-bottom:4px}
-.suggest p{font-family:-apple-system,sans-serif;font-size:.84rem;color:var(--ink-light)}
-.suggest a{color:var(--accent);font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)}
-.suggest a:hover{color:var(--accent-ink);border-color:var(--accent-ink)}
+.suggest-form button:hover{background:var(--accent)}
+.suggest-alt{font-family:-apple-system,sans-serif;font-size:.84rem;color:var(--ink-light)}
+.suggest-alt a{color:var(--accent);font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)}
+.suggest-note{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-faint);line-height:1.5;margin:0}
+.suggest-status[hidden]{display:none}
+.suggest-status{font-family:-apple-system,sans-serif;font-size:.86rem;color:var(--ink-light);line-height:1.55;margin:0}
 
 /* ══════════════ TEACHER SECTION ══════════════ */
 .teacher{margin-top:56px;padding:36px 40px;background:var(--ink);color:#f0ece4}
@@ -237,6 +234,7 @@ footer a:hover{color:var(--accent)}
   <a href="immigration.html">Immigration</a>
   <a href="gun-violence.html">Gun Violence</a>
   <a href="space-race.html">Space Race</a>
+  <a href="#suggest">Suggest a Topic</a>
   <a href="#teachers">For Teachers</a>
   <a href="https://github.com/shiebenaderet/current-events" target="_blank" class="gh">★ GitHub</a>
 </nav>
@@ -300,21 +298,21 @@ footer a:hover{color:var(--accent)}
       <div class="tier-kicker">Climate &amp; Environment</div>
       <h3>Frozen Time Capsules</h3>
       <p>What 800,000 years of ice tells us about climate change — and Washington's own climate story.</p>
-      <div class="tier-meta"><span>25–40 min</span><span>Updated July 2026</span></div>
+      <div class="tier-meta"><span>25–40 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="immigration.html" class="tier-card">
       <div class="tier-photo"><img src="images/immigrants-statue-of-liberty-1887.jpg" alt="Immigrants on the steerage deck view the Statue of Liberty, 1887" onerror="this.parentElement.style.background='linear-gradient(135deg,#3a2f1e,#1a2a4a)'"></div>
       <div class="tier-kicker">History · Policy · Civics</div>
       <h3>A Nation of Immigrants</h3>
-      <p>The long history behind America's immigration system, from Ellis Island to today's policy debates.</p>
-      <div class="tier-meta"><span>30–50 min</span><span>Updated July 22, 2026</span></div>
+      <p>The long history behind America's immigration system, from Ellis Island to the dated policy snapshot on the page.</p>
+      <div class="tier-meta"><span>30–50 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="gun-violence.html" class="tier-card">
       <div class="tier-photo"><img src="images/school-metal-detector.jpg" alt="A walk-through metal detector installed at a school entrance" onerror="this.parentElement.style.background='linear-gradient(135deg,#3a4048,#1a1a1a)'"></div>
       <div class="tier-kicker">Policy · Public Health · Civics</div>
       <h3>Keeping Schools Safe</h3>
-      <p>Why school safety became a constant concern, what's actually been tried, and where the policy debate stands now.</p>
-      <div class="tier-meta"><span>25–45 min</span><span>Updated July 28, 2026</span></div>
+      <p>Why school safety became a constant concern, what's actually been tried, and where the policy debate stood as of August 2026.</p>
+      <div class="tier-meta"><span>25–45 min</span><span>Updated August 2026</span></div>
     </a>
     <a href="space-race.html" class="tier-card">
       <div class="tier-photo"><img src="images/space-race-card.jpg" alt="Buzz Aldrin on the Moon during Apollo 11" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#4a3c28)'"></div>
@@ -325,13 +323,42 @@ footer a:hover{color:var(--accent)}
     </a>
   </div>
 
-  <div class="suggest">
-    <span class="icon">💬</span>
-    <div>
-      <h4>Suggest a Topic</h4>
-      <p>What current event do you want to understand better? <a href="mailto:benaderets885@edmonds.wednet.edu?subject=Current%20Events%20Explained%20—%20Topic%20Suggestion">Tell Mr. B</a>, or contribute on GitHub.</p>
+  <section class="suggest-block" id="suggest" aria-labelledby="suggest-heading">
+    <div class="section-flag" style="margin-top:0">
+      <h2 id="suggest-heading">Suggest a Topic</h2>
+      <span class="flag-note">No account · Opens your email</span>
     </div>
-  </div>
+    <p class="suggest-lede">There is no hidden “Coming Soon” list. If a current event belongs on this site, send the idea. The form opens an email on your device — this page does not store what you type.</p>
+    <form id="suggest-form" class="suggest-form">
+      <div>
+        <label for="suggest-name">Your name <span style="font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink-faint)">(optional)</span></label>
+        <input id="suggest-name" name="sname" type="text" autocomplete="name" maxlength="80">
+      </div>
+      <div>
+        <label for="suggest-role">I am a</label>
+        <select id="suggest-role" name="role">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="parent">Parent / family</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="suggest-topic">Topic idea</label>
+        <input id="suggest-topic" name="topic" type="text" required maxlength="120" placeholder="Example: Arctic shipping routes">
+      </div>
+      <div>
+        <label for="suggest-why">Why it matters for 8th grade Social Studies</label>
+        <textarea id="suggest-why" name="why" required maxlength="800" placeholder="What background do students need that a headline does not give?"></textarea>
+      </div>
+      <div class="suggest-actions">
+        <button type="submit">Email this idea</button>
+        <span class="suggest-alt">or <a href="https://github.com/shiebenaderet/current-events/issues/new?template=topic-suggestion.md" target="_blank" rel="noopener">open a GitHub issue</a></span>
+      </div>
+      <p class="suggest-note">Sends to Mr. B’s school email. If nothing opens, copy your idea and email <a href="mailto:benaderets885@edmonds.wednet.edu?subject=Current%20Events%20Explained%20%E2%80%94%20Topic%20Suggestion">benaderets885@edmonds.wednet.edu</a>.</p>
+      <p class="suggest-status" id="suggest-status" hidden role="status"></p>
+    </form>
+  </section>
 
   <!-- ═══════════ TEACHER SECTION ═══════════ -->
   <div class="teacher" id="teachers">
@@ -345,7 +372,7 @@ footer a:hover{color:var(--accent)}
         <ul>
           <li>Link directly to any topic page from your LMS (Canvas, Schoology, Google Classroom)</li>
           <li>Embed as an iframe if your district allows external sites</li>
-          <li>Download the HTML file and host it yourself — no login required</li>
+          <li>Download a topic <code>.html</code> file plus <code>site.css</code>, <code>site.js</code>, <code>fonts/</code>, and any <code>images/</code> it uses — no login required</li>
           <li>Quizzes and easter eggs work on any modern browser, including Chromebooks</li>
           <li>All images are CC-licensed or public domain — safe for school use</li>
           <li>Works on phones, tablets, and desktops without any app install</li>
@@ -387,8 +414,9 @@ const headlines = [
   {text:'🇮🇷 Iran 60-day peace deadline expired Aug. 17 with no deal', href:'iran.html'},
   {text:"🇺🇦 Russia's summer offensive: no operational breakthrough (ISW, Aug. 1)", href:'ukraine.html#now'},
   {text:'🤖 71% of U.S. adults think AI will mean fewer jobs (Pew, Aug. 2026)', href:'ai.html#jobs'},
-  {text:"🌍 Washington's 4th straight drought year", href:'climate-change.html'},
+  {text:'🔥 WA wildfire emergency Aug. 1 — 4th drought year, ~425,000 acres', href:'climate-change.html'},
   {text:'🚀 NEW: Space Race 2.0 — the Moon, Mars, and who gets there', href:'space-race.html'},
+  {text:'💬 Suggest the next topic — no account needed', href:'#suggest'},
   {text:'All resources are free and open source — contribute on GitHub', href:'https://github.com/shiebenaderet/current-events'},
 ];
 const all = [...headlines,...headlines];

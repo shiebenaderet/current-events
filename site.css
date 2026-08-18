@@ -58,8 +58,6 @@ body.dyslexic .subhead,
 body.dyslexic .lead-dek,
 body.dyslexic .tier-card p,
 body.dyslexic .tier-card h3,
-body.dyslexic .small-item p,
-body.dyslexic .small-item h4,
 body.dyslexic h1,
 body.dyslexic h2,
 body.dyslexic h3,
@@ -69,7 +67,11 @@ body.dyslexic .vocab,
 body.dyslexic .update-box p,
 body.dyslexic .focus-pane p,
 body.dyslexic .teacher-col,
-body.dyslexic .about p{
+body.dyslexic .about p,
+body.dyslexic .suggest-lede,
+body.dyslexic .suggest-form input,
+body.dyslexic .suggest-form textarea,
+body.dyslexic .suggest-form select{
   font-family:'OpenDyslexic',sans-serif !important;
 }
 body.dyslexic .section-nav,

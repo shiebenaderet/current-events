@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v3.0.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v3.1.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped.
+The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped. v3.1.0 adds a homepage Suggest a Topic form and an August 2026 freshness pass on the remaining July-stamped pages.
 
 ---
 
@@ -38,9 +38,9 @@ Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no fram
 | 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 2026 |
 | 🤖 AI & Society | ✅ Live | `ai.html` | August 2026 |
 | 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 2026 |
-| 🌍 Climate Change | ✅ Live | `climate-change.html` | July 2026 |
-| 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | July 2026 |
-| 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | July 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 2026 |
+| 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 2026 |
+| 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 2026 |
 | 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 2026 |
 
 ---
@@ -65,6 +65,7 @@ current-events/
 ├── images/                      ← Shared image assets (portraits, hero photos)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh
+├── .github/ISSUE_TEMPLATE/      ← GitHub form for topic suggestions
 ├── VERSION                      ← Current site version (semver)
 ├── CHANGELOG.md                 ← Version history
 ├── CNAME                        ← Custom domain: current.mrbsocialstudies.org
@@ -98,16 +99,17 @@ Pull requests are very welcome — especially from other Social Studies teachers
 - Add a new topic page
 - Fix an outdated fact or broken link
 - Improve accessibility
-- Translate content for multilingual learners
-- Add sources in additional languages
+- Write a companion version of a page in another language (none ships yet; plain-English vocabulary tooltips are the current MLL support)
 
-**To suggest a topic or report an issue:** [Open a GitHub Issue](https://github.com/shiebenaderet/current-events/issues/new)
+**To suggest a topic:** use the [Suggest a Topic form](https://current.mrbsocialstudies.org/#suggest) on the homepage (it opens an email — nothing is stored on the site), or [open a GitHub issue](https://github.com/shiebenaderet/current-events/issues/new?template=topic-suggestion.md) with the topic-suggestion template.
+
+**To report an issue:** [Open a GitHub Issue](https://github.com/shiebenaderet/current-events/issues/new)
 
 ### Contribution guidelines
 - Each topic should be a flat `.html` file at the repo root (shared `site.css` / `site.js` / `fonts/` are required alongside it)
 - Write for a reading level of approximately **5th–6th grade** (but content depth of 8th grade)
 - Every factual claim should have an inline source citation linked to the original article
-- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of July 2026") rather than relative phrasing like "now" or "currently" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
+- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of August 2026") rather than relative phrasing like "now" or "currently" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
 - Prefer sources that are free to access (no paywalls)
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
 - Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below

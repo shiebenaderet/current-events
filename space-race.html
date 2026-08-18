@@ -146,23 +146,12 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
 
 /* two-up stat pair */
-.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.stat-pair .stat{text-align:left}
-.stat-pair .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.6rem;color:var(--accent);line-height:1}
-.stat-pair .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
-.stat-pair .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
-@media (max-width:560px){.stat-pair{grid-template-columns:1fr}}
 .stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .stat-trio .stat{text-align:left}
 .stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.4rem;color:var(--accent);line-height:1}
 .stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
 .stat-trio .desc b{display:block;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
 @media (max-width:700px){.stat-trio{grid-template-columns:1fr}}
-.gh-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 8px}
-.gh-steps .step{padding:16px 18px;background:var(--paper-warm);border-top:3px solid var(--accent)}
-.gh-steps .n{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.gh-steps p{margin:0;font-size:.92rem;color:var(--ink-light);line-height:1.5}
-@media (max-width:700px){.gh-steps{grid-template-columns:1fr}}
 
 /* vocab / key word: inline, treated as a definition aside not a colored box */
 .vocab{
@@ -408,7 +397,7 @@ footer{
 </div>
 
 <div class="masthead-top">
-  <span><a href="index.html">🏠 All Topics</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a></span>
+  <span><a href="index.html">🏠 All Topics</a><a href="index.html#suggest">Suggest a Topic</a><a href="iran.html">Iran</a><a href="ukraine.html">Ukraine</a><a href="ai.html">AI &amp; Society</a><a href="us-elections.html">US Elections</a><a href="climate-change.html">Climate Change</a><a href="immigration.html">Immigration</a><a href="gun-violence.html">Gun Violence</a></span>
   <span class="date">Updated August 18, 2026</span>
 </div>
 
@@ -420,11 +409,12 @@ footer{
 <nav class="section-nav">
   <a href="#update">Situation Update</a>
   <a href="#first-race">The First Race</a>
-  <a href="#today">What's Happening Now</a>
+  <a href="#today">The New Race</a>
   <a href="#wa-story">Washington's Story</a>
   <a href="#timeline">Timeline</a>
   <a href="#people">Key People</a>
   <a href="#videos">Videos</a>
+  <a href="#discuss">Discuss</a>
   <a href="#resources">Resources</a>
 </nav>
 
@@ -457,13 +447,13 @@ footer{
 
     <div class="mini-tl">
       <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Nov 2022</span><span class="mini-tl-text"><strong>Artemis I flies</strong> — NASA launches an uncrewed Orion capsule around the Moon on the Space Launch System rocket.<a class="cite-inline" href="https://www.nasa.gov/mission/artemis-i/" target="_blank">NASA</a></span></div>
-      <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Feb 2026</span><span class="mini-tl-text"><strong>Landing plan shifts</strong> — NASA redesignates Artemis III as a crewed test in Earth orbit, not a Moon landing. The first crewed landing is planned for Artemis IV.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></span></div>
+      <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Feb 2026</span><span class="mini-tl-text"><strong>Landing plan shifts</strong> — NASA changed Artemis III from a Moon landing into a crewed test in Earth orbit. The first crewed landing is planned for Artemis IV.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></span></div>
       <div class="mini-tl-item"><div class="mini-tl-dot"></div><span class="mini-tl-date">Aug 2026</span><span class="mini-tl-text"><strong>Artemis III targeted for 2027</strong> — NASA is planning a second-half-2027 flight to practice docking with test versions of commercial Moon landers from SpaceX and Blue Origin.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a></span></div>
     </div>
 
     <p>The first space race was a two-country contest. This one is messier. NASA still wants to land astronauts on the Moon. Private companies are building the landers. China has its own robotic lunar program. Schedules slip. That is not a failure of the page — it is how hard spaceflight is.</p>
 
-    <p>As of August 2026, NASA says Artemis III will send four astronauts into low Earth orbit on Orion. They will practice meeting and docking with "pathfinder" landers from Blue Origin and SpaceX. Those test vehicles will not be full Moon landers with working crew cabins. NASA has said Artemis IV, planned for early 2028, is expected to be the program's first crewed lunar landing under the revised sequence.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a><a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></p>
+    <p>As of August 2026, NASA says Artemis III will send four astronauts into <span class="term" tabindex="0" data-def="A path close to Earth, the same kind of orbit the International Space Station uses — not a trip to the Moon." aria-describedby="term-desc-1">low Earth orbit</span><span id="term-desc-1" class="term-desc">A path close to Earth, the same kind of orbit the International Space Station uses — not a trip to the Moon.</span> on Orion. They will practice meeting and <span class="term" tabindex="0" data-def="Connecting two spacecraft in space so they can join together." aria-describedby="term-desc-2">docking</span><span id="term-desc-2" class="term-desc">Connecting two spacecraft in space so they can join together.</span> with test versions of Moon landers from Blue Origin and SpaceX. Those test vehicles will not be full Moon landers with working crew cabins. NASA has said Artemis IV, planned for early 2028, is expected to be the program's first crewed lunar landing under the revised sequence.<a class="cite-inline" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank">NASA</a><a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a></p>
 
     <p>Boeing's Starliner capsule — a separate NASA crew vehicle meant for the International Space Station, not the Moon — still did not have a firm next launch date as of August 2026. After problems on its 2024 crewed test, the next flight is planned as uncrewed cargo. Boeing told investors it was aiming for no earlier than the fourth quarter of 2026. NASA declined to put a date on the calendar.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Boeing_Starliner-1" target="_blank">Wikipedia</a></p>
 
@@ -486,7 +476,9 @@ footer{
   <h2>The First Space Race</h2>
 </div>
 <div class="article">
-  <p class="lede"><strong>It started with a beep.</strong> On October 4, 1957, the Soviet Union launched Sputnik 1 — a metal sphere about the size of a beach ball. It circled Earth and sent a radio signal anyone with the right radio could hear. The United States had not expected to come in second.<a class="cite-inline" href="https://www.nasa.gov/history/sputnik/" target="_blank">NASA</a></p>
+  <p class="lede"><strong>It started with a beep.</strong> On October 4, 1957, the Soviet Union launched <span class="term" tabindex="0" data-def="The first human-made object to orbit Earth — a metal sphere about the size of a beach ball that sent a radio beep." aria-describedby="term-desc-3">Sputnik 1</span><span id="term-desc-3" class="term-desc">The first human-made object to orbit Earth — a metal sphere about the size of a beach ball that sent a radio beep.</span> — a metal sphere about the size of a beach ball. It circled Earth and sent a radio signal anyone with the right radio could hear. The United States had not expected to come in second.<a class="cite-inline" href="https://www.nasa.gov/history/sputnik/" target="_blank">NASA</a></p>
+
+  <p>This is a Social Studies page, not a rocket-science page. The first race was about the Cold War. The new one is about who writes the rules for the Moon, who pays, and which companies get the contracts.</p>
 
   <div class="photo-inline clearfix">
     <img src="images/sputnik.jpg" alt="A replica of the Sputnik 1 satellite, a polished metal sphere with four long antennas" onerror="this.style.display='none'">
@@ -580,7 +572,7 @@ footer{
   <div class="tl-item"><div class="tl-year">2011</div><div class="tl-body"><h4>Space shuttle retires</h4><p>The United States stops flying its own crew vehicle for a while and buys seats on Russian Soyuz spacecraft.</p></div></div>
   <div class="tl-item"><div class="tl-year">2020</div><div class="tl-body"><h4>SpaceX Crew Dragon</h4><p>A private American capsule starts flying NASA astronauts to the space station.</p></div></div>
   <div class="tl-item"><div class="tl-year">2022</div><div class="tl-body"><h4>Artemis I</h4><p>NASA sends an uncrewed Orion around the Moon on the Space Launch System rocket.</p></div></div>
-  <div class="tl-item"><div class="tl-year">Feb 2026</div><div class="tl-body"><h4>Artemis sequence revised</h4><p>NASA redesignates Artemis III as an Earth-orbit docking test. The first crewed landing is planned for a later flight.</p></div></div>
+  <div class="tl-item"><div class="tl-year">Feb 2026</div><div class="tl-body"><h4>Artemis sequence revised</h4><p>NASA changed Artemis III into an Earth-orbit docking test. The first crewed landing is planned for a later flight.</p></div></div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
 </div>
 
@@ -632,12 +624,32 @@ footer{
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
 </div>
 
+<!-- ═══════════ DISCUSS ═══════════ -->
+<div class="sec-head" id="discuss">
+  <span class="num">Discuss</span>
+  <h2>Questions for Class</h2>
+</div>
+<div class="article">
+  <div class="callout">
+    <span class="tag">For classroom or small-group discussion</span>
+    <p><strong>1.</strong> Why did a beep from a satellite scare people in 1957? What were they really afraid of?</p>
+    <p><strong>2.</strong> Kennedy's Moon goal had a public deadline. Artemis dates have slipped more than once. What does a deadline change about money, risk, and how the story gets told?</p>
+    <p><strong>3.</strong> NASA is buying Moon landers from companies instead of building only one government lander. What is gained by that — and what new risks show up?</p>
+    <p><strong>4.</strong> Blue Origin's headquarters is in Kent. Boeing's history is in this state too. Should a civics page treat a local company differently from any other contractor?</p>
+    <p><strong>5.</strong> This page names historical figures, not today's CEOs. Why might that be a good rule for a school page — and when might it hide something students should know?</p>
+  </div>
+</div>
+
 <!-- ═══════════ RESOURCES ═══════════ -->
 <div class="sec-head" id="resources">
   <span class="num">Resources</span>
   <h2>Keep Learning</h2>
 </div>
 <div class="article">
+  <div class="callout">
+    <span class="tag">⏳ A dated snapshot, not a permanent resource</span>
+    <p>Launch dates slip. If you are reading this well after August 2026, treat the Situation Update as history and check NASA's Artemis pages for a newer plan.</p>
+  </div>
   <h3>Easier</h3>
   <a class="rc" href="https://www.nasa.gov/learning-resources/" target="_blank"><span class="tag">NASA</span><div class="rc-title">NASA Learning Resources</div><p>Student-friendly explainers, images, and classroom materials from the space agency itself.</p><div class="level">Easier</div></a>
   <a class="rc" href="https://moon.nasa.gov/artemis/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Artemis program hub</div><p>What each Artemis flight is supposed to do, in NASA's own words.</p><div class="level">Easier</div></a>
@@ -675,9 +687,9 @@ const quizzes = {
   },
   q2: {
     q: "As of August 2026, what is NASA's published plan for Artemis III?",
-    choices: ["A crewed docking test in Earth orbit with commercial lander pathfinders", "A crewed landing at the Moon's south pole", "An uncrewed flight past Mars"],
+    choices: ["A crewed docking test in Earth orbit with test versions of commercial landers", "A crewed landing at the Moon's south pole", "An uncrewed flight past Mars"],
     correct: 0,
-    feedback: "✅ Correct! NASA redesignated Artemis III as an Earth-orbit docking test. The first crewed landing is planned later.",
+    feedback: "✅ Correct! NASA changed Artemis III into an Earth-orbit docking test. The first crewed landing is planned later.",
     wrong: "Not quite — as of August 2026, Artemis III is planned as a crewed Earth-orbit docking test, not a landing."
   },
   q3: {
@@ -705,7 +717,7 @@ const quizzes = {
     q: "Why does NASA have more than one company building a Moon lander?",
     choices: ["So it is not stuck if one design fails", "Because the Constitution requires two contractors", "So the landers can race each other to Mars"],
     correct: 0,
-    feedback: "✅ Correct! NASA calls this dissimilar redundancy — more than one way to do a hard job.",
+    feedback: "✅ Correct! NASA wants more than one lander design so one failure does not stop the program.",
     wrong: "Not quite — NASA wants more than one lander design so one failure does not stop the program."
   }
 };
