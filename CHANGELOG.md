@@ -2,6 +2,21 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.1.2] — 2026-08-18
+
+**Patch — site-wide voice pass.** Applied the Space Race story-first rewrite to the rest of the live topics. Same facts, citations, and August 2026 snapshots. Cut student-facing "this page" asides, dated undated "now / today / right now" news framing, and connected stacked sentences so the story carries the facts.
+
+- **Iran.** Dek now matches the 2026 war (a 60-day peace clock, not a 12-day 2025 war). The Section 1 line that still said "as of July 17, the two sides are still fighting" now follows the fighting through the August 17 deadline, cited to the same AP story already in the update pane. The Hormuz costing box connects to the spreading box instead of repeating "still barely moving." Why It Matters callouts hand off (oil → pump prices; partners → a war that's harder to stop; 70 years of U.S. choices → why American forces are already nearby).
+- **Ukraine.** The Bucha pull-quote no longer copies the two sentences above it. Front-line 622 / 97 / 38 km² figures stay, with connective tissue. Peace-talks meetings get a bridge sentence. Headings and the "still developing" warning are dated to the August 18 snapshot.
+- **AI.** Hero no longer stacks four disconnected claims. Stanford SETR is named without "later on this page." Wolf and Winthrop's "human element is irreplaceable" is dated to their April 2025 conversation. Quote punctuation is untouched.
+- **Elections.** Control snapshot dated August 18, 2026. Cook Toss Up lists are Cook's ratings, not a classroom guess. Candidate links go to the candidate's own site. Madison and Lewis are history; sitting officials stay in the update and the local-district section.
+- **Climate.** The June–July heat wave now hands off to Washington's fourth drought year and the August 1 wildfire emergency. Myers and Missik disagree about what the 0.5% drop *means*, not about the 96.1 million figure. CCA cents-per-gallon stays unsettled without "this page won't state one."
+- **Immigration.** The two histories (choice vs. forced migration) are told as story. Both ICE stated positions are reported rather than picked. The system section is "how it is built." The enforcement pointer now sends students to the update *above* (it had said "below").
+- **Gun violence.** Dek puts policy-not-headlines in the student's ear. The content note warns about the next paragraphs, not "this page." K-12 School Shooting Database counts are named without "this page uses." Brady and Kohl are history.
+- **Homepage.** Iran card names the 2026 U.S.-Israel war. Immigration card names the August 2026 snapshot. Suggest-a-topic copy left as-is (it has to say the form doesn't store what you type).
+
+Teacher Konami tips, hero nonpartisanship notes, and discussion questions that treat the explainer as a classroom object were left in place.
+
 ## [3.1.1] — 2026-08-18
 
 **Patch — Space Race voice pass.** Rewrote `space-race.html` so paragraphs connect instead of stacking facts. Cut the "this page" asides that broke the story, gave Starliner a clear job-change before the dates, and matched the site's story-first tone (same facts, citations, and August 2026 snapshot).
