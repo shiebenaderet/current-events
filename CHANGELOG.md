@@ -17,6 +17,8 @@ All notable changes to this site are documented here. Versioning follows the sch
 
 Teacher Konami tips, hero nonpartisanship notes, and discussion questions that treat the explainer as a classroom object were left in place.
 
+The standing story-first note for future updates is now in [`docs/VOICE.md`](docs/VOICE.md), and the README contribution guidelines point to it.
+
 ## [3.1.1] — 2026-08-18
 
 **Patch — Space Race voice pass.** Rewrote `space-race.html` so paragraphs connect instead of stacking facts. Cut the "this page" asides that broke the story, gave Starliner a clear job-change before the dates, and matched the site's story-first tone (same facts, citations, and August 2026 snapshot).

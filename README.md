@@ -63,6 +63,7 @@ current-events/
 ├── site.js                      ← Shared text-size / OpenDyslexic controls
 ├── fonts/                       ← Self-hosted OpenDyslexic (OFL)
 ├── images/                      ← Shared image assets (portraits, hero photos)
+├── docs/VOICE.md                 ← Standing story-first voice note for future updates
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh
 ├── .github/ISSUE_TEMPLATE/      ← GitHub form for topic suggestions
@@ -107,10 +108,13 @@ Pull requests are very welcome — especially from other Social Studies teachers
 
 ### Contribution guidelines
 - Each topic should be a flat `.html` file at the repo root (shared `site.css` / `site.js` / `fonts/` are required alongside it)
-- Write for a reading level of approximately **5th–6th grade** (but content depth of 8th grade)
-- Every factual claim should have an inline source citation linked to the original article
-- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of August 2026") rather than relative phrasing like "now" or "currently" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
-- Prefer sources that are free to access (no paywalls)
+- Write for a reading level of approximately **5th–6th grade** (but content depth of 8th grade). Contractions are fine.
+- **Let the story carry the facts.** The second sentence should be a consequence of the first. Open on people, events, and objects — not on a policy about how the explainer is written. Full standing note: [`docs/VOICE.md`](docs/VOICE.md).
+- Do not write student-facing “this page / this section / further down this page” except functional notes (content warnings, Konami tips, “the form does not store what you type,” hero sourcing notes, classroom discussion questions).
+- Every factual claim should have an inline source citation linked to the original article. Cite after the fact the source supports, not after a civics kicker. Prefer sources that are free to access (no paywalls). Wikipedia is a last resort.
+- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of August 2026") rather than relative phrasing like "now," "today," "currently," or "right now" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
+- Do not invent casualty, oil, retirement, ICE/TRAC, or incident totals. Prefer the last cited as-of date over a fresher-looking guess.
+- Party-swap test on current-policy prose. Accuracy, not false balance, for settled history and science. Quote punctuation stays as the source wrote it.
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
 - Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below
 
