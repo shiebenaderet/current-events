@@ -2,6 +2,10 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.1.1] — 2026-08-18
+
+**Patch — Space Race voice pass.** Rewrote `space-race.html` so paragraphs connect instead of stacking facts. Cut the "this page" asides that broke the story, gave Starliner a clear job-change before the dates, and matched the site's story-first tone (same facts, citations, and August 2026 snapshot).
+
 ## [3.1.0] — 2026-08-18
 
 **Minor — leftover pass after v3.0.0: Suggest a Topic, August freshness on the remaining pages, Space Race reading-level pass, unused chrome removed.**
