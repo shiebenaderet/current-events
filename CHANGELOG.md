@@ -2,6 +2,19 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.2.0] — 2026-08-27
+
+**Minor — weekly news refresh on pages whose August 18 snapshots were overtaken.** Dated to August 27, 2026. Gun violence, Space Race, and AI were checked and left alone: no sourced development in that window was large enough to rewrite those snapshots. Casualty, ICE/TRAC fiscal-year, and front-line km² totals that were already cited were not reinvented.
+
+- **Iran.** Hormuz is still a trickle, not a reopened strait. Kpler counted five confirmed crossings on August 25, down from more than 130 a day before the war (CNBC). Iran and Oman announced a temporary seven-mile shipping corridor and a mine-clearing project on August 26, while Iran said the waterway would not fully reopen until the United States met conditions from the expired June memorandum (Al Jazeera). Qatar's prime minister was in Tehran on August 27; President Trump said he had "no time schedule" for restarting talks (CNBC). The June 17 / August 17 peace-clock history stays.
+- **Ukraine.** First-half 2026 Al Jazeera 622 / net 97 km² and ISW's August 1 ~38 km² July figure stay with their original as-of dates. ISW's August 23 assessment still finds no operational breakthrough; Russian forces were still trying to set up attacks on Slovyansk and the Donetsk Fortress Belt. Zelenskyy described a joint Ukraine–U.S.–Europe page of ideas (ceasefire, a third-party Donbas economic zone, NATO/EU roles) and a mediation window from the December 2026 G20 through summer 2027 (RTÉ, Aug. 25). The Kremlin questioned the economic-zone idea (RTÉ / ISW).
+- **Elections.** Midterms countdown is **68 days** from August 27 to November 3, 2026. Cook's Senate Toss Up list is six races as of August 20, including Texas and Iowa, which Cook moved from Lean Republican (Cook ratings page). On August 25 Cook moved FL-14 and MI-10 from Lean Republican to Toss Up (Newsweek reporting Cook). House/Senate flip math and the 60 House / 11 Senate retirement counts were not reinvented.
+- **Climate.** The August 1 emergency and 425,000-acre DNR figure stay as that day's count. On August 24, DNR's Thomas Kyle-Milward told KOMO the season was over 800,000 acres burned, with 15 large uncontained fires, the third-worst by acres since 2015, and firefighters likely working into October.
+- **Immigration.** September 2026 Visa Bulletin: India EB-3 still January 1, 2014; India EB-2 still unavailable (Fragomen, citing the State Department chart). ICE's July 21 FYTD removal (356,389) and detention (65,765) figures stay. A later AP/PBS drop adds July's monthly arrest total: 49,571, up from 43,021 in June. TRAC's June 30 court backlog was not reinvented.
+- **Homepage.** Ticker and featured-story countdown rewritten from the live snapshots.
+
+**How this was checked.** Each new claim was read in the source, not trusted from a search snippet. Cook's Senate Toss Up count (6) was taken from Cook's own ratings page dated August 20. The House addition is reported as two named rating shifts rather than a guessed new toss-up total, because Cook's full House list is paywalled. The official State Department September bulletin URL is cited alongside Fragomen after a direct fetch of travel.state.gov timed out.
+
 ## [3.1.2] — 2026-08-18
 
 **Patch — site-wide voice pass.** Applied the Space Race story-first rewrite to the rest of the live topics. Same facts, citations, and August 2026 snapshots. Cut student-facing "this page" asides, dated undated "now / today / right now" news framing, and connected stacked sentences so the story carries the facts.
