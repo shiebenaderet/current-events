@@ -17,13 +17,13 @@ are unserved. Measuring the corpus corrected it twice, and both corrections narr
 | Page | Flesch-Kincaid | 4+ syllable words | Prose words |
 |---|---|---|---|
 | space-race | **6.5** | 1.0% | 1,801 |
-| ai | 8.2 | — | 5,798 |
+| ai | 8.2 | — | 5,796 |
 | ukraine | 8.6 | — | 4,499 |
 | us-elections | 8.6 | — | 3,332 |
-| iran | 9.0 | — | 3,322 |
-| climate-change | 9.2 | — | 2,127 |
+| iran | 9.0 | — | 3,321 |
+| climate-change | 9.2 | — | 2,048 |
 | immigration | **9.8** | 6.5% | 5,850 |
-| gun-violence | **9.9** | 4.3% | 9,727 |
+| gun-violence | **9.9** | 4.3% | 9,715 |
 
 `docs/VOICE.md` targets ~5th–6th grade. Only Space Race is close. But the words driving the
 gap are the subject itself: `immigration` (58×), `nationality`, `enforcement`, `persecution`
@@ -35,6 +35,11 @@ FK-6 target would fight the vocabulary the standards require, and lose.
 rewrite commits: Iran 9.1 → 8.9, gun-violence 9.9 → 9.9, space-race 6.6 → 6.5. Voice work and
 reading level are independent levers. "Rewrite everything in the Space Race voice" is
 therefore not a reading-level strategy, and this design does not pretend otherwise.
+
+Word counts throughout come from `tools/reading_time.py` (prose inside `<p>`, excluding
+chart labels and figure captions caught inside section markup). That script is the single
+source of truth for every minute figure on the site; hand counts will differ slightly and
+should not be used.
 
 **Conclusion.** The lever is not vocabulary. It is structure: a way in, honest lengths, and
 prose chunked the way the visuals already are. That matches the reported classroom use —
@@ -112,13 +117,13 @@ silent-reading rate, and deliberately not an adult rate:
 
 | Page | Prose words | Real | Currently advertised |
 |---|---|---|---|
-| gun-violence | 9,727 | **~75 min** | 25–45 min |
+| gun-violence | 9,715 | **~75 min** | 25–45 min |
 | immigration | 5,850 | ~45 min | 30–50 min |
-| ai | 5,798 | ~45 min | 25–45 min |
+| ai | 5,796 | ~45 min | 25–45 min |
 | ukraine | 4,499 | ~35 min | 30–50 min |
 | us-elections | 3,332 | ~26 min | 25–45 min |
-| iran | 3,322 | ~26 min | 20–40 min |
-| climate-change | 2,127 | ~16 min | 25–40 min |
+| iran | 3,321 | ~26 min | 20–40 min |
+| climate-change | 2,048 | ~16 min | 25–40 min |
 | space-race | 1,801 | ~14 min | 25–40 min |
 
 Two distinct errors: gun-violence is advertised at roughly half its true length, and the two
