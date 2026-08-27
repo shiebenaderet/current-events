@@ -34,14 +34,14 @@ Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no fram
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 2026 |
-| 🤖 AI & Society | ✅ Live | `ai.html` | August 2026 |
-| 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 2026 |
-| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 2026 |
-| 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 2026 |
-| 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 2026 |
-| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 2026 |
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 27, 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 27, 2026 |
+| 🤖 AI & Society | ✅ Live | `ai.html` | August 18, 2026 |
+| 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 27, 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 27, 2026 |
+| 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 27, 2026 |
+| 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 18, 2026 |
+| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 18, 2026 |
 
 ---
 
@@ -112,8 +112,8 @@ Pull requests are very welcome — especially from other Social Studies teachers
 - **Let the story carry the facts.** The second sentence should be a consequence of the first. Open on people, events, and objects — not on a policy about how the explainer is written. Full standing note: [`docs/VOICE.md`](docs/VOICE.md).
 - Do not write student-facing “this page / this section / further down this page” except functional notes (content warnings, Konami tips, “the form does not store what you type,” hero sourcing notes, classroom discussion questions).
 - Every factual claim should have an inline source citation linked to the original article. Cite after the fact the source supports, not after a civics kicker. Prefer sources that are free to access (no paywalls). Wikipedia is a last resort.
-- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of August 2026") rather than relative phrasing like "now," "today," "currently," or "right now" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
-- Do not invent casualty, oil, retirement, ICE/TRAC, or incident totals. Prefer the last cited as-of date over a fresher-looking guess.
+- When describing the current state of an ongoing event (a war, negotiation, protest movement, etc.), use an explicit date ("As of August 27, 2026") rather than relative phrasing like "now," "today," "currently," or "right now" — pages are refreshed periodically, and relative phrasing goes silently stale between refreshes
+- A weekly news pass should rewrite a page only when sourced developments actually overtake its dated snapshot. Update that page's **Last content refresh** date in the Topics table above; pages checked and left alone keep their previous date. Do not invent casualty, oil, retirement, ICE/TRAC, or incident totals. Prefer the last cited as-of date over a fresher-looking guess.
 - Party-swap test on current-policy prose. Accuracy, not false balance, for settled history and science. Quote punctuation stays as the source wrote it.
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
 - Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below

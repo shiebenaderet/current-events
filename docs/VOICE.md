@@ -1,6 +1,6 @@
 # Voice
 
-Standing editorial note for every future content refresh, new topic, and copy edit. `space-race.html` (v3.1.1) and the rest of the live topics (v3.1.2) are the model.
+Standing editorial note for every future content refresh, new topic, and copy edit. `space-race.html` (v3.1.1) and the rest of the live topics (v3.1.2) are the model for voice. Dated “what’s happening” panes follow the v3.2.0 snapshot pattern: an explicit as-of date, sourced links, and no invented totals.
 
 The usual failure is **voice, not facts**. True sentences stacked without handing off, or asides that talk about “the page,” break the story. Rewrite so **the story carries the facts**.
 
@@ -25,7 +25,7 @@ Write the rule in the student’s ear instead: “Policy, not headlines,” not 
 
 ## Date the news
 
-Never use undated “now / today / currently / right now” for an ongoing event. Use an explicit date (“As of August 18, 2026”). Historical “today” (a cathedral still standing a thousand years later) is fine if it cannot be mistaken for a news ticker.
+Never use undated “now / today / currently / right now” for an ongoing event. Use an explicit date (“As of August 27, 2026”). Historical “today” (a cathedral still standing a thousand years later) is fine if it cannot be mistaken for a news ticker.
 
 Pages are refreshed periodically. Relative phrasing goes silently stale between refreshes.
 
