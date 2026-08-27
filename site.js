@@ -26,6 +26,38 @@
     }
   }
 
+  /* Vocabulary tooltips open on tap as well as hover.
+     The per-page CSS reveals .term::after on :hover/:focus; a touchscreen has neither
+     reliably, so tapping a term toggles .is-open instead. One term open at a time.
+     Markup is untouched: data-def, tabindex and the aria-describedby/.term-desc pair
+     still carry the definition for screen readers. */
+  function closeTerms(except) {
+    var open = document.querySelectorAll('.term.is-open');
+    for (var i = 0; i < open.length; i++) {
+      if (open[i] !== except) open[i].classList.remove('is-open');
+    }
+  }
+
+  function initTerms() {
+    if (!document.querySelector('.term')) return;
+
+    document.addEventListener('click', function (e) {
+      var term = e.target.closest ? e.target.closest('.term') : null;
+      if (!term) { closeTerms(null); return; }
+      e.preventDefault();
+      var wasOpen = term.classList.contains('is-open');
+      closeTerms(term);
+      term.classList.toggle('is-open', !wasOpen);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeTerms(null);
+    });
+
+    // A tooltip pinned over moving text is worse than none.
+    window.addEventListener('scroll', function () { closeTerms(null); }, { passive: true });
+  }
+
   function initSuggestForm() {
     var form = document.getElementById('suggest-form');
     if (!form) return;
@@ -68,6 +100,7 @@
 
   function init() {
     initA11y();
+    initTerms();
     initSuggestForm();
   }
 

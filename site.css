@@ -1,6 +1,51 @@
 /* Shared accessibility + chrome helpers for Current Events Explained.
    Page-specific palettes stay in each HTML file's :root (--accent, etc.). */
 
+/* ── Shared design tokens ─────────────────────────────────────────────────────
+   Vocabulary, not layout. The audit of 2026-08-27 found 62 distinct font-size values
+   site-wide (seven of them between .66 and .82rem), because eight self-contained pages
+   each carry their own inline stylesheet and there was no shared scale to drift from.
+
+   These are namespaced --ce-* so they can never collide with a page's own --accent,
+   --ink or --paper, which stay inline and stay distinct per page (MEMORY.md §5).
+   Component CSS still lives inline per page (MEMORY.md §1) — this file defines the
+   words, not the sentences.
+
+   Type is a 1.125 scale anchored on the reading size actually used in the articles
+   (--ce-text-body 1.18rem), so adopting a token never changes prose size. */
+:root{
+  /* type */
+  --ce-text-2xs: .68rem;
+  --ce-text-xs:  .76rem;
+  --ce-text-sm:  .86rem;
+  --ce-text-md:  1rem;
+  --ce-text-body:1.18rem;
+  --ce-text-lg:  1.33rem;
+  --ce-text-xl:  1.5rem;
+  --ce-text-2xl: 2rem;
+
+  /* spacing */
+  --ce-space-1: 4px;
+  --ce-space-2: 8px;
+  --ce-space-3: 12px;
+  --ce-space-4: 16px;
+  --ce-space-6: 24px;
+  --ce-space-8: 32px;
+
+  /* radius — the site is a broadsheet, so these stay deliberately tight */
+  --ce-radius-sm: 4px;
+  --ce-radius:    8px;
+  --ce-radius-pill: 50px;
+
+  /* motion */
+  --ce-motion-fast: .15s;
+  --ce-motion-slow: .3s;
+  --ce-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* the 44px touch floor, referenced rather than repeated */
+  --ce-tap: 44px;
+}
+
 @font-face{
   font-family:'OpenDyslexic';
   font-style:normal;
@@ -12,18 +57,18 @@
 .skip-link{
   position:absolute;left:8px;top:-48px;z-index:10000;
   background:var(--ink,#1a1a1a);color:#fff;
-  padding:8px 14px;font-family:-apple-system,sans-serif;
-  font-size:.8rem;font-weight:700;text-decoration:none;
+  padding:var(--ce-space-2) 14px;font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-sm);font-weight:700;text-decoration:none;
 }
 .skip-link:focus{top:8px;outline:2px solid #fff;outline-offset:2px}
 
 .a11y-controls{
   position:fixed;bottom:20px;right:20px;z-index:9999;
-  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:var(--ce-space-2);
 }
 .dyslexic-toggle{
-  background:#111;color:#fff;border:none;border-radius:50px;
-  padding:10px 16px;font-size:.8rem;font-weight:800;
+  background:#111;color:#fff;border:none;border-radius:var(--ce-radius-pill);
+  padding:12px var(--ce-space-4);font-size:var(--ce-text-sm);font-weight:800;min-height:var(--ce-tap);
   cursor:pointer;display:flex;align-items:center;gap:6px;
   font-family:-apple-system,sans-serif;
   box-shadow:0 4px 16px rgba(0,0,0,.25);
@@ -34,14 +79,24 @@
 }
 .dyslexic-toggle.active{background:var(--accent,#a02c2c)}
 .text-size-controls{
-  display:flex;align-items:center;gap:2px;background:#111;
-  border-radius:50px;padding:4px;
+  display:flex;align-items:center;gap:6px;background:#111;
+  border-radius:var(--ce-radius-pill);padding:var(--ce-space-1);
   box-shadow:0 4px 16px rgba(0,0,0,.25);
 }
 .text-size-controls button{
   background:transparent;color:#fff;border:none;border-radius:50%;
   width:32px;height:32px;font-family:-apple-system,sans-serif;font-weight:800;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
+  position:relative;touch-action:manipulation;
+}
+/* The A/A/A controls read at 32px but are 44px to the thumb. These are the accessibility
+   controls themselves, so the students most likely to need them include those with the
+   least precise aim — an invisible hit area fixes that without enlarging the chrome.
+   The 6px gap keeps adjacent expanded areas from overlapping into mis-taps. */
+.text-size-controls button::after{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:var(--ce-tap);height:var(--ce-tap);
 }
 .text-size-controls button:hover{background:rgba(255,255,255,.15)}
 .text-size-controls .ts-small{font-size:.7rem}
@@ -84,6 +139,26 @@ body.dyslexic code{
   font-family:-apple-system,sans-serif !important;
 }
 
+/* ── Tap-to-open vocabulary tooltips ──────────────────────────────────────────
+   The per-page .term tooltip reveals on :hover / :focus only. Neither exists on a
+   touchscreen, so on a school tablet the students who most need a word defined were
+   the least likely to see it. site.js adds .is-open on tap; these rules mirror the
+   per-page :hover reveal. Loaded after each page's inline <style>, so equal
+   specificity wins here without touching eight inline stylesheets.
+
+   The tooltip is presentational only — the real accessible name stays on the
+   .term-desc span behind aria-describedby, which is untouched. */
+.term{touch-action:manipulation}
+.term.is-open::after{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+}
+.term.is-open::before{opacity:1;visibility:visible}
+
+/* Larger comfortable tap area on coarse pointers, without shifting the text baseline. */
+@media (pointer:coarse){
+  .term{padding:2px 1px;margin:0 -1px}
+}
+
 body.text-lg .article p,
 body.text-lg .article ul li,
 body.text-lg .lead-dek,
@@ -99,13 +174,24 @@ body.text-xl .tier-card p{font-size:1.5rem}
 body.text-xl .stat-pair .desc,
 body.text-xl .stat-trio .desc{font-size:1rem}
 
+/* Motion floor. Page-local CSS declares its own animation (.shake on a wrong quiz
+   answer, the homepage ticker, photo and toast transitions) and none of the eight inline
+   stylesheets carry their own reduced-motion guard, so the shared layer has to cover them.
+
+   .shake is quiz feedback rather than decoration, so it is neutralised rather than left
+   running: the answer is already marked correct/incorrect in text and colour, so no
+   information is lost when the movement is removed. */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .ticker-inner{
     animation:none !important;transform:none !important;
   }
+  .shake{animation:none !important}
   .lead-photo img,
   .tier-photo img,
   .progress-fill,
-  .toast{animation:none !important;transition:none !important}
+  .toast,
+  .term::after,
+  .term::before{animation:none !important;transition:none !important}
+  .lead-story:hover .lead-photo img{transform:none !important}
 }
