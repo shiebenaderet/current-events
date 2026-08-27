@@ -255,3 +255,13 @@ body.text-xl .stat-trio .desc{font-size:1rem}
     max-width:678px;
   }
 }
+
+/* The "Where Things Stand" pane is dark on every page, so the block inverts there.
+   .on-dark rather than a page-specific selector, because all eight panes share it. */
+.before-read.on-dark > p{color:rgba(255,255,255,.82)}
+.before-read.on-dark .br-head{border-bottom-color:rgba(255,255,255,.18)}
+.before-read.on-dark .br-time{color:rgba(255,255,255,.55)}
+.before-read.on-dark .tag{color:#fff}
+@media (min-width:701px){
+  .before-read.on-dark{border-left-color:rgba(255,255,255,.35)}
+}
