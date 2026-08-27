@@ -195,3 +195,63 @@ body.text-xl .stat-trio .desc{font-size:1rem}
   .term::before{animation:none !important;transition:none !important}
   .lead-story:hover .lead-photo img{transform:none !important}
 }
+
+/* ── "Before you read" entry blocks ───────────────────────────────────────────
+   One per substantive section, between .sec-head and .article. Gives a student
+   the section's spine and its real cost before they commit, which is what makes
+   assigning individual sections workable.
+
+   Defined here rather than in eight inline stylesheets because site.css loads
+   after them: one rule, one place to change it. Colour comes from each page's
+   own --accent, so the per-page palettes stay distinct. */
+.before-read{
+  max-width:700px;
+  margin:0 auto;
+  padding:18px 6vw 20px;
+}
+.before-read > p{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--ink-light,#4a4a4a);
+  margin:0 0 10px;
+}
+.before-read > p:last-child{margin-bottom:0}
+
+.br-head{
+  display:flex !important;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:var(--ce-space-3,12px);
+  margin-bottom:10px !important;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--rule,#d4cfc4);
+}
+.br-head .tag{margin-bottom:0;color:var(--accent)}
+.br-time{
+  font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-2xs,.68rem);
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ink-faint,#767066);
+  white-space:nowrap;
+}
+.br-first{
+  font-family:-apple-system,sans-serif !important;
+  font-size:var(--ce-text-xs,.76rem) !important;
+  color:var(--ink-faint,#767066) !important;
+}
+.br-first a{color:var(--accent);font-weight:700}
+
+/* The block is a quiet frame, not a card: a left rule matching .callout and
+   .vocab, so it reads as part of the same editorial furniture. */
+@media (min-width:701px){
+  .before-read{
+    border-left:3px solid var(--accent);
+    padding-left:22px;
+    margin-left:max(0px,calc(50vw - 350px));
+    margin-right:auto;
+    max-width:678px;
+  }
+}
