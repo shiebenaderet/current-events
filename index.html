@@ -15,7 +15,7 @@ html{scroll-behavior:smooth}
   --rule:#d4cfc4; --rule-heavy:#1a1a1a;
   --accent:#a02c2c; --accent-ink:#6b1414; --accent-tint:#f6e9e6;
 }
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-wrap:break-word}
 
 /* ══════════════ MASTHEAD ══════════════ */
 .masthead-top{
@@ -90,8 +90,9 @@ main{max-width:1160px;margin:0 auto;padding:0 6vw 80px}
 /* ══════════════ FEATURED STORY — the "lead," largest headline on the page ══════════════ */
 .lead-story{display:block;text-decoration:none;color:inherit;position:relative}
 .lead-photo{position:relative;height:56vh;min-height:340px;overflow:hidden}
-.lead-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
-.lead-story:hover .lead-photo img{transform:scale(1.02)}
+.lead-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.lead-story:hover .lead-badge,.lead-story:focus-visible .lead-badge{background:var(--accent-ink)}
+.lead-story:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .lead-photo-overlay{
   position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(10,10,10,.05) 0%,rgba(10,10,10,.2) 45%,rgba(8,8,8,.85) 100%);

@@ -2,6 +2,74 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.3.0] — 2026-08-27
+
+**Minor — touch/mobile accessibility floor and a shared token layer.** Structural only: no
+prose, citation, or content edits. All nine pages' HTML changes total 13 CSS declarations;
+`cite-inline`, `.term`/`.term-desc`, `<div>` balance, `<img>`/`onerror`, and id uniqueness
+were captured before the pass and re-checked identical after it.
+
+Driven by a `/edtech-ui-ux` audit of the live v3.2.0 site. Worth recording what the audit
+did **not** find: no `#3B82F6`/gray-50 slop hexes, no blue→purple gradients, no Inter or
+Roboto, no marketing jargon in the prose ("unlock" is quiz mechanics, "Revolutionary" is the
+Islamic Revolution), a disciplined 4-value radius scale, and prose already at
+`max-width:700px` / `line-height:1.75`. The newspaper look is a deliberate choice and stays;
+the EdTech "warm, rounded, no gray" register was explicitly **not** applied, because the
+broadsheet framing is what signals to a student that this is journalism to be read as a
+source.
+
+- **Vocabulary tooltips now open on tap.** `.term` revealed its definition only on `:hover` /
+  `:focus`. Neither exists reliably on a touchscreen, so on a school tablet the students who
+  most need a word defined were the least likely to ever see it — 75 terms across seven
+  pages. `site.js` now toggles `.is-open` on tap, with one term open at a time, and closing
+  on outside-tap, `Escape`, and scroll. The click is `preventDefault`-ed because several
+  terms sit inside `<a>` resource cards, where the naive fix would have navigated away
+  instead of defining the word. The `tabindex="0"` / `data-def` / `aria-describedby` →
+  `.term-desc` triple is untouched; `data-def` text is byte-identical on all nine pages.
+- **Mobile overflow guard propagated to all nine pages.** `body{overflow-x:hidden;
+  overflow-wrap:break-word}` existed only on `gun-violence` and `immigration` — the fix had
+  been written once and never carried across. This closes the "mobile overflow bug" that had
+  been sitting open in the working notes.
+- **Reduced-motion now covers page-local animation.** `site.css` had a
+  `prefers-reduced-motion` block, but zero of the nine inline stylesheets did, so the
+  wrong-answer `.shake`, toasts, progress fills, and photo transitions ran regardless of the
+  setting. Broadened in the shared layer. `.shake` is neutralised rather than preserved: the
+  answer is already marked in text and colour, so removing the movement loses no information.
+- **Homepage lead story no longer scales on hover.** `transform:scale(1.02)` replaced with a
+  badge colour shift, plus a `:focus-visible` outline the lead story previously lacked — a
+  keyboard-navigation gain that came free with the fix.
+- **A11y controls meet the 44px touch floor.** The A/A/A text-size buttons were 32×32px.
+  They keep their 32px look via an invisible 44px `::after` hit area, with the cluster gap
+  widened to 6px so the expanded areas cannot overlap into mis-taps. These are the
+  accessibility controls themselves, so the students likeliest to need them include those
+  with the least precise aim.
+- **Shared `--ce-*` design tokens.** The audit counted **62 distinct `font-size` values**
+  site-wide — seven of them between `.66rem` and `.82rem` — because eight self-contained
+  pages each carry their own inline stylesheet and there was no shared scale to drift from.
+  `site.css` now defines a namespaced type/spacing/radius/motion scale plus the tap floor,
+  adopted within the shared layer. `--ce-*` cannot collide with a page's own `--accent` /
+  `--ink` / `--paper`, which stay inline and stay distinct. This pass establishes the
+  vocabulary; it does **not** yet collapse the count, which moves 62 → 61 (only the
+  `.article p` reconciliation below). The scale exists to be adopted, and the eight inline
+  stylesheets are swept in the reading-level effort rather than twice.
+- **`.article p` reconciled.** Five pages set `1.18rem`, three (`gun-violence`,
+  `immigration`, `us-elections` — the newest and longest) set `1.14rem`. Clone drift, not a
+  decision. Standardised on the majority and larger value, `1.18rem`, which favours the
+  below-grade-level readers the site names as its audience.
+
+**What was considered and rejected.** Extracting shared component CSS (`.article`, `.quiz`,
+the points engine) out of the eight inline stylesheets would collapse the 62-size problem at
+its root, but it breaks the one-file-per-topic model the working notes protect deliberately.
+Left alone; reopening it is its own effort, not a side effect of an accessibility pass. The
+remaining font-size consolidation is staged to fold into the reading-level work rather than
+sweeping eight stylesheets twice.
+
+**How this was checked.** `site.js` was executed against all nine real pages in jsdom, not
+inspected: nine behavioural assertions on the tooltip (open, toggle, single-open, outside
+close, Escape, scroll, `preventDefault`, and the full accessibility wiring), plus text-size
+and dyslexic-font toggles per page. 9/9 pages pass. Invariant counts were diffed against
+`main` rather than eyeballed.
+
 ## [3.2.0] — 2026-08-27
 
 **Minor — weekly news refresh on pages whose August 18 snapshots were overtaken.** Dated to August 27, 2026. Gun violence, Space Race, and AI were checked and left alone: no sourced development in that window was large enough to rewrite those snapshots. Casualty, ICE/TRAC fiscal-year, and front-line km² totals that were already cited were not reinvented.
