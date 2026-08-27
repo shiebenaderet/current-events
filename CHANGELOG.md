@@ -2,6 +2,84 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.4.0] — 2026-08-27
+
+**Minor — "Before you read" entry blocks on every substantial section, and honest reading
+times.** 56 blocks across eight pages, ~2,400 new words against ~36,000 existing. No prose,
+citation, or content edits: every `cite-inline`, `.term`/`.term-desc` pair, `<div>` balance,
+`<img>`/`onerror` and id set was captured before the pass and re-verified identical against
+`b2a76a3` after it.
+
+**What the measurements changed.** The effort began from a reasonable hypothesis — the site
+has no reading levels, so below-level readers are unserved — and measuring the corpus
+corrected it twice.
+
+First, reading level is largely a *topic* effect. Flesch-Kincaid across the pages ran 6.5
+(space-race) to 9.9 (gun-violence) against a stated 5th–6th grade target, but the words
+driving the gap are the subject itself: `immigration` appears 58 times, alongside
+`nationality`, `naturalization`, `legislature`, `congressional`, `ammunition`. Space Race
+scores 6.5 because rockets are concrete, not because it is better written. A site-wide FK-6
+target would have fought the vocabulary the standards require, and lost.
+
+Second, the v3.1.1/v3.1.2 story-first rewrite did **not** move reading level: Iran 9.1 → 8.9,
+gun-violence 9.9 → 9.9, space-race 6.6 → 6.5. Voice and reading level are independent levers,
+so "rewrite everything in the Space Race voice" was never going to be a reading-level
+strategy. Recording that here so it is not re-attempted.
+
+The lever is structure, not vocabulary — which also matched the reported classroom use:
+sections are already assigned individually, the wall of text loses students at the on-ramp,
+and students gravitate to timelines and quizzes over continuous prose.
+
+- **The blocks.** One `<aside class="before-read">` per substantial section, between the
+  section head and the article: 2–3 plain sentences, a measured reading time, and a "First:"
+  link only where a section genuinely depends on an earlier one. Navigational sections
+  (videos, sources, Key People) and anything under 150 words get none. Every block measures
+  below the reading level of the page it sits on — the widest gaps are immigration (7.6
+  against 9.8) and gun-violence (7.2 against 9.9), which is exactly where it matters most.
+  The blocks are where "naturalization" becomes "becoming a citizen" while the section keeps
+  the real term behind its `.term` tooltip.
+- **Honest times.** Every figure now comes from `tools/reading_time.py` at 130 wpm. Two kinds
+  of error were live: gun-violence was advertised at 25–45 min against a measured ~75, and
+  the two shortest pages were advertised as *longer* than they are. Its homepage card now
+  also says "Long read — assign by section", because a 75-minute page is a planning fact a
+  teacher should have before the period, not after.
+- **Tooling, checked in.** `tools/reading_time.py` is the single source of truth for every
+  minute figure; `tools/verify_invariants.py` is the regression suite this repo otherwise
+  lacks. Re-run both after a content refresh.
+- **`.on-dark` block variant.** The dated "Situation Update" pane and the `.focus-pane`
+  insets are dark on every page, so blocks there invert rather than rendering unreadable.
+
+**What went wrong, and how it was caught.**
+
+- **The section-splitter missed the most-assigned section on every page.** The first version
+  of `reading_time.py` split on `<div class="sec-head">`, but the dated "Where Things Stand"
+  pane uses `.update-head`. That silently dropped it, undercounting every page —
+  gun-violence read 8,749 words instead of 9,715 — and yielded 48 blocks instead of 56.
+  Caught by extracting the script from the plan and running it against the real corpus
+  instead of trusting it. Splitting on `<h2>` fixes it.
+- **Every `.br-time` was one minute short.** Labels were written from pre-block measurements,
+  and then the blocks' own words pushed 24 of the 56 sections across a rounding boundary.
+  Caught by the plan's own drift check, which compares each rendered label against a fresh
+  measurement; corrected by iterating until it converged.
+- **A block described the page to the student.** The Iran update block ended "This is the
+  longest section on the page" — the same violation as "further down this page", which
+  `docs/VOICE.md` exists to prevent. The minute label already carries that information.
+- **The pilot passed the reading-level gate on a rounding edge.** First pass measured FK 7.99
+  against a `< 8.0` threshold. Treated as a failure rather than a pass; splitting three
+  compound sentences brought it to 6.71.
+- **Two drafted blocks were wrong until the sections were actually read.** The elections
+  block said voters fill two branches directly; the section's point is that only Congress is
+  directly elected, the president comes through the Electoral College, and judges are not
+  elected at all — the draft would have introduced the misconception the section exists to
+  correct. And the Space Race Washington block nearly flattened "Boeing's Starliner is
+  assembled in Florida, not Everett" into "Boeing builds spacecraft in Washington."
+
+**Deferred, deliberately.** Splitting `gun-violence.html` (77 min) would break Canvas links
+teachers have already made; revisit after a term of classroom use. Converting dense prose
+into `.stat-trio`/`.tl-item` components is a content edit that moves cited claims between
+elements, and doing it alongside 56 new blocks would make a citation regression hard to
+localise — its own effort. The remaining font-size consolidation from v3.3.0 folds into that.
+
 ## [3.3.0] — 2026-08-27
 
 **Minor — touch/mobile accessibility floor and a shared token layer.** Structural only: no
