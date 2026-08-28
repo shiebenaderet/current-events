@@ -156,3 +156,37 @@ test('isInsideQuoteMarks handles empty and null text without throwing', () => {
   assert.equal(SM.isInsideQuoteMarks(null, 0), false);
   assert.equal(SM.isInsideQuoteMarks(undefined, 0), false);
 });
+
+// Finding 1 (fix round 2): a quotation split across text nodes by ordinary
+// inline markup, e.g. <p>Dr. Smith said "the <strong>hydropower</strong>
+// plan is dead."</p> -- the term's own text node ("hydropower") holds zero
+// quote marks; only the whole block's rendered text reveals it's quoted.
+// isQuotedAtFragmentOffset is the pure core of that check: it takes the
+// block's text already split into ordered fragments (as a DOM walk of its
+// text nodes would produce) plus which fragment holds the match, with no
+// DOM required to exercise it.
+test('isQuotedAtFragmentOffset detects a quotation split across text nodes by inline markup', () => {
+  const fragments = ['Dr. Smith said "the ', 'hydropower', ' plan is dead."'];
+  assert.equal(SM.isQuotedAtFragmentOffset(fragments, 1, 0), true);
+});
+
+test('isQuotedAtFragmentOffset detects a quotation split across nodes with curly quotes', () => {
+  const fragments = ['The report called it “the ', 'coalition', ' of the willing.”'];
+  assert.equal(SM.isQuotedAtFragmentOffset(fragments, 1, 0), true);
+});
+
+test('isQuotedAtFragmentOffset returns false for a term outside any quote in the same block', () => {
+  const fragments = ['The Speaker of the House is ', 'elected', ' by the full House.'];
+  assert.equal(SM.isQuotedAtFragmentOffset(fragments, 1, 0), false);
+});
+
+test('isQuotedAtFragmentOffset returns false for a quote that closes before the match fragment', () => {
+  const fragments = ['She called it "a plan" before adding: ', 'hydropower', ' is the future.'];
+  assert.equal(SM.isQuotedAtFragmentOffset(fragments, 1, 0), false);
+});
+
+test('isQuotedAtFragmentOffset matches a single-fragment block exactly like isInsideQuoteMarks', () => {
+  const t = 'The term "computer vision" was invented decades ago.';
+  const idx = t.indexOf('computer vision');
+  assert.equal(SM.isQuotedAtFragmentOffset([t], 0, idx), SM.isInsideQuoteMarks(t, idx));
+});

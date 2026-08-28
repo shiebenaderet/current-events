@@ -87,6 +87,28 @@
     return straightOpen || curlyDepth > 0;
   }
 
+  // A quotation can be split across text nodes by ordinary inline markup
+  // (e.g. `Dr. Smith said "the <strong>hydropower</strong> plan is dead."`
+  // -- ai.html:432 already bolds a word inside a quotation elsewhere), so
+  // isInsideQuoteMarks alone -- scoped to one text node -- can miss it: the
+  // node holding the match may itself contain zero quote marks. This is
+  // the pure core of that fix: given a block's rendered text already split
+  // into the ordered fragments a DOM walk of its text nodes would produce,
+  // and the index of the fragment the match's own text node corresponds
+  // to, compute the match's true offset in the whole block and defer to
+  // isInsideQuoteMarks on that. Kept separate from the DOM walk that
+  // gathers `fragments` (isQuotedInBlock, below) so the split-across-nodes
+  // shape is testable here without a DOM.
+  function isQuotedAtFragmentOffset(fragments, targetIndex, matchIndex) {
+    var offset = 0;
+    for (var i = 0; i < targetIndex; i++) {
+      offset += String(fragments[i] == null ? '' : fragments[i]).length;
+    }
+    offset += matchIndex;
+    var blockText = fragments.join('');
+    return isInsideQuoteMarks(blockText, offset);
+  }
+
   function keyWordFromBox(labelText) {
     var t = String(labelText == null ? '' : labelText).trim().replace(/\s+/g, ' ');
     // Separator is a colon on us-elections and an em-dash on every other page;
@@ -164,12 +186,46 @@
     return classes;
   }
 
+  // Block-level containers whose full rendered text a quotation might be
+  // split across (by a <strong>, <span class="term">, <a>, etc. sitting
+  // inside it). Whichever of these is reached first walking up from a text
+  // node -- or the section root itself, if none -- is "the block."
+  var BLOCK_TAGS = ['P', 'LI', 'TD', 'DIV', 'FIGCAPTION'];
+
+  function nearestBlock(node, stopAt) {
+    var n = node.parentNode;
+    while (n && n !== stopAt) {
+      if (n.tagName && BLOCK_TAGS.indexOf(n.tagName) !== -1) return n;
+      n = n.parentNode;
+    }
+    return stopAt;
+  }
+
+  // Walks the block's text nodes (same document order textContent itself
+  // is built from) to collect fragments, finds which one is `node`, and
+  // hands off to the pure isQuotedAtFragmentOffset for the actual call.
+  function isQuotedInBlock(node, root, matchIndex) {
+    var block = nearestBlock(node, root);
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null, false);
+    var fragments = [], targetIndex = -1, n, i = 0;
+    while ((n = walker.nextNode())) {
+      fragments.push(n.nodeValue);
+      if (n === node) targetIndex = i;
+      i++;
+    }
+    if (targetIndex === -1) return isInsideQuoteMarks(node.nodeValue, matchIndex);
+    return isQuotedAtFragmentOffset(fragments, targetIndex, matchIndex);
+  }
+
   // The first text node inside `root` that matches `re` and is not inside a
   // quotation, heading, citation, or the Key Word box itself. A match can be
-  // "quoted" three ways: a protected tag ancestor (blockquote/q/cite, not
+  // "quoted" four ways: a protected tag ancestor (blockquote/q/cite, not
   // present in this corpus today but cheap to keep), a protected class
-  // ancestor (.pull-quote), or bare quote marks around the match inside its
-  // own text node. All three are treated the same by the caller.
+  // ancestor (.pull-quote), bare quote marks around the match inside its own
+  // text node, or -- since a quotation can be split across text nodes by
+  // ordinary inline markup -- bare quote marks around the match once the
+  // whole containing block's rendered text is considered. All four are
+  // treated the same by the caller.
   function findTarget(root, re, excludeBox) {
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
     var node, protectedHit = null;
@@ -183,8 +239,14 @@
       if (node.parentNode && node.parentNode.classList &&
           node.parentNode.classList.contains('cite-inline')) continue;
       var classes = ancestorClasses(node, root);
+      // isInsideQuoteMarks on the node's own text is a fast pre-check: a
+      // "quoted" verdict from it is always safe to trust as-is (it can
+      // only ever be as-or-more cautious than the block-level view), so
+      // isQuotedInBlock -- the correct, expensive check -- only runs when
+      // the fast check didn't already find a reason to protect the match.
       var quoted = hasProtectedAncestor(tags) || hasProtectedClass(classes) ||
-        isInsideQuoteMarks(node.nodeValue, m.index);
+        isInsideQuoteMarks(node.nodeValue, m.index) ||
+        isQuotedInBlock(node, root, m.index);
       if (quoted) {
         // Remember it, but keep looking for an unquoted occurrence first.
         if (!protectedHit) protectedHit = node;
@@ -245,8 +307,12 @@
         aside.textContent = term + ' — ' + text;
         bq.parentNode.insertBefore(aside, bq.nextSibling);
       } else {
+        // Use the match's own index, not indexOf(m[0]) -- if the matched
+        // text occurs twice in this node, indexOf would always find the
+        // first occurrence even when the regex (word-boundary-aware) truly
+        // matched the second, splicing the gloss in at the wrong spot.
         var m = hit.node.nodeValue.match(re);
-        var idx = hit.node.nodeValue.indexOf(m[0]);
+        var idx = m.index;
         var after = hit.node.splitText(idx + m[0].length);
         var span = document.createElement('span');
         span.className = 'sm-gloss';
@@ -290,6 +356,7 @@
     hasProtectedAncestor: hasProtectedAncestor,
     hasProtectedClass: hasProtectedClass,
     isInsideQuoteMarks: isInsideQuoteMarks,
+    isQuotedAtFragmentOffset: isQuotedAtFragmentOffset,
     resolveInitialState: resolveInitialState,
     readStudyParam: readStudyParam,
     keyWordFromBox: keyWordFromBox
