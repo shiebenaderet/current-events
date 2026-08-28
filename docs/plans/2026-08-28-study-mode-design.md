@@ -239,8 +239,15 @@ initA11y():
   else                            → off
 ```
 
-An explicit parameter wins over the stored value for that load, and persists, so the setting
-carries to the next page the student visits without the parameter.
+An explicit `?study=on` wins over the stored value and persists, so the setting carries to the
+next page the student visits without the parameter.
+
+`?study=off` is deliberately **not** persisted — it applies to the page it is on and nothing
+further. A persisting `off` would silently clear a student's saved Study Mode the moment they
+opened one assessment link, stripping an accommodation they had chosen, with no signal that it
+happened. That is exactly the harm the "starting state, never a lock" principle exists to
+prevent. The cost is small and the right way round: a teacher who wants Study Mode off across a
+multi-page assessment puts `?study=off` on each link.
 
 **The property that makes this an accommodation rather than tracking: it sets a starting state,
 never a locked one.** The button remains visible and live in the a11y cluster, so a student who
@@ -249,9 +256,9 @@ parameter is also plainly visible in the address bar. Nothing about a student's 
 recorded, transmitted, or readable by anyone else — `localStorage` is per-browser and never
 leaves the device.
 
-Both values are accepted. `?study=off` is genuinely useful: it gives a link that guarantees the
-unscaffolded page regardless of what the student last chose, which is what a reading assessment
-would want.
+Both values are accepted. `?study=off` gives a link that guarantees the unscaffolded page for
+that page load regardless of what the student last chose, which is what a reading assessment
+wants — without permanently changing their setting.
 
 Anything other than `on` or `off` is ignored and the stored value is used.
 
