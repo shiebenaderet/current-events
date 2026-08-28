@@ -2,6 +2,62 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.5.0] — 2026-08-28
+
+**Minor — three scaffold repairs on `us-elections.html`, from a `/reading-intervention` audit.**
+Additive only: 3,382 → 3,531 words, concepts 362 → 381, zero terms lost. The skill's own G6
+ceiling-preservation diff classifies the change as `elaboration`, which is the point — the
+Beck, McKeown, Sinatra & Loxterman (1991) result is that making social studies text more
+comprehensible makes it *longer*, and any repair that shortened the page would have been
+withheld by the suppression lint instead of shipped.
+
+The audit ran clean on the prose itself. No causal gaps, no dangling referents (all 23
+locator candidates resolved on adjudication — 21 against the preceding sentence, 2 against an
+`<h3>` the extractor strips but a reader sees), no asserted-relevance anti-patterns, no
+altered quotations. Flesch-Kincaid 9.51 → 9.56, in band (6.51–10.34) both times. Every finding
+that survived was about the *apparatus* around the prose, not the prose.
+
+- **The primer no longer answers its own quiz.** The "Before you read" block for Section 2
+  states "Federal judges are never elected at all"; quiz `q3` asked "Which of the three
+  branches of government is NOT filled by election at all?" — the primer supplied the answer
+  verbatim before the reader reached the question. `q3` now gives that fact in the stem and
+  asks what the setup is *for*, which is answered only in the judicial paragraph ("rule based
+  on what the law actually says, without worrying about winning votes to keep their job").
+  Distractors rewritten; "represent the voters who live in their district" is there because
+  it is the actual misconception.
+
+- **The Indian Citizenship Act, June 2, 1924, added to the voting-rights timeline.** The
+  timeline ran 1787 → 1870 → 1920 → 1965 → 1971 with zero occurrences of `indigenous`,
+  `native american`, `tribal`, `tribe`, or `1924` anywhere in the file. Washington's SB 5433
+  (2015) makes tribal sovereignty curriculum a requirement in every K–12 classroom in the
+  state, endorsed by all 29 federally recognized tribes. The new entry carries the Act's own
+  words ("citizens of the United States") from the signed original at the National Archives,
+  then the part that makes it belong in *this* timeline: citizenship did not come with a
+  ballot, Arizona and New Mexico barred Native voters until 1948, and the fight ran into the
+  1950s — the 15th Amendment's promise-then-withholding pattern happening a second time.
+  Closes in the present tense (29 sovereign tribal governments in Washington today), because
+  past-tense-only tribal subjects are the vanishing-Indian framing the myth checklist flags.
+
+- **38 vs. 39 signers reconciled.** "38 delegates signed the finished Constitution" was
+  correct and correctly cited — it matches the article's own National Archives source
+  verbatim. But a student who checks anywhere else meets 39 and concludes the page is wrong.
+  Added the clause the source carries and the page had dropped: George Read signed a second
+  time for the absent John Dickinson, so the document holds 39 signatures and 38 signers.
+  Two true numbers, one document, and a stated reason they differ.
+
+**Verification.** Every new claim was fetched this run and matched as an exact substring, per
+the skill's lateral-reading rule: the signed Indian Citizenship Act (NARA, image of the
+original, approved June 2, 1924), NARA's *The Text Message* on the post-1924 state barriers,
+NARA's *How Did It Happen?* for both signer counts, and OSPI's *John McCoy (lulilaš) Since
+Time Immemorial* for the 29 tribes. The 26th Amendment's "fastest any amendment has ever been
+ratified" remains **unverified** and is untouched.
+
+**Still open on this page** (reported, not fixed): the Voting Rights Act entry describes
+Section 5 preclearance in the past tense without noting it has not operated since *Shelby
+County v. Holder* (2013); the two amendment quotations have no sourcing question; there is no
+slot where a student writes about the text. The passage-independence probe (Q1) could not run
+— it requires a declared learning target, and this page has none.
+
 ## [3.4.0] — 2026-08-27
 
 **Minor — "Before you read" entry blocks on every substantial section, and honest reading
