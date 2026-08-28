@@ -460,10 +460,23 @@ The only DOM-manipulating code in the feature, and the only place an `S2` violat
 Append to `tools/study-mode.test.js`:
 
 ```js
-test('keyWordFromBox parses the Key Word label', () => {
+test('keyWordFromBox parses the colon form (us-elections)', () => {
   assert.equal(SM.keyWordFromBox('Key Word: Poll tax'), 'Poll tax');
   assert.equal(SM.keyWordFromBox('Key Word:Midterm Penalty'), 'Midterm Penalty');
   assert.equal(SM.keyWordFromBox('  Key Word:  Judicial review  '), 'Judicial review');
+});
+
+test('keyWordFromBox parses the em-dash form (every other page)', () => {
+  assert.equal(SM.keyWordFromBox('Key Word \u2014 Artificial Intelligence (AI)'), 'Artificial Intelligence (AI)');
+  assert.equal(SM.keyWordFromBox('Key Word \u2014 Strait of Hormuz'), 'Strait of Hormuz');
+  assert.equal(SM.keyWordFromBox('Key Word \u2013 Cold War'), 'Cold War');
+  assert.equal(SM.keyWordFromBox('Key Word - Sovereignty'), 'Sovereignty');
+});
+
+test('keyWordFromBox keeps a dash that is part of the term itself', () => {
+  assert.equal(
+    SM.keyWordFromBox('Key Word: Judicial Review \u2014 Marbury v. Madison (1803)'),
+    'Judicial Review \u2014 Marbury v. Madison (1803)');
 });
 
 test('keyWordFromBox returns null when the label is not a Key Word', () => {
@@ -484,7 +497,9 @@ Add the pure parser to `study-mode.js` and export it:
 ```js
   function keyWordFromBox(labelText) {
     var t = String(labelText == null ? '' : labelText).trim().replace(/\s+/g, ' ');
-    var m = t.match(/^Key\s*Word\s*:\s*(.+)$/i);
+    // Separator is a colon on us-elections and an em-dash on every other page;
+    // measured across all 55 Key Word labels in the corpus.
+    var m = t.match(/^Key\s*Word\s*[:\u2014\u2013-]\s*(.+)$/i);
     return m ? m[1].trim() : null;
   }
 ```
