@@ -265,3 +265,52 @@ body.text-xl .stat-trio .desc{font-size:1rem}
 @media (min-width:701px){
   .before-read.on-dark{border-left-color:rgba(255,255,255,.35)}
 }
+
+/* ══ STUDY MODE ══════════════════════════════════════════════════════════
+   Additive reading support. Reveals glosses that are already in the DOM and
+   already read by screen readers; adds nothing to the prose itself.
+   Spec: docs/plans/2026-08-28-study-mode-design.md */
+
+.study-mode-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border:0;border-radius:4px;cursor:pointer;
+  background:#333;color:#fff;
+  font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.03em;min-height:var(--ce-tap,44px);
+}
+.study-mode-toggle:hover{background:#222}
+.study-mode-toggle.active{background:var(--accent,#a02c2c)}
+.study-mode-toggle:focus-visible{outline:2px solid var(--accent,#a02c2c);outline-offset:2px}
+
+/* Undo the sr-only clip so the definition renders inline, beside its term. */
+body.study-mode .term-desc{
+  position:static;width:auto;height:auto;
+  padding:0;margin:0;overflow:visible;
+  clip:auto;clip-path:none;white-space:normal;
+  font-family:-apple-system,sans-serif;
+  font-size:.84em;font-weight:400;line-height:1.5;
+  color:var(--ink-light,#4a4a4a);
+}
+body.study-mode .term-desc::before{content:" — "}
+
+/* The floating tooltip is redundant once the text is inline, and would
+   otherwise cover the paragraph the reader is in. */
+body.study-mode .term::after,
+body.study-mode .term::before{display:none !important}
+body.study-mode .term{border-bottom-style:solid;cursor:default}
+
+/* Glosses promoted from a "Key Word" box (Task 4). */
+body.study-mode .sm-gloss{
+  font-family:-apple-system,sans-serif;
+  font-size:.84em;color:var(--ink-light,#4a4a4a);
+}
+body.study-mode .sm-gloss::before{content:" — "}
+
+/* Where a term occurs only inside a quotation, the gloss goes BESIDE the
+   source, never inside it (S2). */
+body.study-mode .sm-gloss-aside{
+  margin:8px 0 0;padding:8px 12px;
+  border-left:3px solid var(--accent,#a02c2c);
+  font-family:-apple-system,sans-serif;
+  font-size:.84rem;line-height:1.5;color:var(--ink-light,#4a4a4a);
+}
