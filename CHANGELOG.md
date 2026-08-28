@@ -2,6 +2,108 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.7.0] — 2026-08-28
+
+**Minor — Study Mode: a reading-support toggle, shipped site-wide across all 8 topic pages.**
+
+**What it does, and why it's a toggle and not a "simplify" button.** A 💡 Study Mode button
+in the header reveals the definition of every glossed word inline, right next to the word,
+and adds a small bar that tracks which section the student is reading and previews it.
+Nothing about the article text itself changes — turning Study Mode off returns the page to
+exactly what it looked like before. That distinction was a deliberate design choice, not an
+afterthought: a "simplify the text" button would be a modification disguised as an
+accommodation, quietly handing the students who need the most support a thinner version of
+the same page. Shortening prose usually deletes the connective tissue that carries the
+meaning between sentences (Davison & Kantor, 1982) — the readability score goes down while
+comprehension gets *worse*, for exactly the students the button exists to help. Study Mode
+adds support instead of removing content, which is why every gloss it reveals was already
+sitting in the page before this feature existed.
+
+**The gloss reveal is pure CSS.** Every `.term` on the site was already followed, inline, in
+the same sentence, by a screen-reader-only `.term-desc` span wired to the term through
+`aria-describedby` — the tooltip mechanism the site has shipped since its redesign. Study
+Mode's CSS layer does exactly one thing to that markup: it un-hides an element that was
+already there, in the sentence, in the right place. No JavaScript touches the DOM for this
+part, no new element is created, and nothing about the page's accessibility tree changes —
+the description was already programmatically associated with its term for screen-reader
+users; Study Mode just makes it visible to everyone else too.
+
+**The Key Word injector, and the guard that keeps it out of quotations.** "Key Word" boxes
+(the `.vocab` sidebars) are a second source of definitions that don't have an inline
+`.term`/`.term-desc` pair. Study Mode's injector finds each Key Word's first plain-prose
+occurrence and splices its definition in beside it — but a term can just as easily first
+occur inside somebody's quoted words, and scaffolding must never go inside a source. The
+guard was originally written to protect `<blockquote>`, `<q>`, and `<cite>` — tags this site's
+markup contains **zero** of. Every quotation here is either a `.pull-quote` div or bare quote
+marks inline in ordinary prose, so the guard had to be extended to check for both, and quote
+detection had to run over the *containing block's* full rendered text rather than one text
+node at a time — a quotation can be split across nodes by an ordinary `<strong>` or `<a>`
+sitting inside it. Verification surfaced two real exposures the tag-only guard would have
+missed: `ai.html`'s "Computer Vision" occurs first inside a Geoffrey Hinton pull-quote
+("...convinced all the people doing **computer vision** that what they were doing was
+wrong..."), and `ukraine.html`'s "Coalition of the willing" occurs first inside an inline
+quotation ("a group of **35 countries** called the 'coalition of the willing' met in Paris").
+Both are now protected — the injector finds a safe container to place a sibling gloss beside
+for one, and skips the term entirely when there's no safe container to attach to for the
+other — and Task 8's integration harness (below) checks every injected node on every page for
+exactly this failure mode, not just these two known cases.
+
+**The section bar.** Fixed to the *bottom* of the screen, not the top: the site already has a
+sticky masthead and section-nav up there, and `body{overflow-x:hidden}` (needed elsewhere on
+the page) breaks `position:sticky` for any descendant, so `position:fixed` was the only option
+that actually stays put. An `IntersectionObserver` watches each section heading and swaps the
+bar's text to that section's own "Before you read" primer as the student scrolls past it.
+
+**`?study=on` / `?study=off`.** Either can be appended to any page URL to set the starting
+state for that load. Only `on` is remembered for later pages — `off` deliberately is not. A
+teacher's Canvas link is often the *last* Study Mode state a student's browser sees; if
+`?study=off` persisted the way `?study=on` does, one assignment link with the parameter left
+off by habit could silently clear a setting a student had turned on and relied on for the
+rest of the site. `on` writes through to storage; `off` only ever applies to the page it's on.
+
+**Gloss backfill: `iran` and `space-race`.** These two pages had noticeably fewer `.term`
+tooltips than the rest of the corpus, so 6 new inline glosses were added to each (12 total) —
+`retaliatory`, `ceasefire`, `memorandum`, `Ayatollah`, `currency`, and `Revolutionary Guard` on
+`iran`; `satellite`, `capsule`, `crewed`, `commercial`, `lunar`, and `uncrewed` on
+`space-race` — chosen for recurrence and narrative load-bearing weight, with terms already
+covered by an existing Key Word box explicitly excluded to avoid double-glossing. The
+`/reading-intervention` skill's G6 ceiling-preservation diff classifies both pages'
+change as `elaboration` with `terms_lost: []` on both — the check that exists specifically to
+catch a well-intentioned addition that accidentally deletes a concept while wrapping it.
+
+**Dark-pane contrast fix.** `body.study-mode .term-desc` inherits `--ink-light` (`#4a4a4a`),
+which measures only **1.96:1** against the `--ink` (`#1a1a1a`) background used by
+`.update-pane`, `.update-box`, and `.focus-pane` — well under WCAG AA's 4.5:1 floor, and bad
+enough to make roughly 25 pre-existing glossed terms across `ai`, `gun-violence`,
+`immigration` (worst — 8 in one pane), `space-race`, and `ukraine` effectively invisible
+inside those panes. The site's original tooltip CSS had already solved this same problem, per
+page (e.g. `immigration.html`'s `.update-box .term::after{background:#fff;color:var(--ink)}`)
+— this follows that existing precedent rather than inventing a new one: `.term-desc` inside a
+dark pane now gets `#d8d2c8` instead, which measures **11.58:1** on `#1a1a1a`. The light-
+background case is unchanged and still measures **8.29:1** (`#4a4a4a` on `#faf7f2`).
+
+**Testing.** `tools/study-mode.test.js` unit-tests every pure helper (40 tests). A full
+browser round-trip isn't possible in this environment, so `tools/study-mode.integration.test.js`
+replaces it: a hand-rolled HTML parser and minimal DOM (node builtins only — no new
+dependency) load each of the 8 real pages, run the actual `study-mode.js` source in a `vm`
+sandbox against that DOM, and drive the real `apply('on')`/`apply('off')` lifecycle. For every
+page it checks that nothing is injected before activation, that activation injects a gloss
+and/or `#sm-bar` exactly where the page's own content warrants one, that **no injected node
+ever descends from a `blockquote`/`q`/`cite`/`.pull-quote`** (verified as a real check, not a
+tautology, by a negative control that disabled the guard and confirmed the harness catches
+the resulting violation), that deactivation removes every injected node and restores the
+page's serialized DOM to be byte-identical with its pre-activation state, and that activating
+twice with no teardown between never double-injects. 40 assertions, all 8 pages, all passing.
+
+**Deferred to v2.** Read-aloud / text-to-speech support; a writing slot (no page on the site
+has one yet, Study Mode or otherwise); the 27 orphan Key Words the injector surfaced across
+the corpus — glossary entries whose term never actually occurs in that page's own prose,
+which is a pre-existing content gap Study Mode's own verification tooling made newly visible
+rather than something this feature introduced; and the uneven `.term`-vs-Key-Word split that
+remains on the six pages this cycle didn't backfill (`us-elections` has one inline `.term`
+gloss against six Key Word orphans, for instance) — the site's own gloss mechanism is still
+applied unevenly page to page, a limitation carried forward from v3.6.0 and not yet closed.
+
 ## [3.6.0] — 2026-08-28
 
 **Minor — site-wide `/reading-intervention` sweep: 8 quiz items rewritten across 5 pages.**

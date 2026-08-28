@@ -25,6 +25,7 @@ Each topic page includes:
 - 📰 **Curated resource links** organized by reading level
 
 - ♿ **Accessibility controls** — skip link, text size, and a self-hosted OpenDyslexic option on every page
+- 💡 **Study Mode** — a toggle that reveals inline word definitions and a section-tracking bar as you scroll; see below
 
 Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no frameworks, no server required.
 
@@ -91,6 +92,20 @@ If your district allows external iframes in your LMS:
 
 **Option 3 — Download and host it yourself:**  
 Download the topic `.html` file plus `site.css`, `site.js`, `fonts/`, and any `images/` it uses. Rename it, modify it, host it wherever you want. No attribution required (but appreciated!).
+
+---
+
+## Study Mode
+
+Every topic page has a **💡 Study Mode** button in the header (and on mobile, in the menu). Turning it on reveals the definition beside every glossed word right in the paragraph it appears in, and adds a small bar at the bottom of the screen that tracks which section you're reading and previews what it covers. It doesn't rewrite or shorten anything — it's the same article, with support turned on. Turning it back off returns the page to exactly how it looked before.
+
+The setting is remembered across pages once a student turns it on, so it doesn't need to be re-enabled on every page they open next.
+
+To send a student straight to a page with Study Mode already on — handy for a Canvas assignment link — add `?study=on` to the URL:
+```
+https://current.mrbsocialstudies.org/iran?study=on
+```
+`?study=off` works the same way in reverse, but only for that one page load — it does not turn off (or remember turning off) Study Mode for pages the student visits afterward. That's deliberate: a link a teacher shares once shouldn't be able to silently clear a setting a student saved for the rest of the site.
 
 ---
 
