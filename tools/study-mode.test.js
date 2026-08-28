@@ -113,3 +113,46 @@ test('keyWordFromBox returns null when the label is not a Key Word', () => {
   assert.equal(SM.keyWordFromBox('Did you know?'), null);
   assert.equal(SM.keyWordFromBox(''), null);
 });
+
+test('hasProtectedClass flags a pull-quote ancestor', () => {
+  assert.equal(SM.hasProtectedClass(['pull-quote']), true);
+  assert.equal(SM.hasProtectedClass(['attrib', 'pull-quote']), true);
+});
+
+test('hasProtectedClass allows ordinary classes', () => {
+  assert.equal(SM.hasProtectedClass(['lede', 'article']), false);
+  assert.equal(SM.hasProtectedClass([]), false);
+  assert.equal(SM.hasProtectedClass(null), false);
+});
+
+test('isInsideQuoteMarks detects a match inside straight double quotes', () => {
+  const t = 'The term "computer vision" was invented decades ago.';
+  assert.equal(SM.isInsideQuoteMarks(t, t.indexOf('computer vision')), true);
+});
+
+test('isInsideQuoteMarks detects a match inside curly quotes', () => {
+  const t = 'They called it “coalition of the willing” that week.';
+  assert.equal(SM.isInsideQuoteMarks(t, t.indexOf('coalition of the willing')), true);
+});
+
+test('isInsideQuoteMarks returns false for a match in plain prose', () => {
+  const t = 'The Speaker of the House is elected by the full House.';
+  assert.equal(SM.isInsideQuoteMarks(t, t.indexOf('Speaker')), false);
+});
+
+test('isInsideQuoteMarks returns false before any quote mark has opened', () => {
+  const t = 'Poll tax was a fee, later called "unconstitutional" by the Court.';
+  assert.equal(SM.isInsideQuoteMarks(t, t.indexOf('Poll tax')), false);
+});
+
+test('isInsideQuoteMarks treats an unpaired quote as open through the rest of the node, and does not throw', () => {
+  const t = 'A stray " mark with no closing pair, term appears after it';
+  assert.equal(SM.isInsideQuoteMarks(t, t.indexOf('term appears')), true);
+  assert.doesNotThrow(() => SM.isInsideQuoteMarks(t, 9999));
+});
+
+test('isInsideQuoteMarks handles empty and null text without throwing', () => {
+  assert.equal(SM.isInsideQuoteMarks('', 0), false);
+  assert.equal(SM.isInsideQuoteMarks(null, 0), false);
+  assert.equal(SM.isInsideQuoteMarks(undefined, 0), false);
+});
