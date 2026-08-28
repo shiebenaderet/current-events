@@ -193,19 +193,22 @@ test('isQuotedAtFragmentOffset matches a single-fragment block exactly like isIn
 
 test('derivePrimerText skips the br-head paragraph and returns the first content paragraph', () => {
   const paragraphs = [
-    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] },
-    { isBrHead: false, text: 'Congress writes the laws.', linkTexts: [] },
-    { isBrHead: false, text: 'The president carries them out.', linkTexts: [] }
+    { isBrHead: true, fragments: ['Before you read 3 min'] },
+    { isBrHead: false, fragments: ['Congress writes the laws.'] },
+    { isBrHead: false, fragments: ['The president carries them out.'] }
   ];
   assert.equal(SM.derivePrimerText(paragraphs), 'Congress writes the laws.');
 });
 
 test('derivePrimerText handles a multi-paragraph primer by returning the first non-empty content paragraph', () => {
   const paragraphs = [
-    { isBrHead: true, text: 'Before you read 5 min', linkTexts: [] },
-    { isBrHead: false, text: 'Nobody writes rules like "cats have pointy ears."', linkTexts: [] },
-    { isBrHead: false, text: 'Every wrong guess nudges its internal settings.', linkTexts: [] },
-    { isBrHead: false, text: 'First: What Actually Is Artificial Intelligence?', linkTexts: ['What Actually Is Artificial Intelligence?'] }
+    { isBrHead: true, fragments: ['Before you read 5 min'] },
+    { isBrHead: false, fragments: ['Nobody writes rules like "cats have pointy ears."'] },
+    { isBrHead: false, fragments: ['Every wrong guess nudges its internal settings.'] },
+    // The br-first paragraph's own anchor text is excluded structurally (no
+    // fragment carries it) -- this paragraph is never reached anyway since
+    // an earlier one already returns, but its shape mirrors the real DOM walk.
+    { isBrHead: false, fragments: ['First: '] }
   ];
   assert.equal(
     SM.derivePrimerText(paragraphs),
@@ -213,22 +216,140 @@ test('derivePrimerText handles a multi-paragraph primer by returning the first n
   );
 });
 
-test('derivePrimerText strips link text and a trailing "First:" when that is the only content paragraph', () => {
+test('derivePrimerText strips a trailing "First:" when the anchor-stripped pointer is the only content paragraph', () => {
   const paragraphs = [
-    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] },
-    { isBrHead: false, text: 'First: What are the three branches of government?', linkTexts: ['What are the three branches of government?'] }
+    { isBrHead: true, fragments: ['Before you read 3 min'] },
+    // "First: <a>What are the three branches of government?</a>" with the
+    // anchor's own text already excluded, as the DOM walker would produce.
+    { isBrHead: false, fragments: ['First: '] }
   ];
   assert.equal(SM.derivePrimerText(paragraphs), null);
 });
 
 test('derivePrimerText returns null for a primer with no content paragraph', () => {
   const paragraphs = [
-    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] }
+    { isBrHead: true, fragments: ['Before you read 3 min'] }
   ];
   assert.equal(SM.derivePrimerText(paragraphs), null);
+});
+
+test('derivePrimerText removes only the anchor\'s own text, not every matching substring elsewhere in the paragraph (fix round 1, finding 2)', () => {
+  // Regression for the over-strip bug: "AI AI is the topic. First: <a>AI</a>"
+  // with the anchor's contribution already excluded by position, the way
+  // the DOM walker builds fragments -- so the leading "AI AI" prose, which
+  // happens to share the link's exact text, must survive.
+  const paragraphs = [
+    { isBrHead: false, fragments: ['AI AI is the topic. First: '] }
+  ];
+  assert.equal(SM.derivePrimerText(paragraphs), 'AI AI is the topic.');
 });
 
 test('derivePrimerText returns null for an empty or missing paragraph list', () => {
   assert.equal(SM.derivePrimerText([]), null);
   assert.equal(SM.derivePrimerText(null), null);
+});
+
+/* ---- fix round 1, finding 1: buildBar() re-entrancy guard ----
+   study-mode.js has no test-time DOM (jsdom is not a project dependency,
+   and none is being added). buildBar/teardownLayer/buildLayer are private
+   closures, only reachable in the browser-export branch of the module
+   (`typeof module !== 'undefined'` is false there). So this loads the real
+   source into a vm context with a hand-rolled, minimal DOM stub -- just
+   enough surface for applyState('on') -> buildLayer() -> buildBar() to run
+   -- and calls the resulting window.StudyMode.apply('on') twice with no
+   teardown between, exactly the api.apply-reachable path the finding
+   described. No new dependency: vm and fs are Node built-ins. */
+
+const vm = require('node:vm');
+const fs = require('node:fs');
+const path = require('node:path');
+
+function makeClassList() {
+  const set = new Set();
+  return {
+    contains: (c) => set.has(c),
+    add: (c) => set.add(c),
+    remove: (c) => set.delete(c),
+    toggle: (c, force) => {
+      if (force === undefined) {
+        if (set.has(c)) { set.delete(c); return false; }
+        set.add(c);
+        return true;
+      }
+      if (force) set.add(c); else set.delete(c);
+      return force;
+    }
+  };
+}
+
+function loadBrowserSandbox() {
+  const src = fs.readFileSync(path.join(__dirname, '../study-mode.js'), 'utf8');
+  const idMap = {};
+
+  class FakeElement {
+    constructor(tag) {
+      this.tagName = String(tag || '').toUpperCase();
+      this._id = '';
+      this.children = [];
+      this.attrs = {};
+      this.classList = makeClassList();
+      this.style = {};
+      this._listeners = {};
+    }
+    set id(v) { this._id = v; if (v) idMap[v] = this; }
+    get id() { return this._id; }
+    set innerHTML(v) { this._innerHTML = v; }
+    get innerHTML() { return this._innerHTML; }
+    setAttribute(k, v) { this.attrs[k] = v; }
+    getAttribute(k) { return Object.prototype.hasOwnProperty.call(this.attrs, k) ? this.attrs[k] : null; }
+    addEventListener(type, fn) { (this._listeners[type] = this._listeners[type] || []).push(fn); }
+    appendChild(child) { this.children.push(child); child.parentNode = this; return child; }
+    querySelector() { return null; } // not exercised: the observer callback never fires in this test
+  }
+
+  class FakeIntersectionObserver {
+    constructor(cb, opts) {
+      this.cb = cb;
+      this.opts = opts;
+      this.observedEls = [];
+      this.disconnected = false;
+      FakeIntersectionObserver.instances.push(this);
+    }
+    observe(el) { this.observedEls.push(el); }
+    disconnect() { this.disconnected = true; }
+  }
+  FakeIntersectionObserver.instances = [];
+
+  const vocabBoxes = [];
+  const secHeads = [new FakeElement('div')]; // one section, so buildBar has something to build for
+
+  const document = {
+    body: new FakeElement('body'),
+    getElementById: (id) => idMap[id] || null,
+    querySelectorAll: (sel) => (sel === '.vocab' ? vocabBoxes : sel === '.sec-head' ? secHeads : []),
+    createElement: (tag) => new FakeElement(tag)
+  };
+
+  const window = { location: { search: '' } };
+
+  const sandbox = { console, document, window, IntersectionObserver: FakeIntersectionObserver };
+  vm.createContext(sandbox);
+  vm.runInContext(src, sandbox, { filename: 'study-mode.js (vm sandbox)' });
+  return sandbox;
+}
+
+test('buildBar() does not leak a second #sm-bar or a second IntersectionObserver when applyState("on") runs twice without a teardown between (fix round 1, finding 1)', () => {
+  const sandbox = loadBrowserSandbox();
+  assert.ok(sandbox.window.StudyMode && typeof sandbox.window.StudyMode.apply === 'function',
+    'module should attach apply() to window.StudyMode in the browser branch');
+
+  sandbox.window.StudyMode.apply('on'); // first buildBar(): creates #sm-bar + observer #1
+  sandbox.window.StudyMode.apply('on'); // second call, no teardown between: the reachable-leak path
+
+  const barChildren = sandbox.document.body.children.filter((el) => el.id === 'sm-bar');
+  assert.equal(barChildren.length, 1, 'exactly one #sm-bar should exist, not two');
+  assert.equal(sandbox.IntersectionObserver.instances.length, 1,
+    'exactly one IntersectionObserver should ever be constructed');
+  assert.equal(sandbox.IntersectionObserver.instances[0].disconnected, false,
+    'the single observer should still be live (no teardown happened in this test)');
 });

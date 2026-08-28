@@ -111,25 +111,27 @@
 
   // Section-bar (Task 5) primer-text derivation, pure. Mirrors the DOM loop
   // in primerTextFor below but works over a plain array of paragraph
-  // descriptors -- { isBrHead, text, linkTexts } -- so it's unit-testable
-  // with no DOM. `linkTexts` is the textContent of any <a> elements within
-  // that paragraph (a "First: <a>…</a>" pointer, in the real corpus, though
-  // it always lives in its own trailing <p class="br-first">, never mixed
-  // into a content paragraph -- this still strips it if it ever were).
-  // Returns the first non-empty, non-br-head paragraph's text with its
-  // link text and a trailing "First:" removed, or null if every paragraph
-  // is empty (a section with no usable primer, which must hide the bar).
+  // descriptors -- { isBrHead, fragments } -- so it's unit-testable with no
+  // DOM. `fragments` is the ordered list of that paragraph's child-node text
+  // with any <a> element's own contribution left out entirely (identity/
+  // position-based removal, matching what the DOM walker gets by removing
+  // the anchor node itself and reading what's left) -- NOT a substring
+  // subtraction, so leading or repeated prose that happens to share the
+  // link's exact text (e.g. "AI AI is the topic. First: <a>AI</a>") is never
+  // mistaken for the link and deleted. A "First: <a>…</a>" pointer, in the
+  // real corpus, always lives in its own trailing <p class="br-first">,
+  // never mixed into a content paragraph -- this still strips a trailing
+  // "First:" if it ever were.
+  // Returns the first non-empty, non-br-head paragraph's joined fragments
+  // with a trailing "First:" removed, or null if every paragraph is empty
+  // (a section with no usable primer, which must hide the bar).
   function derivePrimerText(paragraphs) {
     if (!paragraphs) return null;
     for (var i = 0; i < paragraphs.length; i++) {
       var p = paragraphs[i];
       if (!p || p.isBrHead) continue;
-      var t = String(p.text == null ? '' : p.text);
-      var linkTexts = p.linkTexts || [];
-      for (var j = 0; j < linkTexts.length; j++) {
-        var lt = String(linkTexts[j] == null ? '' : linkTexts[j]);
-        if (lt) t = t.split(lt).join('');
-      }
+      var fragments = p.fragments || [];
+      var t = fragments.join('');
       t = t.replace(/\bFirst:\s*$/i, '').trim();
       if (t) return t;
     }
@@ -374,19 +376,35 @@
     var ps = n.querySelectorAll('p');
     var paragraphs = [];
     for (var i = 0; i < ps.length; i++) {
-      var linkTexts = [];
-      var links = ps[i].querySelectorAll('a');       // "First: <link>" pointers
-      for (var j = 0; j < links.length; j++) linkTexts.push(links[j].textContent);
+      // Build fragments by identity/position, not by string-matching: walk
+      // this paragraph's own child nodes and skip <a> elements entirely
+      // ("First: <link>" pointers), keeping every other child's text in
+      // order. This is what removing the anchor node itself would leave
+      // behind -- so prose that happens to repeat the link's exact text
+      // elsewhere in the paragraph is never mistaken for the link.
+      var fragments = [];
+      var kids = ps[i].childNodes;
+      for (var k = 0; k < kids.length; k++) {
+        var kid = kids[k];
+        if (kid.nodeType === 1 && kid.tagName === 'A') continue;
+        fragments.push(kid.textContent);
+      }
       paragraphs.push({
         isBrHead: ps[i].classList.contains('br-head'),
-        text: ps[i].textContent,
-        linkTexts: linkTexts
+        fragments: fragments
       });
     }
     return derivePrimerText(paragraphs);
   }
 
   function buildBar() {
+    // Idempotency guard, matching injectKeyWordGlosses's own per-item
+    // data-sm-done check: buildLayer()/applyState('on') can run again
+    // without an intervening teardown (e.g. via the public api.apply), and
+    // without this guard a second call would append a second #sm-bar and
+    // overwrite barObserver, permanently leaking the first observer.
+    if (document.getElementById('sm-bar')) return;
+
     var heads = document.querySelectorAll('.sec-head');
     if (!heads.length || typeof IntersectionObserver === 'undefined') return;
 
