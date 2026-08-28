@@ -89,3 +89,27 @@ test('readStudyParam returns null when absent or junk', () => {
   assert.equal(SM.readStudyParam('?other=1'), null);
   assert.equal(SM.readStudyParam('?study=banana'), null);
 });
+
+test('keyWordFromBox parses the colon form (us-elections)', () => {
+  assert.equal(SM.keyWordFromBox('Key Word: Poll tax'), 'Poll tax');
+  assert.equal(SM.keyWordFromBox('Key Word:Midterm Penalty'), 'Midterm Penalty');
+  assert.equal(SM.keyWordFromBox('  Key Word:  Judicial review  '), 'Judicial review');
+});
+
+test('keyWordFromBox parses the em-dash form (every other page)', () => {
+  assert.equal(SM.keyWordFromBox('Key Word — Artificial Intelligence (AI)'), 'Artificial Intelligence (AI)');
+  assert.equal(SM.keyWordFromBox('Key Word — Strait of Hormuz'), 'Strait of Hormuz');
+  assert.equal(SM.keyWordFromBox('Key Word – Cold War'), 'Cold War');
+  assert.equal(SM.keyWordFromBox('Key Word - Sovereignty'), 'Sovereignty');
+});
+
+test('keyWordFromBox keeps a dash that is part of the term itself', () => {
+  assert.equal(
+    SM.keyWordFromBox('Key Word: Judicial Review — Marbury v. Madison (1803)'),
+    'Judicial Review — Marbury v. Madison (1803)');
+});
+
+test('keyWordFromBox returns null when the label is not a Key Word', () => {
+  assert.equal(SM.keyWordFromBox('Did you know?'), null);
+  assert.equal(SM.keyWordFromBox(''), null);
+});

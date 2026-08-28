@@ -48,6 +48,14 @@
     return false;
   }
 
+  function keyWordFromBox(labelText) {
+    var t = String(labelText == null ? '' : labelText).trim().replace(/\s+/g, ' ');
+    // Separator is a colon on us-elections and an em-dash on every other page;
+    // measured across all 55 Key Word labels in the corpus.
+    var m = t.match(/^Key\s*Word\s*[:—–-]\s*(.+)$/i);
+    return m ? m[1].trim() : null;
+  }
+
   function resolveInitialState(urlValue, storedValue) {
     if (urlValue === 'on' || urlValue === 'off') return urlValue;
     if (storedValue === 'on' || storedValue === 'off') return storedValue;
@@ -97,15 +105,120 @@
     applyState(state);
   }
 
-  function buildLayer() { /* Tasks 4 and 5 */ }
-  function teardownLayer() { /* Tasks 4 and 5 */ }
+  function ancestorTags(node, stopAt) {
+    var tags = [], n = node;
+    while (n && n !== stopAt) {
+      if (n.tagName) tags.push(n.tagName);
+      n = n.parentNode;
+    }
+    return tags;
+  }
+
+  // The first text node inside `root` that matches `re` and is not inside a
+  // quotation, heading, citation, or the Key Word box itself.
+  function findTarget(root, re, excludeBox) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var node, protectedHit = null;
+    while ((node = walker.nextNode())) {
+      if (!re.test(node.nodeValue)) continue;
+      var tags = ancestorTags(node, root);
+      if (excludeBox && excludeBox.contains(node)) continue;
+      if (tags.indexOf('H1') !== -1 || tags.indexOf('H2') !== -1 ||
+          tags.indexOf('H3') !== -1 || tags.indexOf('H4') !== -1) continue;
+      if (node.parentNode && node.parentNode.classList &&
+          node.parentNode.classList.contains('cite-inline')) continue;
+      if (hasProtectedAncestor(tags)) {
+        // Remember it, but keep looking for an unquoted occurrence first.
+        if (!protectedHit) protectedHit = node;
+        continue;
+      }
+      return { node: node, quoted: false };
+    }
+    return protectedHit ? { node: protectedHit, quoted: true } : null;
+  }
+
+  function quotedAncestor(node) {
+    var n = node;
+    while (n) {
+      if (n.tagName && PROTECTED_TAGS.indexOf(n.tagName.toUpperCase()) !== -1) return n;
+      n = n.parentNode;
+    }
+    return null;
+  }
+
+  function injectKeyWordGlosses() {
+    var boxes = document.querySelectorAll('.vocab');
+    var injected = 0, orphans = [];
+    for (var i = 0; i < boxes.length; i++) {
+      var box = boxes[i];
+      if (box.getAttribute('data-sm-done')) continue;
+      var label = box.querySelector('b');
+      var defEl = box.querySelector('p');
+      if (!label || !defEl) continue;
+      var term = keyWordFromBox(label.textContent);
+      if (!term) continue;
+      var re = termPattern(term);
+      if (!re) continue;
+
+      var section = box.closest ? box.closest('.article, .sec-body, section, body') : null;
+      if (!section) section = document.body;
+
+      var hit = findTarget(section, re, box);
+      if (!hit) { orphans.push(term); continue; }
+
+      var text = defEl.textContent.trim();
+
+      if (hit.quoted) {
+        // S2: scaffolding goes AROUND a source, never inside it.
+        var bq = quotedAncestor(hit.node);
+        if (!bq || !bq.parentNode) { orphans.push(term); continue; }
+        var aside = document.createElement('p');
+        aside.className = 'sm-gloss-aside';
+        aside.setAttribute('data-sm-injected', '1');
+        aside.textContent = term + ' — ' + text;
+        bq.parentNode.insertBefore(aside, bq.nextSibling);
+      } else {
+        var m = hit.node.nodeValue.match(re);
+        var idx = hit.node.nodeValue.indexOf(m[0]);
+        var after = hit.node.splitText(idx + m[0].length);
+        var span = document.createElement('span');
+        span.className = 'sm-gloss';
+        span.setAttribute('data-sm-injected', '1');
+        span.textContent = text;
+        after.parentNode.insertBefore(span, after);
+      }
+      box.setAttribute('data-sm-done', '1');
+      injected++;
+    }
+    return { injected: injected, orphans: orphans };
+  }
+
+  function teardownLayer() {
+    if (typeof document === 'undefined') return;
+    var nodes = document.querySelectorAll('[data-sm-injected]');
+    for (var i = 0; i < nodes.length; i++) {
+      var p = nodes[i].parentNode;
+      if (p) { p.removeChild(nodes[i]); p.normalize(); }
+    }
+    var done = document.querySelectorAll('[data-sm-done]');
+    for (var j = 0; j < done.length; j++) done[j].removeAttribute('data-sm-done');
+  }
+
+  function buildLayer() {
+    if (typeof document === 'undefined') return;
+    var r = injectKeyWordGlosses();
+    if (window.location.search.indexOf('smdebug') !== -1 && r.orphans.length) {
+      console.log('[study-mode] Key Word boxes with no match in prose (V5 orphans):', r.orphans);
+    }
+  }
 
   var api = {
     firstSentence: firstSentence,
     termPattern: termPattern,
     hasProtectedAncestor: hasProtectedAncestor,
     resolveInitialState: resolveInitialState,
-    readStudyParam: readStudyParam
+    readStudyParam: readStudyParam,
+    keyWordFromBox: keyWordFromBox
   };
 
   if (typeof module !== 'undefined' && module.exports) {
