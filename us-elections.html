@@ -1012,6 +1012,7 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
   <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
     Aa Dyslexic Font
   </button>
+  <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show definitions and a section guide">💡 Study Mode</button>
 </div>
 
 <script>
@@ -1216,6 +1217,7 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
 
 </script>
 
+<script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
