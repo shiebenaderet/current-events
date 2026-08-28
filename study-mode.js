@@ -54,16 +54,67 @@
     return 'off';
   }
 
+  // Parsed by hand rather than URLSearchParams so the helper is testable in
+  // node without a DOM and works in the same browsers the rest of site.js targets.
+  function readStudyParam(search) {
+    var s = String(search == null ? '' : search);
+    var m = s.match(/[?&]study=([^&#]*)/i);
+    if (!m) return null;
+    var v = decodeURIComponent(m[1]).toLowerCase();
+    return (v === 'on' || v === 'off') ? v : null;
+  }
+
+  function applyState(state) {
+    if (typeof document === 'undefined') return;
+    var on = state === 'on';
+    document.body.classList.toggle('study-mode', on);
+    var btn = document.getElementById('studyModeToggle');
+    if (btn) {
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    if (on) { buildLayer(); } else { teardownLayer(); }
+  }
+
+  function store(state) {
+    try { localStorage.setItem('studyMode', state); } catch (e) { /* private mode: session-only */ }
+  }
+
+  function read() {
+    try { return localStorage.getItem('studyMode'); } catch (e) { return null; }
+  }
+
+  function toggle() {
+    var next = document.body.classList.contains('study-mode') ? 'off' : 'on';
+    store(next);
+    applyState(next);
+  }
+
+  function init() {
+    if (typeof document === 'undefined') return;
+    var state = resolveInitialState(readStudyParam(window.location.search), read());
+    if (state === 'on') store(state);   // an explicit ?study=on persists onward
+    applyState(state);
+  }
+
+  function buildLayer() { /* Tasks 4 and 5 */ }
+  function teardownLayer() { /* Tasks 4 and 5 */ }
+
   var api = {
     firstSentence: firstSentence,
     termPattern: termPattern,
     hasProtectedAncestor: hasProtectedAncestor,
-    resolveInitialState: resolveInitialState
+    resolveInitialState: resolveInitialState,
+    readStudyParam: readStudyParam
   };
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
   } else {
     window.StudyMode = api;
+    api.apply = applyState;
+    api.toggle = toggle;
+    api.init = init;
+    window.toggleStudyMode = toggle;
   }
 })();

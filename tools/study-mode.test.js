@@ -77,3 +77,15 @@ test('resolveInitialState defaults to off', () => {
   assert.equal(SM.resolveInitialState(null, null), 'off');
   assert.equal(SM.resolveInitialState('garbage', 'garbage'), 'off');
 });
+
+test('readStudyParam extracts on/off from a query string', () => {
+  assert.equal(SM.readStudyParam('?study=on'), 'on');
+  assert.equal(SM.readStudyParam('?a=1&study=off&b=2'), 'off');
+  assert.equal(SM.readStudyParam('?study=ON'), 'on', 'case-insensitive');
+});
+
+test('readStudyParam returns null when absent or junk', () => {
+  assert.equal(SM.readStudyParam(''), null);
+  assert.equal(SM.readStudyParam('?other=1'), null);
+  assert.equal(SM.readStudyParam('?study=banana'), null);
+});

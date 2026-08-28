@@ -24,6 +24,7 @@
     if (saved && saved !== 'normal') {
       document.body.classList.add('text-' + saved);
     }
+    if (window.StudyMode && window.StudyMode.init) window.StudyMode.init();
   }
 
   /* Vocabulary tooltips open on tap as well as hover.
