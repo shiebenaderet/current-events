@@ -7,7 +7,9 @@ All notable changes to this site are documented here. Versioning follows the sch
 **Minor — Study Mode: a reading-support toggle, shipped site-wide across all 8 topic pages.**
 
 **What it does, and why it's a toggle and not a "simplify" button.** A 💡 Study Mode button
-in the header reveals the definition of every glossed word inline, right next to the word,
+in the fixed accessibility controls at the bottom-right of the screen — the same stack as the
+text-size buttons and the dyslexia-font toggle, in the same place on desktop and phone —
+reveals the definition of every glossed word inline, right next to the word,
 and adds a small bar that tracks which section the student is reading and previews it.
 Nothing about the article text itself changes — turning Study Mode off returns the page to
 exactly what it looked like before. That distinction was a deliberate design choice, not an
@@ -48,6 +50,29 @@ for one, and skips the term entirely when there's no safe container to attach to
 other — and Task 8's integration harness (below) checks every injected node on every page for
 exactly this failure mode, not just these two known cases.
 
+**The injector also refuses to gloss a word the page already glosses.** A Key Word box can
+name a word that is *also* an authored `.term` — 11 of the 55 do. For those, the injector's
+first plain-prose match was the `.term` span itself: it split the text inside the span and
+printed the same definition a second time, back to back with the one the CSS layer reveals,
+underlined as if it were part of the term. Two more places are off-limits for the same
+reason: a `.term-desc` (splicing a gloss into one rewrites the sentence a screen reader
+announces for a *different* term) and a `.cite-inline` source label, which is not prose at
+all. So: a match inside a `.term` ends the search and the box is recorded as **skipped** —
+the student already gets that definition — while a match inside a `.term-desc` or
+`.cite-inline` just isn't a legal site, and the walk keeps looking. All three are checked
+against every ancestor of the matched text node, not only its immediate parent. Across the
+corpus this moves 7 Key Words from *inline* to *skipped* (25 → 18 inline, 2 → 9 skipped);
+orphans and the one sibling-aside are unchanged.
+
+**Gloss text stops at the definition.** The injected text came from
+`defEl.textContent.trim()`, which swallowed the `.cite-inline` anchor sitting inside the
+Key Word's own paragraph — students read "…are the main ones.NASA", "…from proxies.NOAA",
+"…generating electricity.U.S. EIA", and a bare "src" on `us-elections`. The definition is now
+assembled from the paragraph's text nodes with each citation anchor dropped by node identity
+(the same identity-based removal the section bar's primer derivation already used), never by
+a regex over the joined string — so a definition that legitimately contains its own source's
+name, like Artemis's "NASA's program to send astronauts back to the Moon", keeps it.
+
 **The section bar.** Fixed to the *bottom* of the screen, not the top: the site already has a
 sticky masthead and section-nav up there, and `body{overflow-x:hidden}` (needed elsewhere on
 the page) breaks `position:sticky` for any descendant, so `position:fixed` was the only option
@@ -80,7 +105,33 @@ inside those panes. The site's original tooltip CSS had already solved this same
 page (e.g. `immigration.html`'s `.update-box .term::after{background:#fff;color:var(--ink)}`)
 — this follows that existing precedent rather than inventing a new one: `.term-desc` inside a
 dark pane now gets `#d8d2c8` instead, which measures **11.58:1** on `#1a1a1a`. The light-
-background case is unchanged and still measures **8.29:1** (`#4a4a4a` on `#faf7f2`).
+background case is unchanged and still measures **8.42:1** (`#4a4a4a` on `--paper` `#fbf9f4`).
+The two nodes Study Mode *injects* — `.sm-gloss` and `.sm-gloss-aside` — inherit the same
+`--ink-light` and needed the same override: `space-race`'s "Artemis" gloss lands inside
+`.update-pane` and measured the identical 1.96:1. Both now take `#d8d2c8` (11.58:1) inside a
+dark pane, and the aside's left rule switches from `--accent` (a dark ink, invisible there)
+to the `rgba(255,255,255,.35)` those panes already use for a divider.
+
+**Two more keyboard/layout fixes on the same controls.** The Study Mode button's focus ring
+was `outline:2px solid var(--accent)` while its own `.active` state sets
+`background:var(--accent)` — the same colour, so a keyboard user saw **no** focus indicator
+at all whenever the feature was on (1.00:1), and about 1.7:1 when it was off. It now uses the
+white ring its neighbour `.dyslexic-toggle` already used: 12.63:1 on the inactive `#333`, and
+5.76:1 on the lowest-contrast page accent. Separately, `#sm-bar` spans the full width at
+`bottom:0` while `.a11y-controls` is fixed at `bottom:20px;right:20px` with a far higher
+`z-index` — the controls sat on top of the bar's right end and the summary text ran
+underneath them — and nothing reserved space for the bar, so it permanently covered the last
+~40px of every page's footer. The bar now reserves the width of the control stack on the
+right (tightened at the mobile breakpoint), the section label truncates instead of crowding
+out the summary, and `body.study-mode` carries bottom padding so the bar never covers
+content. The collapsed bar is also genuinely one line now: the base rule never set
+`white-space:nowrap`, which left `#sm-bar.is-open .sm-bar-txt{white-space:normal}` overriding
+nothing.
+
+**Tap-to-open tooltips stand down in Study Mode.** `site.js`'s `.term` tap handler kept
+toggling `.is-open` and calling `preventDefault()` while Study Mode's CSS hid the tooltip and
+set `cursor:default` — a tap that visibly did nothing. The handler now returns early while
+`body.study-mode` is on; the definition is already printed inline beside the word.
 
 **Testing.** `tools/study-mode.test.js` unit-tests every pure helper (40 tests). A full
 browser round-trip isn't possible in this environment, so `tools/study-mode.integration.test.js`

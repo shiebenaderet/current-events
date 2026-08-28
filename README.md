@@ -97,7 +97,7 @@ Download the topic `.html` file plus `site.css`, `site.js`, `fonts/`, and any `i
 
 ## Study Mode
 
-Every topic page has a **💡 Study Mode** button in the header (and on mobile, in the menu). Turning it on reveals the definition beside every glossed word right in the paragraph it appears in, and adds a small bar at the bottom of the screen that tracks which section you're reading and previews what it covers. It doesn't rewrite or shorten anything — it's the same article, with support turned on. Turning it back off returns the page to exactly how it looked before.
+Every topic page has a **💡 Study Mode** button in the accessibility controls fixed to the bottom-right corner of the screen, below the text-size buttons and the dyslexia-font toggle. It is in the same place on desktop and on a phone. Turning it on reveals the definition beside every glossed word right in the paragraph it appears in, and adds a small bar at the bottom of the screen that tracks which section you're reading and previews what it covers. It doesn't rewrite or shorten anything — it's the same article, with support turned on. Turning it back off returns the page to exactly how it looked before.
 
 The setting is remembered across pages once a student turns it on, so it doesn't need to be re-enabled on every page they open next.
 

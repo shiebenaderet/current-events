@@ -43,6 +43,13 @@
     if (!document.querySelector('.term')) return;
 
     document.addEventListener('click', function (e) {
+      // Study Mode hides the tooltip (site.css: `body.study-mode .term::after,
+      // .term::before{display:none !important}`) and sets cursor:default on
+      // .term, because the definition is already printed inline beside the
+      // word. Without this guard the tap handler still ran: a tap toggled
+      // .is-open on an element whose tooltip cannot appear, and preventDefault
+      // swallowed the tap. Leave the tooltip alone while Study Mode is on.
+      if (document.body.classList.contains('study-mode')) { closeTerms(null); return; }
       var term = e.target.closest ? e.target.closest('.term') : null;
       if (!term) { closeTerms(null); return; }
       e.preventDefault();

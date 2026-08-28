@@ -353,3 +353,69 @@ test('buildBar() does not leak a second #sm-bar or a second IntersectionObserver
   assert.equal(sandbox.IntersectionObserver.instances[0].disconnected, false,
     'the single observer should still be live (no teardown happened in this test)');
 });
+
+/* ── fix round 3: the pure halves of Critical 1, 2 and 3 ──────────────────
+   The DOM-level proofs live in tools/study-mode.integration.test.js, which
+   drives the real pages. These pin the pure predicates those DOM paths
+   delegate to, so a regression shows up here first and with a smaller
+   failure message. */
+
+test('isAlreadyGlossed detects a .term ancestor (Critical 1: the Key Word is already glossed on the page)', () => {
+  assert.equal(SM.isAlreadyGlossed(['term']), true);
+  // Ancestor lists arrive as a flat list of every class up the chain.
+  assert.equal(SM.isAlreadyGlossed(['strong', 'term', 'article']), true);
+  assert.equal(SM.isAlreadyGlossed(['article', 'sec-body']), false);
+  assert.equal(SM.isAlreadyGlossed([]), false);
+  assert.equal(SM.isAlreadyGlossed(null), false);
+  // A .term-desc is NOT "already glossed" -- incidental wording inside one
+  // term's definition must not veto glossing a different word's real use.
+  assert.equal(SM.isAlreadyGlossed(['term-desc']), false);
+});
+
+test('isNonProse detects .term-desc and .cite-inline ancestors (Critical 2: aria targets and source labels are not injection sites)', () => {
+  assert.equal(SM.isNonProse(['term-desc']), true);
+  assert.equal(SM.isNonProse(['cite-inline']), true);
+  assert.equal(SM.isNonProse(['em', 'cite-inline', 'p']), true);
+  assert.equal(SM.isNonProse(['term']), false);
+  assert.equal(SM.isNonProse(['article']), false);
+  assert.equal(SM.isNonProse([]), false);
+  assert.equal(SM.isNonProse(null), false);
+});
+
+test('the two class predicates are disjoint, so a node is either abandoned or stepped over, never both', () => {
+  const all = ['term', 'term-desc', 'cite-inline'];
+  for (const c of all) {
+    assert.equal(SM.isAlreadyGlossed([c]) && SM.isNonProse([c]), false, c);
+  }
+});
+
+test('deriveDefinitionText joins fragments and collapses the gap a removed citation leaves behind (Critical 3)', () => {
+  // The real shape: "<text>.<a class=cite-inline>NASA</a>" -- the anchor is
+  // dropped by identity upstream, so the fragments never contain "NASA".
+  assert.equal(
+    SM.deriveDefinitionText(['A gas that traps heat. CO₂ is the main one.']),
+    'A gas that traps heat. CO₂ is the main one.'
+  );
+  // A mid-paragraph citation leaves a space on each side of the hole.
+  assert.equal(
+    SM.deriveDefinitionText(['The leader of the House. ', ' One of the biggest powers is scheduling.']),
+    'The leader of the House. One of the biggest powers is scheduling.'
+  );
+});
+
+test('deriveDefinitionText trims and normalises whitespace, and survives empty input', () => {
+  assert.equal(SM.deriveDefinitionText(['  A system where each branch limits\n  the other two.  ']),
+    'A system where each branch limits the other two.');
+  assert.equal(SM.deriveDefinitionText([]), '');
+  assert.equal(SM.deriveDefinitionText(null), '');
+});
+
+test('deriveDefinitionText is fragment-based, so a definition that repeats the citation label keeps its own copy (no string surgery)', () => {
+  // "NASA" is the label AND a legitimate word in the definition. A regex
+  // that stripped a trailing "NASA" off the joined string would eat the
+  // real one too; removing the anchor node itself cannot.
+  assert.equal(
+    SM.deriveDefinitionText(["NASA's program to send astronauts back to the Moon."]),
+    "NASA's program to send astronauts back to the Moon."
+  );
+});

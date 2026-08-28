@@ -22,7 +22,10 @@ blockquote/q/cite), the injector falls back to a sibling
 `<p class="sm-gloss-aside">` placed *after* that container. When a term is
 only ever found inside bare quote marks with no container element to
 attach a sibling to, the box is left untouched and the term is recorded as
-"skipped" -- never injected. A term with no prose occurrence at all is a
+"skipped" -- never injected. A Key Word whose first prose match sits inside
+an authored `.term` span is skipped too (fix round 3): study mode already
+reveals that word's definition inline, so a second gloss would print the
+same definition twice. A term with no prose occurrence at all is a
 separate, expected "orphan" (a free V5 content-quality signal), not a bug.
 
 This script is a from-scratch re-implementation of that traversal logic --
@@ -221,6 +224,25 @@ def has_protected_class(classes):
     return any(c in PROTECTED_CLASSES for c in classes)
 
 
+# Mirror of study-mode.js's ALREADY_GLOSSED_CLASSES / NON_PROSE_CLASSES
+# (fix round 3, Critical 1 and 2). A match inside a `.term` means the page
+# already glosses that word inline in study mode, so the whole Key Word is
+# abandoned and recorded as skipped rather than glossed a second time. A
+# match inside a `.term-desc` (an aria-describedby target) or a
+# `.cite-inline` (a source label) is simply not a prose injection site, so
+# the scan steps over it and keeps looking.
+ALREADY_GLOSSED_CLASSES = {'term'}
+NON_PROSE_CLASSES = {'term-desc', 'cite-inline'}
+
+
+def is_already_glossed(classes):
+    return any(c in ALREADY_GLOSSED_CLASSES for c in classes)
+
+
+def is_non_prose(classes):
+    return any(c in NON_PROSE_CLASSES for c in classes)
+
+
 def is_inside_quote_marks(text, index):
     """Port of study-mode.js's isInsideQuoteMarks(): a linear open/close
     TOGGLE scan of `text` up to `index`. A straight " toggles open/closed;
@@ -346,11 +368,15 @@ def find_target(section, regex, box):
         tags = ancestor_tags(node, section)
         if HEADING_TAGS & set(tags):
             continue
-        if node.parent is not None and 'cite-inline' in node.parent.classes():
-            continue
         classes = ancestor_classes(node, section)
+        # Checked against every ancestor, not just the immediate parent: a
+        # .term or .cite-inline can wrap a <strong>/<em> around the match.
+        if is_non_prose(classes):
+            continue
         block = nearest_block(node, section)
         block_text, block_offset = locate_in_block(block, node, m.start())
+        if is_already_glossed(classes):
+            return Hit('blocked', node, tags, classes, m.start(), block, block_text, block_offset)
         quoted = (has_protected_ancestor(tags) or has_protected_class(classes)
                   or is_inside_quote_marks(node.text, m.start())
                   or is_inside_quote_marks(block_text, block_offset))
@@ -438,7 +464,11 @@ def check_page(path):
             orphan_terms.append(term)
             continue
 
-        if hit.kind == 'inline':
+        if hit.kind == 'blocked':
+            # Already an authored .term on this page -- study mode reveals
+            # that definition inline, so a second gloss is not injected.
+            skipped_terms.append(term)
+        elif hit.kind == 'inline':
             inline_terms.append(term)
             # SECOND, INDEPENDENT method (Finding 2): re-derive quotedness
             # over the same block's rendered text with paired-span regex
@@ -481,7 +511,7 @@ def main_check(pages):
         print(f"== {r['path']} ==")
         print(f"  Key Words: {r['total']}   will gloss inline: {len(r['inline'])}   "
               f"sibling-aside needed: {len(r['aside'])}   "
-              f"skipped (quoted, no container): {len(r['skipped'])}   "
+              f"skipped (quoted w/ no container, or already a .term): {len(r['skipped'])}   "
               f"orphans: {len(r['orphans'])}")
         if r['inline']:
             print(f"    inline:  {', '.join(r['inline'])}")

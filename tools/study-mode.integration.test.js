@@ -117,6 +117,14 @@ class Element {
   }
   get id() { return this.attrs.id || ''; }
   set id(v) { this.attrs.id = String(v); }
+  // study-mode.js assigns el.className on every node it creates. Without
+  // this accessor the assignment landed on a plain JS property and the
+  // stub's classList/selector engine never saw the class -- so a check
+  // written against '.sm-gloss' silently matched nothing. Mapping it to
+  // attrs.class, as the real DOM does, is what makes the fix-round-3 gloss
+  // assertions below able to fail.
+  get className() { return this.attrs.class || ''; }
+  set className(v) { this.attrs.class = String(v); }
   getAttribute(name) {
     return Object.prototype.hasOwnProperty.call(this.attrs, name) ? this.attrs[name] : null;
   }
@@ -450,6 +458,70 @@ const PAGES = [
   'iran.html', 'space-race.html', 'ukraine.html', 'us-elections.html'
 ];
 
+// Classes an injected node must never descend from. .term and .term-desc
+// are the fix-round-3 findings (Critical 1 and 2): a gloss spliced inside a
+// .term printed the same definition twice back to back and rendered it
+// underlined as part of the term, and a gloss spliced inside a .term-desc
+// corrupted an aria-describedby target -- i.e. mangled the sentence a
+// screen-reader student hears. .cite-inline is a source label, never prose.
+// Re-derived here by an independent ancestor walk, on purpose: the point of
+// this harness is to check the real DOM rather than trust study-mode.js's
+// own guard.
+const NO_INJECT_CLASSES = ['term', 'term-desc', 'cite-inline'];
+
+function noInjectAncestorOf(node) {
+  let n = node.parentNode;
+  while (n) {
+    if (n.nodeType === 1) {
+      for (const c of NO_INJECT_CLASSES) if (n.classList.contains(c)) return c;
+    }
+    n = n.parentNode;
+  }
+  return null;
+}
+
+// Independent recomputation of what a Key Word box's gloss text SHOULD be:
+// every text node of the definition <p> that does not descend from a
+// .cite-inline, joined in document order, whitespace collapsed. Written as
+// its own walk rather than by calling into study-mode.js, so a regression in
+// the production derivation is caught rather than mirrored.
+function expectedGlossText(defEl) {
+  const parts = [];
+  (function walk(el) {
+    for (const c of el.childNodes) {
+      if (c.nodeType === 1) {
+        if (c.classList.contains('cite-inline')) continue;
+        walk(c);
+      } else if (c.nodeType === 3) {
+        parts.push(c.nodeValue);
+      }
+    }
+  })(defEl);
+  return parts.join('').replace(/\s+/g, ' ').trim();
+}
+
+// The two sides of Critical 3, per page: what each Key Word gloss should
+// say, and what the pre-fix `defEl.textContent.trim()` produced (the string
+// with the citation label run onto the end of a sentence, e.g.
+// "...are the main ones.NASA"). Only boxes whose raw text actually differs
+// contribute a "bad" string, so a page with no in-vocab citations
+// contributes nothing rather than a false pass.
+function glossTextExpectations(document) {
+  const good = new Set();
+  const bad = new Set();
+  for (const box of document.querySelectorAll('.vocab')) {
+    const label = box.querySelector('b');
+    const defEl = box.querySelector('p');
+    if (!label || !defEl) continue;
+    if (!/^Key\s*Word\s*[:—–-]\s*.+$/i.test(label.textContent.trim().replace(/\s+/g, ' '))) continue;
+    const clean = expectedGlossText(defEl);
+    const raw = defEl.textContent.trim();
+    good.add(clean);
+    if (raw.replace(/\s+/g, ' ') !== clean) bad.add(raw);
+  }
+  return { good, bad };
+}
+
 function hasProtectedAncestorInDom(node) {
   // The primary-source safety invariant, re-checked directly against the
   // live DOM rather than trusting study-mode.js's own guard logic --
@@ -511,6 +583,47 @@ for (const page of PAGES) {
       }
     });
 
+    test('no injected node sits inside a .term/.term-desc/.cite-inline ancestor (fix round 3, Critical 1 and 2)', () => {
+      const document = loadDocument(path.join(ROOT, page));
+      const sandbox = loadSandbox(document);
+      sandbox.window.StudyMode.apply('on');
+
+      const injected = document.querySelectorAll('[data-sm-injected]');
+      for (const node of injected) {
+        const bad = noInjectAncestorOf(node);
+        assert.equal(
+          bad,
+          null,
+          `injected node (${node.tagName}, text="${(node.textContent || '').slice(0, 60)}") ` +
+          `must not descend from a .${bad}`
+        );
+      }
+    });
+
+    test('no injected gloss text carries a citation label (fix round 3, Critical 3)', () => {
+      const document = loadDocument(path.join(ROOT, page));
+      const { good, bad } = glossTextExpectations(document);
+      const sandbox = loadSandbox(document);
+      sandbox.window.StudyMode.apply('on');
+
+      for (const node of document.querySelectorAll('[data-sm-injected]')) {
+        if (node.id === 'sm-bar') continue;
+        const txt = node.textContent;
+        for (const b of bad) {
+          assert.ok(
+            txt.indexOf(b) === -1,
+            `gloss text must not contain the citation-label-swallowing string "${b.slice(-60)}"`
+          );
+        }
+        if (node.classList.contains('sm-gloss')) {
+          assert.ok(
+            good.has(txt),
+            `inline gloss text must equal its Key Word definition with .cite-inline anchors removed; got "${txt.slice(-70)}"`
+          );
+        }
+      }
+    });
+
     test("apply('off') removes every injected node and restores the pre-activation DOM exactly", () => {
       const document = loadDocument(path.join(ROOT, page));
       const before = document.serialize();
@@ -542,3 +655,63 @@ for (const page of PAGES) {
     });
   });
 }
+
+/* ───────────────────────── fix round 3: named render checks ─────────────────────────
+   The three defects that reached the whole-feature review, each pinned to the
+   exact real-page node it corrupted, and each printing the resulting text so
+   a reviewer can read the student's-eye view rather than infer it from a
+   boolean. These are deliberately concrete: the per-page invariants above
+   generalise them, but a generalised assertion that silently stops covering
+   the original case is how these shipped in the first place. */
+
+describe('fix round 3 render checks', () => {
+  test('climate-change: the Greenhouse Gas definition is printed once, not twice (Critical 1)', () => {
+    const document = loadDocument(path.join(ROOT, 'climate-change.html'));
+    const sandbox = loadSandbox(document);
+    sandbox.window.StudyMode.apply('on');
+
+    const desc = document.getElementById('term-desc-3');
+    assert.ok(desc, 'expected climate-change #term-desc-3 (greenhouse gases)');
+    const para = desc.parentNode;
+    const text = para.textContent.replace(/\s+/g, ' ').trim();
+    console.log('\n[render] climate-change, paragraph holding #term-desc-3:\n  ' + text + '\n');
+
+    const def = 'A gas that traps heat instead of letting it escape to space.';
+    let count = 0, at = text.indexOf(def);
+    while (at !== -1) { count++; at = text.indexOf(def, at + 1); }
+    assert.equal(count, 1, 'the greenhouse-gas definition must appear exactly once in this paragraph');
+    assert.equal(document.querySelectorAll('[data-sm-injected]').filter((n) => desc.parentNode.contains(n) && n.classList.contains('sm-gloss') && n.textContent.indexOf(def) === 0).length, 0,
+      'no Key Word gloss should be injected beside a term that already carries this definition');
+  });
+
+  test('ai: #term-desc-1 is byte-identical to its authored definition (Critical 2)', () => {
+    const document = loadDocument(path.join(ROOT, 'ai.html'));
+    const before = document.getElementById('term-desc-1').textContent;
+    const sandbox = loadSandbox(document);
+    sandbox.window.StudyMode.apply('on');
+
+    const after = document.getElementById('term-desc-1').textContent;
+    console.log('[render] ai, #term-desc-1 after apply("on"):\n  ' + after + '\n');
+    assert.equal(after, before,
+      'an aria-describedby target must never have a gloss spliced into it');
+    // ...and it still matches the data-def the .term itself advertises.
+    const term = document.querySelector('.term');
+    assert.equal(after, term.getAttribute('data-def'));
+  });
+
+  test('us-elections: the Checks and Balances gloss does not end in a "src" citation label (Critical 3)', () => {
+    const document = loadDocument(path.join(ROOT, 'us-elections.html'));
+    const sandbox = loadSandbox(document);
+    sandbox.window.StudyMode.apply('on');
+
+    const glosses = document.querySelectorAll('.sm-gloss')
+      .filter((n) => n.textContent.indexOf('A system where each branch') === 0);
+    assert.equal(glosses.length, 1, 'expected exactly one Checks and Balances gloss');
+    const txt = glosses[0].textContent;
+    console.log('[render] us-elections, Checks and Balances gloss:\n  ' + txt + '\n');
+    assert.ok(!/\bsrc\b/.test(txt), 'gloss must not carry the "src" citation label');
+    // The pre-fix string ran the label straight onto the sentence before it.
+    assert.ok(txt.indexOf('at all.src') === -1, 'the citation label must not be run onto the sentence');
+    assert.ok(/make this system work\.$/.test(txt), 'gloss must end at the end of the definition');
+  });
+});

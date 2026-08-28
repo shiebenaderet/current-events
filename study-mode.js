@@ -63,6 +63,52 @@
     return false;
   }
 
+  // Two kinds of place a gloss must never be injected into. Both are
+  // checked against EVERY ancestor, not just the immediate parent, because
+  // any of them can wrap a <strong>/<em> around the matched text node.
+
+  // 1. The word is already glossed. A .term span is an authored vocabulary
+  // word, and study mode already reveals its definition inline (the
+  // .term-desc beside it). 11 Key Word boxes in this corpus name a word
+  // that is also a .term, and the injector's first prose match for those
+  // was the .term span itself: it split the text INSIDE the span and
+  // printed the same definition a second time, back to back with the
+  // first, underlined as if it were part of the term. Finding one of
+  // these ends the search for the whole Key Word -- a second gloss
+  // somewhere further down the section would still show the student the
+  // same word defined twice on the same page, which is the defect. The
+  // box is recorded as skipped.
+  var ALREADY_GLOSSED_CLASSES = ['term'];
+
+  // 2. The match is not prose at all, so it is not a legal injection site
+  // -- but it says nothing about the rest of the section, so the search
+  // continues past it.
+  //   .term-desc   an aria-describedby target. A gloss spliced into one
+  //                rewrites the sentence a screen reader announces for a
+  //                DIFFERENT term: ai.html's #term-desc-1 became
+  //                "...studying neural networks<gloss>and later won the
+  //                2024 Nobel Prize...". Incidental wording inside one
+  //                term's definition must not veto glossing another word's
+  //                real prose use, so this only disqualifies the node.
+  //   .cite-inline a source label ("NASA", "src"), never prose.
+  var NON_PROSE_CLASSES = ['term-desc', 'cite-inline'];
+
+  function hasClassFrom(classNames, list) {
+    if (!classNames || !classNames.length) return false;
+    for (var i = 0; i < classNames.length; i++) {
+      if (list.indexOf(String(classNames[i])) !== -1) return true;
+    }
+    return false;
+  }
+
+  function isAlreadyGlossed(classNames) {
+    return hasClassFrom(classNames, ALREADY_GLOSSED_CLASSES);
+  }
+
+  function isNonProse(classNames) {
+    return hasClassFrom(classNames, NON_PROSE_CLASSES);
+  }
+
   // Quotations also show up with no dedicated container at all -- just
   // curly or straight quote marks inside ordinary prose (e.g. "coalition
   // of the willing"). This asks only of the single text node the match
@@ -136,6 +182,20 @@
       if (t) return t;
     }
     return null;
+  }
+
+  // Key Word definition text, pure half. `fragments` is the ordered list of
+  // the definition paragraph's text with every .cite-inline anchor's own
+  // contribution left out entirely -- again identity/position-based removal
+  // (see definitionTextFor below), never string surgery over the joined
+  // result. Without this, defEl.textContent swallowed the source label
+  // sitting inside the <p> and the student read "...are the main ones.NASA",
+  // "...from proxies.NOAA", "...generating electricity.U.S. EIA" or a bare
+  // "src". Whitespace is collapsed because removing a mid-paragraph anchor
+  // leaves the space before it AND the space after it behind.
+  function deriveDefinitionText(fragments) {
+    var t = (fragments || []).join('');
+    return t.replace(/\s+/g, ' ').trim();
   }
 
   function keyWordFromBox(labelText) {
@@ -247,14 +307,21 @@
   }
 
   // The first text node inside `root` that matches `re` and is not inside a
-  // quotation, heading, citation, or the Key Word box itself. A match can be
-  // "quoted" four ways: a protected tag ancestor (blockquote/q/cite, not
-  // present in this corpus today but cheap to keep), a protected class
-  // ancestor (.pull-quote), bare quote marks around the match inside its own
-  // text node, or -- since a quotation can be split across text nodes by
-  // ordinary inline markup -- bare quote marks around the match once the
-  // whole containing block's rendered text is considered. All four are
-  // treated the same by the caller.
+  // quotation, heading, citation, existing gloss markup, or the Key Word box
+  // itself. A match can be "quoted" four ways: a protected tag ancestor
+  // (blockquote/q/cite, not present in this corpus today but cheap to keep),
+  // a protected class ancestor (.pull-quote), bare quote marks around the
+  // match inside its own text node, or -- since a quotation can be split
+  // across text nodes by ordinary inline markup -- bare quote marks around
+  // the match once the whole containing block's rendered text is considered.
+  // All four are treated the same by the caller.
+  //
+  // Two further refusals, neither of them about quotation:
+  //   - a match inside a .term ancestor means the page already glosses this
+  //     word, so the whole Key Word is abandoned: the hit comes back marked
+  //     `blocked` and the caller records it as skipped.
+  //   - a match inside a .term-desc or .cite-inline ancestor is simply not
+  //     prose; the walk steps over it and keeps looking.
   function findTarget(root, re, excludeBox) {
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
     var node, protectedHit = null;
@@ -265,9 +332,9 @@
       if (excludeBox && excludeBox.contains(node)) continue;
       if (tags.indexOf('H1') !== -1 || tags.indexOf('H2') !== -1 ||
           tags.indexOf('H3') !== -1 || tags.indexOf('H4') !== -1) continue;
-      if (node.parentNode && node.parentNode.classList &&
-          node.parentNode.classList.contains('cite-inline')) continue;
       var classes = ancestorClasses(node, root);
+      if (isNonProse(classes)) continue;
+      if (isAlreadyGlossed(classes)) return { node: node, quoted: false, blocked: true };
       // isInsideQuoteMarks on the node's own text is a fast pre-check: a
       // "quoted" verdict from it is always safe to trust as-is (it can
       // only ever be as-or-more cautious than the block-level view), so
@@ -281,9 +348,9 @@
         if (!protectedHit) protectedHit = node;
         continue;
       }
-      return { node: node, quoted: false };
+      return { node: node, quoted: false, blocked: false };
     }
-    return protectedHit ? { node: protectedHit, quoted: true } : null;
+    return protectedHit ? { node: protectedHit, quoted: true, blocked: false } : null;
   }
 
   function quotedAncestor(node) {
@@ -298,6 +365,31 @@
       n = n.parentNode;
     }
     return null;
+  }
+
+  // DOM-walking half of the definition-text derivation, mirroring what
+  // primerTextFor does for the section bar: walk the definition
+  // paragraph's own nodes and drop each .cite-inline element wholesale --
+  // the node itself, by identity -- keeping every other node's text in
+  // document order. Recursive, because a source label can sit inside a
+  // <strong>/<em> rather than directly under the <p>. All text derivation
+  // is deferred to the pure deriveDefinitionText.
+  function collectDefinitionFragments(el, out) {
+    var kids = el.childNodes;
+    for (var k = 0; k < kids.length; k++) {
+      var kid = kids[k];
+      if (kid.nodeType === 1) {
+        if (kid.classList && kid.classList.contains('cite-inline')) continue;
+        collectDefinitionFragments(kid, out);
+      } else if (kid.nodeType === 3) {
+        out.push(kid.nodeValue);
+      }
+    }
+    return out;
+  }
+
+  function definitionTextFor(defEl) {
+    return deriveDefinitionText(collectDefinitionFragments(defEl, []));
   }
 
   function injectKeyWordGlosses() {
@@ -320,7 +412,12 @@
       var hit = findTarget(section, re, box);
       if (!hit) { orphans.push(term); continue; }
 
-      var text = defEl.textContent.trim();
+      // This Key Word is also an authored .term on the page, so study
+      // mode already reveals its definition inline. Nothing is injected:
+      // the student would otherwise read the same word defined twice.
+      if (hit.blocked) { skipped.push(term); continue; }
+
+      var text = definitionTextFor(defEl);
 
       if (hit.quoted) {
         // S2: scaffolding goes AROUND a source, never inside it. A source
@@ -460,7 +557,7 @@
         console.log('[study-mode] Key Word boxes with no match in prose (V5 orphans):', r.orphans);
       }
       if (r.skipped.length) {
-        console.log('[study-mode] Key Words quoted with no safe container to gloss around (skipped):', r.skipped);
+        console.log('[study-mode] Key Words with no safe place to gloss -- quoted with no container to gloss around, or already glossed as a .term (skipped):', r.skipped);
       }
     }
   }
@@ -470,6 +567,9 @@
     termPattern: termPattern,
     hasProtectedAncestor: hasProtectedAncestor,
     hasProtectedClass: hasProtectedClass,
+    isAlreadyGlossed: isAlreadyGlossed,
+    isNonProse: isNonProse,
+    deriveDefinitionText: deriveDefinitionText,
     isInsideQuoteMarks: isInsideQuoteMarks,
     isQuotedAtFragmentOffset: isQuotedAtFragmentOffset,
     resolveInitialState: resolveInitialState,
