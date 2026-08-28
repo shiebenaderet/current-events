@@ -156,9 +156,10 @@ Create `study-mode.js`:
     while ((m = re.exec(t)) !== null) {
       var cand = t.slice(0, m.index + 1);
       if (ABBR.test(cand)) continue;
-      // A very short fragment before more text is almost always an abbreviation
-      // we did not list, not a real sentence.
-      if (cand.length < 25 && m.index + 1 < t.length) continue;
+      // A real sentence break is followed by end-of-text or a capitalised word.
+      // (A length heuristic here cannot tell a short sentence from an abbreviation.)
+      var rest = t.slice(m.index + 1).replace(/^\s+/, '');
+      if (rest && !/^["'\u201c\u2018(]?[A-Z0-9]/.test(rest)) continue;
       return cand;
     }
     return t;
@@ -168,7 +169,11 @@ Create `study-mode.js`:
     var raw = String(term == null ? '' : term).trim();
     if (!raw) return null;
     var esc = raw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp('\\b' + esc + '(?:e?s)?\\b', 'i');
+    // \b only means anything beside a word character. A term ending in ")" can
+    // never satisfy a trailing \b before a space, so the boundaries are conditional.
+    var lead = /^\w/.test(raw) ? '\\b' : '';
+    var tail = /\w$/.test(raw) ? '(?:e?s)?\\b' : '';
+    return new RegExp(lead + esc + tail, 'i');
   }
 
   var PROTECTED_TAGS = ['BLOCKQUOTE', 'Q', 'CITE'];
