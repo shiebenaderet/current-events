@@ -109,6 +109,33 @@
     return isInsideQuoteMarks(blockText, offset);
   }
 
+  // Section-bar (Task 5) primer-text derivation, pure. Mirrors the DOM loop
+  // in primerTextFor below but works over a plain array of paragraph
+  // descriptors -- { isBrHead, text, linkTexts } -- so it's unit-testable
+  // with no DOM. `linkTexts` is the textContent of any <a> elements within
+  // that paragraph (a "First: <a>…</a>" pointer, in the real corpus, though
+  // it always lives in its own trailing <p class="br-first">, never mixed
+  // into a content paragraph -- this still strips it if it ever were).
+  // Returns the first non-empty, non-br-head paragraph's text with its
+  // link text and a trailing "First:" removed, or null if every paragraph
+  // is empty (a section with no usable primer, which must hide the bar).
+  function derivePrimerText(paragraphs) {
+    if (!paragraphs) return null;
+    for (var i = 0; i < paragraphs.length; i++) {
+      var p = paragraphs[i];
+      if (!p || p.isBrHead) continue;
+      var t = String(p.text == null ? '' : p.text);
+      var linkTexts = p.linkTexts || [];
+      for (var j = 0; j < linkTexts.length; j++) {
+        var lt = String(linkTexts[j] == null ? '' : linkTexts[j]);
+        if (lt) t = t.split(lt).join('');
+      }
+      t = t.replace(/\bFirst:\s*$/i, '').trim();
+      if (t) return t;
+    }
+    return null;
+  }
+
   function keyWordFromBox(labelText) {
     var t = String(labelText == null ? '' : labelText).trim().replace(/\s+/g, ' ');
     // Separator is a colon on us-elections and an em-dash on every other page;
@@ -326,8 +353,77 @@
     return { injected: injected, orphans: orphans, skipped: skipped };
   }
 
+  // Section bar (Task 5). Fixed at the bottom -- body has overflow-x:hidden
+  // site-wide, which breaks position:sticky for descendants, and the top of
+  // the page already carries a sticky masthead and section-nav.
+  var barObserver = null;
+
+  // DOM-walking half of the section bar's primer lookup: finds the
+  // .before-read aside that follows a .sec-head (stopping early if another
+  // .sec-head is reached first, i.e. this section has no primer), gathers
+  // its <p> paragraphs into the plain structure derivePrimerText expects,
+  // and defers all text derivation to that pure helper.
+  function primerTextFor(secHead) {
+    // The .before-read aside is the next sibling after its .sec-head.
+    var n = secHead.nextElementSibling;
+    while (n && !n.classList.contains('before-read')) {
+      if (n.classList.contains('sec-head')) return null;
+      n = n.nextElementSibling;
+    }
+    if (!n) return null;
+    var ps = n.querySelectorAll('p');
+    var paragraphs = [];
+    for (var i = 0; i < ps.length; i++) {
+      var linkTexts = [];
+      var links = ps[i].querySelectorAll('a');       // "First: <link>" pointers
+      for (var j = 0; j < links.length; j++) linkTexts.push(links[j].textContent);
+      paragraphs.push({
+        isBrHead: ps[i].classList.contains('br-head'),
+        text: ps[i].textContent,
+        linkTexts: linkTexts
+      });
+    }
+    return derivePrimerText(paragraphs);
+  }
+
+  function buildBar() {
+    var heads = document.querySelectorAll('.sec-head');
+    if (!heads.length || typeof IntersectionObserver === 'undefined') return;
+
+    var bar = document.createElement('div');
+    bar.id = 'sm-bar';
+    bar.setAttribute('data-sm-injected', '1');
+    bar.innerHTML = '<span class="sm-bar-sec"></span><span class="sm-bar-txt"></span>';
+    bar.addEventListener('click', function () { bar.classList.toggle('is-open'); render(bar._full, bar._label); });
+    document.body.appendChild(bar);
+
+    function render(full, label) {
+      if (!full) { bar.style.display = 'none'; return; }
+      bar.style.display = 'flex';
+      bar.querySelector('.sm-bar-sec').textContent = label || '';
+      bar.querySelector('.sm-bar-txt').textContent =
+        bar.classList.contains('is-open') ? full : firstSentence(full);
+    }
+
+    barObserver = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (!entries[i].isIntersecting) continue;
+        var head = entries[i].target;
+        var h = head.querySelector('h2, h3');
+        bar._label = h ? h.textContent.trim().slice(0, 28) : '';
+        bar._full = primerTextFor(head);
+        render(bar._full, bar._label);
+      }
+    }, { rootMargin: '-10% 0px -70% 0px' });
+
+    for (var k = 0; k < heads.length; k++) barObserver.observe(heads[k]);
+  }
+
   function teardownLayer() {
     if (typeof document === 'undefined') return;
+    // Disconnect the observer before removing its injected nodes -- an
+    // in-flight callback touching a detached bar is otherwise possible.
+    if (barObserver) { barObserver.disconnect(); barObserver = null; }
     var nodes = document.querySelectorAll('[data-sm-injected]');
     for (var i = 0; i < nodes.length; i++) {
       var p = nodes[i].parentNode;
@@ -340,6 +436,7 @@
   function buildLayer() {
     if (typeof document === 'undefined') return;
     var r = injectKeyWordGlosses();
+    buildBar();
     if (window.location.search.indexOf('smdebug') !== -1) {
       if (r.orphans.length) {
         console.log('[study-mode] Key Word boxes with no match in prose (V5 orphans):', r.orphans);
@@ -359,7 +456,8 @@
     isQuotedAtFragmentOffset: isQuotedAtFragmentOffset,
     resolveInitialState: resolveInitialState,
     readStudyParam: readStudyParam,
-    keyWordFromBox: keyWordFromBox
+    keyWordFromBox: keyWordFromBox,
+    derivePrimerText: derivePrimerText
   };
 
   if (typeof module !== 'undefined' && module.exports) {

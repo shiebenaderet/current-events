@@ -190,3 +190,45 @@ test('isQuotedAtFragmentOffset matches a single-fragment block exactly like isIn
   const idx = t.indexOf('computer vision');
   assert.equal(SM.isQuotedAtFragmentOffset([t], 0, idx), SM.isInsideQuoteMarks(t, idx));
 });
+
+test('derivePrimerText skips the br-head paragraph and returns the first content paragraph', () => {
+  const paragraphs = [
+    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] },
+    { isBrHead: false, text: 'Congress writes the laws.', linkTexts: [] },
+    { isBrHead: false, text: 'The president carries them out.', linkTexts: [] }
+  ];
+  assert.equal(SM.derivePrimerText(paragraphs), 'Congress writes the laws.');
+});
+
+test('derivePrimerText handles a multi-paragraph primer by returning the first non-empty content paragraph', () => {
+  const paragraphs = [
+    { isBrHead: true, text: 'Before you read 5 min', linkTexts: [] },
+    { isBrHead: false, text: 'Nobody writes rules like "cats have pointy ears."', linkTexts: [] },
+    { isBrHead: false, text: 'Every wrong guess nudges its internal settings.', linkTexts: [] },
+    { isBrHead: false, text: 'First: What Actually Is Artificial Intelligence?', linkTexts: ['What Actually Is Artificial Intelligence?'] }
+  ];
+  assert.equal(
+    SM.derivePrimerText(paragraphs),
+    'Nobody writes rules like "cats have pointy ears."'
+  );
+});
+
+test('derivePrimerText strips link text and a trailing "First:" when that is the only content paragraph', () => {
+  const paragraphs = [
+    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] },
+    { isBrHead: false, text: 'First: What are the three branches of government?', linkTexts: ['What are the three branches of government?'] }
+  ];
+  assert.equal(SM.derivePrimerText(paragraphs), null);
+});
+
+test('derivePrimerText returns null for a primer with no content paragraph', () => {
+  const paragraphs = [
+    { isBrHead: true, text: 'Before you read 3 min', linkTexts: [] }
+  ];
+  assert.equal(SM.derivePrimerText(paragraphs), null);
+});
+
+test('derivePrimerText returns null for an empty or missing paragraph list', () => {
+  assert.equal(SM.derivePrimerText([]), null);
+  assert.equal(SM.derivePrimerText(null), null);
+});

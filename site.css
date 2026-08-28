@@ -314,3 +314,19 @@ body.study-mode .sm-gloss-aside{
   font-family:-apple-system,sans-serif;
   font-size:.84rem;line-height:1.5;color:var(--ink-light,#4a4a4a);
 }
+
+/* Section bar (Task 5): fixed at the BOTTOM, not the top -- the site already
+   has a sticky masthead and section-nav at the top, and body has
+   overflow-x:hidden which breaks position:sticky for descendants anyway. */
+#sm-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--ink,#1a1a1a);color:#f0ece4;
+  font-family:-apple-system,sans-serif;font-size:.8rem;line-height:1.45;
+  padding:10px 6vw;cursor:pointer;
+  box-shadow:0 -4px 16px rgba(0,0,0,.18);
+  display:flex;gap:10px;align-items:baseline;
+}
+#sm-bar .sm-bar-sec{font-weight:700;letter-spacing:.03em;opacity:.75;flex:0 0 auto}
+#sm-bar .sm-bar-txt{flex:1 1 auto}
+#sm-bar.is-open .sm-bar-txt{white-space:normal}
+@media (max-width:640px){ #sm-bar{font-size:.76rem;padding:9px 5vw} }
