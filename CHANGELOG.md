@@ -2,6 +2,58 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [3.6.0] — 2026-08-28
+
+**Minor — site-wide `/reading-intervention` sweep: 8 quiz items rewritten across 5 pages.**
+Extends the v3.5.0 audit from `us-elections` to the whole corpus (37,574 words, 9 pages).
+
+**What the sweep found.** The K5 primer-spoiler collision found on `us-elections` is
+systematic, not local: the v3.4.0 "Before you read" blocks were written to preview each
+section, the quiz banks were written earlier to test each section, and the two were never
+checked against each other. 8 of 58 quiz items had their answer stated in the primer sitting
+directly above them — in several cases word for word.
+
+| page | items | what the primer gave away |
+|---|---|---|
+| `ukraine` | q1, q2, q3 | "largest country entirely inside Europe"; "a powerful state called Kievan Rus'"; Shevchenko writing in Ukrainian while banned |
+| `space-race` | q1, q3 | Sputnik / Soviet Union / 1957 / orbit; "Blue Origin is headquartered in Kent" |
+| `immigration` | q1 | "Indigenous nations had been across North America for thousands of years" |
+| `gun-violence` | q7 | "approving Initiative 1491 in November 2016" |
+| `iran` | q3 | "About half of Iranians are under 35" (vs. answer "About 50%") |
+
+Every rewrite keeps the primer's fact **in the stem** and asks for something only the passage
+supplies — Ukraine's western border countries, who founded Kievan Rus' and when, what
+Shevchenko was born into, what ordinary people could actually do with Sputnik's signal, what
+a Human Landing System is for, the Library of Congress's own word for colonization
+("an invasion of territory"), and that extreme risk protection orders are a state-level tool
+whose rules each state writes itself. No item was deleted and no item got easier; each now
+tests one level deeper than it did.
+
+**What the sweep cleared.** Worth recording so it is not re-litigated:
+
+- **Zero myth-checklist findings site-wide.** `immigration` was the only page with triggers,
+  and all four are correctly handled: both "empty land" uses *negate* the myth rather than
+  assert it, the DHS "worst of the worst criminal illegal aliens" line is attributed inside a
+  quotation with its source, and "Puyallup Assembly Center" / "Minidoka War Relocation Center"
+  are the camps' proper names sitting beside an explicit Densho-sourced gloss on why
+  historians say "incarceration camp" instead. That page had already done the work.
+- **Zero images without alt text**, across all 9 pages.
+- **`space-race` reads below band** (FK 6.48 against a 6.51 floor) — the direction `bands.md`
+  calls the alarm that matters. Not a defect here: v3.4.0 already measured this as a *topic*
+  effect (rockets are concrete), and the v3.1.x rewrite moved it 6.6 → 6.5. Left alone.
+
+**Known limits of the scanner** (it is a locator, not a judge). It is blind to numeric answers
+— `iran q3` was caught only because "About 50%" and "about half" happen to share a stopword,
+and had to be re-added by hand. It also over-fires on the `"Before you read N min"` time label,
+whose digits collide with numeric answers; that prefix is now stripped before matching.
+`us-elections q2` and `gun-violence q9` are confirmed false positives: the first shares only
+"House"/"Senate" and never the two-thirds figure, the second names a *different* initiative
+(1491/2016 vs. 1639/2018).
+
+**Still open across the corpus:** no page has a writing slot (Q7/Q8); `us-elections` has zero
+`.term` tooltips while `gun-violence` has 18, so the site's own gloss mechanism is applied
+unevenly; and the `us-elections` items from v3.5.0 remain open.
+
 ## [3.5.0] — 2026-08-28
 
 **Minor — three scaffold repairs on `us-elections.html`, from a `/reading-intervention` audit.**
