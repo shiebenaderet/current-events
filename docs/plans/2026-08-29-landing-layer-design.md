@@ -211,9 +211,22 @@ An earlier draft put the eight-way `openQuiz` de-duplication in this release.
 Withdrawn: it touches all eight pages before the prototype has proven anything,
 and two global `openQuiz` definitions would collide mid-migration.
 
-Instead the shell exposes `window.Quiz.open()`; `climate-change.html` uses it;
-the other seven keep their inline copies until the rollout removes them. Same
-destination, no flag day, prototype stays a one-page change.
+**Revised again during implementation planning (2026-08-29), after reading the
+code.** `openQuiz` is not a standalone function. It sits in a graph with
+`handleAnswer`, `addPoints`, `showToast` and `closeQuiz`, over shared
+`pts` / `MAX_PTS` / `answeredQuizzes` state and per-page unlock copy
+("Climate Detective") — roughly 75 lines, of which only the `quizzes` object is
+genuinely per-page content. Extracting it needs a real config seam
+(`Quiz.init({quizzes, maxPoints, unlockLabel})`), not a function move.
+
+**The entire quiz extraction is therefore deferred to the rollout** (§10). It is
+a moderate-risk refactor of a working points system, it delivers nothing
+user-visible in 3.8.0, and the "no flag day" property that motivated doing one
+page now is satisfied equally by doing all eight at once later. 3.8.0 leaves
+every page's quiz code exactly as it is.
+
+The location rule still stands and still bounds D1 — it simply gets applied to
+the unfold shell in this release, and to the quiz engine in the next.
 
 ---
 
@@ -304,7 +317,8 @@ it afterward would let a regression hide behind "the interactive needs JS anyway
 
 | File | Change |
 |---|---|
-| `site.js` | **new** `Unfold` module — ordering, deep-link forcing, `localStorage` progress; `window.Quiz.open()` |
+| `unfold-logic.js` | **new** root-level module — pure ordering functions, dual-mode export so `node --test` can exercise them headlessly (the split `study-mode.js` established) |
+| `site.js` | **new** `initUnfold()` — DOM wiring, deep-link forcing, `localStorage` progress |
 | `site.css` | `.unfold` / `<summary>` styling, "Keep going" CTA, print rules |
 | `climate-change.html` | Landing layer (new prose + Ice Core Drill); 7 reading sections wrapped in `<details>` |
 | `tools/unfold.test.js` | **new** — ordering logic under `node --test` |
@@ -353,6 +367,6 @@ verification against a different domain from the passage's own stated source.
 
 - The seven remaining topic pages (rollout follows, once the prototype validates)
 - Centerpieces for any topic but climate-change
-- Removing the seven inline `openQuiz` copies (§5)
+- **Any quiz-engine change at all** (§5). All eight pages keep their inline copies; the extraction, its config seam, and the de-duplication happen together in the rollout.
 - Any change to existing deep-section prose. It moves inside a `<details>`
   wrapper and is otherwise untouched — that is what Gate 4 proves.
