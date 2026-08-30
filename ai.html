@@ -374,17 +374,6 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
-<nav class="section-nav">
-  <a href="#what">What Is AI?</a>
-  <a href="#learn">How It Learns</a>
-  <a href="#today">AI Today</a>
-  <a href="#school">School</a>
-  <a href="#jobs">Jobs</a>
-  <a href="#timeline">Timeline</a>
-  <a href="#people">People</a>
-  <a href="#videos">Videos</a>
-  <a href="#resources">Resources</a>
-</nav>
 
 <header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
@@ -416,6 +405,74 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </div>
 
 <!-- ═══════════ SECTION 1: WHAT IS AI? ═══════════ -->
+<section class="landing" id="landing">
+  <div class="article">
+    <p class="lede">Ask a computer to tell a cat from a dog. It sounds easy. It is not, and the reason is stranger than you might guess: nobody can write down the rule. Try it. Every rule you come up with — pointed ears, whiskers, size — has a dog that fits it and a cat that breaks it. You know a cat when you see one, but you cannot say how. So for a long time computers could not do it either.</p>
+
+    <p>What changed is that we stopped trying to write the rule. Instead we show the machine thousands of pictures already labelled cat or dog, and let it work out for itself which patterns go with which label. That is what people mean by <span class="term" tabindex="0" data-def="Building a computer program by showing it many labelled examples and letting it find the patterns itself, instead of writing the rules by hand." aria-describedby="term-desc-ai1">machine learning</span><span id="term-desc-ai1" class="term-desc">Building a computer program by showing it many labelled examples and letting it find the patterns itself, instead of writing the rules by hand.</span>. The machine is not told what a cat is. It is shown, over and over, until it can carry on the pattern by itself.</p>
+
+    <p>That one idea explains most of what follows, including the odd parts. It explains why these systems are good at jobs nobody could write rules for, like translating a sentence or describing a photo. It also explains why they fail in ways no person would. A machine that has only ever seen one kind of example has no idea the other kinds are out there.</p>
+
+    <p>You have almost certainly used one today without calling it that. The app that finishes your sentence before you do, the one that picks which video plays next, the one that recognises a face in a photo — all of them were built the same way, by being shown examples rather than being given rules. When people say a chatbot is "trained", this is what they mean. Nobody sat down and taught it grammar.</p>
+  </div>
+
+  <figure class="centerpiece" id="teachFig">
+    <figcaption class="centerpiece-head">
+      <span class="tag">Try it</span>
+      <span class="centerpiece-title">Teach it, then break it</span>
+    </figcaption>
+
+    <div class="centerpiece-body">
+      <p class="centerpiece-label">
+        Twelve fruits, sorted by size and sweetness. Switch an example off and
+        the machine forgets it. The shaded background is its guess for every
+        possible fruit.
+      </p>
+
+      <div class="teach-plot" id="teachPlot">
+        <canvas id="teachCanvas" width="300" height="220" aria-hidden="true"></canvas>
+        <div class="teach-points" id="teachPoints"></div>
+      </div>
+      <p class="teach-axis" aria-hidden="true"><span>← smaller</span><span>bigger →</span></p>
+
+      <div class="teach-controls">
+        <button type="button" class="slip-btn" id="teachAll">Use every example</button>
+        <button type="button" class="slip-btn" id="teachDrop">Forget every lemon</button>
+      </div>
+
+      <p class="centerpiece-readout" id="teachReadout" role="status" aria-live="polite">
+        Using all 12 examples, the machine sorts new fruit correctly.
+      </p>
+    </div>
+
+    <figcaption class="centerpiece-note">
+      A working nearest-neighbour classifier — the simplest kind of machine
+      learning there is. It has no rules about fruit. It only compares a new
+      thing to the examples it was given.
+    </figcaption>
+  </figure>
+
+  <div class="article">
+    <p>Try switching examples off above and the failure is not subtle. Take away every lemon and the machine does not become uncertain about lemons — it confidently calls them something else, because "lemon" is no longer a thing that exists as far as it knows. It has no rules of its own to fall back on. It only has what it was shown.</p>
+
+    <p>That is worth keeping in mind every time you read that an AI system was biased or got something badly wrong. Usually nobody programmed it to be wrong. It learned from a pile of examples, and the examples were missing something, or contained a pattern nobody meant to teach it. The machine cannot tell the difference between a pattern that is true about the world and a pattern that is only true about the pile.</p>
+  </div>
+
+  <div class="article">
+    <p><strong>Where things stand, August 2026.</strong> The systems built this way have moved quickly, and the people who built them do not all agree about what happens next. Geoffrey Hinton, who won a Nobel Prize for the work underneath modern AI, left Google in 2023 so he could speak freely about risks he had come to worry about. Others who worked on the same ideas think those worries are overstated. Both groups know the technology extremely well. That disagreement is not a sign that somebody is being dishonest — it is what a genuinely open question looks like while it is still open.</p>
+  </div>
+
+  <div class="landing-quiz">
+    <button class="quiz-toggle" onclick="openQuiz('q6')">Got the basics? Test yourself</button>
+  </div>
+</section>
+
+<div class="unfold-cta" id="unfoldCta" hidden></div>
+<details class="unfold" data-order="1" data-title="What AI actually is" data-minutes="4" data-quiz="q1">
+  <summary>
+    <span class="unfold-summary-title">What AI actually is</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="sec-head" id="what">
   <span class="num">Question 1</span>
   <h2>What Actually <em>Is</em> Artificial Intelligence?</h2>
@@ -467,8 +524,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 2: HOW DOES IT LEARN? ═══════════ -->
+<details class="unfold" data-order="2" data-title="How a machine learns" data-minutes="5" data-quiz="q2">
+  <summary>
+    <span class="unfold-summary-title">How a machine learns</span>
+    <span class="unfold-summary-time">5 min</span>
+  </summary>
 <div class="sec-head" id="learn">
   <span class="num">Question 2</span>
   <h2>How Does a Machine Actually <em>Learn</em> Things?</h2>
@@ -527,8 +590,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 3: WHAT MADE IT TAKE OFF? ═══════════ -->
+<details class="unfold" data-order="3" data-title="What made AI powerful" data-minutes="5" data-quiz="q3">
+  <summary>
+    <span class="unfold-summary-title">What made AI powerful</span>
+    <span class="unfold-summary-time">5 min</span>
+  </summary>
 <div class="sec-head" id="breakthrough">
   <span class="num">Question 3</span>
   <h2>What Suddenly Made AI <em>So Powerful</em>?</h2>
@@ -597,8 +666,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 4: WHERE IS AI NOW? ═══════════ -->
+<details class="unfold" data-order="4" data-title="What AI can do now" data-minutes="6" data-quiz="q4">
+  <summary>
+    <span class="unfold-summary-title">What AI can do now</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="sec-head" id="today">
   <span class="num">Question 4</span>
   <h2>Where Is AI Today — and What Can It Do?</h2>
@@ -670,8 +745,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ FOCUS PANE: AI & YOUR SCHOOL ═══════════ -->
+<details class="unfold" data-order="5" data-title="AI and your school" data-minutes="4">
+  <summary>
+    <span class="unfold-summary-title">AI and your school</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="focus-pane" id="school">
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>AI &amp; Your School — What Changes?</h2></div>
@@ -731,8 +812,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ JOBS & DISPLACEMENT ═══════════ -->
+<details class="unfold" data-order="6" data-title="Will AI take jobs?" data-minutes="3">
+  <summary>
+    <span class="unfold-summary-title">Will AI take jobs?</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="jobs">
   <span class="num">Focus</span>
   <h2>Will AI Take People's Jobs?</h2>
@@ -764,8 +851,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="callout"><span class="tag">Think about it</span><p>If many adults think AI will mean fewer jobs, what skills are still worth practicing in school — the ones a chatbot can already do, or the ones it still can't?</p></div>
 </div>
+</details>
 
 <!-- ═══════════ FURTHER READING: TALKING TO ANIMALS USING AI ═══════════ -->
+<details class="unfold" data-order="7" data-title="Talking to animals" data-minutes="3">
+  <summary>
+    <span class="unfold-summary-title">Talking to animals</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="animals">
   <span class="num">Further reading</span>
   <h2>Talking to Animals Using AI</h2>
@@ -813,8 +906,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </ol>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ FOCUS PANE: THE GODFATHER'S WARNING ═══════════ -->
+<details class="unfold" data-order="8" data-title="The godfather's warning" data-minutes="6">
+  <summary>
+    <span class="unfold-summary-title">The godfather's warning</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="focus-pane" id="hinton" style="background:#0f1420">
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>The Godfather's Warning</h2></div>
@@ -889,8 +988,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ FOCUS PANE: AI THAT TAKES ACTION ═══════════ -->
+<details class="unfold" data-order="9" data-title="AI that takes action" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">AI that takes action</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="focus-pane" id="agentic" style="background:#131826">
   <div class="focus-pane-inner">
     <div class="focus-head"><span class="num">Focus</span><h2>AI That Takes Action</h2></div>
@@ -926,8 +1031,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ TIMELINE ═══════════ -->
+<details class="unfold" data-order="10" data-title="AI through the decades" data-minutes="6" data-quiz="q5">
+  <summary>
+    <span class="unfold-summary-title">AI through the decades</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="sec-head" id="timeline">
   <span class="num">Timeline</span>
   <h2>AI Through the Decades</h2>
@@ -1000,8 +1111,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
+<details class="unfold unfold-extra" data-order="11" data-title="Key people" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">Key people</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="people">
   <span class="num">Bonus</span>
   <h2>Key People in AI</h2>
@@ -1084,8 +1201,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </ol>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
+<details class="unfold unfold-extra" data-order="12" data-title="Videos and podcasts" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Videos and podcasts</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="videos">
   <span class="num">Watch &amp; Listen</span>
   <h2>Videos &amp; Podcasts</h2>
@@ -1130,8 +1253,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <div class="cap">Center for Humane Technology: "Talking With Animals Using AI"</div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
+<details class="unfold unfold-extra" data-order="13" data-title="Ranked reading" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">Ranked reading</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="resources">
   <span class="num">Resources</span>
   <h2>Ranked Reading</h2>
@@ -1157,6 +1286,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <a class="rc" href="https://www.technologyreview.com/artificial-intelligence/" target="_blank"><span class="tag">MIT Tech Review</span><div class="rc-title">MIT Technology Review: AI Section</div><p>Cutting-edge reporting on AI research and applications from MIT. For students ready for a real challenge.</p><div class="level">Harder</div></a>
   <a class="rc" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank"><span class="tag">3Blue1Brown</span><div class="rc-title">3Blue1Brown: Neural Networks</div><p>Beautiful math visualizations that explain exactly how neural networks learn. Best for students who like math.</p><div class="level">Harder</div></a>
 </div>
+</details>
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
@@ -1186,6 +1316,18 @@ const MAX_PTS = 10;
 
 // ─── QUIZZES ───
 const quizzes = {
+  q6: {
+    q: "You train a machine to sort fruit, but you never show it a single lemon. What happens when it meets one?",
+    choices: [
+      "It says it does not know",
+      "It confidently calls the lemon something else",
+      "It refuses to answer until someone adds lemons",
+      "It works out what a lemon is from the other fruit"
+    ],
+    correct: 1,
+    feedback: "✅ Right. It has no rules of its own and no way to notice a gap — so it picks the closest thing it was shown and is completely sure about it.",
+    wrong: "Not quite. It has no rules of its own, so it cannot notice that something is missing. It picks whichever example it was shown that is closest, and it is confident about that answer."
+  },
   q1: { q:"What is an artificial neural network inspired by?", choices:["The internet","The human brain","A calculator","A search engine"], correct:1,
     feedback:"Correct! Neural networks are inspired by how neurons in the human brain connect and communicate with each other.",
     wrong:"Not quite! Neural networks are modeled after the human brain — specifically how neurons connect and send signals to each other." },
@@ -1238,6 +1380,7 @@ function handleAnswer(id, chosen, btn) {
     fb.className = 'quiz-feedback show wrong-fb';
     answeredQuizzes.add(id);
   }
+  if (window.Unfold && window.Unfold.markDone) window.Unfold.markDone(id);
 }
 function closeQuiz(){ document.getElementById('quizModal').classList.remove('open'); document.body.style.overflow=''; }
 
@@ -1269,6 +1412,127 @@ function showToast(icon,title,msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove('show'), 4000);
 }
+
+/* ─── TEACH IT, THEN BREAK IT ───
+   A real nearest-neighbour classifier, not an animation of one. Every pixel
+   of the shaded background is computed by asking which switched-on example
+   is closest, which is genuinely how 1-NN works. Turn off all the lemons and
+   the lemon region really does get taken over -- nothing is scripted to
+   "look like" failure, the failure is the algorithm doing exactly what it
+   was told with the data it was left.
+
+   The fruit are invented and labelled as such in the caption: this teaches a
+   method, and inventing a method's demo data is honest in a way inventing a
+   statistic never is. */
+(function () {
+  var wrap = document.getElementById('teachPoints');
+  var canvas = document.getElementById('teachCanvas');
+  var readout = document.getElementById('teachReadout');
+  var allBtn = document.getElementById('teachAll');
+  var dropBtn = document.getElementById('teachDrop');
+  if (!wrap || !canvas || !canvas.getContext) return;
+
+  var W = 300, H = 220;
+  // x = size, y = sweetness (0..1). Invented, and said to be.
+  var DATA = [
+    { x: .18, y: .78, k: 'lemon' }, { x: .26, y: .70, k: 'lemon' },
+    { x: .21, y: .86, k: 'lemon' }, { x: .31, y: .80, k: 'lemon' },
+    { x: .70, y: .30, k: 'melon' }, { x: .80, y: .22, k: 'melon' },
+    { x: .76, y: .38, k: 'melon' }, { x: .86, y: .30, k: 'melon' },
+    { x: .46, y: .30, k: 'apple' }, { x: .54, y: .22, k: 'apple' },
+    { x: .50, y: .40, k: 'apple' }, { x: .40, y: .26, k: 'apple' }
+  ];
+  var COLOUR = { lemon: '#c9a500', melon: '#3d6b35', apple: '#a02c2c' };
+  var on = DATA.map(function () { return true; });
+
+  function nearest(x, y) {
+    var best = null, bd = Infinity;
+    for (var i = 0; i < DATA.length; i++) {
+      if (!on[i]) continue;
+      var dx = DATA[i].x - x, dy = DATA[i].y - y, d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = DATA[i].k; }
+    }
+    return best;
+  }
+
+  function hex2rgb(h) {
+    return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16),
+            parseInt(h.slice(5, 7), 16)];
+  }
+
+  function paint() {
+    var ctx = canvas.getContext('2d');
+    var img = ctx.createImageData(W, H);
+    var step = 4;   // coarse blocks: cheap, and reads as regions not pixels
+    for (var py = 0; py < H; py += step) {
+      for (var px = 0; px < W; px += step) {
+        var k = nearest(px / W, 1 - py / H);
+        var c = k ? hex2rgb(COLOUR[k]) : [230, 228, 222];
+        for (var oy = 0; oy < step && py + oy < H; oy++) {
+          for (var ox = 0; ox < step && px + ox < W; ox++) {
+            var o = ((py + oy) * W + (px + ox)) * 4;
+            img.data[o] = c[0]; img.data[o + 1] = c[1];
+            img.data[o + 2] = c[2]; img.data[o + 3] = k ? 46 : 26;
+          }
+        }
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function describe() {
+    var live = on.filter(Boolean).length;
+    var kinds = {};
+    for (var i = 0; i < DATA.length; i++) if (on[i]) kinds[DATA[i].k] = 1;
+    var missing = ['lemon', 'melon', 'apple'].filter(function (k) { return !kinds[k]; });
+    if (!live) {
+      readout.textContent = 'With no examples left, it cannot guess anything at all. It has no rules of its own.';
+    } else if (missing.length) {
+      readout.textContent = 'You switched off every ' + missing[0] +
+        '. The machine has not become wrong about ' + missing[0] +
+        's — it no longer knows they exist, so it labels them something else with total confidence.';
+    } else {
+      readout.textContent = 'Using ' + live + ' examples, the machine sorts new fruit into three regions.';
+    }
+  }
+
+  function render() { paint(); describe(); }
+
+  DATA.forEach(function (d, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'teach-pt';
+    b.style.left = (d.x * 100) + '%';
+    b.style.bottom = (d.y * 100) + '%';
+    b.style.setProperty('--c', COLOUR[d.k]);
+    b.setAttribute('aria-pressed', 'true');
+    b.setAttribute('aria-label', d.k + ' example ' + (i + 1));
+    b.addEventListener('click', function () {
+      on[i] = !on[i];
+      b.setAttribute('aria-pressed', String(on[i]));
+      b.classList.toggle('is-off', !on[i]);
+      render();
+    });
+    wrap.appendChild(b);
+  });
+
+  function setAll(pred) {
+    var btns = wrap.querySelectorAll('.teach-pt');
+    DATA.forEach(function (d, i) {
+      on[i] = pred(d);
+      btns[i].setAttribute('aria-pressed', String(on[i]));
+      btns[i].classList.toggle('is-off', !on[i]);
+    });
+    render();
+  }
+
+  if (allBtn) allBtn.addEventListener('click', function () { setAll(function () { return true; }); });
+  if (dropBtn) dropBtn.addEventListener('click', function () {
+    setAll(function (d) { return d.k !== 'lemon'; });
+  });
+
+  render();
+})();
 
 // ─── EASTER EGG 1: ROBOT EMOJI — CLICK 5 TIMES ───
 function handleEmojiClick(){
@@ -1374,6 +1638,7 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
 
 </script>
 
+<script src="unfold-logic.js"></script>
 <script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>

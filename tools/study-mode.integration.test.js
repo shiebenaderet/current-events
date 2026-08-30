@@ -708,7 +708,18 @@ describe('fix round 3 render checks', () => {
     assert.equal(after, before,
       'an aria-describedby target must never have a gloss spliced into it');
     // ...and it still matches the data-def the .term itself advertises.
-    const term = document.querySelector('.term');
+    //
+    // Resolved by aria-describedby, not by document order. This previously
+    // took the FIRST .term on the page and assumed it was the one paired
+    // with #term-desc-1 -- true until ai.html gained a landing layer whose
+    // own glossed term sits earlier in the document. The pairing is what
+    // this assertion is about, so it should be looked up by the attribute
+    // that expresses it rather than by position.
+    // Matched in JS rather than with an attribute selector: the test
+    // harness's minimal DOM implements class and id selectors only.
+    const term = document.querySelectorAll('.term')
+      .filter((t) => t.getAttribute('aria-describedby') === 'term-desc-1')[0];
+    assert.ok(term, 'expected a .term pointing at #term-desc-1');
     assert.equal(after, term.getAttribute('data-def'));
   });
 

@@ -585,6 +585,44 @@ details.unfold > summary:focus-visible {
   margin:var(--ce-space-1,4px) 0 var(--ce-space-3,12px);
 }
 
+/* ── Nearest-neighbour demo (ai centerpiece) ────────────────────────────
+   Examples are real buttons positioned over the canvas, so the whole thing
+   is keyboard-operable and each one announces what it is and whether it is
+   switched on. The canvas is decorative: everything it shows is also said
+   in the readout. */
+.teach-plot{
+  position:relative; width:100%; max-width:300px; margin:0 auto;
+  border:1px solid var(--rule,#d4cfc4); background:var(--paper,#fbf9f4);
+}
+.teach-plot canvas{ display:block; width:100%; height:auto; }
+.teach-points{ position:absolute; inset:0; }
+.teach-pt{
+  position:absolute; width:18px; height:18px; padding:0;
+  transform:translate(-50%,50%);
+  border:2px solid var(--paper,#fbf9f4);
+  border-radius:50%;
+  background:var(--c,#1a1a1a);
+  cursor:pointer;
+}
+.teach-pt.is-off{ background:transparent; border-color:var(--ink-faint,#6b655c); }
+.teach-pt:focus-visible{ outline:2px solid var(--ink,#1a1a1a); outline-offset:2px; }
+/* 18px reads small but the tap target is the 44px floor. */
+.teach-pt::after{
+  content:''; position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:var(--ce-tap,44px); height:var(--ce-tap,44px);
+}
+.teach-axis{
+  display:flex; justify-content:space-between;
+  max-width:300px; margin:var(--ce-space-1,4px) auto var(--ce-space-3,12px);
+  font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-2xs,.68rem); color:var(--ink-faint,#6b655c);
+}
+.teach-controls{
+  display:flex; gap:var(--ce-space-2,8px); flex-wrap:wrap;
+  margin-bottom:var(--ce-space-3,12px);
+}
+
 /* The primer's own quiz. Sits at the end of the primer, above the tiles,
    so the student meets a choice — check what you just read, or go pick a
    part — instead of scrolling into more prose. */
