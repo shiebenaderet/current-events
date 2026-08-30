@@ -53,3 +53,37 @@ test('serializeProgress round-trips through parseProgress', () => {
   assert.equal(U.serializeProgress([]), '');
   assert.deepEqual(U.parseProgress(U.serializeProgress([3, 1])), [3, 1]);
 });
+
+// ── Completed-quiz store ────────────────────────────────────────────────
+// The page's own answeredQuizzes is an in-memory Set, so a check mark would
+// vanish on reload. These back a separate, persisted store keyed by quiz id.
+
+test('doneKey is namespaced per page and distinct from progressKey', () => {
+  assert.equal(U.doneKey('/climate-change.html'), 'unfold-done:climate-change.html');
+  assert.equal(U.doneKey('/'), 'unfold-done:index.html');
+  assert.notEqual(U.doneKey('/a.html'), U.progressKey('/a.html'));
+});
+
+test('parseDone survives absent, empty and messy storage', () => {
+  assert.deepEqual(U.parseDone(null), []);
+  assert.deepEqual(U.parseDone(''), []);
+  assert.deepEqual(U.parseDone('q1,q2'), ['q1', 'q2']);
+  assert.deepEqual(U.parseDone(' q1 , ,q2 '), ['q1', 'q2']);
+});
+
+test('addDone is idempotent, so answering twice cannot double-count', () => {
+  assert.deepEqual(U.addDone([], 'q1'), ['q1']);
+  assert.deepEqual(U.addDone(['q1'], 'q1'), ['q1']);
+  assert.deepEqual(U.addDone(['q1'], 'q2'), ['q1', 'q2']);
+});
+
+test('addDone ignores empty ids rather than storing a blank', () => {
+  assert.deepEqual(U.addDone(['q1'], ''), ['q1']);
+  assert.deepEqual(U.addDone(['q1'], null), ['q1']);
+});
+
+test('serializeDone round-trips through parseDone', () => {
+  assert.equal(U.serializeDone(['q1', 'q2']), 'q1,q2');
+  assert.equal(U.serializeDone([]), '');
+  assert.deepEqual(U.parseDone(U.serializeDone(['q6', 'q1'])), ['q6', 'q1']);
+});

@@ -431,22 +431,68 @@ footer{
     <p>So why is it warming? Air is mostly nitrogen and oxygen, with a much smaller amount of carbon dioxide mixed in. You breathe a little of that gas out. Cars, furnaces and power plants push out far more, every time they burn fuel. Carbon dioxide does one particular job in the sky: it traps heat. Sunlight warms the ground, the ground sends heat back up, and carbon dioxide catches part of that heat instead of letting it escape into space.<a class="cite-inline" href="https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/" target="_blank">NASA</a> More of the gas means more trapped heat, because less of that heat ever gets back out. People have been adding a lot of it, mostly by burning coal, oil and gas since the 1800s. That points at us as the cause, but pointing is not the same as proving.</p>
   </div>
 
-  <!-- ICE CORE DRILL — Task 6 replaces this comment entirely -->
+  <figure class="centerpiece" id="co2Record">
+    <figcaption class="centerpiece-head">
+      <span class="tag">Try it</span>
+      <span class="centerpiece-title">Drag through 800,000 years of air</span>
+    </figcaption>
+
+    <div class="centerpiece-body">
+      <label class="centerpiece-label" for="co2Stop">Drag the slider, or use the arrow keys</label>
+      <input type="range" id="co2Stop" min="0" max="3" step="1" value="0"
+             aria-describedby="co2Readout">
+
+      <!-- This readout is three things at once: the visible answer, the
+           screen-reader announcement, and the no-JS fallback. Its starting
+           text is the first stop, so a student with JavaScript off still
+           reads a true, sourced statement. -->
+      <p class="centerpiece-readout" id="co2Readout" role="status" aria-live="polite">
+        <strong>The ice-core record</strong> &middot; 800,000 years, eight ice ages
+        &middot; <b>never above 300 ppm</b>
+      </p>
+
+      <svg class="centerpiece-svg" viewBox="0 0 320 190" role="img"
+           aria-label="Carbon dioxide in the air at four points in time. For 800,000 years it stayed below 300 parts per million. By 2026 it reached 429.">
+        <!-- y axis runs 0-450 ppm. Deliberately zero-based: starting the
+             axis at 150 would make the modern bars look several times
+             taller than the old ones, which is not what the numbers say.
+             The 300 ppm ceiling line carries the argument instead. -->
+        <line x1="34" y1="160" x2="310" y2="160" stroke="#6b655c" stroke-width="1"/>
+        <line x1="34" y1="53.3" x2="310" y2="53.3" stroke="#a02c2c"
+              stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="36" y="49" font-size="9" fill="#a02c2c" font-weight="700">300 ppm — the ceiling that held for 800,000 years</text>
+
+        <g id="co2Bars"></g>
+
+        <text x="30" y="163" text-anchor="end" font-size="8" fill="#6b655c">0</text>
+        <text x="30" y="56" text-anchor="end" font-size="8" fill="#6b655c">300</text>
+        <text x="30" y="17" text-anchor="end" font-size="8" fill="#6b655c">450</text>
+      </svg>
+    </div>
+
+    <figcaption class="centerpiece-note">
+      Ice-core ceiling and pre-industrial level: <a class="cite-inline" href="https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide" target="_blank">NOAA</a>
+      Modern readings: <a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA Mauna Loa</a>
+    </figcaption>
+  </figure>
 
   <div class="article">
     <p>Here is the part that shows it is us. To know whether this rise is just nature doing what nature has always done, you need a record of the air from long before anyone was burning fuel. Antarctica keeps one. Snow falls there every year and never melts, because it never gets warm enough to thaw. Each new snowfall presses down on the one beneath it, so the snow packs into ice and seals tiny bubbles of air inside as it goes, so each layer holds a real sample of the sky from the year that snow fell. Natural records that stand in for measurements nobody was there to take are called <span class="term" tabindex="0" data-def="Natural evidence that stands in for a direct measurement nobody was around to take — ice cores, sediment layers, tree rings, coral." aria-describedby="term-desc-8">climate proxies</span><span id="term-desc-8" class="term-desc">Natural evidence that stands in for a direct measurement nobody was around to take — ice cores, sediment layers, tree rings, coral.</span>. Drill out a long column of that ice and you can measure air that is hundreds of thousands of years old.<a class="cite-inline" href="https://www.climate.gov/news-features/climate-tech/climate-core-how-scientists-study-ice-cores-reveal-earths-climate" target="_blank">NOAA</a> That record runs back 800,000 years, through eight ice ages. In all that time, carbon dioxide rose and fell on its own — and never once passed 300 <span class="term" tabindex="0" data-def="A way of counting how much of a gas is in the air. 431 parts per million means 431 carbon dioxide molecules out of every million molecules of air." aria-describedby="term-desc-7">parts per million</span><span id="term-desc-7" class="term-desc">A way of counting how much of a gas is in the air. 431 parts per million means 431 carbon dioxide molecules out of every million molecules of air.</span>.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Ice_core" target="_blank">Wikipedia</a></p>
 
-    <p>In June 2026, the air held 431.<a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA</a> That is higher than any air in the whole record, and the speed is the strange part. Carbon dioxide had climbed before, many times. But NASA puts this rise at about 250 times faster than the one that followed the last ice age, and the warming at roughly 10 times faster than normal.<a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a> The old changes were slow because their causes were slow: wobbles in Earth's orbit, volcanic eruptions, and small shifts in the sun, which take thousands of years to come around. This rise lines up instead with the fuel people started burning in the 1800s, and it moved in decades.</p>
+    <p>In July 2026, the air held 429 parts per million.<a class="cite-inline" href="https://gml.noaa.gov/ccgg/trends/mlo.html" target="_blank">NOAA</a> That is higher than any air in the whole record, and the speed is the strange part. Carbon dioxide had climbed before, many times. But NASA puts this rise at about 250 times faster than the one that followed the last ice age, and the warming at roughly 10 times faster than normal.<a class="cite-inline" href="https://science.nasa.gov/climate-change/evidence/" target="_blank">NASA</a> The old changes were slow because their causes were slow: wobbles in Earth's orbit, volcanic eruptions, and small shifts in the sun, which take thousands of years to come around. This rise lines up instead with the fuel people started burning in the 1800s, and it moved in decades.</p>
   </div>
 
   <div class="article">
     <p><strong>Where things stand, August 2026.</strong> Washington was in its fourth drought year in a row as of August 27, 2026, and snowpack sat near half its usual level.<a class="cite-inline" href="https://ecology.wa.gov/about-us/who-we-are/news/2026/april-8-statewide-drought-declared-due-to-dismal-snowpack" target="_blank">WA Ecology</a> A heat wave broke records across North America that summer. Phoenix hit 113&deg;F in early July, and Salt Lake City hit 109&deg;F on July 12, an all-time record there. At its peak, nearly half the people in the United States sat under an extreme heat warning.<a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_North_American_heat_wave" target="_blank">Wikipedia</a> Those are measurements with dates on them, not predictions. What comes next depends on how much more of that gas goes into the air, which is a question about what people decide to do.</p>
   </div>
+  <div class="landing-quiz">
+    <button class="quiz-toggle" onclick="openQuiz('q9')">Got the basics? Test yourself</button>
+  </div>
 </section>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
 <div class="unfold-cta" id="unfoldCta" hidden></div>
-<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="4">
+<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="4" data-quiz="q6">
   <summary>
     <span class="unfold-summary-title">Where Things Stand</span>
     <span class="unfold-summary-time">4 min</span>
@@ -513,7 +559,7 @@ footer{
 </details>
 
 <!-- ═══════════ DEEP TIME ═══════════ -->
-<details class="unfold" data-order="2" data-title="Deep-Time Climate History" data-minutes="3">
+<details class="unfold" data-order="2" data-title="Deep-Time Climate History" data-minutes="3" data-quiz="q1">
   <summary>
     <span class="unfold-summary-title">Deep-Time Climate History</span>
     <span class="unfold-summary-time">3 min</span>
@@ -573,11 +619,11 @@ footer{
                C 618,130 626,125 638,122" fill="none" stroke="#1a1a1a" stroke-width="2"/>
       <path d="M 638,122 C 645,118 650,70 656,45" fill="none" stroke="#3d6b35" stroke-width="3"/>
       <circle cx="656" cy="45" r="5" fill="#3d6b35"/>
-      <line x1="50" y1="150" x2="656" y2="150" stroke="#767066" stroke-width="1" stroke-dasharray="4,3"/>
-      <text x="380" y="143" text-anchor="middle" font-size="11" fill="#767066" font-weight="700">Natural record never passed 300 ppm</text>
+      <line x1="50" y1="150" x2="656" y2="150" stroke="#6b655c" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="380" y="143" text-anchor="middle" font-size="11" fill="#6b655c" font-weight="700">Natural record never passed 300 ppm</text>
       <text x="656" y="35" text-anchor="end" font-size="13" font-weight="800" fill="#3d6b35">431 ppm today</text>
-      <text x="50" y="230" font-size="11" fill="#767066">800,000 yrs ago</text>
-      <text x="656" y="230" text-anchor="end" font-size="11" fill="#767066">today</text>
+      <text x="50" y="230" font-size="11" fill="#6b655c">800,000 yrs ago</text>
+      <text x="656" y="230" text-anchor="end" font-size="11" fill="#6b655c">today</text>
     </svg>
     <div class="chart-cap">Atmospheric CO₂ over 800,000 years, EPICA Dome C — never above 300 ppm until today's 431 ppm. Keep this chart in mind: the next section explains that spike.</div>
   </div>
@@ -587,7 +633,7 @@ footer{
 </details>
 
 <!-- ═══════════ GREENHOUSE ═══════════ -->
-<details class="unfold" data-order="3" data-title="The Greenhouse Effect" data-minutes="2">
+<details class="unfold" data-order="3" data-title="The Greenhouse Effect" data-minutes="2" data-quiz="q2">
   <summary>
     <span class="unfold-summary-title">The Greenhouse Effect</span>
     <span class="unfold-summary-time">2 min</span>
@@ -622,9 +668,9 @@ footer{
 
   <div class="chart-wrap">
     <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-      <defs><marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#767066"/></marker></defs>
-      <path d="M 140 65 Q 220 25 300 65" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#pa)"/>
-      <path d="M 380 65 Q 460 25 540 65" fill="none" stroke="#767066" stroke-width="1.5" marker-end="url(#pa)"/>
+      <defs><marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6b655c"/></marker></defs>
+      <path d="M 140 65 Q 220 25 300 65" fill="none" stroke="#6b655c" stroke-width="1.5" marker-end="url(#pa)"/>
+      <path d="M 380 65 Q 460 25 540 65" fill="none" stroke="#6b655c" stroke-width="1.5" marker-end="url(#pa)"/>
       <rect x="10" y="65" width="180" height="120" fill="#f5f1e8" stroke="#1a1a1a" stroke-width="1"/>
       <text x="100" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a1a">SUNLIGHT</text>
       <text x="100" y="135" text-anchor="middle" font-size="28">☀️</text>
@@ -649,7 +695,7 @@ footer{
 </details>
 
 <!-- ═══════════ RATE OF CHANGE ═══════════ -->
-<details class="unfold" data-order="4" data-title="What's Different This Time" data-minutes="2">
+<details class="unfold" data-order="4" data-title="What's Different This Time" data-minutes="2" data-quiz="q3">
   <summary>
     <span class="unfold-summary-title">What's Different This Time</span>
     <span class="unfold-summary-time">2 min</span>
@@ -699,12 +745,12 @@ footer{
       <line x1="50" y1="170" x2="660" y2="170" stroke="#d4cfc4" stroke-width="1.5"/>
       <path d="M 50,150 C 140,140 190,128 250,110 C 310,90 350,80 400,60 C 450,42 500,30 560,18 C 590,12 620,8 650,4"
             fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-      <circle cx="50" cy="150" r="5" fill="#767066"/>
+      <circle cx="50" cy="150" r="5" fill="#6b655c"/>
       <circle cx="650" cy="4" r="5" fill="#3d6b35"/>
       <text x="55" y="145" font-size="12" font-weight="700" fill="#4a4a4a">315 ppm</text>
       <text x="650" y="18" text-anchor="end" font-size="13" font-weight="800" fill="#3d6b35">431 ppm</text>
-      <text x="50" y="190" font-size="11" fill="#767066">1958</text>
-      <text x="650" y="190" text-anchor="end" font-size="11" fill="#767066">2026</text>
+      <text x="50" y="190" font-size="11" fill="#6b655c">1958</text>
+      <text x="650" y="190" text-anchor="end" font-size="11" fill="#6b655c">2026</text>
     </svg>
     <div class="chart-cap">The Keeling Curve: from 315 ppm in 1958 to 431 ppm in June 2026 — a steady climb, no plateau, in under 70 years. Put it beside the 800,000-year chart above: the natural record never crossed 300 ppm.</div>
   </div>
@@ -714,7 +760,7 @@ footer{
 </details>
 
 <!-- ═══════════ EFFECTS ═══════════ -->
-<details class="unfold" data-order="5" data-title="Effects Being Observed" data-minutes="2">
+<details class="unfold" data-order="5" data-title="Effects Being Observed" data-minutes="2" data-quiz="q4">
   <summary>
     <span class="unfold-summary-title">Effects Being Observed</span>
     <span class="unfold-summary-time">2 min</span>
@@ -765,7 +811,7 @@ footer{
 </details>
 
 <!-- ═══════════ WA STORY ═══════════ -->
-<details class="unfold" data-order="6" data-title="Washington's Climate Story" data-minutes="3">
+<details class="unfold" data-order="6" data-title="Washington's Climate Story" data-minutes="3" data-quiz="q5">
   <summary>
     <span class="unfold-summary-title">Washington's Climate Story</span>
     <span class="unfold-summary-time">3 min</span>
@@ -836,7 +882,7 @@ footer{
 </details>
 
 <!-- ═══════════ TIMELINE ═══════════ -->
-<details class="unfold" data-order="7" data-title="How Did We Learn All This?" data-minutes="1">
+<details class="unfold" data-order="7" data-title="How Did We Learn All This?" data-minutes="1" data-quiz="q7">
   <summary>
     <span class="unfold-summary-title">How Did We Learn All This?</span>
     <span class="unfold-summary-time">1 min</span>
@@ -990,9 +1036,21 @@ let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
 // 8 quizzes (q1-q8, 1 pt each) + 1 easter egg (Konami code, 1 pt) = 9
-const MAX_PTS = 9;
+const MAX_PTS = 10;   // 9 quizzes + the Konami easter egg
 
 const quizzes = {
+  q9: {
+    q: "The ice record shows carbon dioxide went up and down many times before the 1800s. So what makes the rise since then different?",
+    choices: [
+      "It is the first time carbon dioxide has ever gone up",
+      "It is far faster, and it lines up with people burning fuel",
+      "It is the first time anyone has measured the air",
+      "It is the only rise that happened during an ice age"
+    ],
+    correct: 1,
+    feedback: "✅ Right. Carbon dioxide had risen before — the difference is speed. NASA puts this rise at about 250 times faster than the one after the last ice age.",
+    wrong: "Not quite — carbon dioxide had risen many times before. What is new is the speed, about 250 times faster than the rise after the last ice age."
+  },
   q1: {
     q: "How do scientists know what Earth's climate was like 100,000s of years ago?",
     choices: ["They study climate proxies, like ice cores and tree rings", "They guess based on today's weather patterns", "They rely on ancient written records"],
@@ -1089,6 +1147,10 @@ function handleAnswer(id, chosen, btn) {
     fb.className = 'quiz-feedback show wrong-fb';
     answeredQuizzes.add(id);
   }
+  // Right or wrong, the student worked this part, so its tile checks.
+  // answeredQuizzes above is in-memory and empties on reload; the tile store
+  // persists, which is what makes a check mean anything.
+  if (window.Unfold && window.Unfold.markDone) window.Unfold.markDone(id);
 }
 function closeQuiz() {
   document.getElementById('quizModal').classList.remove('open');
@@ -1120,6 +1182,78 @@ function showToast(icon, title, msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
+
+/* ─── CO2 RECORD SCRUB ───
+   Four stops, and every number in them was fetched and read at its source
+   on 2026-08-29 -- nothing here is interpolated or recalled. The ice-core
+   entry deliberately carries no single ppm value, because the verified
+   claim is a ceiling ("never higher than 300 ppm"), not a reading. Putting
+   an invented number there would be a falsehood with better production
+   values than the truth. */
+(function () {
+  var slider = document.getElementById('co2Stop');
+  var readout = document.getElementById('co2Readout');
+  var bars = document.getElementById('co2Bars');
+  if (!slider || !readout || !bars) return;
+
+  var STOPS = [
+    { label: 'The ice-core record', sub: '800,000 years, eight ice ages',
+      ppm: null, ceiling: 300, note: 'never above 300 ppm' },
+    { label: 'Before the Industrial Revolution', sub: 'mid-1700s',
+      ppm: 280, note: '280 ppm or less' },
+    { label: '2024', sub: 'Mauna Loa yearly average', ppm: 424.61 },
+    { label: 'July 2026', sub: 'Mauna Loa monthly average', ppm: 429.12 }
+  ];
+
+  var MAXPPM = 450, BASE = 160, TOP = 10;
+
+  function y(ppm) { return BASE - (ppm / MAXPPM) * (BASE - TOP); }
+
+  function draw(active) {
+    while (bars.firstChild) bars.removeChild(bars.firstChild);
+    for (var i = 0; i < STOPS.length; i++) {
+      var s = STOPS[i];
+      var value = s.ppm === null ? s.ceiling : s.ppm;
+      var top = y(value);
+      var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      r.setAttribute('x', String(48 + i * 64));
+      r.setAttribute('y', String(top));
+      r.setAttribute('width', '40');
+      r.setAttribute('height', String(BASE - top));
+      // The ice-core bar is a ceiling, not a measurement, so it is drawn
+      // hollow -- a filled bar would read as "it was 300", which is wrong.
+      if (s.ppm === null) {
+        r.setAttribute('fill', 'none');
+        r.setAttribute('stroke', i === active ? '#3d6b35' : '#a9a396');
+        r.setAttribute('stroke-width', '2');
+        r.setAttribute('stroke-dasharray', '4,3');
+      } else {
+        r.setAttribute('fill', i === active ? '#3d6b35' : '#c9c3b6');
+      }
+      bars.appendChild(r);
+    }
+  }
+
+  function render() {
+    var i = Math.max(0, Math.min(STOPS.length - 1, Number(slider.value)));
+    var s = STOPS[i];
+    while (readout.firstChild) readout.removeChild(readout.firstChild);
+
+    var strong = document.createElement('strong');
+    strong.textContent = s.label;
+    readout.appendChild(strong);
+    readout.appendChild(document.createTextNode(' · ' + s.sub + ' · '));
+
+    var b = document.createElement('b');
+    b.textContent = s.ppm === null ? s.note : (s.ppm + ' ppm');
+    readout.appendChild(b);
+
+    draw(i);
+  }
+
+  slider.addEventListener('input', render);
+  render();
+})();
 
 // ─── EASTER EGG: KONAMI CODE ───
 document.addEventListener('keydown', (e) => {

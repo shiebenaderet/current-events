@@ -190,13 +190,13 @@ body.text-xl .stat-trio .desc{font-size:1rem}
   font-weight:700;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:var(--ink-faint,#767066);
+  color:var(--ink-faint,#6b655c);
   white-space:nowrap;
 }
 .br-first{
   font-family:-apple-system,sans-serif !important;
   font-size:var(--ce-text-xs,.76rem) !important;
-  color:var(--ink-faint,#767066) !important;
+  color:var(--ink-faint,#6b655c) !important;
 }
 .br-first a{color:var(--accent);font-weight:700}
 
@@ -377,42 +377,88 @@ details.unfold > summary {
 details.unfold > summary::-webkit-details-marker { display: none; }
 details.unfold > summary::after {
   content: '+'; margin-left: auto; font-size: 1.35rem; line-height: 1;
-  color: var(--ink-faint, #767066);
+  color: var(--ink-faint, #6b655c);
 }
 details.unfold[open] > summary::after { content: '\2212'; }
 .unfold-summary-title { font-weight: 600; }
-.unfold-summary-time { color: var(--ink-faint, #767066); font-size: 0.85rem; }
+.unfold-summary-time { color: var(--ink-faint, #6b655c); font-size: 0.85rem; }
 details.unfold[open] > summary { padding: 0.6rem 0; opacity: 0.65; }
 details.unfold[open] > summary .unfold-summary-title { font-weight: 400; }
 details.unfold > summary:focus-visible {
   outline: 2px solid var(--accent, #a02c2c); outline-offset: 3px;
 }
 
-.unfold-cta { margin: 2.5rem 0; }
+/* The primer's own quiz. Sits at the end of the primer, above the tiles,
+   so the student meets a choice — check what you just read, or go pick a
+   part — instead of scrolling into more prose. */
+.landing-quiz{
+  max-width:700px;margin:0 auto;padding:0 6vw var(--ce-space-4,16px);
+  display:flex;justify-content:center;
+}
+
+/* ── Section tiles ──────────────────────────────────────────────────────
+   After the primer, the student picks a part rather than scrolling into a
+   wall. Tiles are flat and equal-weight on purpose: no "recommended next"
+   accent, because the choosing is the point. A tile checks when its quiz
+   has been answered — right or wrong. The check records that the student
+   worked the part; Discovery Points already track how well, separately. */
+.unfold-cta { max-width: 700px; margin: 2.5rem auto 3rem; padding: 0 6vw; }
 .unfold-cta[hidden] { display: none; }
-.unfold-cta-btn {
-  width: 100%; text-align: left; cursor: pointer;
+
+.unfold-tiles-head {
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-xs, .76rem);
+  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-ink, #6b1414);
+  margin: 0 0 var(--ce-space-3, 12px);
+  padding-bottom: var(--ce-space-2, 8px);
+  border-bottom: 1px solid var(--rule, #d4cfc4);
+}
+
+.unfold-tiles {
+  display: grid; gap: var(--ce-space-3, 12px);
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.unfold-tile {
+  display: grid;
+  grid-template-columns: 1.4em 1fr;
+  grid-template-areas: 'check title' '.     time';
+  align-items: start;
+  gap: 2px var(--ce-space-2, 8px);
+  text-align: left; cursor: pointer; font: inherit;
+  color: var(--ink, #1a1a1a);
   background: var(--paper-warm, #f5f1e8);
   border: 1px solid var(--rule, #d4cfc4);
   border-left: 3px solid var(--accent, #a02c2c);
-  padding: 1.1rem 1.25rem; font: inherit; color: var(--ink, #1a1a1a);
-  display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+  padding: var(--ce-space-3, 12px) var(--ce-space-4, 16px);
+  min-height: var(--ce-tap, 44px);
+  transition: background var(--ce-motion-fast, .15s) var(--ce-ease, ease);
 }
-.unfold-cta-btn:hover { background: var(--accent-tint, #f6e9e6); }
-.unfold-cta-label {
-  text-transform: uppercase; letter-spacing: 0.08em;
-  font-size: 0.7rem; color: var(--accent-ink, #6b1414);
+.unfold-tile:hover { background: var(--accent-tint, #f6e9e6); }
+.unfold-tile:focus-visible {
+  outline: 2px solid var(--accent, #a02c2c); outline-offset: 2px;
 }
-.unfold-cta-title { font-weight: 600; }
-/* Deliberately NOT margin-left:auto. The accessibility controls are fixed to
-   the bottom-right of the viewport, so anything pushed to the far right of a
-   full-width button collides with them whenever the button nears the bottom
-   of the screen. Sitting the time next to the title keeps it out of that
-   corner entirely, at any width. */
-.unfold-cta-time {
-  color: var(--ink-faint, #767066); font-size: 0.85rem;
+
+.unfold-tile-check {
+  grid-area: check; color: var(--accent, #a02c2c);
+  font-weight: 800; line-height: 1.3;
 }
-.unfold-cta-time::before { content: '\00b7\00a0'; }
+.unfold-tile-title { grid-area: title; font-weight: 600; line-height: 1.3; }
+.unfold-tile-time {
+  grid-area: time;
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-xs, .76rem);
+  color: var(--ink-faint, #6b655c);
+}
+
+/* A completed tile recedes rather than celebrates: the student's attention
+   belongs on what they have not read yet. */
+.unfold-tile.is-done {
+  background: transparent;
+  border-left-color: var(--rule, #d4cfc4);
+}
+.unfold-tile.is-done .unfold-tile-title { font-weight: 400; }
 
 /* A teacher printing the topic must get the whole topic. No JS involved. */
 @media print {

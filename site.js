@@ -109,39 +109,80 @@
       return null;
     }
 
+    var doneKey = L.doneKey(window.location.pathname);
+
+    function readDone() {
+      try { return L.parseDone(localStorage.getItem(doneKey)); }
+      catch (e) { return []; }
+    }
+
+    function writeDone(list) {
+      try { localStorage.setItem(doneKey, L.serializeDone(list)); }
+      catch (e) { /* progress is a convenience, never a requirement */ }
+    }
+
+    function reveal(el) {
+      el.open = true;
+      var s = el.querySelector('summary');
+      if (s && s.focus) s.focus();
+      // site.css's reduced-motion block cannot reach this: scrollIntoView's
+      // behavior is a script argument, not a CSS property, so the media
+      // query has to be read here by hand.
+      el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                          block: 'start' });
+    }
+
+    /* One tile per section, in page order, all equal weight — the student
+       chooses (spec D3 as revised 2026-08-29). A tile checks when its quiz
+       has been answered, right or wrong: the check records that the student
+       worked through the part, and Discovery Points already track how well
+       separately. */
     function refreshCta() {
       if (!cta) return;
-      var next = L.nextUnopened(
-        sections.map(function (s) { return s.order; }),
-        openedOrders()
-      );
-      if (next === null) { cta.hidden = true; return; }
-      var el = find(next);
-      var title = el.getAttribute('data-title') || '';
-      var mins = el.getAttribute('data-minutes') || '';
+      var done = readDone();
       cta.hidden = false;
       while (cta.firstChild) cta.removeChild(cta.firstChild);
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'unfold-cta-btn';
-      // Built node-by-node rather than via innerHTML: data-title and
-      // data-minutes are page-authored, but there is no reason for this to
-      // be the one place a future edit could inject markup.
-      btn.appendChild(span('unfold-cta-label', 'Keep going'));
-      btn.appendChild(span('unfold-cta-title', title));
-      btn.appendChild(span('unfold-cta-time', mins ? mins + ' min' : ''));
-      btn.addEventListener('click', function () {
-        el.open = true;
-        var s = el.querySelector('summary');
-        if (s && s.focus) s.focus();
-        // site.css's reduced-motion block cannot reach this: scrollIntoView's
-        // behavior is a script argument, not a CSS property, so the media
-        // query has to be read here by hand.
-        el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-                            block: 'start' });
-      });
-      cta.appendChild(btn);
+
+      var head = document.createElement('p');
+      head.className = 'unfold-tiles-head';
+      head.textContent = 'Learn more — pick a part';
+      cta.appendChild(head);
+
+      var grid = document.createElement('div');
+      grid.className = 'unfold-tiles';
+
+      for (var i = 0; i < sections.length; i++) {
+        (function (sec) {
+          var quiz = sec.el.getAttribute('data-quiz') || '';
+          var isDone = quiz && done.indexOf(quiz) !== -1;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'unfold-tile' + (isDone ? ' is-done' : '');
+          if (isDone) btn.setAttribute('aria-label',
+            (sec.el.getAttribute('data-title') || '') + ' — completed');
+
+          var mark = span('unfold-tile-check', isDone ? '✓' : '');
+          mark.setAttribute('aria-hidden', 'true');
+          btn.appendChild(mark);
+          btn.appendChild(span('unfold-tile-title',
+            sec.el.getAttribute('data-title') || ''));
+          var mins = sec.el.getAttribute('data-minutes') || '';
+          btn.appendChild(span('unfold-tile-time', mins ? mins + ' min' : ''));
+
+          btn.addEventListener('click', function () { reveal(sec.el); });
+          grid.appendChild(btn);
+        })(sections[i]);
+      }
+      cta.appendChild(grid);
     }
+
+    // Called by each page's quiz handler once an answer is recorded.
+    function markDone(quizId) {
+      var next = L.addDone(readDone(), quizId);
+      writeDone(next);
+      refreshCta();
+    }
+    window.Unfold = { markDone: markDone };
 
     // A deep link or a section-nav click must open its section even when
     // collapsed — otherwise every existing #anchor on this page silently
