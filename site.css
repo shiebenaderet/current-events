@@ -499,8 +499,20 @@ details.unfold > summary:focus-visible {
   font-weight: 400; color: var(--ink-light, #4a4a4a);
 }
 
-/* A completed tile recedes rather than celebrates: the student's attention
-   belongs on what they have not read yet. */
+/* Three states, because two were not enough: Videos and Dig Deeper carry no
+   quiz, so a done-only mark left them permanently blank however often a
+   student opened them.
+
+   opened  — a dot. You have been here.
+   done    — a check. You have been here and answered its quiz.
+
+   Both recede rather than celebrate: the student's attention belongs on
+   what they have not read yet. */
+.unfold-tile.is-seen {
+  background: transparent;
+}
+.unfold-tile.is-seen .unfold-tile-check { color: var(--ink-faint, #6b655c); }
+
 .unfold-tile.is-done {
   background: transparent;
   border-left-color: var(--rule, #d4cfc4);

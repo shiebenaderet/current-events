@@ -82,26 +82,89 @@
     }
 
     var doneKey = L.doneKey(window.location.pathname);
+    var seenKey = doneKey.replace('unfold-done:', 'unfold-seen:');
 
-    function readDone() {
-      try { return L.parseDone(localStorage.getItem(doneKey)); }
+    function read(key) {
+      try { return L.parseDone(localStorage.getItem(key)); }
       catch (e) { return []; }
     }
 
-    function writeDone(list) {
-      try { localStorage.setItem(doneKey, L.serializeDone(list)); }
+    function write(key, list) {
+      try { localStorage.setItem(key, L.serializeDone(list)); }
       catch (e) { /* progress is a convenience, never a requirement */ }
     }
 
+    function readDone() { return read(doneKey); }
+
+    /* Two states, not one.
+
+       A check used to mean "answered this part's quiz", which left Videos
+       and Dig Deeper permanently blank — they have no quiz, so no amount of
+       opening them could ever mark them. Opening a part now records that it
+       was visited; answering its quiz still upgrades it to done. Every tile
+       can now reflect what the student actually did with it. */
+    function markSeen(order) {
+      var next = L.addDone(read(seenKey), String(order));
+      write(seenKey, next);
+    }
+
+    /* One card at a time. Opening a section closes the others, so a student
+       reads one thing and then meets the menu again, instead of accumulating
+       an endless scroll.
+
+       Print is unaffected: the print stylesheet shows every section's
+       children regardless of the open attribute, so a teacher still gets the
+       whole topic on paper. Find-in-page is unaffected too — the closed
+       sections stay in the DOM. */
+    var closing = false;
+    function collapseOthers(keep) {
+      if (closing) return;          // our own closes must not re-enter
+      closing = true;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el !== keep && sections[i].el.open) {
+          sections[i].el.open = false;
+        }
+      }
+      closing = false;
+    }
+
     function reveal(el) {
+      /* Order matters, and getting it wrong cost a click.
+
+         Closing the previously-open section is what changes the page's
+         height. If that section sits ABOVE the target — which it does
+         whenever you jump backwards, or forwards from an end-of-section
+         menu — the target slides up by however tall the closing section
+         was. Opening first and scrolling immediately measured the old
+         layout and landed past the target, so it took a second click to
+         actually arrive.
+
+         So: collapse first, open second, and scroll only once the browser
+         has laid the page out again. */
+      collapseOthers(el);
       el.open = true;
+
+      // focus() scrolls the focused element into view on its own, which
+      // races the scroll below and lands somewhere between the two.
       var s = el.querySelector('summary');
-      if (s && s.focus) s.focus();
-      // site.css's reduced-motion block cannot reach this: scrollIntoView's
-      // behavior is a script argument, not a CSS property, so the media
-      // query has to be read here by hand.
-      el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-                          block: 'start' });
+      if (s && s.focus) {
+        try { s.focus({ preventScroll: true }); }
+        catch (e) { s.focus(); }      // older browsers ignore the options bag
+      }
+
+      /* Instant, never smooth. Picking a tile is navigation — the equivalent
+         of opening a page — and smooth-scrolling it animates the reader
+         through every part between here and there, which on a 23-minute
+         topic is most of the document flying past. That reads as the page
+         lurching rather than as arriving somewhere.
+
+         This also sidesteps the reduced-motion problem entirely: there is no
+         motion left to suppress. */
+      function go() {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+      if (window.requestAnimationFrame) window.requestAnimationFrame(go);
+      else go();
     }
 
     /* Every section ends with the menu again, so finishing a card is an
@@ -132,6 +195,7 @@
     function renderMenu(target, isEnd) {
       if (!target) return;
       var done = readDone();
+      var seen = read(seenKey);
       target.hidden = false;
       while (target.firstChild) target.removeChild(target.firstChild);
 
@@ -148,16 +212,19 @@
         (function (sec) {
           var quiz = sec.el.getAttribute('data-quiz') || '';
           var isDone = quiz && done.indexOf(quiz) !== -1;
+          var isSeen = !isDone && seen.indexOf(String(sec.order)) !== -1;
           var isHere = isEnd && target.parentNode === sec.el;
+          var title = sec.el.getAttribute('data-title') || '';
           var btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'unfold-tile' + (isDone ? ' is-done' : '') +
+            (isSeen ? ' is-seen' : '') +
             (isHere ? ' is-current' : '') +
             (sec.el.classList.contains('unfold-extra') ? ' is-extra' : '');
-          if (isDone) btn.setAttribute('aria-label',
-            (sec.el.getAttribute('data-title') || '') + ' — completed');
+          if (isDone) btn.setAttribute('aria-label', title + ' — completed');
+          else if (isSeen) btn.setAttribute('aria-label', title + ' — opened');
 
-          var mark = span('unfold-tile-check', isDone ? '✓' : '');
+          var mark = span('unfold-tile-check', isDone ? '✓' : (isSeen ? '·' : ''));
           mark.setAttribute('aria-hidden', 'true');
           btn.appendChild(mark);
           btn.appendChild(span('unfold-tile-title',
@@ -199,30 +266,13 @@
       }
     }
 
-    /* One card at a time. Opening a section closes the others, so a student
-       reads one thing and then meets the menu again, instead of accumulating
-       an endless scroll.
-
-       Print is unaffected: the print stylesheet shows every section's
-       children regardless of the open attribute, so a teacher still gets the
-       whole topic on paper. Find-in-page is unaffected too — the closed
-       sections stay in the DOM. */
-    var closing = false;
-    function collapseOthers(keep) {
-      if (closing) return;          // our own closes must not re-enter
-      closing = true;
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].el !== keep && sections[i].el.open) {
-          sections[i].el.open = false;
-        }
-      }
-      closing = false;
-    }
-
     for (var j = 0; j < sections.length; j++) {
       (function (sec) {
         sec.el.addEventListener('toggle', function () {
-          if (sec.el.open) collapseOthers(sec.el);
+          if (sec.el.open) {
+            collapseOthers(sec.el);
+            markSeen(sec.order);
+          }
           refreshCta();
         });
       })(sections[j]);
@@ -261,18 +311,30 @@
       var href = (card.getAttribute('href') || '').split('/').pop();
       if (!total || !href) continue;
 
-      var done;
-      try { done = L.parseDone(localStorage.getItem(L.doneKey(href))); }
-      catch (e) { continue; }
-      if (!done.length) continue;
+      /* Counts parts VISITED, not parts quizzed. Two of the ten carry no
+         quiz (Videos, Dig Deeper), so a quiz-only count could never reach
+         10 of 10 however thoroughly a student read the topic — the card
+         would sit at 8 forever and read as unfinished work. */
+      var doneKey = L.doneKey(href);
+      var visited;
+      try {
+        var seen = L.parseDone(
+          localStorage.getItem(doneKey.replace('unfold-done:', 'unfold-seen:')));
+        var done = L.parseDone(localStorage.getItem(doneKey));
+        // Opening a part is what records it, and you cannot reach a part's
+        // quiz without opening it — so seen normally covers done. done is
+        // the floor only for a student whose progress predates this store.
+        visited = Math.max(seen.length, done.length);
+      } catch (e) { continue; }
+      if (!visited) continue;
 
       var meta = card.querySelector('.tier-meta');
       if (!meta) continue;
       var tag = document.createElement('span');
       tag.className = 'tier-progress';
-      tag.textContent = done.length >= total
-        ? 'All ' + total + ' parts done'
-        : done.length + ' of ' + total + ' parts done';
+      tag.textContent = visited >= total
+        ? 'All ' + total + ' parts opened'
+        : visited + ' of ' + total + ' parts opened';
       meta.insertBefore(tag, meta.firstChild);
     }
   }
