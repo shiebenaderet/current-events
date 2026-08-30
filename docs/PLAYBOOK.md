@@ -214,10 +214,36 @@ studies and 688 readers; most children in them preferred Arial. See
 - **Quiz coverage is uneven.** ai has 5 quizzes for 13 tiles, iran 5 for 10.
   Those tiles can show "opened" but can never earn a ✓. Not wrong, but the
   progress signal is weaker on those pages than on climate-change (8 of 10).
-- **us-elections:** LD-21 primary results are not asserted — they could not
-  be read at source, so the page states only what follows from the top-two
-  rule. Two Ballotpedia-cited claims are unverified; Ballotpedia could not be
-  fetched.
+- **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
+  Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
+  script. *(LD-21 results: resolved 2026-08-29 — see below.)*
+
+---
+
+## Fetching Washington election results
+
+`results.vote.wa.gov` archives through 2024 at
+`/results/<YYYYMMDD>/legislativedistrict21.html` and is fetchable. Current
+results moved to `results.votewa.gov`, an Angular app that serves an empty
+shell to any fetcher — the per-race pages and the reports page are all
+unreadable that way, and its API sits behind `/results/public/api`.
+
+The way in is the full results workbook, linked from the election's
+`/reports` page and served from `/cdn/results/<guid>/All Results_<guid>.xlsx`.
+An `.xlsx` is a zip of XML, so `zipfile` plus `xml.etree` reads it with no
+dependency — worth doing, in a repo that deliberately has none. Sheet 1 is
+one row per choice:
+
+```
+Office Name | Contest ID | Ballot Name | Choice ID | Party | Total
+```
+
+It also carries rows a screenshot does not: `Ballots Cast`, `Over Votes` and
+`Under Votes` per contest. **Under Votes is how many people returned a ballot
+and left that race blank**, which is how the LD-21 finding turned up — a
+same-party race skipped by 8.8% of voters against 2.6% for the
+Democrat-versus-Republican race on the very same 33,190 ballots. Numbers like
+that are not in the headline results and are worth looking for.
 - **`gun-violence`'s "How other countries handle this" reads FK 10.82**,
   above the grade 6–8 band ceiling. It is an optional deep section, so this
   is a note rather than a defect.
