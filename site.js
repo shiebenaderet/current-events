@@ -74,6 +74,14 @@
     }
     if (!sections.length) return;
 
+    /* Tiles are listed by data-order, not by position in the file. On most
+       pages those agree, but ukraine keeps its "Where the war stands"
+       section eighth in the document for historical-narrative reasons while
+       it is plainly the first thing a reader wants. Under the card model the
+       document order is never seen, so the menu should be ordered for the
+       reader rather than for the source file. */
+    sections.sort(function (a, b) { return a.order - b.order; });
+
     function span(cls, text) {
       var el = document.createElement('span');
       el.className = cls;
