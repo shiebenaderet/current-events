@@ -380,11 +380,8 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <div class="centerpiece-body">
       <p class="centerpiece-label">Step through it. The bar stays to scale the whole way.</p>
 
-      <div class="hz-strait" aria-hidden="true">
-        <div class="hz-lane hz-lane-a" id="hzLaneA"></div>
-        <div class="hz-lane hz-lane-b" id="hzLaneB"></div>
-      </div>
-      <p class="hz-scale" aria-hidden="true"><span>Iran side</span><span id="hzWidth">21 nautical miles</span><span>Oman side</span></p>
+      <div id="hzMap" class="hz-map"></div>
+      <p class="hz-note">Drag or zoom the map. The scale bar in the corner stays accurate.</p>
 
       <div class="slip-controls">
         <button type="button" class="slip-btn" id="hzPrev">&larr; Back</button>
@@ -398,7 +395,10 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
 
     <figcaption class="centerpiece-note">
-      Width and lane figures:
+      Map: OpenStreetMap. The crossing line is 21 nautical miles and each lane is 2,
+      computed from those distances rather than eyeballed — so both sit exactly to
+      scale against the map. Where the line falls across the narrows is approximate;
+      its length is not.
       <a class="cite-inline" href="https://en.wikipedia.org/wiki/Strait_of_Hormuz" target="_blank">Strait of Hormuz</a>
       July 2026 price move: reported on this page's timeline.
     </figcaption>
@@ -1216,50 +1216,87 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
 });
 
 /* ─── THE GAP THE WORLD'S OIL GOES THROUGH ───
-   Four steps, and the bar never rescales between them -- that is the whole
-   trick. The lanes look small because they ARE small: two nautical miles
-   each inside a 21-mile strait, drawn at the same scale as the strait
-   itself. A diagram that zoomed in to make the lanes legible would have
-   destroyed the only thing worth showing.
+   Real geography, real scale. Leaflet and OpenStreetMap are already loaded
+   on this page for the Iran map, so this adds no dependency and no new tile
+   provider.
 
-   Widths and volumes: Wikipedia, Strait of Hormuz, fetched 2026-08-29. The
-   price move is this page's own sourced timeline entry. */
+   The crossing line is drawn by computing its far end from a bearing and a
+   distance, so it is EXACTLY 21 nautical miles by construction rather than
+   by my guessing two coordinates. The lane rectangles are placed along that
+   line at the same scale. Nothing is enlarged to be legible: on the map they
+   are two thin strips, because that is what they are.
+
+   Widths: Strait of Hormuz, fetched 2026-08-29 — 21 nmi at the narrowest,
+   two 2 nmi lanes separated by a 2 nmi median. The placement of the crossing
+   line is approximate and the caption says so; the widths are not. */
 (function () {
+  var el = document.getElementById('hzMap');
   var prev = document.getElementById('hzPrev');
   var next = document.getElementById('hzNext');
-  var a = document.getElementById('hzLaneA');
-  var b = document.getElementById('hzLaneB');
-  var width = document.getElementById('hzWidth');
   var readout = document.getElementById('hzReadout');
-  if (!prev || !next || !a || !b || !readout) return;
+  if (!el || !readout || typeof L === 'undefined') return;
 
-  var STRAIT = 21;   // nautical miles at the narrowest
-  var LANE = 2;      // each shipping lane, same units
+  var NM = 1852;                    // metres in a nautical mile
+  var STRAIT = 21, LANE = 2, MEDIAN = 2;
+  var START = [26.615, 56.205];     // Iranian side of the narrows, approx
+  var BEARING = 158;                // degrees, roughly across to Musandam
 
-  // Split into a bold lead and plain rest so the readout can be built from
-  // nodes rather than an HTML string. These are static literals, but the
-  // readout is the one element that changes on every interaction, and it
-  // costs nothing to keep it incapable of injecting markup.
+  // destination point given start, bearing and distance — so the line's
+  // length is the verified figure, not an artefact of two guessed ends
+  function dest(from, brgDeg, metres) {
+    var R = 6371000, d = metres / R;
+    var b = brgDeg * Math.PI / 180;
+    var la1 = from[0] * Math.PI / 180, lo1 = from[1] * Math.PI / 180;
+    var la2 = Math.asin(Math.sin(la1) * Math.cos(d) +
+                        Math.cos(la1) * Math.sin(d) * Math.cos(b));
+    var lo2 = lo1 + Math.atan2(Math.sin(b) * Math.sin(d) * Math.cos(la1),
+                               Math.cos(d) - Math.sin(la1) * Math.sin(la2));
+    return [la2 * 180 / Math.PI, lo2 * 180 / Math.PI];
+  }
+
+  function along(nm) { return dest(START, BEARING, nm * NM); }
+
+  var END = along(STRAIT);
+
+  var map = L.map(el, {
+    center: [26.5, 56.3], zoom: 9,
+    scrollWheelZoom: false, attributionControl: true
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  L.control.scale({ imperial: false }).addTo(map);
+
+  var crossing = L.polyline([START, END], {
+    color: '#1a1a1a', weight: 2, dashArray: '6,5'
+  });
+
+  // each lane: a thin rectangle running along the crossing line
+  function laneAt(startNm) {
+    var a = along(startNm), b = along(startNm + LANE);
+    return L.polyline([a, b], { color: '#a02c2c', weight: 10, opacity: .85 });
+  }
+  var laneOffset = (STRAIT - (LANE * 2 + MEDIAN)) / 2;   // centred: 7.5 nm
+  var laneA = laneAt(laneOffset);
+  var laneB = laneAt(laneOffset + LANE + MEDIAN);
+
   var STEPS = [
-    { lanes: false, lead: 'The strait.',
-      rest: ' At its narrowest, the Strait of Hormuz is about 21 nautical miles across — Iran on one side, Oman on the other.' },
-    { lanes: true, lead: 'The lanes.',
-      rest: ' Ships do not use all of that. Traffic runs in two lanes, two nautical miles wide each, with a gap between them. Those two dark strips are drawn to the same scale as the strait.' },
-    { lanes: true, lead: 'What goes through.',
-      rest: ' Roughly 18 to 19 million barrels of oil a day move through those lanes — close to a fifth of all the oil the world uses.' },
-    { lanes: true, lead: 'When it stops.',
+    { show: 'crossing', lead: 'The strait.',
+      rest: ' At its narrowest, the Strait of Hormuz is about 21 nautical miles across — Iran to the north, Oman to the south. The dashed line is that crossing, drawn to scale. Pinch or drag the map: the scale bar stays honest.' },
+    { show: 'lanes', lead: 'The lanes.',
+      rest: ' Ships do not use all of it. Traffic runs in two lanes, two nautical miles wide each, with a gap between them — the two red strips, drawn at the same scale as everything else on the map.' },
+    { show: 'lanes', lead: 'What goes through.',
+      rest: ' Roughly 18 to 19 million barrels of oil a day move along those strips — close to a fifth of all the oil the world uses.' },
+    { show: 'lanes', lead: 'When it stops.',
       rest: ' In July 2026 tankers were struck here and traffic halted. Oil prices rose about 12% in a single week — the effect of a two-mile-wide lane, felt at fuel pumps on the other side of the planet.' }
   ];
 
   var i = 0;
   function render() {
     var st = STEPS[i];
-    var pct = (LANE / STRAIT) * 100;
-    a.style.width = pct + '%';
-    b.style.width = pct + '%';
-    a.style.opacity = st.lanes ? '1' : '0';
-    b.style.opacity = st.lanes ? '1' : '0';
-    width.textContent = '21 nautical miles';
+    crossing.addTo(map);
+    if (st.show === 'lanes') { laneA.addTo(map); laneB.addTo(map); }
+    else { map.removeLayer(laneA); map.removeLayer(laneB); }
 
     while (readout.firstChild) readout.removeChild(readout.firstChild);
     var strong = document.createElement('strong');
@@ -1267,12 +1304,14 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
     readout.appendChild(strong);
     readout.appendChild(document.createTextNode(st.rest));
 
-    prev.disabled = (i === 0);
-    next.disabled = (i === STEPS.length - 1);
+    if (prev) prev.disabled = (i === 0);
+    if (next) next.disabled = (i === STEPS.length - 1);
   }
 
-  prev.addEventListener('click', function () { if (i > 0) { i--; render(); } });
-  next.addEventListener('click', function () { if (i < STEPS.length - 1) { i++; render(); } });
+  if (prev) prev.addEventListener('click', function () { if (i > 0) { i--; render(); } });
+  if (next) next.addEventListener('click', function () { if (i < STEPS.length - 1) { i++; render(); } });
+
+  map.fitBounds(L.latLngBounds([START, END]).pad(1.1));
   render();
 })();
 

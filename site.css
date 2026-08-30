@@ -527,30 +527,18 @@ details.unfold > summary:focus-visible {
    Lane positions: two 2nmi lanes with a 2nmi median between them, centred in
    a 21nmi strait — so the pair starts at 7.5nmi (35.71%) and the second lane
    at 11.5nmi (54.76%). Widths are set by the script from the same numbers. */
-.hz-strait{
-  position:relative; height:54px;
-  background:linear-gradient(180deg,#cddfe6,#9dbcc9);
+.hz-map{
+  height:320px; width:100%;
   border:1px solid var(--rule,#d4cfc4);
-  margin-bottom:var(--ce-space-1,4px);
+  background:var(--paper-warm,#f5f1e8);
 }
-.hz-lane{
-  position:absolute; top:0; bottom:0; width:0;
-  background:var(--accent,#a02c2c);
-  opacity:0;
-  transition:opacity var(--ce-motion-slow,.3s) var(--ce-ease,ease);
-}
-.hz-lane-a{ left:35.71%; }
-.hz-lane-b{ left:54.76%; }
-
-.hz-scale{
-  display:flex; justify-content:space-between; align-items:baseline;
-  gap:var(--ce-space-2,8px);
+@media (max-width:560px){ .hz-map{height:250px} }
+.hz-note{
   font-family:-apple-system,sans-serif;
   font-size:var(--ce-text-2xs,.68rem);
   color:var(--ink-faint,#6b655c);
-  margin:0 0 var(--ce-space-3,12px);
+  margin:var(--ce-space-1,4px) 0 var(--ce-space-3,12px);
 }
-.hz-scale span:nth-child(2){ font-weight:700; color:var(--ink,#1a1a1a); }
 
 /* ── Slipping deadline (space-race centerpiece) ─────────────────────────
    A year axis with one marker. When a target was withdrawn and no new one
