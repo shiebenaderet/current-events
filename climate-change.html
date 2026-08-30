@@ -415,6 +415,12 @@ footer{
 </div>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
+<div class="unfold-cta" id="unfoldCta" hidden></div>
+<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="4">
+  <summary>
+    <span class="unfold-summary-title">Where Things Stand</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="sec-head" id="update">
   <span class="num">Situation Update</span>
   <h2>Where Things Stand</h2>
@@ -474,8 +480,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ DEEP TIME ═══════════ -->
+<details class="unfold" data-order="2" data-title="Deep-Time Climate History" data-minutes="3">
+  <summary>
+    <span class="unfold-summary-title">Deep-Time Climate History</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="deep-time">
   <span class="num">Section 1</span>
   <h2>Deep-Time Climate History</h2>
@@ -542,8 +554,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ GREENHOUSE ═══════════ -->
+<details class="unfold" data-order="3" data-title="The Greenhouse Effect" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">The Greenhouse Effect</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="greenhouse">
   <span class="num">Section 2</span>
   <h2>The Greenhouse Effect</h2>
@@ -598,8 +616,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ RATE OF CHANGE ═══════════ -->
+<details class="unfold" data-order="4" data-title="What's Different This Time" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">What's Different This Time</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="different">
   <span class="num">Section 3</span>
   <h2>What's Different This Time</h2>
@@ -657,8 +681,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ EFFECTS ═══════════ -->
+<details class="unfold" data-order="5" data-title="Effects Being Observed" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">Effects Being Observed</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="effects">
   <span class="num">Section 4</span>
   <h2>Effects Being Observed</h2>
@@ -702,8 +732,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ WA STORY ═══════════ -->
+<details class="unfold" data-order="6" data-title="Washington's Climate Story" data-minutes="3">
+  <summary>
+    <span class="unfold-summary-title">Washington's Climate Story</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="wa-story">
   <span class="num">Close to Home</span>
   <h2>Washington's Climate Story</h2>
@@ -767,8 +803,14 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ TIMELINE ═══════════ -->
+<details class="unfold" data-order="7" data-title="How Did We Learn All This?" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">How Did We Learn All This?</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="timeline">
   <span class="num">History</span>
   <h2>How Did We Learn All This?</h2>
@@ -818,6 +860,7 @@ footer{
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
 <div class="sec-head" id="people">
@@ -1091,6 +1134,7 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show definitions and a section guide">💡 Study Mode</button>
 </div>
 
+<script src="unfold-logic.js"></script>
 <script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>
