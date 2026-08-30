@@ -340,7 +340,9 @@
      converted to the card model yet simply look as they always did. */
   function initCardProgress() {
     var L = window.UnfoldLogic;
-    var cards = document.querySelectorAll('.tier-card[data-parts]');
+    // .lead-story too: the homepage's featured topic uses a different class
+    // from the grid cards, and it is the one students land on first.
+    var cards = document.querySelectorAll('[data-parts]');
     if (!L || !cards.length) return;
 
     for (var i = 0; i < cards.length; i++) {
@@ -366,7 +368,8 @@
       } catch (e) { continue; }
       if (!visited) continue;
 
-      var meta = card.querySelector('.tier-meta');
+      // Grid cards use .tier-meta, the featured story uses .lead-meta.
+      var meta = card.querySelector('.tier-meta, .lead-meta');
       if (!meta) continue;
       var tag = document.createElement('span');
       tag.className = 'tier-progress';

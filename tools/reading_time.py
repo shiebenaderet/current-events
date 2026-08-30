@@ -95,7 +95,17 @@ def landing_fragment(html):
     # <h2> left outside the details for landing_sections to split on, so the
     # footer's paragraphs fall into the same bucket as the primer and get
     # billed as reading time a student never spends.
-    return re.sub(r'<footer.*?</footer>', '', html, flags=re.S)
+    html = re.sub(r'<footer.*?</footer>', '', html, flags=re.S)
+    # And the hidden modals. The easter-egg modal carries an <h2>, and on
+    # us-elections it sits earlier in the document than the landing layer --
+    # so landing_sections split there and filed the whole primer under "You
+    # found a secret!", which SKIP_TITLE then discarded. The page measured
+    # zero landing words while displaying seven paragraphs of them. None of
+    # this markup is read in normal flow, so none of it should be counted.
+    for cls in ('egg-modal', 'quiz-modal'):
+        html = re.sub(r'<div[^>]*class="[^"]*%s[^"]*".*?</div>\s*</div>\s*</div>' % cls,
+                      '', html, flags=re.S)
+    return html
 
 
 def landing_sections(path):

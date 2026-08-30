@@ -462,6 +462,62 @@ details.unfold > summary:focus-visible {
   margin-top:var(--ce-space-2,8px);
 }
 
+/* ── Top-two primary result (us-elections centerpiece) ──────────────────
+   Every bar is a certified result. Party is stated as a plain label and
+   never as a colour: colouring these bars red and blue would turn an
+   arithmetic demonstration into a partisan image, and the point here is
+   the rule, not the teams. */
+.tt-list{ list-style:none; margin:0 0 var(--ce-space-4,16px); padding:0; }
+.tt-row{
+  display:grid;
+  grid-template-columns:minmax(7em,auto) 1fr auto;
+  grid-template-areas:'name bar pct' 'party bar pct';
+  align-items:center;
+  gap:0 var(--ce-space-3,12px);
+  padding:var(--ce-space-2,8px) 0;
+  border-bottom:1px solid var(--rule,#d4cfc4);
+  transition:opacity var(--ce-motion-slow,.3s) var(--ce-ease,ease);
+}
+.tt-row:last-child{ border-bottom:none; }
+.tt-name{ grid-area:name; font-weight:700; line-height:1.2; }
+.tt-party{
+  grid-area:party;
+  font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-2xs,.68rem);
+  text-transform:uppercase; letter-spacing:.06em;
+  color:var(--ink-faint,#6b655c);
+}
+.tt-bar{
+  grid-area:bar; height:14px; min-width:2px;
+  width:calc(var(--pct) * 1%);
+  background:var(--accent,#a02c2c);
+}
+.tt-pct{
+  grid-area:pct;
+  font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-sm,.86rem); font-weight:700;
+  white-space:nowrap;
+}
+
+/* Eliminated. Faded rather than removed: seeing who dropped out is the
+   whole lesson, and deleting them would hide the thing being taught. */
+.tt-row.is-out{ opacity:.32; }
+.tt-row.is-out .tt-bar{ background:var(--ink-faint,#6b655c); }
+
+/* The cut line sits under the second row once the rule is applied. */
+.tt-list.is-cut .tt-row:nth-child(2){
+  border-bottom:3px solid var(--accent,#a02c2c);
+}
+
+.tt-run{
+  font:inherit; font-weight:700; cursor:pointer;
+  background:var(--accent,#a02c2c); color:#fff; border:none;
+  padding:var(--ce-space-3,12px) var(--ce-space-6,24px);
+  min-height:var(--ce-tap,44px);
+}
+.tt-run:hover{ background:var(--accent-ink,#6b1414); }
+.tt-run:focus-visible{ outline:2px solid var(--ink,#1a1a1a); outline-offset:2px; }
+
 /* The primer's own quiz. Sits at the end of the primer, above the tiles,
    so the student meets a choice — check what you just read, or go pick a
    part — instead of scrolling into more prose. */
