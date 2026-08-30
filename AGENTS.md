@@ -18,8 +18,19 @@ production site, so any static server that serves the repo root reproduces produ
   - `index.html` is the landing hub; each topic is a flat page at the root
     (e.g. `iran.html`, `ukraine.html`, `climate-change.html`).
 - **Build:** none. Do not look for a build command; there isn't one.
-- **Lint / test:** none configured. Validate changes by loading the affected page(s) in a
-  browser and exercising interactive features (quizzes, maps, timelines).
+- **Lint / test:** no lint config, but there are tests and checks — run them.
+  - `node --test tools/*.test.js` — JS unit + integration tests, no dependencies.
+    The bare directory form (`node --test tools/`) fails on Node 26; use the glob.
+  - `python3 tools/verify_invariants.py HEAD` — structural diff against a git ref.
+    Asserts citation and gloss counts and that `data-def` text survives
+    byte-identical. A pure restructure must report exact equality.
+  - `python3 tools/reading_time.py --landing` — fails if any page's entry point
+    exceeds seven minutes.
+  - `python3 tools/check_study_mode.py` — verifies no gloss lands inside a quotation.
+
+  Then still load the affected page(s) in a browser and exercise the interactive
+  features (quizzes, the per-topic centrepiece, the section tiles) — the checks
+  above cover structure and never appearance.
 
 ### Non-obvious notes
 

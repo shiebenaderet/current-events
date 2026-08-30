@@ -2,6 +2,30 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.0.0] — 2026-08-29
+
+**Major — the landing layer: every topic page now opens on a five-minute primer, with the rest behind a menu of cards.**
+
+**What prompted it.** The site's mission is a quick, engaging primer on an issue in the news — five to seven minutes. Measured against that with `tools/reading_time.py`, not one page was close: gun-violence ran 77 minutes, ai 48, immigration 47, and even climate-change, the shortest substantial page, ran 18. A single section of gun-violence was longer than the entire intended experience for the topic. The homepage advertised the problem honestly: *70–80 min*, *40–50 min*, *30–40 min*. The pages had become good long-form articles, which is not what they were for.
+
+Length was only half of it. The whole interactive surface across eight pages was 59 quiz buttons plus reading supports — before-you-read blocks, timelines, videos. Every one of those helps a student get *through* prose. Nothing let a student learn by doing. Successive releases had optimised the reading experience instead of asking whether reading should be the primary mode.
+
+**What changed.** Each page keeps one file. A newly written primer of roughly 650 words sits on top, with one interactive centrepiece, and every existing section moves — untouched — into a native `<details>` card. Opening a card closes the others and hides the primer, so a card is the whole view rather than a stop on a long scroll; finishing one returns you to the menu with that tile marked. Nothing was deleted anywhere: **the five to seven minutes is a property of the entry point, not a ceiling on the topic.** That distinction is the whole design, and it is the same principle 3.7.0 applied to Study Mode — shortening prose usually deletes the connective tissue that carries the meaning (Davison & Kantor, 1982), so the fix is a shorter door, never a shorter room.
+
+`tools/verify_invariants.py` proves it rather than promising it. Every page was wrapped as a pure structural change first and had to report exact equality on citation and gloss counts, with byte-identical `reading_time.py` output, before any primer was written.
+
+**Reading level now follows commitment.** The class this is written for includes many students learning English and many reading well below grade level, and they all pass through the primer. So on every page the primer is now the plainest text on it, and difficulty rises with the reader's choice to go deeper. Where a first draft came out harder than the sections it introduced, the fix was always additive: on climate-change the primer went from FK 8.13 to 6.02 while getting *longer*, 559 words to 613. Plainer and longer is elaboration (Beck, McKeown, Sinatra & Loxterman, 1991); plainer and shorter would have been the failure that guardrail exists to prevent.
+
+**Typography and contrast, site-wide.** Body text is now Atkinson Hyperlegible Next at 18px on a 1.75 line height, with `html { font-size: 100% }` so a reader's own browser setting wins. The dyslexia-font toggle was removed entirely: pooled *g* = −0.04 across 15 studies and 688 readers, with most children in those studies preferring Arial — it displaced real scaffolding with a typography change that felt like an intervention. Study Mode kept its inline word meanings, lost its section bar, and is now called what it does: **Word meanings**. `--ink-faint` was failing AA at 4.35:1 on warm paper across all nine pages — it carries captions, minute labels and photo credits — and is now 5.12:1. The full palette audit reports zero failures.
+
+**Eight interactives, one per topic, each teaching a mechanism rather than a verdict.** Drag through 800,000 years of trapped air and watch CO₂ cross a ceiling it had never crossed. Run Washington's top-two primary on seven real candidates and watch five of them — four of them Democrats — drop out. Step through Artemis' finish line moving from 2024 to 2028. Teach a real nearest-neighbour classifier, then switch off every lemon and watch it confidently misname them. Pick a state and see its gun-death rate against the other forty-nine. Watch a year of fighting in Ukraine vanish against the territory already held. See the shipping lanes of Hormuz drawn to the same scale as the strait. Set your age and learn how old you were when a visa application still in the queue was filed.
+
+Every figure in those was fetched and read at its source. Where a number could not be verified to that standard, the interactive was changed rather than the number invented — the gun-violence centrepiece was redesigned for exactly that reason.
+
+**Corrections found along the way.** us-elections was describing a pre-primary world 25 days after the primary, listing seven candidates for a congressional seat when two had advanced, and citing a filing story for a claim about results. Its seat math no longer matched its own sources. Two hardcoded "68 days until Election Day" countdowns — one on the elections page, one in the homepage ticker — are now computed from the date, because a typed countdown is wrong every day after it is typed.
+
+**Also:** the homepage shows how far a student has got on each topic; card time promises were rewritten from *70–80 min* to *5 min · more if you want it*; `tools/reading_time.py` gained a `--landing` gate that fails a build when an entry point exceeds seven minutes; `AGENTS.md` no longer claims the project has no tests.
+
 ## [3.7.0] — 2026-08-28
 
 **Minor — Study Mode: a reading-support toggle, shipped site-wide across all 8 topic pages.**
