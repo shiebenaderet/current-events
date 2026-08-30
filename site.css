@@ -403,3 +403,58 @@ body.study-mode{padding-bottom:60px}
   #sm-bar{padding-right:180px}
   body.study-mode{padding-bottom:56px}
 }
+
+/* ── Progressive section unfold ─────────────────────────────────────────
+   Native <details>. Closed, the <summary> is the card a student clicks;
+   open, it shrinks to a slim collapse affordance and the section's own
+   .sec-head resumes its role as the visual header.
+
+   Tokens (--paper-warm, --accent-tint, --accent-ink) are defined per page
+   in each topic's inline <style>, not here, and each topic themes --accent
+   for itself — climate-change is green, us-elections navy. Fallbacks keep
+   this readable if a page ever omits one. */
+details.unfold { border-top: 1px solid var(--rule, #d4cfc4); margin: 0; }
+details.unfold > summary {
+  cursor: pointer; list-style: none; padding: 1.15rem 0;
+  display: flex; align-items: baseline; gap: 0.75rem;
+}
+details.unfold > summary::-webkit-details-marker { display: none; }
+details.unfold > summary::after {
+  content: '+'; margin-left: auto; font-size: 1.35rem; line-height: 1;
+  color: var(--ink-faint, #767066);
+}
+details.unfold[open] > summary::after { content: '\2212'; }
+.unfold-summary-title { font-weight: 600; }
+.unfold-summary-time { color: var(--ink-faint, #767066); font-size: 0.85rem; }
+details.unfold[open] > summary { padding: 0.6rem 0; opacity: 0.65; }
+details.unfold[open] > summary .unfold-summary-title { font-weight: 400; }
+details.unfold > summary:focus-visible {
+  outline: 2px solid var(--accent, #a02c2c); outline-offset: 3px;
+}
+
+.unfold-cta { margin: 2.5rem 0; }
+.unfold-cta[hidden] { display: none; }
+.unfold-cta-btn {
+  width: 100%; text-align: left; cursor: pointer;
+  background: var(--paper-warm, #f5f1e8);
+  border: 1px solid var(--rule, #d4cfc4);
+  border-left: 3px solid var(--accent, #a02c2c);
+  padding: 1.1rem 1.25rem; font: inherit; color: var(--ink, #1a1a1a);
+  display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+}
+.unfold-cta-btn:hover { background: var(--accent-tint, #f6e9e6); }
+.unfold-cta-label {
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.7rem; color: var(--accent-ink, #6b1414);
+}
+.unfold-cta-title { font-weight: 600; }
+.unfold-cta-time {
+  margin-left: auto; color: var(--ink-faint, #767066); font-size: 0.85rem;
+}
+
+/* A teacher printing the topic must get the whole topic. No JS involved. */
+@media print {
+  details.unfold > summary { display: none; }
+  details.unfold > *:not(summary) { display: block !important; }
+  .unfold-cta { display: none; }
+}
