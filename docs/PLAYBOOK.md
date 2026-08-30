@@ -40,6 +40,13 @@ wrap has to be redone.
   URL is not verification — us-elections cited a story headlined "Seven
   candidates seek District 1 congressional seat" for a claim about who won
   the primary. Real newspaper, right race, written three weeks too early.
+- **Check the claims that sound like common knowledge too.** The us-elections
+  primer said a ballot arrives on Election Day. Ballots go out 18 days
+  earlier. Every other fact in that primer had been checked against a source;
+  that one read like something everyone knows, so it never got looked up. No
+  gate catches this — tests, invariants, budget and reading level all pass on
+  a confident sentence that happens to be wrong. The category to watch is not
+  "facts I am unsure of" but "facts I did not think to doubt".
 - Anything whose expiry is a published date — an election, a deadline, a
   scheduled vote — is stale on that date. Look for those first.
 - Scan for undated `now` / `currently` / `today` (VOICE forbids them).
@@ -219,6 +226,22 @@ studies and 688 readers; most children in them preferred Arial. See
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*
 
 ---
+
+## Sources that resist being fetched
+
+Several official sources refuse a plain fetcher, and each fails differently.
+Knowing which is which saves guessing:
+
+| Source | Symptom | What works |
+|---|---|---|
+| `sos.wa.gov` | HTTP 403 | send a browser `User-Agent` header |
+| `clerk.house.gov` | HTTP 403 | not solved; use another source |
+| Ballotpedia | 200, empty body | not solved; a person has to read it |
+| `results.votewa.gov` | 200, empty shell | Angular app — fetch the data file instead |
+
+A 403 is often just a missing User-Agent. An empty 200 means the content is
+rendered by JavaScript, and no header fixes that — look for the data file the
+app itself loads.
 
 ## Fetching Washington election results
 
