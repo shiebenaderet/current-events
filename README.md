@@ -131,6 +131,7 @@ Pull requests are very welcome — especially from other Social Studies teachers
 - A weekly news pass should rewrite a page only when sourced developments actually overtake its dated snapshot. Update that page's **Last content refresh** date in the Topics table above; pages checked and left alone keep their previous date. Do not invent casualty, oil, retirement, ICE/TRAC, or incident totals. Prefer the last cited as-of date over a fresher-looking guess.
 - Party-swap test on current-policy prose. Accuracy, not false balance, for settled history and science. Quote punctuation stays as the source wrote it.
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
+- Building or converting a topic page? Read [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) first — the order of work, the gates, and the traps
 - Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below
 
 ---
