@@ -377,6 +377,37 @@
     }
   }
 
+  /* Countdowns, computed rather than typed.
+
+     A hardcoded "68 days until Election Day" is true the day it is written
+     and false every day after — VOICE.md's rule against undated "now" and
+     "currently" is the same bug, and a countdown is that bug wearing a date.
+     The markup stores only the date; this derives the rest, so it can never
+     go stale and never needs a refresh.
+
+     Falls back to whatever the element already says, so with JS off the
+     sentence still reads true. */
+  function initCountdown() {
+    var nodes = document.querySelectorAll('.days-until[data-until]');
+    for (var i = 0; i < nodes.length; i++) {
+      var parts = (nodes[i].getAttribute('data-until') || '').split('-');
+      if (parts.length !== 3) continue;
+      // Local midnight, not UTC: new Date('2026-11-03') parses as UTC and
+      // lands on Nov 2 for anyone west of Greenwich — including every
+      // student reading this in Washington State.
+      var target = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var days = Math.round((target - today) / 86400000);
+
+      if (days > 1) nodes[i].textContent = days + ' days until Election Day';
+      else if (days === 1) nodes[i].textContent = 'Election Day is tomorrow';
+      else if (days === 0) nodes[i].textContent = 'Election Day is today';
+      // Past the date, the fallback text (which names the date) is correct
+      // and the count is not, so leave it alone.
+    }
+  }
+
   function initSuggestForm() {
     var form = document.getElementById('suggest-form');
     if (!form) return;
@@ -421,6 +452,7 @@
     initTerms();
     initUnfold();
     initCardProgress();
+    initCountdown();
     initSuggestForm();
   }
 

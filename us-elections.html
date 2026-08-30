@@ -388,7 +388,14 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
       <span class="num">Situation Update</span>
       <h2>Where Things Stand: The 2026 Midterms <span class="update-badge">Counting Down to Nov 3</span></h2>
     </div>
-    <div class="update-date">Updated August 27, 2026 — 68 days until Election Day</div>
+    <!-- The countdown is computed, not typed. A hardcoded "68 days" is
+         correct on the day it is written and wrong every day after, which no
+         refresh cadence can fix. The election date is the only fact stored;
+         site.js derives the rest. Without JS the sentence still reads true,
+         because it falls back to naming the date instead of counting to it. -->
+    <div class="update-date">Updated August 27, 2026 —
+      <span class="days-until" data-until="2026-11-03">Election Day is November 3, 2026</span>
+    </div>
 
 <aside class="before-read on-dark" aria-labelledby="br-update-pane">
   <p class="br-head">
