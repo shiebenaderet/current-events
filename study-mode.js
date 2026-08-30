@@ -455,7 +455,6 @@
   // Section bar (Task 5). Fixed at the bottom -- body has overflow-x:hidden
   // site-wide, which breaks position:sticky for descendants, and the top of
   // the page already carries a sticky masthead and section-nav.
-  var barObserver = null;
 
   // DOM-walking half of the section bar's primer lookup: finds the
   // .before-read aside that follows a .sec-head (stopping early if another
@@ -494,51 +493,8 @@
     return derivePrimerText(paragraphs);
   }
 
-  function buildBar() {
-    // Idempotency guard, matching injectKeyWordGlosses's own per-item
-    // data-sm-done check: buildLayer()/applyState('on') can run again
-    // without an intervening teardown (e.g. via the public api.apply), and
-    // without this guard a second call would append a second #sm-bar and
-    // overwrite barObserver, permanently leaking the first observer.
-    if (document.getElementById('sm-bar')) return;
-
-    var heads = document.querySelectorAll('.sec-head');
-    if (!heads.length || typeof IntersectionObserver === 'undefined') return;
-
-    var bar = document.createElement('div');
-    bar.id = 'sm-bar';
-    bar.setAttribute('data-sm-injected', '1');
-    bar.innerHTML = '<span class="sm-bar-sec"></span><span class="sm-bar-txt"></span>';
-    bar.addEventListener('click', function () { bar.classList.toggle('is-open'); render(bar._full, bar._label); });
-    document.body.appendChild(bar);
-
-    function render(full, label) {
-      if (!full) { bar.style.display = 'none'; return; }
-      bar.style.display = 'flex';
-      bar.querySelector('.sm-bar-sec').textContent = label || '';
-      bar.querySelector('.sm-bar-txt').textContent =
-        bar.classList.contains('is-open') ? full : firstSentence(full);
-    }
-
-    barObserver = new IntersectionObserver(function (entries) {
-      for (var i = 0; i < entries.length; i++) {
-        if (!entries[i].isIntersecting) continue;
-        var head = entries[i].target;
-        var h = head.querySelector('h2, h3');
-        bar._label = h ? h.textContent.trim().slice(0, 28) : '';
-        bar._full = primerTextFor(head);
-        render(bar._full, bar._label);
-      }
-    }, { rootMargin: '-10% 0px -70% 0px' });
-
-    for (var k = 0; k < heads.length; k++) barObserver.observe(heads[k]);
-  }
-
   function teardownLayer() {
     if (typeof document === 'undefined') return;
-    // Disconnect the observer before removing its injected nodes -- an
-    // in-flight callback touching a detached bar is otherwise possible.
-    if (barObserver) { barObserver.disconnect(); barObserver = null; }
     var nodes = document.querySelectorAll('[data-sm-injected]');
     for (var i = 0; i < nodes.length; i++) {
       var p = nodes[i].parentNode;
@@ -551,7 +507,6 @@
   function buildLayer() {
     if (typeof document === 'undefined') return;
     var r = injectKeyWordGlosses();
-    buildBar();
     if (window.location.search.indexOf('smdebug') !== -1) {
       if (r.orphans.length) {
         console.log('[study-mode] Key Word boxes with no match in prose (V5 orphans):', r.orphans);

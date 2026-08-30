@@ -546,7 +546,7 @@ for (const page of PAGES) {
       assert.equal(document.querySelectorAll('[data-sm-injected]').length, 0);
     });
 
-    test("apply('on') injects glosses and/or a section bar as the page's own content warrants", () => {
+    test("apply('on') injects glosses as the page's own content warrants", () => {
       const document = loadDocument(path.join(ROOT, page));
       const hasKeyWordBoxes = document.querySelectorAll('.vocab').length > 0;
       const hasPrimers = document.querySelectorAll('.sec-head').length > 0 &&
@@ -558,12 +558,27 @@ for (const page of PAGES) {
       const injected = document.querySelectorAll('[data-sm-injected]');
       if (hasKeyWordBoxes) {
         // gun-violence.html has zero .vocab boxes (documented site-wide in
-        // CHANGELOG 3.6.0's "Still open" note), so this assertion is
-        // conditional on the page actually having Key Word boxes to gloss.
-        assert.ok(injected.length > 0, 'expected at least one injected gloss node');
-      }
-      if (hasPrimers) {
-        assert.ok(document.getElementById('sm-bar'), 'expected #sm-bar to exist');
+        // CHANGELOG 3.6.0's "Still open" note), so this is conditional on the
+        // page actually having Key Word boxes at all.
+        //
+        // Having boxes is still not the same as having something to inject:
+        // a Key Word already carried by a .term is deliberately skipped
+        // rather than double-glossed, and on climate-change.html every one
+        // of them is (Greenhouse Gas, Keeling Curve, Hydropower), so that
+        // page correctly injects nothing.
+        //
+        // Until the section bar was removed this read `injected.length > 0`
+        // and passed anyway -- because the bar itself carried
+        // data-sm-injected, so chrome was satisfying an assertion about
+        // glosses. Presence is properly owned by tools/check_study_mode.py,
+        // which does the full skip/orphan analysis; what belongs here is
+        // that whatever IS injected is a gloss and nothing else.
+        for (const node of injected) {
+          assert.ok(node.classList.contains('sm-gloss') ||
+                    node.classList.contains('sm-gloss-aside') ||
+                    node.tagName === 'SPAN' || node.tagName === 'ASIDE',
+            'every injected node should be a gloss, got ' + node.tagName);
+        }
       }
     });
 
@@ -639,7 +654,7 @@ for (const page of PAGES) {
         'serialized DOM after apply("on") then apply("off") must match the pre-activation serialization exactly');
     });
 
-    test("apply('on') applied twice with no teardown between produces exactly one #sm-bar and does not duplicate any gloss", () => {
+    test("apply('on') applied twice with no teardown between does not duplicate any gloss", () => {
       const document = loadDocument(path.join(ROOT, page));
       const sandbox = loadSandbox(document);
 
@@ -648,8 +663,6 @@ for (const page of PAGES) {
       sandbox.window.StudyMode.apply('on'); // no teardown between -- the re-entrancy path
       const afterSecond = document.querySelectorAll('[data-sm-injected]').length;
 
-      const bars = document.querySelectorAll('#sm-bar');
-      assert.equal(bars.length, 1, 'exactly one #sm-bar should exist after two applies with no teardown');
       assert.equal(afterSecond, afterFirst,
         'a second apply("on") with no teardown must not add any new injected node (data-sm-done idempotency guard)');
     });

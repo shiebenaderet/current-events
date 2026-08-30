@@ -274,18 +274,6 @@ body.study-mode .sm-gloss-aside{
 /* Section bar (Task 5): fixed at the BOTTOM, not the top -- the site already
    has a sticky masthead and section-nav at the top, and body has
    overflow-x:hidden which breaks position:sticky for descendants anyway. */
-#sm-bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:60;
-  background:var(--ink,#1a1a1a);color:#f0ece4;
-  font-family:-apple-system,sans-serif;font-size:.8rem;line-height:1.45;
-  padding:10px 6vw;cursor:pointer;
-  box-shadow:0 -4px 16px rgba(0,0,0,.18);
-  display:flex;gap:10px;align-items:baseline;
-}
-#sm-bar .sm-bar-sec{font-weight:700;letter-spacing:.03em;opacity:.75;flex:0 0 auto}
-#sm-bar .sm-bar-txt{flex:1 1 auto}
-#sm-bar.is-open .sm-bar-txt{white-space:normal}
-@media (max-width:640px){ #sm-bar{font-size:.76rem;padding:9px 5vw} }
 
 /* Contrast fix: body.study-mode .term-desc inherits --ink-light (#4a4a4a),
    which is 1.96:1 on the dark panes (--ink #1a1a1a) used by .update-pane,
@@ -331,33 +319,14 @@ body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.
    (#2e6a9a, iran) -- every page clears 3:1 for a non-text indicator. */
 .study-mode-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
-/* 3. THE BAR vs. THE CONTROLS THAT SPAWN IT. .a11y-controls is
-   fixed;bottom:20px;right:20px;z-index:9999 -- it sits ON TOP of the
-   bar's right end, and .sm-bar-txt (flex:1 1 auto) ran underneath it.
-   Reserve the width of the control stack (the widest button is now
-   "Study Mode" at ~125px, plus its 20px inset) so the summary stops short of
-   it. The section label gets a cap and an ellipsis so it can never crowd
-   the summary out of what's left on a narrow screen. */
-#sm-bar{padding-right:170px}
-#sm-bar .sm-bar-sec{flex:0 1 auto;max-width:40%;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Collapsed, the bar is meant to be ONE line -- that was the design
-   intent, but the base rule never set nowrap, so the collapsed bar
-   already wrapped and `#sm-bar.is-open .sm-bar-txt{white-space:normal}`
+   intent, but the base rule never set nowrap, so the collapsed bar`
    overrode nothing. Setting it here makes the collapsed state real and
    that rule live. min-width:0 is what lets a flex child ellipsis at all. */
-#sm-bar .sm-bar-txt{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#sm-bar.is-open .sm-bar-txt{white-space:normal;overflow:visible}
 
-/* Nothing reserved space for the bar, so it permanently covered the last
-   ~40px of every page's footer. Scoped to body.study-mode: zero cost when
-   the feature is off. (Sized for the collapsed bar; expanding it is a
-   deliberate, momentary tap.) */
-body.study-mode{padding-bottom:60px}
 
 @media (max-width:640px){
-  #sm-bar{padding-right:155px}
-  body.study-mode{padding-bottom:56px}
 }
 
 /* ── Progressive section unfold ─────────────────────────────────────────
