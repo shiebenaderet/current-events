@@ -349,6 +349,35 @@ details.unfold { border-top: 1px solid var(--rule, #d4cfc4); margin: 0; }
    are the only way to open a section, so the page still works. */
 html.js-unfold details.unfold:not([open]) { border-top: none; }
 html.js-unfold details.unfold:not([open]) > summary { display: none; }
+
+/* With a card open, the card IS the view. The hero, the primer and the top
+   menu are hidden so a student cannot scroll back up into them by accident;
+   getting out is the card's own summary, or the menu at its end. Both are
+   deliberate acts, which is the difference between a card and a long page.
+
+   Not applied in print — the print stylesheet below shows everything, so a
+   teacher still gets the whole topic on paper. */
+html.card-open .article-hero,
+html.card-open .landing,
+html.card-open .landing-quiz,
+html.card-open #unfoldCta { display: none; }
+/* .points-bar deliberately stays: a student answering a card's quiz should
+   see the points move, and that is exactly when it happens. */
+
+/* An open card's summary is now the way back, so it reads as a control
+   rather than a heading. */
+html.card-open details.unfold[open] > summary {
+  opacity: 1;
+  position: sticky; top: 0; z-index: 20;
+  background: var(--paper, #fbf9f4);
+  border-bottom: 1px solid var(--rule, #d4cfc4);
+  padding: var(--ce-space-3, 12px) 6vw;
+  margin-bottom: var(--ce-space-3, 12px);
+}
+html.card-open details.unfold[open] > summary::after { content: '\00d7'; }
+html.card-open details.unfold[open] > summary .unfold-summary-title {
+  font-weight: 700;
+}
 details.unfold > summary {
   cursor: pointer; list-style: none; padding: 1.15rem 0;
   display: flex; align-items: baseline; gap: 0.75rem;

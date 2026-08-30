@@ -128,6 +128,22 @@
       closing = false;
     }
 
+    /* While a card is open it is the whole view: the hero, the primer and
+       the top menu are hidden, so a student cannot drift back up into them
+       by scrolling. The way back is the card's own summary (which closes it)
+       or the menu at its end — both deliberate acts rather than a scroll.
+
+       CSS-only, keyed off a class on <html>, so print is untouched: the
+       print stylesheet shows every section regardless, and a teacher still
+       gets the whole topic on paper. */
+    function syncCardOpen() {
+      var anyOpen = false;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el.open) { anyOpen = true; break; }
+      }
+      document.documentElement.classList.toggle('card-open', anyOpen);
+    }
+
     function reveal(el) {
       /* Order matters, and getting it wrong cost a click.
 
@@ -273,6 +289,7 @@
             collapseOthers(sec.el);
             markSeen(sec.order);
           }
+          syncCardOpen();
           refreshCta();
         });
       })(sections[j]);
@@ -289,6 +306,7 @@
       openForHash(window.location.hash);
     });
     openForHash(window.location.hash);
+    syncCardOpen();
     refreshCta();
   }
 
