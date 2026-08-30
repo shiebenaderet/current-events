@@ -152,7 +152,8 @@
           var btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'unfold-tile' + (isDone ? ' is-done' : '') +
-            (isHere ? ' is-current' : '');
+            (isHere ? ' is-current' : '') +
+            (sec.el.classList.contains('unfold-extra') ? ' is-extra' : '');
           if (isDone) btn.setAttribute('aria-label',
             (sec.el.getAttribute('data-title') || '') + ' — completed');
 
@@ -241,6 +242,41 @@
     refreshCta();
   }
 
+  /* Homepage cards show how far a student got on that topic.
+
+     Reads the same per-page store the tiles write, which works because
+     localStorage is per-origin, not per-page. A card only shows progress
+     once there is some: an untouched topic showing "0 of 10 parts" reads as
+     a chore list, which is the opposite of an invitation. Cards without a
+     data-parts count are skipped entirely, so topics that have not been
+     converted to the card model yet simply look as they always did. */
+  function initCardProgress() {
+    var L = window.UnfoldLogic;
+    var cards = document.querySelectorAll('.tier-card[data-parts]');
+    if (!L || !cards.length) return;
+
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var total = parseInt(card.getAttribute('data-parts'), 10);
+      var href = (card.getAttribute('href') || '').split('/').pop();
+      if (!total || !href) continue;
+
+      var done;
+      try { done = L.parseDone(localStorage.getItem(L.doneKey(href))); }
+      catch (e) { continue; }
+      if (!done.length) continue;
+
+      var meta = card.querySelector('.tier-meta');
+      if (!meta) continue;
+      var tag = document.createElement('span');
+      tag.className = 'tier-progress';
+      tag.textContent = done.length >= total
+        ? 'All ' + total + ' parts done'
+        : done.length + ' of ' + total + ' parts done';
+      meta.insertBefore(tag, meta.firstChild);
+    }
+  }
+
   function initSuggestForm() {
     var form = document.getElementById('suggest-form');
     if (!form) return;
@@ -284,6 +320,7 @@
     initA11y();
     initTerms();
     initUnfold();
+    initCardProgress();
     initSuggestForm();
   }
 

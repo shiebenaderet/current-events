@@ -482,6 +482,23 @@ details.unfold > summary:focus-visible {
   color: var(--ink-faint, #6b655c);
 }
 
+/* Progress on a homepage card. Injected by site.js only once a student has
+   actually finished something on that topic. */
+.tier-progress{
+  font-weight:700;color:var(--accent-ink,#6b1414);
+}
+
+/* Key People / Videos / Dig Deeper. Same tile, quieter: they are reference
+   a student browses, not a part of the argument, so they should not compete
+   with the seven that are. */
+.unfold-tile.is-extra {
+  background: transparent;
+  border-left-color: var(--rule, #d4cfc4);
+}
+.unfold-tile.is-extra .unfold-tile-title {
+  font-weight: 400; color: var(--ink-light, #4a4a4a);
+}
+
 /* A completed tile recedes rather than celebrates: the student's attention
    belongs on what they have not read yet. */
 .unfold-tile.is-done {

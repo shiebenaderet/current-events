@@ -89,8 +89,13 @@ def landing_fragment(html):
     the measurement cannot drift as landing markup gains new wrappers.
     """
     html = strip_code(html)
-    return re.sub(r'<details[^>]*class="[^"]*unfold[^"]*"[^>]*>.*?</details>',
+    html = re.sub(r'<details[^>]*class="[^"]*unfold[^"]*"[^>]*>.*?</details>',
                   '', html, flags=re.S)
+    # The footer has to go too. Once every section is wrapped there is no
+    # <h2> left outside the details for landing_sections to split on, so the
+    # footer's paragraphs fall into the same bucket as the primer and get
+    # billed as reading time a student never spends.
+    return re.sub(r'<footer.*?</footer>', '', html, flags=re.S)
 
 
 def landing_sections(path):
