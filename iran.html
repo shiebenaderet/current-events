@@ -344,16 +344,6 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
-<nav class="section-nav">
-  <a href="#update-week1">Situation Update</a>
-  <a href="#now">What's Happening</a>
-  <a href="#where">Geography</a>
-  <a href="#who">Who Are Iranians</a>
-  <a href="#hist">History</a>
-  <a href="#why">Why It Matters</a>
-  <a href="#videos">Videos</a>
-  <a href="#links">Resources</a>
-</nav>
 
 <header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
@@ -374,15 +364,86 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </div>
 
 <!-- ═══════════ BREAKING ═══════════ -->
-<div class="sec-head">
+<section class="landing" id="landing">
+  <div class="article">
+    <p class="lede">Iran is an old country with a young population. For most of the last fifty years it has been at odds with the United States. In 2026 that turned into open fighting. What follows is what happened, how the two countries got here, and why a narrow strip of water off Iran's coast can change the price of fuel in Washington.</p>
+
+    <p>Start with the water, because it explains why the rest of the world pays attention. The Strait of Hormuz is the only sea route out of the Persian Gulf. It is narrow. Iran sits along one whole side of it. And close to a fifth of the oil the world burns goes through it every day. That geography hands Iran a lever it would not otherwise have, and it is why a fight there is never only a local fight.</p>
+  </div>
+
+  <figure class="centerpiece" id="hormuzFig">
+    <figcaption class="centerpiece-head">
+      <span class="tag">Try it</span>
+      <span class="centerpiece-title">The gap the world's oil goes through</span>
+    </figcaption>
+
+    <div class="centerpiece-body">
+      <p class="centerpiece-label">Step through it. The bar stays to scale the whole way.</p>
+
+      <div class="hz-strait" aria-hidden="true">
+        <div class="hz-lane hz-lane-a" id="hzLaneA"></div>
+        <div class="hz-lane hz-lane-b" id="hzLaneB"></div>
+      </div>
+      <p class="hz-scale" aria-hidden="true"><span>Iran side</span><span id="hzWidth">21 nautical miles</span><span>Oman side</span></p>
+
+      <div class="slip-controls">
+        <button type="button" class="slip-btn" id="hzPrev">&larr; Back</button>
+        <button type="button" class="slip-btn" id="hzNext">Next &rarr;</button>
+      </div>
+
+      <p class="centerpiece-readout" id="hzReadout" role="status" aria-live="polite">
+        <strong>The strait.</strong> At its narrowest, the Strait of Hormuz is about
+        21 nautical miles across — Iran on one side, Oman on the other.
+      </p>
+    </div>
+
+    <figcaption class="centerpiece-note">
+      Width and lane figures:
+      <a class="cite-inline" href="https://en.wikipedia.org/wiki/Strait_of_Hormuz" target="_blank">Strait of Hormuz</a>
+      July 2026 price move: reported on this page's timeline.
+    </figcaption>
+  </figure>
+
+  <div class="article">
+    <p>The quarrel behind it is older than any of this. In 1953 the United States and Britain helped remove Iran's elected prime minister and put the Shah back in power. The Shah was friendlier to Western oil interests. In 1979 Iranians overthrew the Shah. Students then seized the U.S. embassy in Tehran and held 52 Americans hostage for 444 days. The two countries have not had normal relations since. So every argument that follows — over nuclear work, over sanctions, over who is threatening whom — is being had by two countries that already do not trust each other.</p>
+
+    <p>The argument that has dominated the last twenty years is about nuclear technology. Iran built a nuclear programme and said it was for electricity. The United States, Israel and others suspected it was also a path to a weapon. In 2015 Iran and several world powers signed a deal. Iran would limit the programme, and sanctions on its economy would be lifted. In 2018 the United States pulled out of that deal and put harsher sanctions back on. Did that make Iran less dangerous, or more? People who follow this closely genuinely disagree.</p>
+
+    <p>It is worth separating the government from the people while you read. Final say in Iran rests with the Supreme Leader, who has authority over the military and the courts, and many Iranians have protested against their own government at real personal risk — in 2009, in 2019, and again in 2022. A country is not the same thing as the people who run it, and that is as true of Iran as it is anywhere else.</p>
+  </div>
+
+  <div class="article">
+    <p>Two more things make this less distant than it looks. Iran holds some of the largest oil reserves on Earth, so a threat to the strait moves fuel prices everywhere, including at the pump here. And the United States has been involved in Iran's story for over seventy years, under presidents of both parties. That is why American forces are already stationed nearby when something starts, rather than being sent after it does.</p>
+
+    <p><strong>Where things stand, August 2026.</strong> Fighting began in February 2026 with U.S. and Israeli strikes on Iran. A ceasefire in April held for a few months, then collapsed in July when tankers were struck in the Strait of Hormuz and the U.S. struck back. A peace memorandum signed in June gave the two sides 60 days to reach a lasting deal; that deadline expired on August 17, 2026 without one. Iran and Oman have since agreed a temporary shipping route, so the strait is open — but barely moving. This is a live situation, so anything after August 27, 2026 belongs to a news source rather than to a page like this one.</p>
+  </div>
+
+  <div class="landing-quiz">
+    <button class="quiz-toggle" onclick="openQuiz('q9')">Got the basics? Test yourself</button>
+  </div>
+</section>
+
+<div class="unfold-cta" id="unfoldCta" hidden></div>
+<details class="unfold" data-order="1" data-title="Breaking — Hormuz" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Breaking — Hormuz</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
+<div class="sec-head" id="breaking">
   <span class="num">Breaking</span>
   <h2>A New Hormuz Route — and Still No Peace Deal</h2>
 </div>
 <div class="article">
   <p class="lede">On August 17, 2026, the 60-day deadline for a lasting U.S.–Iran peace deal expired with no agreement. That clock had started on June 17, when both countries signed a memorandum that was supposed to pause fighting and lead to a final deal. A week later, Iran and Oman said they had agreed on a temporary shipping route through the Strait of Hormuz — the narrow waterway that a fifth of the world's oil used to pass through. Iran still said the strait would not fully reopen. See the full situation update below.<a class="cite-inline" href="#update-week1">Jump to update</a></p>
 </div>
+</details>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
+<details class="unfold" data-order="2" data-title="Where things stand" data-minutes="9">
+  <summary>
+    <span class="unfold-summary-title">Where things stand</span>
+    <span class="unfold-summary-time">9 min</span>
+  </summary>
 <div class="update-pane" id="update-week1">
   <div class="update-pane-inner">
     <div class="update-head">
@@ -479,8 +540,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 1: RIGHT NOW ═══════════ -->
+<details class="unfold" data-order="3" data-title="What is happening" data-minutes="4" data-quiz="q1">
+  <summary>
+    <span class="unfold-summary-title">What is happening</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="sec-head" id="now">
   <span class="num">Section 1</span>
   <h2>What Is Happening in Iran?</h2>
@@ -533,8 +600,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <p style="margin-top:24px"><a class="tl-link" href="https://www.npr.org/2026/01/22/nx-s1-5684033/iran-2026-protests" target="_blank">→ NPR: Iran 2026 Protests, explained</a><br><a class="tl-link" href="https://today.uconn.edu/2026/02/uprising-in-iran-a-comprehensive-qa-on-what-needs-to-be-told/" target="_blank">→ UConn: Expert Q&amp;A on the uprising</a></p>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 2: GEOGRAPHY + MAP ═══════════ -->
+<details class="unfold" data-order="4" data-title="Where Iran is" data-minutes="1" data-quiz="q2">
+  <summary>
+    <span class="unfold-summary-title">Where Iran is</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="where">
   <span class="num">Section 2</span>
   <h2>Where Is Iran — and What Is It Like?</h2>
@@ -570,8 +643,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
   <p style="margin-top:24px"><a class="tl-link" href="https://kids.nationalgeographic.com/geography/countries/article/iran" target="_blank">→ National Geographic Kids: Iran Country Profile</a></p>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 3: WHO ARE IRANIANS ═══════════ -->
+<details class="unfold" data-order="5" data-title="Who Iranians are" data-minutes="2" data-quiz="q3">
+  <summary>
+    <span class="unfold-summary-title">Who Iranians are</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="who">
   <span class="num">Section 3</span>
   <h2>Who Are the People of Iran?</h2>
@@ -611,8 +690,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
   <p style="margin-top:24px"><a class="tl-link" href="https://www.cbc.ca/kidsnews/post/the-u.s-israel-and-iran-conflict-explained" target="_blank">→ CBC Kids News: The conflict explained simply</a></p>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 4: HISTORY ═══════════ -->
+<details class="unfold" data-order="6" data-title="How we got here" data-minutes="7" data-quiz="q4">
+  <summary>
+    <span class="unfold-summary-title">How we got here</span>
+    <span class="unfold-summary-time">7 min</span>
+  </summary>
 <div class="sec-head" id="hist">
   <span class="num">Section 4</span>
   <h2>How Did We Get Here? The History Timeline</h2>
@@ -774,8 +859,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ SECTION 5: WHY IT MATTERS ═══════════ -->
+<details class="unfold" data-order="7" data-title="Why it matters here" data-minutes="3" data-quiz="q8">
+  <summary>
+    <span class="unfold-summary-title">Why it matters here</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="why">
   <span class="num">Section 5</span>
   <h2>Why Does This Matter — Especially for Us?</h2>
@@ -819,9 +910,15 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <p style="margin-top:24px"><a class="tl-link" href="https://spia.princeton.edu/news/behind-headline-us-iran-crisis-explained" target="_blank">→ Princeton: Behind the Headline — The U.S.-Iran crisis explained</a><br><a class="tl-link" href="https://www.timesnownews.com/education/israel-iran-war-explained-in-simple-words-for-students-article-153719341" target="_blank">→ Times Now: Israel-Iran situation explained simply</a></p>
 </div>
+</details>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
-<div class="sec-head">
+<details class="unfold unfold-extra" data-order="8" data-title="Key people" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Key people</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
+<div class="sec-head" id="key-people">
   <span class="num">Bonus</span>
   <h2>Key People to Know</h2>
 </div>
@@ -881,8 +978,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
+<details class="unfold unfold-extra" data-order="9" data-title="Videos" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Videos</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="videos">
   <span class="num">Watch</span>
   <h2>Videos — See It for Yourself</h2>
@@ -895,8 +998,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="video-label"><h4>Quick overview (~5–10 min)</h4><p>A fast, clear summary of what's happening and why it matters.</p></div>
   <div class="callout"><span class="tag">While you watch, think about</span><p>What surprised you? What questions do you still have? What do the videos say that matches — or doesn't match — what you just read?</p></div>
 </div>
+</details>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
+<details class="unfold unfold-extra" data-order="10" data-title="All sources" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">All sources</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="links">
   <span class="num">Resources</span>
   <h2>All Sources — Dig Deeper</h2>
@@ -916,6 +1025,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <a class="rc" href="https://spia.princeton.edu/news/behind-headline-us-iran-crisis-explained" target="_blank"><span class="tag">Princeton</span><div class="rc-title">Behind the Headline: The U.S.-Iran Crisis Explained</div><p>Deeper background and analysis.</p><div class="level">Harder</div></a>
   <a class="rc" href="https://www.cfr.org/education/insights/background-students-need-think-critically-about-iran" target="_blank"><span class="tag">CFR Education</span><div class="rc-title">Background Students Need to Think Critically About U.S.-Iran Relations</div><p>Essential context for critical thinking.</p><div class="level">Harder</div></a>
 </div>
+</details>
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
@@ -943,6 +1053,18 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const MAX_PTS = 10;
 
 const quizzes = {
+  q9: {
+    q: "The Strait of Hormuz matters far beyond Iran. Why?",
+    choices: [
+      "It is the largest sea in the Middle East",
+      "It is the only sea route out of the Persian Gulf, and close to a fifth of the world's oil passes through it",
+      "It is where most of the world's ships are built",
+      "It separates Iran from the United States"
+    ],
+    correct: 1,
+    feedback: "✅ Right. Ships carrying roughly a fifth of the world's oil pass through two lanes only two nautical miles wide each — which is why trouble there moves fuel prices everywhere.",
+    wrong: "Not quite. It is the only sea route out of the Persian Gulf, and close to a fifth of the world's oil goes through it every day — through shipping lanes just two nautical miles wide."
+  },
   q1: { q:"According to human rights groups, approximately how many people were killed by the Iranian government during the 2026 crackdown on protesters?", choices:["About 600","About 6,000+","About 60","About 60,000"], correct:1,
     feedback:"Correct. Human rights groups reported at least 6,221 people killed — one of the deadliest crackdowns in Iran's modern history.",
     wrong:"Not quite. Human rights groups reported at least 6,221 people killed." },
@@ -1004,6 +1126,7 @@ function handleAnswer(id, chosen, btn) {
     fb.className = 'quiz-feedback show wrong-fb';
     answeredQuizzes.add(id);
   }
+  if (window.Unfold && window.Unfold.markDone) window.Unfold.markDone(id);
 }
 function closeQuiz(){ document.getElementById('quizModal').classList.remove('open'); document.body.style.overflow=''; }
 
@@ -1092,6 +1215,67 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
   if (e.target === document.getElementById('quizModal')) closeQuiz();
 });
 
+/* ─── THE GAP THE WORLD'S OIL GOES THROUGH ───
+   Four steps, and the bar never rescales between them -- that is the whole
+   trick. The lanes look small because they ARE small: two nautical miles
+   each inside a 21-mile strait, drawn at the same scale as the strait
+   itself. A diagram that zoomed in to make the lanes legible would have
+   destroyed the only thing worth showing.
+
+   Widths and volumes: Wikipedia, Strait of Hormuz, fetched 2026-08-29. The
+   price move is this page's own sourced timeline entry. */
+(function () {
+  var prev = document.getElementById('hzPrev');
+  var next = document.getElementById('hzNext');
+  var a = document.getElementById('hzLaneA');
+  var b = document.getElementById('hzLaneB');
+  var width = document.getElementById('hzWidth');
+  var readout = document.getElementById('hzReadout');
+  if (!prev || !next || !a || !b || !readout) return;
+
+  var STRAIT = 21;   // nautical miles at the narrowest
+  var LANE = 2;      // each shipping lane, same units
+
+  // Split into a bold lead and plain rest so the readout can be built from
+  // nodes rather than an HTML string. These are static literals, but the
+  // readout is the one element that changes on every interaction, and it
+  // costs nothing to keep it incapable of injecting markup.
+  var STEPS = [
+    { lanes: false, lead: 'The strait.',
+      rest: ' At its narrowest, the Strait of Hormuz is about 21 nautical miles across — Iran on one side, Oman on the other.' },
+    { lanes: true, lead: 'The lanes.',
+      rest: ' Ships do not use all of that. Traffic runs in two lanes, two nautical miles wide each, with a gap between them. Those two dark strips are drawn to the same scale as the strait.' },
+    { lanes: true, lead: 'What goes through.',
+      rest: ' Roughly 18 to 19 million barrels of oil a day move through those lanes — close to a fifth of all the oil the world uses.' },
+    { lanes: true, lead: 'When it stops.',
+      rest: ' In July 2026 tankers were struck here and traffic halted. Oil prices rose about 12% in a single week — the effect of a two-mile-wide lane, felt at fuel pumps on the other side of the planet.' }
+  ];
+
+  var i = 0;
+  function render() {
+    var st = STEPS[i];
+    var pct = (LANE / STRAIT) * 100;
+    a.style.width = pct + '%';
+    b.style.width = pct + '%';
+    a.style.opacity = st.lanes ? '1' : '0';
+    b.style.opacity = st.lanes ? '1' : '0';
+    width.textContent = '21 nautical miles';
+
+    while (readout.firstChild) readout.removeChild(readout.firstChild);
+    var strong = document.createElement('strong');
+    strong.textContent = st.lead;
+    readout.appendChild(strong);
+    readout.appendChild(document.createTextNode(st.rest));
+
+    prev.disabled = (i === 0);
+    next.disabled = (i === STEPS.length - 1);
+  }
+
+  prev.addEventListener('click', function () { if (i > 0) { i--; render(); } });
+  next.addEventListener('click', function () { if (i < STEPS.length - 1) { i++; render(); } });
+  render();
+})();
+
 // ─── MAP ───
 const map = L.map('map', { center:[32.4,53.7], zoom:4, scrollWheelZoom:false });
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1120,6 +1304,7 @@ L.polygon(iranPoly,{color:'#245a8c',weight:2.5,fillColor:'#245a8c',fillOpacity:.
 
 </script>
 
+<script src="unfold-logic.js"></script>
 <script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>
