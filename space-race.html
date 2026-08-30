@@ -408,17 +408,6 @@ footer{
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
-<nav class="section-nav">
-  <a href="#update">Situation Update</a>
-  <a href="#first-race">The First Race</a>
-  <a href="#today">The New Race</a>
-  <a href="#wa-story">Washington's Story</a>
-  <a href="#timeline">Timeline</a>
-  <a href="#people">Key People</a>
-  <a href="#videos">Videos</a>
-  <a href="#discuss">Discuss</a>
-  <a href="#resources">Resources</a>
-</nav>
 
 <header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
@@ -439,6 +428,81 @@ footer{
 </div>
 
 <!-- ═══════════ UPDATE ═══════════ -->
+<section class="landing" id="landing">
+  <div class="article">
+    <p class="lede">The last person to walk on the Moon left in December 1972. Nobody has been back. It is not that anyone stopped trying. NASA has been working on a way back for years. So have several companies, and at least one other country. The trying is the whole story. So is the fact that it keeps taking longer than anyone said it would.</p>
+
+    <p>The first space race was simple to describe. Two countries, the United States and the Soviet Union, wanted the same thing, and there was one finish line. When Apollo 11 landed in July 1969, everyone knew who had won and what they had won.</p>
+
+    <p>This race is not shaped like that at all. NASA is going back to the Moon under a program called <span class="term" tabindex="0" data-def="NASA's program to send astronauts back to the Moon and, later, to help prepare for Mars. It is named for the Greek goddess of the Moon — and for Apollo's twin sister." aria-describedby="term-desc-sr1">Artemis</span><span id="term-desc-sr1" class="term-desc">NASA's program to send astronauts back to the Moon and, later, to help prepare for Mars. It is named for the Greek goddess of the Moon — and for Apollo's twin sister.</span>, but it is not building the lander itself. SpaceX and Blue Origin are building those, under contract. China is running a Moon program of its own. So there are several teams and several goals, and no one finish line everyone agrees on. That makes it hard to say who is ahead. It also means the schedule gets rewritten out in the open, where anyone can watch it change.</p>
+  </div>
+
+  <figure class="centerpiece" id="slipFig">
+    <figcaption class="centerpiece-head">
+      <span class="tag">Try it</span>
+      <span class="centerpiece-title">Watch the finish line move</span>
+    </figcaption>
+
+    <div class="centerpiece-body">
+      <p class="centerpiece-label" for="slipStep">
+        Step through the announcements. The marker is where NASA said the
+        first crewed Moon landing would happen.
+      </p>
+
+      <div class="slip-axis" aria-hidden="true">
+        <span class="slip-year">2024</span>
+        <span class="slip-year">2025</span>
+        <span class="slip-year">2026</span>
+        <span class="slip-year">2027</span>
+        <span class="slip-year">2028</span>
+      </div>
+      <div class="slip-track" aria-hidden="true">
+        <div class="slip-marker" id="slipMarker"></div>
+      </div>
+
+      <div class="slip-controls">
+        <button type="button" class="slip-btn" id="slipPrev">&larr; Back</button>
+        <button type="button" class="slip-btn" id="slipNext">Next &rarr;</button>
+      </div>
+
+      <!-- The readout is the whole content: it works with no JS, it is what
+           a screen reader announces, and it carries the dates in words so
+           the figure is never a picture with no caption. -->
+      <p class="centerpiece-readout" id="slipReadout" role="status" aria-live="polite">
+        <strong>March 2019</strong> &middot; NASA is directed to land astronauts on the Moon in <b>2024</b>.
+      </p>
+    </div>
+
+    <figcaption class="centerpiece-note">
+      Four announcements, 2019 to 2026.
+      <a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_program" target="_blank">Artemis program</a>
+      <a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Artemis III</a>
+    </figcaption>
+  </figure>
+
+  <div class="article">
+    <p>Here is why the dates move. Going to the Moon is not one hard problem. It takes a rocket, a capsule, a lander, a spacesuit, and a way to refuel out in space. Every one of them has to work before anybody lands. So if one piece runs late, all of it runs late. The landers are the piece that is not ready, which is why the schedule keeps sliding to the right rather than the mission being cancelled.</p>
+
+    <p>There is a local piece to this. Blue Origin, one of the two companies NASA hired to build a Moon lander, has its headquarters in Kent, a short drive from this school.<a class="cite-inline" href="https://www.nasa.gov/humans-in-space/artemis/" target="_blank">NASA</a> The landers are the part of the plan that is not ready yet, which is exactly why Artemis III was turned into a practice flight instead of a landing. So some of the reason those dates keep moving is being worked on about thirty miles from here.</p>
+
+    <p>That is worth holding onto when you read a date in a headline. A launch date is a plan, not a promise, and in spaceflight the plan is usually the first thing to change. The engineers are not failing when a date moves. They are refusing to fly people on something that is not ready, which is the same judgement that keeps crews alive.</p>
+  </div>
+
+  <div class="article">
+    <p><strong>Where things stand, August 2026.</strong> Nobody has landed on the Moon again yet. NASA's next crewed flight, Artemis III, is no longer a landing at all: in February 2026 it was changed into a test flight in orbit around Earth, where astronauts will practice docking with test versions of the Moon landers.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_III" target="_blank">Wikipedia</a> It is planned for no earlier than late 2027. The first crewed landing is now Artemis IV, planned for early 2028.<a class="cite-inline" href="https://en.wikipedia.org/wiki/Artemis_program" target="_blank">Wikipedia</a> Those are the plans as of August 2026, and the honest thing to say about them is that they have moved before.</p>
+  </div>
+
+  <div class="landing-quiz">
+    <button class="quiz-toggle" onclick="openQuiz('q9')">Got the basics? Test yourself</button>
+  </div>
+</section>
+
+<div class="unfold-cta" id="unfoldCta" hidden></div>
+<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="3">
+  <summary>
+    <span class="unfold-summary-title">Where Things Stand</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="update-pane" id="update">
   <div class="update-pane-inner">
     <div class="update-head">
@@ -480,8 +544,14 @@ footer{
     </details>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ FIRST RACE ═══════════ -->
+<details class="unfold" data-order="2" data-title="The first space race" data-minutes="3" data-quiz="q1">
+  <summary>
+    <span class="unfold-summary-title">The first space race</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="first-race">
   <span class="num">Section 1</span>
   <h2>The First Space Race</h2>
@@ -523,8 +593,14 @@ footer{
   <div class="callout"><span class="tag">Think About It</span><p>Kennedy's Moon goal had a deadline: the end of the 1960s. Why might a public deadline change how a country spends money — and what it is willing to risk?</p></div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ TODAY ═══════════ -->
+<details class="unfold" data-order="3" data-title="Not just two countries" data-minutes="4" data-quiz="q2">
+  <summary>
+    <span class="unfold-summary-title">Not just two countries</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="sec-head" id="today">
   <span class="num">Section 2</span>
   <h2>The New Race Is Not Just Two Countries</h2>
@@ -556,8 +632,14 @@ footer{
   <div class="callout"><span class="tag">Think About It</span><p>In the 1960s, only governments could afford a Moon shot. In this new race, NASA is buying landers from companies. What is gained by that — and what new risks show up when a landing depends on a private schedule?</p></div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ WASHINGTON ═══════════ -->
+<details class="unfold" data-order="4" data-title="Washington in space" data-minutes="2" data-quiz="q3">
+  <summary>
+    <span class="unfold-summary-title">Washington in space</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="wa-story">
   <span class="num">Section 3</span>
   <h2>Washington's Space Story</h2>
@@ -592,8 +674,14 @@ footer{
   <div class="callout"><span class="tag">Think About It</span><p>Blue Origin's headquarters is in this state. Boeing's history is too. Does that change how you read NASA's Moon plans — or should a civics class treat a local company the same way it treats any other contractor?</p></div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ TIMELINE ═══════════ -->
+<details class="unfold" data-order="5" data-title="Sputnik to Artemis" data-minutes="1" data-quiz="q4">
+  <summary>
+    <span class="unfold-summary-title">Sputnik to Artemis</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="timeline">
   <span class="num">Timeline</span>
   <h2>From Sputnik to Artemis</h2>
@@ -609,8 +697,14 @@ footer{
   <div class="tl-item"><div class="tl-year">Feb 2026</div><div class="tl-body"><h4>Artemis sequence revised</h4><p>NASA turns Artemis III into an Earth-orbit docking test. The first crewed landing is planned for a later flight.</p></div></div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ PEOPLE ═══════════ -->
+<details class="unfold unfold-extra" data-order="6" data-title="Two key figures" data-minutes="1" data-quiz="q5">
+  <summary>
+    <span class="unfold-summary-title">Two key figures</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="people">
   <span class="num">Key People</span>
   <h2>Two Historical Figures</h2>
@@ -639,8 +733,14 @@ footer{
   </div>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
+<details class="unfold unfold-extra" data-order="7" data-title="Videos" data-minutes="1" data-quiz="q6">
+  <summary>
+    <span class="unfold-summary-title">Videos</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="videos">
   <span class="num">Watch</span>
   <h2>See It Happen</h2>
@@ -657,8 +757,14 @@ footer{
   <p style="font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-top:-8px;margin-bottom:28px">NASA — official recap of the Artemis I launch, November 16, 2022.</p>
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ DISCUSS ═══════════ -->
+<details class="unfold unfold-extra" data-order="8" data-title="Questions for class" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Questions for class</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="discuss">
   <span class="num">Discuss</span>
   <h2>Questions for Class</h2>
@@ -673,8 +779,14 @@ footer{
     <p><strong>5.</strong> This page sticks with Gagarin and Armstrong, not today's CEOs. Why might that be a good rule for a school page — and when might it hide something students should know?</p>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
+<details class="unfold unfold-extra" data-order="9" data-title="Keep learning" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Keep learning</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="resources">
   <span class="num">Resources</span>
   <h2>Keep Learning</h2>
@@ -696,6 +808,7 @@ footer{
   <a class="rc" href="https://www.nasa.gov/missions/artemis/artemis-3/nasa-outlines-preliminary-artemis-iii-mission-plans/" target="_blank"><span class="tag">NASA</span><div class="rc-title">Artemis III mission plans</div><p>The August 2026 snapshot on this page comes in part from this NASA update.</p><div class="level">Harder</div></a>
   <a class="rc" href="https://en.wikipedia.org/wiki/Chinese_Lunar_Exploration_Program" target="_blank"><span class="tag">Wikipedia</span><div class="rc-title">Chinese Lunar Exploration Program</div><p>A separate robotic (and planned crewed) path to the Moon — not a U.S. scoreboard.</p><div class="level">Harder</div></a>
 </div>
+</details>
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
@@ -709,9 +822,21 @@ let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
 // 6 quizzes (q1-q6, 1 pt each) + 1 easter egg (Konami code, 1 pt) = 7
-const MAX_PTS = 7;
+const MAX_PTS = 8;
 
 const quizzes = {
+  q9: {
+    q: "NASA was told in 2019 to land astronauts on the Moon in 2024. The first crewed landing is now planned for 2028. What does that mostly tell you?",
+    choices: [
+      "NASA gave up on going back to the Moon",
+      "A Moon landing needs many pieces to work at once, and a delay in any one of them moves the whole date",
+      "The Moon is further away than it used to be",
+      "Nobody has tried to go back since 1972"
+    ],
+    correct: 1,
+    feedback: "✅ Right. A rocket, a capsule, a lander, a spacesuit and a way to refuel all have to work before anyone lands — so one late piece moves everything.",
+    wrong: "Not quite. NASA never stopped: the program is still running. A landing needs a rocket, a capsule, a lander, a spacesuit and refuelling all working at once, so one late piece moves the whole schedule."
+  },
   q1: {
     q: "Sputnik 1 went into orbit in 1957. What could ordinary people around the world actually do with it?",
     choices: ["Hear its radio beep on their own radios", "Watch it live on television", "See it land on the Moon", "Send messages back to it"],
@@ -794,6 +919,7 @@ function handleAnswer(id, chosen, btn) {
     fb.className = 'quiz-feedback show wrong-fb';
     answeredQuizzes.add(id);
   }
+  if (window.Unfold && window.Unfold.markDone) window.Unfold.markDone(id);
 }
 function closeQuiz() {
   document.getElementById('quizModal').classList.remove('open');
@@ -825,6 +951,50 @@ function showToast(icon, title, msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
+
+/* ─── THE SLIPPING FINISH LINE ───
+   Four announcements, each fetched and read on 2026-08-29. Where a target
+   was withdrawn without a replacement being named, the marker is removed
+   rather than parked on a guessed year -- "no firm date" is what actually
+   happened in 2021, and inventing one would teach the opposite of this
+   page's point. */
+(function () {
+  var prev = document.getElementById('slipPrev');
+  var next = document.getElementById('slipNext');
+  var marker = document.getElementById('slipMarker');
+  var readout = document.getElementById('slipReadout');
+  if (!prev || !next || !marker || !readout) return;
+
+  // year 2024..2028 maps to 0..100% across the track
+  var STEPS = [
+    { when: 'March 2019', year: 2024,
+      text: 'NASA is directed to land astronauts on the Moon in <b>2024</b>.' },
+    { when: 'February 2021', year: null,
+      text: 'NASA says 2024 is <b>no longer realistic</b>. No new landing date is named.' },
+    { when: 'February 2026', year: 2028,
+      text: 'Artemis III is changed from a landing into an Earth-orbit test. The first landing moves to <b>Artemis IV</b>.' },
+    { when: 'August 2026', year: 2028,
+      text: 'Artemis IV is planned for <b>early 2028</b> — four years later than the original goal, and a different mission.' }
+  ];
+
+  var i = 0;
+  function render() {
+    var st = STEPS[i];
+    if (st.year === null) {
+      marker.style.display = 'none';
+    } else {
+      marker.style.display = 'block';
+      marker.style.left = (((st.year - 2024) / 4) * 100) + '%';
+    }
+    readout.innerHTML = '<strong>' + st.when + '</strong> &middot; ' + st.text;
+    prev.disabled = (i === 0);
+    next.disabled = (i === STEPS.length - 1);
+  }
+
+  prev.addEventListener('click', function () { if (i > 0) { i--; render(); } });
+  next.addEventListener('click', function () { if (i < STEPS.length - 1) { i++; render(); } });
+  render();
+})();
 
 // ─── EASTER EGG: KONAMI CODE ───
 document.addEventListener('keydown', (e) => {
@@ -866,6 +1036,7 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show the meaning of every highlighted word, inline">💡 Word meanings</button>
 </div>
 
+<script src="unfold-logic.js"></script>
 <script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>
