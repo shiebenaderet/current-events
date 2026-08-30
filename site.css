@@ -448,9 +448,15 @@ details.unfold > summary:focus-visible {
   font-size: 0.7rem; color: var(--accent-ink, #6b1414);
 }
 .unfold-cta-title { font-weight: 600; }
+/* Deliberately NOT margin-left:auto. The accessibility controls are fixed to
+   the bottom-right of the viewport, so anything pushed to the far right of a
+   full-width button collides with them whenever the button nears the bottom
+   of the screen. Sitting the time next to the title keeps it out of that
+   corner entirely, at any width. */
 .unfold-cta-time {
-  margin-left: auto; color: var(--ink-faint, #767066); font-size: 0.85rem;
+  color: var(--ink-faint, #767066); font-size: 0.85rem;
 }
+.unfold-cta-time::before { content: '\00b7\00a0'; }
 
 /* A teacher printing the topic must get the whole topic. No JS involved. */
 @media print {

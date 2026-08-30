@@ -54,7 +54,14 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .section-nav a.hub{color:var(--accent);font-weight:800}
 
 /* ══════════════ ARTICLE HERO (Atlantic-inspired: full-bleed image behind headline) ══════════════ */
-.article-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
+/* 44vh, not the 58vh the other topic pages use. Measured on a 1096px
+   viewport, masthead + nav + hero + points bar consumed 86% of the fold,
+   so the landing layer's first sentence started off-screen -- which defeats
+   a 5-7 minute entry point. Trimmed so the orientation paragraph and the top
+   of the Ice Core Drill are visible without scrolling. The full-bleed motif
+   is unchanged; only its height is. Roll this to the other pages when their
+   landing layers land. */
+.article-hero{position:relative;min-height:44vh;display:flex;align-items:flex-end;overflow:hidden}
 .article-hero-bg{
   position:absolute;inset:0;z-index:0;
   background:linear-gradient(180deg,rgba(10,10,10,.05) 0%,rgba(10,10,10,.15) 45%,rgba(8,8,8,.88) 100%),
