@@ -456,19 +456,6 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="tagline">Student Edition · 8th Grade Social Studies</div>
 </div>
 
-<nav class="section-nav">
-  <a href="#update-pane">Situation Update</a>
-  <a href="#colonial-era">Colonial Era</a>
-  <a href="#great-waves">The Great Waves</a>
-  <a href="#quota-era">The Quota Era</a>
-  <a href="#modern-system">The Modern System</a>
-  <a href="#how-it-works-today">How the System Is Built</a>
-  <a href="#washington-immigration">Washington's Story</a>
-  <a href="#timeline">Timeline</a>
-  <a href="#key-people">Key People</a>
-  <a href="#videos">Videos</a>
-  <a href="#resources">Resources</a>
-</nav>
 
 <header class="article-hero" id="main-content" tabindex="-1">
   <div class="article-hero-bg"></div>
@@ -490,6 +477,76 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </div>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
+<section class="landing" id="landing">
+  <div class="article">
+    <p class="lede">Almost everyone in the United States is descended from someone who came from somewhere else. For most of the country's history there was barely any law about it. You showed up and you were in. The rules we have now were built piece by piece, usually in reaction to a particular moment, so understanding them means knowing which moment each piece came from.</p>
+
+    <p>The system today rests on a law passed in 1965. Before that, the United States handed out immigration slots by country of birth, using quotas built to favour northern Europe. The 1965 Act threw that out. It replaced it with two questions: do you have close family here, and do you have skills an employer needs? Family and work, instead of nationality. That is still the backbone, sixty years later.<a class="cite-inline" href="https://www.uscis.gov/" target="_blank">USCIS</a></p>
+
+    <p>People often say someone should "just get in line." It is worth knowing what that line really is, because there is not one line. Some people have several. Some have none at all. If you are the husband, wife, parent or young child of a U.S. citizen, there is no yearly cap at all. Everyone else with family here — an adult child, a brother or sister — joins a queue that is capped every year. Workers are sorted into five ranked groups, capped as well. The caps are also per country, not just per category. So your wait depends not only on who you are, but on where you were born.<a class="cite-inline" href="https://www.uscis.gov/green-card" target="_blank">USCIS</a></p>
+  </div>
+
+  <figure class="centerpiece" id="lineFig">
+    <figcaption class="centerpiece-head">
+      <span class="tag">Try it</span>
+      <span class="centerpiece-title">How long is "the line"?</span>
+    </figcaption>
+
+    <div class="centerpiece-body">
+      <label class="centerpiece-label" for="lineAge">
+        Set your age. One real queue, measured against your own life.
+      </label>
+      <input type="range" id="lineAge" min="10" max="18" step="1" value="13"
+             aria-describedby="lineReadout">
+
+      <div class="rate-track" aria-hidden="true">
+        <div class="rate-marker" id="lineMarker" style="left:0"></div>
+      </div>
+      <div class="rate-ends" aria-hidden="true">
+        <span>Jan 2014 — applications being processed now</span>
+        <span>Aug 2026</span>
+      </div>
+
+      <p class="centerpiece-readout" id="lineReadout" role="status" aria-live="polite">
+        If you are 13, you were about 1 year old in January 2014. Someone who
+        applied then, in the skilled-worker line for people born in India, is
+        still waiting.
+      </p>
+    </div>
+
+    <figcaption class="centerpiece-note">
+      The September 2026 Visa Bulletin left the India EB-3 category at
+      January 1, 2014. In the same system, 1,320,080 people became lawful
+      permanent residents in the 2025 fiscal year — both facts are true at once.
+      <a class="cite-inline" href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" target="_blank">U.S. Dept. of State</a>
+    </figcaption>
+  </figure>
+
+  <div class="article">
+    <p>That is one queue, and it is not the whole system. In the 2025 fiscal year, 1,320,080 people did become lawful permanent residents.<a class="cite-inline" href="https://www.dhs.gov/ohss" target="_blank">DHS</a> Both things are true at once. The United States hands out well over a million green cards a year, and some single lines run more than a decade long. An argument that mentions only one of those is telling you half of something.</p>
+
+    <p>Immigration is also one of the most argued-about subjects in American politics, and the disagreements are real. People differ on how many should come, from where, by what process, and what should happen to those already here without permission. This page will not settle any of that. What it can do is show you how the machinery works before you decide what you think, because a surprising amount of the argument turns out to be about facts people have wrong.</p>
+  </div>
+
+  <div class="article">
+    <p>There is a second route in that works differently, and the two words for it get mixed up constantly. A <strong>refugee</strong> is someone still outside the United States who fears being persecuted if they stay where they are. Someone seeking <strong>asylum</strong> is already here, or standing at the border, and fears the same thing if sent back. Same danger, different place to be standing when you ask. They are separate legal processes with separate rules, and news stories often use one word for both.<a class="cite-inline" href="https://www.uscis.gov/humanitarian/refugees-and-asylum" target="_blank">USCIS</a></p>
+
+    <p>This state is not a side story either. Scandinavian farmers and fishermen settled around Puget Sound. A thriving Japanese American community grew in Seattle, and a wartime order tore it apart by imprisoning its members. Refugees rebuilt their lives here after a war on the other side of the world. The national history is not something that happened elsewhere and reached Washington late — it happened here too.</p>
+
+    <p><strong>Where things stand, August 2026.</strong> About 51.9 million people living in the United States were born somewhere else — roughly 15.4% of the population, as measured in June 2025.<a class="cite-inline" href="https://www.pewresearch.org/" target="_blank">Pew Research Center</a> Enforcement, court rulings and policy have all been moving quickly, and the dated situation update on this page covers where each of those stood as of late August 2026.</p>
+  </div>
+
+  <div class="landing-quiz">
+    <button class="quiz-toggle" onclick="openQuiz('q9')">Got the basics? Test yourself</button>
+  </div>
+</section>
+
+<div class="unfold-cta" id="unfoldCta" hidden></div>
+<details class="unfold" data-order="1" data-title="Where things stand" data-minutes="6" data-quiz="q6">
+  <summary>
+    <span class="unfold-summary-title">Where things stand</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="update-pane" id="update-pane">
   <div class="update-pane-inner">
     <div class="update-head">
@@ -630,8 +687,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q6')">Test Yourself</button></div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ COLONIAL ERA ═══════════ -->
+<details class="unfold" data-order="2" data-title="Colonial era" data-minutes="5" data-quiz="q1">
+  <summary>
+    <span class="unfold-summary-title">Colonial era</span>
+    <span class="unfold-summary-time">5 min</span>
+  </summary>
 <div class="sec-head" id="colonial-era">
   <span class="num">Section 1</span>
   <h2>Colonial Era &amp; Early Immigration</h2>
@@ -680,8 +743,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q1')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ THE GREAT WAVES ═══════════ -->
+<details class="unfold" data-order="3" data-title="The great waves" data-minutes="6" data-quiz="q2">
+  <summary>
+    <span class="unfold-summary-title">The great waves</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="sec-head" id="great-waves">
   <span class="num">Section 2</span>
   <h2>The Great Waves</h2>
@@ -721,7 +790,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="callout">
     <span class="tag">Worth Noticing</span>
-    <p>Ellis Island wasn't the only entry point, and it wasn't built to keep people out. It was built to process huge numbers of European arrivals quickly. Angel Island, on the other side of the country, worked very differently — as the next section explains.</p>
+    <p>Ellis Island wasn't the only entry point, and it wasn't built to keep people out. It was built to process huge numbers of European arrivals quickly. Angel Island, on the other side of the country, worked very differently — as <em>The great waves</em> explains.</p>
   </div>
 
   <h3>Angel Island: a very different welcome</h3>
@@ -739,12 +808,18 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <p>In 1882, Congress passed the <strong>Chinese Exclusion Act</strong>. It banned Chinese laborers from immigrating to the United States for ten years. It also required Chinese people already living in the country to carry special identification papers.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The National Archives describes it as the first major U.S. law to restrict immigration based on someone's nationality.<a class="cite-inline" href="https://www.archives.gov/milestone-documents/chinese-exclusion-act" target="_blank">National Archives</a> The U.S. State Department's official historians describe it the same way. They call it the first law in American history to place broad restrictions on immigration.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a></p>
 
-  <p>This law was exclusionary and discriminatory. It targeted people specifically because of their nationality and ethnicity, not because of anything they had done. Congress kept extending it. The Geary Act of 1892 renewed the exclusion for another ten years. In 1902, lawmakers made Chinese exclusion permanent. They also expanded it to Hawaii and the Philippines.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a> These exclusion laws stayed in effect for 61 years, until Congress repealed them in 1943. By then, the broader pattern of restricting immigration by nationality had already expanded far beyond Chinese immigrants, as the next section explains.</p>
+  <p>This law was exclusionary and discriminatory. It targeted people specifically because of their nationality and ethnicity, not because of anything they had done. Congress kept extending it. The Geary Act of 1892 renewed the exclusion for another ten years. In 1902, lawmakers made Chinese exclusion permanent. They also expanded it to Hawaii and the Philippines.<a class="cite-inline" href="https://history.state.gov/milestones/1866-1898/chinese-immigration" target="_blank">State Department, Office of the Historian</a> These exclusion laws stayed in effect for 61 years, until Congress repealed them in 1943. By then, the broader pattern of restricting immigration by nationality had already expanded far beyond Chinese immigrants, as <em>The quota era</em> explains.</p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q2')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ THE QUOTA ERA ═══════════ -->
+<details class="unfold" data-order="4" data-title="The quota era" data-minutes="5" data-quiz="q3">
+  <summary>
+    <span class="unfold-summary-title">The quota era</span>
+    <span class="unfold-summary-time">5 min</span>
+  </summary>
 <div class="sec-head" id="quota-era">
   <span class="num">Section 3</span>
   <h2>The Quota Era</h2>
@@ -791,12 +866,18 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <p>The national-origins quota system didn't fade away quickly. According to the National Archives, these quotas "lasted from 1924 through 1965." That's more than forty years shaping who could come to America.<a class="cite-inline" href="https://prologue.blogs.archives.gov/2015/09/17/fifty-year-later-a-brief-history-of-the-immigration-act-of-1965" target="_blank">National Archives</a> Lawmakers adjusted parts of the system over the decades. But the basic idea stayed firmly in place: a strict quota favoring some nationalities over others.</p>
 
-  <p>That finally changed in 1965. Congress passed a sweeping new law that year. It abolished the national-origins quota system for good. What replaced it, and why, is the subject of the next section.</p>
+  <p>That finally changed in 1965. Congress passed a sweeping new law that year. It abolished the national-origins quota system for good. What replaced it, and why, is the subject of <em>The modern system begins</em>.</p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q3')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ THE MODERN SYSTEM ═══════════ -->
+<details class="unfold" data-order="5" data-title="The modern system begins" data-minutes="4" data-quiz="q4">
+  <summary>
+    <span class="unfold-summary-title">The modern system begins</span>
+    <span class="unfold-summary-time">4 min</span>
+  </summary>
 <div class="sec-head" id="modern-system">
   <span class="num">Section 4</span>
   <h2>The Modern System Begins</h2>
@@ -842,12 +923,18 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <p>The 1965 Act didn't just matter in its own moment. Its family-and-employment framework is still recognizably the basis of U.S. immigration law today. Researchers who study immigration policy have looked at today's family-based and employment-based visa categories. They describe those categories as growing directly out of the preference system Congress created in 1965.<a class="cite-inline" href="https://www.migrationpolicy.org/article/fifty-years-1965-immigration-and-nationality-act-continues-reshape-united-states" target="_blank">Migration Policy Institute</a> The details have changed over the decades. But the core structure has not.</p>
 
-  <p>The next section explains how that system is built. It covers how family and employment categories function. It also covers what paths exist for someone hoping to immigrate to the United States now.</p>
+  <p><em>How the system works</em> explains how that system is built. It covers how family and employment categories function. It also covers what paths exist for someone hoping to immigrate to the United States now.</p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q4')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ HOW IT WORKS TODAY ═══════════ -->
+<details class="unfold" data-order="6" data-title="How the system works" data-minutes="8" data-quiz="q5">
+  <summary>
+    <span class="unfold-summary-title">How the system works</span>
+    <span class="unfold-summary-time">8 min</span>
+  </summary>
 <div class="sec-head" id="how-it-works-today">
   <span class="num">Section 5</span>
   <h2>How Is the Immigration System Built?</h2>
@@ -940,12 +1027,18 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <p>The federal department created in 2003, after the September 11 attacks, to coordinate the country's efforts against terrorism and other security threats. ICE and CBP are both agencies within DHS.</p>
   </div>
 
-  <p>The ongoing, current-events side of immigration enforcement — including ICE's activities — is in the "Where Things Stand" update above.</p>
+  <p>The ongoing, current-events side of immigration enforcement — including ICE's activities — is in <em>Where things stand</em>.</p>
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q5')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ WASHINGTON'S STORY ═══════════ -->
+<details class="unfold" data-order="7" data-title="Washington's story" data-minutes="6" data-quiz="q7">
+  <summary>
+    <span class="unfold-summary-title">Washington's story</span>
+    <span class="unfold-summary-time">6 min</span>
+  </summary>
 <div class="sec-head" id="washington-immigration">
   <span class="num">Close to Home</span>
   <h2>Washington's Immigration Story</h2>
@@ -959,7 +1052,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <p>Scandinavian farmers, a thriving Japanese American community, and the incarceration that broke it — all of it happened in this state.</p>
 </aside>
 <div class="article">
-  <p class="lede"><strong>Washington State's history isn't separate from the story told above — it's a local chapter of the exact same story.</strong> Scandinavian farmers and fishermen came here. A thriving Japanese American community was torn apart by a wartime order. Refugees rebuilt their lives here after a war on the other side of the world. All of it happened right here, in Seattle and the towns around Puget Sound.</p>
+  <p class="lede"><strong>Washington State's history isn't separate from the national story — it's a local chapter of the exact same one.</strong> Scandinavian farmers and fishermen came here. A thriving Japanese American community was torn apart by a wartime order. Refugees rebuilt their lives here after a war on the other side of the world. All of it happened right here, in Seattle and the towns around Puget Sound.</p>
 
   <h3>Scandinavian settlers and the Puget Sound</h3>
 
@@ -1021,8 +1114,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
 </div>
+</details>
 
 <!-- ═══════════ TIMELINE ═══════════ -->
+<details class="unfold" data-order="8" data-title="History timeline" data-minutes="3" data-quiz="q8">
+  <summary>
+    <span class="unfold-summary-title">History timeline</span>
+    <span class="unfold-summary-time">3 min</span>
+  </summary>
 <div class="sec-head" id="timeline">
   <span class="num">History</span>
   <h2>History Timeline</h2>
@@ -1032,11 +1131,11 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <span class="tag" id="br-timeline">Before you read</span>
     <span class="br-time">3 min</span>
   </p>
-  <p>The same facts from the sections above, laid out in order on one line.</p>
+  <p>The same facts from the other sections, laid out in order on one line.</p>
   <p>Useful if the separate eras started blurring together.</p>
 </aside>
 <div class="article">
-  <p class="lede">Every date below came from somewhere. Here's the whole story, in order — the same facts from the sections above, laid out on one timeline.</p>
+  <p class="lede">Every date below came from somewhere. Here's the whole story, in order — the same facts from the other sections, laid out on one timeline.</p>
 
   <div class="tl-item">
     <div class="tl-year">1607–1620</div>
@@ -1122,14 +1221,20 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ KEY PEOPLE ═══════════ -->
+<details class="unfold unfold-extra" data-order="9" data-title="Key people" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Key people</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="key-people">
   <span class="num">Bonus</span>
   <h2>Key People</h2>
 </div>
 <div class="article">
-  <p>Irving Berlin and Emanuel Celler are history — people whose part in the story is already settled. Sitting officials and people still active in public life belong in the update above, not here.</p>
+  <p>Irving Berlin and Emanuel Celler are history — people whose part in the story is already settled. Sitting officials and people still active in public life belong in <em>Where things stand</em>, not here.</p>
 
   <div class="person">
     <img src="images/irving-berlin.jpg" alt="Irving Berlin" onerror="this.outerHTML='<div class=\'emoji-fallback\'>🎹</div>'">
@@ -1151,8 +1256,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ VIDEOS ═══════════ -->
+<details class="unfold unfold-extra" data-order="10" data-title="Videos" data-minutes="1">
+  <summary>
+    <span class="unfold-summary-title">Videos</span>
+    <span class="unfold-summary-time">1 min</span>
+  </summary>
 <div class="sec-head" id="videos">
   <span class="num">Watch</span>
   <h2>Videos — See It for Yourself</h2>
@@ -1181,8 +1292,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <p>What surprised you? What questions do you still have? What do the videos say that matches — or doesn't match — what you just read?</p>
   </div>
 </div>
+</details>
 
 <!-- ═══════════ RESOURCES ═══════════ -->
+<details class="unfold unfold-extra" data-order="11" data-title="Dig deeper" data-minutes="2">
+  <summary>
+    <span class="unfold-summary-title">Dig deeper</span>
+    <span class="unfold-summary-time">2 min</span>
+  </summary>
 <div class="sec-head" id="resources">
   <span class="num">Resources</span>
   <h2>Dig Deeper</h2>
@@ -1261,6 +1378,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <div class="level">⭐⭐ Medium — Reference-style</div>
   </a>
 </div>
+</details>
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
@@ -1276,10 +1394,22 @@ let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
-const MAX_PTS = 8;
+const MAX_PTS = 9;
 
 // Subsequent tasks add entries here as each section's quiz is built.
 const quizzes = {
+  q9: {
+    q: "Someone says an immigrant should have just gotten in line. What is the most accurate reply?",
+    choices: [
+      "There is one line, and it moves quickly",
+      "There are many lines, they are capped by category and by country, and for some people there is no line to join at all",
+      "There is no line — anyone can apply and be approved",
+      "The line is the same length for everyone"
+    ],
+    correct: 1,
+    feedback: "✅ Right. Immediate relatives of citizens face no annual cap; other family and worker categories are capped by category AND by country of birth, which is why one queue can run past a decade while another has none.",
+    wrong: "Not quite. There is no single line. Immediate relatives of U.S. citizens face no annual cap at all, while other categories are capped both by type and by country of birth — so waits differ enormously depending on who you are and where you were born."
+  },
   q1: {
     q: "This page quotes the Library of Congress on European colonization of North America. What word does the Library of Congress use for it?",
     choices: ["A discovery of empty land", "An invasion of territory already controlled and settled by Native Americans", "A peaceful settlement", "An accidental arrival"],
@@ -1376,6 +1506,7 @@ function handleAnswer(id, chosen, btn) {
     fb.className = 'quiz-feedback show wrong-fb';
     answeredQuizzes.add(id);
   }
+  if (window.Unfold && window.Unfold.markDone) window.Unfold.markDone(id);
 }
 function closeQuiz() {
   document.getElementById('quizModal').classList.remove('open');
@@ -1407,6 +1538,57 @@ function showToast(icon, title, msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
+
+/* ─── HOW LONG IS "THE LINE"? ───
+   One real queue, measured against the reader's own life. The date is from
+   the September 2026 Visa Bulletin: the India EB-3 category was still
+   processing applications filed on or before January 1, 2014.
+
+   Purely descriptive. It reports how long one queue is and says nothing
+   about whether it should be that long, who is responsible, or what anyone
+   should do about it -- those are the arguments the page's own sections
+   present with sources. The caption carries the other true fact alongside
+   it: 1,320,080 people did receive green cards in FY2025. A queue this long
+   and a system processing over a million people a year are both real, and
+   showing only one of them would be choosing a side by omission. */
+(function () {
+  var slider = document.getElementById('lineAge');
+  var marker = document.getElementById('lineMarker');
+  var readout = document.getElementById('lineReadout');
+  if (!slider || !marker || !readout) return;
+
+  var FILED = 2014 + 0 / 12;   // January 2014
+  var NOW = 2026 + 7 / 12;     // August 2026
+
+  function stage(age) {
+    if (age < 0) return 'not born yet';
+    if (age < 1) return 'a baby';
+    if (age < 5) return 'not yet in school';
+    if (age < 11) return 'in primary school';
+    return 'about the age you are now';
+  }
+
+  function render() {
+    var ageNow = Number(slider.value);
+    var born = 2026 - ageNow;
+    var ageThen = 2014 - born;
+    // The marker shows how much of that wait has already elapsed relative to
+    // the reader's own lifetime -- capped, because a reader younger than the
+    // queue is the point rather than an error.
+    var frac = Math.max(0, Math.min(1, (2014 - born) / Math.max(ageNow, 1)));
+    marker.style.left = (frac * 100) + '%';
+
+    var years = Math.floor(NOW - FILED);
+    readout.textContent = 'If you are ' + ageNow + ', you were ' +
+      (ageThen < 0 ? 'not born yet' : 'about ' + ageThen + ' — ' + stage(ageThen)) +
+      ' in January 2014. Someone who applied then, in the skilled-worker line ' +
+      'for people born in India, is still waiting. That queue is over ' +
+      years + ' years long.';
+  }
+
+  slider.addEventListener('input', render);
+  render();
+})();
 
 // ─── EASTER EGG: HERO KICKER CLICKS ───
 function handleFlagClick() {
@@ -1493,6 +1675,7 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show the meaning of every highlighted word, inline">💡 Word meanings</button>
 </div>
 
+<script src="unfold-logic.js"></script>
 <script src="study-mode.js"></script>
 <script src="site.js"></script>
 </body>
