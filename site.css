@@ -555,6 +555,36 @@ details.unfold > summary:focus-visible {
 .slip-btn:disabled{ opacity:.4; cursor:not-allowed; }
 .slip-btn:focus-visible{ outline:2px solid var(--accent,#a02c2c); outline-offset:2px; }
 
+/* ── State rate comparison (gun-violence centerpiece) ───────────────────
+   One scale, one marker, no colour coding by anything but position. A
+   heat-map palette here would imply a judgement the data does not make. */
+.centerpiece-body select{
+  display:block; width:100%; font:inherit;
+  padding:var(--ce-space-2,8px) var(--ce-space-3,12px);
+  min-height:var(--ce-tap,44px);
+  border:1px solid var(--rule,#d4cfc4);
+  background:var(--paper,#fbf9f4); color:var(--ink,#1a1a1a);
+  margin-bottom:var(--ce-space-4,16px);
+}
+.rate-track{
+  position:relative; height:10px;
+  background:linear-gradient(90deg,var(--rule,#d4cfc4),var(--ink-faint,#6b655c));
+}
+.rate-marker{
+  position:absolute; top:-6px; left:0;
+  width:4px; height:22px;
+  background:var(--accent,#a02c2c);
+  transform:translateX(-2px);
+  transition:left var(--ce-motion-slow,.3s) var(--ce-ease,ease);
+}
+.rate-ends{
+  display:flex; justify-content:space-between;
+  font-family:-apple-system,sans-serif;
+  font-size:var(--ce-text-2xs,.68rem);
+  color:var(--ink-faint,#6b655c);
+  margin:var(--ce-space-1,4px) 0 var(--ce-space-3,12px);
+}
+
 /* The primer's own quiz. Sits at the end of the primer, above the tiles,
    so the student meets a choice — check what you just read, or go pick a
    part — instead of scrolling into more prose. */

@@ -81,6 +81,36 @@ def wants_block(title, words):
 LANDING_MAX_MIN = 7  # spec: the entry point is 5-7 minutes
 
 
+def strip_unfold(html):
+    """Remove every <details class="unfold"> block, nesting included.
+
+    A regex cannot do this. `<details ...>.*?</details>` is non-greedy, so a
+    section containing a nested <details> -- and several update panes carry
+    "Sources for this section" collapsibles -- terminated at the INNER
+    closing tag and left the rest of the section behind. gun-violence
+    measured 1,404 landing words against a primer of about 600, because
+    most of a 875-word update pane leaked through. Depth counting is the
+    only honest way to bound these.
+    """
+    out, i = [], 0
+    depth, start = 0, None
+    for m in re.finditer(r'<details\b[^>]*>|</details>', html):
+        if m.group(0).startswith('</'):
+            if depth:
+                depth -= 1
+                if depth == 0:
+                    out.append(html[i:start])
+                    i = m.end()
+        else:
+            if depth == 0:
+                if 'unfold' not in m.group(0):
+                    continue          # a nested/unrelated details at top level
+                start = m.start()
+            depth += 1
+    out.append(html[i:])
+    return ''.join(out)
+
+
 def landing_fragment(html):
     """Everything outside the unfold details -- i.e. the landing layer.
 
@@ -89,8 +119,7 @@ def landing_fragment(html):
     the measurement cannot drift as landing markup gains new wrappers.
     """
     html = strip_code(html)
-    html = re.sub(r'<details[^>]*class="[^"]*unfold[^"]*"[^>]*>.*?</details>',
-                  '', html, flags=re.S)
+    html = strip_unfold(html)
     # The footer has to go too. Once every section is wrapped there is no
     # <h2> left outside the details for landing_sections to split on, so the
     # footer's paragraphs fall into the same bucket as the primer and get
