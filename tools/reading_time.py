@@ -78,7 +78,73 @@ def wants_block(title, words):
     return not SKIP_TITLE.search(title) and words >= MIN_WORDS
 
 
+LANDING_MAX_MIN = 7  # spec: the entry point is 5-7 minutes
+
+
+def landing_fragment(html):
+    """Everything outside the unfold details -- i.e. the landing layer.
+
+    Deliberately a structural test, not a class-name test: a <p> counts as
+    landing prose exactly when no <details class="unfold"> encloses it, so
+    the measurement cannot drift as landing markup gains new wrappers.
+    """
+    html = strip_code(html)
+    return re.sub(r'<details[^>]*class="[^"]*unfold[^"]*"[^>]*>.*?</details>',
+                  '', html, flags=re.S)
+
+
+def landing_sections(path):
+    """Yield (title, words) for landing prose only.
+
+    Two exclusions, for different reasons. The unfold <details> are excluded
+    because a student reaches them by choosing to; end matter (Key People,
+    Videos, Dig Deeper) is excluded because it is reference material a
+    student browses, not the entry-point read -- the same SKIP_TITLE rule
+    that decides which sections get wrapped in the first place.
+    """
+    html = landing_fragment(open(path, encoding='utf-8').read())
+    parts = re.split(r'(<h2[^>]*>.*?</h2>)', html, flags=re.S)
+    # The hero dek sits before the first <h2>. It is the first thing a
+    # student reads, so it counts here, even though sections() labels it
+    # "(page lead)" and SKIP_TITLE screens that label out elsewhere.
+    lead = prose_words(parts[0])
+    if lead:
+        yield "(hero dek)", lead
+    for i in range(1, len(parts), 2):
+        title = re.sub(r'<[^>]+>', '', parts[i]).strip()
+        if SKIP_TITLE.search(title):
+            continue
+        body = parts[i + 1] if i + 1 < len(parts) else ""
+        words = prose_words(body)
+        if words:
+            yield title, words
+
+
+def landing_report(paths):
+    rows, failed = [], False
+    for path in paths:
+        if 'class="unfold"' not in open(path, encoding='utf-8').read():
+            continue
+        words = sum(w for _, w in landing_sections(path))
+        mins = minutes(words)
+        over = mins > LANDING_MAX_MIN
+        failed = failed or over
+        rows.append((path, words, mins, 'OVER' if over else 'ok'))
+    return rows, failed
+
+
 def main():
+    if '--landing' in sys.argv:
+        paths = [a for a in sys.argv[1:] if a != '--landing'] or sorted(
+            f for f in glob.glob("*.html") if f != "index.html")
+        rows, failed = landing_report(paths)
+        print('page,landing_words,landing_minutes,status')
+        for r in rows:
+            print(','.join(str(x) for x in r))
+        print('FAIL: landing layer over %d min' % LANDING_MAX_MIN
+              if failed else 'OK: landing layers within budget')
+        return 1 if failed else 0
+
     targets = sys.argv[1:] or sorted(
         f for f in glob.glob("*.html") if f != "index.html")
     out = csv.writer(sys.stdout)
@@ -95,4 +161,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # sys.exit(main()) so --landing can fail a build. main() returns None on
+    # the default path, and sys.exit(None) exits 0.
+    sys.exit(main())
