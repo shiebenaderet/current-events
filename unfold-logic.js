@@ -10,44 +10,20 @@
     return n;
   }
 
-  // The guided next step is always the LOWEST unopened order, even if the
-  // student opened a later one first via the nav. Ordered, never blocked.
-  function nextUnopened(orders, opened) {
-    var sorted = orders.slice().sort(function (a, b) { return a - b; });
-    for (var i = 0; i < sorted.length; i++) {
-      if (opened.indexOf(sorted[i]) === -1) return sorted[i];
-    }
-    return null;
-  }
 
-  function progressKey(pathname) {
-    var file = String(pathname || '').split('/').pop();
-    if (!file) file = 'index.html';
-    return 'unfold:' + file;
-  }
 
-  function parseProgress(raw) {
-    if (!raw) return [];
-    var out = [];
-    var parts = String(raw).split(',');
-    for (var i = 0; i < parts.length; i++) {
-      var n = parseOrder(parts[i]);
-      if (n !== null) out.push(n);
-    }
-    return out;
-  }
 
-  function serializeProgress(list) {
-    return list.join(',');
-  }
 
   /* Completed-quiz store.
 
-     Kept separate from the opened-section store above because they answer
-     different questions: which sections has this student expanded (a
-     convenience, restored on reload) versus which has this student actually
-     worked through (the check mark). The page's own answeredQuizzes is an
-     in-memory Set that empties on every reload, so a check derived from it
+     This is the only thing the site persists about a student's reading, and
+     that is deliberate. Under the card model the menu is home: on returning
+     to a page you land on the primer and the tiles, not mid-way through
+     whatever you last opened. So which sections were open is not worth
+     remembering; which parts you finished is.
+
+     The page's own answeredQuizzes is an in-memory Set that empties on
+     every reload, so a check derived from it
      alone would disappear the moment a student closed the tab. */
   function fileOf(pathname) {
     return String(pathname || '').split('/').pop() || 'index.html';
@@ -83,10 +59,6 @@
 
   var api = {
     parseOrder: parseOrder,
-    nextUnopened: nextUnopened,
-    progressKey: progressKey,
-    parseProgress: parseProgress,
-    serializeProgress: serializeProgress,
     doneKey: doneKey,
     parseDone: parseDone,
     serializeDone: serializeDone,

@@ -74,39 +74,11 @@
     }
     if (!sections.length) return;
 
-    var key = L.progressKey(window.location.pathname);
-    var cta = document.getElementById('unfoldCta');
-
     function span(cls, text) {
       var el = document.createElement('span');
       el.className = cls;
       el.textContent = text;
       return el;
-    }
-
-    function read() {
-      try { return L.parseProgress(localStorage.getItem(key)); }
-      catch (e) { return []; }   // private mode / storage disabled
-    }
-
-    function write(list) {
-      try { localStorage.setItem(key, L.serializeProgress(list)); }
-      catch (e) { /* progress is a convenience, never a requirement */ }
-    }
-
-    function openedOrders() {
-      var out = [];
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].el.open) out.push(sections[i].order);
-      }
-      return out;
-    }
-
-    function find(order) {
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].order === order) return sections[i].el;
-      }
-      return null;
     }
 
     var doneKey = L.doneKey(window.location.pathname);
@@ -132,21 +104,35 @@
                           block: 'start' });
     }
 
+    /* Every section ends with the menu again, so finishing a card is an
+       event that hands the choice back rather than dropping the student
+       into the next wall of prose. Built in JS rather than authored into
+       nine pages: the menu must stay in sync with the tiles, and one
+       renderer cannot drift from itself. */
+    var menus = [document.getElementById('unfoldCta')];
+    for (var m = 0; m < sections.length; m++) {
+      var tail = document.createElement('div');
+      tail.className = 'unfold-cta unfold-cta-end';
+      sections[m].el.appendChild(tail);
+      menus.push(tail);
+    }
+
     /* One tile per section, in page order, all equal weight — the student
        chooses (spec D3 as revised 2026-08-29). A tile checks when its quiz
        has been answered, right or wrong: the check records that the student
        worked through the part, and Discovery Points already track how well
        separately. */
-    function refreshCta() {
-      if (!cta) return;
+    function renderMenu(target, isEnd) {
+      if (!target) return;
       var done = readDone();
-      cta.hidden = false;
-      while (cta.firstChild) cta.removeChild(cta.firstChild);
+      target.hidden = false;
+      while (target.firstChild) target.removeChild(target.firstChild);
 
       var head = document.createElement('p');
       head.className = 'unfold-tiles-head';
-      head.textContent = 'Learn more — pick a part';
-      cta.appendChild(head);
+      head.textContent = isEnd ? 'Finished — pick another part'
+                               : 'Learn more — pick a part';
+      target.appendChild(head);
 
       var grid = document.createElement('div');
       grid.className = 'unfold-tiles';
@@ -155,9 +141,11 @@
         (function (sec) {
           var quiz = sec.el.getAttribute('data-quiz') || '';
           var isDone = quiz && done.indexOf(quiz) !== -1;
+          var isHere = isEnd && target.parentNode === sec.el;
           var btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'unfold-tile' + (isDone ? ' is-done' : '');
+          btn.className = 'unfold-tile' + (isDone ? ' is-done' : '') +
+            (isHere ? ' is-current' : '');
           if (isDone) btn.setAttribute('aria-label',
             (sec.el.getAttribute('data-title') || '') + ' — completed');
 
@@ -173,7 +161,11 @@
           grid.appendChild(btn);
         })(sections[i]);
       }
-      cta.appendChild(grid);
+      target.appendChild(grid);
+    }
+
+    function refreshCta() {
+      for (var i = 0; i < menus.length; i++) renderMenu(menus[i], i > 0);
     }
 
     // Called by each page's quiz handler once an answer is recorded.
@@ -199,17 +191,41 @@
       }
     }
 
-    for (var j = 0; j < sections.length; j++) {
-      sections[j].el.addEventListener('toggle', function () {
-        write(openedOrders());
-        refreshCta();
-      });
+    /* One card at a time. Opening a section closes the others, so a student
+       reads one thing and then meets the menu again, instead of accumulating
+       an endless scroll.
+
+       Print is unaffected: the print stylesheet shows every section's
+       children regardless of the open attribute, so a teacher still gets the
+       whole topic on paper. Find-in-page is unaffected too — the closed
+       sections stay in the DOM. */
+    var closing = false;
+    function collapseOthers(keep) {
+      if (closing) return;          // our own closes must not re-enter
+      closing = true;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el !== keep && sections[i].el.open) {
+          sections[i].el.open = false;
+        }
+      }
+      closing = false;
     }
 
-    var saved = read();
-    for (var k = 0; k < sections.length; k++) {
-      if (saved.indexOf(sections[k].order) !== -1) sections[k].el.open = true;
+    for (var j = 0; j < sections.length; j++) {
+      (function (sec) {
+        sec.el.addEventListener('toggle', function () {
+          if (sec.el.open) collapseOthers(sec.el);
+          refreshCta();
+        });
+      })(sections[j]);
     }
+
+    /* Deliberately no restore of previously-open sections. Under the card
+       model the menu is home: a student returning to the page should land on
+       the primer and the tiles, not mid-way through whatever they last
+       opened. What persists is which parts they finished — the check marks —
+       which is the part worth remembering. A deep link still opens its own
+       section, below. */
 
     window.addEventListener('hashchange', function () {
       openForHash(window.location.hash);

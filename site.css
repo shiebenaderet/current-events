@@ -511,6 +511,21 @@ details.unfold > summary:focus-visible {
 }
 .unfold-tile.is-done .unfold-tile-title { font-weight: 400; }
 
+/* The menu repeated at the end of a section. Set off with a rule above it so
+   finishing a card reads as an ending, not as more page. */
+.unfold-cta-end {
+  border-top: 3px double var(--rule, #d4cfc4);
+  padding-top: var(--ce-space-6, 24px);
+  margin-top: var(--ce-space-6, 24px);
+}
+/* The card you are already in. Still clickable — it just closes and reopens —
+   but it should not invite you to re-read what you just finished. */
+.unfold-tile.is-current { opacity: .45; }
+
+@media print {
+  .unfold-cta, .unfold-cta-end { display: none; }
+}
+
 /* A teacher printing the topic must get the whole topic. No JS involved. */
 @media print {
   details.unfold > summary { display: none; }
