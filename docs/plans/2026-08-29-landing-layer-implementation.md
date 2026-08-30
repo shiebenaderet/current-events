@@ -15,6 +15,7 @@
 - **Never delete or shorten existing prose.** The 5–7 minutes is a property of the entry point, not a ceiling on the topic. Spec §3.
 - **No build step.** Edit `.html`/`.css`/`.js` directly; preview with `python3 -m http.server 8000` over HTTP, never `file://`. (`AGENTS.md`)
 - **ES5-compatible JS, no dependencies.** Match the IIFE style of `site.js`. School Chromebooks may run older Chrome.
+- **Run JS tests as `node --test tools/*.test.js`.** On Node 26 (this machine: v26.7.0) the bare directory form `node --test tools/` fails with `MODULE_NOT_FOUND` — it resolves `tools` as a module instead of scanning it. Verified baseline: 105 tests pass.
 - **Every `<img>` must carry an `onerror` attribute.** `verify_invariants.py` fails when `img` and `onerror` counts diverge.
 - **Every `.term` needs a matching `.term-desc`.** Same tool asserts the counts are equal.
 - **Landing prose must sit inside FK 6.51–10.34 and must NOT fall below it.** Below-band is the leveling-down alarm. Spec §3.
@@ -177,7 +178,7 @@ Expected: PASS — 8 tests, 0 failures
 
 - [ ] **Step 5: Confirm the existing suite still passes**
 
-Run: `node --test tools/`
+Run: `node --test tools/*.test.js`
 Expected: PASS — `unfold.test.js` plus the existing `study-mode.test.js` and `study-mode.integration.test.js`
 
 - [ ] **Step 6: Commit**
@@ -389,7 +390,7 @@ details.unfold > summary:focus-visible {
 
 - [ ] **Step 4: Verify nothing regressed**
 
-Run: `node --test tools/`
+Run: `node --test tools/*.test.js`
 Expected: PASS
 
 Run: `python3 tools/verify_invariants.py HEAD`
@@ -959,7 +960,7 @@ Record the answer in the spec's §10 as a note for the rollout. If the pattern d
 - [ ] **Step 2: Full verification sweep**
 
 ```bash
-node --test tools/
+node --test tools/*.test.js
 python3 tools/reading_time.py --landing
 python3 tools/check_study_mode.py
 python3 tools/verify_invariants.py HEAD
@@ -973,7 +974,8 @@ Replace `- **Lint / test:** none configured.` with:
 
 ```markdown
 - **Lint / test:** no lint config. JS unit tests run headlessly with
-  `node --test tools/` (no dependencies). Python checks: `tools/reading_time.py`
+  `node --test tools/*.test.js` (no dependencies; the bare directory form
+  fails on Node 26). Python checks: `tools/reading_time.py`
   (add `--landing` to assert the 5-7 min entry-point budget),
   `tools/verify_invariants.py <git-ref>`, `tools/check_study_mode.py`.
 ```
