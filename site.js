@@ -136,12 +136,23 @@
        CSS-only, keyed off a class on <html>, so print is untouched: the
        print stylesheet shows every section regardless, and a teacher still
        gets the whole topic on paper. */
-    function syncCardOpen() {
+    var wasCardOpen = false;
+    function syncCardOpen(silent) {
       var anyOpen = false;
       for (var i = 0; i < sections.length; i++) {
         if (sections[i].el.open) { anyOpen = true; break; }
       }
       document.documentElement.classList.toggle('card-open', anyOpen);
+
+      // Leaving a card should land on the overview, not wherever the scroll
+      // happened to be when the hero and primer reappeared above it. Only on
+      // an actual close — `silent` covers the initial call, where nothing is
+      // open and there is nothing to return from.
+      if (!silent && wasCardOpen && !anyOpen) {
+        var menu = document.getElementById('unfoldCta');
+        if (menu) menu.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+      wasCardOpen = anyOpen;
     }
 
     function reveal(el) {
@@ -201,6 +212,15 @@
       tail.className = 'unfold-cta unfold-cta-end';
       sections[m].el.appendChild(tail);
       menus.push(tail);
+
+      /* The way back, as real text rather than a CSS ::before. Generated
+         content is not reliably announced, so a screen-reader user would
+         have had a visual-only affordance. Hidden by CSS unless a card is
+         open, where the summary becomes the sticky header. */
+      var back = sections[m].el.querySelector('summary');
+      if (back && !back.querySelector('.unfold-back')) {
+        back.insertBefore(span('unfold-back', '← Overview'), back.firstChild);
+      }
     }
 
     /* One tile per section, in page order, all equal weight — the student
@@ -306,7 +326,7 @@
       openForHash(window.location.hash);
     });
     openForHash(window.location.hash);
-    syncCardOpen();
+    syncCardOpen(true);
     refreshCta();
   }
 

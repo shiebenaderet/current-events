@@ -364,8 +364,10 @@ html.card-open #unfoldCta { display: none; }
 /* .points-bar deliberately stays: a student answering a card's quiz should
    see the points move, and that is exactly when it happens. */
 
-/* An open card's summary is now the way back, so it reads as a control
-   rather than a heading. */
+/* An open card's summary is the way back, so it says where it goes. An
+   unlabelled × reads as "dismiss this"; "Overview" tells a student they are
+   returning to the list of parts, which is the thing they might want to
+   glance at mid-card. The whole bar is one control. */
 html.card-open details.unfold[open] > summary {
   opacity: 1;
   position: sticky; top: 0; z-index: 20;
@@ -374,7 +376,20 @@ html.card-open details.unfold[open] > summary {
   padding: var(--ce-space-3, 12px) 6vw;
   margin-bottom: var(--ce-space-3, 12px);
 }
-html.card-open details.unfold[open] > summary::after { content: '\00d7'; }
+/* Real text in the summary, hidden until a card is open — outside the card
+   view the tiles are the navigation and a back link would point at nothing. */
+.unfold-back { display: none; }
+html.card-open details.unfold[open] > summary .unfold-back {
+  display: inline;
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-xs, .76rem);
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent-ink, #6b1414);
+  padding-right: var(--ce-space-3, 12px);
+  border-right: 1px solid var(--rule, #d4cfc4);
+  white-space: nowrap;
+}
+html.card-open details.unfold[open] > summary::after { content: none; }
 html.card-open details.unfold[open] > summary .unfold-summary-title {
   font-weight: 700;
 }
