@@ -1,10 +1,7 @@
 (function () {
-  function toggleDyslexic() {
-    document.body.classList.toggle('dyslexic');
-    var on = document.body.classList.contains('dyslexic');
-    localStorage.setItem('dyslexicFont', on ? 'on' : 'off');
-    var btn = document.getElementById('dyslexicToggle');
-    if (btn) btn.classList.toggle('active', on);
+  function prefersReducedMotion() {
+    return !!(window.matchMedia &&
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   }
 
   function setTextSize(size) {
@@ -15,11 +12,6 @@
   }
 
   function initA11y() {
-    if (localStorage.getItem('dyslexicFont') === 'on') {
-      document.body.classList.add('dyslexic');
-      var btn = document.getElementById('dyslexicToggle');
-      if (btn) btn.classList.add('active');
-    }
     var saved = localStorage.getItem('textSize');
     if (saved && saved !== 'normal') {
       document.body.classList.add('text-' + saved);
@@ -142,7 +134,11 @@
         el.open = true;
         var s = el.querySelector('summary');
         if (s && s.focus) s.focus();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // site.css's reduced-motion block cannot reach this: scrollIntoView's
+        // behavior is a script argument, not a CSS property, so the media
+        // query has to be read here by hand.
+        el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                            block: 'start' });
       });
       cta.appendChild(btn);
     }
@@ -218,7 +214,6 @@
     });
   }
 
-  window.toggleDyslexic = toggleDyslexic;
   window.setTextSize = setTextSize;
 
   function init() {

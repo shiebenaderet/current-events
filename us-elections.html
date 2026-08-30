@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>US Elections &amp; How Government Works – Student Resource</title>
 <meta name="description" content="Free, student-friendly explainer on the three branches of government, how elections actually work, and a dated look at the 2026 midterms. Made by an 8th grade Social Studies teacher.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{
   --paper:#fbf9f4; --paper-warm:#f5f1e8;
-  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#6b655c;
   --rule:#d4cfc4; --rule-heavy:#1a1a1a;
   /* This page keeps its own navy/gold accent instead of the shared newsprint
      red used elsewhere on the site. That's deliberate, not an oversight: a
@@ -22,7 +24,7 @@ html{scroll-behavior:smooth}
   --accent:#1a2a52; --accent-ink:#0f1938; --accent-tint:#e8ecf5;
   --gold:#b8860a; --gold-l:#d4a017; --gold-tint:#fef3db;
 }
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-wrap:break-word}
+body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-wrap:break-word}
 
 /* ══ MASTHEAD (site-wide system) ══ */
 .masthead-top{display:flex;justify-content:space-between;align-items:center;padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule)}
@@ -54,7 +56,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:80px 6vw 56px;text-align:center}
 .article-hero .kicker{display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#3a2000;background:var(--gold-l);padding:5px 14px;margin-bottom:22px;cursor:pointer;border:none}
 .article-hero h1{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px}
-.article-hero .dek{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;color:#f0ece4;max-width:660px;margin:0 auto 22px}
+.article-hero .dek{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55;color:#f0ece4;max-width:660px;margin:0 auto 22px}
 .article-hero .byline{font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);letter-spacing:.03em}
 .hero-credit{position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;font-size:.64rem;color:rgba(255,255,255,.5);text-align:right;max-width:340px}
 
@@ -244,7 +246,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .update-box:last-child{border-bottom:none}
 .update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
 .update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
 .update-box p:last-of-type{margin-bottom:14px}
 .update-box .cite-inline{color:rgba(255,255,255,.5)}
 .update-box .cite-inline:hover{color:var(--gold-l)}
@@ -1009,9 +1011,6 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
     <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
     <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
-  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
-    Aa Dyslexic Font
-  </button>
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show definitions and a section guide">💡 Study Mode</button>
 </div>
 

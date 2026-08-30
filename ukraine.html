@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ukraine: How Did We Get Here? – Student Resource</title>
 <meta name="description" content="Free, student-friendly explainer on Ukraine — a thousand years of history behind Europe's biggest war. Made by an 8th grade Social Studies teacher.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous"></script>
 <style>
@@ -13,11 +15,11 @@
 html{scroll-behavior:smooth}
 :root{
   --paper:#fbf9f4; --paper-warm:#f5f1e8;
-  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#767066;
+  --ink:#1a1a1a; --ink-light:#4a4a4a; --ink-faint:#6b655c;
   --rule:#d4cfc4; --rule-heavy:#1a1a1a;
   --accent:#2e6a9a; --accent-ink:#1a4568; --accent-tint:#e7f1f8;
 }
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-wrap:break-word}
+body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-wrap:break-word}
 
 /* ══ MASTHEAD (site-wide system) ══ */
 .masthead-top{display:flex;justify-content:space-between;align-items:center;padding:9px 6vw;font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.04em;color:var(--ink-light);border-bottom:1px solid var(--rule)}
@@ -49,7 +51,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .article-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 6vw 64px;text-align:center}
 .article-hero .kicker{display:inline-block;font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#f0dede;background:var(--accent);padding:5px 14px;margin-bottom:22px;cursor:pointer;border:none}
 .article-hero h1{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:1.04;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:22px}
-.article-hero .dek{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;color:#f0ece4;max-width:640px;margin:0 auto 24px}
+.article-hero .dek{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;color:#f0ece4;max-width:640px;margin:0 auto 24px}
 .article-hero .byline{font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);letter-spacing:.03em}
 .hero-credit{position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;font-size:.64rem;color:rgba(255,255,255,.5);text-align:right}
 .hero-credit a{color:inherit}
@@ -246,7 +248,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .update-box:last-child{border-bottom:none}
 .update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
 .update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Source Serif 4',Georgia,serif;font-size:1.02rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.02rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
 .update-box p:last-of-type{margin-bottom:14px}
 .update-box .cite-inline{color:rgba(255,255,255,.5)}
 .update-box .cite-inline:hover{color:#e8c9c9}
@@ -275,7 +277,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
 .focus-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;flex-wrap:wrap}
 .focus-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8b3b3;font-weight:800}
 .focus-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
-.focus-pane p{font-family:'Source Serif 4',Georgia,serif;font-size:1.08rem;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:20px}
+.focus-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.08rem;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:20px}
 .focus-pane p strong{color:#fff}
 .focus-pane .cite-inline{color:rgba(255,255,255,.5)}
 .focus-pane .cite-inline:hover{color:#e8b3b3}
@@ -927,9 +929,6 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     <button class="ts-large" onclick="setTextSize('lg')" title="Larger text" aria-label="Larger text">A</button>
     <button class="ts-large" style="font-size:1.2rem" onclick="setTextSize('xl')" title="Largest text" aria-label="Largest text">A</button>
   </div>
-  <button class="dyslexic-toggle" id="dyslexicToggle" onclick="toggleDyslexic()" title="Toggle dyslexia-friendly font">
-    Aa Dyslexic Font
-  </button>
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show definitions and a section guide">💡 Study Mode</button>
 </div>
 

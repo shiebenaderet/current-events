@@ -1,7 +1,17 @@
 /* Shared accessibility + chrome helpers for Current Events Explained.
    Page-specific palettes stay in each HTML file's :root (--accent, etc.). */
 
-/* ── Shared design tokens ─────────────────────────────────────────────────────
+/* Atkinson Hyperlegible carries a little tracking well, and it aids the
+   character disambiguation the face is designed for. Set here rather than in
+   nine inline stylesheets: none of them declares letter-spacing on body, so
+   there is no specificity fight to win.
+
+   (No reduced-motion block here — the site already has one, further down
+   under "Motion floor", and it is better than a blanket rule because it
+   reasons about which animations carry information.) */
+body{letter-spacing:.01em}
+
+/* ── Shared design tokens─────────────────────────────────────────────────────
    Vocabulary, not layout. The audit of 2026-08-27 found 62 distinct font-size values
    site-wide (seven of them between .66 and .82rem), because eight self-contained pages
    each carry their own inline stylesheet and there was no shared scale to drift from.
@@ -46,14 +56,6 @@
   --ce-tap: 44px;
 }
 
-@font-face{
-  font-family:'OpenDyslexic';
-  font-style:normal;
-  font-weight:400;
-  font-display:swap;
-  src:url('fonts/OpenDyslexic-Regular.woff2') format('woff2');
-}
-
 .skip-link{
   position:absolute;left:8px;top:-48px;z-index:10000;
   background:var(--ink,#1a1a1a);color:#fff;
@@ -66,18 +68,9 @@
   position:fixed;bottom:20px;right:20px;z-index:9999;
   display:flex;flex-direction:column;align-items:flex-end;gap:var(--ce-space-2);
 }
-.dyslexic-toggle{
-  background:#111;color:#fff;border:none;border-radius:var(--ce-radius-pill);
-  padding:12px var(--ce-space-4);font-size:var(--ce-text-sm);font-weight:800;min-height:var(--ce-tap);
-  cursor:pointer;display:flex;align-items:center;gap:6px;
-  font-family:-apple-system,sans-serif;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);
-}
-.dyslexic-toggle:hover{background:#222}
-.dyslexic-toggle:focus-visible,.text-size-controls button:focus-visible{
+.text-size-controls button:focus-visible{
   outline:2px solid #fff;outline-offset:2px;
 }
-.dyslexic-toggle.active{background:var(--accent,#a02c2c)}
 .text-size-controls{
   display:flex;align-items:center;gap:6px;background:#111;
   border-radius:var(--ce-radius-pill);padding:var(--ce-space-1);
@@ -101,43 +94,6 @@
 .text-size-controls button:hover{background:rgba(255,255,255,.15)}
 .text-size-controls .ts-small{font-size:.7rem}
 .text-size-controls .ts-large{font-size:1.05rem}
-
-/* Apply OpenDyslexic to reading text only — never maps, nav, buttons, or SVG. */
-body.dyslexic,
-body.dyslexic .article,
-body.dyslexic .article p,
-body.dyslexic .article li,
-body.dyslexic .lede,
-body.dyslexic .dek,
-body.dyslexic .subhead,
-body.dyslexic .lead-dek,
-body.dyslexic .tier-card p,
-body.dyslexic .tier-card h3,
-body.dyslexic h1,
-body.dyslexic h2,
-body.dyslexic h3,
-body.dyslexic h4,
-body.dyslexic .callout,
-body.dyslexic .vocab,
-body.dyslexic .update-box p,
-body.dyslexic .focus-pane p,
-body.dyslexic .teacher-col,
-body.dyslexic .about p,
-body.dyslexic .suggest-lede,
-body.dyslexic .suggest-form input,
-body.dyslexic .suggest-form textarea,
-body.dyslexic .suggest-form select{
-  font-family:'OpenDyslexic',sans-serif !important;
-}
-body.dyslexic .section-nav,
-body.dyslexic .masthead-top,
-body.dyslexic .a11y-controls,
-body.dyslexic button,
-body.dyslexic .leaflet-container,
-body.dyslexic svg,
-body.dyslexic code{
-  font-family:-apple-system,sans-serif !important;
-}
 
 /* ── Tap-to-open vocabulary tooltips ──────────────────────────────────────────
    The per-page .term tooltip reveals on :hover / :focus only. Neither exists on a
@@ -210,7 +166,7 @@ body.text-xl .stat-trio .desc{font-size:1rem}
   padding:18px 6vw 20px;
 }
 .before-read > p{
-  font-family:'Source Serif 4',Georgia,serif;
+  font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;
   font-size:1.02rem;
   line-height:1.6;
   color:var(--ink-light,#4a4a4a);
@@ -368,9 +324,9 @@ body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.
 /* 2. FOCUS RING. The ring was outline:2px solid var(--accent) while
    .active sets background:var(--accent) -- the same colour, so a keyboard
    user saw NO focus indicator at all whenever Study Mode was on (1.00:1),
-   and only ~1.7:1 when it was off. The neighbouring .dyslexic-toggle
-   already solved this with a white ring; matching it keeps the two
-   buttons in the same stack behaving the same way. #fff measures 12.63:1
+   and only ~1.7:1 when it was off. A white ring solves it regardless of
+   which accent the page uses, so every button in this stack uses one.
+   #fff measures 12.63:1
    on the inactive #333, and 5.76:1 on the lowest-contrast page accent
    (#2e6a9a, iran) -- every page clears 3:1 for a non-text indicator. */
 .study-mode-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px}
@@ -378,11 +334,11 @@ body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.
 /* 3. THE BAR vs. THE CONTROLS THAT SPAWN IT. .a11y-controls is
    fixed;bottom:20px;right:20px;z-index:9999 -- it sits ON TOP of the
    bar's right end, and .sm-bar-txt (flex:1 1 auto) ran underneath it.
-   Reserve the width of the control stack (the widest button, "Aa Dyslexic
-   Font", is ~160px, plus its 20px inset) so the summary stops short of
+   Reserve the width of the control stack (the widest button is now
+   "Study Mode" at ~125px, plus its 20px inset) so the summary stops short of
    it. The section label gets a cap and an ellipsis so it can never crowd
    the summary out of what's left on a narrow screen. */
-#sm-bar{padding-right:200px}
+#sm-bar{padding-right:170px}
 #sm-bar .sm-bar-sec{flex:0 1 auto;max-width:40%;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Collapsed, the bar is meant to be ONE line -- that was the design
@@ -400,7 +356,7 @@ body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.
 body.study-mode{padding-bottom:60px}
 
 @media (max-width:640px){
-  #sm-bar{padding-right:180px}
+  #sm-bar{padding-right:155px}
   body.study-mode{padding-bottom:56px}
 }
 
