@@ -109,6 +109,13 @@
        into the next wall of prose. Built in JS rather than authored into
        nine pages: the menu must stay in sync with the tiles, and one
        renderer cannot drift from itself. */
+    /* With JS running, the tiles ARE the menu, so a closed section's summary
+       row is a second copy of the same navigation stacked underneath it.
+       Hidden via a class set here rather than in the stylesheet outright,
+       because with JS off the summaries are the only way to open anything —
+       the accordion has to keep working. */
+    document.documentElement.classList.add('js-unfold');
+
     var menus = [document.getElementById('unfoldCta')];
     for (var m = 0; m < sections.length; m++) {
       var tail = document.createElement('div');

@@ -339,6 +339,16 @@ body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.
    for itself — climate-change is green, us-elections navy. Fallbacks keep
    this readable if a page ever omits one. */
 details.unfold { border-top: 1px solid var(--rule, #d4cfc4); margin: 0; }
+
+/* A closed section shows nothing of itself: the tile menu above is how you
+   get in, and leaving the summary rows visible stacked a second, identical
+   list of seven under the seven tiles. The open section keeps its summary,
+   which is how you close it again.
+
+   .js-unfold is set by site.js. Without JS the summaries stay visible and
+   are the only way to open a section, so the page still works. */
+html.js-unfold details.unfold:not([open]) { border-top: none; }
+html.js-unfold details.unfold:not([open]) > summary { display: none; }
 details.unfold > summary {
   cursor: pointer; list-style: none; padding: 1.15rem 0;
   display: flex; align-items: baseline; gap: 0.75rem;
