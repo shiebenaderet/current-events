@@ -362,12 +362,12 @@ after rewriting the 26 worst. The headline barely moved — **74 of 76
 answerable with the article withheld, then 70 of 76** — and the tiers
 explain why.
 
-| | before | after |
-|---|---|---|
-| eliminable — no knowledge needed | 15 | 17 |
-| answered by the learning target alone | 10 | **3** |
-| general knowledge (prober-confounded) | 49 | 53 |
-| required the passage | 2 | 3 |
+| | round 1 | round 2 | round 3 |
+|---|---|---|---|
+| eliminable — no knowledge needed | 15 | 17 | **10** |
+| answered by the learning target alone | 10 | **3** | 4 |
+| general knowledge (prober-confounded) | 49 | 53 | 58 |
+| required the passage | 2 | 3 | **4** |
 
 **The rewrites worked on one tier and backfired on another.** Questions
 answerable from the target alone fell from 10 to 3, which was the fault
@@ -385,6 +385,19 @@ well-informed reader could do, not as a defect count.
 **The two tiers that ARE about construction** — eliminable distractors, and
 questions the target answers — are the ones to act on, because they fail for
 every student regardless of what they know. Those went 25 → 20.
+
+**What actually creates passage-dependence.** Three items crossed from
+answerable to genuinely requiring the section on the third run, and they
+share a shape worth copying:
+
+- **Close numeric options.** "About 9 / 14 / 22 / 31 percent" cannot be
+  reached by reasoning about magnitude. "About 1 / 14 / 50 percent" can.
+- **Parallel interpretive options.** If three options are factual disputes
+  and one is an interpretive one, the interpretive one is the answer. Make
+  all four interpretive.
+- **Defeat the ordering heuristic.** Ship counts of "two-then-nine /
+  three-then-five / five-then-three / six-then-eleven" beat "pick the
+  smallest", which a single small option invites.
 
 **Do not chase the headline number to zero.** Doing so would mean writing
 questions about details so obscure that no outside knowledge could touch

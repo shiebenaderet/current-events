@@ -2,6 +2,29 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.2.1] — 2026-08-30
+
+**Patch — a layout bug in the dark panes, and a second pass at the quizzes Q1 flagged.**
+
+**"Where Things Stand" was rendering badly, and had been for a while.** Reported from a screenshot: the *Before you read* block sat as a narrow column jammed against the right edge of the pane with most of the pane empty. The cause dates from the commit that introduced the component, not from 4.2.0's type scale. `.before-read` positions itself with `margin-left: max(0px, calc(50vw - 350px))`, which lands its left edge on the centred 700px article column — correct for the 47 blocks in full-width sections, wrong for the 8 inside `.update-pane-inner` or `.focus-pane-inner`, because those parents are already centred and a viewport-relative margin inside them compounds. At 1900px the pane spans x=500–1400 and the rule adds 600px of left margin *inside* it: the block starts at x=1100 with 300px of pane remaining, about 32 characters per line. Fixed by container rather than by the `.on-dark` colour modifier, since the bug is about position and not colour. Inside a pane the block now starts at the pane's own edge with a 62-character measure — a 900px pane at 1.02rem would otherwise run ~110 characters, past the WCAG 80 ceiling and well past the ~55 optimum.
+
+No gate could have caught it. It needs a viewport-relative length resolved inside an already-centred parent, which only happens when something renders.
+
+**Sixteen more quizzes rewritten, and this time the probe moved.** The 4.2.0 pass fixed absurd distractors and left the deeper fault in place: the correct answer was still identifiable as *the sensible one*. Given three odd options and one reasonable one, a reader picks the reasonable one knowing nothing. This pass held every distractor to a stricter rule — each has to be something that is genuinely true of some situation, or a mechanism that really exists, just not the one the section reports.
+
+| | round 1 | round 2 | round 3 |
+|---|---|---|---|
+| eliminable — needs no knowledge | 15 | 17 | **10** |
+| answered by the learning target alone | 10 | 3 | 4 |
+| general knowledge (prober-confounded) | 49 | 53 | 58 |
+| required the passage | 2 | 3 | **4** |
+
+Construction defects — the two tiers that fail for any student regardless of what they know — went **20 → 14**. Three items became genuinely passage-dependent, and they share a shape worth copying: Rainier's ice loss now offers 9/14/22/31 percent instead of 1/14/50, so magnitude reasoning cannot reach it; the two-analyst question now offers four real interpretive disagreements instead of one interpretation among three factual options; and the Hormuz ship counts now offer four small numbers including a reversed pair, so "pick the smallest" stops working.
+
+One caveat on the comparison: round 3's prompt told the prober to be strict about its `basis` field and only claim elimination when it had really eliminated rather than known. That makes round 3's split more honest and slightly less comparable to round 2, so some of the eliminable→knowledge moves may be better self-reporting rather than a better question.
+
+**One item left knowingly answerable.** Ukraine's "I need ammunition, not a ride" is among the most reported quotations of the war. Any rewrite that defeated a well-read prober would also defeat a student who simply followed the news, which is not an improvement.
+
 ## [4.2.0] — 2026-08-30
 
 **Minor — a reading-intervention pass over all 60 deep sections, and one canonical type scale for all eight pages.**
