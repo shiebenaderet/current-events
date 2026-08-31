@@ -915,3 +915,59 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
     padding-right: 0;
   }
 }
+
+/* ── The dated mini-timeline ──────────────────────────────────────────────
+   Reported as "dense timeline", and measurably so. .mini-tl-text carried no
+   width cap, so inside a 900px pane it ran about 116 characters per line —
+   past the WCAG 80 ceiling and double the ~55 optimum — set at .86rem with
+   only 14px between items. Three lines of small type at full pane width,
+   stacked tight, is the wall of text in the screenshot.
+
+   Nothing is removed here: same events, same words, same sources. The text
+   gets a measure, a size closer to the body, and room between entries. */
+.mini-tl { gap: var(--ce-space-6, 24px); }
+
+.mini-tl-text {
+  max-width: 64ch;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+/* A date is a label, not prose — align it with the first line of the entry
+   rather than letting baseline alignment drift on a wrapped entry. */
+.mini-tl-item { align-items: start; }
+.mini-tl-date { padding-top: .15em; }
+.mini-tl-dot { margin-top: .45em; }
+
+/* "[Al Jazeera]" was breaking across lines and stranding "Jazeera]" on its
+   own, which reads as a typo rather than a citation. */
+.cite-inline { white-space: nowrap; }
+
+/* "Copy link to this section", in the end-of-card menu. Quiet: it is a
+   teacher's tool sitting in a student's page, so it should be findable
+   without competing with the tiles above it. */
+.unfold-link {
+  display: inline-block;
+  margin-top: var(--ce-space-4, 16px);
+  padding: 8px 14px;
+  min-height: var(--ce-tap, 44px);
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-xs, .76rem);
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--ink-light, #4a4a4a);
+  background: transparent;
+  border: 1px solid var(--rule, #d4cfc4);
+  border-radius: var(--ce-radius-sm, 4px);
+  cursor: pointer;
+}
+.unfold-link:hover {
+  color: var(--ink, #1a1a1a);
+  border-color: var(--ink-light, #4a4a4a);
+}
+.unfold-link:focus-visible {
+  outline: 2px solid var(--accent, #a02c2c);
+  outline-offset: 2px;
+}
+/* The menu is hidden until a card is open, so the button follows it. */
+@media print { .unfold-link { display: none; } }

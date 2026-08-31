@@ -2,6 +2,25 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.3.0] — 2026-08-31
+
+**Minor — a direct link to any section, and the dense timeline given room to breathe.**
+
+**Every card now has its own URL.** A teacher can hand one student one section:
+
+    current.mrbsocialstudies.org/iran.html#where-things-stand
+    current.mrbsocialstudies.org/ukraine.html#the-holodomor
+
+Half of this already existed — `openForHash()` was written so the old anchors kept working after the card conversion, and it opens whatever card contains the hash target. What was missing is that none of the 85 `<details>` had an id of its own. Cryptic leftovers like `#hist` and `#update-week1` did work, but nobody was going to guess them. Ids are now slugged from each card's `data-title`, so the link reads as the thing it points at, and the old anchors still resolve.
+
+The address bar also follows the open card, so the link can simply be copied from it, and each card carries a **Copy link to this section** button in its end-of-card menu for anyone who would not think to look at the URL. `replaceState`, not an assignment to `location.hash`: assigning it would push a history entry and jump the page, so three cards opened would take three Back presses to leave and the jump would fight the card's own scroll.
+
+**Eleven duplicate ids removed, found while doing it.** The new slugs collided with dead `<div class="sec-head" id="videos">` anchors left behind when 4.0.0 deleted the section-nav markup. Duplicate ids are invalid, and `querySelector('#videos')` returns whichever comes first — the card on some pages, the inner div on others, which is how a deep link works in testing and fails in use. Nothing referenced any of them; the card keeps the id. Non-colliding legacy anchors are untouched in case one has been shared.
+
+**The timeline was as dense as it looked.** `.mini-tl-text` carried no width cap, so inside a 900px pane it ran about **113 characters per line** — past the WCAG 80 ceiling and double the ~55 optimum — set at .86rem with 14px between entries. Three lines of small type at full pane width, stacked tight. It now takes a 64-character measure at .95rem with 24px between entries, and dates align to the first line rather than drifting on a wrapped one. `[Al Jazeera]` also stopped breaking across lines and stranding "Jazeera]" on its own, which read as a typo rather than a citation. No event, word or source was removed.
+
+**Six new tests** cover the deep links: that a link opens the card it names and only that one, that opening writes the slug, that closing clears it, that a plain visit writes no history at all, and that every card on all eight pages has a unique linkable id. site.js is a browser IIFE with nothing exported, so they drive it against a small stand-in DOM — which caught a real defect: the first version of `syncHash` read `location.hash` to decide whether to clear it, which works in a browser and makes the logic untestable. It now tracks what it wrote.
+
 ## [4.2.1] — 2026-08-30
 
 **Patch — a layout bug in the dark panes, and a second pass at the quizzes Q1 flagged.**

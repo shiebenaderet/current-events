@@ -161,6 +161,36 @@
         if (menu) menu.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
       wasCardOpen = anyOpen;
+      syncHash();
+    }
+
+    /* Keep the address bar pointing at the open card, so a teacher can send a
+       student straight to one section by copying the URL. Every card carries
+       a slug id (#where-things-stand), and openForHash below already opens
+       whatever the hash names.
+
+       replaceState rather than assigning location.hash: assigning it makes
+       the browser jump to the element AND pushes a history entry, so opening
+       three cards would need three Back presses to leave the page, and the
+       jump would fight reveal()'s own scroll. replaceState changes the URL
+       and does neither. Wrapped because a file:// page in some browsers
+       throws on it, and a thrown error here would take initUnfold with it. */
+    var lastHash = null;          // what we last wrote; null = never written
+    function syncHash() {
+      if (!window.history || !history.replaceState) return;
+      var open = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].el.open) { open = sections[i].el; break; }
+      }
+      var want = (open && open.id) ? '#' + open.id : '';
+      // A fresh load with nothing open and no incoming hash needs no write.
+      if (lastHash === null && !want && !window.location.hash) return;
+      if (want === lastHash) return;
+      try {
+        history.replaceState(null, '',
+          window.location.pathname + window.location.search + want);
+        lastHash = want;
+      } catch (e) { /* non-fatal: the card still opened */ }
     }
 
     function reveal(el) {
@@ -229,6 +259,43 @@
       if (back && !back.querySelector('.unfold-back')) {
         back.insertBefore(span('unfold-back', '← Overview'), back.firstChild);
       }
+
+      /* A way to hand one section to one student. The address bar already
+         updates when a card opens, but nobody discovers that by looking, so
+         the card says so out loud.
+
+         It lives in the end-of-card menu rather than the summary, because
+         the summary IS the toggle — a button inside it would close the card
+         on its way to being clicked. */
+      addLinkButton(sections[m].el, tail);
+    }
+
+    function addLinkButton(el, tail) {
+      if (!el.id) return;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'unfold-link';
+      btn.textContent = 'Copy link to this section';
+      btn.addEventListener('click', function () {
+        var url = window.location.origin + window.location.pathname + '#' + el.id;
+        function done(ok) {
+          btn.textContent = ok ? 'Link copied' : url;
+          if (ok) {
+            setTimeout(function () {
+              btn.textContent = 'Copy link to this section';
+            }, 2000);
+          }
+        }
+        // Clipboard access needs a secure context, so it fails on plain
+        // http:// — show the URL to copy by hand rather than doing nothing.
+        try {
+          navigator.clipboard.writeText(url).then(
+            function () { done(true); },
+            function () { done(false); }
+          );
+        } catch (e) { done(false); }
+      });
+      tail.appendChild(btn);
     }
 
     /* One tile per section, in page order, all equal weight — the student
