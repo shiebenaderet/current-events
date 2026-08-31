@@ -49,7 +49,16 @@ class El {
   setAttribute(n, v) { if (n === 'id') this.id = v; else this.attrs[n] = v; }
   removeAttribute(n) { delete this.attrs[n]; }
   appendChild(c) { c.parentNode = this; this.children.push(c); return c; }
-  insertBefore(c) { c.parentNode = this; this.children.unshift(c); return c; }
+  /* Honour the reference node. An insertBefore that always prepends
+     silently reverses anything inserted in a loop — which is how the decade
+     groups came out 1970s, 1960s, 1950s against working code. */
+  insertBefore(c, ref) {
+    c.parentNode = this;
+    const i = ref ? this.children.indexOf(ref) : -1;
+    if (i >= 0) this.children.splice(i, 0, c);
+    else this.children.unshift(c);
+    return c;
+  }
   removeChild(c) {
     const i = this.children.indexOf(c);
     if (i >= 0) this.children.splice(i, 1);
@@ -78,14 +87,25 @@ class El {
     }
     return out;
   }
-  closest() { return null; }
+  closest(sel) {
+    let n = this;
+    while (n) {
+      if (sel.includes('details.unfold') && n.tagName === 'DETAILS'
+          && n.classList.contains('unfold')) return n;
+      n = n.parentNode;
+    }
+    return null;
+  }
   scrollIntoView() {}
+  get offsetHeight() { return 40; }
   focus() {}
   contains() { return false; }
 }
 
-/** Build a page with the given timelines: [[wrapperClass, entryCount], ...] */
-function mount(specs) {
+/** Build a page with the given timelines: [[wrapperClass, entryCount], ...].
+ *  insideCard puts each timeline in an open <details class="unfold"> with a
+ *  sticky <summary>, which is the real arrangement on every topic page. */
+function mount(specs, insideCard = false, labelFor = null) {
   const observed = [];
   const root = new El('html');
   const body = new El('body');
@@ -97,6 +117,7 @@ function mount(specs) {
       const item = new El('div', { class: 'tl-item' });
       const year = new El('div', { class: 'tl-year' });
       year.textContent = String(1950 + i);
+      if (labelFor) labelFor(i, year);
       const bodyEl = new El('div', { class: 'tl-body' });
       const h = new El('h4');
       h.textContent = 'Event ' + i;
@@ -105,7 +126,15 @@ function mount(specs) {
       item.appendChild(bodyEl);
       wrap.appendChild(item);
     }
-    body.appendChild(wrap);
+    if (insideCard) {
+      const card = new El('details', { class: 'unfold' });
+      card.open = true;
+      card.appendChild(new El('summary'));
+      card.appendChild(wrap);
+      body.appendChild(card);
+    } else {
+      body.appendChild(wrap);
+    }
     wraps.push(wrap);
   }
 
@@ -142,12 +171,13 @@ function mount(specs) {
   return { wraps, observed };
 }
 
-test('a long timeline gets a jump strip with one button per entry', () => {
-  const { wraps } = mount([['article', 19]]);
+test('an ungrouped timeline gets one jump button per entry', () => {
+  // Below the grouping threshold the stops are the years themselves.
+  const { wraps } = mount([['article', 9]]);
   const strip = wraps[0].querySelector('.tl-jump');
-  assert.ok(strip, 'expected a jump strip on a 19-entry timeline');
+  assert.ok(strip, 'expected a jump strip on a 9-entry timeline');
   const buttons = strip.querySelectorAll('button');
-  assert.equal(buttons.length, 19);
+  assert.equal(buttons.length, 9);
   assert.equal(buttons[0].textContent, '1950');
 });
 
@@ -186,4 +216,88 @@ test('each jump button names where it lands, for screen readers', () => {
 test('the strip observes every entry so it can track the scroll', () => {
   const { observed } = mount([['article', 9]]);
   assert.equal(observed.length, 9);
+});
+
+
+/* ── Decade grouping on dense timelines ───────────────────────────────── */
+
+test('a timeline of twelve or more is grouped into decades', () => {
+  const { wraps } = mount([['article', 25]]);
+  const eras = wraps[0].querySelectorAll('.tl-era');
+  const labels = eras.map((e) => e.querySelector('.tl-era-label').textContent);
+  assert.deepEqual(labels, ['1950s', '1960s', '1970s'],
+    'consecutive years from 1950 should split at each decade boundary');
+});
+
+test('a timeline under twelve is left flat', () => {
+  const { wraps } = mount([['article', 8]]);
+  assert.equal(wraps[0].querySelectorAll('.tl-era').length, 0);
+});
+
+test('the first era is open so the timeline still reads as a timeline', () => {
+  const { wraps } = mount([['article', 25]]);
+  const eras = wraps[0].querySelectorAll('.tl-era');
+  assert.equal(eras[0].open, true, 'first era should start open');
+  assert.equal(eras[1].open, false, 'later eras should start closed');
+});
+
+test('grouping moves every entry into an era, losing none', () => {
+  const { wraps } = mount([['article', 25]]);
+  const inEras = wraps[0].querySelectorAll('.tl-era')
+    .reduce((n, e) => n + e.querySelectorAll('.tl-item').length, 0);
+  assert.equal(inEras, 25);
+});
+
+test('a grouped timeline gets one jump button per era, not per year', () => {
+  const { wraps } = mount([['article', 25]]);
+  const buttons = wraps[0].querySelector('.tl-jump').querySelectorAll('button');
+  const eras = wraps[0].querySelectorAll('.tl-era');
+  assert.equal(buttons.length, eras.length,
+    'nineteen year buttons would restate the density the grouping relieves');
+});
+
+test('the jump strip clears the sticky card header instead of hiding under it', () => {
+  // An open card's <summary> is sticky at top:0 with z-index 20; a strip at
+  // top:0 slides underneath it. It has to be offset by the summary's height.
+  const { wraps } = mount([['article', 25]], /* insideCard */ true);
+  const strip = wraps[0].querySelector('.tl-jump');
+  assert.equal(strip.style.top, '40px',
+    'strip should be offset by the sticky summary height');
+});
+
+
+test('a millennia-spanning timeline is left flat, not bucketed by decade', () => {
+  // ukraine runs from ~882 AD and iran from 550 BCE. Decade buckets across
+  // that span would be mostly empty and occasionally hold one event, which
+  // is worse than the flat list. Those want named historical eras, and
+  // naming them is an editorial call rather than something to infer.
+  const { wraps } = mount([['article', 14]]);
+  const items = wraps[0].querySelectorAll('.tl-item');
+  items[0].querySelector('.tl-year').textContent = '~882 AD';
+  // rebuild with the wide span in place
+  const { wraps: w2 } = mount([['article', 14]], false, (i, yearEl) => {
+    yearEl.textContent = i === 0 ? '~882 AD' : String(1950 + i);
+  });
+  assert.equal(w2[0].querySelectorAll('.tl-era').length, 0,
+    'a 1100-year span should not be grouped into decades');
+});
+
+test('BCE labels are read as negative years, not as 550 AD', () => {
+  const { wraps } = mount([['article', 14]], false, (i, yearEl) => {
+    yearEl.textContent = i === 0 ? 'Around 550 BCE' : String(2000 + i);
+  });
+  assert.equal(wraps[0].querySelectorAll('.tl-era').length, 0,
+    '550 BCE to 2013 is a 2500-year span and must not be grouped');
+});
+
+test('messy but close-together labels still group', () => {
+  // "Early 1900s", "1951–1953", "Jun 17, 2026" all appear on this site.
+  const { wraps } = mount([['article', 13]], false, (i, yearEl) => {
+    const labels = ['Early 1930s', '1941–1944', 'March 1950', '1951–1953',
+      '1960', 'Jun 17, 1962', '1970', '1971', '1980', '1985', '1990',
+      '1995', '2000'];
+    yearEl.textContent = labels[i];
+  });
+  assert.ok(wraps[0].querySelectorAll('.tl-era').length >= 3,
+    'a 70-year span with messy labels should still group');
 });

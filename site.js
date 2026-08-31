@@ -555,6 +555,94 @@
     for (var n = 0; n < groups.length; n++) buildTimeline(groups[n]);
   }
 
+  /* Nineteen equal entries is the density problem, and a jump strip of
+     nineteen years only restates it. Above a dozen, entries are collected
+     into decades that open and close, so the timeline starts as a short list
+     of eras and expands where the reader wants detail.
+
+     Returns [{label, details, items}] or null when the timeline is short
+     enough to leave alone. */
+  function groupByEra(parent, list) {
+    if (list.length < 12) return null;
+
+    /* Labels are not tidy years. Real ones on this site include "Around 550
+       BCE", "~882 AD", "1951–1953", "Early 1900s" and "Jun 17, 2026", so
+       take the first number that looks like a year and read BCE as negative. */
+    function yearOf(item) {
+      var y = item.querySelector('.tl-year');
+      if (!y) return null;
+      var text = y.textContent;
+      var m = text.match(/(\d{3,4})/);
+      if (!m) return null;
+      var year = parseInt(m[1], 10);
+      return /\bBCE?\b/i.test(text) ? -year : year;
+    }
+
+    var years = [];
+    for (var i = 0; i < list.length; i++) {
+      var y = yearOf(list[i]);
+      // Bail rather than half-group: one unparsed entry would land in an
+      // "everything else" bucket, which is worse than the flat list.
+      if (y === null) return null;
+      years.push(y);
+    }
+
+    /* Decades only make sense over a span a few decades wide. ai runs
+       1950–2026 and groups into seven decades. iran runs from 550 BCE and
+       ukraine from 882 AD; decade buckets there would be mostly empty and
+       occasionally hold one event, which is worse than no grouping.
+
+       Those two want NAMED historical eras — Kievan Rus', empire, Soviet,
+       independence — and naming them is an editorial judgement about where
+       the breaks fall, not something to infer from the dates. So they stay
+       flat until someone makes that call. */
+    var span = Math.max.apply(null, years) - Math.min.apply(null, years);
+    if (span > 120) return null;
+
+    var decades = [];
+    for (var d2 = 0; d2 < years.length; d2++) {
+      decades.push(Math.floor(years[d2] / 10) * 10);
+    }
+
+    var eras = [];
+    for (var j = 0; j < list.length; j++) {
+      var last = eras[eras.length - 1];
+      if (!last || last.decade !== decades[j]) {
+        eras.push({ decade: decades[j], items: [list[j]] });
+      } else {
+        last.items.push(list[j]);
+      }
+    }
+    if (eras.length < 3) return null;   // not enough grouping to be worth it
+
+    var out = [];
+    for (var k = 0; k < eras.length; k++) {
+      var era = eras[k];
+      var det = document.createElement('details');
+      det.className = 'tl-era';
+      // The first era open, so the timeline still begins as a timeline
+      // rather than as a menu of closed boxes.
+      det.open = (k === 0);
+      var sum = document.createElement('summary');
+      var label = era.decade + 's';
+      // span() lives inside initUnfold; this runs outside it.
+      function chip(cls, text) {
+        var el = document.createElement('span');
+        el.className = cls;
+        el.textContent = text;
+        return el;
+      }
+      sum.appendChild(chip('tl-era-label', label));
+      sum.appendChild(chip('tl-era-count',
+        era.items.length + (era.items.length === 1 ? ' event' : ' events')));
+      det.appendChild(sum);
+      parent.insertBefore(det, era.items[0]);
+      for (var n = 0; n < era.items.length; n++) det.appendChild(era.items[n]);
+      out.push({ label: label, details: det, items: era.items });
+    }
+    return out;
+  }
+
   function buildTimeline(group) {
     var parent = group.parent;
     var list = group.items;
@@ -565,39 +653,87 @@
     if (list.length < 6) return;
     if (parent.querySelector('.tl-jump')) return;
 
+    /* Dense timelines get grouped before anything else, so the jump strip is
+       built from the eras rather than from nineteen individual years. */
+    var eras = groupByEra(parent, list);
+
     var strip = document.createElement('div');
     strip.className = 'tl-jump';
     strip.setAttribute('role', 'navigation');
     strip.setAttribute('aria-label', 'Jump to a point in this timeline');
+
+    /* An open card's <summary> is itself sticky at top:0 with z-index 20, so
+       a strip that also sticks at 0 slides underneath it and is unreadable.
+       The offset is measured rather than guessed because the summary's
+       height changes with the A/A/A text-size control. */
+    function placeStrip() {
+      var card = parent.closest ? parent.closest('details.unfold') : null;
+      var summary = card ? card.querySelector('summary') : null;
+      strip.style.top = (summary ? summary.offsetHeight : 0) + 'px';
+    }
+    placeStrip();
+    window.addEventListener('resize', placeStrip);
+    // The text-size buttons change the summary's height without a resize.
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t && t.closest && t.closest('.text-size-controls')) {
+        window.setTimeout(placeStrip, 0);
+      }
+    });
 
     var label = document.createElement('span');
     label.className = 'tl-jump-label';
     label.textContent = 'Jump to';
     strip.appendChild(label);
 
-    var buttons = [];
-    for (var i = 0; i < list.length; i++) {
-      (function (item) {
-        var yearEl = item.querySelector('.tl-year');
+    /* One button per era where the timeline was grouped, one per entry where
+       it was not. Nineteen year-buttons only restate the density they were
+       added to relieve. */
+    var stops = [];
+    if (eras) {
+      for (var e = 0; e < eras.length; e++) {
+        stops.push({
+          text: eras[e].label,
+          aria: 'Jump to the ' + eras[e].label + ', ' + eras[e].items.length + ' events',
+          target: eras[e].details,
+          era: eras[e].details,
+          watch: eras[e].items
+        });
+      }
+    } else {
+      for (var i = 0; i < list.length; i++) {
+        var yearEl = list[i].querySelector('.tl-year');
         var year = yearEl ? yearEl.textContent.trim() : '';
-        if (!year) return;
+        if (!year) continue;
+        var h = list[i].querySelector('h4');
+        stops.push({
+          text: year,
+          aria: 'Jump to ' + year + (h ? ': ' + h.textContent.trim() : ''),
+          target: list[i],
+          era: null,
+          watch: [list[i]]
+        });
+      }
+    }
+
+    var buttons = [];
+    for (var s = 0; s < stops.length; s++) {
+      (function (stop) {
         var b = document.createElement('button');
         b.type = 'button';
-        b.textContent = year;
-        // The year alone is not a destination to a screen reader; the
-        // heading beside it says where the jump actually lands.
-        var h = item.querySelector('h4');
-        b.setAttribute('aria-label',
-          'Jump to ' + year + (h ? ': ' + h.textContent.trim() : ''));
+        b.textContent = stop.text;
+        b.setAttribute('aria-label', stop.aria);
         b.addEventListener('click', function () {
-          item.scrollIntoView({
+          // A closed era cannot be scrolled to. Open it first, then go.
+          if (stop.era && !stop.era.open) stop.era.open = true;
+          stop.target.scrollIntoView({
             behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-            block: 'center'
+            block: 'start'
           });
         });
         strip.appendChild(b);
-        buttons.push({ btn: b, item: item });
-      })(list[i]);
+        buttons.push({ btn: b, item: stop.target, watch: stop.watch });
+      })(stops[s]);
     }
     if (!buttons.length) return;
     parent.insertBefore(strip, parent.firstChild);
@@ -609,9 +745,13 @@
     var seen = [];
     var obs = new IntersectionObserver(function (entries) {
       for (var e = 0; e < entries.length; e++) {
+        // A stop may cover several entries (an era), so find the stop whose
+        // watch list contains whatever just crossed.
         var idx = -1;
-        for (var j = 0; j < buttons.length; j++) {
-          if (buttons[j].item === entries[e].target) { idx = j; break; }
+        for (var j = 0; j < buttons.length && idx < 0; j++) {
+          for (var w = 0; w < buttons[j].watch.length; w++) {
+            if (buttons[j].watch[w] === entries[e].target) { idx = j; break; }
+          }
         }
         if (idx < 0) continue;
         seen[idx] = entries[e].isIntersecting;
@@ -625,7 +765,9 @@
         else buttons[b2].btn.removeAttribute('aria-current');
       }
     }, { rootMargin: '-45% 0px -45% 0px' });
-    for (var o = 0; o < buttons.length; o++) obs.observe(buttons[o].item);
+    for (var o = 0; o < buttons.length; o++) {
+      for (var v = 0; v < buttons[o].watch.length; v++) obs.observe(buttons[o].watch[v]);
+    }
   }
 
   window.setTextSize = setTextSize;

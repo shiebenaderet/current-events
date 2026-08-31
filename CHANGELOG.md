@@ -2,6 +2,22 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.6.0] — 2026-08-31
+
+**Minor — the jump strip stopped hiding under the card header, and dense timelines group into decades.**
+
+**The jump strip was invisible, and it was my bug.** An open card's `<summary>` is `position: sticky; top: 0; z-index: 20` — it is the "← Overview" header. The jump strip was also `sticky; top: 0`, at `z-index: 5`, so it slid underneath and only its bottom edge showed. It now offsets itself by the summary's measured height rather than a guessed constant, because that height changes when a reader uses the A/A/A text-size control.
+
+**Nineteen entries now group into seven decades.** A strip of nineteen year buttons restated the density it was added to relieve. Entries above a dozen are collected into decade groups that open and close, the first left open so the timeline still begins as a timeline rather than a menu of closed boxes. Clicking a jump button opens its decade before scrolling — a closed group cannot be scrolled to. Native `<details>`, so with JavaScript off there are no groups and the flat list is exactly what it was, and printing still gets every era.
+
+**Only ai groups, and the reason is principled rather than accidental.** iran's timeline runs from *Around 550 BCE* and ukraine's from *~882 AD*. Decade buckets across a span like that would be mostly empty and occasionally hold a single event, which is worse than no grouping. So grouping applies only where the whole span is under 120 years: ai runs 1950–2026 and groups; the other two stay flat.
+
+Those two want **named historical eras** — Kievan Rus', empire, Soviet, independence — and deciding where those breaks fall is an editorial judgement, not something to infer from dates. They stay flat until someone makes that call.
+
+Label parsing had to cope with what is actually on the page: `Around 550 BCE`, `~882 AD`, `1951–1953`, `Early 1900s`, `Jun 17, 2026`. It takes the first three- or four-digit number and reads BCE as negative, so a 550 BCE entry is not filed as 550 AD.
+
+**Nine new tests** (137 total), including three written after the fact for cases the first version got wrong: a millennia span must stay flat, BCE must not be read as AD, and messy-but-close labels must still group. Two of them caught bugs in the test double rather than the code — most usefully an `insertBefore` that ignored its reference node and silently reversed the decade groups to 1970s, 1960s, 1950s against perfectly good code.
+
 ## [4.5.1] — 2026-08-31
 
 **Patch — the alternating timeline is gone. It made the cards unreadable, and the arithmetic says why.**

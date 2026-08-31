@@ -44,7 +44,16 @@ class El {
   getAttribute(n) { return n === 'id' ? this.id : (this.attrs[n] ?? null); }
   setAttribute(n, v) { if (n === 'id') this.id = v; else this.attrs[n] = v; }
   appendChild(c) { c.parentNode = this; this.children.push(c); return c; }
-  insertBefore(c) { c.parentNode = this; this.children.unshift(c); return c; }
+  /* Honour the reference node. An insertBefore that always prepends
+     silently reverses anything inserted in a loop — which is how the decade
+     groups came out 1970s, 1960s, 1950s against working code. */
+  insertBefore(c, ref) {
+    c.parentNode = this;
+    const i = ref ? this.children.indexOf(ref) : -1;
+    if (i >= 0) this.children.splice(i, 0, c);
+    else this.children.unshift(c);
+    return c;
+  }
   removeChild(c) {
     const i = this.children.indexOf(c);
     if (i >= 0) this.children.splice(i, 1);

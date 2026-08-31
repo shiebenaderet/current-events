@@ -1157,3 +1157,116 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   color: var(--ink-faint, #6b655c);
   opacity: .75;
 }
+
+/* ── The compact update timeline, joined to the same family ───────────────
+   Two timeline components exist and they do different jobs: .tl-item is the
+   long historical timeline with headings and images, .mini-tl is the compact
+   dated list inside a Situation Update pane. They should read as relatives
+   rather than as two unrelated inventions — which is what they were, because
+   .mini-tl already had dots but no spine to hang them on.
+
+   Deliberately not merged into one component: a seven-item "what happened
+   this month" list and a nineteen-item history are different things, and
+   collapsing them would make the compact one heavier rather than the long
+   one lighter. Same idiom, different weight. */
+.mini-tl { position: relative; }
+.mini-tl::before {
+  content: '';
+  position: absolute;
+  top: .5em;
+  bottom: 0;
+  left: 3px;
+  width: 2px;
+  background: rgba(255, 255, 255, .18);
+}
+/* The dot sits on the spine rather than beside it, with a ring in the pane's
+   own colour so the line reads as passing behind it. */
+.mini-tl-dot {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--ink, #1a1a1a);
+}
+
+/* ── Decade groups on dense timelines ────────────────────────────────────
+   Above a dozen entries the flat list is the density problem, and a jump
+   strip of nineteen years only restates it. site.js collects entries into
+   decades that open and close, so the timeline starts as a short list of
+   eras and expands where the reader wants detail. The first is open, so it
+   still begins as a timeline rather than as a menu of closed boxes.
+
+   Native <details>, so with JavaScript off there are no groups and the flat
+   list is exactly what it was. */
+.tl-era {
+  margin-bottom: var(--ce-space-6, 24px);
+  padding-left: 34px;
+  position: relative;
+}
+.tl-era:last-child { margin-bottom: 0; }
+/* Entries are already indented off the spine; inside an era they would be
+   indented twice. */
+.tl-era .tl-item { padding-left: 0; }
+.tl-era .tl-item::before { left: -34px; }
+
+.tl-era > summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ce-space-3, 12px);
+  margin-left: -34px;
+  padding: 10px 0 10px 34px;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+.tl-era > summary::-webkit-details-marker { display: none; }
+
+/* A square on the spine, so an era reads as a different kind of stop from
+   an event's round dot. */
+.tl-era > summary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1em;
+  width: 15px;
+  height: 15px;
+  background: var(--accent, #a02c2c);
+  border: 3px solid var(--paper, #faf8f5);
+  border-radius: 2px;
+}
+
+.tl-era-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.28rem;
+  font-weight: 900;
+  color: var(--ink, #1a1a1a);
+}
+.tl-era-count {
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-2xs, .68rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint, #6b655c);
+}
+/* Say which way it goes, in text rather than a rotated glyph. */
+.tl-era > summary::after {
+  content: 'Show';
+  margin-left: auto;
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-2xs, .68rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent, #a02c2c);
+}
+.tl-era[open] > summary::after { content: 'Hide'; }
+.tl-era > summary:focus-visible {
+  outline: 2px solid var(--accent, #a02c2c);
+  outline-offset: 2px;
+}
+.tl-era[open] > summary { margin-bottom: var(--ce-space-4, 16px); }
+
+/* A teacher printing the page gets every era, open or not. */
+@media print {
+  .tl-era > summary::after { content: ''; }
+  .tl-era > *:not(summary) { display: block !important; }
+}
