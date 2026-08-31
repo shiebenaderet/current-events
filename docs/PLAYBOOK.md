@@ -173,6 +173,55 @@ fruit are made up and the caption admits it. Inventing a *statistic* never is.
 - Homepage card: `data-parts="<tile count>"`, and rewrite the time promise to
   `5 min · more if you want it`.
 
+### 5.5 · Run the reading-intervention pass on the deep sections
+
+The primer gets this attention by default. The deep sections did not until
+v4.2.0, and that is where the density lives.
+
+```bash
+# per section, not per page: a page-level average hides the bad section
+python3 ~/.claude/skills/reading-intervention/scripts/locate.py <file> --json
+```
+
+**Strip `a.cite-inline` before measuring.** Citation links carry the outlet
+name inline, and left in they are counted as prose — which inflates FK on
+exactly the best-sourced sections. Leaving them in put 13 sections above the
+band ceiling; excluding them, the real number is 5.
+
+**Do not steer by the band.** Iran's *Where things stand* was the section a
+reader called dense and hard to parse, and it measures in band at 8.47.
+Eleven of the fifteen densest sections on the site are in or below band. FK
+counts syllables and sentence length; a proper noun and a date are invisible
+to it. What to look at instead, none of which is a score:
+
+- **How many named entities and dates must a reader hold?** Print the list,
+  never a rate (Rule F). Twenty place names each appearing once is the
+  finding, and the remedy is to re-identify them or say what the list is
+  *for* — never to delete them (Rule D).
+- **Are consecutive events joined by anything but their dates?** That is C2,
+  and a timeline is where it hides.
+- **Below band is the alarm that matters**, not above. But check it: six of
+  seven below-band sections here were false alarms with their connectives
+  intact, and joining a stack of statistics would have manufactured
+  causation.
+
+**Every edit is additive, and G6 proves it.** Run `ceiling_diff` on the
+section against its committed version. The pattern must come back
+`elaboration` with no terms lost. A revision that came out shorter is the
+Davison & Kantor failure, and G6 catches the small version too — rewriting
+`shutdown` to `shut down` registered as a term lost and flipped the pattern
+to MIXED. Restore the word form; do not argue with the gate.
+
+**The score will often not move, and that is fine.** Adding an explanation
+of a policy uses the policy's vocabulary. climate-change's *Washington's
+Climate Story* went 12.50 to 12.52 while getting materially clearer. The
+number is not the thing being improved.
+
+**Fourteen of twenty flagged sections needed no edit.** Saying so is the
+report. A locator flag is a place to look, not a verdict, and the
+suppression lint exists to stop a finding that repairs nothing from reaching
+the teacher.
+
 ### 6 · Gates — all of them, every time
 
 ```bash
@@ -262,7 +311,29 @@ studies and 688 readers; most children in them preferred Arial. See
 
 ---
 
-## Known gaps, as of v4.1.0
+## Styling: change it in site.css, not in eight files
+
+Every topic page carries its own inline `<style>`, and `site.css` loads
+**after** all of them. At equal specificity the later rule wins, so a shared
+component value belongs in `site.css` and nowhere else.
+
+This is not a preference. Eight copies drifted into two camps across 41
+selector/property pairs before anyone noticed, because body text — the one
+value that never drifted — kept every page looking right in a paragraph. And
+editing eight copies is how the v4.0.0 Source Serif swap missed 32
+declarations: two variants existed and only one was found.
+
+Two traps when adding a rule there:
+
+- **A media query adds no specificity.** An unscoped rule in `site.css` will
+  override every page's `@media` rule for the same selector. That nearly
+  capped the definition bubble at 240px on phones. Scope by breakpoint when
+  the pages do.
+- **A page rule with extra ancestors still wins.** `.update-pane .vocab p`
+  beats `.update-box p` wherever both match. Check for selectors that end
+  with yours before assuming yours applies.
+
+## Known gaps, as of v4.2.0
 
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
