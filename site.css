@@ -767,3 +767,93 @@ details.unfold > summary:focus-visible {
   details.unfold > *:not(summary) { display: block !important; }
   .unfold-cta { display: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CANONICAL TYPE SCALE — one value per property, for all eight topic pages
+   ═══════════════════════════════════════════════════════════════════════
+
+   Each topic page carries its own inline <style>, and over eight builds the
+   supporting scale drifted into two camps: ai / climate-change / iran /
+   space-race / ukraine on one set of values, gun-violence / immigration /
+   us-elections on a slightly smaller set, with space-race a third variant in
+   a few places. 41 selector/property pairs disagreed. Body text never did —
+   .article p has been 1.18rem/1.75 everywhere — so the drift was invisible
+   in the paragraph and obvious in everything around it: headings a step
+   smaller, timelines a step tighter, stat numbers a step shorter.
+
+   Resolved here rather than in eight inline stylesheets because site.css
+   loads last on every page, so equal specificity wins without touching them
+   — the same mechanism the .term touch rules above already rely on. Editing
+   eight copies is how the Source Serif replacement missed 32 declarations in
+   v4.0.0: two variants existed and only one was found.
+
+   Canonical = the climate-change camp. climate-change is the flagship of the
+   editorial redesign, so its scale is the intended one, and it is the larger
+   of the two nearly everywhere — which is the right direction for a class
+   reading below grade level.
+
+   Two deliberate departures from that camp, both noted at the rule.
+*/
+
+.article-hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.04; margin-bottom: 22px; }
+.article-hero .dek { font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 640px; margin: 0 auto 24px; }
+
+/* Camp B cleared 80px at the top for .section-nav, which was fixed-position.
+   v4.0.0 removed that nav's markup from every page and left the CSS behind,
+   so on those three pages this is now 80px of empty space above the title
+   reserved for an element that no longer renders. */
+.article-hero-inner { padding: 0 6vw 64px; }
+
+.sec-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1.15; }
+.article h3 { font-size: 1.4rem; margin: 38px 0 16px; }
+.article p { margin: 0 0 24px; }
+.article p.lede::first-letter { font-size: 5.4rem; }
+
+.update-head h2 { font-size: 1.8rem; }
+.update-box h3 { font-size: 1.3rem; }
+.update-box p { font-size: 1.02rem; }
+.update-badge { font-size: .68rem; }
+.update-pane-inner { max-width: 900px; }
+
+.tl-body h4 { font-size: 1.1rem; }
+.tl-body p { font-size: 1rem; }
+.tl-body img { max-width: 280px; }
+.tl-year { font-size: 1.1rem; }
+
+.stat-line .num { font-size: 3.2rem; }
+.stat-pair .num, .stat-trio .num { font-size: 2.4rem; }
+.stat-pair .desc, .stat-trio .desc { font-size: .8rem; }
+.rc-title { font-size: 1.08rem; }
+
+/* Departure 1 — the larger of the two, from the gun-violence camp. This is a
+   tap target on a school tablet, and 13px padding makes it about 40px tall
+   against 35px. WCAG 2.2 SC 2.5.8 asks for 24px; clearing it is not a reason
+   to take the smaller of two values you already have. */
+.quiz-toggle { font-size: .86rem; padding: 13px 24px; }
+
+/* Departure 2 — .term::after, the hover/tap definition bubble, is the one
+   place a blanket rule here would have caused a regression, so it is scoped
+   by breakpoint instead.
+
+   Every page defines a @media (max-width:600px) rule for this bubble. A
+   media query adds no specificity, so an unscoped rule in site.css — later
+   in the cascade, equal specificity — would have overridden all eight of
+   them and capped the bubble at 240px on phones. That is the definition
+   popup for glossed words, on the devices the students actually use.
+
+   Checking that turned up a real bug behind the drift. Four pages
+   (climate-change, gun-violence, immigration, space-race) pin the bubble
+   with left:0 / translateX(0) so it cannot run off the edge of a narrow
+   screen; ai, iran, ukraine and us-elections still center it and let it
+   reach 70vw, which is the overflow v3.3.0 fixed — on half the pages. The
+   mobile rule below carries that fix to the other four. */
+@media (min-width: 601px) {
+  .term::after { max-width: min(240px, 70vw); font-size: .78rem; }
+}
+@media (max-width: 600px) {
+  .term::after {
+    left: 0;
+    transform: translateX(0) translateY(4px);
+    max-width: min(240px, 70vw);
+  }
+}
