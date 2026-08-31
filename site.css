@@ -857,3 +857,27 @@ details.unfold > summary:focus-visible {
     max-width: min(240px, 70vw);
   }
 }
+
+/* A list whose items are a glossed term plus its definition.
+
+   Three glossed terms in one sentence read fine by default, because
+   .term-desc is screen-reader-only there. In Study Mode every definition is
+   un-clipped inline, and the sentence becomes a 77-word run-on with three
+   parallel items buried in it — which screen-reader users get in every
+   state. The definitions stay exactly as they were; only the placement
+   changes, so each term and its definition get a line of their own. */
+.term-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.term-list > li {
+  padding: 10px 0 10px 16px;
+  border-left: 3px solid var(--rule, #d4cfc4);
+  margin-bottom: 10px;
+}
+.term-list > li:last-child { margin-bottom: 0; }
+/* In Study Mode the definition follows its term on the same line; give it a
+   line of its own so the term stays scannable down the left edge. */
+body.study-mode .term-list > li .term-desc { display: block; margin-top: 4px; }
+body.study-mode .term-list > li .term-desc::before { content: none; }
