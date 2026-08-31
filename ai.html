@@ -748,7 +748,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </details>
 
 <!-- ═══════════ FOCUS PANE: AI & YOUR SCHOOL ═══════════ -->
-<details class="unfold" data-order="5" data-title="AI and your school" data-minutes="4">
+<details class="unfold" data-order="5" data-title="AI and your school" data-minutes="4" data-quiz="q7">
   <summary>
     <span class="unfold-summary-title">AI and your school</span>
     <span class="unfold-summary-time">4 min</span>
@@ -810,12 +810,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         <li>"Teens, Trust, and Technology in the Age of AI," Common Sense Media, January 29, 2025; reported in "American teens are increasingly misled by fake content online, study shows," CNN, January 30, 2025. <a href="https://www.commonsensemedia.org/research/research-brief-teens-trust-and-technology-in-the-age-of-ai" target="_blank">Common Sense Media</a> · <a href="https://www.cnn.com/2025/01/30/tech/american-teens-ai-study/" target="_blank">CNN</a></li>
       </ol>
     </div>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
   </div>
 </div>
 </details>
 
 <!-- ═══════════ JOBS & DISPLACEMENT ═══════════ -->
-<details class="unfold" data-order="6" data-title="Will AI take jobs?" data-minutes="3">
+<details class="unfold" data-order="6" data-title="Will AI take jobs?" data-minutes="3" data-quiz="q8">
   <summary>
     <span class="unfold-summary-title">Will AI take jobs?</span>
     <span class="unfold-summary-time">3 min</span>
@@ -850,11 +852,13 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   <div class="vocab"><b>Key Word — Displacement</b><p>When a new tool or machine means a job that used to need a person no longer does — or needs far fewer people. Displacement is not the same as "every job disappears." Some jobs change. Some go away. Some new ones appear.</p></div>
 
   <div class="callout"><span class="tag">Think about it</span><p>If many adults think AI will mean fewer jobs, what skills are still worth practicing in school — the ones a chatbot can already do, or the ones it still can't?</p></div>
-</div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q8')">Test Yourself</button></div>
+  </div>
 </details>
 
 <!-- ═══════════ FURTHER READING: TALKING TO ANIMALS USING AI ═══════════ -->
-<details class="unfold" data-order="7" data-title="Talking to animals" data-minutes="3">
+<details class="unfold" data-order="7" data-title="Talking to animals" data-minutes="3" data-quiz="q9">
   <summary>
     <span class="unfold-summary-title">Talking to animals</span>
     <span class="unfold-summary-time">3 min</span>
@@ -905,11 +909,13 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
       <li>Bergman, T.J., "Speech-like Rhythm in a Voiced and Voiceless Primate Communication System," PLOS ONE, 2013. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071688" target="_blank">Link</a></li>
     </ol>
   </div>
-</div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q9')">Test Yourself</button></div>
+  </div>
 </details>
 
 <!-- ═══════════ FOCUS PANE: THE GODFATHER'S WARNING ═══════════ -->
-<details class="unfold" data-order="8" data-title="The godfather's warning" data-minutes="6">
+<details class="unfold" data-order="8" data-title="The godfather's warning" data-minutes="6" data-quiz="q10">
   <summary>
     <span class="unfold-summary-title">The godfather's warning</span>
     <span class="unfold-summary-time">6 min</span>
@@ -986,12 +992,14 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         <li>Li, F.F., Manning, C. &amp; Reuel, A., "Artificial Intelligence," Stanford Emerging Technology Review 2025, Stanford University / Hoover Institution. <a href="https://setr.stanford.edu/technology/artificial-intelligence/2025" target="_blank">Link</a></li>
       </ol>
     </div>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q10')">Test Yourself</button></div>
   </div>
 </div>
 </details>
 
 <!-- ═══════════ FOCUS PANE: AI THAT TAKES ACTION ═══════════ -->
-<details class="unfold" data-order="9" data-title="AI that takes action" data-minutes="2">
+<details class="unfold" data-order="9" data-title="AI that takes action" data-minutes="2" data-quiz="q11">
   <summary>
     <span class="unfold-summary-title">AI that takes action</span>
     <span class="unfold-summary-time">2 min</span>
@@ -1029,6 +1037,8 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         <li>"Buy for Me button on Amazon Shopping app," Amazon, April 3, 2025; "Amazon's new AI agent will shop third-party stores for you," TechCrunch, April 3, 2025. <a href="https://www.aboutamazon.com/news/retail/amazon-shopping-app-buy-for-me-brands" target="_blank">Amazon</a> · <a href="https://techcrunch.com/2025/04/03/amazons-new-ai-agent-will-shop-third-party-stores-for-you/" target="_blank">TechCrunch</a></li>
       </ol>
     </div>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q11')">Test Yourself</button></div>
   </div>
 </div>
 </details>
@@ -1312,7 +1322,7 @@ let statClicks = new Set();
 let portraitHoverOrder = [];
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 10;
+const MAX_PTS = 16;
 
 // ─── QUIZZES ───
 const quizzes = {
@@ -1327,6 +1337,66 @@ const quizzes = {
     correct: 1,
     feedback: "✅ Right. It has no rules of its own and no way to notice a gap — so it picks the closest thing it was shown and is completely sure about it.",
     wrong: "Not quite. It has no rules of its own, so it cannot notice that something is missing. It picks whichever example it was shown that is closest, and it is confident about that answer."
+  },
+  q7: {
+    q: "This section argues that using AI to do your reading for you costs you something specific. What?",
+    choices: [
+      "AI usually gets the facts wrong",
+      "Reading and thinking are skills you build by doing them, and a shortcut skips the building",
+      "Teachers can always tell when you used it",
+      "It takes longer than reading the thing yourself"
+    ],
+    correct: 1,
+    feedback: "✅ Right. The argument is not that AI is bad at reading — it is that you get better at reading by reading, so handing it off skips the part that was doing you good.",
+    wrong: "Not quite. The argument is not about accuracy. It is that reading and thinking are skills you build by doing them, so a shortcut skips the building."
+  },
+  q8: {
+    q: "A Pew survey in August 2026 found 71% of U.S. adults expect AI to mean fewer jobs over the next twenty years. What does that number tell you?",
+    choices: [
+      "That there will be fewer jobs in twenty years",
+      "What people expect, which is not the same as what will happen",
+      "That 71% of jobs will disappear",
+      "That economists have measured the job losses"
+    ],
+    correct: 1,
+    feedback: "✅ Right. It is a survey of expectations, not a measurement of the future. Lots of people expecting something is evidence about people, not about jobs.",
+    wrong: "Not quite. It is a survey — it records what people expect. Expecting something is not the same as knowing it, and the number says nothing about how many jobs will actually exist."
+  },
+  q9: {
+    q: "Researchers are pointing AI at whale and elephant sounds. What are they actually doing so far?",
+    choices: [
+      "Translating animal calls into English",
+      "Looking for patterns in the sounds that people cannot hear on their own",
+      "Teaching animals to use words",
+      "Playing human speech back to animals to see if they respond"
+    ],
+    correct: 1,
+    feedback: "✅ Right. Nobody is translating whale song yet. Finding the patterns comes first, and that is the part AI is good at.",
+    wrong: "Not quite. Nobody is translating animal calls into English. The work so far is finding patterns in the sounds that people cannot pick out themselves — which has to come first."
+  },
+  q10: {
+    q: "Geoffrey Hinton spent over forty years on neural networks while most AI researchers dismissed them. What did he do in 2023?",
+    choices: [
+      "Won the Nobel Prize in Physics",
+      "Left Google so he could speak freely about risks in what he had helped build",
+      "Stopped working on AI altogether",
+      "Started a company to build a safer AI"
+    ],
+    correct: 1,
+    feedback: "✅ Right. He won the Nobel in 2024 — a year later. In 2023 he quit Google specifically so he could talk about the risks without speaking for an employer.",
+    wrong: "Not quite. The Nobel came in 2024. In 2023 he left Google, so that he could speak freely about risks in the technology he had spent forty years building."
+  },
+  q11: {
+    q: "What makes an \"agentic\" AI different from a chatbot that answers your question?",
+    choices: [
+      "It answers faster",
+      "It carries out a whole task on its own — browsing, filling in forms, running code — instead of answering one question at a time",
+      "It never makes mistakes",
+      "It works without an internet connection"
+    ],
+    correct: 1,
+    feedback: "✅ Right. The older kind describes how to do the task and you do it. This kind takes the steps itself, which is a different sort of tool with different things that can go wrong.",
+    wrong: "Not quite. The difference is not speed or accuracy. An agentic system takes several steps on its own to finish a task, rather than answering one question and stopping."
   },
   q1: { q:"What is an artificial neural network inspired by?", choices:["The internet","The human brain","A calculator","A search engine"], correct:1,
     feedback:"Correct! Neural networks are inspired by how neurons in the human brain connect and communicate with each other.",

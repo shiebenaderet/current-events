@@ -498,7 +498,7 @@ footer{
 </section>
 
 <div class="unfold-cta" id="unfoldCta" hidden></div>
-<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="3">
+<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="3" data-quiz="q7">
   <summary>
     <span class="unfold-summary-title">Where Things Stand</span>
     <span class="unfold-summary-time">3 min</span>
@@ -542,6 +542,8 @@ footer{
         <li><a href="https://en.wikipedia.org/wiki/Boeing_Starliner-1" target="_blank">Wikipedia — Boeing Starliner-1</a></li>
       </ul>
     </details>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
   </div>
 </div>
 </details>
@@ -822,9 +824,16 @@ let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
 // 6 quizzes (q1-q6, 1 pt each) + 1 easter egg (Konami code, 1 pt) = 7
-const MAX_PTS = 8;
+const MAX_PTS = 9;
 
 const quizzes = {
+  q7: {
+    q: "This section is a dated snapshot from August 2026. What does it say the news actually is?",
+    choices: ["A crew landed on the Moon in 2026","There is still no date for a crewed Moon landing \u2014 the missing date is the story","NASA cancelled the Artemis program","China landed astronauts on the Moon first"],
+    correct: 1,
+    feedback: "\u2705 Right. Nobody had landed again, the plans kept being rewritten, and the honest report was that the date was still missing.",
+    wrong: "Not quite. As of August 2026 nobody had landed on the Moon again, and Artemis was still running. The point of the section is that the date kept slipping \u2014 the missing date is the news."
+  },
   q9: {
     q: "NASA was told in 2019 to land astronauts on the Moon in 2024. The first crewed landing is now planned for 2028. What does that mostly tell you?",
     choices: [

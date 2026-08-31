@@ -427,7 +427,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </section>
 
 <div class="unfold-cta" id="unfoldCta" hidden></div>
-<details class="unfold" data-order="1" data-title="Breaking — Hormuz" data-minutes="1">
+<details class="unfold" data-order="1" data-title="Breaking — Hormuz" data-minutes="1" data-quiz="q11">
   <summary>
     <span class="unfold-summary-title">Breaking — Hormuz</span>
     <span class="unfold-summary-time">1 min</span>
@@ -438,11 +438,13 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </div>
 <div class="article">
   <p class="lede">On August 17, 2026, the 60-day deadline for a lasting U.S.–Iran peace deal expired with no agreement. That clock had started on June 17, when both countries signed a memorandum that was supposed to pause fighting and lead to a final deal. A week later, Iran and Oman said they had agreed on a temporary shipping route through the Strait of Hormuz — the narrow waterway that a fifth of the world's oil used to pass through. Iran still said the strait would not fully reopen. See the full situation update below.<a class="cite-inline" href="#update-week1">Jump to update</a></p>
-</div>
+
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q11')">Test Yourself</button></div>
+  </div>
 </details>
 
 <!-- ═══════════ UPDATE PANE ═══════════ -->
-<details class="unfold" data-order="2" data-title="Where things stand" data-minutes="9">
+<details class="unfold" data-order="2" data-title="Where things stand" data-minutes="9" data-quiz="q10">
   <summary>
     <span class="unfold-summary-title">Where things stand</span>
     <span class="unfold-summary-time">9 min</span>
@@ -541,6 +543,8 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         </ul></details>
       </div>
     </div>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q10')">Test Yourself</button></div>
   </div>
 </div>
 </details>
@@ -1053,9 +1057,15 @@ let timelineClicks = 0;
 let statClicks = { geography: new Set() };
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 10;
+const MAX_PTS = 15;
 
 const quizzes = {
+  q11: { q:"In late August 2026 Iran and Oman agreed on a temporary shipping route through the Strait of Hormuz. What did that agreement NOT do?", choices:["Open a route through the strait","Fully reopen the strait \u2014 Iran said that still depended on U.S. conditions","Include a plan to clear mines","Involve Oman"], correct:1,
+    feedback:"Right. A temporary corridor is not a reopening. Iran tied the full reopening to conditions from the June memorandum that had already expired.",
+    wrong:"Not quite. The agreement did open a temporary route, about seven miles wide, with mine-clearing. What it did not do was fully reopen the strait \u2014 Iran said that still depended on U.S. conditions." },
+  q10: { q:"On August 18, 2026 the U.S. president said the Strait of Hormuz was \u201copen and operating.\u201d Ship-tracking data showed three vessels crossed on Sunday, August 16. How can both be true?", choices:["One of them must be a lie","The strait was open, and almost nobody was using it \u2014 open and busy are not the same thing","Ship-tracking data does not count oil tankers","The strait closed again on August 17"], correct:1,
+    feedback:"Right. A waterway can be legally open and practically empty. Counting the ships is how you tell which one you are looking at.",
+    wrong:"Not quite. Both can be accurate at once: the strait was open, and hardly any ships were using it. \u201cOpen\u201d and \u201cbusy\u201d are different claims, and the ship count is what separates them." },
   q9: {
     q: "The Strait of Hormuz matters far beyond Iran. Why?",
     choices: [

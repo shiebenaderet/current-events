@@ -149,11 +149,27 @@ fruit are made up and the caption admits it. Inventing a *statistic* never is.
 
 ### 5 · Wire it up
 
+- **Every substantive section gets a quiz.** A tile can only earn its ✓ if its
+  section has one, so a section without a quiz can be read in full and still
+  look unfinished. Reference tiles — Key People, Videos, Sources, Keep
+  Learning — are the deliberate exception: they are browsed, not worked
+  through, and the opened `·` is the right signal.
 - `data-quiz` on each section that has one, so its tile can earn a ✓.
 - `window.Unfold.markDone(id)` at the end of the page's `handleAnswer`.
-- One primer quiz. Ask for the primer's **claim**, not a number from it — a
-  student who only knows the topic exists should not be able to answer.
-- `MAX_PTS` += 1 for the new quiz.
+- Ask for the section's **claim**, not a number from it — a student who only
+  knows the topic exists should not be able to answer. On a dated *Where
+  things stand* pane, ask what the snapshot claims; a question about a
+  volatile figure expires with the figure.
+- **Put the button inside the section's content box** — `.article`,
+  `.focus-pane-inner` or `.update-pane-inner` — never as a direct child of
+  the `<details>`. Outside it the button falls below the pane's background
+  and loses the `max-width` that centres everything else. See the
+  parent-element check in step 6.
+- **`MAX_PTS` = the page's real reachable total** (quizzes + bonus points).
+  `addPoints` clamps with `Math.min(pts + n, MAX_PTS)`, so a denominator
+  that is too low fills the bar early and makes every later quiz award
+  nothing. Six of eight pages were wrong this way before 4.1.0. Check any
+  `pts >= N` unlock still sits under the new total.
 - Homepage card: `data-parts="<tile count>"`, and rewrite the time promise to
   `5 min · more if you want it`.
 
@@ -174,6 +190,22 @@ git show HEAD:<page> | grep -o 'data-def="[^"]*"' | sort > /tmp/old.txt
 grep -o 'data-def="[^"]*"' <page> | sort > /tmp/new.txt
 comm -23 /tmp/old.txt /tmp/new.txt        # must be empty
 ```
+
+**Ask what each new element's parent actually is.** Valid HTML in the right
+section is not the same as correctly nested. Parse the page and print the
+parent of anything you inserted, then compare it against the elements that
+were already there:
+
+```bash
+# every quiz button should report the same parent class as its neighbours
+python3 -c "from html.parser import HTMLParser; ..."   # see 4.1.0 in CHANGELOG
+```
+
+Ten buttons added in 4.1.0 passed every other check — valid markup, balanced
+tags, right section, working quiz — while sitting outside the coloured pane
+they belonged in, because they were children of `<details>` rather than of
+`.update-pane-inner`. Comparing parents against the 54 existing buttons is
+what found it.
 
 Then load it in a browser, and **look at the interactive specifically**.
 
@@ -230,11 +262,8 @@ studies and 688 readers; most children in them preferred Arial. See
 
 ---
 
-## Known gaps, as of v4.0.0
+## Known gaps, as of v4.1.0
 
-- **Quiz coverage is uneven.** ai has 5 quizzes for 13 tiles, iran 5 for 10.
-  Those tiles can show "opened" but can never earn a ✓. Not wrong, but the
-  progress signal is weaker on those pages than on climate-change (8 of 10).
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*

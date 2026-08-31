@@ -535,7 +535,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 </details>
 
 <!-- ═══════════ FOCUS PANE: THE HOLODOMOR ═══════════ -->
-<details class="unfold" data-order="5" data-title="The Holodomor" data-minutes="3">
+<details class="unfold" data-order="5" data-title="The Holodomor" data-minutes="3" data-quiz="q10">
   <summary>
     <span class="unfold-summary-title">The Holodomor</span>
     <span class="unfold-summary-time">3 min</span>
@@ -581,6 +581,8 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         <li><a href="https://cla.umn.edu/chgs/holocaust-genocide-education/resource-guides/holodomor" target="_blank">University of Minnesota: Holodomor Resource Guide</a></li>
       </ul>
     </details>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q10')">Test Yourself</button></div>
   </div>
 </div>
 </details>
@@ -1066,10 +1068,13 @@ let timelineClicks = 0;
 let portraitHoverOrder = [];
 let ukraineIndex = 0;
 const UKRAINE_CODE = ['u','k','r','a','i','n','e'];
-const MAX_PTS = 10;
+const MAX_PTS = 15;
 
 // ─── QUIZZES ───
 const quizzes = {
+  q10: { q:"Historians call the Holodomor an engineered famine rather than a natural one. Which detail is the strongest evidence for that?", choices:["The harvest was smaller than usual that year","The government seized the grain, shipped it out, and sealed the borders so people could not leave to find food","The weather was unusually cold","Ukraine had poor farmland"], correct:1,
+    feedback:"Correct. A crop failure does not seal a border. Taking the food and then preventing people from leaving to find more are decisions somebody made.",
+    wrong:"Not quite. Weather and harvests do not seal borders. The government forced farmers onto collective farms, seized the grain and sent it away, and closed the borders so people could not leave \u2014 those are choices, which is why historians call it engineered." },
   q9: {
     q: "In the first half of 2026, Russian forces gained about 97 square kilometres of Ukraine on net. Russia already holds about 116,000. What does that tell you?",
     choices: [

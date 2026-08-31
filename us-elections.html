@@ -437,7 +437,7 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 </section>
 
 <div class="unfold-cta" id="unfoldCta" hidden></div>
-<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="4">
+<details class="unfold" data-order="1" data-title="Where Things Stand" data-minutes="4" data-quiz="q7">
   <summary>
     <span class="unfold-summary-title">Where Things Stand</span>
     <span class="unfold-summary-time">4 min</span>
@@ -547,6 +547,8 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
       </div>
 
     </div>
+  
+    <div class="quiz-inline"><button class="quiz-toggle" onclick="openQuiz('q7')">Test Yourself</button></div>
   </div>
 </div>
 </details>
@@ -1148,9 +1150,16 @@ let timelineClicks = 0;
 let statClicks = new Set();
 let konamiIndex = 0;
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-const MAX_PTS = 9;   // 7 quizzes + headroom; see note below
+const MAX_PTS = 12;   // 7 quizzes + headroom; see note below
 
 const quizzes = {
+  q7: {
+    q: "According to this snapshot, two things made 2026 unusual before a single vote was cast. What were they?",
+    choices: ["A new voting machine and a new deadline","Several states redrew their district maps, and an unusually large number of members decided not to run again","Two new states joined the country","The Senate changed the number of seats"],
+    correct: 1,
+    feedback: "\u2705 Right. Redistricting outside the usual once-a-decade schedule, plus one of the biggest retirement waves in decades \u2014 both settled before voting began.",
+    wrong: "Not quite. The two were redistricting \u2014 several states redrew House maps in 2025, outside the usual once-a-decade schedule \u2014 and a large wave of members announcing they would not run again."
+  },
   q9: {
     q: "Seven people ran for this district's seat in Congress, and five of them were Democrats. Only one Democrat is on the November ballot. Why?",
     choices: [

@@ -2,6 +2,18 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.1.0] — 2026-08-30
+
+**Minor — every substantive section on the site can now be completed, and the progress bar counts to the right total.**
+
+**Ten sections could be read in full and never earn a check.** The tile menu marks a card `·` when it has been opened and `✓` when its quiz has been answered, but a tile can only earn the check if its section has a quiz to key off. After 4.0.0, 31 of 85 tiles had none. Twenty-one of those are reference material — Key People, Videos, Sources, Keep Learning — which a student browses rather than works through, and the opened dot is the right signal for them. The other ten were real sections with real claims: five on ai, the dated *Where things stand* pane on iran, space-race and us-elections, ukraine's Holodomor, and iran's Hormuz update. Those now have quizzes, so every substantive section on all eight pages can be finished. Coverage is 64 of 85 tiles, and the 21 remaining are unquizzed by design.
+
+**Each question asks for the section's claim, not a number from it.** A student who knows only that the topic exists should not be able to guess. The Hinton question turns on his leaving Google in 2023 rather than the Nobel a year later; the Pew question asks what a survey of expectations can and cannot tell you; the Holodomor question asks which detail makes a famine engineered rather than natural, and the answer is the sealed border, because weather does not seal borders. The three *Where things stand* panes are dated and volatile, so their questions ask what the snapshot claims rather than a figure that expires — iran's asks how the strait could be called "open and operating" in the same week three ships crossed it.
+
+**The progress bar was counting against the wrong denominator.** `addPoints` clamps with `Math.min(pts + n, MAX_PTS)`, and on six of eight pages `MAX_PTS` was below the points a student could actually earn: immigration counted 9 against 13 available, ukraine 10 against 14, iran 10 against 13. The bar filled early and every point after that silently did nothing — including, on iran, three whole quizzes. `MAX_PTS` is now each page's real reachable total, quizzes plus bonus points, which also absorbs the new questions. No unlock threshold was stranded by the change.
+
+**A defect the gates could not see.** The new buttons were first placed just before each section's closing tag, which made them direct children of `<details>` — outside `.focus-pane` and `.update-pane`, below the pane's background, and free of the `max-width` that centres everything inside it. Every check passed: valid HTML, balanced tags, correct section, working quiz. It was wrong on screen only. Parsing the pages and asking what each button's *parent element* actually was is what caught it, and all ten now sit in the same content box as the fifty-four buttons that came before them. This is the same lesson 4.0.0 recorded twice — the measurable things keep being right while the depicted things go wrong — and `docs/PLAYBOOK.md` now carries the check as a step rather than as a warning.
+
 ## [4.0.0] — 2026-08-29
 
 **Major — the landing layer: every topic page now opens on a five-minute primer, with the rest behind a menu of cards.**
