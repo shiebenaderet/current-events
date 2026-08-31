@@ -2,6 +2,24 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.7.0] — 2026-08-31
+
+**Minor — one timeline system, alternating on a centred spine, applied to both timeline components. Decade grouping removed.**
+
+**The decade grouping is gone.** It put every event behind a closed disclosure, which is the opposite of what a timeline is for. Every event is visible again, and the jump strip is back to one stop per year. Four tests now pin that down so it does not quietly return.
+
+**Alternation is back, and this time there is width for it.** The 4.4.0 attempt failed at about 30 characters a line, and the arithmetic explains both the failure and the fix: timelines sit inside `.article`, which is `max-width: 700px` **and** `padding: 22px 6vw`, so at a 1400px viewport the content box is only ~530px. Splitting that in two is hopeless.
+
+So above 1180px the timeline now steps outside the prose column — negative margins cancel the 6vw padding and reclaim 190px a side, taking it to about 1080px. Each column then carries **53 characters**, against a ~55 optimum and an 80 ceiling. Negative margins rather than the usual `translateX(-50%)` full-bleed trick, because a transform on an ancestor stops `position: sticky` working and the jump strip inside is sticky.
+
+Below 1180px there is no room for two columns and everything stacks on one side, which is also what print gets. On a 390px phone the card chrome was eating the measure down to 30 characters; tighter padding there brings it to about 34.
+
+**The dots now sit on the line rather than beside it.** Stacked, the spine is at `left: 8px` and a 16px dot at `left: 0` centres on 8px. Alternating, the spine is at 50% and each dot's centre lands on the item's inner edge, which is the same line. `box-sizing: border-box` keeps the 3px border inside the 16px so it cannot shift the centre.
+
+**Both timeline components now share one system.** `.tl-item` (the long historical timelines) and `.mini-tl-item` (the compact dated list inside a Situation Update pane) were two unrelated inventions; they are now one layout at two weights. That required taking layout ownership away from the page stylesheets, where `.mini-tl` is `display: flex` with a `gap` that would fight the 50%-width alternation and double up with the item margins.
+
+**Also — 88 dead CSS rules removed**, 9.9 KB of stylesheet no browser could ever have used. Each named only classes with no markup on its own page. `.section-nav` was the worst: v4.0.0 deleted its markup from nine pages and left the rules on all nine, and it survived an earlier sweep only because two code comments mentioned it by name. `tools/find_dead_css.py` now does this properly — it strips comments before deciding, treats anything a script mentions as live, and refuses to touch a rule naming no class at all.
+
 ## [4.6.0] — 2026-08-31
 
 **Minor — the jump strip stopped hiding under the card header, and dense timelines group into decades.**

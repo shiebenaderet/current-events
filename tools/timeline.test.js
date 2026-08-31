@@ -219,41 +219,27 @@ test('the strip observes every entry so it can track the scroll', () => {
 });
 
 
-/* ── Decade grouping on dense timelines ───────────────────────────────── */
+/* ── Every event stays visible ────────────────────────────────────────
+   Decade grouping was built and then removed: it put every event behind a
+   closed disclosure, which is the opposite of what a timeline is for. These
+   pin that decision down so it does not quietly come back. */
 
-test('a timeline of twelve or more is grouped into decades', () => {
+test('a dense timeline is never collapsed into groups', () => {
   const { wraps } = mount([['article', 25]]);
-  const eras = wraps[0].querySelectorAll('.tl-era');
-  const labels = eras.map((e) => e.querySelector('.tl-era-label').textContent);
-  assert.deepEqual(labels, ['1950s', '1960s', '1970s'],
-    'consecutive years from 1950 should split at each decade boundary');
+  assert.equal(wraps[0].querySelectorAll('.tl-era').length, 0,
+    'events must not be hidden behind decade groups');
 });
 
-test('a timeline under twelve is left flat', () => {
-  const { wraps } = mount([['article', 8]]);
-  assert.equal(wraps[0].querySelectorAll('.tl-era').length, 0);
-});
-
-test('the first era is open so the timeline still reads as a timeline', () => {
+test('every entry stays a direct child of the timeline', () => {
   const { wraps } = mount([['article', 25]]);
-  const eras = wraps[0].querySelectorAll('.tl-era');
-  assert.equal(eras[0].open, true, 'first era should start open');
-  assert.equal(eras[1].open, false, 'later eras should start closed');
+  const direct = wraps[0].children.filter((c) => c.classList.contains('tl-item'));
+  assert.equal(direct.length, 25, 'all 25 entries should remain at the top level');
 });
 
-test('grouping moves every entry into an era, losing none', () => {
-  const { wraps } = mount([['article', 25]]);
-  const inEras = wraps[0].querySelectorAll('.tl-era')
-    .reduce((n, e) => n + e.querySelectorAll('.tl-item').length, 0);
-  assert.equal(inEras, 25);
-});
-
-test('a grouped timeline gets one jump button per era, not per year', () => {
+test('a dense timeline gets a jump button for every year', () => {
   const { wraps } = mount([['article', 25]]);
   const buttons = wraps[0].querySelector('.tl-jump').querySelectorAll('button');
-  const eras = wraps[0].querySelectorAll('.tl-era');
-  assert.equal(buttons.length, eras.length,
-    'nineteen year buttons would restate the density the grouping relieves');
+  assert.equal(buttons.length, 25);
 });
 
 test('the jump strip clears the sticky card header instead of hiding under it', () => {
@@ -263,41 +249,4 @@ test('the jump strip clears the sticky card header instead of hiding under it', 
   const strip = wraps[0].querySelector('.tl-jump');
   assert.equal(strip.style.top, '40px',
     'strip should be offset by the sticky summary height');
-});
-
-
-test('a millennia-spanning timeline is left flat, not bucketed by decade', () => {
-  // ukraine runs from ~882 AD and iran from 550 BCE. Decade buckets across
-  // that span would be mostly empty and occasionally hold one event, which
-  // is worse than the flat list. Those want named historical eras, and
-  // naming them is an editorial call rather than something to infer.
-  const { wraps } = mount([['article', 14]]);
-  const items = wraps[0].querySelectorAll('.tl-item');
-  items[0].querySelector('.tl-year').textContent = '~882 AD';
-  // rebuild with the wide span in place
-  const { wraps: w2 } = mount([['article', 14]], false, (i, yearEl) => {
-    yearEl.textContent = i === 0 ? '~882 AD' : String(1950 + i);
-  });
-  assert.equal(w2[0].querySelectorAll('.tl-era').length, 0,
-    'a 1100-year span should not be grouped into decades');
-});
-
-test('BCE labels are read as negative years, not as 550 AD', () => {
-  const { wraps } = mount([['article', 14]], false, (i, yearEl) => {
-    yearEl.textContent = i === 0 ? 'Around 550 BCE' : String(2000 + i);
-  });
-  assert.equal(wraps[0].querySelectorAll('.tl-era').length, 0,
-    '550 BCE to 2013 is a 2500-year span and must not be grouped');
-});
-
-test('messy but close-together labels still group', () => {
-  // "Early 1900s", "1951–1953", "Jun 17, 2026" all appear on this site.
-  const { wraps } = mount([['article', 13]], false, (i, yearEl) => {
-    const labels = ['Early 1930s', '1941–1944', 'March 1950', '1951–1953',
-      '1960', 'Jun 17, 1962', '1970', '1971', '1980', '1985', '1990',
-      '1995', '2000'];
-    yearEl.textContent = labels[i];
-  });
-  assert.ok(wraps[0].querySelectorAll('.tl-era').length >= 3,
-    'a 70-year span with messy labels should still group');
 });

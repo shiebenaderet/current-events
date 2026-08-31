@@ -555,94 +555,6 @@
     for (var n = 0; n < groups.length; n++) buildTimeline(groups[n]);
   }
 
-  /* Nineteen equal entries is the density problem, and a jump strip of
-     nineteen years only restates it. Above a dozen, entries are collected
-     into decades that open and close, so the timeline starts as a short list
-     of eras and expands where the reader wants detail.
-
-     Returns [{label, details, items}] or null when the timeline is short
-     enough to leave alone. */
-  function groupByEra(parent, list) {
-    if (list.length < 12) return null;
-
-    /* Labels are not tidy years. Real ones on this site include "Around 550
-       BCE", "~882 AD", "1951–1953", "Early 1900s" and "Jun 17, 2026", so
-       take the first number that looks like a year and read BCE as negative. */
-    function yearOf(item) {
-      var y = item.querySelector('.tl-year');
-      if (!y) return null;
-      var text = y.textContent;
-      var m = text.match(/(\d{3,4})/);
-      if (!m) return null;
-      var year = parseInt(m[1], 10);
-      return /\bBCE?\b/i.test(text) ? -year : year;
-    }
-
-    var years = [];
-    for (var i = 0; i < list.length; i++) {
-      var y = yearOf(list[i]);
-      // Bail rather than half-group: one unparsed entry would land in an
-      // "everything else" bucket, which is worse than the flat list.
-      if (y === null) return null;
-      years.push(y);
-    }
-
-    /* Decades only make sense over a span a few decades wide. ai runs
-       1950–2026 and groups into seven decades. iran runs from 550 BCE and
-       ukraine from 882 AD; decade buckets there would be mostly empty and
-       occasionally hold one event, which is worse than no grouping.
-
-       Those two want NAMED historical eras — Kievan Rus', empire, Soviet,
-       independence — and naming them is an editorial judgement about where
-       the breaks fall, not something to infer from the dates. So they stay
-       flat until someone makes that call. */
-    var span = Math.max.apply(null, years) - Math.min.apply(null, years);
-    if (span > 120) return null;
-
-    var decades = [];
-    for (var d2 = 0; d2 < years.length; d2++) {
-      decades.push(Math.floor(years[d2] / 10) * 10);
-    }
-
-    var eras = [];
-    for (var j = 0; j < list.length; j++) {
-      var last = eras[eras.length - 1];
-      if (!last || last.decade !== decades[j]) {
-        eras.push({ decade: decades[j], items: [list[j]] });
-      } else {
-        last.items.push(list[j]);
-      }
-    }
-    if (eras.length < 3) return null;   // not enough grouping to be worth it
-
-    var out = [];
-    for (var k = 0; k < eras.length; k++) {
-      var era = eras[k];
-      var det = document.createElement('details');
-      det.className = 'tl-era';
-      // The first era open, so the timeline still begins as a timeline
-      // rather than as a menu of closed boxes.
-      det.open = (k === 0);
-      var sum = document.createElement('summary');
-      var label = era.decade + 's';
-      // span() lives inside initUnfold; this runs outside it.
-      function chip(cls, text) {
-        var el = document.createElement('span');
-        el.className = cls;
-        el.textContent = text;
-        return el;
-      }
-      sum.appendChild(chip('tl-era-label', label));
-      sum.appendChild(chip('tl-era-count',
-        era.items.length + (era.items.length === 1 ? ' event' : ' events')));
-      det.appendChild(sum);
-      parent.insertBefore(det, era.items[0]);
-      for (var n = 0; n < era.items.length; n++) det.appendChild(era.items[n]);
-      out.push({ label: label, details: det, items: era.items });
-    }
-    return out;
-  }
-
   function buildTimeline(group) {
     var parent = group.parent;
     var list = group.items;
@@ -652,10 +564,6 @@
     // a jump strip would be chrome for a problem nobody has.
     if (list.length < 6) return;
     if (parent.querySelector('.tl-jump')) return;
-
-    /* Dense timelines get grouped before anything else, so the jump strip is
-       built from the eras rather than from nineteen individual years. */
-    var eras = groupByEra(parent, list);
 
     var strip = document.createElement('div');
     strip.className = 'tl-jump';
@@ -686,34 +594,21 @@
     label.textContent = 'Jump to';
     strip.appendChild(label);
 
-    /* One button per era where the timeline was grouped, one per entry where
-       it was not. Nineteen year-buttons only restate the density they were
-       added to relieve. */
+    /* One stop per entry. Grouping the years into decades was tried and
+       removed: it hid every event behind a closed disclosure, which is the
+       opposite of what a timeline is for. */
     var stops = [];
-    if (eras) {
-      for (var e = 0; e < eras.length; e++) {
-        stops.push({
-          text: eras[e].label,
-          aria: 'Jump to the ' + eras[e].label + ', ' + eras[e].items.length + ' events',
-          target: eras[e].details,
-          era: eras[e].details,
-          watch: eras[e].items
-        });
-      }
-    } else {
-      for (var i = 0; i < list.length; i++) {
-        var yearEl = list[i].querySelector('.tl-year');
-        var year = yearEl ? yearEl.textContent.trim() : '';
-        if (!year) continue;
-        var h = list[i].querySelector('h4');
-        stops.push({
-          text: year,
-          aria: 'Jump to ' + year + (h ? ': ' + h.textContent.trim() : ''),
-          target: list[i],
-          era: null,
-          watch: [list[i]]
-        });
-      }
+    for (var i = 0; i < list.length; i++) {
+      var yearEl = list[i].querySelector('.tl-year');
+      var year = yearEl ? yearEl.textContent.trim() : '';
+      if (!year) continue;
+      var h = list[i].querySelector('h4');
+      stops.push({
+        text: year,
+        aria: 'Jump to ' + year + (h ? ': ' + h.textContent.trim() : ''),
+        target: list[i],
+        watch: [list[i]]
+      });
     }
 
     var buttons = [];
@@ -724,8 +619,6 @@
         b.textContent = stop.text;
         b.setAttribute('aria-label', stop.aria);
         b.addEventListener('click', function () {
-          // A closed era cannot be scrolled to. Open it first, then go.
-          if (stop.era && !stop.era.open) stop.era.open = true;
           stop.target.scrollIntoView({
             behavior: prefersReducedMotion() ? 'auto' : 'smooth',
             block: 'start'

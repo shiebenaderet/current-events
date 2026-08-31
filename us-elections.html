@@ -31,10 +31,6 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
 .masthead-top a:last-child{margin-right:0}
 .masthead-top a:hover{color:var(--accent)}
-.section-nav{display:flex;justify-content:center;gap:0;flex-wrap:wrap;padding:0 6vw;border-bottom:1px solid var(--rule);font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;background:var(--paper);position:sticky;top:0;z-index:150}
-.section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
-.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.section-nav .hub{color:var(--accent-ink);font-weight:800}
 
 .masthead-top{flex-wrap:wrap;gap:6px}
 .masthead-top .date{font-variant-numeric:tabular-nums}
@@ -118,14 +114,11 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 @media(max-width:600px){
   .term::after{max-width:70vw;font-size:.74rem}
 }
-
-.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--accent);line-height:1}
 .stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
 .stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
 
 .stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.stat-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:32px 0;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .stat-pair .num,.stat-trio .num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1}
 .stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
 .stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
@@ -306,7 +299,7 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.6.0">
+<link rel="stylesheet" href="site.css?v=4.7.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1133,7 +1126,7 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
   <p style="margin-top:6px">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
   <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
   <div class="secret-text" aria-hidden="true">We the People — E Pluribus Unum</div>
-<br><span class="build-version">Build 4.6.0</span></footer>
+<br><span class="build-version">Build 4.7.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1396,8 +1389,8 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
 
 </script>
 
-<script src="unfold-logic.js?v=4.6.0"></script>
-<script src="study-mode.js?v=4.6.0"></script>
-<script src="site.js?v=4.6.0"></script>
+<script src="unfold-logic.js?v=4.7.0"></script>
+<script src="study-mode.js?v=4.7.0"></script>
+<script src="site.js?v=4.7.0"></script>
 </body>
 </html>

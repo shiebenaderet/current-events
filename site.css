@@ -973,106 +973,171 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 @media print { .unfold-link { display: none; } }
 
 /* ══ VERTICAL TIMELINE ═══════════════════════════════════════════════════
-   Eight timelines run to six entries or more — ai's is 19, ukraine's 17,
-   iran's 15 — and as a flat run of rows they gave a reader scrolling through
-   them nothing to hold onto: no sense of where they were, no way to skip
-   ahead.
+   One system for BOTH timeline components:
+     .tl-item     the long historical timeline (12 of them, ai's is 19 entries)
+     .mini-tl-item the compact dated list inside a Situation Update pane
 
-   So: a spine with the entries hung off it, alternating sides on a wide
-   screen, and a jump strip that site.js builds from the years themselves.
+   They were two unrelated inventions. They are now one layout at two
+   weights, so a reader meets the same idea twice rather than two ideas.
 
-   The markup is untouched. .tl-item > .tl-year + .tl-body is already uniform
-   across all twelve timelines, so this is a restyle, not a rewrite.
+   ── Why the container has to break out ──
+   The first attempt at alternating entries failed for an arithmetic reason
+   worth recording. Timelines live inside .article, which is max-width:700px
+   AND padding:22px 6vw — so at a 1400px viewport the content box is only
+   ~530px. Splitting that in two gave ~30 characters a line.
 
-   ONE HONEST CAVEAT, recorded here because it is a real trade-off and not a
-   detail: alternating sides makes the eye travel left-right-left, and for a
-   class with many students reading below grade level or learning English
-   that is load with no informational payoff. It applies only from 900px up,
-   where two columns are wide enough to read as two columns. Below that, and
-   in print, every entry stacks on one side in document order. To switch the
-   alternation off everywhere, delete the single block marked ALTERNATION;
-   nothing else depends on it. */
+   Alternation needs roughly twice the width of the measure it wants to keep.
+   So on a wide screen the timeline steps outside the prose column: negative
+   margins cancel .article's 6vw padding and then reclaim more, taking it to
+   about 1080px. Negative margins rather than the usual
+   translateX(-50%) full-bleed trick, because a transform on an ancestor
+   makes position:sticky stop working — and the jump strip inside is sticky.
 
-.tl-wrap { position: relative; }
+   Below that width there is no room for two columns and the whole thing
+   stacks on one side of the spine, which is also what print gets. */
 
-/* The spine. A pseudo-element on the wrapper rather than a border on each
-   item, so it runs continuously behind the entries instead of restarting. */
-.tl-wrap::before {
+.tl-wrap,
+.mini-tl {
+  position: relative;
+  /* .mini-tl is display:flex + gap in the page stylesheets. Flex fights the
+     50%-width alternation below, and its gap would double up with the item
+     margins, so the shared system owns the layout for both. */
+  display: block;
+}
+
+/* The spine. Left edge when stacked, dead centre once alternating. */
+.tl-wrap::before,
+.mini-tl::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 7px;
+  left: 8px;
   width: 2px;
+  margin-left: -1px;
   background: var(--rule, #d4cfc4);
 }
+.mini-tl::before { background: rgba(255, 255, 255, .18); }
 
-.tl-item {
+.tl-item,
+.mini-tl-item {
   position: relative;
-  display: block;                 /* was flex; the spine layout owns it now */
+  display: block;
   margin: 0 0 var(--ce-space-8, 32px);
-  padding: 0 0 0 34px;
-  border-bottom: none;            /* the spine replaces the per-row rules */
+  padding: 0 0 0 36px;
+  border-bottom: none;
 }
-.tl-item:last-child { margin-bottom: 0; }
+.tl-item:last-child,
+.mini-tl-item:last-child { margin-bottom: 0; }
 
-/* The dot, sitting on the spine. */
-.tl-item::before {
+/* The dot, centred ON the spine rather than beside it: the spine sits at
+   left:8px, so a 16px dot at left:0 has its centre at 8px too. */
+.tl-item::before,
+.mini-tl-dot {
   content: '';
   position: absolute;
   left: 0;
-  top: .45em;
+  top: .5em;
   width: 16px;
   height: 16px;
+  margin: 0;
   border-radius: 50%;
   background: var(--paper, #faf8f5);
   border: 3px solid var(--accent, #a02c2c);
+  box-sizing: border-box;
   z-index: 1;
 }
+.mini-tl-dot { background: var(--ink, #1a1a1a); }
 
-/* The year as a tab rather than a column: it reads as a label on the entry
-   instead of a separate cell the eye has to scan across to. */
-.tl-year {
+/* The year as a tab on the entry, not a column to scan across to. */
+.tl-year,
+.mini-tl-date {
   display: inline-block;
   width: auto;
-  margin-bottom: var(--ce-space-2, 8px);
+  margin: 0 0 var(--ce-space-2, 8px);
   padding: 4px 12px;
   background: var(--accent, #a02c2c);
   color: #fff;
   font-size: .82rem;
   letter-spacing: .02em;
   border-radius: var(--ce-radius-sm, 4px);
+  flex-shrink: 0;
 }
 
-.tl-body {
+.tl-body,
+.mini-tl-text {
+  display: block;
   padding: var(--ce-space-4, 16px) var(--ce-space-6, 24px);
   background: var(--surface, #fff);
   border: 1px solid var(--rule-soft, #e6e2da);
   border-radius: var(--ce-radius, 8px);
 }
 .tl-body > :last-child { margin-bottom: 0; }
-.tl-body p { max-width: 62ch; }
+.mini-tl-text {
+  background: rgba(255, 255, 255, .05);
+  border-color: rgba(255, 255, 255, .14);
+}
 
-/* ── NO ALTERNATION, and the reason ──────────────────────────────────
-   The reference layout alternated entries left and right of the spine, and
-   4.4.0 did that from 900px up. It was wrong, and the arithmetic says why:
-   these timelines sit inside .article, which is max-width 700px. A 50%
-   column is 350px, and after the 42px gutter and the card's own padding the
-   text ran at about 30 characters per line — two or three words a line,
-   which is what a reader saw.
+/* ── ALTERNATING, once there is width for it ─────────────────────────────
+   1180px is the floor: below it the breakout would reach the viewport edge
+   and the two columns would be too narrow to read, which is the mistake
+   this replaces. */
+@media (min-width: 1180px) {
+  .tl-wrap {
+    /* cancel .article's 6vw padding, then reclaim 190px a side: ~1080px */
+    margin-inline: calc(-6vw - 190px);
+  }
+  .tl-wrap::before,
+  .mini-tl::before { left: 50%; }
 
-   Alternation needs a container roughly twice as wide as the measure it
-   wants to keep. This one is a 700px reading column, so there is no width
-   to split. Every entry now runs the full measure on one side of the spine.
+  .tl-item,
+  .mini-tl-item {
+    width: 50%;
+    padding: 0;
+    margin-bottom: var(--ce-space-8, 32px);
+  }
+  /* Odd entries left of the spine, even entries right. */
+  .tl-item:nth-child(odd),
+  .mini-tl-item:nth-child(odd) {
+    margin-left: 0;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .tl-item:nth-child(even),
+  .mini-tl-item:nth-child(even) {
+    margin-left: 50%;
+    padding-left: 40px;
+  }
+  /* The dot's centre lands on the item's inner edge, which IS the spine. */
+  .tl-item:nth-child(odd)::before,
+  .mini-tl-item:nth-child(odd) .mini-tl-dot { left: auto; right: -8px; }
+  .tl-item:nth-child(even)::before,
+  .mini-tl-item:nth-child(even) .mini-tl-dot { left: -8px; }
 
-   That also settles the readability question 4.4.0 flagged and could not
-   resolve on its own: a zig-zag reading order costs a struggling reader
-   something and, in a 700px column, buys nothing at all. */
+  /* Prose reads left-aligned on both sides. A ragged left edge is harder to
+     read; the right alignment is for the year tab, not the paragraph. */
+  .tl-item:nth-child(odd) .tl-body,
+  .mini-tl-item:nth-child(odd) .mini-tl-text { text-align: left; }
+}
 
-/* ── The jump strip, built by site.js ── */
+/* Phones: the whole width is the measure, so give the text back the space
+   the card chrome takes. 6vw padding plus a 36px indent plus 48px of card
+   padding leaves about 30 characters on a 390px screen; this gets it to
+   about 38, which is a normal mobile measure. */
+@media (max-width: 600px) {
+  .tl-item,
+  .mini-tl-item { padding-left: 26px; }
+  .tl-body,
+  .mini-tl-text { padding: 14px 16px; }
+  .tl-item::before,
+  .mini-tl-dot { width: 14px; height: 14px; }
+  .tl-wrap::before,
+  .mini-tl::before { left: 7px; }
+}
+
+/* ── The jump strip ── */
 .tl-jump {
   position: sticky;
-  top: 0;
   z-index: 5;
   display: flex;
   flex-wrap: wrap;
@@ -1112,7 +1177,6 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   outline: 2px solid var(--accent, #a02c2c);
   outline-offset: 2px;
 }
-/* Where the reader is now. aria-current carries it to screen readers. */
 .tl-jump button[aria-current="true"] {
   color: #fff;
   background: var(--accent, #a02c2c);
@@ -1130,12 +1194,30 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 .update-pane .tl-item::before,
 .focus-pane .tl-item::before { background: var(--ink, #1a1a1a); }
 
-/* The jump strip is a screen affordance; on paper the whole timeline is
-   already in front of the reader. Nothing else needs undoing here now that
-   the entries no longer alternate. */
+/* On paper the whole timeline is already in front of the reader: no jump
+   strip, no breakout, one column. */
 @media print {
   .tl-jump { display: none; }
+  .tl-wrap { margin-inline: 0; }
+  .tl-wrap::before,
+  .mini-tl::before { left: 8px; }
+  .tl-item,
+  .mini-tl-item,
+  .tl-item:nth-child(odd),
+  .tl-item:nth-child(even),
+  .mini-tl-item:nth-child(odd),
+  .mini-tl-item:nth-child(even) {
+    width: auto;
+    margin-left: 0;
+    padding: 0 0 0 36px;
+    text-align: left;
+  }
+  .tl-item:nth-child(odd)::before,
+  .tl-item:nth-child(even)::before,
+  .mini-tl-item:nth-child(odd) .mini-tl-dot,
+  .mini-tl-item:nth-child(even) .mini-tl-dot { left: 0; right: auto; }
 }
+
 
 /* The build number, in every footer.
 
@@ -1156,117 +1238,4 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   letter-spacing: .06em;
   color: var(--ink-faint, #6b655c);
   opacity: .75;
-}
-
-/* ── The compact update timeline, joined to the same family ───────────────
-   Two timeline components exist and they do different jobs: .tl-item is the
-   long historical timeline with headings and images, .mini-tl is the compact
-   dated list inside a Situation Update pane. They should read as relatives
-   rather than as two unrelated inventions — which is what they were, because
-   .mini-tl already had dots but no spine to hang them on.
-
-   Deliberately not merged into one component: a seven-item "what happened
-   this month" list and a nineteen-item history are different things, and
-   collapsing them would make the compact one heavier rather than the long
-   one lighter. Same idiom, different weight. */
-.mini-tl { position: relative; }
-.mini-tl::before {
-  content: '';
-  position: absolute;
-  top: .5em;
-  bottom: 0;
-  left: 3px;
-  width: 2px;
-  background: rgba(255, 255, 255, .18);
-}
-/* The dot sits on the spine rather than beside it, with a ring in the pane's
-   own colour so the line reads as passing behind it. */
-.mini-tl-dot {
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 0 3px var(--ink, #1a1a1a);
-}
-
-/* ── Decade groups on dense timelines ────────────────────────────────────
-   Above a dozen entries the flat list is the density problem, and a jump
-   strip of nineteen years only restates it. site.js collects entries into
-   decades that open and close, so the timeline starts as a short list of
-   eras and expands where the reader wants detail. The first is open, so it
-   still begins as a timeline rather than as a menu of closed boxes.
-
-   Native <details>, so with JavaScript off there are no groups and the flat
-   list is exactly what it was. */
-.tl-era {
-  margin-bottom: var(--ce-space-6, 24px);
-  padding-left: 34px;
-  position: relative;
-}
-.tl-era:last-child { margin-bottom: 0; }
-/* Entries are already indented off the spine; inside an era they would be
-   indented twice. */
-.tl-era .tl-item { padding-left: 0; }
-.tl-era .tl-item::before { left: -34px; }
-
-.tl-era > summary {
-  display: flex;
-  align-items: baseline;
-  gap: var(--ce-space-3, 12px);
-  margin-left: -34px;
-  padding: 10px 0 10px 34px;
-  cursor: pointer;
-  list-style: none;
-  position: relative;
-}
-.tl-era > summary::-webkit-details-marker { display: none; }
-
-/* A square on the spine, so an era reads as a different kind of stop from
-   an event's round dot. */
-.tl-era > summary::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 1em;
-  width: 15px;
-  height: 15px;
-  background: var(--accent, #a02c2c);
-  border: 3px solid var(--paper, #faf8f5);
-  border-radius: 2px;
-}
-
-.tl-era-label {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.28rem;
-  font-weight: 900;
-  color: var(--ink, #1a1a1a);
-}
-.tl-era-count {
-  font-family: -apple-system, sans-serif;
-  font-size: var(--ce-text-2xs, .68rem);
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--ink-faint, #6b655c);
-}
-/* Say which way it goes, in text rather than a rotated glyph. */
-.tl-era > summary::after {
-  content: 'Show';
-  margin-left: auto;
-  font-family: -apple-system, sans-serif;
-  font-size: var(--ce-text-2xs, .68rem);
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--accent, #a02c2c);
-}
-.tl-era[open] > summary::after { content: 'Hide'; }
-.tl-era > summary:focus-visible {
-  outline: 2px solid var(--accent, #a02c2c);
-  outline-offset: 2px;
-}
-.tl-era[open] > summary { margin-bottom: var(--ce-space-4, 16px); }
-
-/* A teacher printing the page gets every era, open or not. */
-@media print {
-  .tl-era > summary::after { content: ''; }
-  .tl-era > *:not(summary) { display: block !important; }
 }

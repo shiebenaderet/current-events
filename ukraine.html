@@ -26,10 +26,6 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .masthead-top a{color:var(--ink-light);text-decoration:none;margin-right:16px}
 .masthead-top a:last-child{margin-right:0}
 .masthead-top a:hover{color:var(--accent)}
-.section-nav{display:flex;justify-content:center;gap:0;flex-wrap:wrap;padding:0 6vw;border-bottom:1px solid var(--rule);font-family:-apple-system,sans-serif;font-size:.78rem;font-weight:600;background:var(--paper);position:sticky;top:0;z-index:150}
-.section-nav a{color:var(--ink-light);text-decoration:none;padding:11px 14px;border-bottom:2px solid transparent;white-space:nowrap}
-.section-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.section-nav .hub{color:var(--accent-ink);font-weight:800}
 
 .masthead-top{flex-wrap:wrap;gap:6px}
 .masthead-top .date{font-variant-numeric:tabular-nums}
@@ -91,8 +87,6 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .pull-quote{margin:36px 0;padding:22px 0;border-top:1px solid var(--rule-heavy);border-bottom:1px solid var(--rule-heavy)}
 .pull-quote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3vw,1.75rem);line-height:1.35;color:var(--ink);margin:0}
 .pull-quote .attrib{display:block;margin-top:12px;font-family:-apple-system,sans-serif;font-style:normal;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink-faint);text-transform:uppercase}
-
-.stat-line{display:flex;align-items:baseline;gap:16px;margin:32px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .stat-line .num{font-family:'Playfair Display',serif;font-weight:900;font-size:3.2rem;color:var(--accent);line-height:1}
 .stat-line .desc{font-family:-apple-system,sans-serif;font-size:.9rem;color:var(--ink-light);line-height:1.5}
 .stat-line .desc b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:800}
@@ -223,33 +217,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .person p{font-size:.98rem;line-height:1.65;margin:0 0 8px;color:var(--ink-light)}
 .person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
 .person .src a{color:inherit}
-
-/* ══ UPDATE PANE ══ */
-.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
-.update-pane-inner{max-width:900px;margin:0 auto}
-.update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
 .update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8c9c9;font-weight:800}
-.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
-.update-badge{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);padding:4px 10px;margin-left:8px}
-.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
-
-.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
-.mini-tl-item{display:flex;gap:14px;align-items:baseline}
-.mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--accent)}
-.mini-tl-dot.gold{background:#c9a227}
-.mini-tl-dot.blue{background:#6a8bbf}
-.mini-tl-dot.green{background:#5a8a5a}
-.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
-.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
-.mini-tl-text strong{color:#fff}
-
-.update-grid{display:grid;grid-template-columns:1fr;gap:0}
-.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
-.update-box:last-child{border-bottom:none}
-.update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
-.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.02rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
-.update-box p:last-of-type{margin-bottom:14px}
 .update-box .cite-inline{color:rgba(255,255,255,.5)}
 .update-box .cite-inline:hover{color:#e8c9c9}
 .update-box .vocab{border-left-color:#e8c9c9}
@@ -334,7 +302,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.6.0">
+<link rel="stylesheet" href="site.css?v=4.7.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1048,7 +1016,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
-<br><span class="build-version">Build 4.6.0</span></footer>
+<br><span class="build-version">Build 4.7.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1374,8 +1342,8 @@ sites.forEach(s => {
 
 </script>
 
-<script src="unfold-logic.js?v=4.6.0"></script>
-<script src="study-mode.js?v=4.6.0"></script>
-<script src="site.js?v=4.6.0"></script>
+<script src="unfold-logic.js?v=4.7.0"></script>
+<script src="study-mode.js?v=4.7.0"></script>
+<script src="site.js?v=4.7.0"></script>
 </body>
 </html>
