@@ -2,6 +2,22 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.10.0] — 2026-08-31
+
+**Minor — Angle 3: media quality. 10 MB of image weight removed, and a false alarm of my own corrected.**
+
+**Images were shipping at up to twenty-two times their displayed size.** `james-madison.jpg` was 2465×3000 at 2.7 MB, displayed in a 110px circle. The site carried 23.7 MB of images and the homepage alone pulled 4.0 MB of card art with nothing deferred — on a classroom network, thirty students each fetching the same 4 MB before anyone reads a word.
+
+`tools/shrink_images.py` caps each image by how it is actually used, at roughly 3× the display size so retina and larger text settings still look right: portraits 400px, homepage cards 1000px, hero backgrounds 1800px. **48 images resized, 23.7 MB → 13.7 MB**, homepage cards 4.0 MB → 1.9 MB, and Madison's portrait 2766 KB → 9 KB. Every image is now deferred with `loading="lazy"` except the hero — which matters more than usual here, because under the card model a closed card's photos are in the DOM and off screen, so a thirteen-card page was fetching all thirteen sets up front.
+
+**11 podcast embeds had no `title`.** A screen reader announces an untitled iframe as "iframe", so ai.html offered eleven identical unlabelled objects in the reading order. Titles now say what each episode is. Three portraits had a bare name as alt text, which the heading beside them already says.
+
+**All eight interactives check out** — styled, wired to their script, and carrying a text readout. The playbook records two centrepieces that once shipped with no CSS at all; that failure is not present now.
+
+**A false alarm, corrected.** Mid-audit I reported 28 images published without attribution and called it the most serious finding — a real problem, since the commit that added them says "CC-licensed Wikimedia Commons portraits" and CC BY requires credit. It was wrong. My check searched only *forward* from each `<img>`, and a credit line sits at the END of its person block, so every search landed in the next person's entry. **All 23 portraits carry author, licence and a Commons link.** What survives is much smaller: three homepage-only card images (`ai-card`, `capitol-featured`, `ukraine-card`) with no credit traceable anywhere, which needs whoever added them rather than a guess.
+
+**And a regression I caused and caught.** The first pass at lazy-loading used `<img\b[^>]*>`, which ends at the `>` inside `onerror="this.outerHTML='<div class=…>'"` — so the new attributes landed *inside* an attribute value and produced stray `</div>` on eight pages at once. No existing gate saw it; a well-formedness check did. `tools/htmltag.py` now walks tags tracking quote state, and four tests in `tools/htmltag.test.js` hold the property: every page well-formed, the naive pattern demonstrably failing on the real shape, the pages genuinely containing such attributes, and no deferred image having lost its fallback handler.
+
 ## [4.9.0] — 2026-08-31
 
 **Minor — Angle 2 of the site audit: the standing editorial rules, checked and kept.**
