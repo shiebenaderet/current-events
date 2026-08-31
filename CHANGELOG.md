@@ -2,6 +2,26 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.11.0] — 2026-08-31
+
+**Minor — the homepage stops asking students to choose 34 times before they read anything.**
+
+**The front door presented the same eight topics three times.** A sticky `.section-nav` listed them, a scrolling ticker listed them again, and then the cards listed them a third time — with GitHub linked four times and the school site three, all above the first paragraph a student would actually read. Counting every link, button and control on the page: **34 clickable choices**.
+
+**The nav is gone.** The cards one screen below *are* the navigation, so the nav was a duplicate of them with a third copy in between. It was also the last `.section-nav` on the site — v4.0.0 removed that markup from all eight topic pages and left `index.html` behind — so this finishes a migration rather than starting one. `tools/find_dead_css.py` then removed the six rules (`.gh`, `.section-nav`, `.suggest-alt`) that could no longer match.
+
+**The ticker stopped moving but kept its headlines.** They are the one thing on the page that says *this was updated recently*, so the content stays as a static strip. Infinite-scrolling text is hard to read for exactly the students this site is for, it cannot be paused from the keyboard, and it was motion sitting above the fold competing with the lead story. It now shows four headlines rather than eight: a freshness signal, not a second navigation. The last two entries were dropped from the array outright, because "Suggest the next topic" and "contribute on GitHub" are not headlines — they are links that already exist further down the page.
+
+**Teacher and developer links moved to the footer,** where someone looking for them will look and a student will not trip over them.
+
+**34 clickable choices → 21.** Words on the page 692 → 666; the eight topics are now named once each.
+
+**Also: three undated `now`s, dated.** `check_voice.py` was flagging them and they were real. Iran's *"the two sides are now shooting at each other again"* sat inside a timeline entry headed *Jul 6–8* — an anchor a reader who opens that card alone never sees; it now says *"by July 8 the two sides were shooting at each other again,"* which also stops the sentence rotting. Ukraine's *"these areas are now part of Russia"* never meant *at the time you are reading* — it meant *since the annexations*, and now says which and when. AI's was contrastive rather than a news claim, so it names the era instead.
+
+### One thing worth writing down
+
+Removing `@keyframes ticker{0%{...}100%{...}}` with `@keyframes ticker\{[^}]*\}` stopped at the **first** `}` — the one closing `0%{...}` — and left `100%{transform:translateX(-50%)}}` orphaned in the stylesheet as a rule with no selector. A brace-balance check on the inline `<style>` caught it immediately. `[^}]*` cannot match a nested block, and every at-rule (`@keyframes`, `@media`, `@supports`) contains one. This is the same shape as the `<img\b[^>]*>` bug in 4.10.0: a character-class-until-delimiter pattern applied to something that nests.
+
 ## [4.10.0] — 2026-08-31
 
 **Minor — Angle 3: media quality. 10 MB of image weight removed, and a false alarm of my own corrected.**
