@@ -175,8 +175,22 @@ grep -o 'data-def="[^"]*"' <page> | sort > /tmp/new.txt
 comm -23 /tmp/old.txt /tmp/new.txt        # must be empty
 ```
 
-Then load it in a browser. The checks cover structure and never appearance;
-every visual bug in this effort was found by eye, not by tooling.
+Then load it in a browser, and **look at the interactive specifically**.
+
+The checks read the HTML. None of them renders it, and none of them can see
+whether a number is drawn in the right place. Every visual defect in the
+v4.0.0 effort was caught by eye:
+
+- two centrepieces shipped with **no CSS at all** — markup and behaviour
+  present, stylesheet never written, every gate green
+- the Hormuz lanes were drawn **across** the strait instead of through it.
+  The geometry verified at exactly 21.000 nm and 2.000 nm, twice. A correct
+  distance along the wrong axis is still wrong, and arithmetic cannot see it.
+
+So the measurable things have been reliably right and the **depicted** things
+have not. Verifying the numbers in an interactive is necessary and is not
+sufficient: open it, click through every state, and ask whether the picture
+says what the numbers say.
 
 ---
 
