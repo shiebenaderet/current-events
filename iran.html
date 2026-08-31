@@ -378,7 +378,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </figcaption>
 
     <div class="centerpiece-body">
-      <p class="centerpiece-label">Step through it. The bar stays to scale the whole way.</p>
+      <p class="centerpiece-label">Step through it. The crossing is drawn to scale on the real map.</p>
 
       <div id="hzMap" class="hz-map"></div>
       <p class="hz-note">Drag or zoom the map. The scale bar in the corner stays accurate.</p>
@@ -395,10 +395,13 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
     </div>
 
     <figcaption class="centerpiece-note">
-      Map: OpenStreetMap. The crossing line is 21 nautical miles and each lane is 2,
-      computed from those distances rather than eyeballed — so both sit exactly to
-      scale against the map. Where the line falls across the narrows is approximate;
-      its length is not.
+      Map: OpenStreetMap. The strait's narrowest section is measured between
+      Larak Island on the Iranian side and Great Quoin Island on the Omani side;
+      the line starts at Larak and runs 21 nautical miles from there, and each
+      lane is 2 — computed from those distances rather than eyeballed, so both
+      sit exactly to scale against the map. The direction of the line is
+      estimated; its start and its length are not. The mauve lines on the water
+      are maritime boundaries drawn by OpenStreetMap, not part of this figure.
       <a class="cite-inline" href="https://en.wikipedia.org/wiki/Strait_of_Hormuz" target="_blank">Strait of Hormuz</a>
       July 2026 price move: reported on this page's timeline.
     </figcaption>
@@ -1238,8 +1241,15 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
 
   var NM = 1852;                    // metres in a nautical mile
   var STRAIT = 21, LANE = 2, MEDIAN = 2;
-  var START = [26.615, 56.205];     // Iranian side of the narrows, approx
-  var BEARING = 158;                // degrees, roughly across to Musandam
+  /* Anchored on Larak Island, 26.850N 56.350E — one of the two landmarks the
+     strait's narrowest section is actually measured between (the other is
+     Great Quoin Island, on the Omani side, which has no page of its own to
+     read coordinates from). So one end is a verified place and the length is
+     a verified distance; only the bearing between them is estimated, and the
+     caption says which is which. The previous version had BOTH ends invented,
+     which is why the line sat in open water instead of spanning the narrows. */
+  var START = [26.850, 56.350];     // Larak Island, Iran
+  var BEARING = 157;                // toward Great Quoin Island, Oman
 
   // destination point given start, bearing and distance — so the line's
   // length is the verified figure, not an artefact of two guessed ends
@@ -1271,10 +1281,26 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
     color: '#1a1a1a', weight: 2, dashArray: '6,5'
   });
 
-  // each lane: a thin rectangle running along the crossing line
+  /* A lane is a corridor running THROUGH the strait, not a slice of the line
+     across it. The 2 nautical miles is its WIDTH, measured across; its length
+     is however far you draw it, because it runs the length of the strait.
+
+     Drawing them as segments of the crossing put the right number in the
+     wrong orientation — they read as two blobs parked in open water rather
+     than as lanes ships travel along. Now they are polygons: 2 nm wide
+     measured along the crossing, extended perpendicular to it. */
+  var ALONG_STRAIT = BEARING - 90;   // ships travel roughly across the crossing
+  var LANE_LEN = 26;                 // nm drawn; the real lanes run further
+
   function laneAt(startNm) {
-    var a = along(startNm), b = along(startNm + LANE);
-    return L.polyline([a, b], { color: '#a02c2c', weight: 10, opacity: .85 });
+    var near = along(startNm), far = along(startNm + LANE);
+    var half = (LANE_LEN / 2) * NM;
+    return L.polygon([
+      dest(near, ALONG_STRAIT, half),
+      dest(far, ALONG_STRAIT, half),
+      dest(far, ALONG_STRAIT + 180, half),
+      dest(near, ALONG_STRAIT + 180, half)
+    ], { color: '#a02c2c', weight: 1, fillColor: '#a02c2c', fillOpacity: .5 });
   }
   var laneOffset = (STRAIT - (LANE * 2 + MEDIAN)) / 2;   // centred: 7.5 nm
   var laneA = laneAt(laneOffset);
@@ -1282,9 +1308,9 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
 
   var STEPS = [
     { show: 'crossing', lead: 'The strait.',
-      rest: ' At its narrowest, the Strait of Hormuz is about 21 nautical miles across — Iran to the north, Oman to the south. The dashed line is that crossing, drawn to scale. Pinch or drag the map: the scale bar stays honest.' },
+      rest: ' At its narrowest, the Strait of Hormuz is about 21 nautical miles across. The dashed line is that crossing, drawn to scale — it starts at Larak Island, off Iran, and runs toward Oman. Drag or zoom the map; the scale bar in the corner stays honest.' },
     { show: 'lanes', lead: 'The lanes.',
-      rest: ' Ships do not use all of it. Traffic runs in two lanes, two nautical miles wide each, with a gap between them — the two red strips, drawn at the same scale as everything else on the map.' },
+      rest: ' Ships do not use all of that width. Traffic runs in two lanes, two nautical miles wide each, with a gap between them. The red corridors run the length of the strait — that is the direction ships travel — and their width is drawn at the same scale as the crossing.' },
     { show: 'lanes', lead: 'What goes through.',
       rest: ' Roughly 18 to 19 million barrels of oil a day move along those strips — close to a fifth of all the oil the world uses.' },
     { show: 'lanes', lead: 'When it stops.',
@@ -1311,7 +1337,10 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
   if (prev) prev.addEventListener('click', function () { if (i > 0) { i--; render(); } });
   if (next) next.addEventListener('click', function () { if (i < STEPS.length - 1) { i++; render(); } });
 
-  map.fitBounds(L.latLngBounds([START, END]).pad(1.1));
+  // Pixel padding, not .pad(1.1) — that extends the bounds by 110% on every
+  // side, which zoomed out far enough to put Dubai on screen and shrink a
+  // 21-mile crossing to a smudge.
+  map.fitBounds(L.latLngBounds([START, END]), { padding: [34, 34] });
   render();
 })();
 
