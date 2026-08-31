@@ -5,9 +5,9 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v3.2.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v4.11.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped. v3.1.0 adds a homepage Suggest a Topic form and an August 2026 freshness pass on the remaining July-stamped pages. v3.1.1–3.1.2 are a story-first voice pass: Space Race first, then the rest of the live topics. v3.2.0 is a late-August 2026 news refresh on the pages that actually moved.
+The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped. v3.1.0 adds a homepage Suggest a Topic form and an August 2026 freshness pass on the remaining July-stamped pages. v3.1.1–3.1.2 are a story-first voice pass: Space Race first, then the rest of the live topics. v3.2.0 is a late-August 2026 news refresh on the pages that actually moved. v4.11.0 is the August 31, 2026 weekly news pass.
 
 ---
 
@@ -35,14 +35,14 @@ Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no fram
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 27, 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 27, 2026 |
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 31, 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 31, 2026 |
 | 🤖 AI & Society | ✅ Live | `ai.html` | August 18, 2026 |
 | 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 27, 2026 |
-| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 27, 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 31, 2026 |
 | 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 27, 2026 |
 | 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 18, 2026 |
-| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 18, 2026 |
+| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 31, 2026 |
 
 ---
 
