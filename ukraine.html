@@ -1072,40 +1072,52 @@ const MAX_PTS = 15;
 
 // ─── QUIZZES ───
 const quizzes = {
-  q10: { q:"Historians call the Holodomor an engineered famine rather than a natural one. Which detail is the strongest evidence for that?", choices: ["The harvest was smaller than usual that year","The government seized the grain, shipped it out, and sealed the borders so people could not leave to find food","Ukraine had poor farmland","The weather was unusually cold"], correct: 1,
-    feedback:"Correct. A crop failure does not seal a border. Taking the food and then preventing people from leaving to find more are decisions somebody made.",
-    wrong:"Not quite. Weather and harvests do not seal borders. The government forced farmers onto collective farms, seized the grain and sent it away, and closed the borders so people could not leave \u2014 those are choices, which is why historians call it engineered." },
-  q9: {
-    q: "In the first half of 2026, Russian forces gained about 97 square kilometres of Ukraine on net. Russia already holds about 116,000. What does that tell you?",
-    choices: ["The fighting is intense but the front line is barely moving","Ukraine has taken back most of its land","Russia has nearly finished taking Ukraine","The war has effectively stopped"],
-    correct: 0,
-    feedback: "✅ Right. Fighting happens every day along hundreds of miles of front line, and it buys almost no ground — which is exactly why people call the war frozen without it being over.",
-    wrong: "Not quite. 97 against 116,000 is a sliver. The fighting is constant and costly, but it is moving the line hardly at all — which is why the war is described as frozen without being over."
+  q10: {
+    q: "The Soviet government sealed Ukraine's borders during the famine. Why does that particular detail matter to historians?",
+    choices: ["It shows the famine had spread beyond Ukraine","A crop failure cannot seal a border — somebody decided to","It shows other countries had refused to send food","It explains why that year's harvest came in smaller"],
+    correct: 1,
+    feedback: "✅ Right. Weather does not close a border. Taking the grain and then stopping people from leaving to find more are both decisions, and decisions have people behind them.",
+    wrong: "Not quite. The point is that a sealed border is not something bad weather can do. It takes a decision — which is what separates an engineered famine from a natural one."
   },
-  q1: { q:"Ukraine is the largest country entirely in Europe. Which three countries border it on its western side?", choices: ["Poland, Slovakia, and Hungary","Romania, Bulgaria, and Serbia","Germany, Austria, and Czechia","Russia, Belarus, and Georgia"], correct: 0,
+  q9: {
+    q: "Russia holds about 116,000 square kilometres of Ukraine. In the first half of 2026 it gained about 97 more. What does putting those two numbers side by side tell you?",
+    choices: ["The front line is barely moving, even though the fighting continues","Ukraine gained more ground than Russia over the same period","Russia's rate of advance roughly doubled from the year before","Most of the territory Russia holds was taken during 2026"],
+    correct: 0,
+    feedback: "✅ Right. 97 against 116,000 is a rounding error. The line is nearly static, and people are still dying along it every day.",
+    wrong: "Not quite. Compare the two: 97 square kilometres against 116,000 already held. The front has barely moved, which is not the same as the fighting having stopped."
+  },
+  q1: { q:"Ukraine is the largest country entirely in Europe. Which three countries border it on its western side?", choices: ["Poland, Slovakia, and Hungary","Germany, Austria, and Czechia","Russia, Belarus, and Georgia","Romania, Bulgaria, and Serbia"], correct: 0,
     feedback:"Correct! Poland, Slovakia, and Hungary border Ukraine to the west, while Russia is to the east and Belarus to the north. That position is exactly why Ukraine gets pulled in two directions.",
     wrong:"Not quite. Ukraine borders Poland, Slovakia, and Hungary to the west, Russia to the east, and Belarus to the north. Romania and Moldova sit to the southwest." },
   q2: { q:"Kievan Rus' was centered on Kyiv. Who founded it, and roughly when?", choices: ["Roman emperors, around 100 AD","Viking and Slavic rulers, around 882 AD","Ottoman sultans, around 1450","Mongol khans, around 1240"], correct: 1,
     feedback:"Yes! Viking and Slavic rulers founded Kievan Rus' around 882 AD. It grew into one of the largest, most advanced civilizations in medieval Europe, with Kyiv as its capital.",
     wrong:"Not quite. Viking and Slavic rulers founded Kievan Rus' around 882 AD, and Kyiv was its capital — a center of trade, culture, and religion." },
-  q3: { q:"Taras Shevchenko wrote in Ukrainian when it was illegal to do so. What was he born into, before he became the voice of Ukrainian identity?", choices: ["A Cossack military family","A noble family in Kyiv","Serfdom — legally tied to land he did not own","Exile in Siberia"], correct: 2,
+  q3: { q:"Taras Shevchenko wrote in Ukrainian when it was illegal to do so. What was he born into, before he became the voice of Ukrainian identity?", choices: ["Exile in Siberia","A Cossack military family","Serfdom — legally tied to land he did not own","A noble family in Kyiv"], correct: 2,
     feedback:"Right! Shevchenko was born into serfdom and was later freed. That he became the father of Ukrainian literature from that starting point is part of why he matters so much.",
     wrong:"Not quite. Shevchenko was born into serfdom — legally tied to land he did not own and forced to work it. He was later freed and became the voice of Ukrainian identity." },
-  q4: { q:"What percentage of Ukrainians voted for independence in 1991?", choices: ["84%","75%","52%","92%"], correct: 3,
+  q4: { q:"What percentage of Ukrainians voted for independence in 1991?", choices: ["52%","75%","84%","92%"], correct: 3,
     feedback:"Correct! An overwhelming 92% voted yes for independence in the 1991 referendum — even in regions with large Russian-speaking populations.",
     wrong:"It was 92%! An overwhelming majority voted for independence — even in Crimea, which had close ties to Russia." },
-  q5: { q:"What happened on Maidan square in 2013-2014?", choices: ["Hundreds of thousands protested, leading to the president fleeing","A peace treaty was signed","A music festival","Ukraine joined the EU"], correct: 0,
-    feedback:"Yes! The Euromaidan revolution saw hundreds of thousands protest after the president rejected an EU deal. Over 100 were killed before the president fled to Russia.",
-    wrong:"Hundreds of thousands of Ukrainians filled Maidan square to protest. Over 100 were killed (the 'Heavenly Hundred'), and President Yanukovych fled to Russia." },
+  q5: {
+    q: "Ukrainians filled the streets to overturn a government in 2004, and again in 2013–14. What was the argument both times?",
+    choices: ["Whether Ukraine should lean toward Russia or toward Europe","Whether to give up the nuclear weapons left on Ukrainian soil","Whether to keep the Soviet-era constitution","Whether Ukrainian or Russian should be the official language"],
+    correct: 0,
+    feedback: "✅ Right. The same question, ten years apart. That is why 2022 did not come out of nowhere — the argument was already old.",
+    wrong: "Not quite. Both movements turned on the same question: which direction Ukraine should face, toward Russia or toward Europe."
+  },
   q6: { q:"What did Zelenskyy say when offered evacuation from Kyiv?", choices: ["\"We surrender\"","\"I need ammunition, not a ride\"","\"Send more troops\"","\"We will negotiate\""], correct: 1,
     feedback:"Exactly! Zelenskyy's famous response showed he would stay and fight alongside his people, inspiring Ukraine and the world.",
     wrong:"Zelenskyy's famous reply was 'I need ammunition, not a ride' — showing he would stay in Kyiv and fight, not flee." },
-  q7: { q:"In what year did Ukraine vote for independence from the Soviet Union?", choices: ["1986","1994","1991","1989"], correct: 2,
+  q7: { q:"In what year did Ukraine vote for independence from the Soviet Union?", choices: ["1986","1989","1991","1994"], correct: 2,
     feedback:"Correct! Ukraine held its independence referendum on December 1, 1991, with 92% voting yes.",
     wrong:"Ukraine voted for independence in 1991, with an overwhelming 92% voting yes in the referendum." },
-  q8: { q:"About how many Ukrainian regional capitals did Russia manage to capture and hold onto through 2022–2026?", choices: ["Three","None","All of them","Just one — Kherson, later recaptured by Ukraine"], correct: 3,
-    feedback:"Correct! Kherson was the only regional capital Russia captured — and Ukraine recaptured it in November 2022.",
-    wrong:"Kherson was the only regional capital Russia managed to capture — and Ukraine recaptured it in November 2022." }
+  q8: {
+    q: "Kherson has a particular place in this war's story. What is it?",
+    choices: ["The city besieged for over 80 days, with defenders holding the Azovstal plant","The first city Russian forces captured in 2022","The site of the 2014 referendum Russia used to annex Crimea","The only regional capital Russia took, later recaptured by Ukraine"],
+    correct: 3,
+    feedback: "✅ Right. One regional capital taken in the whole war, and Ukraine took it back in November 2022.",
+    wrong: "Not quite. The 80-day siege and the Azovstal plant were Mariupol. Kherson is the one regional capital Russia captured — and Ukraine recaptured it in November 2022."
+  }
 };
 
 function openQuiz(id) {

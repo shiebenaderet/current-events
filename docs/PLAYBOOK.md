@@ -156,10 +156,32 @@ fruit are made up and the caption admits it. Inventing a *statistic* never is.
   through, and the opened `·` is the right signal.
 - `data-quiz` on each section that has one, so its tile can earn a ✓.
 - `window.Unfold.markDone(id)` at the end of the page's `handleAnswer`.
-- Ask for the section's **claim**, not a number from it — a student who only
-  knows the topic exists should not be able to answer. On a dated *Where
-  things stand* pane, ask what the snapshot claims; a question about a
-  volatile figure expires with the figure.
+- Ask for the section's **evidence, mechanism or specific case** — not its
+  claim. "Test the claim, not recall" is good advice that sets a trap: the
+  claim is what the learning target states, so a question built on it is
+  answerable from the target alone. Q1 caught ten items that way, and eight
+  of the ten were written in a single sitting by someone following that
+  advice literally.
+- **Four faults made 74 of 76 quizzes answerable with the article withheld**
+  when Q1 first ran on 2026-08-30:
+  1. **Absurd distractors** — "a music festival", "the Moon is further away
+     than it used to be". Three eliminable options leave a question that
+     tests nothing.
+  2. **The correct answer was the longest, most specific option.** Length
+     alone identified it in a dozen items.
+  3. **The stem contained its own answer** — one asked what "12th" and
+     "16th" were after stating both.
+  4. **The question asked for the claim** (above).
+- The construction that resists all four is a **2×2**: two variables, four
+  combinations, all four plausible, all the same length. *Confirmed
+  birthright citizenship / upheld TPS power · confirmed / limited · struck
+  down / upheld · struck down / limited.* Nothing about the topic narrows
+  that; only the section does.
+- **Count where the correct answer sits.** Nobody had, and it was option B
+  in 44 of 76 items — 58% from always picking B, with no reading at all. On
+  ten quizzes written in one sitting it was B ten times out of ten. No gate
+  here can see that: valid JS, valid HTML, every key pointing at a true
+  statement.
 - **Put the button inside the section's content box** — `.article`,
   `.focus-pane-inner` or `.update-pane-inner` — never as a direct child of
   the `<details>`. Outside it the button falls below the pane's background
@@ -332,6 +354,43 @@ Two traps when adding a rule there:
 - **A page rule with extra ancestors still wins.** `.update-pane .vocab p`
   beats `.update-box p` wherever both match. Check for selectors that end
   with yours before assuming yours applies.
+
+## What Q1 can and cannot tell you
+
+Q1 ran twice on 2026-08-30: once on the quizzes as they stood, then again
+after rewriting the 26 worst. The headline barely moved — **74 of 76
+answerable with the article withheld, then 70 of 76** — and the tiers
+explain why.
+
+| | before | after |
+|---|---|---|
+| eliminable — no knowledge needed | 15 | 17 |
+| answered by the learning target alone | 10 | **3** |
+| general knowledge (prober-confounded) | 49 | 53 |
+| required the passage | 2 | 3 |
+
+**The rewrites worked on one tier and backfired on another.** Questions
+answerable from the target alone fell from 10 to 3, which was the fault
+worth fixing. But rewriting a question to ask for the section's real
+evidence — a Supreme Court pair, Eunice Foote's cylinders, Kherson — makes
+it a question about a documented fact, and the prober *knows documented
+facts*. Four items moved from one failure mode into another.
+
+**So the general-knowledge tier is not a scoreboard.** It says as much about
+the prober as about the question: a large model has read far more than a
+13-year-old, and it will answer nearly any well-posed factual question about
+a well-documented topic. Treat that tier as an upper bound on what a very
+well-informed reader could do, not as a defect count.
+
+**The two tiers that ARE about construction** — eliminable distractors, and
+questions the target answers — are the ones to act on, because they fail for
+every student regardless of what they know. Those went 25 → 20.
+
+**Do not chase the headline number to zero.** Doing so would mean writing
+questions about details so obscure that no outside knowledge could touch
+them, which is a worse quiz, not a better one. The honest use of Q1 is to
+find the items a student can beat *without knowing anything* — and to notice
+when the answer is always B.
 
 ## Known gaps, as of v4.2.0
 

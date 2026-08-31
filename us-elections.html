@@ -1156,57 +1156,57 @@ const MAX_PTS = 12;   // 7 quizzes + headroom; see note below
 
 const quizzes = {
   q7: {
-    q: "According to this snapshot, two things made 2026 unusual before a single vote was cast. What were they?",
-    choices: ["A new voting machine and a new deadline","Two new states joined the country","Several states redrew their district maps, and an unusually large number of members decided not to run again","The Senate changed the number of seats"],
+    q: "Texas and California both ended up with new House maps in 2025–26, but they got there by different routes. Which was which?",
+    choices: ["Texas by ballot measure; California through its legislature","Both by ballot measure","Texas through its legislature and the courts; California by ballot measure","Both through their legislatures"],
     correct: 2,
-    feedback: "\u2705 Right. Redistricting outside the usual once-a-decade schedule, plus one of the biggest retirement waves in decades \u2014 both settled before voting began.",
-    wrong: "Not quite. The two were redistricting \u2014 several states redrew House maps in 2025, outside the usual once-a-decade schedule \u2014 and a large wave of members announcing they would not run again."
+    feedback: "✅ Right. Texas's legislature passed a map, a federal court blocked it, and the Supreme Court allowed it in April 2026. California's voters approved Proposition 50 themselves in November 2025.",
+    wrong: "Not quite. Texas's map came through its legislature and then the courts. California's came from voters, who approved Proposition 50 at the ballot box."
   },
   q9: {
     q: "Seven people ran for this district's seat in Congress, and five of them were Democrats. Only one Democrat is on the November ballot. Why?",
-    choices: ["The other Democrats did not file their paperwork in time","A party is allowed just one candidate per seat","The other Democrats dropped out before the primary","Washington's top-two primary sends only the two highest finishers to November, whatever their party"],
+    choices: ["The other Democrats dropped out before the primary","A party is allowed just one candidate per seat","The other Democrats did not file their paperwork in time","Washington's top-two primary sends only the two highest finishers to November, whatever their party"],
     correct: 3,
     feedback: "✅ Right. In a top-two primary every candidate shares one ballot, and only the top two move on — so several candidates from the same party can knock each other out.",
     wrong: "Not quite. All seven were on the August ballot together. Washington uses a top-two primary, so only the two highest finishers advance, no matter which party they belong to."
   },
   q1: {
     q: "Which branch of government is responsible for MAKING the laws?",
-    choices: ["Legislative branch","Judicial branch","All three together","Executive branch"],
+    choices: ["Legislative branch","All three together","Executive branch","Judicial branch"],
     correct: 0,
     feedback: "✅ Correct! The legislative branch — Congress, made up of the House and Senate — writes and passes the country's laws.",
     wrong: "Not quite. Congress (the legislative branch — House + Senate) is the branch that writes and passes laws. The executive branch carries laws out, and the judicial branch interprets them."
   },
   q2: {
     q: "What vote does Congress need to override a presidential veto?",
-    choices: ["A simple majority in the House only","Two-thirds in the House AND two-thirds in the Senate","The Supreme Court has to approve it first","A unanimous vote in both chambers"],
+    choices: ["A simple majority in the House only","Two-thirds in the House AND two-thirds in the Senate","A unanimous vote in both chambers","The Supreme Court has to approve it first"],
     correct: 1,
     feedback: "✅ Correct! It takes a two-thirds vote in BOTH the House and the Senate to override a veto and make the bill a law without the President's signature.",
     wrong: "Not quite. Overriding a veto takes a high bar on purpose: two-thirds of the House AND two-thirds of the Senate, not just a simple majority in one chamber."
   },
   q3: {
     q: "Federal judges are never elected — the President nominates them, the Senate confirms them, and then they generally keep the job for life. What is that setup designed to let them do?",
-    choices: ["Represent the voters who live in their district","Decide cases faster than an elected judge could","Rule based on what the law says, without needing to win votes to keep the job","Set their own salary and budget"],
+    choices: ["Decide cases faster than an elected judge could","Represent the voters who live in their district","Rule based on what the law says, without needing to win votes to keep the job","Set their own salary and budget"],
     correct: 2,
     feedback: "✅ Correct! A judge who never has to run for reelection can rule based on what the law actually says — even when that ruling is unpopular. That's the whole reason for a life term.",
     wrong: "Not quite. Reread \"Judicial branch — not elected at all.\" Judges aren't sent to represent a district the way a member of Congress is. Because they never have to win votes to keep the job, they can rule based on what the law actually says, without worrying about whether the ruling is popular."
   },
   q4: {
     q: "Which of Washington's two U.S. Senate seats is up for election in 2026?",
-    choices: ["Maria Cantwell's seat","Both seats","Patty Murray's seat","Neither seat"],
+    choices: ["Maria Cantwell's seat","Patty Murray's seat","Both seats","Neither seat"],
     correct: 3,
     feedback: "✅ Correct! Neither Washington Senate seat is up in 2026. U.S. Senate terms are staggered 6-year terms — Cantwell's seat is next up in 2030, and Murray's is next up in 2028.",
     wrong: "Not quite. Neither seat is actually up in 2026. U.S. Senate terms are staggered 6-year terms, so only about a third of the Senate is ever up in one election — and this year, neither of Washington's two seats happens to be one of them."
   },
   q5: {
     q: "Which law directly outlawed literacy tests and sent federal officials to help register voters in places with a history of discrimination?",
-    choices: ["The Voting Rights Act (1965)","The 26th Amendment (1971)","The 15th Amendment (1870)","The 19th Amendment (1920)"],
+    choices: ["The Voting Rights Act (1965)","The 19th Amendment (1920)","The 26th Amendment (1971)","The 15th Amendment (1870)"],
     correct: 0,
     feedback: "✅ Correct! The Voting Rights Act of 1965 directly banned literacy tests and other specific barriers that had been used for decades to get around the 15th Amendment's promise.",
     wrong: "Not quite. The 15th Amendment (1870) said race couldn't be used to deny the vote, but it took the Voting Rights Act of 1965 — almost a century later — to actually outlaw tools like literacy tests that had been used to get around it."
   },
   q6: {
     q: "What event is John Lewis best known for leading, just months before the Voting Rights Act became law?",
-    choices: ["Signing the Constitution in 1787","The march across the Edmund Pettus Bridge in Selma","Serving as Chief Justice of the Supreme Court","Writing the Bill of Rights"],
+    choices: ["Signing the Constitution in 1787","The march across the Edmund Pettus Bridge in Selma","Writing the Bill of Rights","Serving as Chief Justice of the Supreme Court"],
     correct: 1,
     feedback: "✅ Correct! On \"Bloody Sunday,\" March 7, 1965, John Lewis led marchers across the Edmund Pettus Bridge in Selma, Alabama, where they were attacked by state troopers — an event that helped push Congress to pass the Voting Rights Act just months later.",
     wrong: "Not quite. John Lewis led marchers across the Edmund Pettus Bridge in Selma, Alabama on \"Bloody Sunday,\" March 7, 1965. James Madison — not Lewis — helped write the Constitution and the Bill of Rights."

@@ -1061,15 +1061,23 @@ const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRi
 const MAX_PTS = 15;
 
 const quizzes = {
-  q11: { q:"In late August 2026 Iran and Oman agreed on a temporary shipping route through the Strait of Hormuz. What did that agreement NOT do?", choices: ["Include a plan to clear mines","Involve Oman","Fully reopen the strait — Iran said that still depended on U.S. conditions","Open a route through the strait"], correct: 2,
-    feedback:"Right. A temporary corridor is not a reopening. Iran tied the full reopening to conditions from the June memorandum that had already expired.",
-    wrong:"Not quite. The agreement did open a temporary route, about seven miles wide, with mine-clearing. What it did not do was fully reopen the strait \u2014 Iran said that still depended on U.S. conditions." },
-  q10: { q:"On August 18, 2026 the U.S. president said the Strait of Hormuz was \u201copen and operating.\u201d Ship-tracking data showed three vessels crossed on Sunday, August 16. How can both be true?", choices: ["Ship-tracking data does not count oil tankers","The strait was open, and almost nobody was using it — open and busy are not the same thing","One of them must be a lie","The strait closed again on August 17"], correct: 1,
-    feedback:"Right. A waterway can be legally open and practically empty. Counting the ships is how you tell which one you are looking at.",
-    wrong:"Not quite. Both can be accurate at once: the strait was open, and hardly any ships were using it. \u201cOpen\u201d and \u201cbusy\u201d are different claims, and the ship count is what separates them." },
+  q11: {
+    q: "Iran named specific conditions that would have to be met before the strait fully reopened. What were they?",
+    choices: ["A United Nations peacekeeping force in the Gulf","Payment for the tankers that had been struck","Lifting the naval blockade and the sanctions","A prisoner exchange and a new ceasefire date"],
+    correct: 2,
+    feedback: "✅ Right. Iran tied a full reopening to the United States lifting the blockade and the sanctions — conditions from a memorandum that had already expired.",
+    wrong: "Not quite. The conditions Iran named were lifting the U.S. naval blockade and the sanctions, both carried over from the expired June memorandum."
+  },
+  q10: {
+    q: "Before the war, more than 130 vessels a day crossed the Strait of Hormuz. What were the counts in the two August 2026 checks this section reports?",
+    choices: ["Fifteen, then twenty","Three, then five","About thirty, then about fifty","Sixty, then eighty"],
+    correct: 1,
+    feedback: "✅ Right. Three crossings on August 16 and five on August 25, against more than 130 a day before the war. That is what \"open but barely moving\" means in numbers.",
+    wrong: "Not quite. Ship-tracking counted three vessels on August 16 and five on August 25 — against more than 130 a day before the war."
+  },
   q9: {
     q: "The Strait of Hormuz matters far beyond Iran. Why?",
-    choices: ["It is the only sea route out of the Persian Gulf, and close to a fifth of the world's oil passes through it","It separates Iran from the United States","It is the largest sea in the Middle East","It is where most of the world's ships are built"],
+    choices: ["It is the only sea route out of the Persian Gulf, and close to a fifth of the world's oil passes through it","It is where most of the world's ships are built","It separates Iran from the United States","It is the largest sea in the Middle East"],
     correct: 0,
     feedback: "✅ Right. Ships carrying roughly a fifth of the world's oil pass through two lanes only two nautical miles wide each — which is why trouble there moves fuel prices everywhere.",
     wrong: "Not quite. It is the only sea route out of the Persian Gulf, and close to a fifth of the world's oil goes through it every day — through shipping lanes just two nautical miles wide."
@@ -1077,25 +1085,33 @@ const quizzes = {
   q1: { q:"According to human rights groups, approximately how many people were killed by the Iranian government during the 2026 crackdown on protesters?", choices: ["About 6,000+","About 600","About 60","About 60,000"], correct: 0,
     feedback:"Correct. Human rights groups reported at least 6,221 people killed — one of the deadliest crackdowns in Iran's modern history.",
     wrong:"Not quite. Human rights groups reported at least 6,221 people killed." },
-  q2: { q:"Iran is approximately how many times LARGER than the state of California?", choices: ["About the same size","About 5 times larger","About 10 times larger","About 2 times larger"], correct: 1,
+  q2: { q:"Iran is approximately how many times LARGER than the state of California?", choices: ["About the same size","About 5 times larger","About 2 times larger","About 10 times larger"], correct: 1,
     feedback:"That's right! Iran is about 5 times the size of California.",
     wrong:"Check the geography stats again — Iran is about 5 times the size of California." },
-  q3: { q:"About half of Iranians are under 35. What does the page say many young Iranians grew up doing?", choices: ["Working in the oil industry","Serving in the military","Using social media and the internet to connect with the world","Studying abroad in Europe"], correct: 2,
-    feedback:"Yes! Many young Iranians grew up using social media and the internet to reach the wider world — even though the government often tries to restrict what they can see online.",
-    wrong:"Take another look. Many young Iranians grew up using social media and the internet to connect with the world, despite government efforts to restrict what they can see." },
-  q4: { q:"In 1953, WHO worked together to remove Iran's elected prime minister Mosaddegh from power?", choices: ["France and Germany","Iran's own military only","The United Nations","The CIA (U.S.) and Britain"], correct: 3,
+  q3: {
+    q: "The page describes Iran's population. Which pair of facts does it give?",
+    choices: ["About half are under 35, and most live in rural farming areas","About half are over 60, and many grew up using social media despite restrictions","About half are under 35, and many grew up using social media despite restrictions","About half are over 60, and most live in rural farming areas"],
+    correct: 2,
+    feedback: "✅ Right. A young, connected population — which is part of why a government's actions and a population's views are not the same thing.",
+    wrong: "Not quite. Iran's population is young, about half under 35, and many grew up online despite the government restricting what they can see."
+  },
+  q4: { q:"In 1953, WHO worked together to remove Iran's elected prime minister Mosaddegh from power?", choices: ["France and Germany","The United Nations","Iran's own military only","The CIA (U.S.) and Britain"], correct: 3,
     feedback:"Correct! The CIA and British intelligence worked together in Operation Ajax.",
     wrong:"The CIA (United States) and British intelligence worked together in a secret operation called Operation Ajax." },
-  q5: { q:"What happened to the Iran nuclear deal in 2018?", choices: ["The U.S. withdrew from it","The United Nations cancelled it","Both sides agreed to extend it","Iran withdrew from it"], correct: 0,
+  q5: { q:"What happened to the Iran nuclear deal in 2018?", choices: ["The U.S. withdrew from it","Iran withdrew from it","Both sides agreed to extend it","The United Nations cancelled it"], correct: 0,
     feedback:"Right! President Trump withdrew the U.S. from the 2015 nuclear deal in 2018.",
     wrong:"In 2018, President Trump withdrew the United States from the 2015 nuclear agreement." },
-  q6: { q:"Why was Mahsa Amini arrested in 2022 — sparking massive protests across Iran?", choices: ["For speaking English publicly","For not wearing her hijab correctly","For posting on social media","For organizing a protest"], correct: 1,
+  q6: { q:"Why was Mahsa Amini arrested in 2022 — sparking massive protests across Iran?", choices: ["For organizing a protest","For not wearing her hijab correctly","For speaking English publicly","For posting on social media"], correct: 1,
     feedback:"Correct. Mahsa Amini was arrested by Iran's 'morality police' for not wearing her hijab the way the government required.",
     wrong:"Mahsa Amini was arrested by Iran's 'morality police' for not wearing her hijab the way the government required." },
-  q7: { q:"According to PBS NewsHour, the 2026 U.S.-Israel attack on Iran was described as what kind of operation?", choices: ["A rescue mission for hostages","A defensive operation only","An attempt to overthrow Iran's government entirely","A small, targeted strike on nuclear sites"], correct: 2,
-    feedback:"Exactly right! PBS News described it as 'a war to overthrow the Iranian regime.'",
-    wrong:"PBS News described it as going far beyond a limited nuclear strike — as an operation to overthrow Iran's government entirely." },
-  q8: { q:"Which of these is NOT one of the reasons why Iran matters to people in the United States?", choices: ["The U.S. has been involved in Iran's history for 70+ years","Iran has allies across the Middle East","Iran has the 4th largest oil reserves in the world","Iran is a U.S. ally that helps protect American interests"], correct: 3,
+  q7: {
+    q: "How did PBS NewsHour describe the scale of the 2026 U.S.–Israel attack on Iran?",
+    choices: ["A response to an attack on U.S. forces in Iraq","A joint operation with Gulf state militaries","An attempt to overthrow Iran's government entirely","A limited strike on nuclear facilities only"],
+    correct: 2,
+    feedback: "✅ Right. Not a narrow strike — it was described as an attempt to bring down the government itself, which is why what followed was a war rather than an incident.",
+    wrong: "Not quite. It was described as far broader than a targeted strike: an attempt to overthrow Iran's government entirely."
+  },
+  q8: { q:"Which of these is NOT one of the reasons why Iran matters to people in the United States?", choices: ["Iran has allies across the Middle East","Iran has the 4th largest oil reserves in the world","The U.S. has been involved in Iran's history for 70+ years","Iran is a U.S. ally that helps protect American interests"], correct: 3,
     feedback:"Correct! Iran and the United States are NOT allies — they've had no normal diplomatic relations since the 1979 hostage crisis.",
     wrong:"Iran and the U.S. are not allies — they've had no normal diplomatic relations since 1979." }
 };

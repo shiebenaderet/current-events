@@ -1399,64 +1399,64 @@ const MAX_PTS = 13;
 // Subsequent tasks add entries here as each section's quiz is built.
 const quizzes = {
   q9: {
-    q: "Someone says an immigrant should have just gotten in line. What is the most accurate reply?",
-    choices: ["There are many lines, they are capped by category and by country, and for some people there is no line to join at all","There is no line — anyone can apply and be approved","There is one line, and it moves quickly","The line is the same length for everyone"],
+    q: "Someone says an immigrant should have \"just gotten in line.\" What does this page show about that line?",
+    choices: ["There are several lines, each capped separately, and some people have none","It is one line, but people with family here can skip ahead of it","It is one line, and everyone waits about the same time","There are several lines, and all of them move at about the same speed"],
     correct: 0,
-    feedback: "✅ Right. Immediate relatives of citizens face no annual cap; other family and worker categories are capped by category AND by country of birth, which is why one queue can run past a decade while another has none.",
-    wrong: "Not quite. There is no single line. Immediate relatives of U.S. citizens face no annual cap at all, while other categories are capped both by type and by country of birth — so waits differ enormously depending on who you are and where you were born."
+    feedback: "✅ Right. The caps are per category and per country, so the wait depends on which line you are in and where you were born — and for some people there is no line to join.",
+    wrong: "Not quite. There is no single line. There are separate categories with separate caps, country limits on top of those, and for some people no category fits at all."
   },
   q1: {
     q: "This page quotes the Library of Congress on European colonization of North America. What word does the Library of Congress use for it?",
-    choices: ["An invasion of territory already controlled and settled by Native Americans","A peaceful settlement","An accidental arrival","A discovery of empty land"],
+    choices: ["An invasion of territory already controlled and settled by Native Americans","An accidental arrival","A discovery of empty land","A peaceful settlement"],
     correct: 0,
     feedback: "✅ Correct! The Library of Congress calls it \"an invasion of territory controlled and settled for centuries by Native Americans.\" Noticing who says a thing, and in what words, is a habit worth keeping.",
     wrong: "Not quite. The Library of Congress puts it plainly: European colonization \"was an invasion of territory controlled and settled for centuries by Native Americans.\""
   },
   q2: {
     q: "What was the key difference between Ellis Island and Angel Island?",
-    choices: ["They were the same kind of station, just in different cities","Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese","Neither station actually processed many immigrants","Angel Island processed European immigrants and Ellis Island processed Asian immigrants"],
+    choices: ["They were the same kind of station, just in different cities","Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese","Angel Island processed European immigrants and Ellis Island processed Asian immigrants","Neither station actually processed many immigrants"],
     correct: 1,
     feedback: "✅ Correct! Ellis Island (1892–1954) processed over 12 million mostly European immigrants, often in under a day. Angel Island (1910–1940) was built to detain and interrogate immigrants, especially Chinese immigrants affected by the Chinese Exclusion Act.",
     wrong: "Not quite. Ellis Island was built to process European immigrants quickly, while Angel Island was built to detain and interrogate immigrants — especially Chinese immigrants — for much longer periods."
   },
   q3: {
     q: "What did the national-origins quota system created by the 1924 Immigration Act actually do?",
-    choices: ["Treated every country's immigrants exactly the same","Had no real effect on who could immigrate","Favored immigration from Northern and Western Europe, sharply restricted Southern and Eastern Europe, and excluded Asian immigration almost entirely","Only applied to immigrants from Asia"],
+    choices: ["Treated every country's immigrants exactly the same","Only applied to immigrants from Asia","Favored immigration from Northern and Western Europe, sharply restricted Southern and Eastern Europe, and excluded Asian immigration almost entirely","Had no real effect on who could immigrate"],
     correct: 2,
     feedback: "✅ Correct! The 1924 Act's quota formula was calculated using the 1890 census, which favored Northern and Western Europe. It sharply restricted Southern and Eastern Europe and excluded almost all immigration from Asia. This system lasted until 1965.",
     wrong: "Not quite. The 1924 Act's quotas were calculated to favor Northern and Western Europe, restrict Southern and Eastern Europe, and exclude Asian immigration almost entirely."
   },
   q4: {
     q: "What did the Immigration and Nationality Act of 1965 (the Hart-Celler Act) replace the national-origins quota system with?",
-    choices: ["Nothing — it removed all immigration limits","A system based only on how much money a person had","The exact same quota system, just renamed","A preference system based on family ties and job skills, instead of country of birth"],
+    choices: ["Nothing — it removed all immigration limits","The exact same quota system, just renamed","A system based only on how much money a person had","A preference system based on family ties and job skills, instead of country of birth"],
     correct: 3,
     feedback: "✅ Correct! The 1965 Act abolished the national-origins quotas and replaced them with a preference system based on family reunification and employment skills. That basic framework is still the foundation of U.S. immigration law today.",
     wrong: "Not quite. The 1965 Act replaced country-based quotas with a preference system built around family ties and job skills — a framework still used today."
   },
   q5: {
     q: "What's the main legal difference between refugee status and asylum status?",
-    choices: ["Refugee status is for people applying from outside the U.S.; asylum is for people already in the U.S. or arriving at a port of entry","Refugees are always children, and asylum seekers are always adults","Asylum is only for people from certain countries","There is no real difference — they're the same thing"],
+    choices: ["Refugee status is for people applying from outside the U.S.; asylum is for people already in the U.S. or arriving at a port of entry","Asylum is only for people from certain countries","There is no real difference — they're the same thing","Refugees are always children, and asylum seekers are always adults"],
     correct: 0,
     feedback: "✅ Correct! Refugee and asylum status use the exact same legal definition of persecution. The difference is where the person is when they apply: refugee status is sought from outside the U.S., while asylum is sought by people already in the U.S. or at a U.S. port of entry.",
     wrong: "Not quite. Refugee and asylum status share the same legal definition — the real difference is location. Refugee status is granted to people outside the U.S.; asylum is granted to people already in the U.S. or arriving at a port of entry."
   },
   q6: {
-    q: "As of June 30, 2026, roughly how many cases were pending in U.S. immigration courts?",
-    choices: ["About 300,000","About 3.2 million","About 1 million","There is no backlog"],
+    q: "In one 2026 term the Supreme Court decided two immigration cases. Which pair of outcomes did it reach?",
+    choices: ["Struck down birthright citizenship; limited the president's power over Temporary Protected Status","Confirmed birthright citizenship; upheld the president's power to end Temporary Protected Status","Confirmed birthright citizenship; limited the president's power to end Temporary Protected Status","Struck down birthright citizenship; upheld the president's power to end Temporary Protected Status"],
     correct: 1,
-    feedback: "✅ Correct! As of June 30, 2026, EOIR (the Executive Office for Immigration Review) reported 3,195,137 pending cases — and about 72% of those involve people already waiting on a filed asylum application.",
-    wrong: "Not quite. As of June 30, 2026, EOIR reported 3,195,137 pending cases in U.S. immigration courts — a backlog of over 3 million."
+    feedback: "✅ Right. The two rulings did not point the same way: children born here are citizens under the 14th Amendment, and the president has broad power to end Temporary Protected Status.",
+    wrong: "Not quite. Birthright citizenship was confirmed, and in the same term the Court also upheld broad presidential power to end Temporary Protected Status. Two rulings, two directions."
   },
   q7: {
     q: "What happened to Japanese Americans living in Washington State during World War II?",
-    choices: ["Nothing changed for them","They were given new jobs in Seattle","They were forcibly removed from their homes and incarcerated, many at the Minidoka camp in Idaho — including U.S. citizens","They were asked to volunteer for extra farm work"],
+    choices: ["Nothing changed for them","They were asked to volunteer for extra farm work","They were forcibly removed from their homes and incarcerated, many at the Minidoka camp in Idaho — including U.S. citizens","They were given new jobs in Seattle"],
     correct: 2,
     feedback: "✅ Correct! After Executive Order 9066 in 1942, Seattle's Japanese American community — the majority of them U.S. citizens — was forced from their homes and sent first to Puyallup's 'Camp Harmony' and then to the Minidoka incarceration camp in Idaho.",
     wrong: "Not quite. Executive Order 9066 led to the forced removal and incarceration of Japanese Americans, including U.S. citizens. Seattle's Japanese American community was sent to the Minidoka camp in Idaho."
   },
   q8: {
     q: "Who signed the Immigration and Nationality Act of 1965, and where?",
-    choices: ["President Herbert Hoover, at Ellis Island","Rep. Emanuel Celler, in the House chamber","President John F. Kennedy, at the White House","President Lyndon B. Johnson, at the base of the Statue of Liberty"],
+    choices: ["President John F. Kennedy, at the White House","Rep. Emanuel Celler, in the House chamber","President Herbert Hoover, at Ellis Island","President Lyndon B. Johnson, at the base of the Statue of Liberty"],
     correct: 3,
     feedback: "✅ Correct! President Lyndon B. Johnson signed the Immigration and Nationality Act on October 3, 1965, at the base of the Statue of Liberty. The law is also known as the Hart-Celler Act, after its two main sponsors in Congress.",
     wrong: "Not quite. President Lyndon B. Johnson signed the law on October 3, 1965, at the base of the Statue of Liberty."
