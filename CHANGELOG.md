@@ -2,6 +2,22 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.4.0] — 2026-08-31
+
+**Minor — the long timelines get a spine and a way to skip along it.**
+
+**The problem, measured.** Eight of the site's twelve timelines run to six entries or more: ai's *Through the decades* is 19, ukraine's *Through the ages* 17, iran's *How we got here* 15, gun-violence's *History timeline* 11. As a flat run of dated rows, a reader scrolling one had nothing to hold onto — no sense of where they were in it, and no way to jump ahead.
+
+**What changed.** Entries now hang off a continuous vertical spine with a dot at each event and the year as a tab on the entry rather than a column the eye has to scan across to. From 900px up they alternate sides. Any timeline of six entries or more also gets a sticky **Jump to** strip built from its own years; clicking one scrolls to that event, and the strip tracks the scroll so the current entry stays marked — via `IntersectionObserver`, so there is no handler firing on every frame, and with `aria-current` so a screen reader gets the same information.
+
+Below six entries there is no strip. A five-item timeline is on screen in a scroll or two, and the strip would be chrome for a problem nobody has.
+
+**No markup changed.** `.tl-item > .tl-year + .tl-body` was already uniform across all twelve, so this is a restyle plus one enhancement, and with JavaScript off every timeline is still a dated list in document order.
+
+**The trade-off, stated rather than buried.** Alternating sides makes the eye travel left-right-left, and for a class with many students reading below grade level or learning English that is load with no informational payoff. It is therefore applied only from 900px up, where two columns are wide enough to read as two columns; below that, in print, and on any narrow window, every entry stacks on one side in document order. The alternation is one clearly marked `@media` block in `site.css` and nothing else depends on it, so it can be switched off in one deletion.
+
+**Seven new tests** cover the strip: one button per entry, nothing below the six-entry threshold, the threshold itself, the spine class on every timeline long or short, two timelines on one page kept separate (the wrappers genuinely differ — `#aiTimeline`, `#ukraineTimeline`, and on space-race the entries sit straight inside `.article`, so grouping is by parent node), an `aria-label` naming where each jump lands, and every entry observed. Writing them caught a bug in the test double rather than the code: its `className` setter replaced `classList._s` while `contains()` closed over the original set.
+
 ## [4.3.0] — 2026-08-31
 
 **Minor — a direct link to any section, and the dense timeline given room to breathe.**

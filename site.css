@@ -971,3 +971,170 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 }
 /* The menu is hidden until a card is open, so the button follows it. */
 @media print { .unfold-link { display: none; } }
+
+/* ══ VERTICAL TIMELINE ═══════════════════════════════════════════════════
+   Eight timelines run to six entries or more — ai's is 19, ukraine's 17,
+   iran's 15 — and as a flat run of rows they gave a reader scrolling through
+   them nothing to hold onto: no sense of where they were, no way to skip
+   ahead.
+
+   So: a spine with the entries hung off it, alternating sides on a wide
+   screen, and a jump strip that site.js builds from the years themselves.
+
+   The markup is untouched. .tl-item > .tl-year + .tl-body is already uniform
+   across all twelve timelines, so this is a restyle, not a rewrite.
+
+   ONE HONEST CAVEAT, recorded here because it is a real trade-off and not a
+   detail: alternating sides makes the eye travel left-right-left, and for a
+   class with many students reading below grade level or learning English
+   that is load with no informational payoff. It applies only from 900px up,
+   where two columns are wide enough to read as two columns. Below that, and
+   in print, every entry stacks on one side in document order. To switch the
+   alternation off everywhere, delete the single block marked ALTERNATION;
+   nothing else depends on it. */
+
+.tl-wrap { position: relative; }
+
+/* The spine. A pseudo-element on the wrapper rather than a border on each
+   item, so it runs continuously behind the entries instead of restarting. */
+.tl-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7px;
+  width: 2px;
+  background: var(--rule, #d4cfc4);
+}
+
+.tl-item {
+  position: relative;
+  display: block;                 /* was flex; the spine layout owns it now */
+  margin: 0 0 var(--ce-space-8, 32px);
+  padding: 0 0 0 34px;
+  border-bottom: none;            /* the spine replaces the per-row rules */
+}
+.tl-item:last-child { margin-bottom: 0; }
+
+/* The dot, sitting on the spine. */
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .45em;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper, #faf8f5);
+  border: 3px solid var(--accent, #a02c2c);
+  z-index: 1;
+}
+
+/* The year as a tab rather than a column: it reads as a label on the entry
+   instead of a separate cell the eye has to scan across to. */
+.tl-year {
+  display: inline-block;
+  width: auto;
+  margin-bottom: var(--ce-space-2, 8px);
+  padding: 4px 12px;
+  background: var(--accent, #a02c2c);
+  color: #fff;
+  font-size: .82rem;
+  letter-spacing: .02em;
+  border-radius: var(--ce-radius-sm, 4px);
+}
+
+.tl-body {
+  padding: var(--ce-space-4, 16px) var(--ce-space-6, 24px);
+  background: var(--surface, #fff);
+  border: 1px solid var(--rule-soft, #e6e2da);
+  border-radius: var(--ce-radius, 8px);
+}
+.tl-body > :last-child { margin-bottom: 0; }
+.tl-body p { max-width: 62ch; }
+
+/* ── ALTERNATION (delete this block to keep every entry on one side) ── */
+@media (min-width: 900px) {
+  .tl-wrap::before { left: 50%; transform: translateX(-1px); }
+  .tl-item { width: 50%; padding: 0; }
+  .tl-item:nth-child(odd) { margin-left: 0; padding-right: 42px; text-align: right; }
+  .tl-item:nth-child(even) { margin-left: 50%; padding-left: 42px; }
+  .tl-item:nth-child(odd)::before { left: auto; right: -8px; }
+  .tl-item:nth-child(even)::before { left: -8px; }
+  /* Prose stays left-aligned on both sides. A ragged left edge is harder to
+     read, and the right alignment is for the year tab, not the paragraph. */
+  .tl-item:nth-child(odd) .tl-body { text-align: left; }
+}
+
+/* ── The jump strip, built by site.js ── */
+.tl-jump {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--ce-space-6, 24px);
+  padding: 10px 0;
+  background: var(--paper, #faf8f5);
+  border-bottom: 1px solid var(--rule, #d4cfc4);
+}
+.tl-jump-label {
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-2xs, .68rem);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint, #6b655c);
+  align-self: center;
+  margin-right: var(--ce-space-2, 8px);
+}
+.tl-jump button {
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-xs, .76rem);
+  font-weight: 600;
+  padding: 6px 10px;
+  color: var(--ink-light, #4a4a4a);
+  background: transparent;
+  border: 1px solid var(--rule, #d4cfc4);
+  border-radius: var(--ce-radius-sm, 4px);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tl-jump button:hover {
+  color: var(--accent, #a02c2c);
+  border-color: var(--accent, #a02c2c);
+}
+.tl-jump button:focus-visible {
+  outline: 2px solid var(--accent, #a02c2c);
+  outline-offset: 2px;
+}
+/* Where the reader is now. aria-current carries it to screen readers. */
+.tl-jump button[aria-current="true"] {
+  color: #fff;
+  background: var(--accent, #a02c2c);
+  border-color: var(--accent, #a02c2c);
+}
+
+/* A dark pane inverts the furniture. */
+.update-pane .tl-jump,
+.focus-pane .tl-jump { background: var(--ink, #1a1a1a); }
+.update-pane .tl-body,
+.focus-pane .tl-body {
+  background: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .14);
+}
+.update-pane .tl-item::before,
+.focus-pane .tl-item::before { background: var(--ink, #1a1a1a); }
+
+@media print {
+  .tl-jump { display: none; }
+  .tl-wrap::before { left: 7px; }
+  .tl-item,
+  .tl-item:nth-child(odd),
+  .tl-item:nth-child(even) {
+    width: auto; margin-left: 0; padding: 0 0 0 34px; text-align: left;
+  }
+  .tl-item:nth-child(odd)::before,
+  .tl-item:nth-child(even)::before { left: 0; right: auto; }
+}

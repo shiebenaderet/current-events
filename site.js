@@ -523,12 +523,118 @@
     });
   }
 
+  /* Timelines: a spine, and a way to skip along it.
+
+     Eight of the twelve run to six entries or more (ai's is 19), and a long
+     flat run of dated rows gives a reader scrolling through it no sense of
+     where they are and no way to jump. The spine is CSS; this adds the jump
+     strip and keeps it in step with the scroll.
+
+     Everything here is an enhancement over markup that already works: with
+     JS off the entries are still a dated list in document order, which is
+     the whole point of building the site this way. */
+  function initTimelines() {
+    var items = document.querySelectorAll('.tl-item');
+    if (!items.length) return;
+
+    /* Group by parent rather than by a wrapper class — the wrappers are not
+       consistent across pages (#aiTimeline, #ukraineTimeline, and on
+       space-race the items sit straight inside .article), and inventing a
+       convention here would mean editing eight files to match it. */
+    var groups = [];
+    for (var i = 0; i < items.length; i++) {
+      var parent = items[i].parentNode;
+      var g = null;
+      for (var k = 0; k < groups.length; k++) {
+        if (groups[k].parent === parent) { g = groups[k]; break; }
+      }
+      if (!g) { g = { parent: parent, items: [] }; groups.push(g); }
+      g.items.push(items[i]);
+    }
+
+    for (var n = 0; n < groups.length; n++) buildTimeline(groups[n]);
+  }
+
+  function buildTimeline(group) {
+    var parent = group.parent;
+    var list = group.items;
+    parent.classList.add('tl-wrap');
+
+    // Below six entries the whole thing is on screen in a scroll or two, and
+    // a jump strip would be chrome for a problem nobody has.
+    if (list.length < 6) return;
+    if (parent.querySelector('.tl-jump')) return;
+
+    var strip = document.createElement('div');
+    strip.className = 'tl-jump';
+    strip.setAttribute('role', 'navigation');
+    strip.setAttribute('aria-label', 'Jump to a point in this timeline');
+
+    var label = document.createElement('span');
+    label.className = 'tl-jump-label';
+    label.textContent = 'Jump to';
+    strip.appendChild(label);
+
+    var buttons = [];
+    for (var i = 0; i < list.length; i++) {
+      (function (item) {
+        var yearEl = item.querySelector('.tl-year');
+        var year = yearEl ? yearEl.textContent.trim() : '';
+        if (!year) return;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = year;
+        // The year alone is not a destination to a screen reader; the
+        // heading beside it says where the jump actually lands.
+        var h = item.querySelector('h4');
+        b.setAttribute('aria-label',
+          'Jump to ' + year + (h ? ': ' + h.textContent.trim() : ''));
+        b.addEventListener('click', function () {
+          item.scrollIntoView({
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+            block: 'center'
+          });
+        });
+        strip.appendChild(b);
+        buttons.push({ btn: b, item: item });
+      })(list[i]);
+    }
+    if (!buttons.length) return;
+    parent.insertBefore(strip, parent.firstChild);
+
+    /* Keep the strip showing where the reader is. IntersectionObserver
+       rather than a scroll handler: no listener firing on every frame, and
+       it reports what is actually on screen rather than a computed guess. */
+    if (!window.IntersectionObserver) return;
+    var seen = [];
+    var obs = new IntersectionObserver(function (entries) {
+      for (var e = 0; e < entries.length; e++) {
+        var idx = -1;
+        for (var j = 0; j < buttons.length; j++) {
+          if (buttons[j].item === entries[e].target) { idx = j; break; }
+        }
+        if (idx < 0) continue;
+        seen[idx] = entries[e].isIntersecting;
+      }
+      var current = -1;
+      for (var s = 0; s < seen.length; s++) {
+        if (seen[s]) { current = s; break; }
+      }
+      for (var b2 = 0; b2 < buttons.length; b2++) {
+        if (b2 === current) buttons[b2].btn.setAttribute('aria-current', 'true');
+        else buttons[b2].btn.removeAttribute('aria-current');
+      }
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    for (var o = 0; o < buttons.length; o++) obs.observe(buttons[o].item);
+  }
+
   window.setTextSize = setTextSize;
 
   function init() {
     initA11y();
     initTerms();
     initUnfold();
+    initTimelines();
     initCardProgress();
     initCountdown();
     initSuggestForm();
