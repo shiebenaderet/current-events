@@ -71,14 +71,34 @@ def blanked(html):
     return SKIP_IN.sub(lambda m: ' ' * len(m.group(0)), html)
 
 
+def free_id_after(src):
+    """First term-desc number that is unused ON THIS PAGE.
+
+    This used to be a module-level `next_id = 9000`, commented "far above any
+    existing term-desc id" -- true on the first run and false on every one
+    after it. A second run restarted at 9000 and re-issued ids the first run
+    had already placed, so in gun-violence.html "silencers" and "background
+    check" ended up sharing term-desc-9003. Both carry aria-describedby, an
+    idref resolves to the first match, and a screen reader read the wrong
+    definition aloud.
+
+    Deriving the floor from the page itself makes the tool idempotent: it
+    cannot collide with its own previous output however many times it runs.
+    An id only has to be unique within its own document, so this is per page,
+    not global.
+    """
+    used = [int(n) for n in re.findall(r'id="term-desc-(\d+)"', src)]
+    return max(used) + 1 if used else 9000
+
+
 def main():
     apply = '--apply' in sys.argv
-    next_id = 9000            # far above any existing term-desc id
     total = 0
 
     for page in PAGES:
         path = os.path.join(ROOT, page)
         src = io.open(path, encoding='utf-8').read()
+        next_id = free_id_after(src)
 
         defs = {}
         for m in re.finditer(r'<span class="term"[^>]*data-def="([^"]+)"[^>]*>'

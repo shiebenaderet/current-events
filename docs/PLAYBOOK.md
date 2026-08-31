@@ -1,9 +1,13 @@
-# Playbook — building or converting a topic page
+# Playbook — building or converting a page
 
 Standing reference, alongside [`VOICE.md`](VOICE.md). VOICE governs how
 sentences sound; this governs how a page is built and what must pass before
 it ships. Written after converting all eight topic pages for v4.0.0, from
-what actually went wrong rather than from what was planned.
+what actually went wrong rather than from what was planned, and extended as
+later work found more of it.
+
+Most of this is about topic pages; the homepage has its own short section
+below.
 
 Read [`VOICE.md`](VOICE.md) first. Nothing here overrides it.
 
@@ -25,6 +29,30 @@ quiz            one question on the primer
 Opening a card closes the others and hides the hero, primer and menu, so a
 card is the whole view. Its sticky header says **← Overview**. Every card
 ends with the menu again.
+
+---
+
+## The homepage has one rule: name each topic once
+
+`index.html` is a door, not a page of its own, and it earns nothing by
+repeating itself. For a while it listed the same eight topics three times — a
+sticky nav, a scrolling ticker, and the cards — with GitHub linked four times
+and the school site three, all above the first sentence a student would read.
+That is **34 clickable choices** before any reading happens.
+
+- **One list of topics.** The cards are it. A nav above them is a second copy
+  of a menu the reader has not reached yet. (`.section-nav` is gone from the
+  whole site; v4.0.0 removed it from the eight topic pages, v4.11.0 from here.)
+- **Nothing above the fold moves.** The "Latest" strip used to scroll
+  infinitely: unpausable from the keyboard, hard to read for exactly the
+  students this site is for, and competing with the lead story for attention.
+  It is now static, four headlines, and every entry is genuinely a headline —
+  "contribute on GitHub" is a link, not news.
+- **Teacher and developer links live in the footer**, where someone looking
+  for them will look and a student will not trip over them.
+
+When judging whether the homepage is too busy, count the choices rather than
+describing the layout. `34 → 21` is an argument; "cleaner" is not.
 
 ---
 
@@ -350,6 +378,32 @@ assumed it paired with `#term-desc-1`; another asserted glosses were injected
 but was actually satisfied by the Study Mode bar carrying the same attribute.
 Check what the assertion is *for* before changing the page to satisfy it.
 
+**A character class that runs to a delimiter cannot match something that
+nests.** `<img\b[^>]*>` stops at the `>` inside
+`onerror="...<div class='x'>...</div>"`, so appending an attribute put it
+inside the attribute value and produced a stray `</div>` on eight pages.
+`@keyframes ticker\{[^}]*\}` stops at the `}` closing `0%{...}`, leaving
+`100%{...}}` orphaned in the stylesheet. Same shape, different day. HTML tags
+nest, and *every* at-rule (`@keyframes`, `@media`, `@supports`) contains a
+block. Use `tools/htmltag.py` for tags; for CSS, count braces after editing.
+
+**The cheap structural assertion catches what the test suite does not.** Both
+bugs above passed 136 tests and every content gate. What found them was a
+brace-balance count and a tag well-formedness walk — checks that know nothing
+about this site, only about the shape of the file. When an edit is mechanical
+and site-wide, assert the *structure* survived, not just the behaviour.
+
+**An id-allocating tool must derive its floor from the file, not a
+constant.** `spread_glosses.py` opened with `next_id = 9000`, commented "far
+above any existing term-desc id" — true on the first run, false on every one
+after. The second run reissued ids the first had placed, so two different
+terms shared `term-desc-9003`. Both carried `aria-describedby`, an idref
+resolves to the *first* match, and a screen reader read "silencers" with the
+definition of "background check". A confidently wrong definition is worse
+than no definition, and it lands on exactly the students the glosses are for.
+Any script that mints ids should start from `max(existing) + 1` on that page,
+which also makes it idempotent.
+
 **Do not recommend a dyslexia-specific font.** Pooled *g* = −0.04 across 15
 studies and 688 readers; most children in them preferred Arial. See
 `reading-intervention/references/do-not-recommend.md`.
@@ -428,11 +482,24 @@ them, which is a worse quiz, not a better one. The honest use of Q1 is to
 find the items a student can beat *without knowing anything* — and to notice
 when the answer is always B.
 
-## Known gaps, as of v4.2.0
+## Known gaps, as of v4.11.0
 
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*
+- **Three homepage card images** (`ai-card.jpg`, `capitol-featured.jpg`,
+  `ukraine-card.jpg`) have no credit traceable in the repo or in git history.
+  Every one of the 23 portraits carries author, licence and a Commons link;
+  these three do not. Needs a person to identify the source — do not guess a
+  licence.
+- **Three timelines carry no images** (ai, 19 entries; ukraine, 17;
+  space-race, 8), and only 12 of 89 entries site-wide have one. Blocked on the
+  licensing question above.
+- **iran and ukraine timelines span millennia** (550 BCE and 882 AD), so any
+  decade or era grouping needs editorial judgement, not an algorithm.
+- **17 quiz items are still answerable without reading the passage.** Down
+  from 74 of 76. See *What Q1 can and cannot tell you* above for why chasing
+  this to zero is the wrong goal.
 
 ---
 

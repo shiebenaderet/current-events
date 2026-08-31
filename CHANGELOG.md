@@ -2,6 +2,31 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.12.0] — 2026-08-31
+
+**Minor — repo documentation brought up to date, and a screen-reader defect it turned up.**
+
+**README described a site that stopped existing in v4.0.0.** Its version line read v3.2.0 against a live v4.11.0, and its state paragraph was written append-only — a sentence per release — so it went stale every release and had simply stopped being updated. It is now a description of the site as it stands, which only changes when the site's shape does.
+
+Three real gaps closed. **The card model was documented nowhere**: a contributor reading the README would picture a long scrolling article, which has not been true since v4.0.0. There is now a *How a page is built* section showing the primer/tile structure, the "an open card is the whole view" rule, deep links, and the one that matters most — *the 5–7 minutes is a property of the entry point, not a ceiling on the topic; a request to make a page shorter means add a shorter door, never delete rooms.* **`tools/` appeared in no file listing** despite being eight scripts and seven test files that gate every release; there is now a *Checks* section with the exact commands. **Nothing said that bumping `VERSION` without running `stamp_version.py` ships a footer still claiming the old build** — which is precisely how a browser cache once got misdiagnosed as a failed deploy.
+
+`docs/PLAYBOOK.md` gained a section on the homepage (name each topic once; nothing above the fold moves), refreshed *Known gaps* from v4.2.0 to now, and three rules that each cost something to learn.
+
+### The defect the documentation pass found
+
+Writing the *Checks* section meant running every tool to confirm it did what I was about to claim. `verify_invariants.py` — which I had documented wrongly as a standalone gate when it is actually a diff against a git ref — reported **duplicate ids in `gun-violence.html` and `iran.html`**.
+
+Not a cosmetic validity issue. Five ids were each claimed by two different terms, and both terms carried `aria-describedby` pointing at them. An idref resolves to the **first** matching element, so a screen reader announced **"silencers" with the definition of "background check"**, and "federally licensed dealers" with the definition of "militia". A confidently wrong definition is worse than no definition, and it lands on exactly the students the glosses exist for.
+
+The cause: `spread_glosses.py` opened with `next_id = 9000`, commented *"far above any existing term-desc id"* — true the first time it ran and false every time after. A later run restarted the counter and reissued ids the earlier run had already placed.
+
+Fixed in three places, because fixing only one would have left the trap armed:
+- **The pages** — five glosses renumbered, each term now paired with its own definition.
+- **The tool** — the counter now starts at `max(existing) + 1` *on that page*, so it cannot collide with its own previous output however many times it runs.
+- **The suite** — `tools/ids.test.js` asserts no page declares an id twice, that every `aria-describedby` resolves to exactly one element, and that a term and its definition agree on the id. Verified as a real gate by running the assertions against the pre-fix pages out of git: four fire. **136 → 139 tests.**
+
+Worth recording that 136 tests and every content gate passed while a screen reader was reading the wrong definition aloud. What found it was running a tool in order to describe it accurately.
+
 ## [4.11.0] — 2026-08-31
 
 **Minor — the homepage stops asking students to choose 34 times before they read anything.**

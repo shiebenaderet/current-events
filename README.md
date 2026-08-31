@@ -5,9 +5,11 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v3.2.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v4.11.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
-The site-wide editorial visual redesign (a warm-newsprint look inspired by real newsroom design conventions — see the v2.0.0 changelog entry for detail) is complete as of v2.4.0. Every page is on the new design. Accessibility controls and chrome were unified in v3.0.0, when Space Race 2.0 also shipped. v3.1.0 adds a homepage Suggest a Topic form and an August 2026 freshness pass on the remaining July-stamped pages. v3.1.1–3.1.2 are a story-first voice pass: Space Race first, then the rest of the live topics. v3.2.0 is a late-August 2026 news refresh on the pages that actually moved.
+Every page opens on a short primer and a menu of tiles rather than a long scrolling article — see **[How a page is built](#how-a-page-is-built)** below. All eight topics are live and on the shared warm-newsprint design; accessibility controls, Study Mode, and reading support are shared across every page through `site.css` and `site.js`.
+
+[`CHANGELOG.md`](CHANGELOG.md) is the release-by-release history. This README describes the site as it currently stands, so it changes when the site's shape does, not once per release.
 
 ---
 
@@ -28,6 +30,41 @@ Each topic page includes:
 - 💡 **Study Mode** — a toggle that reveals inline word definitions and a section-tracking bar as you scroll; see below
 
 Pages are plain HTML plus shared `site.css` / `site.js`. No build tools, no frameworks, no server required.
+
+---
+
+## How a page is built
+
+A topic page is **not** a long scrolling article. It opens on a short primer
+and a menu of tiles:
+
+```
+hero  ─────────────────────────────────────────────
+primer          ~650 words, about 5 minutes, ONE interactive
+                the only part everyone is expected to read
+quiz            one question on the primer
+─── tile menu ─────────────────────────────────────
+  9–13 cards, each with a title and a reading time
+  ·  opened      ✓  opened and quizzed
+─── nothing renders below the menu ────────────────
+```
+
+Opening a tile closes the others and hides the hero, primer and menu, so **an
+open card is the whole view**. Its sticky header reads *← Overview*, and every
+card ends with the menu again. Each card is a `<details class="unfold">` with
+a slug `id`, so any section can be linked directly:
+`current.mrbsocialstudies.org/iran.html#where-things-stand`.
+
+The homepage follows the same principle: each topic is named **once**, in one
+set of cards. It deliberately has no second navigation — a duplicate nav is a
+list of the same eight choices a student has already been given.
+
+This shape exists so a page can be short at the door without being short on
+content. **The 5–7 minutes is a property of the entry point, not a ceiling on
+the topic** — deep sections keep every word. A request to "make this page
+shorter" means *add a shorter door*, never *delete rooms*.
+
+Full build order, gates and traps: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 
 ---
 
@@ -64,7 +101,12 @@ current-events/
 ├── site.js                      ← Shared text-size / OpenDyslexic controls
 ├── fonts/                       ← Self-hosted OpenDyslexic (OFL)
 ├── images/                      ← Shared image assets (portraits, hero photos)
-├── docs/VOICE.md                 ← Standing story-first voice note for future updates
+├── tools/                       ← Checks and one-off maintenance scripts,
+│                                   plus the test suite (see Checks below)
+├── docs/VOICE.md                ← Standing voice note: how sentences sound
+├── docs/PLAYBOOK.md             ← How a page is built, and what must pass
+├── docs/LEARNING-TARGETS.md     ← The 60 learning targets, by page
+├── docs/learning-targets.html   ← Browser version of the above (generated)
 ├── docs/plans/                  ← Design docs + implementation plans for each
 │                                   topic build or content refresh
 ├── .github/ISSUE_TEMPLATE/      ← GitHub form for topic suggestions
@@ -76,6 +118,52 @@ current-events/
 ```
 
 Each topic is a flat `.html` file at the repo root, plus shared `site.css`, `site.js`, and `fonts/`. No build step. This changed from the project's original folder-per-topic plan once it became clear a flat structure was simpler to maintain for a small number of pages.
+
+---
+
+## Checks
+
+Everything in `tools/` runs with no dependencies — Python 3 and Node, both
+already on macOS. Run all of it before shipping:
+
+```bash
+node --test tools/*.test.js          # 139 tests: unfold, timelines, deep links,
+                                     #   Study Mode, version stamps, tag parsing,
+                                     #   unique ids and resolvable aria refs
+python3 tools/check_voice.py         # undated "now", page-talk, missing primers
+python3 tools/check_pane_contrast.py # every in-pane colour against WCAG AA
+python3 tools/find_dead_css.py       # rules that can no longer match anything
+python3 tools/check_study_mode.py    # no injected gloss lands inside a quotation
+```
+
+All of these should come back clean. `find_dead_css.py --apply` removes what
+it finds.
+
+One more is a *comparison*, not a standalone check — it takes a git ref and
+reports any structural count that moved between there and the working tree:
+
+```bash
+python3 tools/verify_invariants.py main            # all topic pages
+python3 tools/verify_invariants.py main iran.html  # or just one
+```
+
+Run it after any mechanical, site-wide edit. Citation counts, gloss counts,
+`<div>` open/close balance and `onerror` handlers should all hold steady
+unless you meant to change them — this is what catches an edit that a regex
+applied 200 times slightly wrong.
+
+**After bumping `VERSION`, always run `python3 tools/stamp_version.py`.** It
+writes the build number into all nine footers and appends `?v=<version>` to
+every local `css`/`js` reference. Skipping it ships a page whose footer still
+claims the previous build and whose stylesheet a browser may serve from cache
+— which looks exactly like a change that failed to deploy. The script is
+idempotent; running it twice is safe.
+
+The remaining scripts are one-off maintenance tools, not gates:
+`shrink_images.py` (caps images by how they're displayed), `spread_glosses.py`
+(glosses a term at first mention in every card), `lighten_panes.py`,
+`reading_time.py`, and `htmltag.py` — a tag matcher that is *attribute-aware*,
+which the obvious `<img\b[^>]*>` regex is not.
 
 ---
 
@@ -132,7 +220,10 @@ Pull requests are very welcome — especially from other Social Studies teachers
 - Party-swap test on current-policy prose. Accuracy, not false balance, for settled history and science. Quote punctuation stays as the source wrote it.
 - Images should be from Wikimedia Commons (CC-licensed or public domain) or original
 - Building or converting a topic page? Read [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) first — the order of work, the gates, and the traps
-- Bump the version and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below
+- Every section belongs in a tile (`<details class="unfold">`) with a `data-title`, a `data-minutes`, and a slug `id` — see **[How a page is built](#how-a-page-is-built)**
+- Shared component styling goes in `site.css`, which loads last, never copied into the eight inline stylesheets
+- Run the checks before opening a PR — see **[Checks](#checks)** above
+- Bump the version, run `tools/stamp_version.py`, and update `CHANGELOG.md` as part of finishing any content refresh or new topic page — see **Versioning** below
 
 ---
 
@@ -147,6 +238,11 @@ This project tracks one site-wide version in [`VERSION`](VERSION), following [Se
 | **Patch** | Small corrections — fixing a broken link, a typo, a mislabeled image, a stale date stamp |
 
 The version bumps once per finished effort (e.g. once for an entire multi-task content refresh), not once per commit. Every bump gets a matching entry in [`CHANGELOG.md`](CHANGELOG.md) describing what changed and why. See `CHANGELOG.md`'s own header for the full format.
+
+**Bumping `VERSION` is two steps, not one:** edit the file, then run
+`python3 tools/stamp_version.py` to write the new build number into every
+footer and cache-bust the shared stylesheet. The footer build number is there
+so you can confirm at a glance which build a browser is actually showing you.
 
 ---
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Compare structural invariants between a git ref and the working tree.
 
-The repo has no tests. These counts are the regression suite: if any of them
-moves during a task that was not meant to touch content, something broke.
+These counts sit alongside the node test suite and catch a different thing:
+a mechanical edit applied site-wide that went slightly wrong 200 times. If a
+count moves during a task that was not meant to touch content, something
+broke.
 
 Usage:  python3 tools/verify_invariants.py main us-elections.html
         python3 tools/verify_invariants.py HEAD          # all topic pages
