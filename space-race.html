@@ -305,36 +305,36 @@ footer{
 }
 
 
-.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw;margin:0}
+.update-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw;margin:0}
 .update-pane-inner{max-width:700px;margin:0 auto}
 .update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
 .update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8d5c4;font-weight:800}
-.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
-.update-badge{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);padding:4px 10px;margin-left:8px;color:#fff}
-.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:22px}
-.update-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:16px}
-.update-pane p strong{color:#fff}
-.update-pane .cite-inline{color:rgba(255,255,255,.5)}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:var(--ink)}
+.update-badge{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);padding:4px 10px;margin-left:8px;color:var(--ink)}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-bottom:22px}
+.update-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.05rem;color:var(--ink-light);line-height:1.7;margin-bottom:16px}
+.update-pane p strong{color:var(--ink)}
+.update-pane .cite-inline{color:var(--ink-faint)}
 .update-pane .cite-inline:hover{color:#e8d5c4}
 .update-pane .vocab{border-left-color:#e8d5c4}
 .update-pane .vocab b{color:#e8d5c4}
-.update-pane .vocab p{color:rgba(255,255,255,.75);margin:0}
-.update-pane .callout{background:rgba(255,255,255,.06);border-left-color:#e8d5c4}
+.update-pane .vocab p{color:var(--ink-light);margin:0}
+.update-pane .callout{background:rgba(0, 0, 0, .04);border-left-color:#e8d5c4}
 .update-pane .callout .tag{color:#e8d5c4}
-.update-pane .callout p{color:rgba(255,255,255,.78);margin:0}
+.update-pane .callout p{color:var(--ink-light);margin:0}
 .update-sources{margin-top:18px}
-.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
-.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
+.update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .update-sources li{margin-bottom:5px;line-height:1.5;font-size:.78rem;font-family:-apple-system,sans-serif}
 .update-sources a{color:#e8d5c4}
-.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
 .mini-tl-item{display:flex;gap:14px;align-items:baseline}
 .mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--accent)}
-.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:70px;flex-shrink:0}
-.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
-.mini-tl-text strong{color:#fff}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:var(--ink-faint);width:70px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:var(--ink-light)}
+.mini-tl-text strong{color:var(--ink)}
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -786,7 +786,7 @@ footer{
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
   <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <script>
 let pts = 0;
@@ -1011,8 +1011,8 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show the meaning of every highlighted word, inline">💡 Word meanings</button>
 </div>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

@@ -218,54 +218,50 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .person .src{font-family:-apple-system,sans-serif;font-size:.7rem;color:var(--ink-faint)}
 .person .src a{color:inherit}
 .update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8c9c9;font-weight:800}
-.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline{color:var(--ink-faint)}
 .update-box .cite-inline:hover{color:#e8c9c9}
 .update-box .vocab{border-left-color:#e8c9c9}
 .update-box .vocab b{color:#e8c9c9}
-.update-box .vocab p{color:rgba(255,255,255,.75)}
-.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .vocab p{color:var(--ink-light)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:var(--rule)}
 .update-box .stat-trio .num,.update-box .stat-pair .num{color:#e8c9c9}
-.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
-.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
-.update-box .callout{background:rgba(255,255,255,.06);border-left-color:#e8c9c9}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:var(--ink-light)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:var(--ink-faint)}
+.update-box .callout{background:rgba(0, 0, 0, .04);border-left-color:#e8c9c9}
 .update-box .callout .tag{color:#e8c9c9}
-.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-box .callout p{color:var(--ink-light)}
 .update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
-.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
-.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .update-sources li{margin-bottom:5px;line-height:1.5}
 .update-sources a{color:#e8c9c9}
 .update-box .term{border-bottom-color:#e8c9c9}
-.update-box .term::after{background:#fff;color:var(--ink)}
-.update-box .term::before{border-top-color:#fff}
 
 /* ══ FOCUS PANE (Holodomor deep-dive, distinct dark treatment) ══ */
-.focus-pane{background:#241417;color:#f0ece4;padding:40px 6vw}
+.focus-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw}
 .focus-pane-inner{max-width:700px;margin:0 auto}
 .focus-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;flex-wrap:wrap}
-.focus-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8b3b3;font-weight:800}
+.focus-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:800}
 .focus-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
-.focus-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.08rem;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:20px}
-.focus-pane p strong{color:#fff}
-.focus-pane .cite-inline{color:rgba(255,255,255,.5)}
-.focus-pane .cite-inline:hover{color:#e8b3b3}
-.focus-pane .stat-trio{border-color:rgba(255,255,255,.15)}
-.focus-pane .stat-trio .num{color:#e8b3b3}
-.focus-pane .stat-trio .desc{color:rgba(255,255,255,.7)}
-.focus-pane .stat-trio .desc b{color:rgba(255,255,255,.45)}
-.focus-pane .callout{background:rgba(255,255,255,.06);border-left-color:#e8b3b3}
-.focus-pane .callout .tag{color:#e8b3b3}
-.focus-pane .callout p{color:rgba(255,255,255,.78);margin:0}
+.focus-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:20px}
+.focus-pane p strong{color:var(--ink)}
+.focus-pane .cite-inline{color:var(--ink-faint)}
+.focus-pane .cite-inline:hover{color:var(--ink-faint)}
+.focus-pane .stat-trio{border-color:var(--rule)}
+.focus-pane .stat-trio .num{color:var(--ink-faint)}
+.focus-pane .stat-trio .desc{color:var(--ink-light)}
+.focus-pane .stat-trio .desc b{color:var(--ink-faint)}
+.focus-pane .callout{background:rgba(0, 0, 0, .04);border-left-color:var(--ink-faint)}
+.focus-pane .callout .tag{color:var(--ink-faint)}
+.focus-pane .callout p{color:var(--ink-light);margin:0}
 .focus-pane .photo-break{margin:0 calc(50% - 50vw) 32px}
-.focus-pane .photo-break .cap{color:rgba(255,255,255,.5)}
+.focus-pane .photo-break .cap{color:var(--ink-faint)}
 .focus-pane .update-sources{margin-top:22px}
-.focus-pane .update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
-.focus-pane .update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.focus-pane .update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
+.focus-pane .update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .focus-pane .update-sources li{margin-bottom:5px;line-height:1.5;font-size:.78rem;font-family:-apple-system,sans-serif}
-.focus-pane .update-sources a{color:#e8b3b3}
-.focus-pane .term{border-bottom-color:#e8b3b3}
-.focus-pane .term::after{background:#fff;color:var(--ink)}
-.focus-pane .term::before{border-top-color:#fff}
+.focus-pane .update-sources a{color:var(--ink-faint)}
+.focus-pane .term{border-bottom-color:var(--ink-faint)}
 
 /* ══ VIDEO / RESOURCES ══ */
 .video-wrap{margin:30px 0;border:1px solid var(--rule)}
@@ -302,7 +298,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -522,7 +518,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
   </div>
   <div class="photo-break">
     <img src="images/holodomor-memorial.jpg" alt="Holodomor Genocide Memorial in Kyiv, Ukraine" onerror="this.style.display='none'">
-    <div class="cap">The Holodomor Genocide Memorial in Kyiv — a young girl holding stalks of wheat. <a href="https://commons.wikimedia.org/wiki/File:Holodomor_Genocide_Memorial_Kyiv.JPG" target="_blank" style="color:#e8b3b3">Photo: Andriy155, CC BY 3.0</a></div>
+    <div class="cap">The Holodomor Genocide Memorial in Kyiv — a young girl holding stalks of wheat. <a href="https://commons.wikimedia.org/wiki/File:Holodomor_Genocide_Memorial_Kyiv.JPG" target="_blank" style="color:var(--ink-faint)">Photo: Andriy155, CC BY 3.0</a></div>
   </div>
   <div class="focus-pane-inner">
     <p>The Holodomor is one of the darkest chapters in Ukrainian history. It is also one of the least known. Between 1932 and 1933, the Soviet dictator <strong>Joseph Stalin</strong> engineered a famine. It killed between <strong>3.5 and 7 million Ukrainians</strong>. The word "Holodomor" comes from the Ukrainian words for "death by hunger."<a class="cite-inline" href="https://www.britannica.com/event/Holodomor" target="_blank">Britannica</a></p>
@@ -1016,7 +1012,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1342,8 +1338,8 @@ sites.forEach(s => {
 
 </script>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

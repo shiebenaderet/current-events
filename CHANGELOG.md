@@ -2,6 +2,33 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.8.0] — 2026-08-31
+
+**Minor — the Situation Update and focus panes are light. Angle 1 of the site audit is complete.**
+
+**6,036 words were set light-on-dark**, including single sections of 1,302 words (iran) and 900 (gun-violence). A dark ground is fine for a short pull-out and poor for sustained reading, and these panes hold the longest volatile passages on the site — for a class with many students reading below grade level, that was the hardest surface in the worst place. It had also been reported directly: the panes read as "not great".
+
+The panes stay distinct. They keep the eyebrow, the badge, the date line and their own warmer ground; they simply stop being inverted. Every combination on the new ground passes AA: ink 15.44:1, ink-light 7.86:1, ink-faint 5.12:1, and each page's accent between 6.4 and 8.4:1.
+
+**Done mechanically, because 289 pane-scoped rules across seven inline stylesheets is exactly the shape of the v4.0.0 Source Serif miss** — two variants existed, one was found, 32 declarations survived. `tools/lighten_panes.py` maps by what a colour was *for* rather than by its literal value (ground, body, emphasis, faint, hairline, tinted fill), converted 155 rules, and the result is verified by asserting no light-on-dark colour survives inside a pane.
+
+**Inline styles were the gap, and the contrast checker only found them once it resolved tokens.** A stylesheet sweep cannot see `style="..."` in markup, and fourteen inline colours had been chosen for the dark ground — landing at 1.1–2.9:1 after the flip, which is invisible text. The first version of `tools/check_pane_contrast.py` matched only literal hex and reported "0 checked, all pass", a check that examines nothing. Chasing `var()` through each page's palette found the rest, including `--gold-l` at 2.11:1 and then `--gold` at 2.89:1.
+
+The gold labels now use `var(--accent)`, which is what iran, ai and ukraine already use for the same element — a contrast fix and a consistency fix in the same edit, which is what this audit is for.
+
+**Angle 1 findings, all closed:**
+
+| Finding | Resolution |
+|---|---|
+| Two unrelated timeline designs | One system at two weights (4.7.0) |
+| 88 dead CSS rules, 9.9 KB | Removed; `.section-nav` had outlived its markup by nine pages |
+| Jump strip hidden under the sticky card header | Offset by the measured summary height (4.6.0) |
+| 6,036 words light-on-dark | Panes lightened |
+| 14 inline colours assuming a dark ground | Fixed; a permanent checker added |
+| 103 inline `style=` attributes | Examined: 37 appear exactly once and are local one-offs, not a system failure. The ones that mattered were the colour cases above. |
+| climate-change and ukraine dated sections lack `update-pane` | Now cosmetic rather than structural — a light pane and a plain article section differ by an eyebrow and a tint |
+| gun-violence: 21 glossed terms, zero Key Word boxes | Carried to Angle 2; adding them is writing content |
+
 ## [4.7.0] — 2026-08-31
 
 **Minor — one timeline system, alternating on a centred spine, applied to both timeline components. Decade grouping removed.**

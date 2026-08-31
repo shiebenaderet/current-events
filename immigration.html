@@ -184,8 +184,6 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 }
 .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
 .update-box .term{border-bottom-color:var(--gold-l)}
-.update-box .term::after{background:#fff;color:var(--ink)}
-.update-box .term::before{border-top-color:#fff}
 @media(max-width:600px){
   .term::after{left:0;transform:translateX(0) translateY(4px);max-width:min(240px,70vw)}
   .term:hover::after,.term:focus::after,.term:focus-visible::after{transform:translateX(0) translateY(0)}
@@ -278,50 +276,50 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 @media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
 
 /* ══ UPDATE PANE ══ */
-.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw}
 .update-pane-inner{max-width:900px;margin:0 auto}
 .update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
 .update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
-.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:var(--ink)}
 .update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
-.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-bottom:28px}
 
-.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--rule)}
 .mini-tl-item{display:flex;gap:14px;align-items:baseline}
 .mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
 .mini-tl-dot.blue{background:#82b1ff}
 .mini-tl-dot.green{background:#5a8a5a}
-.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
-.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85);min-width:0}
-.mini-tl-text strong{color:#fff}
-.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:var(--ink-faint);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:var(--ink-light);min-width:0}
+.mini-tl-text strong{color:var(--ink)}
+.mini-tl-text .cite-inline{color:var(--ink-faint)}
 .mini-tl-text .cite-inline:hover{color:var(--gold-l)}
 
 .update-grid{display:grid;grid-template-columns:1fr;gap:0}
-.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box{padding:28px 0;border-bottom:1px solid var(--rule)}
 .update-box:last-child{border-bottom:none}
 .update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
-.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:var(--ink);margin-bottom:16px}
+.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1rem;color:var(--ink-light);line-height:1.7;margin-bottom:14px}
 .update-box p:last-of-type{margin-bottom:14px}
-.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline{color:var(--ink-faint)}
 .update-box .cite-inline:hover{color:var(--gold-l)}
 .update-box .vocab{border-left-color:var(--gold-l)}
 .update-box .vocab b{color:var(--gold-l)}
-.update-box .vocab p{color:rgba(255,255,255,.75)}
-.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
+.update-box .vocab p{color:var(--ink-light)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:var(--rule)}
 .update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
-.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
-.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
-.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:var(--ink-light)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:var(--ink-faint)}
+.update-box .callout{background:rgba(0, 0, 0, .04);border-left-color:var(--gold-l)}
 .update-box .callout .tag{color:var(--gold-l)}
-.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-box .callout p{color:var(--ink-light)}
 .update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
-.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
-.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .update-sources li{margin-bottom:5px;line-height:1.5}
 .update-sources a{color:var(--gold-l)}
-.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
+.update-box .small-note{font-size:.78rem;color:var(--ink-faint)}
 
 /* ══ DIFFERING PERSPECTIVES (Part B contested claims only — scoped to this page) ══ */
 .perspectives{
@@ -345,14 +343,14 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
   .perspective + .perspective{border-left:none;border-top:1px solid var(--rule)}
 }
 /* Dark-background override — .perspectives sits inside .update-box, matching the treatment already used for .vocab/.callout/.stat-pair in that context. Both sides keep identical padding, size, and treatment. */
-.update-box .perspectives{border-color:rgba(255,255,255,.15)}
-.update-box .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+.update-box .perspectives{border-color:var(--rule)}
+.update-box .perspective + .perspective{border-left-color:var(--rule)}
 @media(max-width:600px){
   .update-box .perspective + .perspective{border-top-color:rgba(255,255,255,.15)}
 }
 .update-box .perspective-label{color:var(--gold-l)}
-.update-box .perspective p{color:rgba(255,255,255,.82)}
-.update-box .perspective .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .perspective p{color:var(--ink-light)}
+.update-box .perspective .cite-inline{color:var(--ink-faint)}
 .update-box .perspective .cite-inline:hover{color:var(--gold-l)}
 
 /* ══ VIDEO / RESOURCES ══ */
@@ -390,7 +388,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1362,7 +1360,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
   <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <script>
 let pts = 0;
@@ -1649,8 +1647,8 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
   <button class="study-mode-toggle" id="studyModeToggle" onclick="toggleStudyMode()" aria-pressed="false" title="Show the meaning of every highlighted word, inline">💡 Word meanings</button>
 </div>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

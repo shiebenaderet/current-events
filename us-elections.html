@@ -123,7 +123,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .stat-pair .desc,.stat-trio .desc{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.5;margin-top:4px}
 .stat-pair .desc b,.stat-trio .desc b{display:block;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px;font-weight:800}
 .stat-pair .stat.clickable,.stat-trio .stat.clickable{cursor:pointer}
-.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--gold)}
+.stat-pair .stat.clicked .num,.stat-trio .stat.clicked .num{color:var(--accent)}
 @media (max-width:560px){.stat-pair,.stat-trio{grid-template-columns:1fr}}
 
 .vocab{margin:28px 0;padding-left:20px;border-left:3px solid var(--gold)}
@@ -215,53 +215,51 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 @media(max-width:560px){.person{flex-direction:column;align-items:center;text-align:center}}
 
 /* ══ UPDATE PANE ══ */
-.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw}
 .update-pane-inner{max-width:900px;margin:0 auto}
 .update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
-.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
-.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:var(--ink)}
 .update-badge{font-family:-apple-system,sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--gold);color:#3a2000;padding:4px 10px;margin-left:8px}
-.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-bottom:28px}
 
-.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--rule)}
 .mini-tl-item{display:flex;gap:14px;align-items:baseline}
 .mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--gold-l)}
 .mini-tl-dot.blue{background:#82b1ff}
 .mini-tl-dot.green{background:#5a8a5a}
-.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
-.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
-.mini-tl-text strong{color:#fff}
-.mini-tl-text .cite-inline{color:rgba(255,255,255,.5)}
-.mini-tl-text .cite-inline:hover{color:var(--gold-l)}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:var(--ink-faint);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:var(--ink-light)}
+.mini-tl-text strong{color:var(--ink)}
+.mini-tl-text .cite-inline{color:var(--ink-faint)}
+.mini-tl-text .cite-inline:hover{color:var(--accent)}
 
 .update-grid{display:grid;grid-template-columns:1fr;gap:0}
-.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box{padding:28px 0;border-bottom:1px solid var(--rule)}
 .update-box:last-child{border-bottom:none}
 .update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
-.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.24rem;color:var(--ink);margin-bottom:16px}
+.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1rem;color:var(--ink-light);line-height:1.7;margin-bottom:14px}
 .update-box p:last-of-type{margin-bottom:14px}
-.update-box .cite-inline{color:rgba(255,255,255,.5)}
-.update-box .cite-inline:hover{color:var(--gold-l)}
-.update-box .vocab{border-left-color:var(--gold-l)}
-.update-box .vocab b{color:var(--gold-l)}
-.update-box .vocab p{color:rgba(255,255,255,.75)}
-.update-box .term{border-bottom-color:var(--gold-l)}
-.update-box .term::after{background:#fff;color:var(--ink)}
-.update-box .term::before{border-top-color:#fff}
-.update-box .stat-trio,.update-box .stat-pair{border-color:rgba(255,255,255,.15)}
-.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--gold-l)}
-.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:rgba(255,255,255,.7)}
-.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:rgba(255,255,255,.45)}
-.update-box .callout{background:rgba(255,255,255,.06);border-left-color:var(--gold-l)}
-.update-box .callout .tag{color:var(--gold-l)}
-.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-box .cite-inline{color:var(--ink-faint)}
+.update-box .cite-inline:hover{color:var(--accent)}
+.update-box .vocab{border-left-color:var(--accent)}
+.update-box .vocab b{color:var(--accent)}
+.update-box .vocab p{color:var(--ink-light)}
+.update-box .term{border-bottom-color:var(--accent)}
+.update-box .stat-trio,.update-box .stat-pair{border-color:var(--rule)}
+.update-box .stat-trio .num,.update-box .stat-pair .num{color:var(--accent)}
+.update-box .stat-trio .desc,.update-box .stat-pair .desc{color:var(--ink-light)}
+.update-box .stat-trio .desc b,.update-box .stat-pair .desc b{color:var(--ink-faint)}
+.update-box .callout{background:rgba(0, 0, 0, .04);border-left-color:var(--accent)}
+.update-box .callout .tag{color:var(--accent)}
+.update-box .callout p{color:var(--ink-light)}
 .update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
-.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
-.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .update-sources li{margin-bottom:5px;line-height:1.5}
-.update-sources a{color:var(--gold-l)}
-.update-box .small-note{font-size:.78rem;color:rgba(255,255,255,.55)}
+.update-sources a{color:var(--accent)}
+.update-box .small-note{font-size:.78rem;color:var(--ink-faint)}
 
 /* ══ VIDEO / RESOURCES ══ */
 .video-wrap{margin:30px 0;border:1px solid var(--rule)}
@@ -292,14 +290,14 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
 .toast.show{transform:translateX(0)}
 .toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
 .toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
-.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.4}
 
 .hero-flag-click{cursor:pointer}
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -490,9 +488,9 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
         <p>Here's a plain, dated snapshot of Washington — before any 2026 votes are counted. <strong>Republicans</strong> hold the presidency. They also hold the majority in the House of Representatives and the majority in the Senate. <a class="cite-inline" href="https://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank">src</a></p>
         <p>The <strong>Speaker of the House is Mike Johnson</strong>. He's held the role since October 2023. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections" target="_blank">src</a> The <strong>Senate Majority Leader is John Thune</strong>. He's held the role since January 2025. <a class="cite-inline" href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank">src</a></p>
         <p>Section 1 explains these two roles in more detail. In short: the Speaker decides which bills get a vote on the House floor, and the Majority Leader controls the Senate's schedule. That's why it matters so much which party controls each chamber. Whichever party wins the majority picks that chamber's leader. That leader then controls what does, and doesn't, come up for a vote for the next two years.</p>
-        <div class="callout" style="background:rgba(255,255,255,.06);border-left-color:var(--gold-l)">
-          <span class="tag" style="color:var(--gold-l)">Think about it</span>
-          <p style="color:rgba(255,255,255,.7)">This same fact block would read exactly the same no matter which party held these roles. Why do you think it matters that a civics page describe "who's in charge" as a plain fact, instead of as good news or bad news?</p>
+        <div class="callout" style="background:rgba(0,0,0,.04);border-left-color:var(--accent)">
+          <span class="tag" style="color:var(--accent)">Think about it</span>
+          <p style="color:var(--ink-light)">This same fact block would read exactly the same no matter which party held these roles. Why do you think it matters that a civics page describe "who's in charge" as a plain fact, instead of as good news or bad news?</p>
         </div>
         <details class="update-sources">
           <summary>Sources for this section</summary>
@@ -526,9 +524,9 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
       <div class="update-box">
         <span class="update-box-icon">📊</span>
         <h3>A historical pattern political scientists have observed</h3>
-        <div class="vocab" style="border-left-color:var(--gold-l)">
-          <b style="color:var(--gold-l)">Key Word: Midterm Penalty</b>
-          <p style="color:rgba(255,255,255,.75)">Race ratings like Cook's are one way to guess at an election. Here is a second, completely different one, and it is worth knowing they are different kinds of evidence: ratings look at the particular candidates running right now, while this looks only at a long historical pattern and ignores who is running entirely. Political scientists have studied how the president's party usually does in midterm elections. Going back to 1946, the president's party has lost House seats in 18 of the last 20 midterms. <a class="cite-inline" href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">src</a> This comes from UCSB's American Presidency Project, a nonpartisan academic research group.</p>
+        <div class="vocab" style="border-left-color:var(--accent)">
+          <b style="color:var(--accent)">Key Word: Midterm Penalty</b>
+          <p style="color:var(--ink-light)">Race ratings like Cook's are one way to guess at an election. Here is a second, completely different one, and it is worth knowing they are different kinds of evidence: ratings look at the particular candidates running right now, while this looks only at a long historical pattern and ignores who is running entirely. Political scientists have studied how the president's party usually does in midterm elections. Going back to 1946, the president's party has lost House seats in 18 of the last 20 midterms. <a class="cite-inline" href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections" target="_blank">src</a> This comes from UCSB's American Presidency Project, a nonpartisan academic research group.</p>
         </div>
         <p><strong>This is a historical pattern, not a prediction about 2026.</strong> It describes how midterms have gone for the last 80 years. Every single election still has its own candidates and its own issues. A historical pattern can't capture those.</p>
         <details class="update-sources">
@@ -1126,7 +1124,7 @@ footer .secret-text{color:var(--paper);font-size:.5px;user-select:none}
   <p style="margin-top:6px">Images from Wikimedia Commons (public domain / CC-BY-SA) unless otherwise noted. This page is for educational purposes and aims for strict nonpartisanship. Events are changing rapidly — always check a trusted source for the latest news.</p>
   <p style="margin-top:10px">💡 Teacher tip: Try the Konami code on this page ↑↑↓↓←→←→BA</p>
   <div class="secret-text" aria-hidden="true">We the People — E Pluribus Unum</div>
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1389,8 +1387,8 @@ document.getElementById('eggModal').addEventListener('click', (e) => {
 
 </script>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

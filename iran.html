@@ -207,45 +207,43 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .person .src a{color:inherit}
 
 /* ══ UPDATE PANE ══ */
-.update-pane{background:var(--ink);color:#f0ece4;padding:40px 6vw}
+.update-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw}
 .update-pane-inner{max-width:900px;margin:0 auto}
 .update-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
 .update-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8c9c9;font-weight:800}
-.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
+.update-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:var(--ink)}
 .update-badge{font-family:-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);padding:4px 10px;margin-left:8px}
-.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px}
+.update-date{font-family:-apple-system,sans-serif;font-size:.82rem;color:var(--ink-faint);margin-bottom:28px}
 
-.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15)}
+.mini-tl{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--rule)}
 .mini-tl-item{display:flex;gap:14px;align-items:baseline}
 .mini-tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--accent)}
 .mini-tl-dot.gold{background:#c9a227}
 .mini-tl-dot.blue{background:#6a8bbf}
 .mini-tl-dot.green{background:#5a8a5a}
-.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);width:64px;flex-shrink:0}
-.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:rgba(255,255,255,.85)}
-.mini-tl-text strong{color:#fff}
+.mini-tl-date{font-family:-apple-system,sans-serif;font-size:.72rem;font-weight:800;color:var(--ink-faint);width:64px;flex-shrink:0}
+.mini-tl-text{font-family:-apple-system,sans-serif;font-size:.86rem;line-height:1.55;color:var(--ink-light)}
+.mini-tl-text strong{color:var(--ink)}
 
 .update-grid{display:grid;grid-template-columns:1fr;gap:0}
-.update-box{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.update-box{padding:28px 0;border-bottom:1px solid var(--rule)}
 .update-box:last-child{border-bottom:none}
 .update-box-icon{font-size:1.5rem;display:block;margin-bottom:8px}
-.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:16px}
-.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.02rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:14px}
+.update-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:var(--ink);margin-bottom:16px}
+.update-box p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.02rem;color:var(--ink-light);line-height:1.7;margin-bottom:14px}
 .update-box p:last-of-type{margin-bottom:14px}
-.update-box .cite-inline{color:rgba(255,255,255,.5)}
+.update-box .cite-inline{color:var(--ink-faint)}
 .update-box .cite-inline:hover{color:#e8c9c9}
 .update-box .vocab{border-left-color:#e8c9c9}
 .update-box .vocab b{color:#e8c9c9}
-.update-box .vocab p{color:rgba(255,255,255,.75)}
+.update-box .vocab p{color:var(--ink-light)}
 .update-box .term{border-bottom-color:#e8c9c9}
-.update-box .term::after{background:#fff;color:var(--ink)}
-.update-box .term::before{border-top-color:#fff}
-.update-box .callout{background:rgba(255,255,255,.06);border-left-color:#e8c9c9}
+.update-box .callout{background:rgba(0, 0, 0, .04);border-left-color:#e8c9c9}
 .update-box .callout .tag{color:#e8c9c9}
-.update-box .callout p{color:rgba(255,255,255,.75)}
+.update-box .callout p{color:var(--ink-light)}
 .update-sources{margin-top:14px;font-family:-apple-system,sans-serif;font-size:.78rem}
-.update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700}
-.update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700}
+.update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .update-sources li{margin-bottom:5px;line-height:1.5}
 .update-sources a{color:#e8c9c9}
 
@@ -293,7 +291,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .shake{animation:shake .4s}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1032,7 +1030,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
   <div style="opacity:.02;font-size:1px;margin-top:10px">زندگی، آزادی، زن</div>
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1392,8 +1390,8 @@ L.polygon(iranPoly,{color:'#245a8c',weight:2.5,fillColor:'#245a8c',fillOpacity:.
 
 </script>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

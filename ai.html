@@ -47,7 +47,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .article-hero h1{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:1.04;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:22px}
 .article-hero .dek{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;color:#f0ece4;max-width:640px;margin:0 auto 24px}
 .article-hero .byline{font-family:-apple-system,sans-serif;font-size:.76rem;color:rgba(255,255,255,.68);letter-spacing:.03em}
-.hero-credit{position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;font-size:.64rem;color:rgba(255,255,255,.5);text-align:right}
+.hero-credit{position:absolute;bottom:14px;right:6vw;z-index:1;font-family:-apple-system,sans-serif;font-size:.64rem;color:var(--ink-faint);text-align:right}
 .hero-credit a{color:inherit}
 
 /* ══ POINTS BAR ══ */
@@ -55,7 +55,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .points-display{background:rgba(255,255,255,.12);padding:3px 10px;font-weight:800}
 .progress-wrap{width:180px;height:6px;background:rgba(255,255,255,.15);overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);width:0%;transition:width .3s}
-.unlock-hint{color:rgba(255,255,255,.55);font-size:.76rem}
+.unlock-hint{color:var(--ink-faint);font-size:.76rem}
 
 /* ══ BREAKING BANNER ══ */
 .breaking{background:var(--accent-ink);color:#fff;padding:16px 6vw;font-family:-apple-system,sans-serif}
@@ -131,9 +131,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
   opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
 }
 .term:hover::before,.term:focus::before,.term:focus-visible::before{opacity:1;visibility:visible}
-.focus-pane .term{border-bottom-color:#b3c0e8}
-.focus-pane .term::after{background:#fff;color:var(--ink)}
-.focus-pane .term::before{border-top-color:#fff}
+.focus-pane .term{border-bottom-color:var(--accent)}
 @media(max-width:600px){
   .term::after{max-width:70vw;font-size:.74rem}
 }
@@ -166,7 +164,7 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .audio-embed{margin:26px 0}
 .audio-embed iframe{width:100%;border:none;display:block}
 .audio-embed .cap{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-faint);margin-top:8px;line-height:1.5}
-.focus-pane .audio-embed .cap{color:rgba(255,255,255,.55)}
+.focus-pane .audio-embed .cap{color:var(--ink-faint)}
 
 /* ══ QUIZ ══ */
 .quiz-inline{margin:36px 0}
@@ -219,33 +217,33 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 .person .src a{color:inherit}
 
 /* ══ FOCUS PANE (dark inset panel, used for AI & School, Animals, Hinton, Agentic) ══ */
-.focus-pane{background:#0f1420;color:#f0ece4;padding:40px 6vw}
+.focus-pane{background:var(--paper-warm);color:var(--ink-light);padding:40px 6vw}
 .focus-pane-inner{max-width:700px;margin:0 auto}
 .focus-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;flex-wrap:wrap}
-.focus-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#b3c0e8;font-weight:800}
+.focus-head .num{font-family:-apple-system,sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800}
 .focus-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:#fff}
-.focus-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.08rem;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:20px}
-.focus-pane p strong{color:#fff}
+.focus-pane p{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-system,Arial,sans-serif;font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:20px}
+.focus-pane p strong{color:var(--ink)}
 .focus-pane p em{color:#e8dcc8}
-.focus-pane .cite-inline{color:rgba(255,255,255,.5)}
-.focus-pane .cite-inline:hover{color:#b3c0e8}
-.focus-pane .stat-trio,.focus-pane .stat-pair{border-color:rgba(255,255,255,.15)}
-.focus-pane .stat-trio .num,.focus-pane .stat-pair .num{color:#b3c0e8}
-.focus-pane .stat-trio .desc,.focus-pane .stat-pair .desc{color:rgba(255,255,255,.7)}
-.focus-pane .stat-trio .desc b,.focus-pane .stat-pair .desc b{color:rgba(255,255,255,.45)}
-.focus-pane .callout{background:rgba(255,255,255,.06);border-left-color:#b3c0e8}
-.focus-pane .callout .tag{color:#b3c0e8}
-.focus-pane .callout p{color:rgba(255,255,255,.78);margin:0}
-.focus-pane .vocab{border-left-color:#b3c0e8}
-.focus-pane .vocab b{color:#b3c0e8}
-.focus-pane .vocab p{color:rgba(255,255,255,.75)}
+.focus-pane .cite-inline{color:var(--ink-faint)}
+.focus-pane .cite-inline:hover{color:var(--accent)}
+.focus-pane .stat-trio,.focus-pane .stat-pair{border-color:var(--rule)}
+.focus-pane .stat-trio .num,.focus-pane .stat-pair .num{color:var(--accent)}
+.focus-pane .stat-trio .desc,.focus-pane .stat-pair .desc{color:var(--ink-light)}
+.focus-pane .stat-trio .desc b,.focus-pane .stat-pair .desc b{color:var(--ink-faint)}
+.focus-pane .callout{background:rgba(0, 0, 0, .04);border-left-color:var(--accent)}
+.focus-pane .callout .tag{color:var(--accent)}
+.focus-pane .callout p{color:var(--ink-light);margin:0}
+.focus-pane .vocab{border-left-color:var(--accent)}
+.focus-pane .vocab b{color:var(--accent)}
+.focus-pane .vocab p{color:var(--ink-light)}
 .focus-pane .photo-break{margin:0 calc(50% - 50vw) 32px}
-.focus-pane .photo-break .cap{color:rgba(255,255,255,.5)}
+.focus-pane .photo-break .cap{color:var(--ink-faint)}
 .focus-pane .update-sources{margin-top:22px}
-.focus-pane .update-sources summary{cursor:pointer;color:rgba(255,255,255,.55);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
-.focus-pane .update-sources ul{margin:10px 0 0 18px;color:rgba(255,255,255,.6)}
+.focus-pane .update-sources summary{cursor:pointer;color:var(--ink-faint);font-weight:700;font-family:-apple-system,sans-serif;font-size:.78rem}
+.focus-pane .update-sources ul{margin:10px 0 0 18px;color:var(--ink-faint)}
 .focus-pane .update-sources li{margin-bottom:5px;line-height:1.5;font-size:.78rem;font-family:-apple-system,sans-serif}
-.focus-pane .update-sources a{color:#b3c0e8}
+.focus-pane .update-sources a{color:var(--accent)}
 /* ══ DIFFERING PERSPECTIVES (reused inside the Hinton focus-pane for the regulation counter-view) ══ */
 .perspectives{
   display:grid;grid-template-columns:1fr 1fr;gap:0;
@@ -269,16 +267,16 @@ body{font-family:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',-apple-sys
 }
 /* Dark-background override — this page's .perspectives sits inside a .focus-pane, not an .update-box,
    so it gets its own override matching the same rgba treatment as .callout/.vocab in that context. */
-.focus-pane .perspectives{border-color:rgba(255,255,255,.15)}
-.focus-pane .perspective + .perspective{border-left-color:rgba(255,255,255,.15)}
+.focus-pane .perspectives{border-color:var(--rule)}
+.focus-pane .perspective + .perspective{border-left-color:var(--rule)}
 @media(max-width:600px){.focus-pane .perspective + .perspective{border-left:none;border-top:1px solid rgba(255,255,255,.15)}}
-.focus-pane .perspective-label{color:#b3c0e8}
-.focus-pane .perspective p{color:rgba(255,255,255,.85)}
-.focus-pane .perspective .cite-inline{color:rgba(255,255,255,.5)}
-.focus-pane .perspective .cite-inline:hover{color:#b3c0e8}
-.focus-pane .footnotes{border-top-color:rgba(255,255,255,.15)}
-.focus-pane .footnotes li{color:rgba(255,255,255,.5);font-family:-apple-system,sans-serif;font-size:.75rem}
-.focus-pane .footnotes a{color:#b3c0e8}
+.focus-pane .perspective-label{color:var(--accent)}
+.focus-pane .perspective p{color:var(--ink-light)}
+.focus-pane .perspective .cite-inline{color:var(--ink-faint)}
+.focus-pane .perspective .cite-inline:hover{color:var(--accent)}
+.focus-pane .footnotes{border-top-color:var(--rule)}
+.focus-pane .footnotes li{color:var(--ink-faint);font-family:-apple-system,sans-serif;font-size:.75rem}
+.focus-pane .footnotes a{color:var(--accent)}
 
 .footnotes{margin-top:20px;padding-top:14px;border-top:1px solid var(--rule)}
 .footnotes ol{margin:0 0 0 20px;padding:0}
@@ -313,7 +311,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .toast.show{transform:translateX(0)}
 .toast-icon{font-size:1.3rem;display:block;margin-bottom:4px}
 .toast-title{font-family:-apple-system,sans-serif;font-weight:800;font-size:.88rem;margin-bottom:3px}
-.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+.toast-msg{font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-light);line-height:1.4}
 
 .hero-flag-click{cursor:pointer}
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
@@ -321,7 +319,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 .stat.clickable{cursor:pointer}
 
 </style>
-<link rel="stylesheet" href="site.css?v=4.7.0">
+<link rel="stylesheet" href="site.css?v=4.8.0">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -760,7 +758,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="photo-break">
     <img src="images/student-with-computer.jpg" alt="A student in a classroom using a laptop computer" onerror="this.style.display='none'">
-    <div class="cap">A student uses a laptop in class. Schools everywhere are still figuring out where AI tools fit into schoolwork like this. <a href="https://commons.wikimedia.org/wiki/File:Student_with_computer.JPG" target="_blank" style="color:#b3c0e8">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+    <div class="cap">A student uses a laptop in class. Schools everywhere are still figuring out where AI tools fit into schoolwork like this. <a href="https://commons.wikimedia.org/wiki/File:Student_with_computer.JPG" target="_blank" style="color:var(--accent)">Wikimedia Commons (CC BY-SA 4.0)</a></div>
   </div>
 
   <div class="focus-pane-inner">
@@ -771,11 +769,11 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="audio-embed" style="max-width:700px;margin-left:auto;margin-right:auto;padding:0 6vw">
     <iframe src="https://open.spotify.com/embed/show/4KI3PtZaWJbAWK89vgttoU?utm_source=generator&theme=0" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <div class="cap">Your Undivided Attention — "Rethinking School in the Age of AI" (April 2025). <a href="https://www.humanetech.com/podcast/rethinking-school-in-the-age-of-ai" target="_blank" style="color:#b3c0e8">Listen on humanetech.com →</a></div>
+    <div class="cap">Your Undivided Attention — "Rethinking School in the Age of AI" (April 2025). <a href="https://www.humanetech.com/podcast/rethinking-school-in-the-age-of-ai" target="_blank" style="color:var(--accent)">Listen on humanetech.com →</a></div>
   </div>
 
   <div class="focus-pane-inner">
-    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key takeaways</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:var(--ink)">Key takeaways</h3>
 
     <p><strong>Past tech in classrooms often failed.</strong> Every generation gets excited about a new technology transforming education: radio, TV, desktop computers, iPads. But research from the <span class="term" tabindex="0" data-def="A group of 38 countries that study and compare education policy across nations." aria-describedby="term-desc-9">OECD</span><span id="term-desc-9" class="term-desc">A group of 38 countries that study and compare education policy across nations.</span> found that just putting computers in classrooms didn't actually help students learn better.</p>
 
@@ -787,7 +785,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
     <div class="callout"><span class="tag">Think about it</span><p>Your generation is the first to go through school with AI tools that can write essays, summarize readings, and solve problems for you. Does using AI to do your homework help you learn — or does it skip the part where learning actually happens?</p></div>
 
-    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Two problems that come with the territory</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:var(--ink)">Two problems that come with the territory</h3>
 
     <p><strong>Cheating is already happening, mostly under the radar.</strong> In a 2024 nationally representative Common Sense Media survey of U.S. teens, 40% said they'd used generative AI to help with a school assignment — and 46% of those students did it without asking their teacher first. Only about half of the students who used AI for schoolwork said they checked whether what it told them was actually true.</p>
 
@@ -927,22 +925,22 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="photo-break">
     <img src="images/nersc-technician-server-rack.jpg" alt="A technician crouches with a laptop, working on a server rack at a scientific computing research center" onerror="this.style.display='none'">
-    <div class="cap">Inside a real research computing center. Training the huge neural networks Hinton studies takes rooms full of servers like this one. <a href="https://commons.wikimedia.org/wiki/File:Technician_with_laptop_working_on_server_rack_at_NERSC.jpg" target="_blank" style="color:#b3c0e8">Wikimedia Commons (public domain)</a></div>
+    <div class="cap">Inside a real research computing center. Training the huge neural networks Hinton studies takes rooms full of servers like this one. <a href="https://commons.wikimedia.org/wiki/File:Technician_with_laptop_working_on_server_rack_at_NERSC.jpg" target="_blank" style="color:var(--accent)">Wikimedia Commons (public domain)</a></div>
   </div>
 
   <div class="focus-pane-inner">
     <div class="audio-embed">
       <iframe src="https://open.spotify.com/embed/episode/6VTTwWSdzwDAZsKy3I34YN?utm_source=generator&theme=0" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <div class="cap">Babbage — "AI Is More Human Than You Think: An Interview With Geoffrey Hinton" (March 2025). <a href="https://www.economist.com/podcasts/2025/03/12/ai-is-more-human-than-you-think-an-interview-with-geoffrey-hinton" target="_blank" style="color:#b3c0e8">Listen on economist.com →</a></div>
+      <div class="cap">Babbage — "AI Is More Human Than You Think: An Interview With Geoffrey Hinton" (March 2025). <a href="https://www.economist.com/podcasts/2025/03/12/ai-is-more-human-than-you-think-an-interview-with-geoffrey-hinton" target="_blank" style="color:var(--accent)">Listen on economist.com →</a></div>
     </div>
 
-    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Who is Geoffrey Hinton?</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:var(--ink)">Who is Geoffrey Hinton?</h3>
 
     <p>Geoffrey Hinton spent over 40 years working on neural networks, the technology behind modern AI. Almost nobody believed it would work. For decades, the mainstream AI community dismissed his research as a dead end. Then, in 2012, his student's system called AlexNet crushed the competition in an image recognition contest. Everything changed. As Hinton described it: <em>"It felt validating. It feels like all those years of doing something that people thought was nonsense were okay."</em></p>
 
     <p>Hinton went on to work at Google, where his research helped build the AI systems we use today. In 2024, he won the Nobel Prize in Physics for his foundational work on neural networks. But in 2023, he did something unexpected. He quit Google specifically so he could speak freely about the dangers of the technology he helped create.</p>
 
-    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:#fff">Key insights from the interview</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;margin:30px 0 14px;color:var(--ink)">Key insights from the interview</h3>
 
     <p><strong>"Hallucinations" mean AI is more like us than we thought.</strong> When AI makes things up, most people see it as a bug. Hinton sees it differently: <em>"What that tells us is they're even more like us than we thought."</em> He explained that human memory works the same way. We don't store exact recordings of experiences. <em>"You don't store any strings of words in your head... you make it up."</em> The technical term for this is "confabulation," and humans do it all the time.</p>
 
@@ -966,7 +964,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
         <p>In the 2025 Stanford Emerging Technology Review, Stanford researchers Fei-Fei Li, Christopher Manning, and Anka Reuel make a more practical case against sweeping, one-size-fits-all AI rules: they probably won't survive contact with politics. Their assessment: "mandatory governance regimes for AI, even those to stave off catastrophic risks, will face stiff opposition from AI researchers and companies," while voluntary, self-governance approaches are more likely to actually gain support. They also point out that broad regulation of foundational AI technology is hard to enforce even among allied countries, whereas rules aimed at specific uses — like AI in healthcare or finance — can plug into regulatory systems that already exist. Given how few companies currently have the resources to build cutting-edge models from scratch, they suggest lighter, more targeted rules stand a better chance of actually working than heavy-handed ones that simply get fought off.<a class="cite-inline" href="https://setr.stanford.edu/technology/artificial-intelligence/2025" target="_blank">Stanford SETR, 2025</a></p>
       </div>
     </div>
-    <p class="small-note" style="font-family:-apple-system,sans-serif;font-size:.78rem;color:rgba(255,255,255,.55)">Notably, Fei-Fei Li built ImageNet — the dataset that made Hinton's own 2012 breakthrough possible (see Question 3 above). Even researchers closely tied to this technology's rise don't fully agree on how it should be governed.</p>
+    <p class="small-note" style="font-family:-apple-system,sans-serif;font-size:.78rem;color:var(--ink-faint)">Notably, Fei-Fei Li built ImageNet — the dataset that made Hinton's own 2012 breakthrough possible (see Question 3 above). Even researchers closely tied to this technology's rise don't fully agree on how it should be governed.</p>
 
     <div class="stat-trio">
       <div class="stat"><div class="num">2024</div><div class="desc"><b>Nobel Prize in Physics</b></div></div>
@@ -1011,7 +1009,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 
   <div class="photo-break">
     <img src="images/anymal-robot-inspection.jpg" alt="A four-legged autonomous robot walking through an outdoor electrical substation, inspecting the equipment on its own" onerror="this.style.display='none'">
-    <div class="cap">An autonomous inspection robot checks equipment at a power substation without a person guiding each step — a real-world example of the same "act on its own" idea behind agentic AI. <a href="https://commons.wikimedia.org/wiki/File:Anymal-robot-inspection-power-grid.jpg" target="_blank" style="color:#b3c0e8">Wikimedia Commons (CC BY-SA 4.0)</a></div>
+    <div class="cap">An autonomous inspection robot checks equipment at a power substation without a person guiding each step — a real-world example of the same "act on its own" idea behind agentic AI. <a href="https://commons.wikimedia.org/wiki/File:Anymal-robot-inspection-power-grid.jpg" target="_blank" style="color:var(--accent)">Wikimedia Commons (CC BY-SA 4.0)</a></div>
   </div>
 
   <div class="focus-pane-inner">
@@ -1293,7 +1291,7 @@ footer{max-width:700px;margin:60px auto 0;padding:28px 6vw 50px;border-top:3px d
 <footer>
   Made for 8th grade Social Studies students · All links go to trusted, nonpartisan sources · Updated August 2026
   <br><span style="margin-top:6px;display:inline-block">Podcast content from The Economist and the Center for Humane Technology. Try the Konami code on this page: ↑↑↓↓←→←→BA</span>
-<br><span class="build-version">Build 4.7.0</span></footer>
+<br><span class="build-version">Build 4.8.0</span></footer>
 
 <div class="a11y-controls">
   <div class="text-size-controls">
@@ -1670,8 +1668,8 @@ document.getElementById('quizModal').addEventListener('click', (e) => {
 
 </script>
 
-<script src="unfold-logic.js?v=4.7.0"></script>
-<script src="study-mode.js?v=4.7.0"></script>
-<script src="site.js?v=4.7.0"></script>
+<script src="unfold-logic.js?v=4.8.0"></script>
+<script src="study-mode.js?v=4.8.0"></script>
+<script src="site.js?v=4.8.0"></script>
 </body>
 </html>

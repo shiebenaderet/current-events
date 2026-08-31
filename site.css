@@ -214,12 +214,12 @@ body.text-xl .stat-trio .desc{font-size:1rem}
 
 /* The "Where Things Stand" pane is dark on every page, so the block inverts there.
    .on-dark rather than a page-specific selector, because all eight panes share it. */
-.before-read.on-dark > p{color:rgba(255,255,255,.82)}
-.before-read.on-dark .br-head{border-bottom-color:rgba(255,255,255,.18)}
-.before-read.on-dark .br-time{color:rgba(255,255,255,.55)}
-.before-read.on-dark .tag{color:#fff}
+.before-read.on-dark > p{color:var(--ink-light,#4a4a4a)}
+.before-read.on-dark .br-head{border-bottom-color:var(--rule,#d4cfc4)}
+.before-read.on-dark .br-time{color:var(--ink-faint,#6b655c)}
+.before-read.on-dark .tag{color:var(--accent)}
 @media (min-width:701px){
-  .before-read.on-dark{border-left-color:rgba(255,255,255,.35)}
+  .before-read.on-dark{border-left-color:var(--rule,#d4cfc4)}
 }
 
 /* ══ STUDY MODE ══════════════════════════════════════════════════════════
@@ -284,7 +284,7 @@ body.study-mode .sm-gloss-aside{
    new one. #d8d2c8 on #1a1a1a measures 11.58:1. */
 body.study-mode .update-pane .term-desc,
 body.study-mode .update-box .term-desc,
-body.study-mode .focus-pane .term-desc{color:#d8d2c8}
+body.study-mode .focus-pane .term-desc{color:var(--ink-light, #4a4a4a)}
 
 /* ── Study Mode, fix round 3 (append-only; every rule below overrides an
    earlier one by source order, at equal specificity) ─────────────────────
@@ -301,13 +301,14 @@ body.study-mode .update-box .sm-gloss,
 body.study-mode .focus-pane .sm-gloss,
 body.study-mode .update-pane .sm-gloss-aside,
 body.study-mode .update-box .sm-gloss-aside,
-body.study-mode .focus-pane .sm-gloss-aside{color:#d8d2c8}
-/* The aside's left rule is --accent, which is a dark ink on a dark pane.
-   Non-text, so not a WCAG 1.4.3 case, but it disappears; the pane's own
+body.study-mode .focus-pane .sm-gloss-aside{color:var(--ink-light,#4a4a4a)}
+/* Kept from when the panes were dark: --accent used to vanish against
+   them. The panes are light as of 4.8.0 so --accent would now be fine, but
+   the neutral rule is consistent with every other aside on the page and
    convention for a divider on dark is a translucent white. */
 body.study-mode .update-pane .sm-gloss-aside,
 body.study-mode .update-box .sm-gloss-aside,
-body.study-mode .focus-pane .sm-gloss-aside{border-left-color:rgba(255,255,255,.35)}
+body.study-mode .focus-pane .sm-gloss-aside{border-left-color:var(--rule,#d4cfc4)}
 
 /* 2. FOCUS RING. The ring was outline:2px solid var(--accent) while
    .active sets background:var(--accent) -- the same colour, so a keyboard
@@ -1017,7 +1018,7 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   margin-left: -1px;
   background: var(--rule, #d4cfc4);
 }
-.mini-tl::before { background: rgba(255, 255, 255, .18); }
+.mini-tl::before { background: var(--rule, #d4cfc4); }
 
 .tl-item,
 .mini-tl-item {
@@ -1047,7 +1048,7 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   box-sizing: border-box;
   z-index: 1;
 }
-.mini-tl-dot { background: var(--ink, #1a1a1a); }
+.mini-tl-dot { background: var(--paper-warm, #f5f1e8); }
 
 /* The year as a tab on the entry, not a column to scan across to. */
 .tl-year,
@@ -1074,8 +1075,8 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 }
 .tl-body > :last-child { margin-bottom: 0; }
 .mini-tl-text {
-  background: rgba(255, 255, 255, .05);
-  border-color: rgba(255, 255, 255, .14);
+  background: var(--surface, #fff);
+  border-color: var(--rule-soft, #e6e2da);
 }
 
 /* ── ALTERNATING, once there is width for it ─────────────────────────────
@@ -1183,16 +1184,17 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   border-color: var(--accent, #a02c2c);
 }
 
-/* A dark pane inverts the furniture. */
+/* The panes are light as of 4.8.0, so the furniture inside them no longer
+   inverts — it only sits on a slightly warmer ground than the page. */
 .update-pane .tl-jump,
-.focus-pane .tl-jump { background: var(--ink, #1a1a1a); }
+.focus-pane .tl-jump { background: var(--paper-warm, #f5f1e8); }
 .update-pane .tl-body,
 .focus-pane .tl-body {
-  background: rgba(255, 255, 255, .04);
-  border-color: rgba(255, 255, 255, .14);
+  background: var(--surface, #fff);
+  border-color: var(--rule-soft, #e6e2da);
 }
 .update-pane .tl-item::before,
-.focus-pane .tl-item::before { background: var(--ink, #1a1a1a); }
+.focus-pane .tl-item::before { background: var(--paper-warm, #f5f1e8); }
 
 /* On paper the whole timeline is already in front of the reader: no jump
    strip, no breakout, one column. */
