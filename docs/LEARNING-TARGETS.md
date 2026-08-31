@@ -1,7 +1,8 @@
 # Learning targets — one per substantive section
 
-**Status: draft, awaiting teacher review.** Nothing downstream should treat
-these as settled until that review happens.
+**Status: reviewed and approved as written, 2026-08-30.** All 60 targets were
+read by the teacher and none was marked for revision. Downstream work — Q1
+above all — may now treat these as settled.
 
 ## Why this file exists
 
@@ -141,8 +142,8 @@ what would be convenient to test. Two rules:
 
 ## What happens next
 
-1. Teacher reviews and corrects. A wrong target is worse than none — it
-   propagates into the revision of the whole section.
+1. ~~Teacher reviews and corrects.~~ **Done 2026-08-30 — approved as
+   written, no revisions requested.**
 2. Q1 runs per page: a separate agent gets the target and that page's quiz
    questions, never the section text, and answers what it can.
 3. Every question it answers correctly is reported, and the fix is a better

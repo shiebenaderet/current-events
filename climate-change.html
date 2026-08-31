@@ -1047,69 +1047,64 @@ const MAX_PTS = 10;   // 9 quizzes + the Konami easter egg
 const quizzes = {
   q9: {
     q: "The ice record shows carbon dioxide went up and down many times before the 1800s. So what makes the rise since then different?",
-    choices: [
-      "It is the first time carbon dioxide has ever gone up",
-      "It is far faster, and it lines up with people burning fuel",
-      "It is the first time anyone has measured the air",
-      "It is the only rise that happened during an ice age"
-    ],
-    correct: 1,
+    choices: ["It is far faster, and it lines up with people burning fuel","It is the first time anyone has measured the air","It is the first time carbon dioxide has ever gone up","It is the only rise that happened during an ice age"],
+    correct: 0,
     feedback: "✅ Right. Carbon dioxide had risen before — the difference is speed. NASA puts this rise at about 250 times faster than the one after the last ice age.",
     wrong: "Not quite — carbon dioxide had risen many times before. What is new is the speed, about 250 times faster than the rise after the last ice age."
   },
   q1: {
     q: "How do scientists know what Earth's climate was like 100,000s of years ago?",
-    choices: ["They study climate proxies, like ice cores and tree rings", "They guess based on today's weather patterns", "They rely on ancient written records"],
+    choices: ["They study climate proxies, like ice cores and tree rings","They guess based on today's weather patterns","They rely on ancient written records"],
     correct: 0,
     feedback: "✅ Correct! Climate proxies — ice cores, tree rings, sediment — record clues about past climate.",
     wrong: "Not quite — scientists rely on climate proxies like ice cores and tree rings."
   },
   q2: {
     q: "What happens to heat that greenhouse gases catch?",
-    choices: ["Some gets sent back down toward Earth's surface", "It escapes to space immediately", "It turns into oxygen"],
-    correct: 0,
+    choices: ["It escapes to space immediately","Some gets sent back down toward Earth's surface","It turns into oxygen"],
+    correct: 1,
     feedback: "✅ Correct! Some gets sent back toward the surface instead of escaping to space.",
     wrong: "Not quite — some heat gets sent back down toward the surface."
   },
   q3: {
     q: "How does today's warming speed compare to past natural shifts?",
-    choices: ["Roughly 10x faster than past natural warming", "About the same speed", "Slower than past natural warming"],
-    correct: 0,
+    choices: ["About the same speed","Slower than past natural warming","Roughly 10x faster than past natural warming"],
+    correct: 2,
     feedback: "✅ Correct! Roughly 10x faster than the average natural post-ice-age warming rate.",
     wrong: "Not quite — today's warming is roughly 10x faster than past natural rates."
   },
   q4: {
     q: "About how much of Mount Rainier's ice/snow volume disappeared, 1970–2007/08?",
-    choices: ["About 14%", "About 1%", "About 50%"],
+    choices: ["About 14%","About 1%","About 50%"],
     correct: 0,
     feedback: "✅ Correct! About 14%, measured directly by USGS survey comparison.",
     wrong: "Not quite — it was about 14%."
   },
   q5: {
     q: "What is Washington's single largest source of electricity?",
-    choices: ["Hydropower", "Natural gas", "Coal"],
-    correct: 0,
+    choices: ["Coal","Hydropower","Natural gas"],
+    correct: 1,
     feedback: "✅ Correct! Hydropower — about 60% of WA's electricity generation.",
     wrong: "Not quite — it's hydropower, about 60% of the mix."
   },
   q6: {
     q: "What was Washington's total 2022 emissions, and how did that compare to 2021?",
-    choices: ["96.1 million metric tons, down 0.5% from 2021", "10 million metric tons, up 20% from 2021", "96.1 million metric tons, up 15% from 2021"],
-    correct: 0,
+    choices: ["10 million metric tons, up 20% from 2021","96.1 million metric tons, up 15% from 2021","96.1 million metric tons, down 0.5% from 2021"],
+    correct: 2,
     feedback: "✅ Correct! 96.1 million metric tons in 2022, a 0.5% decline from 2021's 96.6 million.",
     wrong: "Not quite — it was 96.1 million metric tons, down 0.5% from 2021."
   },
   q7: {
     q: "Who ran the 1856 experiment that first showed CO₂ traps heat?",
-    choices: ["Eunice Foote", "Svante Arrhenius", "Charles David Keeling"],
+    choices: ["Eunice Foote","Svante Arrhenius","Charles David Keeling"],
     correct: 0,
     feedback: "✅ Correct! Eunice Foote, decades before the term greenhouse effect existed.",
     wrong: "Not quite — it was Eunice Foote, in 1856."
   },
   q8: {
     q: "What was Claude Lorius's key contribution?",
-    choices: ["Pioneered ice-core research at Vostok Station", "Invented the greenhouse", "Discovered the ozone layer"],
-    correct: 0,
+    choices: ["Invented the greenhouse","Pioneered ice-core research at Vostok Station","Discovered the ozone layer"],
+    correct: 1,
     feedback: "✅ Correct! He pioneered ice-core research at Vostok Station, revealing Earth's past atmosphere.",
     wrong: "Not quite — he pioneered ice-core research at Vostok Station."
   }

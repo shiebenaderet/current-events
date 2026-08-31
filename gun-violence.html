@@ -1676,76 +1676,71 @@ const MAX_PTS = 13;
 const quizzes = {
   q10: {
     q: "In 2024 the U.S. recorded 44,447 gun deaths. Which category was the largest?",
-    choices: [
-      "Homicides",
-      "Suicides",
-      "Accidents",
-      "Law enforcement actions"
-    ],
+    choices: ["Accidents","Suicides","Homicides","Law enforcement actions"],
     correct: 1,
     feedback: "✅ Right — and most people guess otherwise. Suicides were 27,593 of the 44,447; homicides were 15,364. Knowing that changes which questions are worth asking.",
     wrong: "Not quite. Suicides were the largest category at 27,593, ahead of homicides at 15,364. Most people guess the other way round, which is exactly why the breakdown is worth knowing."
   },
   q1: {
     q: "What did the Supreme Court decide in District of Columbia v. Heller (2008)?",
-    choices: ["That the Second Amendment only applies to militia members", "That the Second Amendment protects an individual's right to own a gun, even outside a militia", "That handgun bans are always constitutional", "That Congress cannot pass any gun laws"],
-    correct: 1,
+    choices: ["That the Second Amendment protects an individual's right to own a gun, even outside a militia","That the Second Amendment only applies to militia members","That handgun bans are always constitutional","That Congress cannot pass any gun laws"],
+    correct: 0,
     feedback: "✅ Correct! In 2008, the Supreme Court ruled 5-4 that the Second Amendment protects an individual person's right to own a gun for lawful purposes like self-defense, even if they are not part of a militia.",
     wrong: "Not quite. In Heller, the Supreme Court ruled that the Second Amendment protects an individual's right to own a gun, even outside of militia service."
   },
   q2: {
     q: "According to the K-12 School Shooting Database, in what year did gun violence at U.S. schools reach an all-time high?",
-    choices: ["2018", "2020", "2023", "2025"],
-    correct: 2,
+    choices: ["2020","2023","2018","2025"],
+    correct: 1,
     feedback: "✅ Correct! The K-12 School Shooting Database recorded 349 separate incidents at U.S. schools in 2023, the highest yearly total it has ever tracked.",
     wrong: "Not quite. The K-12 School Shooting Database recorded its highest-ever yearly total, 349 incidents, in 2023."
   },
   q3: {
     q: "Where does Washington rank among the 50 states for gun death rate per capita (12th) compared to school-shooting raw incident count (16th)?",
-    choices: ["Washington ranks 12th for gun death rate per capita and 16th for raw incident count", "Washington ranks 1st on both lists", "Washington ranks 40th on both lists", "Washington does not appear on either list"],
-    correct: 0,
+    choices: ["Washington ranks 40th on both lists","Washington does not appear on either list","Washington ranks 12th for gun death rate per capita and 16th for raw incident count","Washington ranks 1st on both lists"],
+    correct: 2,
     feedback: "✅ Correct! Washington's 2024 gun death rate of 11.0 per 100,000 people ranks 12th out of 50 states, lowest to highest. Its 67 school-shooting incidents since 1966 rank 16th out of 50 states by raw count.",
     wrong: "Not quite. Washington ranks 12th out of 50 states for gun death rate per capita (11.0 per 100,000) and 16th out of 50 states for raw school-shooting incident count (67 incidents)."
   },
   q4: {
     q: "According to research cited by RAND Corporation, what did a 2023 meta-analysis find about school resource officers (SROs) and school discipline?",
-    choices: ["SROs had no effect on suspensions or arrests for any students", "SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals, with the largest effect for Black and Latino students", "SROs eliminated racial disparities in school discipline", "SROs were only used in schools with no security cameras"],
-    correct: 1,
+    choices: ["SROs were only used in schools with no security cameras","SROs eliminated racial disparities in school discipline","SROs had no effect on suspensions or arrests for any students","SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals, with the largest effect for Black and Latino students"],
+    correct: 3,
     feedback: "✅ Correct! A 2023 meta-analysis (Fisher et al.) found consistently strong evidence that SROs are linked to more suspensions, expulsions, and law-enforcement referrals, with the effect largest for Black and Latino students — even as other studies found SROs linked to catching more weapons and fewer violent incidents.",
     wrong: "Not quite. A 2023 meta-analysis found SROs were consistently linked to more suspensions, expulsions, and law-enforcement referrals for students, and that this effect was largest for Black and Latino students."
   },
   q5: {
     q: "Under a typical extreme risk protection order (\"red-flag\") law, who is usually allowed to petition a court for an order?",
-    choices: ["Any adult resident of the state", "Only the person's employer", "Law enforcement officers and, in many cases, family or household members", "Only the state's governor"],
-    correct: 2,
+    choices: ["Law enforcement officers and, in many cases, family or household members","Any adult resident of the state","Only the state's governor","Only the person's employer"],
+    correct: 0,
     feedback: "✅ Correct! According to the Congressional Research Service, most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members.",
     wrong: "Not quite. Most states with this kind of law limit who can petition a court to law enforcement officers and, in many cases, family or household members."
   },
   q6: {
     q: "What does California's Assembly Bill 1127 do?",
-    choices: ["It bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons", "It raises the minimum age to buy any gun in California to 25", "It bans all handgun sales in California", "It creates a new federal assault weapons ban"],
-    correct: 0,
+    choices: ["It raises the minimum age to buy any gun in California to 25","It bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons","It bans all handgun sales in California","It creates a new federal assault weapons ban"],
+    correct: 1,
     feedback: "✅ Correct! AB 1127 bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons using an add-on part sometimes called a \"switch.\" It was approved on October 10, 2025, and its dealer-sales rule took effect on July 1, 2026.",
     wrong: "Not quite. AB 1127 bars licensed gun dealers from selling semiautomatic pistols that are easy to convert into fully automatic weapons using an add-on part sometimes called a \"switch.\""
   },
   q7: {
     q: "Washington voters created the state's extreme risk protection order law through Initiative 1491. What does the page say about how this kind of law works in other states?",
-    choices: ["Every state follows one identical federal rule", "Each state that has passed one sets its own specific rules", "Only Washington has this kind of law", "The Supreme Court wrote the rules for every state"],
-    correct: 1,
+    choices: ["Every state follows one identical federal rule","The Supreme Court wrote the rules for every state","Each state that has passed one sets its own specific rules","Only Washington has this kind of law"],
+    correct: 2,
     feedback: "✅ Correct! Extreme risk protection orders are a state-level tool, and each state that passes one writes its own specific rules for how it works.",
     wrong: "Not quite. This is a state-level tool: different states that have passed this kind of law set their own specific rules for how it works."
   },
   q8: {
     q: "Under Japan's gun law, what is a civilian legally allowed to own?",
-    choices: ["Handguns only, with a background check", "Hunting rifles, hunting shotguns, and air guns, through a licensing process — but not handguns", "Any gun, as long as it is registered", "No guns of any kind, with zero exceptions"],
-    correct: 1,
+    choices: ["Handguns only, with a background check","No guns of any kind, with zero exceptions","Any gun, as long as it is registered","Hunting rifles, hunting shotguns, and air guns, through a licensing process — but not handguns"],
+    correct: 3,
     feedback: "✅ Correct! Japan's civilian gun ownership is near-total restriction, not a complete ban. Handguns are off-limits to ordinary civilians, but hunting rifles, hunting shotguns, and air guns can be legally owned through a licensing process that includes classes, a skills test, a medical certificate, and a background check.",
     wrong: "Not quite. Japan bans civilian handgun ownership, but hunting rifles, hunting shotguns, and air guns can be legally owned through a licensing process that includes classes, a skills test, a medical certificate, and a background check."
   },
   q9: {
     q: "How did Washington's minimum age to buy a pistol or semiautomatic assault rifle become 21?",
-    choices: ["Congress passed a federal law setting the age at 21", "Washington voters approved it directly through Initiative 1639 in 2018", "A single sheriff's department set the rule for the whole state", "It has always been 21 under the original 1968 federal law"],
-    correct: 1,
+    choices: ["Washington voters approved it directly through Initiative 1639 in 2018","Congress passed a federal law setting the age at 21","It has always been 21 under the original 1968 federal law","A single sheriff's department set the rule for the whole state"],
+    correct: 0,
     feedback: "✅ Correct! Washington voters approved Initiative 1639 on November 6, 2018, raising the minimum age to buy a pistol or semiautomatic assault rifle in the state to 21 — a state rule, separate from any federal law.",
     wrong: "Not quite. Washington voters approved Initiative 1639 on November 6, 2018, raising the minimum purchase age for a pistol or semiautomatic assault rifle to 21 directly at the ballot box."
   }
