@@ -1138,3 +1138,24 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   .tl-item:nth-child(odd)::before,
   .tl-item:nth-child(even)::before { left: 0; right: auto; }
 }
+
+/* The build number, in every footer.
+
+   GitHub Pages serves site.css with max-age=600 and no fingerprint in the
+   filename, so a browser that already has the file keeps using it: a shipped
+   change can be live on the server and invisible in the browser at the same
+   time, with nothing on the page to say which you are looking at. That
+   happened with the 4.4.0 timeline.
+
+   tools/stamp_version.py writes this from VERSION and also appends
+   ?v=<version> to every local asset, which is the part that actually busts
+   the cache. This line is how a person confirms it without devtools. */
+.build-version {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-2xs, .68rem);
+  letter-spacing: .06em;
+  color: var(--ink-faint, #6b655c);
+  opacity: .75;
+}

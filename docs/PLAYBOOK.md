@@ -244,6 +244,29 @@ report. A locator flag is a place to look, not a verdict, and the
 suppression lint exists to stop a finding that repairs nothing from reaching
 the teacher.
 
+### 5.9 · Stamp the version, or the change ships invisible
+
+```bash
+python3 tools/stamp_version.py     # after bumping VERSION, before committing
+```
+
+GitHub Pages serves `site.css` with `cache-control: max-age=600` and no
+fingerprint in the filename, so a browser that already has the file keeps
+using it. A change can be **live on the server and invisible in the browser
+at the same time**, and nothing on the page says which you are looking at.
+That is not hypothetical: the 4.4.0 timeline was correct on the server while
+the page still rendered the old layout, and the only way to tell was to curl
+the stylesheet.
+
+The script appends `?v=<version>` to every local css/js reference — the part
+that actually busts the cache — and writes `Build <version>` into each
+footer so a person can confirm what they are looking at without devtools.
+It is idempotent; `tools/version.test.js` fails if VERSION and the stamps
+ever disagree.
+
+**When someone reports that a shipped change is not there, check the stamp
+in the footer first.** If it is behind, it is their cache and not your code.
+
 ### 6 · Gates — all of them, every time
 
 ```bash

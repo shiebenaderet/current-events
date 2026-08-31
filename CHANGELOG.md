@@ -2,6 +2,18 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.5.0] — 2026-08-31
+
+**Minor — a build number in every footer, and cache-busted assets, because a shipped change was live and invisible at the same time.**
+
+**The 4.4.0 timeline was reported as missing from the live site. It was not missing.** `site.css` carried the new spine and jump strip and `site.js` carried `initTimelines`, both correct on the server. GitHub Pages serves those files with `cache-control: max-age=600` and no fingerprint in the filename, so a browser holding the old copy kept rendering the old layout — and nothing on the page said which build was in front of you. Diagnosing it needed a `curl` of the stylesheet, which is not a reasonable thing to ask of anyone looking at a web page.
+
+**Two fixes, in one script so they cannot drift.** `tools/stamp_version.py` appends `?v=<version>` to every local css/js reference, which is the part that actually forces a fetch, and writes `Build 4.5.0` into every footer, which is how a person confirms it without opening devtools. It runs after a VERSION bump and is idempotent.
+
+**Five tests hold it together** — VERSION is a semver triple, every page carries exactly one stamp, every stamp matches VERSION, every local asset reference is stamped with the current version, and no stamped reference points at a file that does not exist. Bumping VERSION without re-running the script now fails the suite rather than shipping silently.
+
+`docs/PLAYBOOK.md` gains the rule that matters for next time: **when someone reports that a shipped change is not there, read the build number in the footer first.** If it is behind, it is a cache and not the code.
+
 ## [4.4.0] — 2026-08-31
 
 **Minor — the long timelines get a spine and a way to skip along it.**
