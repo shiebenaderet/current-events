@@ -2,6 +2,18 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.5.1] — 2026-08-31
+
+**Patch — the alternating timeline is gone. It made the cards unreadable, and the arithmetic says why.**
+
+4.4.0 alternated timeline entries left and right of the spine from 900px up, following the reference layout. Reported back immediately: the cards were far too narrow, two or three words to a line.
+
+The mistake was assuming the timeline sits in a wide container. It does not — every one of them is inside `.article`, which is `max-width: 700px`. A 50% column is 350px, and after the 42px gutter and the card's own padding the text ran at about **30 characters per line**. Alternation needs a container roughly twice as wide as the measure it wants to keep; a 700px reading column has no width to split.
+
+Entries now run the full measure on one side of the spine: about 72 characters raw, capped to 62 by `.tl-body p`, which is inside the measured optimum rather than past it. The spine, the dots, the year tabs and the **Jump to** strip are unchanged — those were the parts that worked.
+
+This also settles the readability question 4.4.0 raised and could not resolve on its own. A zig-zag reading order costs a struggling reader something; in a 700px column it was buying nothing at all.
+
 ## [4.5.0] — 2026-08-31
 
 **Minor — a build number in every footer, and cache-busted assets, because a shipped change was live and invisible at the same time.**

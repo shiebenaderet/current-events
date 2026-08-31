@@ -1053,18 +1053,21 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 .tl-body > :last-child { margin-bottom: 0; }
 .tl-body p { max-width: 62ch; }
 
-/* ── ALTERNATION (delete this block to keep every entry on one side) ── */
-@media (min-width: 900px) {
-  .tl-wrap::before { left: 50%; transform: translateX(-1px); }
-  .tl-item { width: 50%; padding: 0; }
-  .tl-item:nth-child(odd) { margin-left: 0; padding-right: 42px; text-align: right; }
-  .tl-item:nth-child(even) { margin-left: 50%; padding-left: 42px; }
-  .tl-item:nth-child(odd)::before { left: auto; right: -8px; }
-  .tl-item:nth-child(even)::before { left: -8px; }
-  /* Prose stays left-aligned on both sides. A ragged left edge is harder to
-     read, and the right alignment is for the year tab, not the paragraph. */
-  .tl-item:nth-child(odd) .tl-body { text-align: left; }
-}
+/* ── NO ALTERNATION, and the reason ──────────────────────────────────
+   The reference layout alternated entries left and right of the spine, and
+   4.4.0 did that from 900px up. It was wrong, and the arithmetic says why:
+   these timelines sit inside .article, which is max-width 700px. A 50%
+   column is 350px, and after the 42px gutter and the card's own padding the
+   text ran at about 30 characters per line — two or three words a line,
+   which is what a reader saw.
+
+   Alternation needs a container roughly twice as wide as the measure it
+   wants to keep. This one is a 700px reading column, so there is no width
+   to split. Every entry now runs the full measure on one side of the spine.
+
+   That also settles the readability question 4.4.0 flagged and could not
+   resolve on its own: a zig-zag reading order costs a struggling reader
+   something and, in a 700px column, buys nothing at all. */
 
 /* ── The jump strip, built by site.js ── */
 .tl-jump {
@@ -1127,16 +1130,11 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
 .update-pane .tl-item::before,
 .focus-pane .tl-item::before { background: var(--ink, #1a1a1a); }
 
+/* The jump strip is a screen affordance; on paper the whole timeline is
+   already in front of the reader. Nothing else needs undoing here now that
+   the entries no longer alternate. */
 @media print {
   .tl-jump { display: none; }
-  .tl-wrap::before { left: 7px; }
-  .tl-item,
-  .tl-item:nth-child(odd),
-  .tl-item:nth-child(even) {
-    width: auto; margin-left: 0; padding: 0 0 0 34px; text-align: left;
-  }
-  .tl-item:nth-child(odd)::before,
-  .tl-item:nth-child(even)::before { left: 0; right: auto; }
 }
 
 /* The build number, in every footer.
