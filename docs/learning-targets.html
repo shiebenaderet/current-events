@@ -1,0 +1,1051 @@
+<title>Sixty Learning Targets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ── Tokens ────────────────────────────────────────────────────────────────
+   Light is the complete set on bare :root. Dark redefines only these, once
+   under prefers-color-scheme (guarded so an explicit light choice beats a
+   dark OS) and once under [data-theme="dark"] so the toggle wins both ways.
+   Components read tokens only — never a literal, never a colour defined
+   solely inside a media block. */
+:root {
+  --paper:      #E9ECF1;   /* cool planning paper, biased toward the indigo */
+  --surface:    #FFFFFF;
+  --surface-2:  #F4F6F9;
+  --ink:        #131A2A;   /* indigo-black */
+  --ink-soft:   #4C566C;
+  --ink-faint:  #78829A;
+  --rule:       #D2D8E2;
+  --rule-soft:  #E2E6EE;
+  --indigo:     #33427F;
+  --ochre:      #A8681B;   /* the annotation colour — pencil on paper */
+  --ochre-wash: #F6EEE1;
+  --keep:       #2F6B54;
+  --keep-wash:  #E6F0EB;
+  --focus:      #33427F;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0E1420;
+    --surface:    #161E2D;
+    --surface-2:  #1B2434;
+    --ink:        #E7EBF3;
+    --ink-soft:   #A9B3C6;
+    --ink-faint:  #7B879E;
+    --rule:       #2A3547;
+    --rule-soft:  #222C3C;
+    --indigo:     #94A6E8;
+    --ochre:      #E0A45C;
+    --ochre-wash: #2B2214;
+    --keep:       #7FC8A6;
+    --keep-wash:  #14261F;
+    --focus:      #94A6E8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0E1420;
+  --surface:    #161E2D;
+  --surface-2:  #1B2434;
+  --ink:        #E7EBF3;
+  --ink-soft:   #A9B3C6;
+  --ink-faint:  #7B879E;
+  --rule:       #2A3547;
+  --rule-soft:  #222C3C;
+  --indigo:     #94A6E8;
+  --ochre:      #E0A45C;
+  --ochre-wash: #2B2214;
+  --keep:       #7FC8A6;
+  --keep-wash:  #14261F;
+  --focus:      #94A6E8;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Newsreader, Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px 96px;
+}
+
+/* ── Masthead ── */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 2px solid var(--ink);
+}
+.eyebrow {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  margin: 0 0 14px;
+}
+h1 {
+  font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.standfirst {
+  font-size: 1.14rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0 0 8px;
+}
+.standfirst strong { color: var(--ink); font-weight: 500; }
+
+/* ── The two rules, as a real pair rather than a bullet list ── */
+.rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 34px 0 0;
+}
+.rule-card { background: var(--surface); padding: 20px 22px; }
+.rule-card h3 {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 10px;
+}
+.rule-card p { margin: 0; font-size: .99rem; line-height: 1.55; color: var(--ink-soft); }
+.rule-card em { font-style: italic; color: var(--ink); }
+
+/* ── Progress bar, sticky while reviewing ── */
+.tracker {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0 13px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.tally {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.tally b { color: var(--ink); font-weight: 600; }
+.tally .r { color: var(--ochre); }
+.bar {
+  flex: 1 1 160px;
+  height: 5px;
+  min-width: 120px;
+  background: var(--rule);
+  overflow: hidden;
+}
+.bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--indigo);
+  transition: width .25s ease;
+}
+.tracker button {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 9px 15px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tracker button:hover { background: var(--ink); color: var(--paper); }
+.tracker button.ghost { border-color: var(--rule); color: var(--ink-faint); }
+.tracker button.ghost:hover { background: var(--rule); color: var(--ink); }
+
+/* ── Topic groups ── */
+.group { margin-top: 52px; }
+.group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink);
+}
+.group-head h2 {
+  font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.55rem;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+.file {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .72rem;
+  color: var(--ink-faint);
+  margin: 0;
+  letter-spacing: .02em;
+}
+.count { color: var(--ochre); margin-left: 10px; }
+
+.rows { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+
+/* The ledger row: section name is the label, the target is the content.
+   Inverted from a normal table on purpose — the sentence is what gets judged. */
+.row {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) auto;
+  gap: 26px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.sec {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .76rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  margin: 0;
+  padding-top: 4px;
+  overflow-wrap: break-word;
+}
+.target {
+  margin: 0;
+  font-size: 1.09rem;
+  line-height: 1.58;
+  max-width: 62ch;
+}
+.marks { display: flex; gap: 6px; padding-top: 2px; }
+.mark {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mark:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+/* State lives on the row so the sentence itself changes, not just a chip. */
+.row[data-state="keep"] { background: var(--keep-wash); }
+.row[data-state="keep"] .mark[data-v="keep"] {
+  background: var(--keep); border-color: var(--keep); color: var(--surface);
+}
+.row[data-state="revise"] { background: var(--ochre-wash); }
+.row[data-state="revise"] .mark[data-v="revise"] {
+  background: var(--ochre); border-color: var(--ochre); color: var(--surface);
+}
+/* A pencil line through a target you want rewritten. */
+.row[data-state="revise"] .target {
+  text-decoration: underline wavy var(--ochre);
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+.row[data-state] { padding-inline: 14px; margin-inline: -14px; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ── Next steps ── */
+.next {
+  margin-top: 64px;
+  padding: 30px 32px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+.next h2 {
+  font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.next p { color: var(--ink-soft); max-width: 66ch; margin: 0 0 18px; font-size: 1.02rem; }
+.next ol { margin: 0; padding-left: 20px; color: var(--ink-soft); max-width: 66ch; }
+.next li { margin-bottom: 10px; font-size: 1.02rem; }
+.next li strong { color: var(--ink); font-weight: 500; }
+
+.out { margin-top: 22px; }
+.out textarea {
+  width: 100%;
+  min-height: 120px;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .78rem;
+  line-height: 1.6;
+  padding: 14px;
+  border: 1px solid var(--rule);
+  background: var(--surface-2);
+  color: var(--ink);
+  resize: vertical;
+}
+.hint {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .7rem;
+  color: var(--ink-faint);
+  margin: 10px 0 0;
+  letter-spacing: .02em;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: .7rem;
+  color: var(--ink-faint);
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .wrap { padding-inline: 20px; }
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .sec { padding-top: 0; }
+  .marks { padding-top: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar span { transition: none; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Draft for review · 30 August 2026</p>
+    <h1>Sixty Learning Targets</h1>
+    <p class="standfirst">
+      One target for every substantive section across the eight topic pages. These are
+      a <strong>draft written from what each section already teaches</strong> — please
+      correct them. A wrong target is worse than none, because it propagates into the
+      revision of that whole section.
+    </p>
+    <p class="standfirst">
+      They also unlock the check the site has never run. <strong>Q1, the
+      passage-independence probe</strong>, hands a separate model a target and that
+      section's quiz questions, withholds the section itself, and counts what it can
+      answer anyway. Anything it gets right never required reading the page. There are
+      76 quizzes here and none has been tested that way.
+    </p>
+
+    <div class="rules">
+      <div class="rule-card">
+        <h3>Rule 1 — it survives the news</h3>
+        <p>A target built on <em>the 2026 midterms</em> expires on November 4. One built
+        on how a primary can end a career before the general election does not. Volatile
+        facts belong in the dated update card; the target holds what stays true.</p>
+      </div>
+      <div class="rule-card">
+        <h3>Rule 2 — it names a relation, not a topic</h3>
+        <p><em>The Holodomor</em> is a topic. <em>A famine can be engineered, and sealed
+        borders are how you tell</em> is a target — it says what a student should be able
+        to do with the section, which is the thing a quiz can actually test.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="tracker">
+    <p class="tally" id="tally">
+      <b><span id="done">0</span></b> of 60 reviewed
+      <span class="r">· <span id="nrevise">0</span> to revise</span>
+    </p>
+    <div class="bar"><span id="fill"></span></div>
+    <button type="button" id="export">Copy my notes</button>
+    <button type="button" class="ghost" id="reset">Clear marks</button>
+  </div>
+
+<section class="group">
+  <header class="group-head">
+    <h2>Artificial Intelligence</h2>
+    <p class="file">ai.html <span class="count">10 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="ai.html::What AI actually is">
+      <p class="sec">What AI actually is</p>
+      <p class="target">Most AI does not reason from rules a person wrote; it finds patterns in large amounts of data, which is a different kind of machine from a normal program</p>
+      <div class="marks" role="group" aria-label="Verdict for What AI actually is">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::How a machine learns">
+      <p class="sec">How a machine learns</p>
+      <p class="target">A system can learn a category from labelled examples and its own corrected mistakes, without anyone stating the rule that defines the category</p>
+      <div class="marks" role="group" aria-label="Verdict for How a machine learns">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::What made AI powerful">
+      <p class="sec">What made AI powerful</p>
+      <p class="target">Neural networks were not a new idea in 2012 — data, computing power and technique arrived together, and that is what changed</p>
+      <div class="marks" role="group" aria-label="Verdict for What made AI powerful">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::What AI can do now">
+      <p class="sec">What AI can do now</p>
+      <p class="target">The change since 2022 is not that chatbots got smarter but that systems began taking multi-step actions on their own</p>
+      <div class="marks" role="group" aria-label="Verdict for What AI can do now">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::AI and your school">
+      <p class="sec">AI and your school</p>
+      <p class="target">Reading and thinking are skills built by doing them, so a tool that does them for you skips the part that was building the skill</p>
+      <div class="marks" role="group" aria-label="Verdict for AI and your school">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::Will AI take jobs?">
+      <p class="sec">Will AI take jobs?</p>
+      <p class="target">A survey measures what people expect, which is evidence about people and not about the future</p>
+      <div class="marks" role="group" aria-label="Verdict for Will AI take jobs?">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::Talking to animals">
+      <p class="sec">Talking to animals</p>
+      <p class="target">Finding structure in a signal comes before understanding it — nobody is translating whale song, and pattern-finding is the step that must come first</p>
+      <div class="marks" role="group" aria-label="Verdict for Talking to animals">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::The godfather&#x27;s warning">
+      <p class="sec">The godfather&#x27;s warning</p>
+      <p class="target">A person can build a technology for forty years and still judge it dangerous; expertise and alarm are not opposites</p>
+      <div class="marks" role="group" aria-label="Verdict for The godfather&#x27;s warning">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::AI that takes action">
+      <p class="sec">AI that takes action</p>
+      <p class="target">An agent that carries out a whole task fails differently from a tool that answers one question</p>
+      <div class="marks" role="group" aria-label="Verdict for AI that takes action">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ai.html::AI through the decades">
+      <p class="sec">AI through the decades</p>
+      <p class="target">AI&#x27;s history runs in long stalls and sudden jumps, and the jumps came when a bottleneck was removed, not when someone had a new idea</p>
+      <div class="marks" role="group" aria-label="Verdict for AI through the decades">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>Climate Change</h2>
+    <p class="file">climate-change.html <span class="count">7 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="climate-change.html::Where Things Stand">
+      <p class="sec">Where Things Stand</p>
+      <p class="target">A single hot summer is weather; what makes a heat wave evidence is where it sits in a long record</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Things Stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::Deep-Time Climate History">
+      <p class="sec">Deep-Time Climate History</p>
+      <p class="target">Scientists can measure a climate nobody recorded, because natural materials keep datable evidence of the air around them</p>
+      <div class="marks" role="group" aria-label="Verdict for Deep-Time Climate History">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::The Greenhouse Effect">
+      <p class="sec">The Greenhouse Effect</p>
+      <p class="target">The greenhouse effect is why Earth is habitable; the problem is a change in degree, not the existence of the mechanism</p>
+      <div class="marks" role="group" aria-label="Verdict for The Greenhouse Effect">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::What&#x27;s Different This Time">
+      <p class="sec">What&#x27;s Different This Time</p>
+      <p class="target">The rate of change is the finding — CO₂ has been higher before, but it moved over millennia, not decades</p>
+      <div class="marks" role="group" aria-label="Verdict for What&#x27;s Different This Time">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::Effects Being Observed">
+      <p class="sec">Effects Being Observed</p>
+      <p class="target">Global averages and local evidence are two different kinds of measurement, and Rainier&#x27;s glaciers are the local kind</p>
+      <div class="marks" role="group" aria-label="Verdict for Effects Being Observed">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::Washington&#x27;s Climate Story">
+      <p class="sec">Washington&#x27;s Climate Story</p>
+      <p class="target">A state can price carbon, and the argument about what that costs at the pump is a real dispute with more than one honest number in it</p>
+      <div class="marks" role="group" aria-label="Verdict for Washington&#x27;s Climate Story">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="climate-change.html::How Did We Learn All This?">
+      <p class="sec">How Did We Learn All This?</p>
+      <p class="target">This science is nearly two centuries old, and Eunice Foote&#x27;s 1856 experiment measured the effect before anyone had a theory for it</p>
+      <div class="marks" role="group" aria-label="Verdict for How Did We Learn All This?">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>Gun Violence</h2>
+    <p class="file">gun-violence.html <span class="count">8 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="gun-violence.html::Where things stand">
+      <p class="sec">Where things stand</p>
+      <p class="target">Different organizations count school shootings differently, so two true totals for the same year can disagree</p>
+      <div class="marks" role="group" aria-label="Verdict for Where things stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::1 · Understanding the scale">
+      <p class="sec">1 · Understanding the scale</p>
+      <p class="target">Most U.S. gun deaths are suicides, and a rate per 100,000 and a raw count rank the fifty states differently</p>
+      <div class="marks" role="group" aria-label="Verdict for 1 · Understanding the scale">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::2 · The Second Amendment">
+      <p class="sec">2 · The Second Amendment</p>
+      <p class="target">*Heller* (2008) changed the legal question from militia service to an individual right, and courts read the same sentence differently before and after</p>
+      <div class="marks" role="group" aria-label="Verdict for 2 · The Second Amendment">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::3 · Safety measures tried">
+      <p class="sec">3 · Safety measures tried</p>
+      <p class="target">A measure can be popular, visible and widely adopted and still lack evidence that it prevents what it was adopted to prevent</p>
+      <div class="marks" role="group" aria-label="Verdict for 3 · Safety measures tried">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::4 · How policy is built">
+      <p class="sec">4 · How policy is built</p>
+      <p class="target">Federal law sets a floor and states build above it, which is why the rules change when you cross a state line</p>
+      <div class="marks" role="group" aria-label="Verdict for 4 · How policy is built">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::Washington&#x27;s story">
+      <p class="sec">Washington&#x27;s story</p>
+      <p class="target">Washington&#x27;s extreme risk protection order was written by voters at the ballot box, not by the legislature</p>
+      <div class="marks" role="group" aria-label="Verdict for Washington&#x27;s story">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::How other countries handle this">
+      <p class="sec">How other countries handle this</p>
+      <p class="target">Australia and Switzerland reached very different gun policies from very different histories, and neither transfers whole to the U.S.</p>
+      <div class="marks" role="group" aria-label="Verdict for How other countries handle this">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="gun-violence.html::History timeline">
+      <p class="sec">History timeline</p>
+      <p class="target">Major federal gun laws follow specific events, and the pattern of which events produced law is itself the thing to notice</p>
+      <div class="marks" role="group" aria-label="Verdict for History timeline">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>Immigration</h2>
+    <p class="file">immigration.html <span class="count">8 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="immigration.html::Where things stand">
+      <p class="sec">Where things stand</p>
+      <p class="target">Most green cards go through family sponsorship, and the queue&#x27;s length is a fact about the system&#x27;s design rather than about any applicant</p>
+      <div class="marks" role="group" aria-label="Verdict for Where things stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::Colonial era">
+      <p class="sec">Colonial era</p>
+      <p class="target">Forced migration is not immigration, and the distinction changes what the rest of the story means</p>
+      <div class="marks" role="group" aria-label="Verdict for Colonial era">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::The great waves">
+      <p class="sec">The great waves</p>
+      <p class="target">People leave when staying becomes impossible; the Irish famine shows a push cause, not a pull one</p>
+      <div class="marks" role="group" aria-label="Verdict for The great waves">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::The quota era">
+      <p class="sec">The quota era</p>
+      <p class="target">The 1924 Act chose the 1890 census on purpose, and choosing which year to count is how a law picks who may come</p>
+      <div class="marks" role="group" aria-label="Verdict for The quota era">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::The modern system begins">
+      <p class="sec">The modern system begins</p>
+      <p class="target">The 1965 Act replaced national-origin quotas with family and skill preferences, and that swap reshaped who immigrates</p>
+      <div class="marks" role="group" aria-label="Verdict for The modern system begins">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::How the system works">
+      <p class="sec">How the system works</p>
+      <p class="target">Two true facts sit together: the U.S. admits over a million people a year, and some queues run for decades</p>
+      <div class="marks" role="group" aria-label="Verdict for How the system works">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::Washington&#x27;s story">
+      <p class="sec">Washington&#x27;s story</p>
+      <p class="target">Immigration built this state&#x27;s specific towns and industries, and the Scandinavian wave is the local case</p>
+      <div class="marks" role="group" aria-label="Verdict for Washington&#x27;s story">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="immigration.html::History timeline">
+      <p class="sec">History timeline</p>
+      <p class="target">U.S. immigration law has swung open and shut repeatedly, and each swing names the group it was reacting to</p>
+      <div class="marks" role="group" aria-label="Verdict for History timeline">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>Iran</h2>
+    <p class="file">iran.html <span class="count">7 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="iran.html::Breaking — Hormuz">
+      <p class="sec">Breaking — Hormuz</p>
+      <p class="target">A temporary route through a strait is not a reopening of it</p>
+      <div class="marks" role="group" aria-label="Verdict for Breaking — Hormuz">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::Where things stand">
+      <p class="sec">Where things stand</p>
+      <p class="target">A waterway can be open in law and empty in practice, and counting ships is how you tell which you are looking at</p>
+      <div class="marks" role="group" aria-label="Verdict for Where things stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::Where Iran is">
+      <p class="sec">Where Iran is</p>
+      <p class="target">Iran&#x27;s position on the Strait of Hormuz gives a mid-sized country leverage over a global supply</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Iran is">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::Who Iranians are">
+      <p class="sec">Who Iranians are</p>
+      <p class="target">Iran is young, urban and diverse, and a government&#x27;s actions are not the same as a population&#x27;s views</p>
+      <div class="marks" role="group" aria-label="Verdict for Who Iranians are">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::How we got here">
+      <p class="sec">How we got here</p>
+      <p class="target">The 1953 coup is why later events land the way they do — distrust has a traceable history, not a vague one</p>
+      <div class="marks" role="group" aria-label="Verdict for How we got here">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::What is happening">
+      <p class="sec">What is happening</p>
+      <p class="target">A memorandum that starts a clock is not a peace deal</p>
+      <div class="marks" role="group" aria-label="Verdict for What is happening">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="iran.html::Why it matters here">
+      <p class="sec">Why it matters here</p>
+      <p class="target">Events at one narrow shipping lane reach a Washington fuel pump through a chain a student can follow</p>
+      <div class="marks" role="group" aria-label="Verdict for Why it matters here">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>The Space Race</h2>
+    <p class="file">space-race.html <span class="count">5 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="space-race.html::Where Things Stand">
+      <p class="sec">Where Things Stand</p>
+      <p class="target">When a schedule keeps slipping, the missing date is the news</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Things Stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="space-race.html::The first space race">
+      <p class="sec">The first space race</p>
+      <p class="target">Sputnik frightened people because the rocket that lifts a satellite can carry a warhead</p>
+      <div class="marks" role="group" aria-label="Verdict for The first space race">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="space-race.html::Not just two countries">
+      <p class="sec">Not just two countries</p>
+      <p class="target">This race has governments and companies and more than one finish line, which is why it is harder to narrate than Apollo</p>
+      <div class="marks" role="group" aria-label="Verdict for Not just two countries">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="space-race.html::Washington in space">
+      <p class="sec">Washington in space</p>
+      <p class="target">The lander for a Moon mission is being built in Kent, and this industry is local employment</p>
+      <div class="marks" role="group" aria-label="Verdict for Washington in space">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="space-race.html::Sputnik to Artemis">
+      <p class="sec">Sputnik to Artemis</p>
+      <p class="target">The first race ran eight years from surprise to landing; the second has run longer with no landing yet</p>
+      <div class="marks" role="group" aria-label="Verdict for Sputnik to Artemis">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>Ukraine</h2>
+    <p class="file">ukraine.html <span class="count">9 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="ukraine.html::Where Ukraine is">
+      <p class="sec">Where Ukraine is</p>
+      <p class="target">Ukraine&#x27;s position between Russia and the EU is the standing fact its history keeps returning to</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Ukraine is">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::Where Ukraine came from">
+      <p class="sec">Where Ukraine came from</p>
+      <p class="target">Both Russia and Ukraine claim Kievan Rus&#x27;, and that claim is being used as an argument for a present-day war</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Ukraine came from">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::Why it could not stay free">
+      <p class="sec">Why it could not stay free</p>
+      <p class="target">An empire can ban a language, and a literature written anyway is how an identity survives the ban</p>
+      <div class="marks" role="group" aria-label="Verdict for Why it could not stay free">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::The Holodomor">
+      <p class="sec">The Holodomor</p>
+      <p class="target">A famine can be engineered — sealed borders are how you tell it from a crop failure</p>
+      <div class="marks" role="group" aria-label="Verdict for The Holodomor">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::Becoming free in 1991">
+      <p class="sec">Becoming free in 1991</p>
+      <p class="target">Chernobyl damaged trust as well as land, and independence won a referendum by an overwhelming margin</p>
+      <div class="marks" role="group" aria-label="Verdict for Becoming free in 1991">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::What they fought for before">
+      <p class="sec">What they fought for before</p>
+      <p class="target">Ukrainians overturned a stolen election in 2004 and removed a president in 2014, so 2022 was not the first fight</p>
+      <div class="marks" role="group" aria-label="Verdict for What they fought for before">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::February 24, 2022">
+      <p class="sec">February 24, 2022</p>
+      <p class="target">The 2022 invasion escalated a war that began in 2014 with Crimea and the Donbas</p>
+      <div class="marks" role="group" aria-label="Verdict for February 24, 2022">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::Where the war stands">
+      <p class="sec">Where the war stands</p>
+      <p class="target">Front lines that barely move still cost lives daily, and &quot;stalemate&quot; is not the same as &quot;quiet&quot;</p>
+      <div class="marks" role="group" aria-label="Verdict for Where the war stands">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="ukraine.html::Ukraine through the ages">
+      <p class="sec">Ukraine through the ages</p>
+      <p class="target">Ukraine has been partitioned and absorbed repeatedly, and 1991 is recent</p>
+      <div class="marks" role="group" aria-label="Verdict for Ukraine through the ages">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="group">
+  <header class="group-head">
+    <h2>U.S. Elections</h2>
+    <p class="file">us-elections.html <span class="count">6 targets</span></p>
+  </header>
+  <ol class="rows">
+    <li class="row" data-id="us-elections.html::Where Things Stand">
+      <p class="sec">Where Things Stand</p>
+      <p class="target">Redistricting and retirements settle part of an election before any vote is cast</p>
+      <div class="marks" role="group" aria-label="Verdict for Where Things Stand">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="us-elections.html::The three branches">
+      <p class="sec">The three branches</p>
+      <p class="target">Each branch holds a power the others need, which is why none can act alone</p>
+      <div class="marks" role="group" aria-label="Verdict for The three branches">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="us-elections.html::Why no branch has all the power">
+      <p class="sec">Why no branch has all the power</p>
+      <p class="target">Checks are specific mechanisms — veto, override, review — not a general idea of balance</p>
+      <div class="marks" role="group" aria-label="Verdict for Why no branch has all the power">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="us-elections.html::How elections actually work">
+      <p class="sec">How elections actually work</p>
+      <p class="target">Washington&#x27;s top-two primary sends two candidates to November regardless of party, so a general election can be same-party</p>
+      <div class="marks" role="group" aria-label="Verdict for How elections actually work">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="us-elections.html::How voting rights expanded">
+      <p class="sec">How voting rights expanded</p>
+      <p class="target">The Constitution left voting rules to the states, and every expansion since had to be fought for specifically</p>
+      <div class="marks" role="group" aria-label="Verdict for How voting rights expanded">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+    <li class="row" data-id="us-elections.html::Who represents Alderwood?">
+      <p class="sec">Who represents Alderwood?</p>
+      <p class="target">A student&#x27;s own address sits inside nested districts, each electing someone different</p>
+      <div class="marks" role="group" aria-label="Verdict for Who represents Alderwood?">
+        <button type="button" class="mark" data-v="keep" aria-pressed="false">Keep</button>
+        <button type="button" class="mark" data-v="revise" aria-pressed="false">Revise</button>
+      </div>
+    </li>
+  </ol>
+</section>
+
+  <section class="next">
+    <h2>What happens after you review</h2>
+    <p>
+      Mark anything that needs changing, then hit <em>Copy my notes</em> — it puts the
+      list on your clipboard in a form you can paste straight back to me. Your marks are
+      saved in this browser only; they never leave your machine, and I cannot read them
+      unless you send them.
+    </p>
+    <ol>
+      <li><strong>You correct the targets.</strong> Wording, emphasis, or a target that
+      points at the wrong thing entirely.</li>
+      <li><strong>Q1 runs, page by page.</strong> A separate agent gets the target and
+      that page's quiz questions and never the section text, then answers what it can.</li>
+      <li><strong>Every question it answers gets reported</strong>, and the fix is a
+      better question — never an easier one.</li>
+    </ol>
+    <div class="out" id="outwrap" hidden>
+      <textarea id="outbox" readonly aria-label="Your review notes"></textarea>
+      <p class="hint" id="outhint">Copied to your clipboard.</p>
+    </div>
+  </section>
+
+  <footer>
+    Source of truth: <b>docs/LEARNING-TARGETS.md</b> on branch <b>landing-layer</b>.<br>
+    This page is generated from that file, so the two cannot drift apart.
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'lt-review-v1';
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
+  var state = {};
+
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) state = JSON.parse(raw) || {};
+  } catch (e) { state = {}; }          // private window, blocked storage, bad JSON
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function paint(row) {
+    var v = state[row.dataset.id];
+    if (v) row.setAttribute('data-state', v);
+    else row.removeAttribute('data-state');
+    row.querySelectorAll('.mark').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.v === v));
+    });
+  }
+
+  function tally() {
+    var done = 0, rev = 0;
+    rows.forEach(function (r) {
+      var v = state[r.dataset.id];
+      if (v) done++;
+      if (v === 'revise') rev++;
+    });
+    document.getElementById('done').textContent = done;
+    document.getElementById('nrevise').textContent = rev;
+    document.getElementById('fill').style.width =
+      (rows.length ? (done / rows.length * 100) : 0) + '%';
+  }
+
+  rows.forEach(function (row) {
+    paint(row);
+    row.querySelectorAll('.mark').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = row.dataset.id, v = btn.dataset.v;
+        if (state[id] === v) delete state[id];   // click again to unset
+        else state[id] = v;
+        paint(row); tally(); save();
+      });
+    });
+  });
+  tally();
+
+  document.getElementById('export').addEventListener('click', function () {
+    var lines = [], page = null;
+    rows.forEach(function (r) {
+      var v = state[r.dataset.id];
+      if (v !== 'revise') return;
+      var parts = r.dataset.id.split('::');
+      if (parts[0] !== page) { page = parts[0]; lines.push('', page); }
+      lines.push('  - ' + parts[1] + ' — ' + r.querySelector('.target').textContent.trim());
+    });
+    var text = lines.length
+      ? 'Learning targets to revise:' + lines.join('\n')
+      : 'No targets marked for revision — the draft is approved as written.';
+    var wrap = document.getElementById('outwrap');
+    var box = document.getElementById('outbox');
+    box.value = text;
+    wrap.hidden = false;
+    var hint = document.getElementById('outhint');
+    try {
+      navigator.clipboard.writeText(text).then(
+        function () { hint.textContent = 'Copied to your clipboard.'; },
+        function () { hint.textContent = 'Select the text above and copy it.'; }
+      );
+    } catch (e) {
+      hint.textContent = 'Select the text above and copy it.';
+    }
+    box.focus(); box.select();
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    state = {};
+    save();
+    rows.forEach(paint);
+    tally();
+    document.getElementById('outwrap').hidden = true;
+  });
+})();
+</script>
