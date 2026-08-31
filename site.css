@@ -881,3 +881,37 @@ details.unfold > summary:focus-visible {
    line of its own so the term stays scannable down the left edge. */
 body.study-mode .term-list > li .term-desc { display: block; margin-top: 4px; }
 body.study-mode .term-list > li .term-desc::before { content: none; }
+
+/* ── .before-read inside a pane ───────────────────────────────────────────
+   The rule above positions this block with margin-left:max(0px, calc(50vw -
+   350px)), which aligns its left edge with the centred 700px .article column.
+   That is right when the block sits in a full-width section — which is where
+   the 47 "plain" ones sit.
+
+   The 8 .on-dark ones do not. They sit inside .update-pane-inner (900px) or
+   .focus-pane-inner (700px), both already centred, and a viewport-relative
+   margin inside an already-centred parent compounds: on a 1900px screen it
+   adds ~600px of left margin inside a 900px box, shoving the block to the
+   right and squeezing the text into what is left. That is the broken
+   "Where Things Stand" layout.
+
+   Fixed by container, not by the .on-dark colour modifier — the bug is about
+   where the block sits, not what colour it is. Higher specificity than the
+   rule above, so order does not matter. */
+.update-pane-inner .before-read,
+.focus-pane-inner .before-read {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media (min-width: 701px) {
+  .update-pane-inner .before-read,
+  .focus-pane-inner .before-read {
+    /* The pane runs to 900px. At 1.02rem that is a ~110-character line,
+       well past the 80 ceiling and the ~55 measured optimum, so the block
+       keeps its own measure and lets the rule mark its left edge. */
+    max-width: 62ch;
+    padding-left: 22px;
+    padding-right: 0;
+  }
+}

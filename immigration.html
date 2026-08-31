@@ -1400,42 +1400,42 @@ const MAX_PTS = 13;
 const quizzes = {
   q9: {
     q: "Someone says an immigrant should have \"just gotten in line.\" What does this page show about that line?",
-    choices: ["There are several lines, each capped separately, and some people have none","It is one line, but people with family here can skip ahead of it","It is one line, and everyone waits about the same time","There are several lines, and all of them move at about the same speed"],
+    choices: ["There are several lines, capped separately, and some people fit none","There are several lines, and which one you use depends on your job","It is one line, and the wait depends mostly on how early you applied","It is one line, but relatives of U.S. citizens are placed ahead of others"],
     correct: 0,
-    feedback: "✅ Right. The caps are per category and per country, so the wait depends on which line you are in and where you were born — and for some people there is no line to join.",
-    wrong: "Not quite. There is no single line. There are separate categories with separate caps, country limits on top of those, and for some people no category fits at all."
+    feedback: "✅ Right. Caps apply per category and per country, so the wait depends on which line you are in and where you were born — and for some people no category fits at all.",
+    wrong: "Not quite. Family and employment are both real routes, and relatives of citizens do get priority — but there is no single line, the caps are separate, and some people have no category to join."
   },
   q1: {
-    q: "This page quotes the Library of Congress on European colonization of North America. What word does the Library of Congress use for it?",
-    choices: ["An invasion of territory already controlled and settled by Native Americans","An accidental arrival","A discovery of empty land","A peaceful settlement"],
+    q: "This page quotes the Library of Congress on European colonization of North America. Which phrase does the Library of Congress use?",
+    choices: ["An invasion of territory controlled and settled for centuries by Native Americans","A migration into regions whose populations had already collapsed","An expansion of trade networks that predated European arrival","A settlement of lands already claimed by rival European powers"],
     correct: 0,
-    feedback: "✅ Correct! The Library of Congress calls it \"an invasion of territory controlled and settled for centuries by Native Americans.\" Noticing who says a thing, and in what words, is a habit worth keeping.",
-    wrong: "Not quite. The Library of Congress puts it plainly: European colonization \"was an invasion of territory controlled and settled for centuries by Native Americans.\""
+    feedback: "✅ Right — \"an invasion of territory controlled and settled for centuries by Native Americans.\" Worth noticing that this is the Library of Congress's own wording, not the page's.",
+    wrong: "Not quite. All four describe things historians write about this period, but the Library of Congress's phrase is \"an invasion of territory controlled and settled for centuries by Native Americans.\""
   },
   q2: {
     q: "What was the key difference between Ellis Island and Angel Island?",
-    choices: ["They were the same kind of station, just in different cities","Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese","Angel Island processed European immigrants and Ellis Island processed Asian immigrants","Neither station actually processed many immigrants"],
+    choices: ["They were the same kind of station, just in different cities","Ellis Island processed European immigrants quickly; Angel Island was built to detain and question Asian immigrants, especially Chinese","Neither station actually processed many immigrants","Angel Island processed European immigrants and Ellis Island processed Asian immigrants"],
     correct: 1,
     feedback: "✅ Correct! Ellis Island (1892–1954) processed over 12 million mostly European immigrants, often in under a day. Angel Island (1910–1940) was built to detain and interrogate immigrants, especially Chinese immigrants affected by the Chinese Exclusion Act.",
     wrong: "Not quite. Ellis Island was built to process European immigrants quickly, while Angel Island was built to detain and interrogate immigrants — especially Chinese immigrants — for much longer periods."
   },
   q3: {
     q: "What did the national-origins quota system created by the 1924 Immigration Act actually do?",
-    choices: ["Treated every country's immigrants exactly the same","Only applied to immigrants from Asia","Favored immigration from Northern and Western Europe, sharply restricted Southern and Eastern Europe, and excluded Asian immigration almost entirely","Had no real effect on who could immigrate"],
+    choices: ["Treated every country's immigrants exactly the same","Had no real effect on who could immigrate","Favored immigration from Northern and Western Europe, sharply restricted Southern and Eastern Europe, and excluded Asian immigration almost entirely","Only applied to immigrants from Asia"],
     correct: 2,
     feedback: "✅ Correct! The 1924 Act's quota formula was calculated using the 1890 census, which favored Northern and Western Europe. It sharply restricted Southern and Eastern Europe and excluded almost all immigration from Asia. This system lasted until 1965.",
     wrong: "Not quite. The 1924 Act's quotas were calculated to favor Northern and Western Europe, restrict Southern and Eastern Europe, and exclude Asian immigration almost entirely."
   },
   q4: {
     q: "What did the Immigration and Nationality Act of 1965 (the Hart-Celler Act) replace the national-origins quota system with?",
-    choices: ["Nothing — it removed all immigration limits","The exact same quota system, just renamed","A system based only on how much money a person had","A preference system based on family ties and job skills, instead of country of birth"],
+    choices: ["Nothing — it removed all immigration limits","A system based only on how much money a person had","The exact same quota system, just renamed","A preference system based on family ties and job skills, instead of country of birth"],
     correct: 3,
     feedback: "✅ Correct! The 1965 Act abolished the national-origins quotas and replaced them with a preference system based on family reunification and employment skills. That basic framework is still the foundation of U.S. immigration law today.",
     wrong: "Not quite. The 1965 Act replaced country-based quotas with a preference system built around family ties and job skills — a framework still used today."
   },
   q5: {
     q: "What's the main legal difference between refugee status and asylum status?",
-    choices: ["Refugee status is for people applying from outside the U.S.; asylum is for people already in the U.S. or arriving at a port of entry","Asylum is only for people from certain countries","There is no real difference — they're the same thing","Refugees are always children, and asylum seekers are always adults"],
+    choices: ["Refugee status is for people applying from outside the U.S.; asylum is for people already in the U.S. or arriving at a port of entry","There is no real difference — they're the same thing","Refugees are always children, and asylum seekers are always adults","Asylum is only for people from certain countries"],
     correct: 0,
     feedback: "✅ Correct! Refugee and asylum status use the exact same legal definition of persecution. The difference is where the person is when they apply: refugee status is sought from outside the U.S., while asylum is sought by people already in the U.S. or at a U.S. port of entry.",
     wrong: "Not quite. Refugee and asylum status share the same legal definition — the real difference is location. Refugee status is granted to people outside the U.S.; asylum is granted to people already in the U.S. or arriving at a port of entry."
@@ -1449,14 +1449,14 @@ const quizzes = {
   },
   q7: {
     q: "What happened to Japanese Americans living in Washington State during World War II?",
-    choices: ["Nothing changed for them","They were asked to volunteer for extra farm work","They were forcibly removed from their homes and incarcerated, many at the Minidoka camp in Idaho — including U.S. citizens","They were given new jobs in Seattle"],
+    choices: ["Nothing changed for them","They were given new jobs in Seattle","They were forcibly removed from their homes and incarcerated, many at the Minidoka camp in Idaho — including U.S. citizens","They were asked to volunteer for extra farm work"],
     correct: 2,
     feedback: "✅ Correct! After Executive Order 9066 in 1942, Seattle's Japanese American community — the majority of them U.S. citizens — was forced from their homes and sent first to Puyallup's 'Camp Harmony' and then to the Minidoka incarceration camp in Idaho.",
     wrong: "Not quite. Executive Order 9066 led to the forced removal and incarceration of Japanese Americans, including U.S. citizens. Seattle's Japanese American community was sent to the Minidoka camp in Idaho."
   },
   q8: {
     q: "Who signed the Immigration and Nationality Act of 1965, and where?",
-    choices: ["President John F. Kennedy, at the White House","Rep. Emanuel Celler, in the House chamber","President Herbert Hoover, at Ellis Island","President Lyndon B. Johnson, at the base of the Statue of Liberty"],
+    choices: ["President Herbert Hoover, at Ellis Island","Rep. Emanuel Celler, in the House chamber","President John F. Kennedy, at the White House","President Lyndon B. Johnson, at the base of the Statue of Liberty"],
     correct: 3,
     feedback: "✅ Correct! President Lyndon B. Johnson signed the Immigration and Nationality Act on October 3, 1965, at the base of the Statue of Liberty. The law is also known as the Hart-Celler Act, after its two main sponsors in Congress.",
     wrong: "Not quite. President Lyndon B. Johnson signed the law on October 3, 1965, at the base of the Statue of Liberty."

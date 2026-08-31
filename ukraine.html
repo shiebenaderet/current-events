@@ -1074,33 +1074,33 @@ const MAX_PTS = 15;
 const quizzes = {
   q10: {
     q: "The Soviet government sealed Ukraine's borders during the famine. Why does that particular detail matter to historians?",
-    choices: ["It shows the famine had spread beyond Ukraine","A crop failure cannot seal a border — somebody decided to","It shows other countries had refused to send food","It explains why that year's harvest came in smaller"],
+    choices: ["It shows the famine had spread beyond Ukraine","A crop failure cannot seal a border — somebody decided to","It explains why that year's harvest came in smaller","It shows other countries had refused to send food"],
     correct: 1,
     feedback: "✅ Right. Weather does not close a border. Taking the grain and then stopping people from leaving to find more are both decisions, and decisions have people behind them.",
     wrong: "Not quite. The point is that a sealed border is not something bad weather can do. It takes a decision — which is what separates an engineered famine from a natural one."
   },
   q9: {
-    q: "Russia holds about 116,000 square kilometres of Ukraine. In the first half of 2026 it gained about 97 more. What does putting those two numbers side by side tell you?",
-    choices: ["The front line is barely moving, even though the fighting continues","Ukraine gained more ground than Russia over the same period","Russia's rate of advance roughly doubled from the year before","Most of the territory Russia holds was taken during 2026"],
+    q: "Russia has held roughly a fifth of Ukraine since 2022. In the first half of 2026 its forces gained about 97 more square kilometres. What does that figure show?",
+    choices: ["The front line has barely moved, though the fighting continues","Ukraine retook more ground than Russia gained","Russia's advance sped up compared with 2025","Most of Russia's gains have come since 2026 began"],
     correct: 0,
-    feedback: "✅ Right. 97 against 116,000 is a rounding error. The line is nearly static, and people are still dying along it every day.",
-    wrong: "Not quite. Compare the two: 97 square kilometres against 116,000 already held. The front has barely moved, which is not the same as the fighting having stopped."
+    feedback: "✅ Right. 97 square kilometres against a fifth of the country already held is close to nothing — and people are still dying along that line every day.",
+    wrong: "Not quite. Set 97 square kilometres against the fifth of Ukraine Russia already holds. The line has hardly moved, which is not the same as the fighting having stopped."
   },
-  q1: { q:"Ukraine is the largest country entirely in Europe. Which three countries border it on its western side?", choices: ["Poland, Slovakia, and Hungary","Germany, Austria, and Czechia","Russia, Belarus, and Georgia","Romania, Bulgaria, and Serbia"], correct: 0,
+  q1: { q:"Ukraine is the largest country entirely in Europe. Which three countries border it on its western side?", choices: ["Poland, Slovakia, and Hungary","Russia, Belarus, and Georgia","Romania, Bulgaria, and Serbia","Germany, Austria, and Czechia"], correct: 0,
     feedback:"Correct! Poland, Slovakia, and Hungary border Ukraine to the west, while Russia is to the east and Belarus to the north. That position is exactly why Ukraine gets pulled in two directions.",
     wrong:"Not quite. Ukraine borders Poland, Slovakia, and Hungary to the west, Russia to the east, and Belarus to the north. Romania and Moldova sit to the southwest." },
   q2: { q:"Kievan Rus' was centered on Kyiv. Who founded it, and roughly when?", choices: ["Roman emperors, around 100 AD","Viking and Slavic rulers, around 882 AD","Ottoman sultans, around 1450","Mongol khans, around 1240"], correct: 1,
     feedback:"Yes! Viking and Slavic rulers founded Kievan Rus' around 882 AD. It grew into one of the largest, most advanced civilizations in medieval Europe, with Kyiv as its capital.",
     wrong:"Not quite. Viking and Slavic rulers founded Kievan Rus' around 882 AD, and Kyiv was its capital — a center of trade, culture, and religion." },
-  q3: { q:"Taras Shevchenko wrote in Ukrainian when it was illegal to do so. What was he born into, before he became the voice of Ukrainian identity?", choices: ["Exile in Siberia","A Cossack military family","Serfdom — legally tied to land he did not own","A noble family in Kyiv"], correct: 2,
+  q3: { q:"Taras Shevchenko wrote in Ukrainian when it was illegal to do so. What was he born into, before he became the voice of Ukrainian identity?", choices: ["A noble family in Kyiv","Exile in Siberia","Serfdom — legally tied to land he did not own","A Cossack military family"], correct: 2,
     feedback:"Right! Shevchenko was born into serfdom and was later freed. That he became the father of Ukrainian literature from that starting point is part of why he matters so much.",
     wrong:"Not quite. Shevchenko was born into serfdom — legally tied to land he did not own and forced to work it. He was later freed and became the voice of Ukrainian identity." },
-  q4: { q:"What percentage of Ukrainians voted for independence in 1991?", choices: ["52%","75%","84%","92%"], correct: 3,
+  q4: { q:"What percentage of Ukrainians voted for independence in 1991?", choices: ["84%","75%","52%","92%"], correct: 3,
     feedback:"Correct! An overwhelming 92% voted yes for independence in the 1991 referendum — even in regions with large Russian-speaking populations.",
     wrong:"It was 92%! An overwhelming majority voted for independence — even in Crimea, which had close ties to Russia." },
   q5: {
     q: "Ukrainians filled the streets to overturn a government in 2004, and again in 2013–14. What was the argument both times?",
-    choices: ["Whether Ukraine should lean toward Russia or toward Europe","Whether to give up the nuclear weapons left on Ukrainian soil","Whether to keep the Soviet-era constitution","Whether Ukrainian or Russian should be the official language"],
+    choices: ["Whether Ukraine should lean toward Russia or toward Europe","Whether to keep the Soviet-era constitution","Whether to give up the nuclear weapons left on Ukrainian soil","Whether Ukrainian or Russian should be the official language"],
     correct: 0,
     feedback: "✅ Right. The same question, ten years apart. That is why 2022 did not come out of nowhere — the argument was already old.",
     wrong: "Not quite. Both movements turned on the same question: which direction Ukraine should face, toward Russia or toward Europe."
@@ -1108,12 +1108,12 @@ const quizzes = {
   q6: { q:"What did Zelenskyy say when offered evacuation from Kyiv?", choices: ["\"We surrender\"","\"I need ammunition, not a ride\"","\"Send more troops\"","\"We will negotiate\""], correct: 1,
     feedback:"Exactly! Zelenskyy's famous response showed he would stay and fight alongside his people, inspiring Ukraine and the world.",
     wrong:"Zelenskyy's famous reply was 'I need ammunition, not a ride' — showing he would stay in Kyiv and fight, not flee." },
-  q7: { q:"In what year did Ukraine vote for independence from the Soviet Union?", choices: ["1986","1989","1991","1994"], correct: 2,
+  q7: { q:"In what year did Ukraine vote for independence from the Soviet Union?", choices: ["1986","1994","1991","1989"], correct: 2,
     feedback:"Correct! Ukraine held its independence referendum on December 1, 1991, with 92% voting yes.",
     wrong:"Ukraine voted for independence in 1991, with an overwhelming 92% voting yes in the referendum." },
   q8: {
     q: "Kherson has a particular place in this war's story. What is it?",
-    choices: ["The city besieged for over 80 days, with defenders holding the Azovstal plant","The first city Russian forces captured in 2022","The site of the 2014 referendum Russia used to annex Crimea","The only regional capital Russia took, later recaptured by Ukraine"],
+    choices: ["The first city Russian forces captured in 2022","The city besieged for over 80 days, with defenders holding the Azovstal plant","The site of the 2014 referendum Russia used to annex Crimea","The only regional capital Russia took, later recaptured by Ukraine"],
     correct: 3,
     feedback: "✅ Right. One regional capital taken in the whole war, and Ukraine took it back in November 2022.",
     wrong: "Not quite. The 80-day siege and the Azovstal plant were Mariupol. Kherson is the one regional capital Russia captured — and Ukraine recaptured it in November 2022."
