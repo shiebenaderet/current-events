@@ -2,6 +2,31 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.9.0] — 2026-08-31
+
+**Minor — Angle 2 of the site audit: the standing editorial rules, checked and kept.**
+
+**A scanner for the rules the project already made for itself.** `tools/check_voice.py` checks what a machine can check from `docs/VOICE.md` — undated "now / currently" on an ongoing event, prose that talks about the page, positional references broken by the card model, and substantial sections missing a "Before you read". It deliberately does not judge whether a second sentence follows from the first, or whether a source supports its claim.
+
+It opened at 50 findings and **most were the scanner's fault, not the pages'.** "Sources for this section" is the label on a disclosure widget, not prose addressing the reader, and it alone accounted for 20 hits. Inside a single card, "the map below" is still the map below — only *cross-card* references break. VOICE explicitly allows historical "now" ("born in what is now Afghanistan") and a crisis line saying help is available right now. After teaching it those exemptions: 26 findings, then 19 fixed, and 3 left because they are correct as written.
+
+**What was actually wrong, and fixed:**
+
+- **Eight undated claims.** The gun-violence cluster was the clearest: four sentences saying a measure is "now nearly universal", each sitting immediately beside the 2021-22 figure that dates it exactly. The date was already there and simply was not being used.
+- **Six places the prose talked about the page.** "This section puts real numbers to the problem" became "The numbers below come from federal health data."
+- **Two positional references** that the card model had broken. ai pointed at podcast parts "embedded in each section above"; they are now named.
+- **Three substantial sections with no "Before you read"** — 158 to 165 words, over VOICE's 150-word threshold and simply missed. The blocks were written from each section's existing text, and the tool refused one at 34 words because VOICE asks for 35–60.
+
+**Three findings left alone on purpose.** A contrastive "researchers are now using AI", a "now" inside a dated timeline entry, and "Russia says these areas are now part of Russia" — reporting a claim. Changing those would be false precision.
+
+**Nothing has gone stale, and every primer is still the plainest text on its page.** Four apparently-expired dated claims turned out to be source *titles*, not claims. All eight primers measure below their page's deep-section median: ai 6.51 against 7.83, gun-violence 6.13 against 9.96, climate 6.61 against 8.94.
+
+**The largest finding was one the site created for itself.** Deep links (4.3.0) changed what "first mention" means: a term defined in card 2 and used in card 6 was fine when everyone arrived at the top, and is not fine when a teacher sends a student straight to card 6. **31 terms were in that state.** `tools/spread_glosses.py` now defines a term at its first mention in every card, reusing the page's own `data-def` so no definition is invented — 34 glosses added, 92 to 126 site-wide. Duplication rather than a glossary because reading-intervention V4 marks an end-of-document glossary as a finding and a same-sentence gloss as a pass.
+
+Ten remain bare on purpose: proper nouns that do not need redefining at every mention (Geoffrey Hinton, the Keeling Curve, Sputnik 1) and words the surrounding sentence already carries.
+
+**gun-violence's missing Key Word boxes were not a defect.** It has 21 inline glosses and zero `.vocab` callouts while other pages have both — but inline is the placement the research prefers, so the page is doing the right thing differently, not the wrong thing.
+
 ## [4.8.0] — 2026-08-31
 
 **Minor — the Situation Update and focus panes are light. Angle 1 of the site audit is complete.**
