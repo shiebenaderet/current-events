@@ -2,6 +2,42 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.13.0] — 2026-08-31
+
+**Minor — the three uncredited homepage images are properly sourced, and the count of uncredited images was wrong.**
+
+`ai-card.jpg`, `capitol-featured.jpg` and `ukraine-card.jpg` had no attribution recoverable from the repo, from git history, or from the files' own EXIF, XMP, IPTC and comment segments — checked, not assumed. All three are replaced with Wikimedia Commons images whose **licence and author were re-read from the Commons API at fetch time**, so the credit line states what the API says rather than what a search result said a moment earlier:
+
+| | image | credit |
+|---|---|---|
+| `capitol-featured.jpg` | U.S. Capitol west front | Beethoven, CC BY-SA 4.0 |
+| `ukraine-card.jpg` | Independence Square, Kyiv | Anosmia, CC BY 2.0 |
+| `ai-card.jpg` | Data centre server room | BalticServers.com, CC BY-SA 3.0 |
+
+Credits sit in the homepage footer, not on the cards: a card image lives inside `<a class="tier-card">`, so a credit link within the card would be a nested `<a>` — invalid, and it would break the card as a link. `.img-credit` styling went into `site.css`, muted but selectable, linked, and above the AA contrast floor, because a credit nobody can read is not a credit.
+
+The AI card's alt text changed with the image. It read *"Artificial intelligence concept"* and now describes what is actually in the photo — rows of servers, the kind of room AI runs in, which is also a truer thing to show a student than an abstraction.
+
+Total homepage image weight fell from 663 KB to 557 KB.
+
+### The count was wrong, and this is the third time this check has been
+
+I have now reported the number of uncredited images on this site three times and been wrong twice.
+
+- **v1 of the check** searched *forward* from each `<img>` and reported **28 uncredited**. On this site a credit sits at the END of its block, so every forward search ran past its own credit into the next person's entry. All 28 were fine. I called that finding "the most serious of the audit" before correcting it.
+- **In correcting it** I said all 23 portraits carry author, licence and a Commons link. **That was also wrong.** Seven of the ai.html portraits carry `We could not confirm exactly where this photo came from` — an honest disclosure someone had already written, and not a credit.
+- **v2 of the check** matched local filenames against Commons filenames and reported 9. Seven were false: `card-wa-capitol.jpg` is credited as `Washington_State_Capitol_Legislative_Building.jpg`, and no string-similarity rule connects those without also connecting things that must not be connected.
+
+`tools/check_image_credits.py` is now written to read only what the page states, in a window that stops at the next `<img>` so an image can never inherit its neighbour's credit — the exact overrun behind v1. It reports three states, and the middle one is the reason it is worth having:
+
+```
+83 image(s): 67 credited · 7 disclosed-unknown · 9 silent
+```
+
+**Nine images state no source anywhere**: `claude-lorius`, `early-computer`, `immigrants-statue-of-liberty-1887`, `khamenei`, `neil-armstrong`, `rumi`, `soleimani`, `space-race-card`, `yuri-gagarin`. That is the real backlog, and it is six more than previously recorded. The seven disclosed-unknown are counted separately on purpose: lumping an honest disclosure in with an image nobody ever examined loses the distinction that decides what to do about each.
+
+The lesson, recorded in the playbook: **a check that infers a relationship will invent one.** Both wrong versions guessed — at proximity, then at filenames. The version that works only reports what is written down.
+
 ## [4.12.0] — 2026-08-31
 
 **Minor — repo documentation brought up to date, and a screen-reader defect it turned up.**

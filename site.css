@@ -1241,3 +1241,28 @@ body.study-mode .term-list > li .term-desc::before { content: none; }
   color: var(--ink-faint, #6b655c);
   opacity: .75;
 }
+
+/* Photo attribution in the footer.
+
+   The homepage card images cannot carry their own credit: each sits inside
+   <a class="tier-card">, so a credit link within the card would be a nested
+   <a> -- invalid, and it would break the card as a link target. The footer
+   is where the credit can be a real link.
+
+   Sized down and muted because it is a legal obligation rather than
+   something a student is meant to read, but it stays selectable, linked,
+   and above the AA contrast floor -- a credit nobody can read is not a
+   credit. */
+.img-credit {
+  flex-basis: 100%;
+  margin-top: 10px;
+  font-family: -apple-system, sans-serif;
+  font-size: var(--ce-text-2xs, .68rem);
+  line-height: 1.6;
+  color: var(--ink-faint, #6b655c);
+}
+.img-credit a {
+  color: var(--ink-faint, #6b655c);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

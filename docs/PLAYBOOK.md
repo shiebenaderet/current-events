@@ -487,11 +487,22 @@ when the answer is always B.
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*
-- **Three homepage card images** (`ai-card.jpg`, `capitol-featured.jpg`,
-  `ukraine-card.jpg`) have no credit traceable in the repo or in git history.
-  Every one of the 23 portraits carries author, licence and a Commons link;
-  these three do not. Needs a person to identify the source — do not guess a
-  licence.
+- **Nine images state no source anywhere** — `claude-lorius`,
+  `early-computer`, `immigrants-statue-of-liberty-1887`, `khamenei`,
+  `neil-armstrong`, `rumi`, `soleimani`, `space-race-card`, `yuri-gagarin`.
+  Run `tools/check_image_credits.py` for the current list. Replacing them
+  with credited Commons images is the fix; do not guess a licence for what
+  is already there.
+- **Seven more say, in student-visible text, that the source could not be
+  confirmed** (the ai.html portraits). That is an honest disclosure, not a
+  silent gap, and it should not be counted with the nine above. Replacing
+  them with credited images would be an improvement, not a correction.
+- *(Resolved 2026-08-31: the three homepage card images. `ai-card`,
+  `capitol-featured` and `ukraine-card` had no provenance in the repo, in git
+  history, or in the files' own EXIF/XMP/IPTC. Replaced with Commons images
+  whose licence was re-read from the API at fetch time, credited in the
+  homepage footer — a card image cannot carry its own credit link, because
+  it sits inside `<a class="tier-card">` and a nested `<a>` is invalid.)*
 - **Three timelines carry no images** (ai, 19 entries; ukraine, 17;
   space-race, 8), and only 12 of 89 entries site-wide have one. Blocked on the
   licensing question above.
