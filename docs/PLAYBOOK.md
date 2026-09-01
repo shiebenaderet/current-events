@@ -393,6 +393,20 @@ brace-balance count and a tag well-formedness walk — checks that know nothing
 about this site, only about the shape of the file. When an edit is mechanical
 and site-wide, assert the *structure* survived, not just the behaviour.
 
+**A large "no match" is a statement about your candidates, not about the
+world.** Four images scored 118-149 against every Commons candidate fetched,
+which reads like "no source exists". The search terms had been written from
+the *filenames*: `space-race-card.jpg` became "Saturn V Apollo launch", and
+the file is Buzz Aldrin standing on the Moon. Looking at the four images and
+writing the terms from what is in them changed the result. Before believing
+a negative, check what it was compared against.
+
+**Establish a matcher's thresholds with controls before trusting a number
+from it.** A perceptual-hash cutoff of 6, set by intuition, would have
+rejected genuine same-image pairs that score 8 and 11. Controls showed real
+matches land at or under 11 and everything else at or above 98 -- and it is
+that gap, not the cutoff, that makes the distance usable as evidence.
+
 **An id-allocating tool must derive its floor from the file, not a
 constant.** `spread_glosses.py` opened with `next_id = 9000`, commented "far
 above any existing term-desc id" — true on the first run, false on every one
@@ -487,9 +501,8 @@ when the answer is always B.
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*
-- **Nine images state no source anywhere** — `claude-lorius`,
-  `early-computer`, `immigrants-statue-of-liberty-1887`, `khamenei`,
-  `neil-armstrong`, `rumi`, `soleimani`, `space-race-card`, `yuri-gagarin`.
+- **Four images state no source anywhere** — `claude-lorius`,
+  `early-computer`, `rumi`, `space-race-card`.
   Run `tools/check_image_credits.py` for the current list. Replacing them
   with credited Commons images is the fix; do not guess a licence for what
   is already there.

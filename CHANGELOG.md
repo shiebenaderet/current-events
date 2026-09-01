@@ -2,6 +2,44 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.14.0] — 2026-08-31
+
+**Minor — five of the nine uncredited images identified and credited, by matching them rather than guessing.**
+
+The instruction was to keep the portraits, so the job was not to replace them but to find out what they are. Guessing "this is probably the Commons portrait of Gagarin" is the same inference that had already produced two wrong reports on this site, so nothing here was decided by a filename or a subject name.
+
+Instead each image was reduced to a perceptual hash (dHash via ImageMagick) and compared against Commons candidates. **The thresholds were established by controls before any credit was written**, and they corrected a guess of mine:
+
+| control | distance |
+|---|---|
+| same photograph, 1920px vs 960px | 4, 8, 11 |
+| unrelated photographs | 121–132 |
+| four different Capitol buildings | 98–141 |
+
+I had set the match cutoff at ≤6 by intuition. Two of three genuine same-image pairs score above it, so that cutoff would have rejected sources it had actually found. What makes the method usable is the gap: real matches land ≤11, everything else ≥98, and nothing falls in between — even four photographs of Capitol buildings separate cleanly.
+
+**Five identified**, licence and author read from the Commons API, with the two borderline distances additionally checked by eye side-by-side against the exact file being credited:
+
+| image | source | licence | d |
+|---|---|---|---|
+| `neil-armstrong.jpg` | Neil Armstrong pose | public domain | 1 |
+| `immigrants-statue-of-liberty-1887.jpg` | Library of Congress, *Welcome to the land of freedom* | public domain | 1 |
+| `khamenei.jpg` | Ali Khamenei crop | CC BY 4.0, Khamenei.ir | 4 |
+| `yuri-gagarin.jpg` | Yuri Gagarin (1961) | public domain, Arto Jousi / Finnish Museum of Photography | 9 |
+| `soleimani.jpg` | Qasem Soleimani with Zolfaghar Order | CC BY 4.0 | 9 |
+
+Both d=9 cases turned out to be the same photograph at a slightly tighter crop, which is exactly what that distance should mean.
+
+**83 images: 72 credited · 7 disclosed-unknown · 4 silent.** Down from 9 silent.
+
+### The same mistake, in a third costume
+
+Four images came back at d=118–149, which reads like "no source found". It was not. I had written the search terms from the *filenames*: `space-race-card.jpg` became "Saturn V Apollo launch", and the file is actually Buzz Aldrin standing on the Moon. `early-computer.jpg` became "ENIAC early computer 1946" and matched a timeline diagram.
+
+The matcher was working the whole time; it was being handed the wrong candidates. **A large distance means "not among what you fetched", not "no source exists"** — and those are very different claims. The fix was to look at the four images and write the terms from what is in them. That re-run is still in progress and is not part of this release.
+
+Also worth recording: the first run was rate-limited by Commons. I added pacing and retry to the API calls and considered it handled — but the API calls were about twenty requests while the *image downloads* were seventy, entirely unpaced. I had instrumented the part I was thinking about rather than the part doing the volume. Both callers now share one timestamp, because the rate limit does not care which hostname a request went to.
+
 ## [4.13.0] — 2026-08-31
 
 **Minor — the three uncredited homepage images are properly sourced, and the count of uncredited images was wrong.**
