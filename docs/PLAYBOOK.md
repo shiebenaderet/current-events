@@ -402,10 +402,18 @@ writing the terms from what is in them changed the result. Before believing
 a negative, check what it was compared against.
 
 **Establish a matcher's thresholds with controls before trusting a number
-from it.** A perceptual-hash cutoff of 6, set by intuition, would have
-rejected genuine same-image pairs that score 8 and 11. Controls showed real
-matches land at or under 11 and everything else at or above 98 -- and it is
-that gap, not the cutoff, that makes the distance usable as evidence.
+from it -- and vary everything the real inputs vary.** A perceptual-hash
+cutoff of 6, set by intuition, would have rejected genuine same-image pairs
+scoring 8 and 11. Controls fixed that. But those controls varied only
+*scale*, so they reported an empty gap between 11 and 98 and I called it the
+thing that made the method trustworthy. Then a re-cropped, darker copy of
+the Aldrin Moon photograph matched at **90**. Measured properly, the same
+photograph moves 15-16 under a gamma change, 25-53 under brightness or
+contrast, and 85 when darkened and cropped together; unrelated images sit at
+121+. So: **under 11 is a match on the number; 15-100 is a candidate a
+person must look at; 120+ is unrelated.** The band I had declared empty is
+where nearly every re-hosted image actually lives. A check tells you about
+what you tested it on, and nothing else.
 
 **An id-allocating tool must derive its floor from the file, not a
 constant.** `spread_glosses.py` opened with `next_id = 9000`, commented "far
@@ -501,11 +509,9 @@ when the answer is always B.
 - **us-elections:** two Ballotpedia-cited claims are unverified (the Cassidy,
   Cornyn and Massie primary defeats); Ballotpedia cannot be fetched from a
   script. *(LD-21 results: resolved 2026-08-29 — see below.)*
-- **Four images state no source anywhere** — `claude-lorius`,
-  `early-computer`, `rumi`, `space-race-card`.
-  Run `tools/check_image_credits.py` for the current list. Replacing them
-  with credited Commons images is the fix; do not guess a licence for what
-  is already there.
+- *(Resolved 2026-08-31: no image is silent any more — 74 credited, 9
+  disclosed-unknown, 0 silent. `rumi` and `claude-lorius` resisted
+  identification and now say so on the page rather than saying nothing.)*
 - **Seven more say, in student-visible text, that the source could not be
   confirmed** (the ai.html portraits). That is an honest disclosure, not a
   silent gap, and it should not be counted with the nine above. Replacing

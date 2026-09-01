@@ -68,6 +68,7 @@ FOOTER_CARD_IMAGES = {
     'images/capitol-featured.jpg',
     'images/ukraine-card.jpg',
     'images/immigrants-statue-of-liberty-1887.jpg',
+    'images/space-race-card.jpg',
 }
 
 state, uses, note = {}, collections.defaultdict(set), {}

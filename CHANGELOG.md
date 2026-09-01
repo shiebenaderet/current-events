@@ -2,6 +2,44 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.15.0] — 2026-08-31
+
+**Minor — no image on the site is now silent about where it came from.**
+
+```
+83 images: 74 credited · 9 disclosed-unknown · 0 silent
+```
+
+Two more identified and credited, and the two that resisted identification now say so.
+
+| image | source | licence | d |
+|---|---|---|---|
+| `early-computer.jpg` | Glen Beck and Betty Snyder programming the ENIAC | public domain | **0** |
+| `space-race-card.jpg` | Buzz Aldrin on the Moon, by Neil Armstrong | public domain | 90 |
+
+`rumi.jpg` and `claude-lorius.jpg` could not be identified, so they carry the disclosure the site already uses on the ai.html portraits: *"We could not confirm exactly where this photo came from."* That is deliberately counted apart from a credit. Somebody looked and could not confirm it, which is a different state from an image nobody ever examined, and it is the honest thing to show a student.
+
+### The threshold model was wrong, and the Aldrin photo is why
+
+The previous release reported controls showing same-photo pairs at 4–11 and everything else at 98+, with nothing in between, and called that gap what makes a hash distance usable as evidence.
+
+`space-race-card.jpg` then matched the Aldrin photograph at **90** — plainly the same frame under a side-by-side check: identical shadow, footprints, visor reflection, lunar module leg. A true match sitting deep inside the band declared empty.
+
+The controls were incomplete. They varied *scale* and JPEG noise but never *tone*. dHash asks whether each pixel is brighter than its right-hand neighbour, and a contrast or gamma change flips every comparison that was close. Measured directly this time rather than assumed:
+
+| same photograph, changed only by… | distance |
+|---|---|
+| rescaling | 4–11 |
+| gamma 0.6 / 1.8 | 15, 16 |
+| brightness ±25% | 25, 45 |
+| contrast +40% | 53 |
+| darker **and** cropped | **85** |
+| *(unrelated photographs)* | *121–132* |
+
+So the usable rule is narrower than claimed: **under 11 is a match on the number alone; 15 to 100 is a candidate that needs a human to look; 120+ is unrelated.** The band 15–100 is not noise — it is where every re-cropped, re-graded copy lives, which is most of what a small site actually re-hosts.
+
+Recorded in the playbook. The earlier claim of an empty gap was an artifact of the controls, not a property of the method — which is the same lesson as the two wrong credit counts, arriving a fourth time: **a check tells you about what you tested it on.**
+
 ## [4.14.0] — 2026-08-31
 
 **Minor — five of the nine uncredited images identified and credited, by matching them rather than guessing.**
