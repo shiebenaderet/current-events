@@ -5,7 +5,7 @@
 Live site: [current.mrbsocialstudies.org](https://current.mrbsocialstudies.org)  
 Made by: Shie Benaderet, 8th Grade Social Studies, Alderwood Middle School
 
-Current version: **[v4.11.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
+Current version: **[v4.16.0](CHANGELOG.md)** · see [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md) for release history
 
 Every page opens on a short primer and a menu of tiles rather than a long scrolling article — see **[How a page is built](#how-a-page-is-built)** below. All eight topics are live and on the shared warm-newsprint design; accessibility controls, Study Mode, and reading support are shared across every page through `site.css` and `site.js`.
 
@@ -72,14 +72,14 @@ Full build order, gates and traps: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 27, 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 27, 2026 |
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | September 7, 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | September 7, 2026 |
 | 🤖 AI & Society | ✅ Live | `ai.html` | August 18, 2026 |
 | 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 27, 2026 |
-| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 27, 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | September 7, 2026 |
 | 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 27, 2026 |
 | 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 18, 2026 |
-| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 18, 2026 |
+| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | September 7, 2026 |
 
 ---
 
