@@ -2,6 +2,42 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-09-07
+
+**Minor — weekly news pass. Snapshots dated September 7, 2026, only on pages the news actually moved.**
+
+The August 31 weekly draft (`weekly-updates`, PR #6) never merged, so main still carried August 27/18 dates. This pass is cut from current `main` (v4.15.0) and only rewrites a page when a sourced development overtakes its dated snapshot. Casualty, ICE/TRAC, retirement, and school-incident totals were not reinvented.
+
+- **Iran.** After a quieter stretch in August, U.S. and Iranian strikes on shipping resumed over the September 5–6 weekend. CENTCOM said U.S. forces struck three Iranian oil tankers, including one off Kharg Island. On September 6, Mohsen Rezaei said Iran would announce a new restricted zone in the Gulf in the coming days, plus maps of a Hormuz corridor with Oman; those maps were not published as of September 7. Ship-tracking and official claims still do not match: Kpler's 10-day average of commodity ships was 10 a day, the lowest since May (Reuters via Al-Monitor); other tracking that week averaged about 13; UKMTO counted 59 ships in 48 hours on Sunday; Energy Secretary Wright said more than 9 million barrels a day, "two-thirds or more" of pre-conflict flows with bypass pipelines (Al Jazeera). Brent hit $97.93 then $96.19 on September 7. The August 16 / August 25 counts of 3 and 5 vessels stay in the text so the quiz on those dated measurements still matches. Oil and casualty totals from July were not replaced.
+
+- **Ukraine.** U.S. envoys Steve Witkoff and Jared Kushner met Putin in Moscow on September 5 and Zelenskyy in Kyiv on September 6. Both sides called the talks substantial; neither announced a deal. Zelenskyy said Ukraine was ready for trilateral talks; Britain, France, and Germany's national security advisers joined part of the Kyiv meeting. ISW's September 6 assessment said Putin's "root causes" line showed the Kremlin still unwilling to make meaningful compromises (RFE/RL; ISW). ISW's September 1 campaign assessment measured August on its own: about 90 km² of Russian seizures, and at least about 130 km² of Ukrainian recapture — two separate counts, not a net. Al Jazeera's first-half 622 / net 97 km² and ISW's July ~38 km² stay. CSIS's ~20% / 116,000 km² figure was not reinvented.
+
+- **Climate.** FOX 13's September 5 named-fire list (Watch Duty): Little Giant 171,162 acres (81% contained), Sinlahekin ~166,117 (44%), Kaiser Canyon 138,293 (98%), Paradise 9,593 (22% as of Sep. 4), West Fork at Mount Rainier ~306 acres. KXLY the same day: Okanogan County lifted all Level 3 evacuations on Sinlahekin. DNR's August 24 season total of more than 800,000 acres was not replaced or summed.
+
+- **Space Race.** NASA Administrator Jared Isaacman has said Artemis III could fly no earlier than June 2027; his team confirmed that tentative timeline to WESH 2 on August 24. The flight is still an Earth-orbit docking test, not a landing. Starliner's missing date was left as the August 2026 Boeing/NASA snapshot.
+
+- **Homepage.** Ticker rewritten from those snapshots. The featured "68 days" line is now a live countdown to November 3, 2026 — the same decay the elections page already refuses to hardcode.
+
+### Checked and left alone
+
+- **Elections.** Cook's public Senate ratings were still dated August 20; House ratings were still dated August 25. Toss-up lists were not guessed from a paywalled table.
+- **Immigration.** The October 2026 Visa Bulletin was not out. ICE/TRAC totals were not reinvented.
+- **Gun violence.** Texas HB 3 is still the same unfinished staffing story (San Angelo ISD's September 2 exception is another district in that same story, not a new national fact).
+- **AI.** Pew's August 18 jobs figure is still the snapshot.
+
+### Sources fetched this session
+
+- Al Jazeera, Sep. 7: https://www.aljazeera.com/news/2026/9/7/can-iran-enforce-a-restricted-zone-in-the-strait-of-hormuz
+- Reuters via Al-Monitor, Sep. 7: https://www.al-monitor.com/originals/2026/09/iran-says-announce-new-restricted-zone-gulf-coming-days
+- RFE/RL, Sep. 7: https://www.rferl.org/a/ukraine-witkoff-kushner-russia-peace-negotiations/33848067.html
+- ISW, Sep. 6: https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-6-2026/
+- ISW, Sep. 1: https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-1-2026/
+- FOX 13, Sep. 5: https://www.fox13seattle.com/news/heres-where-washington-wildfires
+- KXLY, Sep. 5: https://www.kxly.com/news/sinlahekin-fire-update-evacuations-lowered-in-okanogan-county-as-firefighter-gain-more-containment/article_9416c411-dcce-4b78-896e-cb06fad38837.html
+- WESH, Aug. 24: https://www.wesh.com/article/nasa-sets-sights-on-june-2027-launch-artemis-iii/73514269
+- Cook Senate: https://www.cookpolitical.com/ratings/senate-race-ratings (dated Aug. 20, 2026)
+- Cook House: https://www.cookpolitical.com/ratings/house-race-ratings (dated Aug. 25, 2026)
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
