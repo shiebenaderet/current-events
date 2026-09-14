@@ -2,6 +2,47 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-09-14
+
+**Minor — weekly news refresh: September 14, 2026 snapshots.** Only pages where sourced news actually overtook the dated snapshot. Cut from current `main` (v4.15.0). The leftover `weekly-updates` draft (PR #6, v4.11.0, Aug 31) was never merged; this pass does not rebase onto it. Last week's Sep 7 draft (PR #7) was also still unmerged, so this pass includes those developments plus what moved between Sep 7 and Sep 14.
+
+### Updated (news moved the snapshot)
+
+- **Iran.** Sep 6–7: Rezaei announced a planned Gulf restricted zone and Hormuz corridor maps with Oman; as of Sep 14 the maps still had not been published (Al Jazeera, Sep 7). Sep 14: a Salalah meeting meant to present those maps to Gulf countries was postponed overnight, with Iran saying Saudi Arabia asked to delay it (Al Jazeera). Weekend ship-tracking: 14 commodity vessels over the weekend, single digits a day, below a 10-day average of 14 (Reuters). Wright claimed ~10 million bpd / "two-thirds or north of two-thirds"; Brent **$107.82**. Aug 16 = 3 and Aug 25 = 5 crossings stay so quiz q10 still matches. U.S. gas $3.95 (AAA, Jul 16) and casualty totals were not reinvented.
+
+- **Ukraine.** Witkoff/Kushner met Putin Sep 5 and Zelenskyy Sep 6; no breakthrough; trilateral push (RFE/RL). Budanov said a new three-way round could come in early October, focused on Black Sea shipping and energy strikes, not territory (Kyiv Post, Sep 13). Zelenskyy said he hoped to raise energy and maritime ceasefires with Trump at UNGA around Sep 21–23; Peskov welcomed stopping attacks on Russian infrastructure but would not commit to stopping attacks on Ukraine's (Kyiv Independent, Sep 14). ISW Sep 1: Russia seized/consolidated **~90 km²** in August; Ukraine recaptured **at least ~130 km²** — two counts, not a net. ISW Sep 12–13: Ukrainian forces eliminated the Russian salient north of Lyman; near-zero net gains since March. Al Jazeera H1 622 / net 97 and ISW July ~38 stay.
+
+- **Climate.** FOX 13 (updated Sep 13, citing Watch Duty): Little Giant **172,694 acres / 81%** (Sep 13), Sinlahekin **~166,021 / 76%** with Level 2 and Level 1 evacuations and no Level 3 listed, Kaiser Canyon **138,293 / 100% contained**, Paradise **9,654 / 49%** (Sep 13), West Fork at Rainier **~310 / 16%** (Sep 8). Named-fire acres are not a season total; DNR's Aug 24 **800,000-acre** figure stays.
+
+- **Space Race.** Isaacman / WESH Aug 24: Artemis III **no earlier than June 2027**; still an Earth-orbit docking test; landing is Artemis IV 2028. Starliner left as the Aug 2026 snapshot.
+
+- **Elections.** Cook Senate still dated Aug 20 (six Toss Ups, including Texas and Iowa). Cook House table is dated **Sep 11, 2026** and lists **21** Toss Ups, fetched from Cook's own ratings page — including FL-14 and MI-10, which Cook moved from Lean Republican on Aug 25. House/Senate flip math and the 60 House / 11 Senate retirement counts were not reinvented.
+
+- **Homepage.** Ticker rewritten from those snapshots; featured "68 days" is now a live countdown to Nov 3, 2026.
+
+### Checked and left alone
+
+- **Immigration.** October 2026 Visa Bulletin not out as of Sep 14. No ICE/TRAC invention.
+- **Gun violence.** HB 3 still unfinished; KXAN's Central Texas staffing check is still the implementation story.
+- **AI.** Pew Aug 18 71% jobs figure is still the snapshot.
+
+### Sources fetched and read this session
+
+- [Al Jazeera, Sep 7](https://www.aljazeera.com/news/2026/9/7/can-iran-enforce-a-restricted-zone-in-the-strait-of-hormuz)
+- [Al Jazeera, Sep 14](https://www.aljazeera.com/news-analysis/2026/9/14/temporary-hormuz-solution-deferred-as-iran-arab-summit-falls-through)
+- [Al Jazeera, Sep 14](https://www.aljazeera.com/news/2026/9/14/us-says-its-clearing-hormuz-traffic-why-are-oil-futures-beyond-100)
+- [Reuters, Sep 14](https://www.reuters.com/business/hormuz-shipping-traffic-remains-below-10-day-average-weekend-data-shows-2026-09-14/)
+- [RFE/RL, Sep 7](https://www.rferl.org/a/ukraine-witkoff-kushner-russia-peace-negotiations/33848067.html)
+- [Kyiv Post, Sep 13](https://www.kyivpost.com/post/84382)
+- [Kyiv Independent, Sep 14](https://kyivindependent.com/zelensky-to-push-energy-black-sea-ceasefire-at-possible-trump-meeting-in-new-york/)
+- [ISW, Sep 1](https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-1-2026/)
+- [ISW, Sep 12](https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-12-2026/)
+- [ISW, Sep 13](https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-13-2026/)
+- [FOX 13, Sep 13](https://www.fox13seattle.com/news/heres-where-washington-wildfires)
+- [WESH, Aug 24](https://www.wesh.com/article/nasa-sets-sights-on-june-2027-launch-artemis-iii/73514269)
+- [Cook Senate](https://www.cookpolitical.com/ratings/senate-race-ratings) (dated Aug 20, 2026)
+- [Cook House](https://www.cookpolitical.com/ratings/house-race-ratings) (dated Sep 11, 2026)
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
