@@ -2,6 +2,25 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-09-21
+
+**Minor — weekly news pass: dated snapshots where sourced developments overtook the August 27 copy.**
+
+Main was still on the August 27, 2026 snapshots. Two earlier weekly drafts (PR #7, Sep 7; PR #8, Sep 14) never merged, so this pass is cut from current `main` (v4.15.0) and includes what moved through September 21.
+
+- **Iran.** Weekend Hormuz traffic 17 commodity vessels vs 37 the weekend before vs ~125 a day before the war (Reuters / Kpler, Sep 21). Some oil moving by ship-to-ship transfer off Oman and Fujairah (Al Jazeera, Sep 18). Trump told Fox News he would "probably be open" to meeting President Pezeshkian at UNGA Sep 22–28; no meeting confirmed (Hürriyet Daily News). Brent **$101.71**. Quiz q10 still matches 3 crossings on Aug 16 and 5 on Aug 25. Gas $3.95 (AAA Jul 16) and casualty totals were not reinvented.
+- **Ukraine.** Witkoff/Kushner Moscow Sep 5 / Kyiv Sep 6, no breakthrough (RFE/RL). Zelenskyy said Sep 20 he and President Trump had agreed to meet in New York during UNGA (Reuters). ISW Sep 19: Russia ~148 km² confirmed control in 2026; Ukraine recaptured at least ~973 km² — two counts, not a net. Near-zero Russian gains since March; Lyman counterattacks. H1 622/97 and July ~38 kept.
+- **Elections.** Newsweek Sep 18 reporting Cook's Sep 15 Senate move of New Hampshire to Toss Up — **seven** toss-ups (Alaska, Iowa, Maine, Michigan, New Hampshire, Ohio, Texas). Cook House table dated Aug 25 lists **21** toss-ups. Seat math 218/212 and 60 House / 11 Senate retirements were not reinvented. Homepage featured "68 days" is now a live countdown to Nov 3, 2026.
+- **Climate.** FOX 13 Sep 15 named fires (Watch Duty): Little Giant 172,704 / 81%; Sinlahekin ~166,021 / 77%; Kaiser Canyon 138,293 / 100%; Paradise 9,654 / 86%; West Fork Rainier ~310 / 16%. Named-fire acres are not a season total; DNR's Aug 24 **800,000-acre** figure stays.
+- **Space.** Artemis III no earlier than June 2027 (WESH Aug 24 / Isaacman); still an Earth-orbit docking test; landing Artemis IV 2028. Starliner left as the Aug 2026 snapshot.
+- **AI.** Pew Sep 17 global survey: in 34 of 37 countries, more people expect AI to mean fewer jobs than more. The U.S. 71% figure from the Aug 18 write-up of the June survey stays.
+- **Homepage.** Ticker rewritten from those snapshots.
+
+### Left alone
+
+- **Immigration** — October 2026 Visa Bulletin not published as of Sep 21. No ICE/TRAC invention.
+- **Gun violence** — Texas HB 3 still unfinished; no new statewide implementation story that overtook the August staffing check.
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
