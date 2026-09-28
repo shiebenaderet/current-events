@@ -72,14 +72,14 @@ Full build order, gates and traps: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 
 | Topic | Status | Page | Last content refresh |
 |---|---|---|---|
-| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | August 27, 2026 |
-| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | August 27, 2026 |
-| 🤖 AI & Society | ✅ Live | `ai.html` | August 18, 2026 |
-| 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | August 27, 2026 |
-| 🌍 Climate Change | ✅ Live | `climate-change.html` | August 27, 2026 |
+| 🇮🇷 Understanding Iran | ✅ Live | `iran.html` | September 28, 2026 |
+| 🇺🇦 The War in Ukraine | ✅ Live | `ukraine.html` | September 28, 2026 |
+| 🤖 AI & Society | ✅ Live | `ai.html` | September 28, 2026 |
+| 🗳️ US Elections & How Government Works | ✅ Live | `us-elections.html` | September 28, 2026 |
+| 🌍 Climate Change | ✅ Live | `climate-change.html` | September 28, 2026 |
 | 🗽 Immigration & U.S. Policy | ✅ Live | `immigration.html` | August 27, 2026 |
 | 🔫 Gun Violence & School Safety | ✅ Live | `gun-violence.html` | August 18, 2026 |
-| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | August 18, 2026 |
+| 🚀 Space Race 2.0 | ✅ Live | `space-race.html` | September 28, 2026 |
 
 ---
 

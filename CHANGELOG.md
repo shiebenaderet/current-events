@@ -2,6 +2,31 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-09-28
+
+**Minor — weekly news refresh: September 28, 2026 snapshots on pages the news actually moved.**
+
+Cut from current `main` (v4.15.0). Earlier weekly drafts that also claimed v4.16.0 (PRs #7, #8, #9) were never merged; this pass replaces them with a later as-of date rather than stacking on top of them.
+
+### What moved
+
+- **`iran.html`** — At the UN, Iran offered to reopen Hormuz within seven days if its conditions were met. President Trump told reporters, "They made a proposal but I rejected it" ([CNBC, Sep. 28](https://www.cnbc.com/2026/09/28/oil-price-today-wti-brent-trump-iran.html); [Al Jazeera, Sep. 27](https://www.aljazeera.com/economy/2026/9/27/strait-of-hormuz-tensions-linger-as-iran-and-us-move-further-from-a-deal)). Brent at **$106.73** at 10:33 a.m. ET on Sep. 28, after a session high of $108.83 — the session high is cited as a high, not as "the" price. U.S. Energy Secretary Wright's "nearly 13 million barrels a day" and CENTCOM's billion-barrel / 122-vessel claims sit next to Tehran's claim that U.S. traffic numbers are false. Kpler's Aug. 16 (3) and Aug. 25 (5) day-counts stay as the last verified daily counts; quiz q10 still matches them.
+- **`ukraine.html`** — Zelenskyy and Trump met for about 40 minutes at the UN on Sep. 22 ([Reuters](https://www.reuters.com/world/ukraines-zelenskiy-says-he-discussed-peace-efforts-energy-ceasefire-with-trump-2026-09-22/); [CNBC](https://www.cnbc.com/2026/09/23/ukraine-war-zelenskyy-putin-trump-russia.html)). An energy ceasefire was discussed; Zelenskyy said he was ready for a trilateral meeting. Peskov said a leaders' meeting before expert talks would be a waste of time. On Sep. 25 the U.S. proposed technical-level talks in the UAE ([Al-Monitor / Reuters](https://www.al-monitor.com/originals/2026/09/us-proposes-trilateral-meeting-ukraine-russia-uae-zelenskiy-says)). ISW Sep. 27 described recent Russian net advances as near-zero. CSIS's ~20% / 116,000 km² control figure is kept; no new casualty or km² total was invented.
+- **`us-elections.html`** — House Clerk's Sep. 2 Official List: **R 218, D 214, 1 independent, 2 vacant** ([clerk PDF](https://clerk.house.gov/member_info/olm-119.pdf)), down from four vacancies after CA-14 and GA-13 specials. Cook Senate ratings dated **Sep. 23**: seven Toss Ups (AK, IA, ME, MI, NH, OH, TX). Cook House ratings dated **Sep. 25**: **22** Toss Ups; Cook moved 15 House races toward Democrats that week ([Cook House](https://www.cookpolitical.com/ratings/house-race-ratings); [Cook Senate](https://www.cookpolitical.com/ratings/senate-race-ratings); [WaPo](https://www.washingtonpost.com/elections/2026/09/25/cook-political-report-moves-15-house-races-into-democrats-favor/)). Retirement counts stay at the last cited August figures. Cook's "most likely slim Democratic House majority" is not restated as a classroom fact — the dated ratings are.
+- **`climate-change.html`** — DNR's Ryan Rodruck told KOMO on Sep. 15 the state had seen **over 900,000 acres** burned, with more than 1,500 fires; a statewide large-burn ban ran through Sep. 30 ([KOMO, Sep. 15](https://komonews.com/news/local/cooler-temperatures-washington-state-wildfires-firefighting-season-900000-acres-chelan-county-little-giant-dnr-pierce-county-unincorporated-areas-precipitation)). The Aug. 24 **800,000-acre** figure stays as the earlier measurement. Named-fire acres are not added up into a new season total.
+- **`space-race.html`** — NASA's published Artemis III plan is still a 2027 Earth-orbit docking test. A Sep. 20 memo from Administrator Isaacman, reviewed by FOX 35, told staff the mission was about **90 days behind**, with summer 2027 still the best case. NASA had not issued a public comment as of Sep. 24 ([FOX 35](https://www.fox35orlando.com/news/nasa-workforce-memo-details-artemis-iii-launch-delays)). Starliner's last sourced target is left at August.
+- **`ai.html`** — Pew's Sep. 17 global survey: in **34 of 37** countries, more people expected AI to mean fewer jobs than more jobs ([Pew](https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/)). The Aug. 18 U.S. 71% figure stays. Country-level 76% figures from secondary write-ups were not used; Pew's own page said "around seven-in-ten or more" for Australia, South Korea, and the United States.
+- **`index.html`** — Ticker headlines replaced with the four that actually moved. The hardcoded "68 days to Election Day" on the featured flag is gone; it now uses the same live `days-until` countdown as the elections page.
+
+### Left alone on purpose
+
+- **`immigration.html`** — The October 2026 Visa Bulletin had not been published as of Sep. 28. No ICE or TRAC totals were invented.
+- **`gun-violence.html`** — No sourced change to the K-12 tracker snapshot or to Texas HB 3 implementation.
+
+### What this pass refused to do
+
+A day-count of Hormuz transits newer than Aug. 25 was not invented from weekly Lloyd's figures or from U.S. barrel claims. Cook's House toss-up list was read from cookpolitical.com on Sep. 25, not guessed from a paywalled table.
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
