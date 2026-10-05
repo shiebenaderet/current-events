@@ -2,6 +2,31 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-10-05
+
+**Minor — weekly news refresh: October 5, 2026 snapshots on pages the news actually moved.**
+
+Cut from current `main` (v4.15.0). Earlier weekly drafts that also claimed v4.16.0 (PRs #7, #8, #9, #10) were never merged; this pass replaces them with a later as-of date rather than stacking on top of them.
+
+### What moved
+
+- **`iran.html`** — On Oct. 4, parliament speaker Mohammad Bagher Ghalibaf said Hormuz would not reopen until seven Iranian conditions from the June Islamabad memorandum were met ([Reuters via Oman Observer](https://www.omanobserver.om/article/1197198/world/region/hormuz-to-remain-closed-until-conditions-are-met-iran)). That restates the late-September seven-day offer President Trump rejected: "They made a proposal but I rejected it" ([CNBC, Sep. 28](https://www.cnbc.com/2026/09/28/oil-price-today-wti-brent-trump-iran.html)). OilPrice.com, citing provisional Kpler data reported by Reuters, said crude flows out of Hormuz ranged between 19.5 and 22.5 million barrels a day Sep. 27–29, with Brent at **$101.20** at the time of that Oct. 5 write-up — a timestamped price, not "the" price ([OilPrice](https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Fall-as-Hormuz-Crude-Flows-Top-Pre-War-Levels.html)). Kpler's Aug. 16 (3) and Aug. 25 (5) day-counts stay as the last verified daily vessel counts; quiz q10 still matches them. No new casualty total was invented.
+- **`ukraine.html`** — Zelenskyy said Oct. 4 the U.S. had proposed technical-level talks with Ukraine and Russia by the end of October; Ukraine said it was ready and waiting on Russia's answer ([Kyiv Independent](https://kyivindependent.com/us-proposes-trilateral-talks-with-russia-ukraine-by-end-of-october-zelensky-says/); [CNBC, Oct. 5](https://www.cnbc.com/2026/10/05/ukraine-war-russia-kyiv-putin-zelenskyy-trump.html)). ISW Oct. 4: Russian forces concentrated east of Slovyansk near Kryva Luka and toward Mykolaivka and **did not advance**. CSIS's ~20% / 116,000 km² control figure is kept; no new km² total was invented.
+- **`us-elections.html`** — House Press Gallery as of Oct. 5: **R 218, D 214, 1 independent, 2 vacant** ([party breakdown](https://pressgallery.house.gov/member-data/party-breakdown)). Cook Senate ratings dated **Sep. 23**: seven Toss Ups (AK, IA, ME, MI, NH, OH, TX). Cook House ratings dated **Sep. 25**: **22** Toss Ups (6 Democratic-held, 16 Republican-held), including Washington's 3rd District — named as a different district from the school's 1st ([Cook House](https://www.cookpolitical.com/ratings/house-race-ratings); [Cook Senate](https://www.cookpolitical.com/ratings/senate-race-ratings)). Retirement counts stay at the last cited August figures. Cook's majority forecasts are not restated as classroom facts — the dated ratings are.
+- **`climate-change.html`** — DNR's Oct. 5 FIReS report: **849,521** acres on fires and responses where DNR dispatched resources (1,646 responses); a narrower DNR-protection count of 418,841 acres is named as a different measuring stick, not a second season ([DNR FIReS](https://fireintel.s3.us-west-2.amazonaws.com/intelreport/FIReS_report.html)). The Aug. 24 **800,000-acre** KOMO/DNR figure stays as the earlier spokesperson measurement. The statewide burn ban ran through Sep. 30.
+- **`space-race.html`** — A Sep. 20 memo from Administrator Isaacman, reviewed by FOX 35, told staff Artemis III was about **90 days behind**, with summer 2027 still the best case. NASA had not issued a public comment as of Sep. 24 ([FOX 35](https://www.fox35orlando.com/news/nasa-workforce-memo-details-artemis-iii-launch-delays)). NASA and Boeing on Sep. 28 gave Starliner-1 a **December 2026 / January 2027** window ([Boeing](https://www.boeing.com/features/2026/09/nasa-boeing-update-starliner-contract-and-set-launch-window-for-next-mission)). The published Artemis III plan is still a 2027 Earth-orbit docking test.
+- **`immigration.html`** — The October 2026 Visa Bulletin (first of fiscal year 2027) left India EB-3 at **January 1, 2014**. India EB-2, unavailable through Sep. 30, was available again with a final-action date of **November 1, 2013** ([Murthy, citing DOS](https://www.murthy.com/2026/09/29/october-2026-visa-bulletin/); [official bulletin](https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/2027/visa-bulletin-for-october-2026.html)). ICE and TRAC totals stay at the last cited July/June dates; no full-year FY2026 removal total was invented.
+- **`ai.html`** — Pew's Sep. 17 global survey: in **34 of 37** countries, more people expected AI to mean fewer jobs than more jobs ([Pew](https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/)). The Aug. 18 U.S. 71% figure stays. Country-level 76% figures from secondary write-ups were not used; Pew's own page said "around seven-in-ten or more" for Australia, South Korea, and the United States.
+- **`index.html`** — Ticker headlines replaced with the four that actually moved. The hardcoded "68 days to Election Day" on the featured flag is gone; it now uses the same live `days-until` countdown as the elections page.
+
+### Left alone on purpose
+
+- **`gun-violence.html`** — No sourced change to the K-12 tracker snapshot or to Texas HB 3 implementation. A mid-year 2026 incident count from a secondary roundup was not used in place of the last full-year figures.
+
+### What this pass refused to do
+
+A day-count of Hormuz transits newer than Aug. 25 was not invented from Kpler's barrel-flow figures. Cook's House toss-up list was read from cookpolitical.com on Oct. 5 (ratings dated Sep. 25), not guessed from a paywalled table. DNR's two acre counts were not added together.
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
