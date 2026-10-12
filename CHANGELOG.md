@@ -2,6 +2,34 @@
 
 All notable changes to this site are documented here. Versioning follows the scheme in `README.md`'s **Versioning** section (site-wide `MAJOR.MINOR.PATCH`, bumped once per finished effort — see that section for what qualifies as each level).
 
+## [4.16.0] — 2026-10-12
+
+**Minor — weekly news refresh: October 12, 2026 snapshots on pages the news actually moved.**
+
+Cut from current `main` (v4.15.0). Earlier weekly drafts that also claimed v4.16.0 (PRs #7–#11, including last week's `weekly-updates-2026-10-05`) were never merged; this pass replaces them with a later as-of date rather than stacking on top of them.
+
+### What moved
+
+- **`iran.html`** — On Oct. 12, Iran's security chief Mohsen Rezaei called the latest U.S. reply to Iran's seven conditions "insufficient" and said there would be no talks until those conditions were met ([Indian Express, citing Reuters](https://indianexpress.com/article/world/iran-seven-conditions-to-end-war-us-reply-latest-updates-10917361/)). Five of the seven he has named in public stay listed; the other two are not in that reporting. OilPrice.com put Brent at **$106.80** the morning of Oct. 12 — a timestamped price, not "the" price ([OilPrice](https://oilprice.com/Latest-Energy-News/World-News/Oil-Jumps-2-as-Saudi-Attacks-and-Tanker-Strikes-Revive-Hormuz-Fears.html)). The National, citing Kpler, put about 22 vessels a day across Hormuz over the prior 30 days and a September oil-export average just under 9 million barrels a day; Energy Secretary Wright's same-day 14 million bpd figure includes pipeline bypasses, so it is not the same stick ([The National](https://www.thenationalnews.com/business/energy/2026/10/12/us-says-hormuz-oil-flows-recover-to-14-million-bpd-despite-saudi-attacks/)). Kpler's Aug. 16 (3) and Aug. 25 (5) day-counts stay as the last verified daily vessel counts; quiz q10 still matches them. No new casualty total was invented.
+- **`ukraine.html`** — Trump announced an energy ceasefire on Oct. 11; ISW reported that neither government had officially recognized it, and Zelenskyy said Russian forces struck Kharkiv Thermal Power Plant No. 5 hours later. Zelenskyy also said he would organize presidential elections if Russia agreed to a 60-day ceasefire ([ISW via Critical Threats, Oct. 11](https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-11-2026)). On Oct. 12, Kremlin spokesman Peskov rejected that pause and said Russia would halt for one day, not 60 ([Irish Times / Reuters](https://www.irishtimes.com/world/europe/2026/10/12/kremlin-rejects-ukraines-offer-of-a-60-day-truce-and-presidential-elections/)). ISW reported Ukrainian advances in northern Sumy Oblast and the Velykyi Burluk direction without a new square-kilometer total. CSIS's ~20% / 116,000 km² control figure is kept.
+- **`us-elections.html`** — House Press Gallery as of Oct. 12: **R 218, D 214, 1 independent, 2 vacant** ([party breakdown](https://pressgallery.house.gov/member-data/party-breakdown)). Cook Senate ratings dated **Oct. 6**: seven Toss Ups (AK, IA, KS, ME, MI, OH, TX) — Kansas in, New Hampshire out to Lean Democrat ([Cook Senate](https://www.cookpolitical.com/ratings/senate-race-ratings)). Cook House ratings dated **Oct. 9**: **21** Toss Ups (6 Democratic-held, 15 Republican-held). Washington's 3rd District moved from Toss Up to Lean Democrat; it is still a different district from the school's 1st ([Cook House](https://www.cookpolitical.com/ratings/house-race-ratings)). Retirement counts stay at the last cited August figures.
+- **`climate-change.html`** — DNR's Oct. 12 FIReS report: **848,689** acres on fires and responses where DNR dispatched resources (1,677 responses); a narrower DNR-protection count of 418,917 acres is named as a different measuring stick, not a second season ([DNR FIReS](https://fireintel.s3.us-west-2.amazonaws.com/intelreport/FIReS_report.html)). The Aug. 24 **800,000-acre** KOMO/DNR figure stays as the earlier spokesperson measurement.
+- **`immigration.html`** — TRAC's August 2026 EOIR snapshot: **3,092,988** pending cases, of which **2,278,978** (~74%) are asylum ([TRAC](https://tracreports.org/immigration/quickfacts/eoir.html)). The June 30 count of 3,195,137 is kept beside it as the earlier measurement. The October 2026 Visa Bulletin remains current as of Oct. 12 (India EB-3 still Jan. 1, 2014; India EB-2 FAD Nov. 1, 2013); the November bulletin was not yet published ([DOS index](https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html)). ICE totals stay at the last cited July 21 figures.
+- **`index.html`** — Ticker headlines replaced with the four that actually moved this week.
+
+### Brought forward from the unmerged Oct. 5 draft (still the latest sourced snapshot)
+
+- **`ai.html`** — Pew's Sep. 17 global survey: in **34 of 37** countries, more people expected AI to mean fewer jobs than more jobs ([Pew](https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/)). The Aug. 18 U.S. 71% figure stays. Nothing newer overtook it this week.
+- **`space-race.html`** — A Sep. 20 memo from Administrator Isaacman, reviewed by FOX 35, told staff Artemis III was about **90 days behind**, with summer 2027 still the best case ([FOX 35](https://www.fox35orlando.com/news/nasa-workforce-memo-details-artemis-iii-launch-delays)). NASA and Boeing on Sep. 28 gave Starliner-1 a **December 2026 / January 2027** window. A Reuters Oct. 5 astronaut interview could not be fetched (401), so it was not added as a citation.
+
+### Left alone on purpose
+
+- **`gun-violence.html`** — No sourced change to the K-12 tracker snapshot or to Texas HB 3 implementation. Footer stamped to 4.16.0 with the rest of the site.
+
+### What this pass refused to do
+
+A day-count of Hormuz transits newer than Aug. 25 was not invented from Kpler's barrel-flow or 30-day vessel averages. Wright's 14 million bpd was not treated as a Hormuz-only figure. Cook's toss-up lists were read from cookpolitical.com on Oct. 12 (ratings dated Oct. 6 and Oct. 9), not guessed from a paywalled table. DNR's two acre counts were not added together. No FY2026 ICE removal total was invented.
+
 ## [4.15.0] — 2026-08-31
 
 **Minor — no image on the site is now silent about where it came from.**
